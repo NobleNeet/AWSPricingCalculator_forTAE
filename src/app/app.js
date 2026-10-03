@@ -4,6 +4,7 @@ import { evaluateService, selectorCandidates } from '../pricing/core.js';
 import { enabled } from '../pricing/conditions.js';
 import { money } from '../pricing/decimal.js';
 import { newProject, addPlan, duplicatePlan, deletePlan, placeService, removeService, planSummary, planDelta, createInstance, serializeProject } from './project-store.js';
+import { restoreProject } from './restore.js';
 
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
@@ -11,6 +12,7 @@ export const prices = new PriceDataStore();
 export const definitions = new DefinitionStore();
 export const results = new Map();
 let state = newProject(), catalog = [], limitations = new Map(), target = null, editing = null;
+let projectSchema;
 const revisions = new Map();
 const STORAGE_KEY = 'tae-project-v1';
 function message(text) { $('app-message').textContent = text; }
@@ -46,7 +48,7 @@ function render() {
       if (!instance) return `<td>—<div class="cell-actions"><button data-action="add-service" data-plan="${planId}" data-row="${rowId}">この行に追加</button></div></td>`;
       const result = results.get(instance.id), amount = result?.amountUsd;
       const label = catalog.find(s => s.id === instance.serviceId)?.label ?? instance.serviceId;
-      const params = [...Object.entries(instance.selectors ?? {}), ...Object.values(instance.components ?? {}).flatMap(c => Object.entries(c.inputs ?? {}))].map(([key, value]) => `${key}: ${value}`).join(' · ');
+      const params = [...Object.entries(instance.selectors ?? {}), ...Object.values(instance.components ?? {}).flatMap(c => Object.entries(c?.inputs ?? {}))].map(([key, value]) => `${key}: ${value}`).join(' · ');
       return `<td data-instance="${instance.id}"><div class="service-name">${escape(label)}</div><div class="service-parameters">${escape(params)}</div><div class="amount">${amount !== undefined && amount !== null ? escape(money(amount)) : '—'}</div><div class="state ${escape(result?.state)}">${escape(stateText(result))}</div>${result?.state === 'unavailable' ? `<button data-action="retry" data-instance="${instance.id}">再試行</button>` : ''}<div class="cell-actions"><button data-action="edit" data-instance="${instance.id}">編集</button><button data-action="add-service" data-plan="${planId}" data-row="${rowId}">別サービスへ置換</button><button class="danger" data-action="remove-service" data-plan="${planId}" data-row="${rowId}">Planから外す</button></div></td>`;
     }).join('')}</tr>`;
   }).join('')}<tr class="total"><td>月額 / 差額</td>${planIds.map(id => {
@@ -60,10 +62,11 @@ async function evaluate(id) {
   results.set(id, { state: 'loading', amountUsd: null }); render();
   let result;
   try {
+    if (!catalog.some(service => service.id === instance.serviceId)) throw Object.assign(Error(`未知Service: ${instance.serviceId}`), { code: 'INVALID_DATA' });
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
     if (region !== 'ap-northeast-1') throw Object.assign(Error('正式対応Region外です。要再選択'), { code: 'INVALID_DATA' });
     const pkg = await definitions.package(instance.serviceId);
-    const data = await prices.products(pkg.service.priceSource.serviceCode, region);
+    const data = await prices.products(pkg.service.priceSource.serviceCode, 'ap-northeast-1');
     result = evaluateService(pkg, instance, { ...state.project.usageAssumptions, defaultRegion: state.project.defaultRegion, region }, data.products);
   } catch (error) { result = { state: error.code === 'INVALID_DATA' ? 'invalid' : 'unavailable', amountUsd: null, issues: [{ code: error.code ?? 'FETCH_FAILED', severity: 'error', message: error.message }] }; }
   if (!state.serviceInstances[id] || revisions.get(id) !== revision) return;
@@ -91,7 +94,7 @@ async function renderDrawer() {
     const pkg = await definitions.package(instance.serviceId), profile = pkg.profiles[instance.profileId];
     if (!profile) throw Error('未知Profile: 要再選択');
     const region = instance.region.mode === 'override' ? instance.region.value : state.project.defaultRegion;
-    const data = await prices.products(pkg.service.priceSource.serviceCode, region);
+    const data = await prices.products(pkg.service.priceSource.serviceCode, 'ap-northeast-1');
     if (editing !== id) return;
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
@@ -169,6 +172,17 @@ export function downloadText(name, text, type = 'application/json') {
 export function projectJson() { return serializeProject(state, { buildId: prices.buildId, publicationDate: prices.publicationDate }); }
 $('json-export').addEventListener('click', () => downloadText('aws-project.json', projectJson()));
 $('restore-open').addEventListener('click', () => $('restore-modal').showModal());
+$('restore-submit').addEventListener('click', async () => {
+  const text = $('restore-text').value;
+  const packages = new Map();
+  try {
+    const parsed = JSON.parse(text);
+    await Promise.all([...new Set(Object.values(parsed.serviceInstances ?? {}).map(instance => instance?.serviceId).filter(Boolean))].map(async id => { try { packages.set(id, await definitions.package(id)); } catch { /* Partial restoration remains possible. */ } }));
+  } catch { /* The pure restore parser reports fatal errors. */ }
+  const report = restoreProject(text, { schema: projectSchema, packages, currentBuildId: prices.buildId });
+  $('restore-report').textContent = `${report.fatal ? '復元失敗（現在のProjectは変更されません）' : '復元完了'}\n${report.issues.map(item => `${item.code}: ${item.message}`).join('\n')}`;
+  if (!report.fatal) await replaceProject(report.project);
+});
 for (const kind of ['csv', 'pdf']) $(`${kind}-export`).addEventListener('click', async () => {
   try { const exports = await import('./export.js'); await exports.exportProject(kind, { state, results, catalog, definitions, limitations, prices, json: projectJson(), download: downloadText }); }
   catch (error) { message(`出力エラー: ${error.message}`); }
@@ -178,8 +192,15 @@ export const appState = () => state;
 function renderMetadata() { $('price-meta').textContent = prices.publicationDate ? `Price Data ${prices.publicationDate} · ${prices.buildId}${prices.stale ? ' · stale（新buildまたは最新確認失敗。使用中buildで計算）' : ''}` : 'Price Dataを取得できません（Project編集・保存は継続できます）'; }
 $('check-price').addEventListener('click', async () => { await prices.initialize().catch(() => {}); await prices.checkLatest(); renderMetadata(); await evaluateAll(); });
 async function initialize() {
+  try { const response = await fetch('./schemas/project.schema.json'); if (!response.ok) throw Error('Schema fetch failure'); projectSchema = await response.json(); }
+  catch { message('Project Schemaを取得できません。復元を利用するには再読込してください。'); $('restore-submit').disabled = true; }
   try {
-    const saved = localStorage.getItem(STORAGE_KEY); if (saved) { const parsed = JSON.parse(saved); if (parsed.schemaVersion === 1 && parsed.project?.planOrder && parsed.rows && parsed.serviceInstances && parsed.plans) state = parsed; else message('保存Projectの形式を確認できません。新規Projectを表示します。'); }
+    const saved = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem('awsPricingCalculator.project.v1');
+    if (saved) {
+      const report = restoreProject(saved, { schema: projectSchema });
+      if (!report.fatal) { state = report.project; if (report.issues.length) message(report.issues.map(item => item.message).join(' / ')); }
+      else message('保存Projectを安全に復元できません。保存データは保持して新規Projectを表示します。');
+    }
   } catch { message('保存Projectを読み込めません。新規Projectを表示します。'); }
   render();
   const tasks = await Promise.allSettled([definitions.catalog(), prices.initialize(), fetch('./pricing/limitations.json').then(response => response.json())]);

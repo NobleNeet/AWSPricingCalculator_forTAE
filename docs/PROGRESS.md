@@ -12,5 +12,6 @@ This log records implementation gates; the specification remains SPEC.md and PRI
 | 6 | completed | npm test: 24 PASS; validate PASS. Build pinning, SHA256 resources, in-flight cache, per-resource retry/state, stale check, lazy definitions and derived catalog generator. |
 | 7 | completed | npm test: 25 PASS; all Definition/Price/Golden checks PASS. 2491 reachable resolutions, 11 independent AWS Golden cases; full coverage unresolved=0 for 5 services. Immutable initial 20261004-initial generated and explicitly promoted after validation; published resources about 5.5MB. Sources and exclusions documented in PRICE_SOURCES.md. |
 | 8 | completed | npm test: 27 PASS; Chromium major-flow E2E PASS; schema export, Definition/Price/Golden validation PASS. Root production UI supports 0 Plan, clone/row add/replace/delete, dynamic Drawer, real totals/subtotals/delta, loading/invalid/unavailable/stale and autosave. Mock retained; Pages switch deferred until exports complete. |
-| 9 | in_progress | Safe restore/migration/report and PDF+JSON/CSV. |
-| 10–11 | pending | |
+| 9 | completed | npm test: 30 PASS; 2 Chromium E2E PASS; full Definition/Price/Golden checks PASS. Fatal restore preserves current Project, explicit migration and opaque mock migration, unknown fields/config retained, current build recalculation; actual Japanese PDF+JSON downloads and CSV exact values verified. |
+| 10 | in_progress | Application CI, scheduled update/promotion/retention, production Pages. |
+| 11 | pending | |

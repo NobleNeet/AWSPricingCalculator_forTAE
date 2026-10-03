@@ -1,0 +1,29 @@
+import { test, expect } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
+
+test('JSON roundtrip, invalid selector, partial restore, fatal preservation, PDF+JSON and CSV', async ({ page }) => {
+  await page.goto('/'); await expect(page.locator('#price-meta')).toContainText('initial');
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click(); await page.locator('[data-service="ec2"]').click();
+  await expect(page.locator('#workspace')).toContainText('$9.93'); await page.getByLabel('編集を閉じる').click();
+  const exported = page.waitForEvent('download'); await page.locator('#json-export').click();
+  const download = await exported; const text = await readFile(await download.path(), 'utf8');
+  const data = JSON.parse(text), instance = Object.values(data.serviceInstances)[0];
+  data.priceData.buildId = 'older-build'; instance.components.instance.inputs.instanceType = 'future-invalid';
+  await page.locator('#restore-open').click(); await page.locator('#restore-text').fill(JSON.stringify(data)); await page.locator('#restore-submit').click();
+  await expect(page.locator('#restore-report')).toContainText('PRICE_BUILD_CHANGED'); await page.getByLabel('復元を閉じる').click();
+  await expect(page.locator('#workspace')).toContainText('要再選択'); await expect(page.locator('#workspace')).toContainText('計算済み小計');
+  await page.getByRole('button', { name: '編集', exact: true }).click();
+  await expect(page.locator('#input-component-instance-instanceType')).toHaveValue('');
+  await page.locator('#input-component-instance-instanceType').selectOption('t3.micro');
+  await expect(page.locator('#workspace')).toContainText('$9.93'); await page.getByLabel('編集を閉じる').click();
+  await page.locator('#restore-open').click(); await page.locator('#restore-text').fill('{'); await page.locator('#restore-submit').click();
+  await expect(page.locator('#restore-report')).toContainText('RESTORE_FATAL'); await expect(page.locator('#workspace')).toContainText('$9.93');
+  await page.locator('#restore-text').fill(text); await page.locator('#restore-submit').click(); await page.getByLabel('復元を閉じる').click();
+  const csvDownload = page.waitForEvent('download'); await page.locator('#csv-export').click();
+  const csv = await csvDownload; expect(csv.suggestedFilename()).toBe('aws-comparison.csv'); expect(await readFile(await csv.path(), 'utf8')).toContain('9.928');
+  const downloads = []; page.on('download', download => downloads.push(download)); await page.locator('#pdf-export').click();
+  await expect.poll(() => downloads.length, { timeout: 45000 }).toBe(2);
+  expect(downloads.map(d => d.suggestedFilename()).sort()).toEqual(['aws-comparison.pdf', 'aws-project.json']);
+  const pdf = downloads.find(d => d.suggestedFilename().endsWith('.pdf')); expect((await readFile(await pdf.path())).subarray(0, 4).toString()).toBe('%PDF');
+});
