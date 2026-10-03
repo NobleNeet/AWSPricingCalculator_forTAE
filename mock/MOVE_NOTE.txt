@@ -1,1 +1,0 @@
-Mock files are being relocated from the repository root without changing their contents.
