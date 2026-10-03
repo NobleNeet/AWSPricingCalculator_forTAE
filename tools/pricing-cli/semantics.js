@@ -2,6 +2,7 @@ import { evaluateService, selectorCandidates } from '../../src/pricing/core.js';
 import { enabled } from '../../src/pricing/conditions.js';
 import { issue } from '../../src/pricing/issues.js';
 import { inventory, validateCoverage } from './inventory.js';
+import { matches } from '../../src/pricing/filter.js';
 
 export function defaults(pkg, profileId = pkg.service.defaultProfile) {
   const profile = pkg.profiles[profileId];
@@ -43,14 +44,15 @@ export function reachableCases(pkg, products) {
         if (!enabled(component.enabledWhen, context)) continue;
         const start = { ...context, component: instance.components[componentId].inputs };
         const filters = [...profile.fixedFilters, ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
-        for (const branch of branches(component.selectors, 'component', start, products, filters)) {
+        const scopedProducts = products.filter(product => matches(product, filters, context));
+        for (const branch of branches(component.selectors, 'component', start, scopedProducts, filters)) {
           const sample = structuredClone(instance);
           sample.selectors = branch.profile;
           sample.components[componentId].inputs = branch.component;
           // Validate each independently so optional disabled defaults don't conceal a meter.
           const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
           sample.components[componentId].enabled = true;
-          cases.push({ pkg: narrow, instance: sample, project: base.project, componentId });
+          cases.push({ pkg: narrow, instance: sample, project: base.project, componentId, products: scopedProducts });
         }
       }
     }
@@ -69,7 +71,7 @@ export function validatePriceData(packages, data, common, normalizers) {
     const cases = reachableCases(pkg, source.products);
     if (!cases.length) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id }));
     for (const sample of cases) {
-      const result = evaluateService(sample.pkg, sample.instance, sample.project, source.products);
+      const result = evaluateService(sample.pkg, sample.instance, sample.project, sample.products);
       issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId: sample.instance.profileId })));
       resolutions.push({ serviceId: pkg.service.id, profileId: sample.instance.profileId, componentId: sample.componentId, instance: sample.instance, result });
     }

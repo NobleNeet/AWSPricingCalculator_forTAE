@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Standard",
+  "selectors": [
+    {
+      "id": "architecture",
+      "label": "Compute architecture",
+      "type": "select",
+      "default": "AWS-Lambda-Duration",
+      "options": {
+        "values": [
+          "AWS-Lambda-Duration",
+          "AWS-Lambda-Duration-ARM"
+        ]
+      }
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Serverless"
+    }
+  ],
+  "components": [
+    "requests",
+    "duration"
+  ]
+}

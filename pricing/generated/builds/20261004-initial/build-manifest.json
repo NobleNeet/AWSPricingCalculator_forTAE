@@ -1,0 +1,73 @@
+{
+  "buildId": "20261004-initial",
+  "currency": "USD",
+  "generatedAt": "2026-10-03T19:24:19.159Z",
+  "publicationDate": "2026-10-01T18:47:46Z",
+  "schemaVersion": 1,
+  "sources": {
+    "AWSLambda": {
+      "ap-northeast-1": {
+        "indexBytes": 906,
+        "indexPath": "indexes/AWSLambda/ap-northeast-1/index.json",
+        "indexSha256": "1befb36c629c336d894e49664dbda9b9ed2e1d45b219253348ca955e74187fc7",
+        "metadataUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/current/region_index.json",
+        "productsBytes": 5431,
+        "productsPath": "sources/AWSLambda/ap-northeast-1/products.json",
+        "productsSha256": "98b2ecaea757f3056c4cd35d7091f5f082d08cd4c769410341a8c6607da7cb3d",
+        "publicationDate": "2026-10-01T18:47:46Z",
+        "region": "ap-northeast-1",
+        "serviceCode": "AWSLambda",
+        "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSLambda/20261001184746/ap-northeast-1/index.json",
+        "version": "20261001184746"
+      }
+    },
+    "AmazonEC2": {
+      "ap-northeast-1": {
+        "indexBytes": 82724,
+        "indexPath": "indexes/AmazonEC2/ap-northeast-1/index.json",
+        "indexSha256": "4eabdbe0681a3c0c41461b0923c15aa233e15050d13dea4e547992dd78bfbc2c",
+        "metadataUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/region_index.json",
+        "productsBytes": 4472869,
+        "productsPath": "sources/AmazonEC2/ap-northeast-1/products.json",
+        "productsSha256": "436470464750188cd4564f70ccc6ca91b2861ff2fe47aff05902eea7461c1b5a",
+        "publicationDate": "2026-09-25T17:45:21Z",
+        "region": "ap-northeast-1",
+        "serviceCode": "AmazonEC2",
+        "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260925174521/ap-northeast-1/index.json",
+        "version": "20260925174521"
+      }
+    },
+    "AmazonRDS": {
+      "ap-northeast-1": {
+        "indexBytes": 34609,
+        "indexPath": "indexes/AmazonRDS/ap-northeast-1/index.json",
+        "indexSha256": "9ed1128997fc339bbce21e37e623e7183f7b3dbb4aca7d509a05c9967b374cdf",
+        "metadataUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/current/region_index.json",
+        "productsBytes": 1001206,
+        "productsPath": "sources/AmazonRDS/ap-northeast-1/products.json",
+        "productsSha256": "a6860c68ee6920d87b8936fa9165d85e6ba7db1b3d51ec6a449348ee75723e6b",
+        "publicationDate": "2026-10-01T06:02:30Z",
+        "region": "ap-northeast-1",
+        "serviceCode": "AmazonRDS",
+        "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261001060230/ap-northeast-1/index.json",
+        "version": "20261001060230"
+      }
+    },
+    "AmazonS3": {
+      "ap-northeast-1": {
+        "indexBytes": 918,
+        "indexPath": "indexes/AmazonS3/ap-northeast-1/index.json",
+        "indexSha256": "1a5e6c451d86d2e8c0161f9ecfb8d7ecdd8001ad72e1a7c9a3a0ef660337ac71",
+        "metadataUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/current/region_index.json",
+        "productsBytes": 4464,
+        "productsPath": "sources/AmazonS3/ap-northeast-1/products.json",
+        "productsSha256": "0d314447e1eb8f1567550be20a09457e15699d44fee0e80d32104982d20610e5",
+        "publicationDate": "2026-09-28T23:04:16Z",
+        "region": "ap-northeast-1",
+        "serviceCode": "AmazonS3",
+        "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonS3/20260928230416/ap-northeast-1/index.json",
+        "version": "20260928230416"
+      }
+    }
+  }
+}

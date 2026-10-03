@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "requests",
+  "label": "Invocations",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "requests",
+      "label": "Requests / month",
+      "type": "number",
+      "default": "1000000",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "AWS-Lambda-Requests"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Request"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.requests"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Request"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

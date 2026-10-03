@@ -16,7 +16,10 @@ export function activeInputs(inputs, saved, context, products, filters) {
     if (!enabled(input.enabledWhen, context)) continue;
     const value = saved[input.id];
     if (value === undefined) fail('MISSING_INPUT', `Input ${input.id} is required.`);
-    if (input.type === 'select' && !selectorCandidates(input, products, context, filters).includes(value)) fail('RESELECT_REQUIRED', `要再選択: ${input.label}`);
+    if (input.type === 'select') {
+      const valid = input.options.values ? input.options.values.includes(value) : products.some(product => fieldValue(product, `attributes.${input.options.attribute}`).value === value && matches(product, [...filters, ...(input.options.filters ?? [])], context));
+      if (!valid) fail('RESELECT_REQUIRED', `要再選択: ${input.label}`);
+    }
     if (input.type === 'number') {
       const amount = decimal(value);
       if (amount.isNegative() || input.minimum !== undefined && amount.lt(input.minimum) || input.maximum !== undefined && amount.gt(input.maximum)) fail('INVALID_INPUT', `Invalid usage: ${input.label}`);
@@ -41,8 +44,10 @@ export function evaluateService(pkg, instance, project, products) {
       try {
         context.component = saved.inputs ?? {};
         const filters = [...profile.fixedFilters, ...definition.fixedFilters];
-        context.component = activeInputs([...definition.selectors, ...definition.usageInputs], context.component, context, products, [...filters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))]);
-        const resolution = resolvePrice(products, definition.priceQuery, context, filters);
+        const broadFilters = [...filters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+        const scopedProducts = products.filter(product => matches(product, broadFilters, context));
+        context.component = activeInputs([...definition.selectors, ...definition.usageInputs], context.component, context, scopedProducts, broadFilters);
+        const resolution = resolvePrice(scopedProducts, definition.priceQuery, context, filters);
         const limitations = [...new Set([...definition.limitations, ...resolution.limitations])];
         const result = calculate(definition.calculation, context, resolution.dimension);
         components[id] = { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution };

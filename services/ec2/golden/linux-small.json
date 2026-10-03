@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "linux-small",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "os": "Linux"
+  },
+  "components": {
+    "instance": {
+      "enabled": true,
+      "inputs": {
+        "instanceType": "t3.micro",
+        "hours": "730",
+        "quantity": "1"
+      }
+    }
+  },
+  "expected": {
+    "instance": {
+      "attributes": {
+        "tenancy": "Shared",
+        "capacitystatus": "Used",
+        "preInstalledSw": "NA",
+        "marketoption": "OnDemand",
+        "licenseModel": "No License required",
+        "operatingSystem": "Linux",
+        "instanceType": "t3.micro",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-BoxUsage:t3.micro",
+        "operation": "RunInstances"
+      },
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount",
+        "cpu-credits",
+        "network-transfer",
+        "aggregate-billing"
+      ]
+    }
+  },
+  "verification": {
+    "instance": {
+      "attributes": {
+        "tenancy": "Shared",
+        "capacitystatus": "Used",
+        "preInstalledSw": "NA",
+        "marketoption": "OnDemand",
+        "licenseModel": "No License required",
+        "operatingSystem": "Linux",
+        "instanceType": "t3.micro",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-BoxUsage:t3.micro",
+        "operation": "RunInstances"
+      },
+      "productFamily": "Compute Instance",
+      "unit": "Hrs",
+      "quantity": "730"
+    }
+  }
+}

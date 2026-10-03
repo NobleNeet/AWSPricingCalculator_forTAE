@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Standard",
+  "selectors": [
+    {
+      "id": "volume",
+      "label": "Volume type",
+      "type": "select",
+      "default": "gp3",
+      "options": {
+        "values": [
+          "gp2",
+          "gp3"
+        ]
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "storage",
+    "iops",
+    "throughput"
+  ]
+}

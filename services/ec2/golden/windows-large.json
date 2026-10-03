@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "windows-large",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "os": "Windows"
+  },
+  "components": {
+    "instance": {
+      "enabled": true,
+      "inputs": {
+        "instanceType": "m7i.large",
+        "hours": "100.5",
+        "quantity": "2"
+      }
+    }
+  },
+  "expected": {
+    "instance": {
+      "attributes": {
+        "tenancy": "Shared",
+        "capacitystatus": "Used",
+        "preInstalledSw": "NA",
+        "marketoption": "OnDemand",
+        "licenseModel": "No License required",
+        "operatingSystem": "Windows",
+        "instanceType": "m7i.large",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-BoxUsage:m7i.large",
+        "operation": "RunInstances:0002"
+      },
+      "unit": "Hrs",
+      "quantity": "201",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount",
+        "cpu-credits",
+        "network-transfer",
+        "aggregate-billing"
+      ]
+    }
+  },
+  "verification": {
+    "instance": {
+      "attributes": {
+        "tenancy": "Shared",
+        "capacitystatus": "Used",
+        "preInstalledSw": "NA",
+        "marketoption": "OnDemand",
+        "licenseModel": "No License required",
+        "operatingSystem": "Windows",
+        "instanceType": "m7i.large",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-BoxUsage:m7i.large",
+        "operation": "RunInstances:0002"
+      },
+      "productFamily": "Compute Instance",
+      "unit": "Hrs",
+      "quantity": "201"
+    }
+  }
+}

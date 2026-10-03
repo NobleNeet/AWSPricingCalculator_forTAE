@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Standard",
+  "selectors": [],
+  "fixedFilters": [],
+  "components": [
+    "storage",
+    "write-requests",
+    "read-requests"
+  ]
+}

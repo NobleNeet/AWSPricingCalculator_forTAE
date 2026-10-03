@@ -1,0 +1,4945 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-TimedStorage-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Analytics"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-TimedStorage-INT-AIA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Analytics"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-TimedStorage-INT-FA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Analytics"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-TimedStorage-INT-IA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Analytics"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-GIR-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Archive Instant Retrieval"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-GDA-Staging"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Archive"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-GlacierByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Archive"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-GlacierStaging"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Archive"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Files-TimedStorage-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Files"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Annotation-TimedStorage-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "General Purpose"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "General Purpose"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "storage"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-XZ-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "High Performance"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-SIA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Infrequent Access"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-ZIA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Infrequent Access"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-INT-AA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Intelligent-Tiering"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-INT-AIA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Intelligent-Tiering"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-INT-DAA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Intelligent-Tiering"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-INT-FA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Intelligent-Tiering"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-INT-IA-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Intelligent-Tiering"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-RRS-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Non-Critical Data"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TagStorage-TagHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Tag-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Tags"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "VectorsStorage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-TimedStorage-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        },
+        {
+          "field": "discriminators.storageClass",
+          "op": "eq",
+          "value": "Vectors"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-GIR-SmObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-GIR"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-INT"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-GIR-SmObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Compute-Checksum-Processed-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Compute-Checksum-Processed-GDA-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Compute-Checksum-Processed-GFR-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Compute-Checksum-Processed-GIR-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Compute-Checksum-Processed-INT-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Compute-Checksum-Processed-SIA-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Compute-Checksum-Processed-ZIA-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Metadata-Annotation-Processed-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Retrieval-GIR"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "S3-API-OL-BytesReturned"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "S3DSSE-In-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "S3DSSE-Out-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Returned-GIR-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Returned-INT-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Scanned-GIR-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Scanned-INT-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-ProcessedBytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-SortProcessedBytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "BatchOperations-Jobs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Jobs"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "BatchOperations-Manifest"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "BatchOperations-Objects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Metadata-Objects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Monitoring-Automation-INT"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-CompactedObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-MonitoredObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-SortCompactedObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GDA-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GIR-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GIR-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-INT-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-INT-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-Requests-INT-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-Requests-INT-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-Requests-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-Requests-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Request-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Request-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Metadata-Updates"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Updates"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Tables-Replication-TableUpdates"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Updates"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Retrieval-SIA"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Retrieval-XZ"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Retrieval-ZIA"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Returned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Returned-SIA-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Returned-ZIA-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Scanned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Scanned-SIA-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Select-Scanned-ZIA-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Upload-XZ"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Annotation-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Annotation-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-BACKUP-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-BACKUP-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-FSXONTAP-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-FSXONTAP-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-FSXOPENZFS-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-FSXOPENZFS-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-SIA-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-SIA-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "write-requests"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "read-requests"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier5"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier6"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-XZ-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-XZ-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-ZIA-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "API Request"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-ZIA-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-ByteHrs"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-SIA-SmObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-SIA"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-ZIA-SmObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EarlyDelete-ZIA"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-SIA-SmObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-ZIA-SmObjects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Bulk-Select-Returned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Bulk-Select-Scanned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Exp-Select-Returned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Exp-Select-Scanned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Expedited-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Peak-Restore-Bytes-Delta"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Std-Select-Returned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Std-Select-Scanned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Inventory-ObjectsListed"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "StorageAnalytics-ObjCount"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CompleteMultipartUpload"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CompleteMultipartUploadForRepl"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CompleteMultipartUploadReplTime"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CopyObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CopyPart"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CreateAGGrant"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CreateAGIdC"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CreateAGInstance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CreateAGInstancePolicy"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CreateAGLocation"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DeepArchiveRestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Bulk-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DeepArchiveRestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Standard-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DeleteAG"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DeleteAGGrant"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DeleteAGIdC"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DeleteAGInstancePolicy"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DeleteAGLocation"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "GetAG"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "GetAGDataAccess"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "GetAGGrant"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "GetAGInstanceForPrefix"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "GetAGInstancePolicy"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "GetAGLocation"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "InitiateMultipartUpload"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "InitiateMultipartUploadForRepl"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "InitiateMultipartUploadReplTime"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "IntAARestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Bulk-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "IntAARestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Expedited-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "IntAARestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Standard-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "IntDAARestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Bulk-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "IntDAARestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Standard-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "ListAGCallerGrants"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "ListAGGrants"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "ListAGLocations"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "ListAGs"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "PostObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "PutObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "PutObjectForRepl"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "PutObjectReplTime"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "PutVectors"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Put-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "QueryVectors"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Query-ProcessedBytes-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "QueryVectors"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Query-ProcessedBytes-Tier2"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "QueryVectors"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Query-ProcessedBytes-Tier3"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "QueryVectors"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Query-Returned-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "QueryVectors"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Request-Tier3"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "Read"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Files-Read"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Bulk-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Standard-Retrieval-Bytes"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "AdditionalRequest-INT"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-INT-AA-Tier3"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-INT-DAA-Tier3"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObject"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier3"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObjectBulk"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-INT-AA-Tier5"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "API Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObjectBulk"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-INT-DAA-Tier5"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "API Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "RestoreObjectExpedited"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-INT-Tier6"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "S3-GDATransition"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier3"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "S3-GIRTransition"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier4"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "S3-GlacierTransition"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier3"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "S3-INTTransition"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier4"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "S3-SIATransition"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier4"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "S3-ZIATransition"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier4"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "StorageLens"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "StorageLens-ObjCount"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Fee"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "StorageLens"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "StorageLensFreeTier-ObjCount"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "UpdateAGLocation"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-Tier8"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "UploadPart"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "UploadPartForRepl"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "UploadPartReplTime"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Requests-GLACIER-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "Write"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Files-Write"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "duration",
+  "label": "Billed compute duration",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "seconds",
+      "label": "Total billed seconds / month",
+      "type": "number",
+      "default": "100000",
+      "minimum": "0",
+      "ui": {
+        "help": "Sum billed invocation durations (including AWS per-invocation rounding). Aggregate elapsed time cannot reconstruct per-invocation billing."
+      }
+    },
+    {
+      "id": "memoryGb",
+      "label": "Memory (GB)",
+      "type": "number",
+      "default": "0.125",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "valueFrom": "profile.architecture"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Lambda-GB-Second"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.seconds"
+        },
+        {
+          "valueFrom": "component.memoryGb"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Lambda-GB-Second"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "aggregate-billing",
+    "network-transfer",
+    "organization-usage-aggregation"
+  ]
+}

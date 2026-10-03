@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "gp2",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "volume": "gp2"
+  },
+  "components": {
+    "storage": {
+      "enabled": true,
+      "inputs": {
+        "gbMonths": "10"
+      }
+    },
+    "iops": {
+      "enabled": false,
+      "inputs": {}
+    },
+    "throughput": {
+      "enabled": false,
+      "inputs": {}
+    }
+  },
+  "expected": {
+    "storage": {
+      "attributes": {
+        "volumeApiName": "gp2",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeUsage.gp2",
+        "operation": ""
+      },
+      "unit": "GB-Mo",
+      "quantity": "10",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "iops": {
+      "disabled": true
+    },
+    "throughput": {
+      "disabled": true
+    }
+  },
+  "verification": {
+    "storage": {
+      "attributes": {
+        "volumeApiName": "gp2",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeUsage.gp2",
+        "operation": ""
+      },
+      "productFamily": "Storage",
+      "unit": "GB-Mo",
+      "quantity": "10"
+    }
+  }
+}

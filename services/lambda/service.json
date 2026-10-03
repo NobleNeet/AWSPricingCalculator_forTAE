@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "lambda",
+  "label": "AWS Lambda",
+  "priceSource": {
+    "serviceCode": "AWSLambda"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard"
+}

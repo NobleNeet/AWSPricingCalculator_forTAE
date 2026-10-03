@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs",
+  "label": "Amazon EBS",
+  "priceSource": {
+    "serviceCode": "AmazonEC2"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard"
+}

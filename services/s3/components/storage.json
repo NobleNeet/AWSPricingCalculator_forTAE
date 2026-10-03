@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "storage",
+  "label": "S3 Standard storage",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "gbMonths",
+      "label": "GB-month",
+      "type": "number",
+      "default": "100",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "eq",
+        "value": "APN1-TimedStorage-ByteHrs"
+      },
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Storage"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbMonths"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "network-transfer",
+    "lifecycle-event-charge"
+  ]
+}

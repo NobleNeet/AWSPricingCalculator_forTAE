@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Standard",
+  "selectors": [
+    {
+      "id": "os",
+      "label": "Operating system",
+      "type": "select",
+      "default": "Linux",
+      "options": {
+        "values": [
+          "Linux",
+          "Windows"
+        ]
+      }
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute Instance"
+    },
+    {
+      "field": "attributes.tenancy",
+      "op": "eq",
+      "value": "Shared"
+    },
+    {
+      "field": "attributes.capacitystatus",
+      "op": "eq",
+      "value": "Used"
+    },
+    {
+      "field": "attributes.preInstalledSw",
+      "op": "eq",
+      "value": "NA"
+    },
+    {
+      "field": "attributes.marketoption",
+      "op": "eq",
+      "value": "OnDemand"
+    },
+    {
+      "field": "attributes.licenseModel",
+      "op": "eq",
+      "value": "No License required"
+    }
+  ],
+  "components": [
+    "instance"
+  ]
+}

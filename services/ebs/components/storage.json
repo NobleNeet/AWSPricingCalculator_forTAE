@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "storage",
+  "label": "Provisioned storage",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "gbMonths",
+      "label": "GB-month",
+      "type": "number",
+      "default": "100",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Storage"
+      },
+      {
+        "field": "attributes.volumeApiName",
+        "op": "eq",
+        "valueFrom": "profile.volume"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbMonths"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "throughput",
+  "label": "Additional provisioned throughput",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "mibpsMonths",
+      "label": "Paid MiB/s-month above included baseline",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "Input paid throughput above 125 MiB/s per volume."
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "eq",
+        "value": "APN1-EBS:VolumeP-Throughput.gp3"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GiBps-mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.mibpsMonths"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "unitConversion",
+        "factor": "0.0009765625",
+        "from": "MiBps-mo",
+        "to": "GiBps-mo"
+      }
+    ],
+    "outputUnit": "GiBps-mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.volume",
+    "op": "eq",
+    "value": "gp3"
+  }
+}

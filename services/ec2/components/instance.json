@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "instance",
+  "label": "Compute instance",
+  "selectors": [
+    {
+      "id": "instanceType",
+      "label": "Instance type",
+      "type": "select",
+      "default": "t3.micro",
+      "options": {
+        "attribute": "instanceType",
+        "filters": [
+          {
+            "field": "attributes.operatingSystem",
+            "op": "eq",
+            "valueFrom": "profile.os"
+          }
+        ]
+      }
+    }
+  ],
+  "usageInputs": [
+    {
+      "id": "hours",
+      "label": "Hours / month",
+      "type": "number",
+      "default": "730",
+      "minimum": "0"
+    },
+    {
+      "id": "quantity",
+      "label": "Instances",
+      "type": "number",
+      "default": "1",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.operatingSystem",
+        "op": "eq",
+        "valueFrom": "profile.os"
+      },
+      {
+        "field": "attributes.instanceType",
+        "op": "eq",
+        "valueFrom": "component.instanceType"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.hours"
+        },
+        {
+          "valueFrom": "component.quantity"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Hrs"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "cpu-credits",
+    "network-transfer",
+    "aggregate-billing"
+  ]
+}

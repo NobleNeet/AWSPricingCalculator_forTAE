@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "rds",
+  "label": "Amazon RDS for PostgreSQL",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard"
+}

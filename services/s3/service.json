@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "s3",
+  "label": "Amazon S3",
+  "priceSource": {
+    "serviceCode": "AmazonS3"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard"
+}

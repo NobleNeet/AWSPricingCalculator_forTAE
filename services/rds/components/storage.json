@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "storage",
+  "label": "gp3 database storage",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "gbMonths",
+      "label": "GB-month",
+      "type": "number",
+      "default": "20",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Database Storage"
+      },
+      {
+        "field": "attributes.volumeType",
+        "op": "eq",
+        "value": "General Purpose-GP3"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbMonths"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "rds-extra-storage-performance",
+    "backup-storage"
+  ],
+  "optional": true,
+  "defaultEnabled": true
+}

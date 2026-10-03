@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Standard",
+  "selectors": [
+    {
+      "id": "deployment",
+      "label": "Deployment",
+      "type": "select",
+      "default": "Single-AZ",
+      "options": {
+        "values": [
+          "Single-AZ",
+          "Multi-AZ"
+        ]
+      }
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "PostgreSQL"
+    },
+    {
+      "field": "attributes.deploymentOption",
+      "op": "eq",
+      "valueFrom": "profile.deployment"
+    }
+  ],
+  "components": [
+    "instance",
+    "storage"
+  ]
+}

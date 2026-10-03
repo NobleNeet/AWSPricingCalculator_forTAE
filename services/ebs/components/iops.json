@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "iops",
+  "label": "Additional provisioned IOPS",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "iopsMonths",
+      "label": "Paid IOPS-month above included baseline",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "Input only paid IOPS above the included 3,000 IOPS per volume; no Free Tier deduction is applied."
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "eq",
+        "value": "APN1-EBS:VolumeP-IOPS.gp3"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "IOPS-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.iopsMonths"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "IOPS-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.volume",
+    "op": "eq",
+    "value": "gp3"
+  }
+}

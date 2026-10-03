@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {},
+  "components": {
+    "storage": {
+      "enabled": true,
+      "inputs": {
+        "gbMonths": "100"
+      }
+    },
+    "write-requests": {
+      "enabled": true,
+      "inputs": {
+        "requests": "1000"
+      }
+    },
+    "read-requests": {
+      "enabled": true,
+      "inputs": {
+        "requests": "10000"
+      }
+    }
+  },
+  "expected": {
+    "storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-TimedStorage-ByteHrs",
+        "operation": ""
+      },
+      "unit": "GB-Mo",
+      "quantity": "100",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount",
+        "network-transfer",
+        "lifecycle-event-charge",
+        "tier-pricing"
+      ]
+    },
+    "write-requests": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Requests-Tier1",
+        "operation": ""
+      },
+      "unit": "Requests",
+      "quantity": "1000",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "read-requests": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Requests-Tier2",
+        "operation": ""
+      },
+      "unit": "Requests",
+      "quantity": "10000",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-TimedStorage-ByteHrs",
+        "operation": ""
+      },
+      "productFamily": "Storage",
+      "unit": "GB-Mo",
+      "quantity": "100"
+    },
+    "write-requests": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Requests-Tier1",
+        "operation": ""
+      },
+      "productFamily": "API Request",
+      "unit": "Requests",
+      "quantity": "1000"
+    },
+    "read-requests": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Requests-Tier2",
+        "operation": ""
+      },
+      "productFamily": "API Request",
+      "unit": "Requests",
+      "quantity": "10000"
+    }
+  }
+}

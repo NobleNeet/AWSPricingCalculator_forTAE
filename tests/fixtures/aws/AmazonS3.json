@@ -1,0 +1,146 @@
+{
+  "formatVersion": "v1.0",
+  "disclaimer": "This pricing list is for informational purposes only. All prices are subject to the additional terms included in the pricing pages on http://aws.amazon.com. All Free Tier prices are also subject to the terms included at https://aws.amazon.com/free/",
+  "offerCode": "AmazonS3",
+  "version": "20260928230416",
+  "publicationDate": "2026-09-28T23:04:16Z",
+  "products": {
+    "CCBFTMENTDWZHXHX": {
+      "sku": "CCBFTMENTDWZHXHX",
+      "productFamily": "Storage",
+      "attributes": {
+        "servicecode": "AmazonS3",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "availability": "99.99%",
+        "storageClass": "General Purpose",
+        "volumeType": "Standard",
+        "usagetype": "APN1-TimedStorage-ByteHrs",
+        "operation": "",
+        "durability": "99.999999999%",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Simple Storage Service"
+      }
+    },
+    "XAKHUSC46NWC9PPM": {
+      "sku": "XAKHUSC46NWC9PPM",
+      "productFamily": "API Request",
+      "attributes": {
+        "servicecode": "AmazonS3",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "group": "S3-API-Tier1",
+        "groupDescription": "PUT/COPY/POST or LIST requests",
+        "usagetype": "APN1-Requests-Tier1",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Simple Storage Service"
+      }
+    },
+    "9C7873KU3ZQBD6BJ": {
+      "sku": "9C7873KU3ZQBD6BJ",
+      "productFamily": "API Request",
+      "attributes": {
+        "servicecode": "AmazonS3",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "group": "S3-API-Tier2",
+        "groupDescription": "GET and all other requests",
+        "usagetype": "APN1-Requests-Tier2",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Simple Storage Service"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "CCBFTMENTDWZHXHX": {
+        "CCBFTMENTDWZHXHX.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "CCBFTMENTDWZHXHX",
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "priceDimensions": {
+            "CCBFTMENTDWZHXHX.JRTCKXETXF.PGHJ3S3EYE": {
+              "rateCode": "CCBFTMENTDWZHXHX.JRTCKXETXF.PGHJ3S3EYE",
+              "description": "$0.025 per GB - first 50 TB / month of storage used",
+              "beginRange": "0",
+              "endRange": "51200",
+              "unit": "GB-Mo",
+              "pricePerUnit": {
+                "USD": "0.0250000000"
+              },
+              "appliesTo": []
+            },
+            "CCBFTMENTDWZHXHX.JRTCKXETXF.D42MF2PVJS": {
+              "rateCode": "CCBFTMENTDWZHXHX.JRTCKXETXF.D42MF2PVJS",
+              "description": "$0.024 per GB - next 450 TB / month of storage used",
+              "beginRange": "51200",
+              "endRange": "512000",
+              "unit": "GB-Mo",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              },
+              "appliesTo": []
+            },
+            "CCBFTMENTDWZHXHX.JRTCKXETXF.PXJDJ3YRG3": {
+              "rateCode": "CCBFTMENTDWZHXHX.JRTCKXETXF.PXJDJ3YRG3",
+              "description": "$0.023 per GB - storage used / month over 500 TB",
+              "beginRange": "512000",
+              "endRange": "Inf",
+              "unit": "GB-Mo",
+              "pricePerUnit": {
+                "USD": "0.0230000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "XAKHUSC46NWC9PPM": {
+        "XAKHUSC46NWC9PPM.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "XAKHUSC46NWC9PPM",
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "priceDimensions": {
+            "XAKHUSC46NWC9PPM.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "XAKHUSC46NWC9PPM.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.0047 per 1,000 PUT, COPY, POST, or LIST requests",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Requests",
+              "pricePerUnit": {
+                "USD": "0.0000047000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "9C7873KU3ZQBD6BJ": {
+        "9C7873KU3ZQBD6BJ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "9C7873KU3ZQBD6BJ",
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "priceDimensions": {
+            "9C7873KU3ZQBD6BJ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "9C7873KU3ZQBD6BJ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.0037 per 10,000 GET and all other requests",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Requests",
+              "pricePerUnit": {
+                "USD": "0.0000003700"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "attributesList": {}
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "write-requests",
+  "label": "PUT / COPY / POST / LIST",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "requests",
+      "label": "Requests / month",
+      "type": "number",
+      "default": "1000",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "eq",
+        "value": "APN1-Requests-Tier1"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": ""
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Requests"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.requests"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Requests"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

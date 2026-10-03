@@ -2,6 +2,7 @@ import path from 'node:path';
 import { schemaValidator } from '../schema.js';
 import { issue } from '../../src/pricing/issues.js';
 import { decimal } from '../../src/pricing/decimal.js';
+import { readJson } from './package-loader.js';
 
 function references(object, result = []) {
   if (!object || typeof object !== 'object') return result;
@@ -13,6 +14,7 @@ function references(object, result = []) {
 export async function validateDefinitions(packages) {
   const validators = Object.fromEntries(await Promise.all(['service', 'profile', 'component', 'coverage', 'golden'].map(async name => [name, await schemaValidator(`service-definition/${name}`)])));
   const issues = [];
+  const limitationIds = new Set((await readJson('pricing/limitations.json')).limitations.map(item => item.id));
   for (const pkg of packages) {
     const add = (code, message, extra = {}) => issues.push(issue(code, message, { serviceId: pkg.service.id, ...extra }));
     for (const [kind, definitions] of [['service', { service: pkg.service }], ['profile', pkg.profiles], ['component', pkg.components], ['coverage', { coverage: pkg.coverage }], ['golden', Object.fromEntries(pkg.golden.map((g, i) => [i, g]))]]) {
@@ -71,6 +73,7 @@ export async function validateDefinitions(packages) {
       }
     }
     for (const componentId of Object.keys(pkg.components)) if (!usedComponents.has(componentId)) add('ORPHAN_DEFINITION', `Unreferenced component ${componentId}.`);
+    for (const component of Object.values(pkg.components)) for (const id of component.limitations ?? []) if (!limitationIds.has(id)) add('UNKNOWN_LIMITATION', `Unknown limitation ${id}.`);
     for (const category of pkg.coverage?.categories ?? []) {
       if (category.status === 'mapped' && !pkg.components[category.componentId]) add('INVALID_REFERENCE', `Coverage references ${category.componentId}.`);
       if (category.status === 'unresolved') add('UNMAPPED_PRICING_CATEGORY', 'Unresolved coverage entry.');

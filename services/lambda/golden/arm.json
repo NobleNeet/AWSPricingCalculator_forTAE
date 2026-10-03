@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "arm",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "architecture": "AWS-Lambda-Duration-ARM"
+  },
+  "components": {
+    "requests": {
+      "enabled": true,
+      "inputs": {
+        "requests": "0"
+      }
+    },
+    "duration": {
+      "enabled": true,
+      "inputs": {
+        "seconds": "1",
+        "memoryGb": "0.125"
+      }
+    }
+  },
+  "expected": {
+    "requests": {
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Request",
+        "operation": ""
+      },
+      "unit": "Request",
+      "quantity": "0",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "duration": {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-ARM",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Lambda-GB-Second-ARM",
+        "operation": ""
+      },
+      "unit": "Lambda-GB-Second",
+      "quantity": "0.125",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount",
+        "aggregate-billing",
+        "network-transfer",
+        "organization-usage-aggregation",
+        "tier-pricing"
+      ]
+    }
+  },
+  "verification": {
+    "requests": {
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Request",
+        "operation": ""
+      },
+      "productFamily": "Serverless",
+      "unit": "Request",
+      "quantity": "0"
+    },
+    "duration": {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-ARM",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Lambda-GB-Second-ARM",
+        "operation": ""
+      },
+      "productFamily": "Serverless",
+      "unit": "Lambda-GB-Second",
+      "quantity": "0.125"
+    }
+  }
+}
