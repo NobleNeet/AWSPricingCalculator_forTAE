@@ -14,12 +14,12 @@
         <h1>Web基盤 更改案</h1>
         <span class="badge">UI MOCK</span>
       </div>
-      <div class="meta">AWS Public Price List JSON only</div>
+      <div class="meta">AWS Public Price List JSON only · <span id="autosaveStatus">ブラウザに自動保存</span></div>
     </div>
     <div class="header-actions">
-      <button class="btn ghost">JSON</button>
-      <button class="btn ghost">CSV</button>
-      <button class="btn ghost">PDF</button>
+      <button class="btn ghost" id="restoreProject">状態を復元</button>
+      <button class="btn ghost" id="exportCsv">CSV</button>
+      <button class="btn ghost" id="exportPdf">PDF + 復元JSON</button>
       <button class="btn primary" id="recalcAll">↻ 全体を再計算</button>
     </div>
   </header>
@@ -71,7 +71,7 @@
     <section class="legend card">
       <span><i class="legend-dot linked"></i>同じ比較項目</span>
       <span><i class="legend-dot unique"></i>その案だけのサービス</span>
-      <span class="legend-note">各サービスはProject Regionを継承。個別リージョン指定は詳細編集で上書きする想定。</span>
+      <span class="legend-note">PDF出力時は、その画面を再現する復元JSONも同時に保存します。</span>
     </section>
 
     <section class="comparison-shell card">
@@ -106,6 +106,31 @@
       </div>
       <div class="service-picker" id="servicePicker"></div>
       <div class="modal-actions"><button class="btn ghost" id="cancelAddResource">キャンセル</button></div>
+    </div>
+  </div>
+
+  <div class="modal" id="restoreModal" aria-hidden="true">
+    <div class="modal-card restore-card">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow dark">RESTORE PROJECT</div>
+          <h2>状態を復元</h2>
+          <p>PDF出力時に保存された復元JSONの中身を貼り付けます。ファイルアップロードは使いません。</p>
+        </div>
+        <button class="icon-btn" id="closeRestore" aria-label="閉じる">×</button>
+      </div>
+      <div class="restore-body">
+        <label class="field">
+          <span class="restore-label">復元JSON</span>
+          <textarea id="restoreJson" spellcheck="false" placeholder='{"schemaVersion":1,"project":{...}}'></textarea>
+        </label>
+        <div class="restore-note">適用すると現在の画面状態を置き換えます。料金は現在利用中のPrice Listデータで再計算する想定です。</div>
+        <div class="restore-error" id="restoreError" aria-live="polite"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn ghost" id="cancelRestore">キャンセル</button>
+        <button class="btn primary" id="applyRestore">JSONを適用</button>
+      </div>
     </div>
   </div>
 
