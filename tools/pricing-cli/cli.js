@@ -46,7 +46,10 @@ export async function semanticValidation(packages, candidate) {
   return result;
 }
 export async function goldenValidation(packages, candidate, rawDirectory) {
-  const raw = Object.fromEntries(await Promise.all(Object.keys(candidate.data).map(async code => [code, await readJson(path.join(rawDirectory ?? 'tests/fixtures/aws', `${code}.json`))])));
+  const raw = Object.fromEntries(await Promise.all(Object.keys(candidate.data).map(async code => {
+    try { return [code, await readJson(path.join(rawDirectory ?? 'tests/fixtures/aws', `${code}.json`))]; }
+    catch (error) { if (rawDirectory && error.code === 'ENOENT') return [code, await readJson(path.join('tests/fixtures/aws', `${code}.json`))]; throw error; }
+  })));
   return runGolden(packages, candidate.data, raw);
 }
 
@@ -102,7 +105,14 @@ export async function run(command, options = {}) {
     if (command === 'classify-change') {
       const previous = await loadCandidate(await candidateDirectory(options.previous));
       const checked = await semanticValidation(packages, candidate);
-      const change = classifyChange(packages, previous.data, candidate.data, checked.issues);
+      const skus = {};
+      for (const sample of checked.resolutions) {
+        const code = packages.find(pkg => pkg.service.id === sample.serviceId).service.priceSource.serviceCode;
+        const sku = sample.result.components[sample.componentId]?.resolution?.product.sku;
+        if (sku) (skus[code] ??= new Set()).add(sku);
+      }
+      const mappedData = Object.fromEntries(Object.entries(candidate.data).map(([code, data]) => [code, { ...data, products: data.products.filter(product => skus[code]?.has(product.sku)) }]));
+      const change = classifyChange(packages, previous.data, mappedData, checked.issues);
       result = report(command, change.issues, { classification: change.classification, publishable: change.publishable, rateDiff: change.rateDiff });
     }
     if (command === 'build') {

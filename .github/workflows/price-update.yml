@@ -1,0 +1,83 @@
+name: Scheduled Price Update
+on:
+  schedule:
+    - cron: '23 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pricing-update
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      publishable: ${{ steps.pipeline.outputs.publishable }}
+      build_id: ${{ steps.pipeline.outputs.build_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Check source through validated immutable build
+        id: pipeline
+        run: node tools/price-update.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: price-analysis
+          path: .work/update/reports
+          include-hidden-files: true
+      - uses: actions/upload-artifact@v4
+        if: steps.pipeline.outputs.publishable == 'true'
+        with:
+          name: validated-price-candidate
+          path: |
+            .work/update/staged
+            .work/update/reports
+          include-hidden-files: true
+  publish:
+    needs: prepare
+    if: needs.prepare.outputs.publishable == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      commit: ${{ steps.commit.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-price-candidate
+          path: .work/update
+      - name: Verify proof, retain current + previous, promote manifest
+        run: node tools/publish-price-build.js
+      - run: npm run validate
+      - name: Commit and push validated publication
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pricing/generated services/catalog.json tests/fixtures/aws
+          git commit -m 'Publish validated AWS Price DB build'
+          git push origin HEAD:main
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: publish
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
+    with:
+      ref: ${{ needs.publish.outputs.commit }}

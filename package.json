@@ -6,8 +6,10 @@
   "scripts": {
     "test": "node --test tests/**/*.test.js",
     "pricing": "node tools/pricing-cli/cli.js",
-    "validate": "node tools/pricing-cli/cli.js validate-definitions",
-    "test:e2e": "playwright test"
+    "validate": "node tools/validate-repository.js",
+    "test:e2e": "playwright test",
+    "build:site": "node tools/build-site.js",
+    "price:update": "node tools/price-update.js"
   },
   "engines": {
     "node": ">=22"

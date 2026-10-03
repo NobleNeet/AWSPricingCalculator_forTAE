@@ -1,0 +1,76 @@
+import { readFile, mkdir, writeFile, appendFile } from 'node:fs/promises';
+import path from 'node:path';
+import { run, writeJson, loadCandidate, candidateDirectory } from './pricing-cli/cli.js';
+import { readJson, loadPackages } from './pricing-cli/package-loader.js';
+import { checksum } from './pricing-cli/build.js';
+import { encode } from './pricing-cli/normalize.js';
+
+export async function refreshGoldenEvidence(packages, rawDirectory, output) {
+  for (const code of new Set(packages.map(pkg => pkg.service.priceSource.serviceCode))) {
+    let raw;
+    try { raw = await readJson(path.join(rawDirectory, `${code}.json`)); }
+    catch (error) { if (error.code === 'ENOENT') raw = await readJson(`tests/fixtures/aws/${code}.json`); else throw error; }
+    const sample = { offerCode: raw.offerCode, version: raw.version, publicationDate: raw.publicationDate, products: {}, terms: { OnDemand: {} } };
+    for (const pkg of packages.filter(pkg => pkg.service.priceSource.serviceCode === code)) for (const golden of pkg.golden) for (const verification of Object.values(golden.verification)) {
+      const products = Object.values(raw.products).filter(p => Object.entries(verification.attributes).every(([key, value]) => p.attributes[key] === value) && (!verification.productFamily || p.productFamily === verification.productFamily));
+      if (products.length !== 1) throw Error(`Golden evidence ${code}: ${products.length} products`);
+      const product = products[0]; sample.products[product.sku] = product; sample.terms.OnDemand[product.sku] = raw.terms.OnDemand[product.sku];
+    }
+    await writeJson(path.join(output, `${code}.json`), sample);
+  }
+}
+export async function priceUpdate({ work = '.work/update', execute = run } = {}) {
+  await mkdir(work, { recursive: true });
+  const reports = {};
+  const previousDirectory = await candidateDirectory();
+  const previous = await loadCandidate(previousDirectory);
+  const active = await readJson('pricing/generated/manifest.json');
+  const record = async (command, options) => {
+    const result = await execute(command, options); reports[command] = result;
+    await writeJson(path.join(work, 'reports', `${command}.json`), result); return result;
+  };
+  const metadataFile = path.join(work, 'source-metadata.json');
+  const previousFile = path.join(work, 'previous-sources.json'); await writeJson(previousFile, previous.metadata);
+  const source = await record('check-source', { input: 'pricing/sources.json', previous: previousFile, output: metadataFile });
+  if (source.sourceStatus === 'NO_CHANGE') {
+    const summary = { schemaVersion: 1, status: 'NO_CHANGE', publishable: false, previousBuildId: active.activeBuildId };
+    await writeJson(path.join(work, 'reports/summary.json'), summary); return summary;
+  }
+  const rawDirectory = path.join(work, 'raw'), candidate = path.join(work, 'candidate'), stage = path.join(work, 'staged');
+  await record('download', { input: metadataFile, output: rawDirectory });
+  await record('normalize', { input: metadataFile, raw: rawDirectory, output: candidate, previous: previousDirectory });
+  await record('inventory', { input: candidate, output: path.join(work, 'reports/inventory-data.json') });
+  const definition = await record('validate-definitions', {});
+  const semantic = await record('validate-price-data', { input: candidate });
+  const golden = await record('run-golden', { input: candidate, raw: rawDirectory });
+  const change = await record('classify-change', { input: candidate, previous: previousDirectory });
+  const publishable = [definition, semantic, golden, change].every(r => r.status === 'passed' && r.summary.error === 0) && ['PRICE_ONLY', 'STRUCTURE_WARNING'].includes(change.classification) && change.publishable === true;
+  const summary = { schemaVersion: 1, status: publishable ? 'VALIDATED' : 'REJECTED', publishable, classification: change.classification, previousBuildId: active.activeBuildId };
+  if (publishable) {
+    const metadata = await readJson(metadataFile);
+    const buildId = `${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z')}-${checksum(encode(metadata)).slice(0, 8)}`;
+    const built = await record('build', { input: candidate, raw: rawDirectory, output: path.join(stage, 'pricing'), 'build-id': buildId });
+    if (built.status !== 'passed') { summary.status = 'REJECTED'; summary.publishable = false; }
+    else {
+      summary.buildId = buildId;
+      summary.buildManifestSha256 = checksum(await readFile(path.join(stage, 'pricing/builds', buildId, 'build-manifest.json'), 'utf8'));
+      await refreshGoldenEvidence(await loadPackages(), rawDirectory, path.join(stage, 'fixtures'));
+    }
+  }
+  await writeJson(path.join(work, 'reports/summary.json'), summary);
+  return summary;
+}
+if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
+  try {
+    const work = process.argv[2] ?? '.work/update';
+    const result = await priceUpdate({ work });
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `publishable=${result.publishable}\nbuild_id=${result.buildId ?? ''}\n`);
+    if (process.env.GITHUB_STEP_SUMMARY) {
+      const semantic = await readJson(path.join(work, 'reports/validate-price-data.json')).catch(() => null);
+      const change = await readJson(path.join(work, 'reports/classify-change.json')).catch(() => null);
+      await appendFile(process.env.GITHUB_STEP_SUMMARY, `## Price update\n\n\`\`\`json\n${JSON.stringify({ ...result, coverage: semantic?.coverage, validation: semantic?.summary, rateDiff: change?.rateDiff }, null, 2)}\n\`\`\`\n`);
+    }
+    process.exitCode = result.status === 'REJECTED' ? 1 : 0;
+  } catch (error) { process.stderr.write(`${error.stack}\n`); process.exitCode = 2; }
+}
