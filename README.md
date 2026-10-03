@@ -1,10 +1,15 @@
 # AWSPricingCalculator_forTAE
 
-AWS Public Price List JSON をデータソースにした、構成比較型の料金検討ツール（設計中）。
+AWS Public Price List JSON をデータソースにした、構成比較型の料金検討ツール。
 
 ## 仕様書
 
-現在までに確定している画面・操作・保存/復元・料金計算前提は [`docs/SPEC.md`](docs/SPEC.md) にまとめています。
+現行仕様の正本は以下の2冊です。
+
+- ユーザー向け仕様: [`docs/SPEC.md`](docs/SPEC.md)
+- 料金・内部アーキテクチャ仕様: [`docs/PRICING_ARCHITECTURE.md`](docs/PRICING_ARCHITECTURE.md)
+
+設計検討の履歴索引は [`docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md`](docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md) にあります。
 
 ## 現在の内容
 
@@ -24,13 +29,15 @@ AWS Public Price List JSON をデータソースにした、構成比較型の�
 - CSV出力は今後実装
 - 表示料金は現時点ではUI確認用のダミー値
 
+実料金基盤、Service Definition、Pricing Core、Node.js CLI、GitHub Actions等の仕様は確定済みで、これから実装へ移行する段階です。
+
 ## モックの確認
 
 GitHub Pages:
 
 https://nobleneet.github.io/AWSPricingCalculator_forTAE/
 
-依存ライブラリはありません。リポジトリを取得後、`index.html` をブラウザで直接開けます。
+現行モックは依存ライブラリなしで、リポジトリ取得後に `index.html` をブラウザで直接開けます。
 
 またはローカルWebサーバーを使う場合:
 
