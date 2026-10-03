@@ -25,17 +25,25 @@
   </header>
 
   <main class="workspace">
+    <section class="system-bar card">
+      <div>
+        <div class="eyebrow dark">PROJECT SERVICES</div>
+        <strong>このシステムで利用するサービス</strong>
+        <div class="service-chips" id="serviceChips"></div>
+      </div>
+      <button class="btn ghost" id="manageServices">サービス構成を編集</button>
+    </section>
+
     <section class="toolbar card">
       <div>
-        <strong>構成比較ワークスペース</strong>
-        <p>サービスを追加し、案ごとの差分をその場で比較します。</p>
+        <strong>構成案を横並びで比較</strong>
+        <p>全案で同じサービス構成を共有し、各サービスのスペックや利用量だけを変えて比較します。</p>
       </div>
       <div class="toolbar-actions">
         <label class="baseline-label">差分基準
           <select id="baselineSelect"></select>
         </label>
-        <button class="btn ghost" id="addService">＋ サービス追加</button>
-        <button class="btn primary" id="addPlan">＋ 構成案を追加</button>
+        <button class="btn primary" id="addPlan">＋ 新しい案</button>
       </div>
     </section>
 
@@ -64,6 +72,25 @@
       </div>
     </div>
   </aside>
+
+  <div class="modal" id="serviceModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow dark">PROJECT SERVICES</div>
+          <h2>サービス構成</h2>
+          <p>ここでの変更は、すべての構成案に共通して反映されます。</p>
+        </div>
+        <button class="icon-btn" id="closeServiceModal" aria-label="閉じる">×</button>
+      </div>
+      <div class="service-picker" id="servicePicker"></div>
+      <div class="modal-actions">
+        <button class="btn ghost" id="cancelServiceModal">キャンセル</button>
+        <button class="btn primary" id="applyServices">全構成案に適用</button>
+      </div>
+    </div>
+  </div>
+
   <div class="scrim" id="scrim"></div>
 
   <script src="app.js"></script>
