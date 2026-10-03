@@ -1,0 +1,82 @@
+import { evaluateService, selectorCandidates } from '../../src/pricing/core.js';
+import { enabled } from '../../src/pricing/conditions.js';
+import { issue } from '../../src/pricing/issues.js';
+import { inventory, validateCoverage } from './inventory.js';
+
+export function defaults(pkg, profileId = pkg.service.defaultProfile) {
+  const profile = pkg.profiles[profileId];
+  return { serviceId: pkg.service.id, profileId, region: { mode: 'inherit' }, selectors: Object.fromEntries(profile.selectors.filter(input => input.default !== undefined).map(input => [input.id, input.default])), components: Object.fromEntries(profile.components.map(id => [id, { enabled: pkg.components[id].defaultEnabled ?? true, inputs: Object.fromEntries([...pkg.components[id].selectors, ...pkg.components[id].usageInputs].filter(input => input.default !== undefined).map(input => [input.id, input.default])) }])) };
+}
+export function inputOrder(inputs, namespace) {
+  const ordered = [], seen = new Set();
+  const visit = input => {
+    if (seen.has(input.id)) return;
+    seen.add(input.id);
+    const json = JSON.stringify(input);
+    for (const dependency of inputs) if (json.includes(`"${namespace}.${dependency.id}"`)) visit(dependency);
+    ordered.push(input);
+  };
+  inputs.forEach(visit);
+  return ordered;
+}
+function branches(inputs, namespace, context, products, filters) {
+  let contexts = [context];
+  for (const input of inputOrder(inputs, namespace)) {
+    const next = [];
+    for (const current of contexts) {
+      if (!enabled(input.enabledWhen, current) || input.type !== 'select') { next.push(current); continue; }
+      for (const value of selectorCandidates(input, products, current, filters)) next.push({ ...current, [namespace]: { ...current[namespace], [input.id]: value } });
+    }
+    contexts = next;
+  }
+  return contexts;
+}
+export function reachableCases(pkg, products) {
+  const cases = [];
+  for (const profileId of pkg.service.profiles) {
+    const profile = pkg.profiles[profileId];
+    const instance = defaults(pkg, profileId);
+    const base = { project: { region: 'ap-northeast-1', defaultRegion: 'ap-northeast-1', hoursPerMonth: '730' }, profile: instance.selectors, component: {} };
+    for (const context of branches(profile.selectors, 'profile', base, products, profile.fixedFilters)) {
+      for (const componentId of profile.components) {
+        const component = pkg.components[componentId];
+        if (!enabled(component.enabledWhen, context)) continue;
+        const start = { ...context, component: instance.components[componentId].inputs };
+        const filters = [...profile.fixedFilters, ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+        for (const branch of branches(component.selectors, 'component', start, products, filters)) {
+          const sample = structuredClone(instance);
+          sample.selectors = branch.profile;
+          sample.components[componentId].inputs = branch.component;
+          // Validate each independently so optional disabled defaults don't conceal a meter.
+          const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
+          sample.components[componentId].enabled = true;
+          cases.push({ pkg: narrow, instance: sample, project: base.project, componentId });
+        }
+      }
+    }
+  }
+  return cases;
+}
+export function validatePriceData(packages, data, common, normalizers) {
+  const issues = [], coverage = {}, resolutions = [];
+  for (const pkg of packages) {
+    const source = data[pkg.service.priceSource.serviceCode];
+    if (!source) { issues.push(issue('PRICE_SOURCE_NOT_FOUND', 'Price source missing.', { serviceId: pkg.service.id })); continue; }
+    const categories = inventory(source, common, normalizers[source.serviceCode]);
+    const checked = validateCoverage(categories, pkg.coverage);
+    coverage[pkg.service.id] = checked.summary;
+    issues.push(...checked.issues.map(i => ({ ...i, serviceId: pkg.service.id })));
+    const cases = reachableCases(pkg, source.products);
+    if (!cases.length) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id }));
+    for (const sample of cases) {
+      const result = evaluateService(sample.pkg, sample.instance, sample.project, source.products);
+      issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId: sample.instance.profileId })));
+      resolutions.push({ serviceId: pkg.service.id, profileId: sample.instance.profileId, componentId: sample.componentId, instance: sample.instance, result });
+    }
+    for (const profileId of pkg.service.profiles) {
+      const result = evaluateService(pkg, defaults(pkg, profileId), { region: source.region, hoursPerMonth: '730' }, source.products);
+      issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId })));
+    }
+  }
+  return { issues, coverage, resolutions };
+}

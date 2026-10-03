@@ -1,0 +1,161 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "buildId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "serviceCode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "region": {
+      "type": "string",
+      "minLength": 1
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "minLength": 1
+          },
+          "productFamily": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "usageType": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "terms": {
+            "type": "object",
+            "properties": {
+              "onDemand": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "offerTermCode": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "effectiveDate": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "priceDimensions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "rateCode": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "unit": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "beginRange": {
+                            "type": "string",
+                            "pattern": "^[0-9]+(\\.[0-9]+)?$"
+                          },
+                          "endRange": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^[0-9]+(\\.[0-9]+)?$"
+                              },
+                              {
+                                "const": "Inf"
+                              }
+                            ]
+                          },
+                          "pricePerUnit": {
+                            "type": "object",
+                            "properties": {
+                              "USD": {
+                                "type": "string",
+                                "pattern": "^[0-9]+(\\.[0-9]+)?$"
+                              }
+                            },
+                            "required": [
+                              "USD"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "freeAllowance": {
+                            "type": "boolean"
+                          },
+                          "allowanceEvidence": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "rateCode",
+                          "description",
+                          "unit",
+                          "beginRange",
+                          "endRange",
+                          "pricePerUnit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "offerTermCode",
+                    "effectiveDate",
+                    "priceDimensions"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "maxItems": 1
+              }
+            },
+            "required": [
+              "onDemand"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "sku",
+          "productFamily",
+          "operation",
+          "usageType",
+          "attributes",
+          "terms"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "buildId",
+    "serviceCode",
+    "region",
+    "products"
+  ],
+  "additionalProperties": false
+}

@@ -1,1 +1,56 @@
-{"schemaVersion":1,"rules":[{"prefix":"BoxUsage:","class":"BoxUsage"},{"prefix":"DedicatedUsage:","class":"DedicatedUsage"},{"prefix":"HostBoxUsage:","class":"HostBoxUsage"}],"discriminators":["operatingSystem","tenancy","preInstalledSw","capacitystatus","volumeApiName"]}
+{
+  "schemaVersion": 1,
+  "rules": [
+    {
+      "prefix": "BoxUsage:",
+      "class": "BoxUsage"
+    },
+    {
+      "prefix": "DedicatedUsage:",
+      "class": "DedicatedUsage"
+    },
+    {
+      "prefix": "HostBoxUsage:",
+      "class": "HostBoxUsage"
+    },
+    {
+      "prefix": "Reservation:",
+      "class": "Reservation"
+    },
+    {
+      "prefix": "UnusedBox:",
+      "class": "UnusedBox"
+    },
+    {
+      "prefix": "DedicatedRes:",
+      "class": "DedicatedRes"
+    },
+    {
+      "prefix": "UnusedDed:",
+      "class": "UnusedDed"
+    },
+    {
+      "prefix": "HostUsage:",
+      "class": "HostUsage"
+    },
+    {
+      "prefix": "EBSOptimized:",
+      "class": "EBSOptimized"
+    },
+    {
+      "prefix": "CPUCredits:",
+      "class": "CPUCredits"
+    },
+    {
+      "prefix": "EGpuUsage:",
+      "class": "EGpuUsage"
+    }
+  ],
+  "discriminators": [
+    "operatingSystem",
+    "tenancy",
+    "preInstalledSw",
+    "capacitystatus",
+    "volumeApiName"
+  ]
+}

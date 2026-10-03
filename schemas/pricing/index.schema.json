@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "buildId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "serviceCode": {
+      "type": "string",
+      "minLength": 1
+    },
+    "region": {
+      "type": "string",
+      "minLength": 1
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "buildId",
+    "serviceCode",
+    "region",
+    "attributes"
+  ],
+  "additionalProperties": false
+}

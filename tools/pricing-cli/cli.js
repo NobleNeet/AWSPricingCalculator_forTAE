@@ -10,16 +10,44 @@ import { normalize, encode } from './normalize.js';
 import { inventory, validateCoverage } from './inventory.js';
 import { mkdir, writeFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { validatePriceData } from './semantics.js';
+import { runGolden } from './golden.js';
+import { classifyChange } from './drift.js';
+import { buildPriceDb } from './build.js';
+import { schemaValidator } from '../schema.js';
 
 export async function writeJson(file, data) {
   await mkdir(path.dirname(file), { recursive: true });
   await writeFile(file, encode(data));
 }
 export async function loadCandidate(directory) {
-  const metadata = await readJson(path.join(directory, 'source-metadata.json'));
+  let metadata;
+  try { metadata = await readJson(path.join(directory, 'source-metadata.json')); }
+  catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    const build = await readJson(path.join(directory, 'build-manifest.json'));
+    metadata = { sources: Object.fromEntries(Object.entries(build.sources).map(([code, regions]) => [code, Object.values(regions)[0]])) };
+  }
   const data = {};
   for (const source of Object.values(metadata.sources)) data[source.serviceCode] = await readJson(path.join(directory, 'sources', source.serviceCode, source.region, 'products.json'));
   return { metadata, data };
+}
+export async function candidateDirectory(input) {
+  if (input) return input;
+  const active = await readJson('pricing/generated/manifest.json');
+  return `pricing/generated/builds/${active.activeBuildId}`;
+}
+export async function semanticValidation(packages, candidate) {
+  const common = await readJson('pricing/normalization/common.json');
+  const normalizers = Object.fromEntries(await Promise.all(Object.keys(candidate.data).map(async code => [code, await readJson(`pricing/normalization/services/${code}.json`)])));
+  const result = validatePriceData(packages, candidate.data, common, normalizers);
+  const validate = await schemaValidator('pricing/products');
+  for (const [code, data] of Object.entries(candidate.data)) if (!validate(data)) result.issues.push(issue('SCHEMA_ERROR', `${code}: ${JSON.stringify(validate.errors)}`));
+  return result;
+}
+export async function goldenValidation(packages, candidate, rawDirectory) {
+  const raw = Object.fromEntries(await Promise.all(Object.keys(candidate.data).map(async code => [code, await readJson(path.join(rawDirectory ?? 'tests/fixtures/aws', `${code}.json`))])));
+  return runGolden(packages, candidate.data, raw);
 }
 
 const commands = ['validate-definitions', 'validate-price-data', 'run-golden', 'normalize', 'inventory', 'classify-change', 'build', 'check-source', 'download'];
@@ -61,6 +89,39 @@ export async function run(command, options = {}) {
     for (const [code, source] of Object.entries(data)) inventories[code] = inventory(source, common, await readJson(`pricing/normalization/services/${code}.json`));
     await writeJson(options.output ?? '.work/inventory.json', inventories);
     return report(command, [], { categories: Object.fromEntries(Object.entries(inventories).map(([code, categories]) => [code, categories.length])) });
+  }
+  if (['validate-price-data', 'run-golden', 'classify-change', 'build'].includes(command)) {
+    const packages = await loadPackages(options.services ?? 'services');
+    const candidate = await loadCandidate(await candidateDirectory(options.input));
+    let result;
+    if (command === 'validate-price-data') {
+      const checked = await semanticValidation(packages, candidate);
+      result = report(command, checked.issues, { coverage: checked.coverage, branches: checked.resolutions.length });
+    }
+    if (command === 'run-golden') { const checked = await goldenValidation(packages, candidate, options.raw); result = report(command, checked.issues, { cases: checked.cases }); }
+    if (command === 'classify-change') {
+      const previous = await loadCandidate(await candidateDirectory(options.previous));
+      const checked = await semanticValidation(packages, candidate);
+      const change = classifyChange(packages, previous.data, candidate.data, checked.issues);
+      result = report(command, change.issues, { classification: change.classification, publishable: change.publishable, rateDiff: change.rateDiff });
+    }
+    if (command === 'build') {
+      const definitionIssues = await validateDefinitions(packages);
+      const semantic = await semanticValidation(packages, candidate);
+      const golden = await goldenValidation(packages, candidate, options.raw);
+      const issues = [...definitionIssues, ...semantic.issues, ...golden.issues];
+      if (issues.some(i => i.severity === 'error')) return report(command, issues);
+      const publishSkus = {};
+      for (const resolution of semantic.resolutions) {
+        const code = packages.find(pkg => pkg.service.id === resolution.serviceId).service.priceSource.serviceCode;
+        const sku = resolution.result.components[resolution.componentId]?.resolution?.product.sku;
+        if (sku) (publishSkus[code] ??= new Set()).add(sku);
+      }
+      const manifest = await buildPriceDb(candidate, options.output ?? 'pricing/generated', options['build-id'], { issues, publishSkus });
+      return report(command, [], { build: manifest });
+    }
+    if (options.output) await writeJson(options.output, result);
+    return result;
   }
   return report(command, [issue('NOT_IMPLEMENTED', `${command} is not implemented.`)]);
 }
