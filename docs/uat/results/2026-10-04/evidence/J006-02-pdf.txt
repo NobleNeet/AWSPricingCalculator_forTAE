@@ -1,0 +1,87 @@
+新しいAWS見積もり
+AWS構成・料金比較 / 月額概算
+Price Data: 2026-10-01T18:47:46Z / build 20261003T195959Z-2abe18f7
+USD / On-Demand / 税別 / Region ap-northeast-1
+Free Tier・無料枠・RI・Savings Plans・Spot・割引は対象外
+作成日時: 2026-10-03T23:45:21.737Z
+
+
+Plan: 案 1
+メモ:
+計算済み小計: $237.76 / 未計算サービス: 1
+Baseline差額: 未計算のため比較不可
+Amazon EC2 / Amazon EC2 / Region ap-northeast-1
+selector: {"os":"Linux"}
+Service月額: $187.46
+ Compute instance: $187.46 (warning)
+ 入力: {"instanceType":"a1.2xlarge","hours":"730","quantity":"1"}
+Amazon S3 / Amazon S3 / Region ap-northeast-1
+selector: {}
+Service月額: 未計算
+ S3 Standard storage: 未計算/無効 (invalid)
+ 入力: {"gbMonths":"200"}
+ PUT / COPY / POST / LIST: < $0.01 (warning)
+ 入力: {"requests":"1000"}
+ GET / other requests: < $0.01 (warning)
+ 入力: {"requests":"10000"}
+Amazon RDS for PostgreSQL / Amazon RDS for PostgreSQL / Region ap-northeast-1
+selector: {"deployment":"Single-AZ"}
+Service月額: $50.30
+ DB instance: $36.50 (warning)
+ 入力: {"instanceType":"db.t4g.micro","hours":"730","quantity":"2"}
+ gp3 database storage: $13.80 (warning)
+ 入力: {"gbMonths":"100"}
+
+
+Plan: 案 1 の複製 [Baseline]
+メモ:
+月額合計: $24.57 / 未計算サービス: 0
+Baseline差額: $0.00
+Amazon EC2 / Amazon EC2 / Region ap-northeast-1
+selector: {"os":"Linux"}
+Service月額: $4.96
+ Compute instance: $4.96 (warning)
+ 入力: {"instanceType":"t3.micro","hours":"365","quantity":"1"}
+Amazon EBS / Amazon EBS / Region ap-northeast-1
+selector: {"volume":"gp3"}
+
+
+                                                                                1
+Service月額: $19.20
+ Provisioned storage: $19.20 (warning)
+ 入力: {"gbMonths":"200"}
+ Additional provisioned IOPS: $0.00 (warning)
+ 入力: {"iopsMonths":"0"}
+ Additional provisioned throughput: $0.00 (warning)
+ 入力: {"mibpsMonths":"0"}
+AWS Lambda / AWS Lambda / Region ap-northeast-1
+selector: {"architecture":"AWS-Lambda-Duration"}
+Service月額: $0.41
+ Invocations: $0.20 (warning)
+ 入力: {"requests":"1000000"}
+ Billed compute duration: $0.21 (warning)
+ 入力: {"seconds":"100000","memoryGb":"0.125"}
+
+
+Pricing Limitation
+NOTICE [free-tier] Free Tier・無料利用枠は控除しません。
+NOTICE [account-specific-discount] USD On-Demand、税別。RI・Savings Plans・Spot・個別割引は対象外です
+。
+WARNING / 過小見積の可能性 [cpu-credits] Burstable instanceの追加CPU credit料金は含みません。
+WARNING / 過小見積の可能性 [network-transfer] データ転送・関連ネットワーク料金は含みません。
+WARNING / 過小見積の可能性 [aggregate-billing] 月間集計値を入力してください。個別の開始停止・実行履歴に依
+存するminimumやroundingは再構成しません。
+WARNING / 過小見積の可能性 [lifecycle-event-charge] Lifecycle移行等のイベント料金は含みません。
+WARNING / 過小見積の可能性 [extended-support] RDS Extended Support料金は含みません。
+WARNING / 過小見積の可能性 [rds-extra-storage-performance] RDS gp3の追加IOPS・throughput料金は含みませ
+ん。
+WARNING / 過小見積の可能性 [backup-storage] 追加backup・snapshot storage料金は含みません。
+NOTICE [organization-usage-aggregation] 組織全体のusage aggregationによる割引は計算しません。
+NOTICE [tier-pricing] Tierを段階積算せず、最初の通常有料単価を全使用量へ適用しています。
+未計算項目を含みます。この小計は完全なPlan合計ではありません。
+
+
+
+
+                                                                                   2
+

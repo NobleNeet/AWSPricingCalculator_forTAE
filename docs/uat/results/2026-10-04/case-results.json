@@ -1,0 +1,420 @@
+{
+  "total": 24,
+  "PASS": 24,
+  "FAIL": 0,
+  "BLOCKED": 0,
+  "SPEC_GAP": 0,
+  "cases": [
+    {
+      "caseId": "UAT-J001-01",
+      "journey": "J001",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "0 Planから作成",
+      "operations": "初期画面を観察し「最初の構成案を作る」をクリック。",
+      "observed": "「構成案はまだありません」から1構成案・0比較行へ遷移。Service料金なし。Tokyo既定。",
+      "expected": "Plan 0件状態が明示され、操作後は空の最初のPlanが1件表示される。まだService料金は表示されない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "役割名や比較条件の事前入力なし。",
+      "evidence": [
+        "evidence/J001-01-before.png",
+        "evidence/J001-01-after.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J001-02",
+      "journey": "J001",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "EC2追加",
+      "operations": "Planの「サービスを追加」→Amazon EC2→Linux/t3.micro、730時間、1台→Drawerを閉じる。",
+      "observed": "EC2の設定概要と$9.93、Plan合計$9.93を確認。",
+      "expected": "EC2が新しいRowに表示され、確定した設定概要とUSD月額が表示される。Plan totalに同額が反映される。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "SKU/rateCode入力なし。追加後に詳細入力へ進めた。",
+      "evidence": [
+        "evidence/ec2-drawer.png",
+        "evidence/J001-02-ready.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J001-03",
+      "journey": "J001",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "複数Service",
+      "operations": "同じPlanの追加からS3を選び200 GB-month、続いてRDSを追加。",
+      "observed": "3比較行。EC2 $9.93、S3 $5.01、RDS $21.01、合計$35.95。",
+      "expected": "Serviceごとに独立Rowが作られ、各月額とPlan totalが表示される。totalは各計算済みServiceの合計と整合する。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "既存Service編集なしでPlanの追加を繰り返せた。",
+      "evidence": [
+        "evidence/s3-drawer.png",
+        "evidence/rds-drawer.png",
+        "evidence/J002-01-duplicate.png",
+        "evidence/J002-01-independent.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J002-01",
+      "journey": "J002",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "複製・独立編集",
+      "operations": "Planを複製。複製側EC2の730時間を365時間へ変更。",
+      "observed": "複製直後は3行のService・設定・料金が一致。変更後元EC2 $9.93/合計$35.95、複製EC2 $4.96/合計$30.98、delta -$4.96。",
+      "expected": "複製直後は構成・値が一致する。複製側変更後もPlan Aは変化しない。両Planのtotal/deltaが別々に更新される。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "元入力を再作成せず独立編集できた。",
+      "evidence": [
+        "evidence/J002-01-duplicate.png",
+        "evidence/J002-01-independent.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J002-02",
+      "journey": "J002",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "同じ行で置換",
+      "operations": "複製側RDSの「別サービスへ置換」→AWS Lambda。新Serviceの詳細設定を確認し閉じる。",
+      "observed": "3比較行を維持。元RDS $21.01は不変、複製だけLambda $0.41。行名RDS/Lambda。RDSの20 GB storage/instance値はコピーされずLambda固有のrequests/seconds/memory入力になる。",
+      "expected": "Rowは維持され、対象PlanだけServiceが変わる。元Serviceの意味の異なる設定値が推測コピーされない。Row labelと各料金が更新される。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "新規Rowを作らず比較できた。Auroraは必須指定でなく例示のため対応済みLambdaを使用。",
+      "evidence": [
+        "evidence/J002-02-catalog.png",
+        "evidence/J002-02-lambda.png",
+        "evidence/J002-02-after.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J002-03",
+      "journey": "J002",
+      "priority": "P1",
+      "result": "PASS",
+      "summary": "既存行へ追加",
+      "operations": "複製側S3をPlanから外して空セルを作る。「この行に追加」→EBS。",
+      "observed": "3比較行のままS3/EBS比較になる。元S3 $5.01不変、追加EBS100 GB-month $9.60。",
+      "expected": "新しいRowは増えず、対象セルにServiceが追加される。他Planのセルは変わらない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "Planヘッダの追加と空セルの追加を表示文言・位置から区別できた。",
+      "evidence": [
+        "evidence/J002-03-empty.png",
+        "evidence/J002-03-ebs.png",
+        "evidence/J002-03-after.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J003-01",
+      "journey": "J003",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "usage再計算",
+      "operations": "複製側EBSの編集Drawerで100→200 GB-month。",
+      "observed": "EBS $9.60→$19.20、複製Plan $14.97→$24.57、delta -$20.97→-$11.37。元Plan $35.95不変。",
+      "expected": "Service月額、Plan total、Baseline deltaが変更内容に応じて更新される。表示値変更前の古い料金を確定値として残さない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "同じ比較画面とDrawerで反映確認。",
+      "evidence": [
+        "evidence/J003-01-before.png",
+        "evidence/J003-01-after.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J003-02",
+      "journey": "J003",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "親子selector再選択",
+      "operations": "EC2 Instance typeを一覧先頭a1.2xlargeに選択。OS Linux→Windows。",
+      "observed": "a1.2xlargeを別値へ置換せず「要再選択(a1.2xlarge)」。Instance type名を挙げた赤い要再選択、未計算、Plan小計・未計算1。Linuxへ明示的に戻して解決。",
+      "expected": "子値は別候補へ自動変更されず「要再選択」等の未解決状態になる。解決まで料金を安全な確定値として扱わない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "再選択すべき入力を具体名で識別できた。",
+      "evidence": [
+        "evidence/J003-02-child.png",
+        "evidence/J003-02-invalid.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J003-03",
+      "journey": "J003",
+      "priority": "P1",
+      "result": "PASS",
+      "summary": "optional切替",
+      "operations": "RDS gp3 storageを100 GB-monthにする。Componentチェックを外し再チェック。",
+      "observed": "有効storage $13.80/Service $32.05→無効Service $18.25→再有効$32.05。無効中も100を保持し、無効中は計算除外の説明あり。",
+      "expected": "無効中は当該Component料金が加算されない。再有効化時は仕様上保持可能な既存値が復元される。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "enabled切替がusage=0と区別できた。",
+      "evidence": [
+        "evidence/J003-03-enabled.png",
+        "evidence/J003-03-disabled.png",
+        "evidence/J003-03-reenabled.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J004-01",
+      "journey": "J004",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "reload再開",
+      "operations": "複製PlanをBaselineに設定し待機、通常reload。",
+      "observed": "2 Plan・3 Row、全Service設定、RDS100、EC2730/365、複製Baselineを保持。再計算後元$224.52、複製$24.57、delta $199.95/$0.00。",
+      "expected": "Plan、Rows、Service設定、Baseline等の編集状態が復元される。Price Dataは現在利用可能なものから再計算される。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "手動バックアップなしで再開。",
+      "evidence": [
+        "evidence/J004-01-before.png",
+        "evidence/J004-01-after.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J004-02",
+      "journey": "J004",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "JSON貼付復元",
+      "operations": "GUI Project JSONを取得。Project名を変更し、復元Modalへ取得したJSON本文を貼り「復元する」。",
+      "observed": "「復元完了」。元Project名・2 Plan・3行・Baseline・設定・金額を復元。保存JSONには料金正本なし。",
+      "expected": "保存時の編集状態が復元され、料金は現在のDefinition/Price Dataで再計算される。保存済み金額をそのまま信頼しない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "ファイルアップロードなしでテキスト欄だけを使用。",
+      "evidence": [
+        "evidence/1791070819523-aws-project.json",
+        "evidence/restore-modal.png",
+        "evidence/J004-02-report.png",
+        "evidence/J004-02-restored.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J004-03",
+      "journey": "J004",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "fatal保持",
+      "operations": "現構成を記憶。不正な文字列{broken JSONを復元欄へ挿入し復元を実行。",
+      "observed": "「復元失敗（現在のProjectは変更されません）」とJSON構文エラー。閉じた後2 Plan、Service、値、$224.52/$24.57、Baselineが不変。",
+      "expected": "エラーが表示され、現在ProjectのPlan/Service/値は変更されない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "失敗と現Project保持は日本語で識別でき、同じ入力欄から再入力できた。",
+      "evidence": [
+        "evidence/J004-03-fatal.png",
+        "evidence/J004-03-unchanged.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J004-04",
+      "journey": "J004",
+      "priority": "P1",
+      "result": "PASS",
+      "summary": "未知要素部分復元",
+      "operations": "取得JSONから未知Service/Profileを含む外部テストファイルを用意し本文貼付復元。追加確認でEC2 inputsにuatUnknownUsageを入れた外部JSONも貼付復元。",
+      "observed": "未知Service/ProfileはReportにUNKNOWN_SERVICE/UNKNOWN_PROFILE、保持の説明。正常EC2/RDS/EBS計算継続、未知部分は未計算、小計と未計算件数表示。未知inputもUNKNOWN_FIELD: Unknown input uatUnknownUsage; preservedと報告。再出力JSONで123保持。",
+      "expected": "復元可能なPlan/Serviceは利用でき、未知部分はwarning/invalidとして識別される。Restore Reportで問題を確認できる。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "復元不能部分と正常部分を区別できた。トップレベル拡張メタデータの表示義務を独自基準にはしない。",
+      "evidence": [
+        "evidence/partial-restore-input.json",
+        "evidence/J004-04-report.png",
+        "evidence/J004-04-partial.png",
+        "evidence/unknown-field-only-input.json",
+        "evidence/J004-04-unknown-field-report.png",
+        "evidence/1791071392555-aws-project.json"
+      ]
+    },
+    {
+      "caseId": "UAT-J005-01",
+      "journey": "J005",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "loading",
+      "operations": "UAT配信サーバでS3 productsだけ12秒遅延。通常reloadし完了前後の画面を観察。",
+      "observed": "S3は「—」「料金データ読込中...」、正常EC2/EBSは料金表示。取得完了後S3 $5.01へ遷移。仮値/旧値/0円確定表示なし。",
+      "expected": "loading状態が識別でき、旧値・0円・ダミー値が確定月額として表示されない。取得完了後readyへ遷移する。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "画面から待機中と判断できた。",
+      "evidence": [
+        "evidence/J005-01-loading.png",
+        "evidence/J005-01-ready.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J005-02",
+      "journey": "J005",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "unavailable局所化",
+      "operations": "S3 productsだけHTTP503の環境でreload。正常RDSを2台に編集しreload。環境を正常へ戻しGUI「再試行」。",
+      "observed": "S3「Price Dataを取得できません。未計算」、小計$219.51、未計算1。編集後RDS $50.30、小計$237.76、reload後保持。他Planの$24.57は継続。再試行でS3料金復旧。",
+      "expected": "正常Serviceは料金表示を継続し、失敗Serviceは未計算。Planは「計算済み小計 + 未計算件数」等で不完全性を明示する。編集/保存は継続可能。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "完全totalと誤認しない。編集・自動保存・再試行継続可能。",
+      "evidence": [
+        "evidence/J005-02-unavailable.png",
+        "evidence/J005-02-edit-resume.png",
+        "evidence/J005-02-retry.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J005-03",
+      "journey": "J005",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "invalid fallback禁止",
+      "operations": "配信fixtureでS3 Storageの分類属性を変え、チェックサムをfixture内容に一致させた配信manifestとともに提供。通常reload。",
+      "observed": "S3「Expected one SKU; matched none.」、料金—、小計$237.76/未計算1。元$5.01を使わず、EC2/RDS/EBS/Lambda計算継続。",
+      "expected": "invalid状態と未計算が識別され、似たSKU・先頭SKU・旧料金による月額は表示されない。他Serviceは利用可能。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "問題をS3に局所化。初回の形式エラーfixtureとは別に、SKU0件解決まで確認した。",
+      "evidence": [
+        "evidence/J005-03-invalid.png",
+        "evidence/J005-03-no-sku.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J005-04",
+      "journey": "J005",
+      "priority": "P1",
+      "result": "PASS",
+      "summary": "stale継続",
+      "operations": "正常配信でreloadして料金を得る。配信側のactive manifestだけHTTP503に変更。画面の更新確認をクリック。",
+      "observed": "stale（新buildまたは最新確認失敗。使用中buildで計算）表示。同じbuildId/日付、Service価格とPlan $242.77/$24.57を保持。",
+      "expected": "既取得データによる料金計算は継続し、stale/最新確認失敗が識別できる。新buildへ途中で混在しない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "継続可能で最新確認に失敗したことを識別できた。",
+      "evidence": [
+        "evidence/J005-04-before.png",
+        "evidence/J005-04-stale.png",
+        "evidence/J005-04-prices.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J006-01",
+      "journey": "J006",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "PDF+JSON",
+      "operations": "2 Plan計算済み状態で「PDF + JSON」を1回クリック。実取得PDFを開き内容確認。付属JSONを変更後の復元Modalへ貼付。",
+      "observed": "PDFとJSONの2ファイル取得。PDFにProject/Plan/Service/主要usage/Component・Service・Plan料金、公表日2026-10-01T18:47:46Z。付属JSONで元状態を復元。",
+      "expected": "PDFとProject JSONの両方を取得できる。PDFにはProject/Plan/Service、主要入力、料金、Price Data publicationDateが含まれる。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "追加バックアップ操作なし。",
+      "evidence": [
+        "evidence/J006-01-output.png",
+        "evidence/1791071080384-aws-comparison.pdf",
+        "evidence/J006-01-pdf.txt",
+        "evidence/J006-01-pdf-page1.png",
+        "evidence/1791071080385-aws-project.json",
+        "evidence/J006-01-json-restored.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J006-02",
+      "journey": "J006",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "不完全PDF・Limitation",
+      "operations": "SKU0件fixtureでS3未計算状態をGUI表示しPDF+JSON出力。取得PDFの全テキストと描画ページを確認。",
+      "observed": "Plan小計$237.76/未計算1、S3 Service未計算・storage invalid、差額比較不可、完全合計ではない説明。Pricing Limitationと過小見積riskを明記。",
+      "expected": "未計算項目、完全合計でない旨、適用中Pricing Limitation、過小見積riskが必要に応じて記載される。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "第三者が未計算と見積制約を識別できた。",
+      "evidence": [
+        "evidence/1791071123093-aws-comparison.pdf",
+        "evidence/J006-02-pdf.txt",
+        "evidence/J006-02-pdf-page2.png",
+        "evidence/1791071123094-aws-project.json"
+      ]
+    },
+    {
+      "caseId": "UAT-J006-03",
+      "journey": "J006",
+      "priority": "P1",
+      "result": "PASS",
+      "summary": "CSV",
+      "operations": "GUIのCSVをクリックし取得したCSV本文を開く。",
+      "observed": "Plan/Row/Service/Component、rawとdisplay料金、Service金額、state、limitation_ids、has_underestimate_risk、入力、Region/publication/buildの列。未計算S3料金は空でinvalid、正常分は画面価格と一致。",
+      "expected": "Plan、Row、Service/Component、料金を識別できる。必要なLimitation/risk情報も保持される。Project復元用JSONとは明確に別用途である。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "転記なしで表形式データ取得。復元JSONとは別ボタン・形式。",
+      "evidence": [
+        "evidence/1791071133805-aws-comparison.csv"
+      ]
+    },
+    {
+      "caseId": "UAT-J007-01",
+      "journey": "J007",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "追加の発見",
+      "operations": "1 Plan画面を観察。「サービスを追加」を選び、検索欄へEC2と入力、表示されたAmazon EC2を選択。",
+      "observed": "Plan内のラベル付きボタンからCatalogへ。検索結果EC2を選ぶと詳細Drawer。",
+      "expected": "Plan文脈からService追加へ到達でき、Catalogに対応Serviceが表示され、選択後は詳細設定へ進む。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "見えているPlan/ボタン/検索文字で3操作以内に到達。AWS serviceCodeやDOMを利用せず。",
+      "evidence": [
+        "evidence/J007-01-before.png",
+        "evidence/J007-01-search.png",
+        "evidence/J007-01-detail.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J007-02",
+      "journey": "J007",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "追加・置換取消",
+      "operations": "4行/$34.50の状態を記録。追加CatalogでS3検索後×をクリック。既存EC2置換Catalogも×で閉じる。",
+      "observed": "4行、EC2各設定（365/730時間）、EBS200、Lambda、全Service金額、合計$34.50、delta $0.00が前後一致。",
+      "expected": "取消後、Row数、既存Service、入力値、料金が開始前から変化しない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "×という可視の取消経路で変更を確定しない。Escapeは閉じず、×へ切替えて成功（UX所見）。",
+      "evidence": [
+        "evidence/J007-02-before.png",
+        "evidence/J007-02-add-open.png",
+        "evidence/J007-02-add-cancel.png",
+        "evidence/J007-02-replace-open.png",
+        "evidence/J007-02-after.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J007-03",
+      "journey": "J007",
+      "priority": "P1",
+      "result": "PASS",
+      "summary": "Serviceを外す",
+      "operations": "Planを複製。最下段EC2の右セルだけを「Planから外す」、続いて左セルも外す。",
+      "observed": "最初は右セルだけ—/この行に追加、左EC2 $9.93維持。元合計$34.50/右$24.57・delta -$9.93。両方除去後行が消え3比較行、両合計$24.57。",
+      "expected": "対象セルだけ空になり他Planは変わらない。全Planで空になったRowは不要な空Rowとして残らない。total/deltaが更新される。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "セル内Planから外すとヘッダのPlan削除を区別。",
+      "evidence": [
+        "evidence/J007-03-before.png",
+        "evidence/J007-03-one-cell.png",
+        "evidence/J007-03-row-removed.png",
+        "evidence/J007-04-before.png"
+      ]
+    },
+    {
+      "caseId": "UAT-J007-04",
+      "journey": "J007",
+      "priority": "P0",
+      "result": "PASS",
+      "summary": "Plan削除・保護",
+      "operations": "非Baseline Plan専有のS3行を追加後、そのPlanを削除。残存Planを複製し、今度は左Baseline Planを削除。",
+      "observed": "非Baselineと専有S3行が消え残存構成不変/$24.57。Baseline削除後残存先頭PlanがBaseline。1 PlanのヘッダにPlanを削除なし、合計$24.57/delta0。",
+      "expected": "削除対象Planと専有Service Instanceが除去される。Baseline削除時は残存先頭Planが新Baselineになる。最後の1Planでは削除操作が表示されない。",
+      "difference": "期待結果との差異なし。UX改善所見は別記。",
+      "usability": "Plan列の削除ラベルと対象位置で操作対象を識別。最後のPlanへの削除導線なし。確認/Undo追加はUX提案として分離。",
+      "evidence": [
+        "evidence/J007-04-exclusive-before.png",
+        "evidence/J007-04-nonbaseline-deleted.png",
+        "evidence/J007-04-baseline-before.png",
+        "evidence/J007-04-baseline-after.png",
+        "evidence/J007-04-final.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "project": {
+    "id": "project-ce30d6cd-303c-4e91-ae88-6c497dcde473",
+    "name": "新しいAWS見積もり",
+    "defaultRegion": "ap-northeast-1",
+    "usageAssumptions": {
+      "hoursPerMonth": "730"
+    },
+    "baselinePlanId": "plan-a9577271-4e41-4c5c-b45f-b250867ac0a4",
+    "planOrder": [
+      "plan-dd6e7445-2892-461d-8190-2b4b0a5fac7e",
+      "plan-a9577271-4e41-4c5c-b45f-b250867ac0a4"
+    ],
+    "rowOrder": [
+      "row-a17d9dc0-6593-4c9b-b2f4-3d213900b399",
+      "row-c7403709-0398-4d35-b1f0-12343f68c48d",
+      "row-4902f339-9236-4769-9691-292086f1fc6d"
+    ]
+  },
+  "plans": {
+    "plan-dd6e7445-2892-461d-8190-2b4b0a5fac7e": {
+      "id": "plan-dd6e7445-2892-461d-8190-2b4b0a5fac7e",
+      "name": "案 1",
+      "memo": ""
+    },
+    "plan-a9577271-4e41-4c5c-b45f-b250867ac0a4": {
+      "id": "plan-a9577271-4e41-4c5c-b45f-b250867ac0a4",
+      "name": "案 1 の複製",
+      "memo": ""
+    }
+  },
+  "rows": {
+    "row-a17d9dc0-6593-4c9b-b2f4-3d213900b399": {
+      "id": "row-a17d9dc0-6593-4c9b-b2f4-3d213900b399",
+      "label": null,
+      "cells": {
+        "plan-dd6e7445-2892-461d-8190-2b4b0a5fac7e": "service-969b2a75-c141-46d8-9993-dc117a5efe11",
+        "plan-a9577271-4e41-4c5c-b45f-b250867ac0a4": "service-6d4296c8-c0ae-48cc-856b-4a3fab52a901"
+      }
+    },
+    "row-c7403709-0398-4d35-b1f0-12343f68c48d": {
+      "id": "row-c7403709-0398-4d35-b1f0-12343f68c48d",
+      "label": null,
+      "cells": {
+        "plan-dd6e7445-2892-461d-8190-2b4b0a5fac7e": "service-4f0b4aa4-a41a-4b05-ba77-9d2ecc69b588",
+        "plan-a9577271-4e41-4c5c-b45f-b250867ac0a4": "service-781eaf88-8ecd-4d42-971f-706ffaefdef0"
+      }
+    },
+    "row-4902f339-9236-4769-9691-292086f1fc6d": {
+      "id": "row-4902f339-9236-4769-9691-292086f1fc6d",
+      "label": null,
+      "cells": {
+        "plan-dd6e7445-2892-461d-8190-2b4b0a5fac7e": "service-b73c263b-22cf-4987-9c26-a4f7b01db646",
+        "plan-a9577271-4e41-4c5c-b45f-b250867ac0a4": "service-8f2eba88-0332-450b-a7af-ae16501d350a"
+      }
+    }
+  },
+  "serviceInstances": {
+    "service-969b2a75-c141-46d8-9993-dc117a5efe11": {
+      "id": "service-969b2a75-c141-46d8-9993-dc117a5efe11",
+      "serviceId": "ec2",
+      "profileId": "standard",
+      "region": {
+        "mode": "inherit"
+      },
+      "selectors": {
+        "os": "Linux"
+      },
+      "components": {
+        "instance": {
+          "enabled": true,
+          "inputs": {
+            "instanceType": "a1.2xlarge",
+            "hours": "730",
+            "quantity": "1"
+          }
+        }
+      }
+    },
+    "service-4f0b4aa4-a41a-4b05-ba77-9d2ecc69b588": {
+      "id": "service-4f0b4aa4-a41a-4b05-ba77-9d2ecc69b588",
+      "serviceId": "s3",
+      "profileId": "standard",
+      "region": {
+        "mode": "inherit"
+      },
+      "selectors": {},
+      "components": {
+        "storage": {
+          "enabled": true,
+          "inputs": {
+            "gbMonths": "200"
+          }
+        },
+        "write-requests": {
+          "enabled": true,
+          "inputs": {
+            "requests": "1000"
+          }
+        },
+        "read-requests": {
+          "enabled": true,
+          "inputs": {
+            "requests": "10000"
+          }
+        }
+      }
+    },
+    "service-b73c263b-22cf-4987-9c26-a4f7b01db646": {
+      "id": "service-b73c263b-22cf-4987-9c26-a4f7b01db646",
+      "serviceId": "rds",
+      "profileId": "standard",
+      "region": {
+        "mode": "inherit"
+      },
+      "selectors": {
+        "deployment": "Single-AZ"
+      },
+      "components": {
+        "instance": {
+          "enabled": true,
+          "inputs": {
+            "instanceType": "db.t4g.micro",
+            "hours": "730",
+            "quantity": "2"
+          }
+        },
+        "storage": {
+          "enabled": true,
+          "inputs": {
+            "gbMonths": "100"
+          }
+        }
+      }
+    },
+    "service-6d4296c8-c0ae-48cc-856b-4a3fab52a901": {
+      "id": "service-6d4296c8-c0ae-48cc-856b-4a3fab52a901",
+      "serviceId": "ec2",
+      "profileId": "standard",
+      "region": {
+        "mode": "inherit"
+      },
+      "selectors": {
+        "os": "Linux"
+      },
+      "components": {
+        "instance": {
+          "enabled": true,
+          "inputs": {
+            "instanceType": "t3.micro",
+            "hours": "365",
+            "quantity": "1"
+          }
+        }
+      }
+    },
+    "service-8f2eba88-0332-450b-a7af-ae16501d350a": {
+      "id": "service-8f2eba88-0332-450b-a7af-ae16501d350a",
+      "serviceId": "lambda",
+      "profileId": "standard",
+      "region": {
+        "mode": "inherit"
+      },
+      "selectors": {
+        "architecture": "AWS-Lambda-Duration"
+      },
+      "components": {
+        "requests": {
+          "enabled": true,
+          "inputs": {
+            "requests": "1000000"
+          }
+        },
+        "duration": {
+          "enabled": true,
+          "inputs": {
+            "seconds": "100000",
+            "memoryGb": "0.125"
+          }
+        }
+      }
+    },
+    "service-781eaf88-8ecd-4d42-971f-706ffaefdef0": {
+      "id": "service-781eaf88-8ecd-4d42-971f-706ffaefdef0",
+      "serviceId": "ebs",
+      "profileId": "standard",
+      "region": {
+        "mode": "inherit"
+      },
+      "selectors": {
+        "volume": "gp3"
+      },
+      "components": {
+        "storage": {
+          "enabled": true,
+          "inputs": {
+            "gbMonths": "200"
+          }
+        },
+        "iops": {
+          "enabled": true,
+          "inputs": {
+            "iopsMonths": "0"
+          }
+        },
+        "throughput": {
+          "enabled": true,
+          "inputs": {
+            "mibpsMonths": "0"
+          }
+        }
+      }
+    }
+  },
+  "savedAt": "2026-10-03T23:45:21.683Z",
+  "priceData": {
+    "buildId": "20261003T195959Z-2abe18f7",
+    "publicationDate": "2026-10-01T18:47:46Z"
+  }
+}
