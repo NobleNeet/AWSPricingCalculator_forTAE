@@ -4,34 +4,32 @@ AWS Public Price List JSON をデータソースにした、構成比較型の�
 
 ## 仕様書
 
-現行仕様の正本は以下の2冊です。
+現行仕様の正本は以下です。
 
 - ユーザー向け仕様: [`docs/SPEC.md`](docs/SPEC.md)
 - 料金・内部アーキテクチャ仕様: [`docs/PRICING_ARCHITECTURE.md`](docs/PRICING_ARCHITECTURE.md)
+- 実装計画: [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md)
+- 設計履歴索引: [`docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md`](docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md)
 
-実装順序とCodex `/goal` 用のPhase別指示は [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md) にまとめています。
-
-設計検討の履歴索引は [`docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md`](docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md) にあります。
+Codex向けのリポジトリ共通指示は [`AGENTS.md`](AGENTS.md) にあります。
 
 ## 現在の内容
 
-`index.html` / `styles.css` / `app.js` / `onboarding.js` はUI議論用の静的モックです。
+ルート階層は今後の本実装用に空け、仕様書・実装計画・Codex指示を中心に配置しています。
 
-- 0案状態から最初の構成案を作成
-- 構成案ごとにAWSサービスを追加
-- 複数の構成案を横並び比較
-- 構成案の追加・複製・削除
-- 同じ比較行でサービス種別を置換して比較
-- サービスセルから右側Drawerでパラメータ編集
-- 変更時に構成案合計と基準案との差額を即時更新
-- Project Regionを共通条件として設定
-- ブラウザへの自動保存
-- 復元JSONの本文を貼り付けて状態復元
-- PDF出力時に復元JSONも同時出力する想定
-- CSV出力は今後実装
-- 表示料金は現時点ではUI確認用のダミー値
+仕様検討時に使用した静的UIモックは [`mock/`](mock/) に隔離しています。
 
-実料金基盤、Service Definition、Pricing Core、Node.js CLI、GitHub Actions等の仕様は確定済みで、これから実装へ移行する段階です。
+`mock/` 内の主なファイル:
+
+- `index.html`
+- `styles.css`
+- `app.js`
+- `onboarding.js`
+- `onboarding.css`
+
+モックの料金値はUI確認用ダミー値です。本実装では `mock/` 内のハードコード料金ロジックを拡張せず、`docs/IMPLEMENTATION_PLAN.md` に従ってService Definition / Pricing Core / Price DB基盤を新規実装します。
+
+実料金基盤、Service Definition、Pricing Core、Node.js CLI、GitHub Actions等の仕様は確定済みで、実装フェーズへ移行する段階です。
 
 ## モックの確認
 
@@ -39,12 +37,12 @@ GitHub Pages:
 
 https://nobleneet.github.io/AWSPricingCalculator_forTAE/
 
-現行モックは依存ライブラリなしで、リポジトリ取得後に `index.html` をブラウザで直接開けます。
+GitHub Pagesは、本実装へ切り替えるまで `mock/` を公開します。
 
-またはローカルWebサーバーを使う場合:
+ローカルで確認する場合:
 
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 8000 -d mock
 ```
 
 その後 `http://localhost:8000/` を開いてください。
