@@ -1,162 +1,75 @@
 # Pricing Architecture Specification
 
-最終更新: 2026-10-03
+最終更新: 2026-10-04
 
-## 1. 目的
+本書はAWSPricingCalculator_forTAEの料金基盤・Service Definition・Price DB・Pricing Engine・検証・更新運用の正本とする。
 
-本書は、AWSPricingCalculator_forTAE における AWS Public Price List の取得、正規化、配信、検索、料金計算、サービス定義、CI 検証、GitHub Actions 更新運用の詳細仕様を定義する。
-
-UI、Project、構成案、保存・復元、PDF/CSV 出力等の全体仕様は `docs/SPEC.md` を正本とし、本書は料金基盤およびサービス拡張基盤の詳細仕様を扱う。
-
-設計上の主要目標は以下とする。
-
-- AWS Public Price List JSON を料金計算の正本とする。
-- GitHub Pages 上でバックエンドサーバーなしに動作できる構成とする。
-- AWS 公式 Price List の巨大 JSON をユーザーのブラウザへ直接配信しない。
-- GitHub Actions で AWS 公式データを取得・加工し、ブラウザ向けの軽量 Price DB を生成する。
-- 料金の変化に関わり得る AWS 属性を不用意に削除しない。
-- 未収録 AWS サービスを、既存の共通 JavaScript を極力変更せず追加できるデータ駆動構造とする。
-- AWS 側の料金体系変更や未知属性追加による静かな誤計算を CI で検知する。
+ユーザーから見たProject/Plan/比較/UI/保存・復元/PDF/CSVの挙動は `docs/SPEC.md` を正本とする。
+過去の `PRICING_ARCHITECTURE_DECISIONS_*` は設計検討履歴であり、現行仕様の正本ではない。
 
 ---
 
-## 2. ホスティング構成
+## 1. 目的と基本原則
 
-### 2.1 基本構成
+### 1.1 料金正本
 
-本アプリの本番ホスティングは、当面以下を基本構成とする。
+料金計算の正本はAWS Public Price List JSONとする。
+AWS Pricing Calculator UIは、入力項目・依存関係・初期値・primary/advanced区分等を理解する補助情報源として利用するが、料金値の正本にはしない。
+
+### 1.2 ホスティング
 
 - Frontend: GitHub Pages
 - Backend application server: なし
 - Database server: なし
-- Price source: AWS Public Price List JSON
-- Price update / build: GitHub Actions
-- Project state persistence: browser `localStorage`
-- Formal project export/import: Project JSON
-- PDF / CSV generation: browser side
+- Price update/build: GitHub Actions
+- Project persistence: browser localStorage
+- Formal backup/restore: Project JSON
+- PDF/CSV: browser side
 
-概念構成:
+### 1.3 対象料金
 
-```text
-AWS Public Price List
-        |
-        v
-GitHub Actions
-  - metadata/version check
-  - source JSON download
-  - normalization
-  - validation
-  - Price DB generation
-        |
-        v
-pricing/generated/
-        |
-        v
-GitHub Pages
-        |
-        v
-Browser
-  - required Price DB only
-  - pricing calculation
-  - localStorage
-  - PDF / CSV / Project JSON
-```
+- USD
+- On-Demand
+- Tax excluded
+- Reserved Instances対象外
+- Savings Plans対象外
+- Spot対象外
+- 為替換算対象外
+- Free Tier / free allowanceは計算へ反映しない
+- Tier pricingは段階計算しない
 
-### 2.2 AWS 元 JSON の扱い
+Tier pricingが存在する場合は、既知のfree allowance dimensionを除外したうえで、最小の `beginRange` を持つ通常有料dimensionの単価を全使用量へ適用する。
 
-AWS 公式の 20MB〜数十MB級 Price List JSON は、GitHub Actions runner 上で一時的に取得して利用する。
+### 1.4 保守的概算
 
-元 JSON 自体はリポジトリへ保存しない。
+本ツールは初期設計比較用であり、アカウント・組織・利用履歴等を必要とする請求条件を完全再現しない。
 
-永続化するのは、正規化・検証後の `pricing/generated/` 配下のデータのみとする。
+計算しない条件が実額を下げる方向ならnotice、実額を上げる可能性があるならwarningとしてPricing Limitationを表示する。
+
+### 1.5 任意コード禁止
+
+Service Definition内に任意JavaScript式を書かない。
+Pricing Query、Calculation、Condition、Normalizationは限定DSLで表現する。
+
+DSLで表現不能な例外だけ `adapter.js` を許可する。
 
 ---
 
-## 3. 基本設計原則
-
-### 3.1 Price Data と UI Definition を分離する
-
-以下を明確に分離する。
-
-```text
-Price Data
-= AWS がどの条件でいくら課金するか
-
-Service Definition
-= ユーザーに何を選択・入力させるか
-
-Pricing Engine
-= 使用量と Price Dimension から金額をどう算出するか
-
-UI Renderer
-= Service Definition から入力 UI をどう生成するか
-```
-
-価格そのものを `service.json` 等の Definition に書かない。
-
-### 3.2 AWS 属性は原則保持する
-
-採用対象 SKU の `attributes` は allowlist 方式で削らず、原則そのまま保持する。
-
-現時点で UI に使っていない属性であっても、将来価格差に関与する可能性があるためである。
-
-ただし、本アプリの対象外と確定している料金体系は生成対象から除外できる。
-
-当面の対象外:
-
-- Reserved Instances
-- Savings Plans
-- Spot
-- 税
-- 為替換算
-- アカウント依存の Free Tier
-
-### 3.3 任意 JavaScript 式を Definition に書かない
-
-Definition 内で任意式を評価する設計は禁止する。
-
-例:
-
-```json
-{
-  "formula": "requests * price / 1000000"
-}
-```
-
-のような方式は採用しない。
-
-代わりに、限定された宣言的 Pricing Model、scale、transform、reference を使用する。
-
-宣言形式で表現できない例外のみ `adapter.js` を許可する。
-
----
-
-## 4. データモデル階層
-
-料金定義の論理階層は以下とする。
+## 2. 論理モデル
 
 ```text
 Service
   -> Profile
       -> Pricing Component
-          -> AWS Product / Term / Price Dimension
+          -> AWS Product / SKU
+              -> On-Demand Term
+                  -> Price Dimension
 ```
 
-### 4.1 Service
+### 2.1 Service
 
-ユーザーが認識する AWS サービス単位。
-
-例:
-
-- EC2
-- RDS
-- Aurora
-- S3
-- Lambda
-
-Service の境界は AWS Public Price List の `serviceCode` と必ずしも 1:1 ではない。
-
-Price Source の境界は AWS Public Price List の `serviceCode` に従うが、アプリ上の Service は AWS Price List 内の自然な商品区分、`productFamily`、属性、`usagetype`、`operation` 等を根拠として分割できる。
+ユーザーが認識する見積単位。
+AWS `serviceCode` と1:1である必要はない。
 
 例:
 
@@ -164,134 +77,94 @@ Price Source の境界は AWS Public Price List の `serviceCode` に従うが�
 Price Source: AmazonRDS
   - App Service: RDS
   - App Service: Aurora
-  - App Service: Aurora Serverless
 ```
 
-### 4.2 Profile
+### 2.2 Profile
 
-同じ Service の中の利用方式・料金方式を表す。
+同じServiceの中で、Component構成または料金方式が大きく変わる利用方式。
 
-例:
+単なるinstance family、engine、storage class等、同じComponent構造内でSKU属性が変わるだけならselectorで表現し、Profileを増やさない。
 
-```text
-Aurora
-  - Provisioned
-  - Serverless v2
-```
+### 2.3 Pricing Component
 
-### 4.3 Pricing Component
+1つの課金メーターを表す。
 
-ユーザーが個別に調整可能な課金要素を表す。
+以下が異なる場合はComponent分割を優先する。
 
-例:
+- usage unit
+- Price Query
+- 個別入力可能なusage
+- billing group
+- 独立した料金行としてユーザーへ示す必要性
 
-```text
-Aurora Provisioned
-  - Instance
-  - Storage
-  - I/O
-  - Backup
-```
+### 2.4 selector / usageInput / fixedFilter
 
-料金要素を月額合計へ早期に潰さず、個別 Component として保持する。
+- selector: 何を使うか。SKU/Dimension選択へ影響する
+- usageInput: どれだけ使うか
+- fixedFilter: 常に固定する料金選択条件
+
+複数Componentへ共通に影響するselectorはProfileへ置く。
 
 ---
 
-## 5. Service Definition ファイル構成
+## 3. Service Definition package
 
 標準構成:
 
 ```text
 services/
-  aurora/
+  <serviceId>/
     service.json
     profiles/
-      provisioned.json
-      serverless-v2.json
+      <profileId>.json
     components/
-      instance.json
-      acu.json
-      storage.json
-      io.json
-      backup.json
-    adapter.js              # 必要な場合のみ
+      <componentId>.json
+    golden/
+      ...
+    coverage.json
+    adapter.js          # 必要な場合のみ
 ```
 
-### 5.1 service.json
+### 3.1 ID規則
 
-Service 自体の識別情報、Price Source、利用可能 Profile を持つ。
+IDは原則以下とする。
 
-例:
+```text
+^[a-z][a-z0-9-]*$
+```
+
+以下を一致させる。
+
+- `services/<serviceId>` と `service.json.id`
+- `profiles/<profileId>.json` と内部 `id`
+- `components/<componentId>.json` と内部 `id`
+
+package外のDefinition参照は禁止する。
+
+### 3.2 service.json
+
+概念例:
 
 ```json
 {
   "schemaVersion": 1,
   "id": "aurora",
   "label": "Amazon Aurora",
-  "description": "Managed relational database compatible with MySQL and PostgreSQL.",
-  "priceSource": {
-    "serviceCode": "AmazonRDS"
-  },
-  "profiles": [
-    "provisioned",
-    "serverless-v2"
-  ],
+  "priceSource": {"serviceCode": "AmazonRDS"},
+  "profiles": ["provisioned", "serverless-v2"],
   "defaultProfile": "provisioned"
 }
 ```
 
-必須:
-
-- `schemaVersion`
-- `id`
-- `label`
-- `priceSource.serviceCode`
-- `profiles`
-
-任意:
-
-- `description`
-- `defaultProfile`
-- `documentationUrl`
-- `tags`
-
 価格値そのものは持たない。
 
-### 5.2 profile.json
+### 3.3 profile.json
 
-複数 Component に共通する selector、filter、Component 一覧を持つ。
+Profile selector、fixed filter、Component一覧を持つ。
 
-例:
+### 3.4 component.json
 
-```json
-{
-  "schemaVersion": 1,
-  "id": "provisioned",
-  "label": "Provisioned",
-  "selectors": [
-    {
-      "id": "engine",
-      "label": "Database engine",
-      "type": "select",
-      "options": {
-        "source": "priceData",
-        "attribute": "databaseEngine"
-      }
-    }
-  ],
-  "fixedFilters": [],
-  "components": [
-    "instance",
-    "storage",
-    "io",
-    "backup"
-  ]
-}
-```
-
-### 5.3 component.json
-
-個別の料金要素について以下を持つ。
+主に以下を持つ。
 
 - selectors
 - usageInputs
@@ -299,797 +172,981 @@ Service 自体の識別情報、Price Source、利用可能 Profile を持つ。
 - priceQuery
 - calculation
 - enabledWhen
+- limitations
+- UI metadata
 
-例:
+### 3.5 Package completeness
 
-```json
-{
-  "schemaVersion": 1,
-  "id": "instance",
-  "label": "DB instance",
-  "selectors": [
-    {
-      "id": "instanceType",
-      "label": "Instance class",
-      "type": "select",
-      "options": {
-        "source": "priceData",
-        "attribute": "instanceType",
-        "filters": [
-          {
-            "field": "attributes.databaseEngine",
-            "op": "eq",
-            "valueFrom": "profile.engine"
-          }
-        ]
-      }
-    }
-  ],
-  "usageInputs": [
-    {
-      "id": "quantity",
-      "label": "Instances",
-      "type": "integer",
-      "default": 1,
-      "minimum": 1
-    },
-    {
-      "id": "hoursPerMonth",
-      "label": "Hours / month",
-      "type": "number",
-      "default": 730,
-      "minimum": 0
-    }
-  ],
-  "priceQuery": {
-    "filters": [
-      {
-        "field": "productFamily",
-        "op": "eq",
-        "value": "Database Instance"
-      },
-      {
-        "field": "attributes.databaseEngine",
-        "op": "eq",
-        "valueFrom": "profile.engine"
-      },
-      {
-        "field": "attributes.instanceType",
-        "op": "eq",
-        "valueFrom": "component.instanceType"
-      },
-      {
-        "field": "dimensions.unit",
-        "op": "eq",
-        "value": "Hrs"
-      }
-    ],
-    "expect": "singleSku"
-  },
-  "calculation": {
-    "model": "unit",
-    "usage": [
-      { "valueFrom": "component.hoursPerMonth" },
-      { "valueFrom": "component.quantity" }
-    ]
-  }
-}
-```
+CIで以下を検証する。
+
+- service -> profile参照
+- profile -> component参照
+- ファイル名とID整合
+- 未参照Definition
+- duplicate input ID
+- package外参照
 
 ---
 
-## 6. 入力値と UI 定義
+## 4. JSON Schema
 
-### 6.1 入力値の分類
+共通Schemaは中央管理する。
 
-入力・条件は以下の3種類へ分ける。
-
-#### selector
-
-SKU や Price Dimension の選択条件を変えるユーザー選択値。
-
-例:
-
-- Instance type
-- OS
-- Database engine
-- Storage class
-- Deployment option
-
-#### usageInput
-
-同じ単価へ掛ける利用量。
-
-例:
-
-- Instance count
-- Hours/month
-- Storage GB
-- Requests/month
-- Data transfer GB
-
-#### fixedFilter
-
-SKU 特定には必要だが通常ユーザーへ変更させない条件。
-
-例:
-
-- tenancy = Shared
-- preInstalledSw = NA
-- purchase option = On-Demand
-
-### 6.2 UI input type
-
-初期版で認める型:
-
-- `select`
-- `number`
-- `integer`
-- `boolean`
-- `text`
-
-### 6.3 selector option source
-
-選択肢の source は以下の2種類とする。
-
-#### priceData
-
-Price DB の属性値から自動生成する。
-
-```json
-{
-  "source": "priceData",
-  "attribute": "instanceType"
-}
+```text
+schemas/
+  service-definition/
+    service.schema.json
+    profile.schema.json
+    component.schema.json
+    golden.schema.json
+    coverage.schema.json
+  project.schema.json
+  pricing/
+    manifest.schema.json
+    build-manifest.schema.json
+    products.schema.json
+    index.schema.json
 ```
 
-#### static
+主要objectは原則 `additionalProperties: false` とする。
 
-Price DB から直接導出できない UI 選択肢に使用する。
-
-```json
-{
-  "source": "static",
-  "values": [
-    { "value": "always", "label": "Always" },
-    { "value": "never", "label": "Never" }
-  ]
-}
-```
-
-可能な限り `priceData` を優先する。
-
-AWS 側に新 instance type 等が追加された場合、Price DB 更新だけで UI の選択肢へ自動反映できる構造を目指す。
+Service/Profile/Component等はそれぞれ `schemaVersion` を持てる。
+Project schemaVersion、Price DB schemaVersionとは独立して進化させる。
 
 ---
 
-## 7. 値参照 DSL
+## 5. 値参照とCondition DSL
 
-値は原則として以下のどちらかで指定する。
+### 5.1 value / valueFrom
 
-- `value`
-- `valueFrom`
+1つの値指定で `value` と `valueFrom` を同時指定しない。
 
-同時指定は禁止する。
-
-`valueFrom` で利用可能な scope:
+正式な `valueFrom` namespace:
 
 - `project.*`
-- `service.*`
 - `profile.*`
 - `component.*`
 
-例:
+任意deep pathやJavaScript式は許可しない。
 
-```json
-{
-  "field": "attributes.databaseEngine",
-  "op": "eq",
-  "valueFrom": "profile.engine"
-}
-```
+### 5.2 enabledWhen
 
-```json
-{
-  "field": "attributes.tenancy",
-  "op": "eq",
-  "value": "Shared"
-}
-```
+Componentおよび必要なinputに限定条件を指定できる。
 
----
+論理演算:
 
-## 8. Price Query
+- `all`
+- `any`
+- `not`
 
-Price Query は特定の AWS 属性を schema 上の専用フィールドとして増やさず、汎用 `filters[]` へ統一する。
-
-例:
-
-```json
-{
-  "filters": [
-    {
-      "field": "productFamily",
-      "op": "eq",
-      "value": "Database Instance"
-    },
-    {
-      "field": "attributes.databaseEngine",
-      "op": "eq",
-      "valueFrom": "profile.engine"
-    },
-    {
-      "field": "dimensions.unit",
-      "op": "eq",
-      "value": "Hrs"
-    }
-  ],
-  "expect": "singleSku"
-}
-```
-
-初期版 operator:
+leaf演算子:
 
 - `eq`
 - `neq`
 - `in`
 - `notIn`
 - `exists`
+- `notExists`
 
-### 8.1 expect
+型変換は行わず、文字列比較はcase-sensitiveとする。
+`neq`はfieldが存在し、かつ値が異なる場合だけ成立する。
 
-SKU 解決結果の期待値を宣言する。
+### 5.3 依存関係
 
-初期値:
+- 循環依存は禁止
+- CIで依存グラフをDAG検証する
+- Component間の直接参照は初期版では禁止する
+- 複数Componentに影響する値はProfile selectorへ昇格する
 
-- `singleSku`
-- `multipleSkus`
+`enabledWhen=false` のComponent/inputはruntime計算contextから除外するが、Project state内の既存値は保持してよい。
 
-原則 `singleSku` とし、複数 SKU が正常な場合のみ `multipleSkus` を明示する。
+### 5.4 selector候補依存
+
+selector候補の依存は `options.filters` で表す。
+`enabledWhen` と候補filterを混同しない。
 
 ---
 
-## 9. Pricing Engine
+## 6. Price Query DSL
 
-### 9.1 基本モデル
-
-Pricing Engine の基本 Pricing Model は以下の2種類とする。
-
-- `unit`
-- `tiered`
-
-request、hourly、storage、throughput 等をサービス固有モデルとして増やさない。
-
-### 9.2 unit
-
-基本式:
-
-```text
-price = pricePerUnit * product(usage values)
-```
-
-例:
-
-```text
-EC2 = hourly price * hours * quantity
-Aurora Serverless = ACU-hour price * ACU-hours
-EBS = GB-month price * GB
-```
-
-### 9.3 tiered
-
-AWS Price Dimension の `beginRange` / `endRange` を直接利用して段階料金を算出する。
-
-Definition 側へ tier の単価や範囲を転記しない。
-
-### 9.4 Price Dimension
-
-Price Dimension を料金計算の最小単位として扱う。
-
-同一 SKU / OnDemand Term に複数 Price Dimension が存在する場合、必要な Dimension を評価し合算する。
-
-### 9.5 Component / Service / Plan 合算
-
-`compound` という独立 Pricing Model は設けない。
-
-```text
-Service total = sum(Component total)
-Plan total    = sum(Service total)
-```
-
-とする。
-
-### 9.6 scale
-
-1000 requests、1 million requests 等の正規化に使用する。
-
-例:
+SKU選択とPrice Dimension選択を分離する。
 
 ```json
 {
-  "scale": {
-    "divideBy": 1000000
+  "priceQuery": {
+    "productFilters": [
+      {"field": "productFamily", "op": "eq", "value": "Database Instance"},
+      {"field": "attributes.databaseEngine", "op": "eq", "valueFrom": "profile.engine"},
+      {"field": "attributes.instanceType", "op": "eq", "valueFrom": "component.instanceType"}
+    ],
+    "dimensionFilters": [
+      {"field": "unit", "op": "eq", "value": "Hrs"}
+    ],
+    "expect": "singleSku"
   }
 }
 ```
 
-### 9.7 transform
+### 6.1 Product filter
 
-使用量の minimum / rounding / step を宣言的に表現できるようにする。
+正式field:
 
-初期対応:
+- `productFamily`
+- `operation`
+- `usageType`
+- `attributes.<name>`
 
-- `minimum`
-- `maximum`
-- `round`: `ceil` / `floor` / `nearest`
-- `step`
+`sku`固定依存は原則禁止・review対象とする。
 
-### 9.8 Unit Conversion
+演算子:
 
-Pricing Engine は限定された汎用単位変換を持つ。
+- `eq`
+- `neq`
+- `in`
+- `notIn`
+- `exists`
+- `notExists`
 
-対象例:
+Product filtersは初期版AND-onlyとする。
+regex / contains / startsWith / endsWithは採用しない。
 
-- GB / TB
-- MB / GB
-- seconds / hours
-- requests / thousand requests / million requests
+`in/notIn`はstatic配列に限定する。
 
-単価を手動補正するのではなく、usage を Price Dimension の unit へ正規化する。
+### 6.2 Dimension filter
 
-### 9.9 Free Tier
+正式fieldは初期版で以下に限定する。
 
-アカウント状態や他ワークロード消費量に依存する Free Tier は計算対象外とする。
+- `unit`
+- `description`
+- `beginRange`
+- `endRange`
 
-一方、AWS Price List 自体の Price Dimension として存在するゼロ価格 tier は通常どおり計算する。
+`rateCode`固定依存は原則禁止する。
 
-### 9.10 adapter
+### 6.3 Resolution
 
-`unit` / `tiered` と宣言 DSL で表現できない場合のみ `adapter.js` を許可する。
+```text
+serviceCode + region の products.json
+-> productFilters
+-> SKU cardinality
+-> On-Demand Term
+-> dimensionFilters
+-> Dimension policy
+```
 
-adapter は例外扱いとし、増殖を避ける。
+`expect`の正式値は初期版 `singleSku` のみ。
+
+- 0 SKU -> `SKU_NOT_FOUND`
+- 1 SKU -> 正常
+- 2+ SKU -> `AMBIGUOUS_SKU`
+
+先頭SKU、類似SKU、最安SKU等へのfallbackは禁止する。
 
 ---
 
-## 10. Component の有効条件
+## 7. Price Dimension解決
 
-オプション課金要素は `enabledWhen` で有効・無効を宣言できる。
+### 7.1 基本
 
-例:
+通常は1 Component -> 1 SKU -> 1 billable Price Dimensionとする。
+
+### 7.2 Free allowance dimension
+
+Free Tier / free allowanceと信頼して識別できる0円dimensionは料金計算から除外し、通常の最初の有料dimensionを使用する。
+
+単に `pricePerUnit = 0` という理由だけでfree allowanceと判定しない。
+
+### 7.3 Tier
+
+Tier構造を検出しても段階積算しない。
+
+free allowanceを除いた通常有料tierのうち、最小 `beginRange` のdimensionを全usageへ適用し、`tier-pricing` Limitationを付与する。
+
+### 7.4 複数paid dimension
+
+Tierでもfree allowanceでもない異種paid dimensionsが複数残る場合、自動合算・先頭採用をしない。
+
+`AMBIGUOUS_PRICE_DIMENSION` 相当のERRORとし、Component分割、Query改善、限定dimension filter等でDefinitionを修正する。
+
+---
+
+## 8. Calculation DSL
+
+### 8.1 model
+
+初期版の正式modelは `unit` のみ。
+`tiered` modelは持たない。
+
+### 8.2 usage
 
 ```json
 {
-  "enabledWhen": [
-    {
-      "valueFrom": "component.enableBackup",
-      "op": "eq",
-      "value": true
-    }
-  ]
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {"valueFrom": "component.hoursPerMonth"},
+        {"valueFrom": "component.quantity"}
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Hrs"
+  }
 }
 ```
 
-これにより、Provisioned IOPS、追加 Backup、Monitoring 等を Component 単位で切り替えられるようにする。
+複数sourceは `multiply` を正式対応とする。
+単純なusage加算が必要な場合は、まずComponent分割を検討する。
+
+### 8.3 transforms
+
+順序付きarrayとして適用する。
+
+初期primitive:
+
+- `minimum`
+- `increment`（increment単位へceil）
+- `rounding`（初期正式modeは `ceil`）
+- `scale`
+- `unitConversion`
+
+transform parameterは定数とし、任意式や動的factor参照を許可しない。
+
+### 8.4 unit
+
+`calculation.outputUnit` と解決したPrice Dimension `unit` の整合をCI/runtimeで検証する。
+
+### 8.5 精度
+
+価格・usage・transformはDecimal相当の高精度演算を用いる。
+金額は途中丸めしない。
 
 ---
 
-## 11. Price DB
+## 9. Billing semantics
 
-### 11.1 ディレクトリ構成
+月間aggregate usageから決定可能な以下の条件はDSLで表現できる。
+
+- minimum billable amount
+- billing increment
+- ceil rounding
+- scale
+- unit conversion
+
+minimum storage duration、early deletion、セッション回数、開始停止履歴、ライフサイクルイベント等、月間aggregateだけから再構成できない条件は計算しない。
+
+---
+
+## 10. Pricing Limitation
+
+中央registryを持つ。
+
+代表ID:
+
+- `tier-pricing`
+- `free-tier`
+- `minimum-storage-duration`
+- `early-deletion`
+- `lifecycle-event-charge`
+- `organization-usage-aggregation`
+- `account-specific-discount`
+
+主な属性:
+
+- id
+- severity: notice / warning
+- impactDirection: estimate-may-be-higher / estimate-may-be-lower / unknown
+- message
+
+Tier等、Price Dataから信頼して検出できるものは自動付与する。
+Price Listだけで判定できない意味上の制約はDefinitionで宣言する。
+
+LimitationはProject JSONへ保存せず、現在のDefinition + Price DBから再導出する。
+
+---
+
+## 11. Price DB publication model
+
+公開構造:
 
 ```text
 pricing/generated/
   manifest.json
-  sources/
-    AmazonRDS/
-      ap-northeast-1/
-        products.json
-  indexes/
-    AmazonRDS/
-      ap-northeast-1/
-        index.json
+  builds/
+    <buildId>/
+      build-manifest.json
+      sources/
+        <serviceCode>/
+          <region>/
+            products.json
+      indexes/
+        <serviceCode>/
+          <region>/
+            index.json
 ```
 
-Price Source の単位は AWS `serviceCode` × Region とする。
+### 11.1 manifest.json
 
-### 11.2 manifest.json
-
-Price DB 全体の入口となる小さいメタデータファイル。
-
-含む情報:
-
-- schemaVersion
-- generatedAt
-- serviceCode
-- supported regions
-- AWS publicationDate / version
-- products path
-- index path
-
-ブラウザはまず manifest を読み、必要な Price Source を解決する。
-
-### 11.3 products.json
-
-AWS Product、OnDemand Term、Price Dimension を Actions 側で SKU 単位に join / normalize して保存する。
-
-原則として意味のある情報を落とさない。
-
-例:
+可変なトップmanifestはactive buildだけを指す。
 
 ```json
 {
-  "sku": "ABC123",
-  "productFamily": "Database Instance",
-  "attributes": {
-    "databaseEngine": "Aurora MySQL",
-    "instanceType": "db.r7g.large",
-    "regionCode": "ap-northeast-1"
-  },
-  "terms": [
+  "schemaVersion": 1,
+  "activeBuildId": "20261004T012300Z-a1b2c3d4",
+  "publicationDate": "2026-10-04T01:23:00Z"
+}
+```
+
+service listや価格本体は埋め込まない。
+
+### 11.2 build-manifest.json
+
+build全体のmetadataとserviceCode/region別resource pathを持つ。
+
+主な情報:
+
+- schemaVersion
+- buildId
+- generatedAt
+- publicationDate
+- currency
+- sources map
+- optional SHA256 / bytes
+
+### 11.3 build consistency
+
+Price DB全体を1世代として扱う。
+serviceCode単位の独立active generationを持たない。
+
+新buildを完全生成・検証した後、最後に `manifest.json` のactiveBuildIdを更新する。
+manifest更新を論理publish commit pointとする。
+
+### 11.4 retention
+
+working treeは初期版でcurrent + previousの2世代を保持する。
+それ以前はGit履歴から復元可能とする。
+
+---
+
+## 12. products.json
+
+1 Product = 1 SKU。
+
+概念形:
+
+```json
+{
+  "schemaVersion": 1,
+  "buildId": "...",
+  "serviceCode": "AmazonEC2",
+  "region": "ap-northeast-1",
+  "products": [
     {
-      "offerTermCode": "...",
-      "effectiveDate": "...",
-      "dimensions": [
-        {
-          "rateCode": "...",
-          "description": "...",
-          "beginRange": "0",
-          "endRange": "Inf",
-          "unit": "Hrs",
-          "pricePerUnit": {
-            "USD": "0.1234000000"
-          },
-          "appliesTo": []
-        }
-      ]
+      "sku": "ABC123",
+      "productFamily": "Compute Instance",
+      "operation": "RunInstances",
+      "usageType": "APN1-BoxUsage:m7i.large",
+      "attributes": {
+        "instanceType": "m7i.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared"
+      },
+      "terms": {
+        "onDemand": [
+          {
+            "offerTermCode": "JRTCKXETXF",
+            "effectiveDate": "...",
+            "priceDimensions": [
+              {
+                "rateCode": "...",
+                "description": "...",
+                "unit": "Hrs",
+                "beginRange": "0",
+                "endRange": "Inf",
+                "pricePerUnit": {"USD": "0.1234000000"}
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
 ```
 
-### 11.4 原値の型
+`pricePerUnit` / `beginRange` / `endRange`は文字列で保持する。
+On-Demandのみ生成対象とする。
 
-AWS 原文との比較、精度保持、diff 容易性のため、以下は原則文字列のまま保持する。
-
-- `pricePerUnit`
-- `beginRange`
-- `endRange`
-
-Pricing Engine 側で安全な数値処理へ変換する。
-
-### 11.5 index.json
-
-ブラウザ検索用逆引き index。
-
-`products.json` は完全性を優先し、`index.json` は検索性能を優先する。
-
-index 対象:
-
-- Definition 内の `priceQuery` / selector option filter 等から参照される属性
-- `productFamily`
-- `unit`
-- `operation`
-- `usagetype`
-- CI が価格差判定に必要と認識した属性
-
-Definition を解析して index 対象を自動生成する。
-
-全属性を無条件で index 化しない。
-
-### 11.6 Price Dimension の配置
-
-Price Dimension は Product 内へ埋め込む。
-
-初期版では Products と Dimensions を別ファイルへ分離しない。
-
-### 11.7 ファイル分割
-
-初期版:
-
-```text
-1 serviceCode x 1 Region = 1 products.json
-```
-
-巨大化した Price Source だけ将来 shard 可能な構造とする。
+複数On-Demand Termを配列順で選んではならない。
+生成時にeffectiveDate等からcurrent termを選定し、想定外の複数active termはCI ERRORとする。
 
 ---
 
-## 12. ブラウザ側データ取得
+## 13. index.json / selector candidate
 
-ブラウザは必要な Service / Region の Price DB だけ遅延取得する。
+`index.json` はUI候補取得用の派生索引であり、料金正本ではない。
+
+基本構造:
+
+```json
+{
+  "attributes": {
+    "instanceType": ["m7i.large", "m7i.xlarge"],
+    "operatingSystem": ["Linux", "Windows"]
+  }
+}
+```
+
+候補確定フロー:
+
+```text
+indexから広い候補
+-> options.filters
+-> products.jsonで実在Productを確認
+-> distinct
+-> stable/natural sort
+```
+
+cross-product indexは初期版では生成しない。
+親selector変更で現在値が候補外になっても別値へ自動変更しない。
+
+`index.json` は `products.json` から自動生成し、人手編集しない。
+
+---
+
+## 14. Price Data normalization / coverage
+
+### 14.1 coverage.json
+
+各Service packageで、対象On-Demand料金カテゴリを以下に分類する。
+
+- mapped
+- ignored
+- unresolved
+
+完成PRでは `unresolved = 0` を必須とする。
+
+mappedは `componentId` を必須とする。
+ignoredはreasonを必須とし、可能ならPricing Limitation IDを使う。
+
+### 14.2 category identity
+
+基本key:
+
+- productFamily
+- operation
+- usageTypeClass
+- unit
+- 必要なdiscriminators
+
+SKU、rateCode、pricePerUnit、tier rangeはcategory identityに含めない。
+
+### 14.3 usageTypeClass normalizer
+
+normalizerはgeneric処理 + serviceCode固有ruleの2段階。
+
+generic処理はregion prefix除去等、安全なものだけに限定する。
+instance type等のSKU固有suffix除去はserviceCode固有の宣言ruleで行う。
+
+任意JavaScriptは禁止する。
+
+normalizer後のcategoryについてunit / operation / Dimension shape等のhomogeneityを検証する。
+価格差だけではcategoryを分割しない。
+
+Detected inventoryはCI artifactとして生成し、原則commitしない。
+
+---
+
+## 15. Validation layering
+
+Validationを4層に分ける。
+
+### Layer 1: Schema
+
+- JSON Schema
+- required field
+- type
+- enum
+- additionalProperties
+- ID形式
+
+### Layer 2: Reference / Dependency
+
+- Profile/Component参照
+- valueFrom参照
+- duplicate ID
+- file ID整合
+- dependency DAG
+- default静的妥当性
+
+### Layer 3: Price Data semantics
+
+- serviceCode/region存在
+- selector attribute存在
+- singleSku
+- Price Dimension解決
+- outputUnit整合
+- coverage
+- Limitation
+- unmapped pricing category
+
+### Layer 4: Golden / behavior
+
+- representative selector variation
+- usage variation
+- all Profiles
+- enabledWhen true/false
+- billing transform boundary
+- Tier/Free policy
+- Component amount / Service total
+
+新Service PRはLayer 1〜4のERROR 0件をmerge条件とする。
+
+---
+
+## 16. Golden Case
+
+Goldenは最終金額だけでなく解決経路を検証する。
+
+```text
+input
+-> expected SKU count
+-> selected Product semantic attributes
+-> Dimension
+-> Limitation
+-> billing quantity
+-> Component amount
+-> Service total
+```
+
+SKU ID自体はnormative assertionにしない。
+
+Expected pricingはProduction Pricing Engineと同じ実装から生成してはならない。
+独立したraw semantic verifierを使う。
+
+GoldenはStructure GoldenとPrice Verificationを分け、単価だけの変更で構造テストを不必要に壊さない。
+
+---
+
+## 17. Price update drift classification
+
+候補buildを現在のactive buildと比較して以下へ分類する。
+
+### PRICE_ONLY
+
+semantic resolutionは同じで単価のみ変化。
+-> publish可能。
+
+### STRUCTURE_WARNING
+
+新selector値、新SKU、tier range変更等、既存Queryは安全に解決できる構造変化。
+-> publish可能 + warning。
+
+### STRUCTURE_BREAKING
 
 例:
 
-```text
-User adds Aurora
-  -> service definition resolves AmazonRDS
-  -> current Project Region resolves ap-northeast-1
-  -> browser fetches AmazonRDS/ap-northeast-1 products/index
-```
+- 0 / 2+ SKU
+- unit変更
+- 必要attribute消失
+- non-tier multiple paid dimensions
+- mapped category unresolved化
+- free/paidを安全に識別できない
 
-Price DB は原則メモリ上で利用し、Project データとして `localStorage` や Project JSON に保存しない。
+-> candidateをpublishしない。現在のactive buildを維持する。
 
-HTTP browser cache の利用は許容する。
-
-Project JSON には保存時の Price List date/version を記録できるが、復元後の料金は現在利用可能な Price DB から再計算する。
+単価変動率が大きいことだけを理由にpublish blockしない。
 
 ---
 
-## 13. JSON Schema
+## 18. GitHub Actions workflow
 
-Definition および Price DB の正式 validation schema を以下に置く。
+Price Update Workflow概念:
 
 ```text
-schemas/
-  service.schema.json
-  profile.schema.json
-  component.schema.json
-  pricing-manifest.schema.json
-  pricing-products.schema.json
-  pricing-index.schema.json
+check-source
+-> download
+-> normalize
+-> inventory
+-> validate-definitions
+-> validate-price-data
+-> run-golden
+-> classify-change
+-> build-price-db
+-> publish
 ```
 
-各 Definition は独自に `schemaVersion` を持つ。
+### 18.1 trigger
 
-Project JSON の schemaVersion とは別管理とする。
+- schedule
+- workflow_dispatch
 
-手動の `definitionVersion` は設けず、Definition 内容の履歴は Git で管理する。
+Definition PR CIは別workflowとし、active manifestを更新しない。
+
+### 18.2 source check
+
+最初にAWS metadata/version/publicationDateを確認する。
+変更がないPrice Sourceは巨大JSONを取得しない。
+
+### 18.3 publish
+
+`PRICE_ONLY` または `STRUCTURE_WARNING` かつERROR 0件のみpublish可能。
+
+順序:
+
+```text
+builds/<newBuildId>/配置
+-> retention
+-> manifest更新
+-> bot commit
+-> Pages deploy
+```
+
+### 18.4 artifact
+
+以下の分析report等をActions artifactとして保持できる。
+
+- source metadata
+- normalization report
+- category inventory
+- coverage report
+- validation reports
+- golden report
+- change classification
+- rate diff
+
+### 18.5 concurrency
+
+Price Updateは1本だけ実行するconcurrency groupを持つ。
 
 ---
 
-## 14. CI Validation
+## 19. Common CLI
 
-Price DB 更新前に以下を検証する。
+PR CI、scheduled update、local developmentは同じNode.js CLIを使う。
+GitHub Actions YAMLへ料金ロジックを書かない。
 
-### 14.1 ERROR 条件
-
-以下は更新を停止し、新 Price DB を公開しない。
-
-- JSON Schema 不正
-- Definition 間の参照先不存在
-- `valueFrom` 参照先不存在
-- Price Query が 0 SKU
-- `singleSku` 期待なのに複数 SKU
-- 未指定属性の差により価格が分岐する可能性を検出
-- 既存料金単位の意味的変更
-- Definition の Pricing Model と実データの tier/range 構造が不整合
-
-### 14.2 WARNING 条件
-
-以下は警告を残すが、原則自動更新を止めない。
-
-- 新しい未知 attribute
-- 新しい productFamily
-- Definition から未参照の新料金カテゴリ
-- tier/range 構造変更で Definition と矛盾しないもの
-- 極端な価格変動
-
-極端な価格変動の初期 heuristic は、概ね 10 倍以上または 1/10 以下を目安とする。
-
-### 14.3 INFO
-
-通常の価格値変更は INFO とする。
-
-例:
+概念command:
 
 ```text
-AmazonEC2 / ap-northeast-1
-changed dimensions: 127
-price increases: 4
-price decreases: 123
+pricing-tool check-source
+pricing-tool download
+pricing-tool normalize
+pricing-tool inventory
+pricing-tool validate-definitions
+pricing-tool validate-price-data
+pricing-tool run-golden
+pricing-tool classify-change
+pricing-tool build
 ```
 
-価格改定そのものは異常とみなさない。
+`publish` はrepository write権限を伴うためPricing CLIの責務外とする。
 
-### 14.4 料金差に影響する未知属性
+### 19.1 report format
 
-単なる未知属性追加は WARNING だが、既存の既知条件が同じにもかかわらず、未知属性だけが異なり価格が分岐する場合は ERROR とする。
+各commandはmachine-readable JSON reportを正本とする。
 
-CI レポートに差分属性名を表示する。
+共通issue例:
 
-### 14.5 Golden Cases
+```json
+{
+  "severity": "error",
+  "code": "AMBIGUOUS_SKU",
+  "serviceId": "rds",
+  "profileId": "provisioned",
+  "componentId": "instance",
+  "path": "priceQuery.productFilters",
+  "message": "Expected one SKU but matched 3."
+}
+```
 
-代表的な料金ケースを回帰テストとして持つ。
+exit code:
 
-例:
+- 0: success / warnings only
+- 1: validation failure
+- 2: tool/input/environment failure
 
-- EC2 / Tokyo / Linux / m7i.large / 1 instance / 730h
-- RDS / PostgreSQL / db.t4g.medium / storage
-- S3 / Standard / specified storage and requests
-
-固定金額そのものを主要 assertion とせず、以下を中心に検証する。
-
-- Query が一意に解決できる
-- 期待 unit に解決できる
-- expected Pricing Model path を通る
-- usage が正しく適用される
-- 結果が妥当な数値になる
+`download` / `check-source` 以外は原則offline実行可能にする。
 
 ---
 
-## 15. GitHub Actions 更新戦略
+## 20. Implementation language / module boundary
 
-### 15.1 Workflow 分離
+CLIと共有Pricing CoreはNode.js / JavaScript ES Modulesを採用する。
+初期版でTypeScriptやbundlerを必須にしない。
 
-以下を別 workflow とする。
+共有Pricing Coreに含める:
 
-```text
-Application CI
-  - push / pull_request
+- filter evaluator
+- condition evaluator
+- Price Query
+- Dimension resolution
+- Tier/Free policy
+- Calculation DSL
+- Decimal handling
+- runtime issue format
 
-Price Update Workflow
-  - schedule
-  - workflow_dispatch
-```
+共有しない:
 
-Price Update commit 自身で無限再実行しない構造とする。
+- AWS Price List download
+- raw normalization
+- category inventory generation
+- Git operations
+- GitHub Actions summary
+- Browser DOM/localStorage/PDF
+- Golden independent verifier
 
-### 15.2 更新確認頻度
+Pricing CoreはDOM、filesystem、networkへ依存させない。
 
-1日1回を基本とする。
-
-ただし最初に AWS metadata / version / publicationDate を確認し、変更がない Price Source は巨大 JSON を取得しない。
-
-### 15.3 差分更新
-
-変更のあった `serviceCode` のみ再取得・再生成する。
-
-対応 Region のみ処理する。
-
-### 15.4 Region 管理
-
-アプリ全体の対応 Region 一覧を共通設定として管理する。
-
-Service Definition ごとに Region 一覧を重複保持しない。
-
-### 15.5 generated data の Git 管理
-
-`pricing/generated/` は main branch に commit する。
-
-理由:
-
-- 過去価格差分を Git で追跡できる
-- ローカル開発時にもそのまま利用できる
-- Pages 公開内容と repository 状態を対応させやすい
-- 問題調査時の再現性が高い
-
-Price Update commit 形式例:
+概念構造:
 
 ```text
-chore(pricing): update AmazonRDS price data 2026-10-04
+Browser-only layer
+      -> Shared Pricing Core <- Node CLI layer
 ```
-
-commit metadata / body へ以下を記録できるようにする。
-
-- AWS source version
-- publicationDate
-- changed SKU / dimension count
-- price increase count
-- price decrease count
-- new attributes
-- warnings
-
-### 15.6 workflow_dispatch
-
-手動強制更新を可能にする。
-
-将来的に以下の入力を持てるようにする。
-
-- serviceCode
-- region
-- force
-
-### 15.7 Pull Request
-
-通常の PR CI では AWS 最新 Price List を毎回取得しない。
-
-既存 `pricing/generated` に対して Definition の validation / regression test を行う。
-
-新しい `serviceCode` を追加した PR のみ、その Price Source を AWS から一時取得して検証できるようにする。
-
-PR validation 用一時データを自動 commit しない。
 
 ---
 
-## 16. 未収録サービス追加時の原則
+## 21. Browser runtime stores
 
-新サービス追加時に既存共通コードの修正を極力不要とする。
+### 21.1 PriceDataStore
 
-理想的な追加作業:
+1タブにつき1つ。
+
+保持内容:
+
+- pinned buildId
+- build manifest
+- products cache
+- index cache
+- in-flight Promise map
+- resource status
+
+cache key:
 
 ```text
-1. services/<service>/service.json を追加
-2. profiles/*.json を追加
-3. components/*.json を追加
-4. JSON Schema validation
-5. PR CI が Price Source と Query を検証
-6. merge
-7. Price Update Workflow が正式 Price DB を生成
-8. GitHub Pages へ反映
+buildId + serviceCode + region
 ```
 
-汎用 Pricing Engine / UI Renderer / Price DB builder に service 名による `if/else` を追加する運用は避ける。
+同一resourceへの同時fetchは同じPromiseを共有する。
+失敗Promiseはin-flight mapから除去してretry可能にする。
 
-宣言 DSL で表現不能なケースだけ adapter を追加する。
+起動時:
+
+```text
+manifest.json
+-> activeBuildId
+-> build-manifest.json
+-> PriceDataStore ready
+```
+
+同一タブ内でmanifestを再評価して別buildへ自動切替しない。
+ページ再読み込み時に最新buildを採用する。
+
+Price DBをlocalStorage / IndexedDBへ永続保存しない。
+
+### 21.2 DefinitionStore
+
+PriceDataStoreとは分離する。
+
+責務:
+
+- Catalog
+- service/profile/component Definition load
+- memory cache
+- in-flight dedup
+- 軽量runtime validation
+
+Catalogだけ初期ロードし、Definition本体はService選択・編集時にlazy loadする。
+
+### 21.3 Runtime status
+
+Price Data resource状態:
+
+- loading
+- available
+- stale
+- unavailable
+- invalid
+
+Service Instance評価状態:
+
+- loading
+- ready
+- warning
+- unavailable
+- invalid
+
+局所resource failureは他Serviceへ波及させない。
+ただしbuild-manifest自体がinvalidならbuild全体invalidとする。
 
 ---
 
-## 17. 現行モックからの移行方針
+## 22. Service Catalog
 
-現行 `app.js` では `serviceDefs` 内に UI 定義、ダミー価格、defaultConfig 等が混在し、`priceForCell()` や `summaryLines()` でも service 名による分岐が存在する。
+Catalogは `services/*/service.json` からCI/build時に自動生成する。
+手書き一覧を正本として持たない。
 
-本実装では以下へ段階的に分離する。
+CatalogにはService選択画面に必要な軽量metadataだけを持たせ、Profile/Component全Definitionは埋め込まない。
+
+Definition pathはIDから機械的に解決する。
+
+```text
+services/<serviceId>/service.json
+services/<serviceId>/profiles/<profileId>.json
+services/<serviceId>/components/<componentId>.json
+```
+
+Catalog availabilityはDefinitionの正常性と、pinned build内のserviceCode/region resource存在からruntimeで導出する。
+
+---
+
+## 23. Project restore / migration
+
+Project schema migrationとService Definition migrationを分ける。
+
+自動migrationは意味が完全に同一の安全な変更だけに限定する。
+
+許可例:
+
+- service/profile/component/input rename
+- exact selector value mapping
+- Project構造schema migration
+
+禁止:
+
+- 類似SKUへの置換
+- 廃止instance typeを似たinstance typeへ置換
+- 料金意味の異なる自動変換
+
+migrationは順次適用する。
+
+```text
+v1 -> v2 -> v3
+```
+
+Restore Reportでは `valid / warning / invalid` をService Instance単位で扱い、issue codeを安定化する。
+
+未知Service等は部分復元し、データを可能な限り保持する。
+
+---
+
+## 24. Service onboarding
+
+標準フロー:
+
+```text
+対象Service指定
+-> current main確認
+-> Public Price List機械解析
+-> AWS Pricing/Docs調査
+-> Pricing Calculator UI調査
+-> Service/Profile/Component分解
+-> coverage分類
+-> Definition JSON
+-> Golden Case
+-> Layer 1-4 validation
+-> branch / PR
+-> human review / merge
+```
+
+Pricing Calculator UIは料金正本ではない。
+
+全料金カテゴリを `mapped / ignored / unresolved` に分類する。
+`ignored` は理由必須、完成PRでは `unresolved=0`。
+
+adapterが必要な場合は、generic DSLで表現できない理由をPR reportへ明記する。
+
+mergeは自動化しない。
+
+---
+
+## 25. Adapter
+
+`adapter.js` は最後の手段とする。
+
+禁止責務:
+
+- DOM操作
+- network access
+- filesystem access
+- Project state直接変更
+- Price DB任意取得
+
+入力->出力が明確なpure functionに近い限定料金変換だけを許可する。
+Adapter存在Serviceはreview-requiredとしてCI Summaryへ明示する。
+
+---
+
+## 26. 実装開始時の推奨構造
 
 ```text
 src/
-  app.js
-  pricing-engine.js
-  price-data-loader.js
-  service-loader.js
-  ui-renderer.js
-  project-store.js
-
-services/
-  ...
-
-pricing/generated/
-  ...
+  pricing/
+    filter.js
+    conditions.js
+    price-query.js
+    dimensions.js
+    calculation.js
+    decimal.js
+    definition-loader.js
 
 tools/
-  build-pricing.py
+  pricing-cli/
+    cli.js
+    commands/
+      check-source.js
+      download.js
+      normalize.js
+      inventory.js
+      validate-definitions.js
+      validate-price-data.js
+      run-golden.js
+      classify-change.js
+      build.js
 
+services/
 schemas/
-  ...
+pricing/generated/
 ```
 
-最終的には、新 Service 追加時に `app.js` / `pricing-engine.js` / `ui-renderer.js` を原則変更しないことを目標とする。
+`app.js` へPricing Engineを直接肥大化させない。
 
 ---
 
-## 18. 現時点で確定した設計判断
+## 27. Design freeze
 
-本書作成時点で以下を確定事項とする。
+本書と `docs/SPEC.md` で主要仕様は確定済みとする。
 
-1. GitHub Pages + GitHub Actions + 静的 Price DB を基本ホスティング構成とする。
-2. AWS Public Price List JSON を料金正本とする。
-3. 元巨大 JSON は Actions 上だけで一時使用する。
-4. Price Data と UI / Service Definition を分離する。
-5. 採用 SKU の価格関連属性は原則すべて保持する。
-6. Service / Profile / Pricing Component の3階層とする。
-7. Price Source 単位は AWS serviceCode × Region とする。
-8. App Service と AWS serviceCode の 1:1 対応は要求しない。
-9. selector / usageInput / fixedFilter を分離する。
-10. UI input は Definition から汎用生成する。
-11. priceData 由来 selector を優先する。
-12. 値参照は `value` / `valueFrom` とする。
-13. Price Query は汎用 filter DSL とする。
-14. Pricing Model の基本は `unit` / `tiered` とする。
-15. 任意式は許可しない。
-16. 特殊ケースのみ adapter を許可する。
-17. Price Dimension を料金計算の最小単位とする。
-18. Component / Service / Plan は合算で構成する。
-19. Account-level Free Tier は対象外とする。
-20. `pricing/generated` は manifest / products / index に分ける。
-21. AWS 原値は可能な限り文字列で保持する。
-22. index 対象は Definition から自動生成する。
-23. CI で AWS 側の構造・属性・価格体系変化を検出する。
-24. ERROR 時は新 Price DB を公開しない。
-25. Price Update は metadata 先行確認、差分取得、日次実行とする。
-26. generated Price DB は main branch に commit する。
-27. Application CI と Price Update Workflow を分離する。
-28. Definition / Price DB の JSON Schema を正式 validation 仕様とする。
+実装中に以下を変えない軽微な詳細は、追加の仕様Decisionを作らず実装判断で決定してよい。
 
----
+- class/function名
+- module分割の細部
+- logging format
+- test helper
+- internal library
+- retry待機時間等の小規模定数
 
-## 19. 次に決定する事項
+以下を変更する場合のみ仕様検討へ戻る。
 
-次の仕様検討では、未収録サービス追加の正式ワークフローを定義する。
+- Project JSON互換性
+- Service Definition schema/DSL意味論
+- 料金計算結果の意味
+- Tier/Free Tier等の対象範囲
+- 主要UI操作フロー
+- Price DB publication consistency
+- restore/migration挙動
+- fail-open / fail-closed方針
 
-特に以下を決める。
+推奨実装順序:
 
-- 人間 / ChatGPT / GitHub Actions の役割分担
-- AWS Pricing Calculator UI を調査して Definition を生成する手順
-- Public Price List と Pricing Calculator UI の整合確認方法
-- 新 Service Definition の自動生成可能範囲
-- 自動生成後に必要な validation / review
-- Service Definition の追加から PR / merge / Price DB generation までの標準手順
+```text
+1. package.json / ES Modules / schemas
+2. Shared Pricing Core
+3. Node CLI / normalization / validation
+4. Browser integration
+5. GitHub Actions
+6. initial Service Definitions
+7. end-to-end verification
+```
