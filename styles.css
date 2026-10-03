@@ -31,6 +31,8 @@ h1 { font-size: 24px; margin-top: 4px; }
 .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 .btn.small { padding: 6px 8px; font-size: 12px; }
 .btn.subtle { background: #f8fafc; color: #475569; }
+.btn.danger-btn { color: var(--danger); border-color: #fecaca; background: #fff; }
+.btn.danger-btn:hover { background: #fef2f2; border-color: #fca5a5; }
 .workspace { padding: 20px 24px 70px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
 
@@ -65,6 +67,7 @@ select, input[type="number"], input[type="text"] { border: 1px solid var(--line-
 .header-cell { min-height: 142px; background: #fbfcfe; }
 .header-cell.plan { background: #fff; }
 .plan-head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.plan-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
 .plan-name { font-size: 15px; font-weight: 750; }
 .plan-note { font-size: 12px; color: var(--muted); margin-top: 3px; }
 .plan-total { font-size: 25px; font-weight: 800; margin-top: 14px; letter-spacing: -.02em; }
