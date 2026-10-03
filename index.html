@@ -25,19 +25,10 @@
   </header>
 
   <main class="workspace">
-    <section class="system-bar card">
-      <div>
-        <div class="eyebrow dark">PROJECT SERVICES</div>
-        <strong>このシステムで利用するサービス</strong>
-        <div class="service-chips" id="serviceChips"></div>
-      </div>
-      <button class="btn ghost" id="manageServices">サービス構成を編集</button>
-    </section>
-
     <section class="toolbar card">
       <div>
         <strong>構成案を横並びで比較</strong>
-        <p>全案で同じサービス構成を共有し、各サービスのスペックや利用量だけを変えて比較します。</p>
+        <p>各案は自由なAWSサービス構成を持てます。置換したサービスは同じ比較行に残し、追加サービスは新しい行として表示します。</p>
       </div>
       <div class="toolbar-actions">
         <label class="baseline-label">差分基準
@@ -45,6 +36,12 @@
         </label>
         <button class="btn primary" id="addPlan">＋ 新しい案</button>
       </div>
+    </section>
+
+    <section class="legend card">
+      <span><i class="legend-dot linked"></i>同じ比較項目</span>
+      <span><i class="legend-dot unique"></i>その案だけのサービス</span>
+      <span class="legend-note">例: RDS → Aurora は「置換」、API Gateway は案Cだけに「追加」</span>
     </section>
 
     <section class="comparison-shell card">
@@ -63,7 +60,7 @@
     <div class="drawer-body" id="drawerBody"></div>
     <div class="drawer-footer">
       <div>
-        <span>このサービス</span>
+        <span>この項目</span>
         <strong id="drawerServicePrice">¥0 /月</strong>
       </div>
       <div>
@@ -73,26 +70,24 @@
     </div>
   </aside>
 
-  <div class="modal" id="serviceModal" aria-hidden="true">
+  <div class="modal" id="addResourceModal" aria-hidden="true">
     <div class="modal-card">
       <div class="modal-head">
         <div>
-          <div class="eyebrow dark">PROJECT SERVICES</div>
-          <h2>サービス構成</h2>
-          <p>ここでの変更は、すべての構成案に共通して反映されます。</p>
+          <div class="eyebrow dark">ADD SERVICE</div>
+          <h2 id="addResourceTitle">サービスを追加</h2>
+          <p>この操作は選択した構成案だけに追加されます。</p>
         </div>
-        <button class="icon-btn" id="closeServiceModal" aria-label="閉じる">×</button>
+        <button class="icon-btn" id="closeAddResource" aria-label="閉じる">×</button>
       </div>
       <div class="service-picker" id="servicePicker"></div>
       <div class="modal-actions">
-        <button class="btn ghost" id="cancelServiceModal">キャンセル</button>
-        <button class="btn primary" id="applyServices">全構成案に適用</button>
+        <button class="btn ghost" id="cancelAddResource">キャンセル</button>
       </div>
     </div>
   </div>
 
   <div class="scrim" id="scrim"></div>
-
   <script src="app.js"></script>
 </body>
 </html>
