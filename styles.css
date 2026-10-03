@@ -33,6 +33,7 @@ button { cursor: pointer; }
   gap: 24px;
 }
 .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; opacity: .72; }
+.eyebrow.dark { color: var(--muted); opacity: 1; }
 .title-row { display: flex; align-items: center; gap: 10px; }
 h1, h2, p { margin: 0; }
 h1 { font-size: 24px; margin-top: 4px; }
@@ -53,14 +54,19 @@ h1 { font-size: 24px; margin-top: 4px; }
 .btn.icon-only { padding: 6px 9px; }
 .workspace { padding: 20px 24px 70px; }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+.system-bar,
 .toolbar {
   padding: 15px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
+.system-bar strong { display: block; margin-top: 3px; }
+.service-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.service-chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #cbd5e1; background: #f8fafc; border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 700; }
+.service-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
 .toolbar p { margin-top: 4px; font-size: 13px; color: var(--muted); }
 .baseline-label { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 7px; }
 select, input[type="number"], input[type="text"] {
@@ -77,9 +83,8 @@ select, input[type="number"], input[type="text"] {
   min-width: 980px;
 }
 .grid-cell { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 13px 14px; min-width: 0; }
-.grid-cell:nth-child(-n + 4) { border-top: 0; }
 .row-label { background: #fbfcfe; }
-.header-cell { min-height: 112px; background: #fbfcfe; }
+.header-cell { min-height: 122px; background: #fbfcfe; }
 .header-cell.plan { background: #fff; }
 .plan-head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
 .plan-name { font-size: 15px; font-weight: 750; }
@@ -92,12 +97,14 @@ select, input[type="number"], input[type="text"] {
 .service-icon { width: 34px; height: 34px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; }
 .service-name { font-weight: 750; }
 .service-desc { color: var(--muted); font-size: 12px; margin-top: 3px; }
-.service-cell { position: relative; min-height: 122px; transition: background .15s ease; }
+.service-cell { position: relative; min-height: 128px; transition: background .15s ease; }
 .service-cell:hover { background: #fafcff; }
+.service-cell.off { background: #f8fafc; color: var(--muted); }
 .service-price { font-size: 18px; font-weight: 800; }
 .service-summary { margin-top: 9px; display: grid; gap: 4px; color: #475569; font-size: 12px; }
 .summary-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cell-actions { margin-top: 10px; display: flex; gap: 6px; }
+.cell-actions { margin-top: 10px; display: flex; gap: 6px; align-items: center; }
+.usage-toggle { border: 0; background: transparent; color: var(--muted); padding: 0; font-size: 11px; text-decoration: underline; }
 .total-label, .total-cell { position: sticky; bottom: 0; z-index: 5; background: #f8fafc; border-bottom: 0; }
 .total-cell { background: #eef4ff; }
 .total-label strong { font-size: 16px; }
@@ -122,9 +129,6 @@ select, input[type="number"], input[type="text"] {
 .field { display: grid; gap: 6px; }
 .field label { font-size: 12px; font-weight: 700; color: #475569; }
 .field-help { color: var(--muted); font-size: 11px; }
-.segmented { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.segmented button { border: 1px solid var(--line-strong); background: #fff; border-radius: 8px; padding: 8px 6px; }
-.segmented button.active { background: var(--accent-soft); color: var(--accent); border-color: #9bb8ff; font-weight: 750; }
 .drawer-footer { margin-top: auto; border-top: 1px solid var(--line); background: #f8fafc; padding: 14px 20px; display: flex; justify-content: space-between; gap: 16px; }
 .drawer-footer div { display: grid; gap: 3px; }
 .drawer-footer span { font-size: 11px; color: var(--muted); }
@@ -134,8 +138,22 @@ select, input[type="number"], input[type="text"] {
 .muted { color: var(--muted); }
 .inline-price { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 9px; background: #f8fafc; border: 1px solid var(--line); }
 .mock-notice { padding: 10px 12px; font-size: 12px; border-radius: 9px; background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+.modal { position: fixed; inset: 0; z-index: 40; display: none; place-items: center; padding: 24px; }
+.modal.open { display: grid; }
+.modal-card { width: min(620px, 96vw); background: #fff; border-radius: 16px; box-shadow: 0 30px 90px rgba(15, 23, 42, .24); border: 1px solid var(--line); overflow: hidden; }
+.modal-head { padding: 20px; display: flex; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--line); }
+.modal-head h2 { margin-top: 3px; }
+.modal-head p { margin-top: 7px; color: var(--muted); font-size: 13px; }
+.service-picker { padding: 14px 20px 6px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; }
+.service-option { border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.service-option:hover { background: #f8fafc; }
+.service-option input { accent-color: var(--accent); }
+.service-option strong { display: block; font-size: 13px; }
+.service-option span { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.modal-actions { padding: 14px 20px 18px; display: flex; justify-content: flex-end; gap: 8px; }
 @media (max-width: 900px) {
-  .app-header, .toolbar { align-items: flex-start; flex-direction: column; }
+  .app-header, .toolbar, .system-bar { align-items: flex-start; flex-direction: column; }
   .workspace { padding: 14px; }
   .comparison-shell { overflow-x: auto; }
+  .service-picker { grid-template-columns: 1fr; }
 }
