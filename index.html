@@ -14,7 +14,7 @@
         <h1>Web基盤 更改案</h1>
         <span class="badge">UI MOCK</span>
       </div>
-      <div class="meta">Region: ap-northeast-1 · Price list: 2026-10-03 · On-Demand</div>
+      <div class="meta">AWS Public Price List JSON only</div>
     </div>
     <div class="header-actions">
       <button class="btn ghost">JSON</button>
@@ -25,6 +25,36 @@
   </header>
 
   <main class="workspace">
+    <section class="assumptions card">
+      <div class="assumptions-title">
+        <div class="eyebrow dark">ESTIMATE ASSUMPTIONS</div>
+        <strong>見積条件</strong>
+        <p>リージョンだけを選択。その他はPrice List JSONに合わせた固定条件です。</p>
+      </div>
+      <div class="assumption-controls">
+        <label class="region-field">
+          <span>Region</span>
+          <select id="regionSelect">
+            <option value="ap-northeast-1">Asia Pacific (Tokyo) — ap-northeast-1</option>
+            <option value="ap-northeast-3">Asia Pacific (Osaka) — ap-northeast-3</option>
+            <option value="us-east-1">US East (N. Virginia) — us-east-1</option>
+            <option value="us-west-2">US West (Oregon) — us-west-2</option>
+          </select>
+        </label>
+        <div class="fixed-assumptions">
+          <span class="assumption-chip"><b>USD</b><small>Currency</small></span>
+          <span class="assumption-chip"><b>On-Demand</b><small>Pricing</small></span>
+          <span class="assumption-chip"><b>None</b><small>Discount</small></span>
+          <span class="assumption-chip"><b>Not included</b><small>Tax</small></span>
+        </div>
+      </div>
+      <div class="source-strip">
+        <span><b>Source</b> AWS Public Price List JSON</span>
+        <span><b>Price data</b> 2026-10-03</span>
+        <span id="regionInheritance"><b>Default region</b> Tokyo</span>
+      </div>
+    </section>
+
     <section class="toolbar card">
       <div>
         <strong>構成案を横並びで比較</strong>
@@ -41,7 +71,7 @@
     <section class="legend card">
       <span><i class="legend-dot linked"></i>同じ比較項目</span>
       <span><i class="legend-dot unique"></i>その案だけのサービス</span>
-      <span class="legend-note">例: RDS → Aurora は「置換」、API Gateway は案Cだけに「追加」</span>
+      <span class="legend-note">各サービスはProject Regionを継承。個別リージョン指定は詳細編集で上書きする想定。</span>
     </section>
 
     <section class="comparison-shell card">
@@ -59,14 +89,8 @@
     </div>
     <div class="drawer-body" id="drawerBody"></div>
     <div class="drawer-footer">
-      <div>
-        <span>この項目</span>
-        <strong id="drawerServicePrice">¥0 /月</strong>
-      </div>
-      <div>
-        <span>構成案合計</span>
-        <strong id="drawerPlanTotal">¥0 /月</strong>
-      </div>
+      <div><span>この項目</span><strong id="drawerServicePrice">$0.00 /月</strong></div>
+      <div><span>構成案合計</span><strong id="drawerPlanTotal">$0.00 /月</strong></div>
     </div>
   </aside>
 
@@ -81,9 +105,7 @@
         <button class="icon-btn" id="closeAddResource" aria-label="閉じる">×</button>
       </div>
       <div class="service-picker" id="servicePicker"></div>
-      <div class="modal-actions">
-        <button class="btn ghost" id="cancelAddResource">キャンセル</button>
-      </div>
+      <div class="modal-actions"><button class="btn ghost" id="cancelAddResource">キャンセル</button></div>
     </div>
   </div>
 
