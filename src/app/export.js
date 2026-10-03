@@ -36,7 +36,7 @@ export function pdfLines(context, rows) {
     let previous = '';
     for (const row of rows.filter(row => row.planId === planId)) {
       const key = `${row.row}/${row.service}`;
-      if (key !== previous) { lines.push(`  ${row.row} / ${row.service}`, `  selector: ${row.selectors}`, `  Service月額: ${row.service_monthly_usd ? money(row.service_monthly_usd) : '未計算'}`); previous = key; }
+      if (key !== previous) { lines.push(`  ${row.row} / ${row.service} / Region ${row.region}`, `  selector: ${row.selectors}`, `  Service月額: ${row.service_monthly_usd ? money(row.service_monthly_usd) : '未計算'}`); previous = key; }
       lines.push(`    ${row.component}: ${row.display_monthly_usd || '未計算/無効'} (${row.state})`, `    入力: ${row.usage}`);
     }
     lines.push('');

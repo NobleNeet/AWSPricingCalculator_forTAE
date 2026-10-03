@@ -13,6 +13,7 @@ export function calculate(calculation, context, dimension) {
     rawUsage = rawUsage.times(value);
   }
   let quantity = rawUsage;
+  let convertedUnit;
   for (const transform of calculation.transforms) {
     switch (transform.type) {
       case 'minimum': {
@@ -33,6 +34,10 @@ export function calculate(calculation, context, dimension) {
         break;
       case 'scale':
       case 'unitConversion': {
+        if (transform.type === 'unitConversion') {
+          if (convertedUnit && convertedUnit !== transform.from) fail('INVALID_TRANSFORM', 'Unit conversion chain mismatch.');
+          convertedUnit = transform.to;
+        }
         const factor = decimal(transform.factor);
         if (!factor.gt('0')) fail('INVALID_TRANSFORM', 'Factor must be positive.');
         quantity = quantity.times(factor);
@@ -41,6 +46,7 @@ export function calculate(calculation, context, dimension) {
       default: fail('INVALID_TRANSFORM', 'Unknown transform.');
     }
   }
+  if (convertedUnit && convertedUnit !== calculation.outputUnit) fail('UNIT_MISMATCH', 'Final conversion unit differs from outputUnit.');
   if (calculation.outputUnit !== dimension.unit) fail('UNIT_MISMATCH', `Expected ${calculation.outputUnit}, received ${dimension.unit}.`);
   const price = decimal(dimension.pricePerUnit.USD);
   return { rawUsage: rawUsage.toString(), billingQuantity: quantity.toString(), billingUnit: dimension.unit, unitPriceUsd: price.toString(), amountUsd: quantity.times(price).toString(), issues: [] };

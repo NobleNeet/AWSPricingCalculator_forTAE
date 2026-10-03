@@ -16,7 +16,9 @@
 
 ---
 
-## 1. 現状
+## 1. 実装開始前の状態（履歴）
+
+以下はPhase 1開始時の状態を記録する。現在はPhase 1〜11の本実装がルートにあり、実装ゲートは `docs/PROGRESS.md`、最終検証は `docs/VERIFICATION.md` を参照する。
 
 現在のアプリは静的モックであり、主な実装は `app.js` / `index.html` / `styles.css` / `onboarding.js` に集中している。
 
@@ -84,9 +86,9 @@ Node専用:
 
 mock priceから実Priceへの切替は、Pricing Coreと最低限のService Definitionが完成した後に行う。
 
-### 2.4 1Phase 1Goalを基本とする
+### 2.4 1つの全体Goalから全Phaseを実装する
 
-Codexへ巨大な `/goal` を一度だけ渡すのではなく、依存順にPhase単位で実装する。
+`docs/AUTONOMOUS_IMPLEMENTATION.md` に従い、1つの全体 `/goal` を内部Phaseへ分解して依存順に実装し、Phase間で人間の確認を待たずに継続する。
 
 各Phase完了時に以下を確認する。
 

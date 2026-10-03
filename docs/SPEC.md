@@ -408,7 +408,7 @@ Price DB未生成・Definition不正等のServiceを、正常利用可能であ�
 
 ## 16. 実装状況と仕様状態
 
-現行リポジトリは `index.html` / `app.js` 等によるUIモックを含むが、実料金基盤への移行はこれから行う。
+ルートの `index.html` と `src/` はDefinition/Price DB/Pricing Coreを使用する本実装である。旧UIモックは `mock/` に参照用として保持する。対応Service・source publicationは `docs/PRICE_SOURCES.md`、実装ゲートは `docs/PROGRESS.md`、最終検証は `docs/VERIFICATION.md` に記録する。
 
 ただし以下の内部設計は未決事項ではなく、`docs/PRICING_ARCHITECTURE.md` で確定済みとする。
 

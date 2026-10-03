@@ -4,6 +4,7 @@ import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { schemaValidator } from './schema.js';
 import { checksum } from './pricing-cli/build.js';
 import { buildIndex, encode } from './pricing-cli/normalize.js';
+import { definitionFingerprint } from './pricing-cli/fingerprint.js';
 
 for (const command of ['validate-definitions', 'validate-price-data', 'run-golden']) {
   const result = await run(command);
@@ -26,5 +27,6 @@ for (const [code, regions] of Object.entries(manifest.sources)) for (const [regi
   if (encode(buildIndex(loaded.products.products, manifest.buildId, code, region)) !== encode(loaded.index)) throw Error('Index differs from deterministic derivation');
 }
 const packages = await loadPackages(), catalog = await readJson('services/catalog.json');
+if (manifest.definitionSha256 && manifest.definitionSha256 !== await definitionFingerprint(packages)) throw Error('Definition/normalization fingerprint changed: build a validated candidate before publication');
 if (catalog.services.length !== packages.length || packages.some(pkg => !catalog.services.some(entry => entry.id === pkg.service.id && entry.label === pkg.service.label && entry.serviceCode === pkg.service.priceSource.serviceCode && entry.available === !!manifest.sources[entry.serviceCode]?.['ap-northeast-1']))) throw Error('Catalog out of sync with packages/build');
 console.log('Price DB checksums/schema/index/identity and Catalog: passed');

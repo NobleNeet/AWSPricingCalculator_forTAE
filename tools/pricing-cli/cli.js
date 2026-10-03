@@ -15,6 +15,7 @@ import { runGolden } from './golden.js';
 import { classifyChange } from './drift.js';
 import { buildPriceDb } from './build.js';
 import { schemaValidator } from '../schema.js';
+import { definitionFingerprint } from './fingerprint.js';
 
 export async function writeJson(file, data) {
   await mkdir(path.dirname(file), { recursive: true });
@@ -39,7 +40,7 @@ export async function candidateDirectory(input) {
 }
 export async function semanticValidation(packages, candidate) {
   const common = await readJson('pricing/normalization/common.json');
-  const normalizers = Object.fromEntries(await Promise.all(Object.keys(candidate.data).map(async code => [code, await readJson(`pricing/normalization/services/${code}.json`)])));
+  const normalizers = Object.fromEntries(await Promise.all(Object.keys(candidate.data).map(async code => [code, await readJson(`pricing/normalization/services/${code}.json`).catch(error => error.code === 'ENOENT' ? { rules: [], discriminators: [] } : Promise.reject(error))])));
   const result = validatePriceData(packages, candidate.data, common, normalizers);
   const validate = await schemaValidator('pricing/products');
   for (const [code, data] of Object.entries(candidate.data)) if (!validate(data)) result.issues.push(issue('SCHEMA_ERROR', `${code}: ${JSON.stringify(validate.errors)}`));
@@ -89,7 +90,7 @@ export async function run(command, options = {}) {
     const { data } = await loadCandidate(options.input ?? '.work/candidate');
     const common = await readJson('pricing/normalization/common.json');
     const inventories = {};
-    for (const [code, source] of Object.entries(data)) inventories[code] = inventory(source, common, await readJson(`pricing/normalization/services/${code}.json`));
+    for (const [code, source] of Object.entries(data)) inventories[code] = inventory(source, common, await readJson(`pricing/normalization/services/${code}.json`).catch(error => error.code === 'ENOENT' ? { rules: [], discriminators: [] } : Promise.reject(error)));
     await writeJson(options.output ?? '.work/inventory.json', inventories);
     return report(command, [], { categories: Object.fromEntries(Object.entries(inventories).map(([code, categories]) => [code, categories.length])) });
   }
@@ -127,7 +128,7 @@ export async function run(command, options = {}) {
         const sku = resolution.result.components[resolution.componentId]?.resolution?.product.sku;
         if (sku) (publishSkus[code] ??= new Set()).add(sku);
       }
-      const manifest = await buildPriceDb(candidate, options.output ?? 'pricing/generated', options['build-id'], { issues, publishSkus });
+      const manifest = await buildPriceDb(candidate, options.output ?? 'pricing/generated', options['build-id'], { issues, publishSkus, definitionSha256: await definitionFingerprint(packages) });
       return report(command, [], { build: manifest });
     }
     if (options.output) await writeJson(options.output, result);

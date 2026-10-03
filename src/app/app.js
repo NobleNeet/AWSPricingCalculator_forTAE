@@ -31,29 +31,29 @@ function stateText(result) {
   return result.state === 'warning' ? 'Pricing Limitationあり' : '計算済み';
 }
 function render() {
-  $('project-name').value = state.project.name;
-  $('project-region').value = state.project.defaultRegion;
-  $('project-hours').value = state.project.usageAssumptions.hoursPerMonth;
+  if (document.activeElement !== $('project-name')) $('project-name').value = state.project.name;
+  if (document.activeElement !== $('project-region')) $('project-region').value = state.project.defaultRegion;
+  if (document.activeElement !== $('project-hours')) $('project-hours').value = state.project.usageAssumptions.hoursPerMonth;
   const planIds = state.project.planOrder;
   if (!planIds.length) { $('workspace').innerHTML = '<div class="empty"><h2>構成案はまだありません</h2><p>空の構成案を作って、必要なサービスを追加しましょう。</p><button class="primary" data-action="add-plan">最初の構成案を作る</button></div>'; return; }
   const summaries = Object.fromEntries(planIds.map(id => [id, planSummary(state, id, results)]));
   const baseline = summaries[state.project.baselinePlanId];
   $('workspace').innerHTML = `<div class="workspace-toolbar"><span>${planIds.length} 構成案 · ${state.project.rowOrder.length} 比較行</span><button data-action="add-plan">空のPlanを追加</button></div><div class="comparison-scroll"><table><thead><tr><th>比較項目</th>${planIds.map(id => {
     const plan = state.plans[id];
-    return `<th data-plan="${id}"><h2>${escape(plan.name)}</h2>${id === state.project.baselinePlanId ? '<span class="baseline-badge">Baseline</span>' : `<button data-action="baseline" data-plan="${id}">Baselineに設定</button>`}<div class="service-parameters">${escape(plan.memo)}</div><div class="plan-actions"><button data-action="rename-plan" data-plan="${id}">名称・メモ</button><button data-action="duplicate-plan" data-plan="${id}">Planを複製</button>${planIds.length > 1 ? `<button class="danger" data-action="delete-plan" data-plan="${id}">Planを削除</button>` : ''}</div><button data-action="add-service" data-plan="${id}">サービスを追加</button></th>`;
+    return `<th data-plan="${escape(id)}"><h2>${escape(plan.name)}</h2>${id === state.project.baselinePlanId ? '<span class="baseline-badge">Baseline</span>' : `<button data-action="baseline" data-plan="${escape(id)}">Baselineに設定</button>`}<div class="service-parameters">${escape(plan.memo)}</div><div class="plan-actions"><button data-action="rename-plan" data-plan="${escape(id)}">名称・メモ</button><button data-action="duplicate-plan" data-plan="${escape(id)}">Planを複製</button>${planIds.length > 1 ? `<button class="danger" data-action="delete-plan" data-plan="${escape(id)}">Planを削除</button>` : ''}</div><button data-action="add-service" data-plan="${escape(id)}">サービスを追加</button></th>`;
   }).join('')}</tr></thead><tbody>${state.project.rowOrder.map(rowId => {
     const row = state.rows[rowId];
-    return `<tr data-row="${rowId}"><td class="row-label">${escape(rowLabel(row))}<div><button data-action="label-row" data-row="${rowId}">行名を編集</button></div></td>${planIds.map(planId => {
+    return `<tr data-row="${escape(rowId)}"><td class="row-label">${escape(rowLabel(row))}<div><button data-action="label-row" data-row="${escape(rowId)}">行名を編集</button></div></td>${planIds.map(planId => {
       const instance = state.serviceInstances[row.cells[planId]];
-      if (!instance) return `<td>—<div class="cell-actions"><button data-action="add-service" data-plan="${planId}" data-row="${rowId}">この行に追加</button></div></td>`;
+      if (!instance) return `<td>—<div class="cell-actions"><button data-action="add-service" data-plan="${escape(planId)}" data-row="${escape(rowId)}">この行に追加</button></div></td>`;
       const result = results.get(instance.id), amount = result?.amountUsd;
       const label = catalog.find(s => s.id === instance.serviceId)?.label ?? instance.serviceId;
       const params = [...Object.entries(instance.selectors ?? {}), ...Object.values(instance.components ?? {}).flatMap(c => Object.entries(c?.inputs ?? {}))].map(([key, value]) => `${key}: ${value}`).join(' · ');
-      return `<td data-instance="${instance.id}"><div class="service-name">${escape(label)}</div><div class="service-parameters">${escape(params)}</div><div class="amount">${amount !== undefined && amount !== null ? escape(money(amount)) : '—'}</div><div class="state ${escape(result?.state)}">${escape(stateText(result))}</div>${result?.state === 'unavailable' ? `<button data-action="retry" data-instance="${instance.id}">再試行</button>` : ''}<div class="cell-actions"><button data-action="edit" data-instance="${instance.id}">編集</button><button data-action="add-service" data-plan="${planId}" data-row="${rowId}">別サービスへ置換</button><button class="danger" data-action="remove-service" data-plan="${planId}" data-row="${rowId}">Planから外す</button></div></td>`;
+      return `<td data-instance="${escape(instance.id)}"><div class="service-name">${escape(label)}</div><div class="service-parameters">${escape(params)}</div><div class="amount">${amount !== undefined && amount !== null ? escape(money(amount)) : '—'}</div><div class="state ${escape(result?.state)}">${escape(stateText(result))}</div>${result?.state === 'unavailable' ? `<button data-action="retry" data-instance="${escape(instance.id)}">再試行</button>` : ''}<div class="cell-actions"><button data-action="edit" data-instance="${escape(instance.id)}">編集</button><button data-action="add-service" data-plan="${escape(planId)}" data-row="${escape(rowId)}">別サービスへ置換</button><button class="danger" data-action="remove-service" data-plan="${escape(planId)}" data-row="${escape(rowId)}">Planから外す</button></div></td>`;
     }).join('')}</tr>`;
   }).join('')}<tr class="total"><td>月額 / 差額</td>${planIds.map(id => {
     const summary = summaries[id], delta = planDelta(summary, baseline);
-    return `<td data-total="${id}"><div>${summary.complete ? '月額合計' : '計算済み小計'}</div><div class="amount">${escape(money(summary.amountUsd))}</div>${summary.uncalculated ? `<div class="invalid">未計算サービス: ${summary.uncalculated}</div>` : ''}<div class="delta">${delta !== null ? `Baselineとの差額: ${escape(money(delta))}` : '差額: 未計算項目があるため比較不可'}</div></td>`;
+    return `<td data-total="${escape(id)}"><div>${summary.complete ? '月額合計' : '計算済み小計'}</div><div class="amount">${escape(money(summary.amountUsd))}</div>${summary.uncalculated ? `<div class="invalid">未計算サービス: ${summary.uncalculated}</div>` : ''}<div class="delta">${delta !== null ? `Baselineとの差額: ${escape(money(delta))}` : '差額: 未計算項目があるため比較不可'}</div></td>`;
   }).join('')}</tr></tbody></table></div>`;
 }
 async function evaluate(id) {
@@ -63,6 +63,7 @@ async function evaluate(id) {
   let result;
   try {
     if (!catalog.some(service => service.id === instance.serviceId)) throw Object.assign(Error(`未知Service: ${instance.serviceId}`), { code: 'INVALID_DATA' });
+    if (!['inherit', 'override'].includes(instance.region?.mode)) throw Object.assign(Error('Region設定が不正です。要再選択'), { code: 'INVALID_DATA' });
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
     if (region !== 'ap-northeast-1') throw Object.assign(Error('正式対応Region外です。要再選択'), { code: 'INVALID_DATA' });
     const pkg = await definitions.package(instance.serviceId);
@@ -93,12 +94,13 @@ async function renderDrawer() {
   try {
     const pkg = await definitions.package(instance.serviceId), profile = pkg.profiles[instance.profileId];
     if (!profile) throw Error('未知Profile: 要再選択');
-    const region = instance.region.mode === 'override' ? instance.region.value : state.project.defaultRegion;
+    const regionValid = ['inherit', 'override'].includes(instance.region?.mode);
+    const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
     const data = await prices.products(pkg.service.priceSource.serviceCode, 'ap-northeast-1');
     if (editing !== id) return;
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
-    $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>Profile<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>Region<select id="drawer-region"><option value="inherit" ${instance.region.mode === 'inherit' ? 'selected' : ''}>Project Regionを継承</option><option value="ap-northeast-1" ${instance.region.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>Tokyo override</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" selected>要再選択 (${escape(region)})</option>` : ''}</select></label>${profile.selectors.map(input => field(input, 'profile', null, context, data.products, profile.fixedFilters, false)).join('')}${profile.components.map(componentId => {
+    $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>Profile<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>Region<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なRegion設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>Project Regionを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>Tokyo override</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" selected>要再選択 (${escape(region)})</option>` : ''}</select></label>${profile.selectors.map(input => field(input, 'profile', null, context, data.products, profile.fixedFilters, false)).join('')}${profile.components.map(componentId => {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
       context.component = saved.inputs;
       const inactive = !enabled(definition.enabledWhen, context) || definition.optional && !saved.enabled;
@@ -142,13 +144,17 @@ $('workspace').addEventListener('click', async event => {
 $('catalog-search').addEventListener('input', renderCatalog); $('catalog-filter').addEventListener('change', renderCatalog);
 $('catalog-list').addEventListener('click', async event => {
   const button = event.target.closest('[data-service]'); if (!button) return;
+  const selectedTarget = target, selectedProject = state;
   button.disabled = true;
   try {
     const pkg = await definitions.package(button.dataset.service), instance = createInstance(pkg);
-    placeService(state, target.planId, instance, target.rowId); save(); $('catalog-modal').close(); editing = instance.id; $('service-drawer').showModal();
+    if (target !== selectedTarget || state !== selectedProject || !$('catalog-modal').open) return;
+    placeService(state, selectedTarget.planId, instance, selectedTarget.rowId); save(); $('catalog-modal').close(); editing = instance.id; $('service-drawer').showModal();
     await evaluate(instance.id); await renderDrawer();
   } catch (error) { message(error.message); button.disabled = false; }
 });
+$('catalog-modal').addEventListener('close', () => { target = null; });
+$('service-drawer').addEventListener('close', () => { editing = null; });
 $('drawer-content').addEventListener('change', async event => {
   const input = event.target, instance = state.serviceInstances[editing]; if (!instance) return;
   if (input.dataset.field) {

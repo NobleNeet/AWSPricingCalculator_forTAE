@@ -9,8 +9,10 @@ import { writeJson } from '../../tools/pricing-cli/cli.js';
 import { report } from '../../tools/pricing-cli/report.js';
 import { buildPriceDb, checksum } from '../../tools/pricing-cli/build.js';
 import { normalize } from '../../tools/pricing-cli/normalize.js';
-import { rawFixture } from './normalization.test.js';
-import { fixturePackage } from './definitions.test.js';
+import { rawFixture } from '../fixtures/raw.js';
+import { fixturePackage } from '../fixtures/definitions.js';
+import { definitionFingerprint } from '../../tools/pricing-cli/fingerprint.js';
+import { loadPackages } from '../../tools/pricing-cli/package-loader.js';
 
 test('NO_CHANGE pipeline never downloads; breaking and ERROR never build', async () => {
   for (const scenario of ['NO_CHANGE', 'STRUCTURE_BREAKING', 'VALIDATION_ERROR']) {
@@ -22,11 +24,27 @@ test('NO_CHANGE pipeline never downloads; breaking and ERROR never build', async
       if (command === 'validate-price-data' && scenario === 'VALIDATION_ERROR') return report(command, [{ severity: 'error', code: 'AMBIGUOUS_SKU', message: 'ambiguous' }]);
       return report(command);
     };
-    const result = await priceUpdate({ work, execute });
+    const result = await priceUpdate({ work, execute, previousDefinitionSha256: await definitionFingerprint(await loadPackages()) });
     assert.equal(result.publishable, false); assert.equal(commands.includes('build'), false);
     if (scenario === 'NO_CHANGE') assert.deepEqual(commands, ['check-source']);
     else assert.deepEqual(commands, ['check-source', 'download', 'normalize', 'inventory', 'validate-definitions', 'validate-price-data', 'run-golden', 'classify-change']);
   }
+});
+test('unchanged AWS metadata still refreshes raw source when Definition fingerprint changes', async () => {
+  const work = await mkdtemp(path.join(tmpdir(), 'tae-definition-update-')), commands = [];
+  const execute = async (command, options) => {
+    commands.push(command);
+    if (command === 'check-source') {
+      await writeJson(options.output, { schemaVersion: 1, status: 'NO_CHANGE', sources: { Example: { changed: false } } });
+      return report(command, [], { sourceStatus: 'NO_CHANGE' });
+    }
+    if (command === 'validate-price-data') return report(command, [{ severity: 'error', code: 'SKU_NOT_FOUND', message: 'missing' }]);
+    if (command === 'classify-change') return report(command, [], { classification: 'STRUCTURE_BREAKING', publishable: false });
+    return report(command);
+  };
+  const result = await priceUpdate({ work, execute, previousDefinitionSha256: 'changed-definition' });
+  assert.equal(result.status, 'REJECTED'); assert.ok(commands.includes('download'));
+  const metadata = JSON.parse(await readFile(path.join(work, 'source-metadata.json'))); assert.equal(metadata.sources.Example.changed, true);
 });
 async function stagedFixture(classification) {
   const work = await mkdtemp(path.join(tmpdir(), 'tae-promote-')), generated = path.join(work, 'generated'), stage = path.join(work, 'stage'), reports = path.join(work, 'reports');

@@ -7,9 +7,7 @@ import { validateDefinitions } from '../../tools/pricing-cli/validate-definition
 import { loadPackage } from '../../tools/pricing-cli/package-loader.js';
 import { run } from '../../tools/pricing-cli/cli.js';
 
-export function fixturePackage() {
-  return { service: { schemaVersion: 1, id: 'example', label: 'Example', priceSource: { serviceCode: 'Example' }, profiles: ['standard'], defaultProfile: 'standard' }, profiles: { standard: { schemaVersion: 1, id: 'standard', label: 'Standard', selectors: [], fixedFilters: [], components: ['meter'] } }, components: { meter: { schemaVersion: 1, id: 'meter', label: 'Meter', selectors: [], usageInputs: [{ id: 'hours', label: 'Hours', type: 'number', default: '730' }], fixedFilters: [], priceQuery: { expect: 'singleSku', productFilters: [], dimensionFilters: [] }, calculation: { model: 'unit', usage: { sources: [{ valueFrom: 'component.hours' }], combine: 'multiply' }, transforms: [], outputUnit: 'Hrs' }, limitations: [] } }, coverage: { schemaVersion: 1, categories: [{ filters: [], status: 'mapped', componentId: 'meter' }] }, golden: [] };
-}
+import { fixturePackage } from '../fixtures/definitions.js';
 test('valid package and CLI report', async () => {
   const pkg = fixturePackage();
   assert.deepEqual(await validateDefinitions([pkg]), []);
@@ -25,7 +23,9 @@ test('schema/reference/duplicate/default/orphan/cycle failures have stable codes
   const cases = [
     ['SCHEMA_ERROR', p => p.components.meter.priceQuery.expect = 'cheapest'],
     ['MISSING_PROFILE', p => p.service.profiles.push('missing')],
-    ['MISSING_COMPONENT', p => p.profiles.standard.components.push('outside/foreign')],
+    ['MISSING_COMPONENT', p => p.profiles.standard.components.push('missing')],
+    ['SCHEMA_ERROR', p => p.profiles.standard.components.push('outside/foreign')],
+    ['SCHEMA_ERROR', p => p.profiles.standard.selectors = null],
     ['FILE_ID_MISMATCH', p => p.components.meter.id = 'other'],
     ['DUPLICATE_INPUT_ID', p => p.components.meter.usageInputs.push(p.components.meter.usageInputs[0])],
     ['INVALID_REFERENCE', p => p.components.meter.calculation.usage.sources[0].valueFrom = 'component.unknown'],

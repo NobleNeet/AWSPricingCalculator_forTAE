@@ -7,11 +7,7 @@ import { mkdtemp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
-export function rawFixture() {
-  const dimension = { rateCode: 'A.rate', description: 'compute hour', unit: 'Hrs', beginRange: '0', endRange: 'Inf', pricePerUnit: { USD: '0.1234000000' } };
-  const term = { offerTermCode: 'ondemand', effectiveDate: '2026-01-01T00:00:00Z', priceDimensions: { 'A.rate': dimension } };
-  return { offerCode: 'Example', version: '20260101000000', publicationDate: '2026-01-01T00:00:00Z', products: { A: { sku: 'A', productFamily: 'Compute', attributes: { regionCode: 'ap-northeast-1', operation: 'RunInstances', usagetype: 'APN1-BoxUsage:m7i.large', instanceType: 'm7i.large' } }, B: { sku: 'B', attributes: { regionCode: 'us-east-1' } } }, terms: { OnDemand: { A: { 'A.ondemand': term } }, Reserved: { A: { ignored: {} } } } };
-}
+import { rawFixture } from '../fixtures/raw.js';
 test('deterministic normalization and index preserve decimal strings, only regional OnDemand', () => {
   const raw = rawFixture();
   const first = normalize(raw, 'ap-northeast-1');
@@ -30,6 +26,9 @@ test('inventory traces raw usages and requires unique coverage mapping', () => {
   assert.deepEqual(categories[0].rawUsageTypes, ['APN1-BoxUsage:m7i.large']);
   assert.equal(validateCoverage(categories, { categories: [] }).issues[0].code, 'UNMAPPED_PRICING_CATEGORY');
   assert.equal(validateCoverage(categories, { categories: [{ filters: [{ field: 'usageTypeClass', op: 'eq', value: 'BoxUsage' }], status: 'mapped', componentId: 'meter' }] }).summary.unresolved, 0);
+  const changed = structuredClone(data.products[0]); changed.sku = 'different-shape'; changed.terms.onDemand[0].priceDimensions.push({ ...changed.terms.onDemand[0].priceDimensions[0], beginRange: '10' }); data.products.push(changed);
+  const mixed = inventory(data, { regionPrefixes: ['APN1-'], rules: [] }, { rules: [{ prefix: 'BoxUsage:', class: 'BoxUsage' }] });
+  assert.ok(validateCoverage(mixed, { categories: [{ filters: [], status: 'ignored', reason: 'test' }] }).issues.some(i => i.code === 'CATEGORY_SHAPE_MISMATCH'));
 });
 test('metadata unchanged skips bulk download', async () => {
   let fetchCount = 0;

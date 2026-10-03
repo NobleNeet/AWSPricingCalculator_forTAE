@@ -4,6 +4,7 @@ import { run, writeJson, loadCandidate, candidateDirectory } from './pricing-cli
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
+import { definitionFingerprint } from './pricing-cli/fingerprint.js';
 
 export async function refreshGoldenEvidence(packages, rawDirectory, output) {
   for (const code of new Set(packages.map(pkg => pkg.service.priceSource.serviceCode))) {
@@ -19,22 +20,38 @@ export async function refreshGoldenEvidence(packages, rawDirectory, output) {
     await writeJson(path.join(output, `${code}.json`), sample);
   }
 }
-export async function priceUpdate({ work = '.work/update', execute = run } = {}) {
+export async function priceUpdate({ work = '.work/update', execute = run, previousDefinitionSha256 } = {}) {
   await mkdir(work, { recursive: true });
   const reports = {};
   const previousDirectory = await candidateDirectory();
   const previous = await loadCandidate(previousDirectory);
   const active = await readJson('pricing/generated/manifest.json');
+  const activeBuild = await readJson(path.join(previousDirectory, 'build-manifest.json'));
+  const packages = await loadPackages();
+  const fingerprint = await definitionFingerprint(packages);
+  const definitionsChanged = fingerprint !== (previousDefinitionSha256 ?? activeBuild.definitionSha256);
   const record = async (command, options) => {
     const result = await execute(command, options); reports[command] = result;
     await writeJson(path.join(work, 'reports', `${command}.json`), result); return result;
   };
   const metadataFile = path.join(work, 'source-metadata.json');
   const previousFile = path.join(work, 'previous-sources.json'); await writeJson(previousFile, previous.metadata);
-  const source = await record('check-source', { input: 'pricing/sources.json', previous: previousFile, output: metadataFile });
-  if (source.sourceStatus === 'NO_CHANGE') {
+  const config = await readJson('pricing/sources.json');
+  config.serviceCodes = [...new Set(packages.map(pkg => pkg.service.priceSource.serviceCode))].sort();
+  const configFile = path.join(work, 'sources.json'); await writeJson(configFile, config);
+  const source = await record('check-source', { input: configFile, previous: previousFile, output: metadataFile });
+  if (source.sourceStatus === 'NO_CHANGE' && !definitionsChanged) {
     const summary = { schemaVersion: 1, status: 'NO_CHANGE', publishable: false, previousBuildId: active.activeBuildId };
     await writeJson(path.join(work, 'reports/summary.json'), summary); return summary;
+  }
+  if (definitionsChanged) {
+    const metadata = await readJson(metadataFile);
+    // Published data contains mapped resources only. Changed Definitions need
+    // the complete source again to discover newly mapped meters/candidates.
+    for (const item of Object.values(metadata.sources)) item.changed = true;
+    await writeJson(metadataFile, metadata);
+    reports['check-source'].definitionsChanged = true;
+    await writeJson(path.join(work, 'reports/check-source.json'), reports['check-source']);
   }
   const rawDirectory = path.join(work, 'raw'), candidate = path.join(work, 'candidate'), stage = path.join(work, 'staged');
   await record('download', { input: metadataFile, output: rawDirectory });
@@ -54,7 +71,7 @@ export async function priceUpdate({ work = '.work/update', execute = run } = {})
     else {
       summary.buildId = buildId;
       summary.buildManifestSha256 = checksum(await readFile(path.join(stage, 'pricing/builds', buildId, 'build-manifest.json'), 'utf8'));
-      await refreshGoldenEvidence(await loadPackages(), rawDirectory, path.join(stage, 'fixtures'));
+      await refreshGoldenEvidence(packages, rawDirectory, path.join(stage, 'fixtures'));
     }
   }
   await writeJson(path.join(work, 'reports/summary.json'), summary);

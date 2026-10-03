@@ -91,6 +91,10 @@
           "additionalProperties": false
         }
       }
+    },
+    "definitionSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
     }
   },
   "required": [

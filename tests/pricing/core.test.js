@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { resolvePrice } from '../../src/pricing/price-query.js';
 import { resolveDimension } from '../../src/pricing/dimensions.js';
 import { calculate } from '../../src/pricing/calculation.js';
-import { evaluateService } from '../../src/pricing/core.js';
+import { evaluateService, activeInputs } from '../../src/pricing/core.js';
 
 export const dim = (beginRange = '0', endRange = 'Inf', price = '0.1', extra = {}) => ({ unit: 'Hrs', beginRange, endRange, pricePerUnit: { USD: price }, ...extra });
 export const product = (dimensions = [dim()]) => ({ sku: 'fixture', productFamily: 'Compute', attributes: {}, terms: { onDemand: [{ priceDimensions: dimensions }] } });
@@ -17,6 +17,8 @@ test('strict 0/1/multiple SKU, current term and dimension cardinality', () => {
   assert.throws(() => resolvePrice([product([])], query, {}), code('PRICE_DIMENSION_NOT_FOUND'));
   const p = product(); p.terms.onDemand.push(p.terms.onDemand[0]);
   assert.throws(() => resolvePrice([p], query, {}), code('AMBIGUOUS_ON_DEMAND_TERM'));
+  assert.throws(() => resolvePrice([product()], { ...query, productFilters: [{ field: 'sku', op: 'eq', value: 'fixture' }] }, {}), code('INVALID_QUERY'));
+  assert.throws(() => resolvePrice([product()], { ...query, dimensionFilters: [{ field: 'rateCode', op: 'exists' }] }, {}), code('INVALID_QUERY'));
 });
 test('allowance excluded only with evidence; tiers apply first paid rate to entire usage', () => {
   const free = dim('0', '10', '0', { freeAllowance: true, allowanceEvidence: 'AWS explicitly labels free allowance' });
@@ -43,4 +45,11 @@ test('disabled inputs and components stay out of calculation context', () => {
   assert.equal(evaluateService(pkg, instance, {}, [product()]).issues[0].code, 'MISSING_USAGE');
   pkg.components.instance.optional = true; instance.components.instance.enabled = false;
   assert.equal(evaluateService(pkg, instance, {}, []).amountUsd, '0');
+});
+test('active input DAG evaluates parents first and excludes disabled saved values from child conditions', () => {
+  const inputs = [{ id: 'child', label: 'Child', type: 'number', enabledWhen: { field: 'component.parent', op: 'exists' } }, { id: 'parent', label: 'Parent', type: 'number', enabledWhen: { field: 'profile.toggle', op: 'eq', value: true } }];
+  const saved = { parent: '5', child: '10' }, context = { profile: { toggle: false }, component: saved };
+  assert.deepEqual(activeInputs(inputs, saved, context, [], []), {});
+  context.profile.toggle = true; assert.deepEqual(activeInputs(inputs, saved, context, [], []), { parent: '5', child: '10' });
+  assert.deepEqual(saved, { parent: '5', child: '10' });
 });

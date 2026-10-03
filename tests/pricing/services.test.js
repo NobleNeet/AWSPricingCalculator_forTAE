@@ -7,7 +7,7 @@ import { runGolden } from '../../tools/pricing-cli/golden.js';
 
 test('all initial real service schemas and independently verified AWS Golden samples', async () => {
   const packages = await loadPackages();
-  assert.deepEqual(packages.map(p => p.service.id), ['ebs', 'ec2', 'lambda', 'rds', 's3']);
+  assert.ok(['ebs', 'ec2', 'lambda', 'rds', 's3'].every(id => packages.some(pkg => pkg.service.id === id)));
   assert.deepEqual(await validateDefinitions(packages), []);
   const raw = {}, data = {};
   for (const code of new Set(packages.map(p => p.service.priceSource.serviceCode))) {
@@ -16,5 +16,5 @@ test('all initial real service schemas and independently verified AWS Golden sam
   }
   const result = runGolden(packages, data, raw);
   assert.deepEqual(result.issues, []);
-  assert.equal(result.cases.length, 11);
+  assert.equal(result.cases.length, packages.reduce((count, pkg) => count + pkg.golden.length, 0));
 });

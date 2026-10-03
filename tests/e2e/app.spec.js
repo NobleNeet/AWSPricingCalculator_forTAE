@@ -1,18 +1,19 @@
 import { test, expect } from '@playwright/test';
+import { activeBuildId, expected } from './expected-prices.js';
 
 test('create, real EC2, multiple services, duplicate, replace, usage, row add and delete, resume', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('./');
   await expect(page.getByText('構成案はまだありません')).toBeVisible();
-  await expect(page.locator('#price-meta')).toContainText('20261004-initial');
+  await expect(page.locator('#price-meta')).toContainText(activeBuildId);
   await page.getByRole('button', { name: '最初の構成案を作る' }).click();
   await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
   await page.locator('[data-service="ec2"]').click();
   await expect(page.locator('#service-drawer')).toBeVisible();
-  await expect(page.locator('#workspace')).toContainText('$9.93');
+  await expect(page.locator('#workspace')).toContainText(expected.ec2.display);
   await page.getByLabel('編集を閉じる').click();
   await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
   await page.locator('[data-service="s3"]').click();
-  await expect(page.locator('#workspace')).toContainText('$2.51');
+  await expect(page.locator('#workspace')).toContainText(expected.s3.display);
   await page.getByLabel('編集を閉じる').click();
   await page.getByRole('button', { name: 'Planを複製', exact: true }).click();
   await expect(page.locator('thead th[data-plan]')).toHaveCount(2);
@@ -21,12 +22,12 @@ test('create, real EC2, multiple services, duplicate, replace, usage, row add an
   await secondCell.getByRole('button', { name: '編集', exact: true }).click();
   await page.locator('#input-component-instance-hours').fill('100');
   await page.locator('#input-component-instance-hours').press('Tab');
-  await expect(secondCell).toContainText('$1.36');
+  await expect(secondCell).toContainText(expected.ec2Edited.display);
   await page.getByLabel('編集を閉じる').click();
   await secondCell.getByRole('button', { name: '別サービスへ置換' }).click();
   await page.locator('[data-service="lambda"]').click();
   await expect(secondCell).toContainText('AWS Lambda');
-  await expect(secondCell).toContainText('$0.41');
+  await expect(secondCell).toContainText(expected.lambda.display);
   await page.getByLabel('編集を閉じる').click();
   await page.reload();
   await expect(page.locator('thead th[data-plan]')).toHaveCount(2);
@@ -34,9 +35,21 @@ test('create, real EC2, multiple services, duplicate, replace, usage, row add an
   await page.getByRole('button', { name: 'Planから外す', exact: true }).first().click();
   await page.getByRole('button', { name: 'この行に追加', exact: true }).first().click();
   await page.locator('[data-service="ebs"]').click();
-  await expect(page.locator('#workspace')).toContainText('$9.60');
+  await expect(page.locator('#workspace')).toContainText(expected.ebs.display);
   await page.getByLabel('編集を閉じる').click();
   await page.getByRole('button', { name: 'Planを削除', exact: true }).last().click();
   await expect(page.locator('thead th[data-plan]')).toHaveCount(1);
   await expect(page.getByRole('button', { name: 'Planを削除', exact: true })).toHaveCount(0);
+  await page.screenshot({ path: 'test-results/workspace.png', fullPage: true });
+});
+test('mobile Drawer stays usable at narrow viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('./'); await expect(page.locator('#price-meta')).toContainText(activeBuildId);
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click(); await page.locator('[data-service="ec2"]').click();
+  await expect(page.locator('#input-component-instance-hours')).toBeVisible();
+  await expect(page.locator('#workspace')).toContainText(expected.ec2.display);
+  const bounds = await page.locator('#service-drawer').boundingBox();
+  expect(bounds.x).toBeGreaterThanOrEqual(0); expect(bounds.x + bounds.width).toBeLessThanOrEqual(390);
+  await page.screenshot({ path: 'test-results/mobile-drawer.png', fullPage: true });
 });

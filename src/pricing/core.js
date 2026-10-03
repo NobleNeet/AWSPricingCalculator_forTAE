@@ -10,9 +10,20 @@ export function selectorCandidates(selector, products, context, fixedFilters = [
   const filtered = products.filter(product => matches(product, [...fixedFilters, ...(selector.options.filters ?? [])], context));
   return [...new Set(filtered.map(product => fieldValue(product, `attributes.${selector.options.attribute}`).value).filter(v => v !== undefined))].sort((a, b) => String(a).localeCompare(String(b), 'en', { numeric: true }));
 }
-export function activeInputs(inputs, saved, context, products, filters) {
+export function activeInputs(inputs, saved, context, products, filters, namespace = 'component') {
   const active = {};
-  for (const input of inputs) {
+  const ordered = [], visiting = new Set(), visited = new Set();
+  const visit = input => {
+    if (visiting.has(input.id)) fail('DEPENDENCY_CYCLE', `Cycle at ${input.id}.`);
+    if (visited.has(input.id)) return;
+    visiting.add(input.id);
+    const references = JSON.stringify({ enabledWhen: input.enabledWhen, options: input.options });
+    for (const dependency of inputs) if (references.includes(`"${namespace}.${dependency.id}"`)) visit(dependency);
+    visiting.delete(input.id); visited.add(input.id); ordered.push(input);
+  };
+  inputs.forEach(visit);
+  context[namespace] = active;
+  for (const input of ordered) {
     if (!enabled(input.enabledWhen, context)) continue;
     const value = saved[input.id];
     if (value === undefined) fail('MISSING_INPUT', `Input ${input.id} is required.`);
@@ -36,7 +47,7 @@ export function evaluateService(pkg, instance, project, products) {
     const profile = pkg.profiles[instance.profileId];
     if (!profile) fail('UNKNOWN_PROFILE', 'Unknown profile.');
     const context = { project, profile: instance.selectors ?? {}, component: {} };
-    context.profile = activeInputs(profile.selectors, context.profile, context, products, profile.fixedFilters);
+    context.profile = activeInputs(profile.selectors, context.profile, context, products, profile.fixedFilters, 'profile');
     for (const id of profile.components) {
       const definition = pkg.components[id];
       const saved = instance.components?.[id] ?? {};

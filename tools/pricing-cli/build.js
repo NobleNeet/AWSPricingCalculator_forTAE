@@ -12,6 +12,7 @@ export async function buildPriceDb(candidate, directory, buildId, validation) {
   const generatedAt = new Date().toISOString();
   const publicationDate = Object.values(candidate.metadata.sources).map(s => s.publicationDate).sort().at(-1);
   const manifest = { schemaVersion: 1, buildId, generatedAt, publicationDate, currency: 'USD', sources: {} };
+  if (validation.definitionSha256) manifest.definitionSha256 = validation.definitionSha256;
   // Precompute every resource before placing the immutable build.
   const resources = [];
   for (const [code, original] of Object.entries(candidate.data).sort()) {

@@ -16,13 +16,15 @@ export async function validateDefinitions(packages) {
   const issues = [];
   const limitationIds = new Set((await readJson('pricing/limitations.json')).limitations.map(item => item.id));
   for (const pkg of packages) {
-    const add = (code, message, extra = {}) => issues.push(issue(code, message, { serviceId: pkg.service.id, ...extra }));
+    const add = (code, message, extra = {}) => issues.push(issue(code, message, { serviceId: pkg.service?.id, ...extra }));
+    let schemaValid = true;
     for (const [kind, definitions] of [['service', { service: pkg.service }], ['profile', pkg.profiles], ['component', pkg.components], ['coverage', { coverage: pkg.coverage }], ['golden', Object.fromEntries(pkg.golden.map((g, i) => [i, g]))]]) {
       for (const [key, definition] of Object.entries(definitions)) {
-        if (!validators[kind](definition)) add('SCHEMA_ERROR', `${kind}/${key}: ${JSON.stringify(validators[kind].errors)}`, { path: `${kind}/${key}` });
-        if (['profile', 'component'].includes(kind) && key !== definition.id) add('FILE_ID_MISMATCH', `${key} differs from ${definition.id}.`);
+        if (!validators[kind](definition)) { schemaValid = false; add('SCHEMA_ERROR', `${kind}/${key}: ${JSON.stringify(validators[kind].errors)}`, { path: `${kind}/${key}` }); }
+        if (['profile', 'component'].includes(kind) && key !== definition?.id) add('FILE_ID_MISMATCH', `${key} differs from ${definition?.id}.`);
       }
     }
+    if (!schemaValid) continue;
     if (pkg.directory && path.basename(pkg.directory) !== pkg.service.id) add('FILE_ID_MISMATCH', 'Service directory differs from id.');
     if (!pkg.service.profiles?.includes(pkg.service.defaultProfile)) add('INVALID_DEFAULT', 'Default profile is not declared.');
     const usedComponents = new Set();
@@ -54,7 +56,7 @@ export async function validateDefinitions(packages) {
         }
         for (const valueFrom of references(definition)) {
           const [namespace, key] = valueFrom.split('.');
-          if (namespace === 'project' && !['region', 'hoursPerMonth', 'defaultRegion'].includes(key) || namespace === 'profile' && !profileIds.has(key) || namespace === 'component' && !ids.has(key)) add('INVALID_REFERENCE', `Unknown reference ${valueFrom}.`, { profileId: id, componentId });
+          if (namespace === 'project' && !['region', 'hoursPerMonth', 'defaultRegion'].includes(key) || namespace === 'profile' && !profileIds.has(key) || namespace === 'component' && (!componentId || !ids.has(key))) add('INVALID_REFERENCE', `Unknown reference ${valueFrom}.`, { profileId: id, componentId });
         }
         const visiting = new Set(), visited = new Set();
         const visit = node => {
