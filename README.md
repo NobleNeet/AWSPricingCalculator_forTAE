@@ -9,6 +9,8 @@ AWS Public Price List JSON をデータソースにした、構成比較型の�
 - ユーザー向け仕様: [`docs/SPEC.md`](docs/SPEC.md)
 - 料金・内部アーキテクチャ仕様: [`docs/PRICING_ARCHITECTURE.md`](docs/PRICING_ARCHITECTURE.md)
 
+実装順序とCodex `/goal` 用のPhase別指示は [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md) にまとめています。
+
 設計検討の履歴索引は [`docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md`](docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md) にあります。
 
 ## 現在の内容
