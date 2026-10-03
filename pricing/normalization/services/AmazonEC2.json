@@ -1,0 +1,1 @@
+{"schemaVersion":1,"rules":[{"prefix":"BoxUsage:","class":"BoxUsage"},{"prefix":"DedicatedUsage:","class":"DedicatedUsage"},{"prefix":"HostBoxUsage:","class":"HostBoxUsage"}],"discriminators":["operatingSystem","tenancy","preInstalledSw","capacitystatus","volumeApiName"]}

@@ -16,7 +16,7 @@
               "properties": {
                 "field": {
                   "type": "string",
-                  "pattern": "^(productFamily|operation|usageType|attributes\\.[a-zA-Z][a-zA-Z0-9]*)$"
+                  "pattern": "^(productFamily|operation|usageTypeClass|unit|discriminators\\.[a-zA-Z][a-zA-Z0-9]*)$"
                 },
                 "op": {
                   "enum": [

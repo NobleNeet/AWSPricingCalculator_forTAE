@@ -1,0 +1,1 @@
+{"schemaVersion":1,"rules":[{"prefix":"InstanceUsage:","class":"InstanceUsage"},{"prefix":"Multi-AZUsage:","class":"Multi-AZUsage"},{"prefix":"Multi-AZClusterUsage:","class":"Multi-AZClusterUsage"}],"discriminators":["databaseEngine","deploymentOption","licenseModel","volumeType"]}
