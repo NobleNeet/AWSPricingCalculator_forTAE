@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "profileId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "project": {
+      "type": "object"
+    },
+    "selectors": {
+      "type": "object"
+    },
+    "components": {
+      "type": "object"
+    },
+    "expected": {
+      "type": "object"
+    },
+    "verification": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "profileId",
+    "project",
+    "selectors",
+    "components",
+    "expected",
+    "verification"
+  ],
+  "additionalProperties": false
+}
