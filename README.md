@@ -8,10 +8,13 @@ AWS Public Price List JSON をデータソースにした、構成比較型の�
 
 - ユーザー向け仕様: [`docs/SPEC.md`](docs/SPEC.md)
 - 料金・内部アーキテクチャ仕様: [`docs/PRICING_ARCHITECTURE.md`](docs/PRICING_ARCHITECTURE.md)
+- Codex自律実装運用: [`docs/AUTONOMOUS_IMPLEMENTATION.md`](docs/AUTONOMOUS_IMPLEMENTATION.md)
 - 実装計画: [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md)
 - 設計履歴索引: [`docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md`](docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md)
 
 Codex向けのリポジトリ共通指示は [`AGENTS.md`](AGENTS.md) にあります。
+
+通常の実装開始時は、Codex CLIへ総合 `/goal` を1回だけ与えます。Codexは `docs/AUTONOMOUS_IMPLEMENTATION.md` に従い、`docs/IMPLEMENTATION_PLAN.md` の Phase 1〜11 を内部sub-goalへ分解し、Phase間で人間の承認を待たず最終E2Eまで順次実行します。
 
 ## 現在の内容
 
