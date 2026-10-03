@@ -19,6 +19,28 @@
       && rows.some(row => row.id === 'database');
   }
 
+  function prepareRowsForComparison() {
+    if (plans.length < 2) return;
+    const allServices = Object.keys(serviceDefs);
+
+    rows.forEach(row => {
+      // Once there are multiple plans, every populated comparison row may use a
+      // different AWS service in each plan. Keep the current service first so
+      // "この行に追加" still defaults to the service already used in the row.
+      const currentServices = plans
+        .map(plan => row.cells[plan.id]?.service)
+        .filter(Boolean);
+      row.allowed = [...new Set([...currentServices, ...(row.allowed || []), ...allServices])];
+
+      // Keep the row title descriptive rather than requiring a semantic role.
+      const distinct = [...new Set(currentServices)];
+      if (distinct.length) {
+        row.label = distinct.map(key => serviceDefs[key]?.label || key).join(' / ');
+      }
+      if (distinct.length > 1) row.kind = 'linked';
+    });
+  }
+
   function renderEmptyProject() {
     const grid = document.getElementById('comparisonGrid');
     grid.style.removeProperty('--plan-count');
@@ -96,6 +118,8 @@
       renderEmptyProject();
       return;
     }
+
+    prepareRowsForComparison();
 
     const grid = document.getElementById('comparisonGrid');
     grid.className = 'comparison-grid';
