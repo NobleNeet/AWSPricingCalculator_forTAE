@@ -1,4 +1,7 @@
 const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const STORAGE_KEY = 'awsPricingCalculator.project.v1';
+const SCHEMA_VERSION = 1;
+const PRICE_DATA_DATE = '2026-10-03';
 
 const regionNames = {
   'ap-northeast-1': 'Tokyo',
@@ -140,19 +143,19 @@ function rowLabelHtml(row) {
   return `<div class="row-title-wrap"><div class="row-icons">${icons || '<span class="mini-service muted-box">—</span>'}</div><div><div class="service-name">${row.label}</div><div class="service-desc">${suffix}</div></div></div>`;
 }
 
-function summaryLines(cell) {
-  if (!cell) return '<div class="summary-line muted">この案では使用しません</div>';
-  const def = serviceDefs[cell.service];
-  const c = cell.config;
+function summaryLines(cellData) {
+  if (!cellData) return '<div class="summary-line muted">この案では使用しません</div>';
+  const def = serviceDefs[cellData.service];
+  const c = cellData.config;
   let detail = '';
   if (def.variants) {
     const spec = def.variants[c.variant];
     detail = `<div class="summary-line">${c.variant} × ${c.quantity || 1}</div><div class="summary-line">${spec.vcpu} vCPU · ${spec.memory} GiB / instance</div>`;
-  } else if (cell.service === 's3' || cell.service === 'ebs') {
+  } else if (cellData.service === 's3' || cellData.service === 'ebs') {
     detail = `<div class="summary-line">${Number(c.gb || 0).toLocaleString()} GB</div><div class="summary-line">${usd.format(c.rate || 0)} / GB-month</div>`;
-  } else if (cell.service === 'lambda' || cell.service === 'apiGateway') {
+  } else if (cellData.service === 'lambda' || cellData.service === 'apiGateway') {
     detail = `<div class="summary-line">${c.requestsM || 0}M requests / month</div>`;
-  } else if (cell.service === 'auroraServerless') {
+  } else if (cellData.service === 'auroraServerless') {
     detail = `<div class="summary-line">${c.acu || 0} ACU average</div>`;
   } else {
     detail = '<div class="summary-line">UIモック用利用量</div>';
@@ -209,9 +212,12 @@ function render() {
     grid.appendChild(cell('grid-cell total-cell', `<div class="total-price">${usd.format(total)}</div><div class="delta ${d.cls}">${d.text}</div>`));
   });
 
+  document.getElementById('regionSelect').value = projectRegion;
+  document.getElementById('regionInheritance').innerHTML = `<b>Default region</b> ${regionNames[projectRegion]}`;
   renderBaselineSelect();
   wireGridActions();
   if (editing) updateDrawerFigures();
+  persistBrowserState();
 }
 
 function renderBaselineSelect() {
@@ -347,7 +353,7 @@ function updateDrawerFigures() {
 function closeDrawer() {
   editing = null;
   document.getElementById('drawer').classList.remove('open');
-  document.getElementById('scrim').classList.remove('open');
+  if (!document.querySelector('.modal.open')) document.getElementById('scrim').classList.remove('open');
 }
 
 function openAddResourceModal(planId) {
@@ -372,23 +378,155 @@ function addResourceToPlan(planId, serviceKey) {
 function closeAddResourceModal() {
   addingToPlanId = null;
   document.getElementById('addResourceModal').classList.remove('open');
-  document.getElementById('scrim').classList.remove('open');
+  if (!document.querySelector('.drawer.open') && !document.querySelector('#restoreModal.open')) document.getElementById('scrim').classList.remove('open');
 }
 
 function cleanupEmptyRows() {
   rows = rows.filter(row => plans.some(p => row.cells[p.id]));
 }
 
+function makeProjectState() {
+  return {
+    schemaVersion: SCHEMA_VERSION,
+    app: 'AWSPricingCalculator_forTAE',
+    savedAt: new Date().toISOString(),
+    priceDataDate: PRICE_DATA_DATE,
+    project: {
+      name: 'Web基盤 更改案',
+      defaultRegion: projectRegion,
+      baselinePlanId: baselineId
+    },
+    plans: JSON.parse(JSON.stringify(plans)),
+    rows: JSON.parse(JSON.stringify(rows))
+  };
+}
+
+function validateProjectState(state) {
+  if (!state || typeof state !== 'object') throw new Error('JSONの形式が正しくありません。');
+  if (state.schemaVersion !== SCHEMA_VERSION) throw new Error(`対応していないschemaVersionです。対応値: ${SCHEMA_VERSION}`);
+  if (!state.project || !regionNames[state.project.defaultRegion]) throw new Error('有効なProject Regionがありません。');
+  if (!Array.isArray(state.plans) || state.plans.length === 0) throw new Error('構成案がありません。');
+  if (!Array.isArray(state.rows)) throw new Error('比較行がありません。');
+
+  const planIds = new Set();
+  state.plans.forEach(plan => {
+    if (!plan?.id || planIds.has(plan.id)) throw new Error('構成案IDが不正または重複しています。');
+    planIds.add(plan.id);
+  });
+
+  state.rows.forEach(row => {
+    if (!row?.id || !row.cells || !Array.isArray(row.allowed)) throw new Error('比較行の形式が不正です。');
+    row.allowed.forEach(key => {
+      if (!serviceDefs[key]) throw new Error(`未知のサービスIDです: ${key}`);
+    });
+    Object.values(row.cells).forEach(cellData => {
+      if (cellData && !serviceDefs[cellData.service]) throw new Error(`未知のサービスIDです: ${cellData.service}`);
+    });
+  });
+}
+
+function applyProjectState(state) {
+  validateProjectState(state);
+  projectRegion = state.project.defaultRegion;
+  plans = JSON.parse(JSON.stringify(state.plans));
+  rows = JSON.parse(JSON.stringify(state.rows));
+  baselineId = plans.some(p => p.id === state.project.baselinePlanId) ? state.project.baselinePlanId : plans[0].id;
+  editing = null;
+  addingToPlanId = null;
+  cleanupEmptyRows();
+  render();
+}
+
+function persistBrowserState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(makeProjectState()));
+    const status = document.getElementById('autosaveStatus');
+    if (status) status.textContent = `自動保存済み ${new Date().toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`;
+  } catch (_) {
+    const status = document.getElementById('autosaveStatus');
+    if (status) status.textContent = '自動保存できませんでした';
+  }
+}
+
+function restoreBrowserState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    validateProjectState(state);
+    projectRegion = state.project.defaultRegion;
+    plans = state.plans;
+    rows = state.rows;
+    baselineId = plans.some(p => p.id === state.project.baselinePlanId) ? state.project.baselinePlanId : plans[0].id;
+  } catch (_) {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
+function openRestoreModal() {
+  document.getElementById('restoreJson').value = '';
+  document.getElementById('restoreError').textContent = '';
+  document.getElementById('restoreModal').classList.add('open');
+  document.getElementById('scrim').classList.add('open');
+  setTimeout(() => document.getElementById('restoreJson').focus(), 0);
+}
+
+function closeRestoreModal() {
+  document.getElementById('restoreModal').classList.remove('open');
+  if (!document.querySelector('.drawer.open') && !document.querySelector('#addResourceModal.open')) document.getElementById('scrim').classList.remove('open');
+}
+
+function applyRestoreText() {
+  const error = document.getElementById('restoreError');
+  error.textContent = '';
+  try {
+    const raw = document.getElementById('restoreJson').value.trim();
+    if (!raw) throw new Error('復元JSONを貼り付けてください。');
+    const state = JSON.parse(raw);
+    applyProjectState(state);
+    closeRestoreModal();
+  } catch (e) {
+    error.textContent = e instanceof SyntaxError ? 'JSONとして解析できません。貼り付け内容を確認してください。' : e.message;
+  }
+}
+
+function safeFileStem() {
+  return 'web-renewal-estimate';
+}
+
+function downloadProjectJson() {
+  const text = JSON.stringify(makeProjectState(), null, 2);
+  const blob = new Blob([text], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${safeFileStem()}.project.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function exportPdfAndJson() {
+  downloadProjectJson();
+  setTimeout(() => window.print(), 250);
+}
+
 document.getElementById('regionSelect').onchange = e => {
   projectRegion = e.target.value;
-  document.getElementById('regionInheritance').innerHTML = `<b>Default region</b> ${regionNames[projectRegion]}`;
   render();
 };
 document.getElementById('addPlan').onclick = addBlankPlan;
 document.getElementById('closeDrawer').onclick = closeDrawer;
 document.getElementById('closeAddResource').onclick = closeAddResourceModal;
 document.getElementById('cancelAddResource').onclick = closeAddResourceModal;
-document.getElementById('scrim').onclick = () => { closeDrawer(); closeAddResourceModal(); };
+document.getElementById('restoreProject').onclick = openRestoreModal;
+document.getElementById('closeRestore').onclick = closeRestoreModal;
+document.getElementById('cancelRestore').onclick = closeRestoreModal;
+document.getElementById('applyRestore').onclick = applyRestoreText;
+document.getElementById('exportPdf').onclick = exportPdfAndJson;
+document.getElementById('exportCsv').onclick = () => alert('モック: CSV出力は後続実装で追加します。');
+document.getElementById('scrim').onclick = () => { closeDrawer(); closeAddResourceModal(); closeRestoreModal(); };
 document.getElementById('recalcAll').onclick = () => {
   const btn = document.getElementById('recalcAll');
   const original = btn.textContent;
@@ -396,6 +534,13 @@ document.getElementById('recalcAll').onclick = () => {
   setTimeout(() => btn.textContent = original, 900);
   render();
 };
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeAddResourceModal(); } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeDrawer();
+    closeAddResourceModal();
+    closeRestoreModal();
+  }
+});
 
+restoreBrowserState();
 render();
