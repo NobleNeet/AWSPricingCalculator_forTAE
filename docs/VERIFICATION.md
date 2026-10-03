@@ -67,7 +67,12 @@ Additional hardening: disabled input DAG strips inactive saved values; optional 
 - `ci.yml`: push/PR, npm ci, unit/integration, active or temporary Definition candidate validation, Browser E2E, static artifact/report.
 - `price-update.yml`: daily 02:23 UTC and dispatch; `pricing-update` concurrency; metadata→download→normalize→inventory→Definition→price→Golden→classification→immutable build; reports/candidate artifacts; permission-separated publication/bot commit; reusable Pages deployment.
 - `pages.yml`: main push/dispatch/reusable; validation and production static artifact. Manifest promotion is the logical publication commit point; build success alone never promotes.
-- Live Actions/Pages confirmation will be recorded after final push. Local implementation and all checks above pass.
+- Implementation commit `e775659f3c2392b5cd137bfc86e595af3a9d0611` is pushed to `main`.
+- [Application and Definition CI](https://github.com/NobleNeet/AWSPricingCalculator_forTAE/actions/runs/37150808094): **success** on that commit.
+- [Production Pages deployment](https://github.com/NobleNeet/AWSPricingCalculator_forTAE/actions/runs/37150808073): **success** on that commit.
+- [Published estimator](https://nobleneet.github.io/AWSPricingCalculator_forTAE/): active manifest matches `20261003T195959Z-2abe18f7`.
+- `E2E_BASE_URL=https://nobleneet.github.io/AWSPricingCalculator_forTAE/ npm run test:e2e`: **8/8 PASS** on the live Pages site, including actual PDF+JSON and CSV downloads, pricing, restore, failure recovery and mobile Drawer.
+- All three GitHub workflows are confirmed **active**. The remote scheduled Price Update has not yet reached its next cron invocation; the identical Node pipeline and separate promotion were executed successfully against real AWS data locally, and NO_CHANGE/breaking/warning/promotion guards are automated tests. No human action is required for the active daily schedule.
 
 ## Known specified limits
 
@@ -90,4 +95,4 @@ There are no outstanding specification conflicts or locally deferred implementat
 | 9 | `9a1e55c` | Safe restore and real Japanese PDF+JSON/CSV |
 | 10 | `15f29c6` | Automated update/promotion and production Pages |
 | UAT integration | `babe7a8` | Preserve remote UAT design additions |
-| 11 | `Phase 11: harden final flows and verify release price publication` | Final hardening/E2E, Definition update detection, verified release build, docs alignment |
+| 11 | `e775659` | Final hardening/E2E, Definition update detection, verified release build, docs alignment |
