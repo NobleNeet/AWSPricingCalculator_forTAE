@@ -8,7 +8,8 @@ const serviceDefs = {
       'm7i.xlarge': { vcpu: 4, memory: 16, monthly: 42700 },
       'm7i.2xlarge': { vcpu: 8, memory: 32, monthly: 81200 },
       'r7i.xlarge': { vcpu: 4, memory: 32, monthly: 61300 }
-    }
+    },
+    defaultConfig: () => ({ enabled: true, instance: 'm7i.large', quantity: 1 })
   },
   rds: {
     label: 'RDS', icon: 'RDS', desc: 'Database',
@@ -16,56 +17,80 @@ const serviceDefs = {
       'db.t4g.medium': { vcpu: 2, memory: 4, monthly: 18200 },
       'db.m7g.large': { vcpu: 2, memory: 8, monthly: 30400 },
       'db.r7g.large': { vcpu: 2, memory: 16, monthly: 48500 }
-    }
+    },
+    defaultConfig: () => ({ enabled: true, instance: 'db.t4g.medium', quantity: 1 })
   },
-  s3: { label: 'S3', icon: 'S3', desc: 'Object storage' },
-  ebs: { label: 'EBS', icon: 'EBS', desc: 'Block storage' }
+  s3: {
+    label: 'S3', icon: 'S3', desc: 'Object storage',
+    defaultConfig: () => ({ enabled: true, gb: 100, rate: 7.6 })
+  },
+  ebs: {
+    label: 'EBS', icon: 'EBS', desc: 'Block storage',
+    defaultConfig: () => ({ enabled: true, gb: 100, rate: 12 })
+  },
+  elasticache: {
+    label: 'ElastiCache', icon: 'EC', desc: 'In-memory cache',
+    defaultConfig: () => ({ enabled: true, gb: 1, rate: 12000 })
+  },
+  nat: {
+    label: 'NAT Gateway', icon: 'NAT', desc: 'Network',
+    defaultConfig: () => ({ enabled: true, gb: 1, rate: 6500 })
+  }
 };
+
+let projectServices = ['ec2', 'rds', 's3', 'ebs'];
 
 let plans = [
   {
     id: 'A', name: '案A', note: '現在案',
     services: {
-      ec2: { instance: 'm7i.large', quantity: 2 },
-      rds: { instance: 'db.t4g.medium', quantity: 1 },
-      s3: { gb: 500, rate: 7.6 },
-      ebs: { gb: 200, rate: 12 }
+      ec2: { enabled: true, instance: 'm7i.large', quantity: 2 },
+      rds: { enabled: true, instance: 'db.t4g.medium', quantity: 1 },
+      s3: { enabled: true, gb: 500, rate: 7.6 },
+      ebs: { enabled: true, gb: 200, rate: 12 }
     }
   },
   {
     id: 'B', name: '案B', note: '性能寄り',
     services: {
-      ec2: { instance: 'm7i.xlarge', quantity: 2 },
-      rds: { instance: 'db.m7g.large', quantity: 1 },
-      s3: { gb: 500, rate: 7.6 },
-      ebs: { gb: 300, rate: 12 }
+      ec2: { enabled: true, instance: 'm7i.xlarge', quantity: 2 },
+      rds: { enabled: true, instance: 'db.m7g.large', quantity: 1 },
+      s3: { enabled: true, gb: 500, rate: 7.6 },
+      ebs: { enabled: true, gb: 300, rate: 12 }
     }
   },
   {
     id: 'C', name: '案C', note: '余裕あり',
     services: {
-      ec2: { instance: 'r7i.xlarge', quantity: 2 },
-      rds: { instance: 'db.r7g.large', quantity: 1 },
-      s3: { gb: 1000, rate: 7.1 },
-      ebs: { gb: 500, rate: 12 }
+      ec2: { enabled: true, instance: 'r7i.xlarge', quantity: 2 },
+      rds: { enabled: true, instance: 'db.r7g.large', quantity: 1 },
+      s3: { enabled: true, gb: 1000, rate: 7.1 },
+      ebs: { enabled: true, gb: 500, rate: 12 }
     }
   }
 ];
 
 let baselineId = 'A';
 let editing = null;
+let serviceDraft = null;
+
+function ensurePlanHasProjectServices(plan) {
+  projectServices.forEach(key => {
+    if (!plan.services[key]) plan.services[key] = serviceDefs[key].defaultConfig();
+  });
+}
 
 function priceFor(serviceKey, config) {
+  if (!config || config.enabled === false) return 0;
   const def = serviceDefs[serviceKey];
-  if (def.instances) {
-    return def.instances[config.instance].monthly * config.quantity;
-  }
+  if (def.instances) return def.instances[config.instance].monthly * config.quantity;
   if (serviceKey === 's3' || serviceKey === 'ebs') return config.gb * config.rate;
+  if (serviceKey === 'elasticache' || serviceKey === 'nat') return config.gb * config.rate;
   return 0;
 }
 
 function totalFor(plan) {
-  return Object.entries(plan.services).reduce((sum, [key, config]) => sum + priceFor(key, config), 0);
+  return projectServices.reduce((sum, key) => sum + priceFor(key, plan.services[key]), 0);
 }
 
 function deltaText(value, base) {
@@ -74,7 +99,15 @@ function deltaText(value, base) {
   return { text: `${d > 0 ? '+' : '−'}${yen.format(Math.abs(d))}`, cls: d > 0 ? 'up' : 'down' };
 }
 
+function renderServiceChips() {
+  const target = document.getElementById('serviceChips');
+  target.innerHTML = projectServices.map(key => `<span class="service-chip"><span class="dot"></span>${serviceDefs[key].label}</span>`).join('');
+}
+
 function render() {
+  plans.forEach(ensurePlanHasProjectServices);
+  renderServiceChips();
+
   const grid = document.getElementById('comparisonGrid');
   grid.style.setProperty('--plan-count', plans.length);
   grid.innerHTML = '';
@@ -83,9 +116,9 @@ function render() {
   const baseTotal = totalFor(baseline);
 
   grid.appendChild(cell('grid-cell row-label header-cell', `
-    <div class="eyebrow">PROJECT TOTAL</div>
-    <div style="margin-top:10px;font-weight:750">複数案を同時比較</div>
-    <div class="service-desc">セルから直接編集。変更は即時反映。</div>
+    <div class="eyebrow dark">PROJECT TOTAL</div>
+    <div style="margin-top:10px;font-weight:750">同じシステム構成を比較</div>
+    <div class="service-desc">サービス行は全案共通。各セルではスペックと利用量だけを変更。</div>
   `));
 
   plans.forEach(plan => {
@@ -101,7 +134,7 @@ function render() {
     `));
   });
 
-  Object.keys(serviceDefs).forEach(serviceKey => {
+  projectServices.forEach(serviceKey => {
     const def = serviceDefs[serviceKey];
     grid.appendChild(cell('grid-cell row-label', `
       <div class="service-row-label">
@@ -112,16 +145,24 @@ function render() {
 
     plans.forEach(plan => {
       const config = plan.services[serviceKey];
+      const enabled = config.enabled !== false;
       const p = priceFor(serviceKey, config);
-      grid.appendChild(cell('grid-cell service-cell', `
+      grid.appendChild(cell(`grid-cell service-cell ${enabled ? '' : 'off'}`, enabled ? `
         <div class="service-price">${yen.format(p)} <span class="muted" style="font-size:11px">/月</span></div>
         <div class="service-summary">${summaryLines(serviceKey, config)}</div>
-        <div class="cell-actions"><button class="btn small" data-edit-plan="${plan.id}" data-edit-service="${serviceKey}">編集</button></div>
+        <div class="cell-actions">
+          <button class="btn small" data-edit-plan="${plan.id}" data-edit-service="${serviceKey}">編集</button>
+          <button class="usage-toggle" data-toggle-plan="${plan.id}" data-toggle-service="${serviceKey}">この案では使わない</button>
+        </div>
+      ` : `
+        <div class="service-price">使用しない</div>
+        <div class="service-summary"><div class="summary-line">このサービスはProjectには含まれますが、${plan.name}では無効です。</div></div>
+        <div class="cell-actions"><button class="btn small" data-toggle-plan="${plan.id}" data-toggle-service="${serviceKey}">使用する</button></div>
       `));
     });
   });
 
-  grid.appendChild(cell('grid-cell total-label', `<strong>TOTAL</strong><div class="service-desc">常時表示する想定</div>`));
+  grid.appendChild(cell('grid-cell total-label', `<strong>TOTAL</strong><div class="service-desc">Project共通サービスの合計</div>`));
   plans.forEach(plan => {
     const total = totalFor(plan);
     const d = deltaText(total, baseTotal);
@@ -143,11 +184,10 @@ function cell(cls, html) {
 function summaryLines(key, c) {
   if (serviceDefs[key].instances) {
     const spec = serviceDefs[key].instances[c.instance];
-    return `
-      <div class="summary-line">${c.instance} × ${c.quantity}</div>
-      <div class="summary-line">${spec.vcpu} vCPU · ${spec.memory} GiB / instance</div>`;
+    return `<div class="summary-line">${c.instance} × ${c.quantity}</div><div class="summary-line">${spec.vcpu} vCPU · ${spec.memory} GiB / instance</div>`;
   }
-  return `<div class="summary-line">${c.gb.toLocaleString()} GB</div><div class="summary-line">${yen.format(c.rate)} / GB-month</div>`;
+  if (key === 's3' || key === 'ebs') return `<div class="summary-line">${c.gb.toLocaleString()} GB</div><div class="summary-line">${yen.format(c.rate)} / GB-month</div>`;
+  return `<div class="summary-line">利用量係数 ${c.gb}</div><div class="summary-line">UIモック単価 ${yen.format(c.rate)}</div>`;
 }
 
 function renderBaselineSelect() {
@@ -163,17 +203,37 @@ function wireGridActions() {
   document.querySelectorAll('[data-duplicate]').forEach(btn => {
     btn.onclick = () => duplicatePlan(btn.dataset.duplicate);
   });
+  document.querySelectorAll('[data-toggle-plan]').forEach(btn => {
+    btn.onclick = () => {
+      const plan = plans.find(p => p.id === btn.dataset.togglePlan);
+      const config = plan.services[btn.dataset.toggleService];
+      config.enabled = config.enabled === false;
+      render();
+    };
+  });
+}
+
+function nextPlanId() {
+  return String.fromCharCode(65 + plans.length);
 }
 
 function duplicatePlan(id) {
   const source = plans.find(p => p.id === id);
-  const newId = String.fromCharCode(65 + plans.length);
+  const newId = nextPlanId();
   plans.push({
     id: newId,
     name: `案${newId}`,
     note: `${source.name}のコピー`,
     services: JSON.parse(JSON.stringify(source.services))
   });
+  render();
+}
+
+function addBlankPlan() {
+  const newId = nextPlanId();
+  const services = {};
+  projectServices.forEach(key => { services[key] = serviceDefs[key].defaultConfig(); });
+  plans.push({ id: newId, name: `案${newId}`, note: '新規案', services });
   render();
 }
 
@@ -203,8 +263,8 @@ function openDrawer(planId, serviceKey) {
   } else {
     html += `
       <div class="field">
-        <label>容量 (GB)</label>
-        <input id="gbInput" type="number" min="0" step="10" value="${c.gb}" />
+        <label>${serviceKey === 's3' || serviceKey === 'ebs' ? '容量 (GB)' : '利用量係数'}</label>
+        <input id="gbInput" type="number" min="0" step="1" value="${c.gb}" />
       </div>
       <div class="field">
         <label>単価（UIモック用）</label>
@@ -240,6 +300,7 @@ function refreshDrawerSpec() {
 }
 
 function updateDrawerFigures() {
+  if (!editing) return;
   const plan = plans.find(p => p.id === editing.planId);
   if (!plan) return;
   document.getElementById('drawerServicePrice').textContent = `${yen.format(priceFor(editing.serviceKey, plan.services[editing.serviceKey]))} /月`;
@@ -249,12 +310,47 @@ function updateDrawerFigures() {
 function closeDrawer() {
   editing = null;
   document.getElementById('drawer').classList.remove('open');
-  document.getElementById('scrim').classList.remove('open');
+  if (!document.getElementById('serviceModal').classList.contains('open')) document.getElementById('scrim').classList.remove('open');
   document.getElementById('drawer').setAttribute('aria-hidden', 'true');
 }
 
+function openServiceModal() {
+  serviceDraft = new Set(projectServices);
+  const picker = document.getElementById('servicePicker');
+  picker.innerHTML = Object.entries(serviceDefs).map(([key, def]) => `
+    <label class="service-option">
+      <input type="checkbox" value="${key}" ${serviceDraft.has(key) ? 'checked' : ''} />
+      <div><strong>${def.label}</strong><span>${def.desc}</span></div>
+    </label>
+  `).join('');
+  picker.querySelectorAll('input').forEach(input => {
+    input.onchange = () => input.checked ? serviceDraft.add(input.value) : serviceDraft.delete(input.value);
+  });
+  document.getElementById('serviceModal').classList.add('open');
+  document.getElementById('serviceModal').setAttribute('aria-hidden', 'false');
+  document.getElementById('scrim').classList.add('open');
+}
+
+function closeServiceModal() {
+  serviceDraft = null;
+  document.getElementById('serviceModal').classList.remove('open');
+  document.getElementById('serviceModal').setAttribute('aria-hidden', 'true');
+  if (!document.getElementById('drawer').classList.contains('open')) document.getElementById('scrim').classList.remove('open');
+}
+
+function applyServices() {
+  if (!serviceDraft || serviceDraft.size === 0) return;
+  projectServices = Object.keys(serviceDefs).filter(key => serviceDraft.has(key));
+  plans.forEach(ensurePlanHasProjectServices);
+  closeServiceModal();
+  render();
+}
+
 document.getElementById('closeDrawer').onclick = closeDrawer;
-document.getElementById('scrim').onclick = closeDrawer;
+document.getElementById('scrim').onclick = () => {
+  if (document.getElementById('serviceModal').classList.contains('open')) closeServiceModal();
+  else closeDrawer();
+};
 document.getElementById('recalcAll').onclick = () => {
   const btn = document.getElementById('recalcAll');
   const original = btn.textContent;
@@ -262,8 +358,16 @@ document.getElementById('recalcAll').onclick = () => {
   setTimeout(() => btn.textContent = original, 900);
   render();
 };
-document.getElementById('addPlan').onclick = () => duplicatePlan(plans[plans.length - 1].id);
-document.getElementById('addService').onclick = () => alert('モック: サービス追加Pickerを開く想定です。');
+document.getElementById('addPlan').onclick = addBlankPlan;
+document.getElementById('manageServices').onclick = openServiceModal;
+document.getElementById('closeServiceModal').onclick = closeServiceModal;
+document.getElementById('cancelServiceModal').onclick = closeServiceModal;
+document.getElementById('applyServices').onclick = applyServices;
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (document.getElementById('serviceModal').classList.contains('open')) closeServiceModal();
+  else closeDrawer();
+});
+
 render();
