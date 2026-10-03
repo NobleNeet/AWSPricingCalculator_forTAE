@@ -1,0 +1,539 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selectors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "number",
+              "select",
+              "boolean"
+            ]
+          },
+          "default": {},
+          "minimum": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9]+(\\.[0-9]+)?$"
+              }
+            ]
+          },
+          "maximum": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9]+(\\.[0-9]+)?$"
+              }
+            ]
+          },
+          "enabledWhen": {
+            "$ref": "#/$defs/condition"
+          },
+          "options": {
+            "type": "object",
+            "properties": {
+              "attribute": {
+                "type": "string",
+                "minLength": 1
+              },
+              "filters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "field": {
+                      "type": "string",
+                      "pattern": "^(productFamily|operation|usageType|attributes\\.[a-zA-Z][a-zA-Z0-9]*)$"
+                    },
+                    "op": {
+                      "enum": [
+                        "eq",
+                        "neq",
+                        "in",
+                        "notIn",
+                        "exists",
+                        "notExists"
+                      ]
+                    },
+                    "value": {},
+                    "valueFrom": {
+                      "type": "string",
+                      "pattern": "^(project|profile|component)\\.[a-zA-Z][a-zA-Z0-9-]*$"
+                    }
+                  },
+                  "required": [
+                    "field",
+                    "op"
+                  ],
+                  "additionalProperties": false,
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "op": {
+                            "enum": [
+                              "eq",
+                              "neq"
+                            ]
+                          }
+                        }
+                      },
+                      "then": {
+                        "oneOf": [
+                          {
+                            "required": [
+                              "value"
+                            ],
+                            "not": {
+                              "required": [
+                                "valueFrom"
+                              ]
+                            }
+                          },
+                          {
+                            "required": [
+                              "valueFrom"
+                            ],
+                            "not": {
+                              "required": [
+                                "value"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "op": {
+                            "enum": [
+                              "in",
+                              "notIn"
+                            ]
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "value"
+                        ],
+                        "properties": {
+                          "value": {
+                            "type": "array"
+                          }
+                        },
+                        "not": {
+                          "required": [
+                            "valueFrom"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "op": {
+                            "enum": [
+                              "exists",
+                              "notExists"
+                            ]
+                          }
+                        }
+                      },
+                      "then": {
+                        "not": {
+                          "anyOf": [
+                            {
+                              "required": [
+                                "value"
+                              ]
+                            },
+                            {
+                              "required": [
+                                "valueFrom"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "values": {
+                "type": "array",
+                "items": {}
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "ui": {
+            "type": "object",
+            "properties": {
+              "advanced": {
+                "type": "boolean"
+              },
+              "help": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "type"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "fixedFilters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "pattern": "^(productFamily|operation|usageType|attributes\\.[a-zA-Z][a-zA-Z0-9]*)$"
+          },
+          "op": {
+            "enum": [
+              "eq",
+              "neq",
+              "in",
+              "notIn",
+              "exists",
+              "notExists"
+            ]
+          },
+          "value": {},
+          "valueFrom": {
+            "type": "string",
+            "pattern": "^(project|profile|component)\\.[a-zA-Z][a-zA-Z0-9-]*$"
+          }
+        },
+        "required": [
+          "field",
+          "op"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "op": {
+                  "enum": [
+                    "eq",
+                    "neq"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "oneOf": [
+                {
+                  "required": [
+                    "value"
+                  ],
+                  "not": {
+                    "required": [
+                      "valueFrom"
+                    ]
+                  }
+                },
+                {
+                  "required": [
+                    "valueFrom"
+                  ],
+                  "not": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "op": {
+                  "enum": [
+                    "in",
+                    "notIn"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "value"
+              ],
+              "properties": {
+                "value": {
+                  "type": "array"
+                }
+              },
+              "not": {
+                "required": [
+                  "valueFrom"
+                ]
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "op": {
+                  "enum": [
+                    "exists",
+                    "notExists"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "value"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "valueFrom"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "label",
+    "selectors",
+    "fixedFilters",
+    "components"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$defs": {
+    "condition": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/condition"
+              }
+            }
+          },
+          "required": [
+            "all"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "any": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/condition"
+              }
+            }
+          },
+          "required": [
+            "any"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/condition"
+            }
+          },
+          "required": [
+            "not"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string",
+              "pattern": "^(project|profile|component)\\.[a-zA-Z][a-zA-Z0-9-]*$"
+            },
+            "op": {
+              "enum": [
+                "eq",
+                "neq",
+                "in",
+                "notIn",
+                "exists",
+                "notExists"
+              ]
+            },
+            "value": {},
+            "valueFrom": {
+              "type": "string",
+              "pattern": "^(project|profile|component)\\.[a-zA-Z][a-zA-Z0-9-]*$"
+            }
+          },
+          "required": [
+            "field",
+            "op"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "op": {
+                    "enum": [
+                      "eq",
+                      "neq"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "oneOf": [
+                  {
+                    "required": [
+                      "value"
+                    ],
+                    "not": {
+                      "required": [
+                        "valueFrom"
+                      ]
+                    }
+                  },
+                  {
+                    "required": [
+                      "valueFrom"
+                    ],
+                    "not": {
+                      "required": [
+                        "value"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "op": {
+                    "enum": [
+                      "in",
+                      "notIn"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "array"
+                  }
+                },
+                "not": {
+                  "required": [
+                    "valueFrom"
+                  ]
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "op": {
+                    "enum": [
+                      "exists",
+                      "notExists"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "value"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "valueFrom"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
