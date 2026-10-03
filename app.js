@@ -172,7 +172,13 @@ function render() {
     const total = totalForPlan(plan.id);
     const d = deltaText(total, baseTotal);
     grid.appendChild(cell('grid-cell header-cell plan', `
-      <div class="plan-head"><div><div class="plan-name">${plan.name}</div><div class="plan-note">${plan.note}</div></div><button class="btn small" data-duplicate="${plan.id}">複製</button></div>
+      <div class="plan-head">
+        <div><div class="plan-name">${plan.name}</div><div class="plan-note">${plan.note}</div></div>
+        <div class="plan-actions">
+          <button class="btn small" data-duplicate="${plan.id}">複製</button>
+          ${plans.length > 1 ? `<button class="btn small danger-btn" data-delete-plan="${plan.id}">削除</button>` : ''}
+        </div>
+      </div>
       <div class="plan-total">${usd.format(total)}<span class="muted" style="font-size:12px"> /月</span></div>
       <div class="delta ${d.cls}">${d.text}</div>
       <button class="add-service-inline" data-add-service="${plan.id}">＋ この案にサービス追加</button>`));
@@ -216,6 +222,7 @@ function renderBaselineSelect() {
 
 function wireGridActions() {
   document.querySelectorAll('[data-duplicate]').forEach(btn => btn.onclick = () => duplicatePlan(btn.dataset.duplicate));
+  document.querySelectorAll('[data-delete-plan]').forEach(btn => btn.onclick = () => deletePlan(btn.dataset.deletePlan));
   document.querySelectorAll('[data-add-service]').forEach(btn => btn.onclick = () => openAddResourceModal(btn.dataset.addService));
   document.querySelectorAll('[data-edit-row]').forEach(btn => btn.onclick = () => openDrawer(btn.dataset.editPlan, btn.dataset.editRow, false));
   document.querySelectorAll('[data-replace-row]').forEach(btn => btn.onclick = () => openDrawer(btn.dataset.replacePlan, btn.dataset.replaceRow, true));
@@ -254,6 +261,22 @@ function addBlankPlan() {
   const newId = nextPlanId();
   plans.push({ id: newId, name: `案${newId}`, note: '新規案' });
   rows.forEach(row => { row.cells[newId] = null; });
+  render();
+}
+
+function deletePlan(planId) {
+  if (plans.length <= 1) return;
+  const plan = plans.find(p => p.id === planId);
+  if (!plan) return;
+  if (!window.confirm(`${plan.name} を削除しますか？\nこの案にだけ含まれるサービス設定も削除されます。`)) return;
+
+  plans = plans.filter(p => p.id !== planId);
+  rows.forEach(row => { delete row.cells[planId]; });
+  cleanupEmptyRows();
+
+  if (baselineId === planId) baselineId = plans[0].id;
+  if (editing?.planId === planId) closeDrawer();
+  if (addingToPlanId === planId) closeAddResourceModal();
   render();
 }
 
