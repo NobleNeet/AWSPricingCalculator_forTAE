@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AWS Pricing Workspace Mock</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="onboarding.css" />
 </head>
 <body>
   <header class="app-header">
@@ -58,7 +59,7 @@
     <section class="toolbar card">
       <div>
         <strong>構成案を横並びで比較</strong>
-        <p>各案は自由なAWSサービス構成を持てます。置換したサービスは同じ比較行に残し、追加サービスは新しい行として表示します。</p>
+        <p>最初は1案にAWSサービスを積み上げ、必要になった時点で複製・追加して比較します。</p>
       </div>
       <div class="toolbar-actions">
         <label class="baseline-label">差分基準
@@ -71,7 +72,7 @@
     <section class="legend card">
       <span><i class="legend-dot linked"></i>同じ比較項目</span>
       <span><i class="legend-dot unique"></i>その案だけのサービス</span>
-      <span class="legend-note">PDF出力時は、その画面を再現する復元JSONも同時に保存します。</span>
+      <span class="legend-note">案の最下部からサービスを追加。既存行の「この行に追加」は同じ比較項目へ参加させます。</span>
     </section>
 
     <section class="comparison-shell card">
@@ -100,7 +101,7 @@
         <div>
           <div class="eyebrow dark">ADD SERVICE</div>
           <h2 id="addResourceTitle">サービスを追加</h2>
-          <p>この操作は選択した構成案だけに追加されます。</p>
+          <p>サービスを選ぶと、そのまま詳細パラメータの編集へ進みます。</p>
         </div>
         <button class="icon-btn" id="closeAddResource" aria-label="閉じる">×</button>
       </div>
@@ -136,5 +137,6 @@
 
   <div class="scrim" id="scrim"></div>
   <script src="app.js"></script>
+  <script src="onboarding.js"></script>
 </body>
 </html>
