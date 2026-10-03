@@ -1,0 +1,239 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string"
+        },
+        "defaultRegion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "usageAssumptions": {
+          "type": "object",
+          "properties": {
+            "hoursPerMonth": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[0-9]+(\\.[0-9]+)?$"
+                }
+              ]
+            }
+          },
+          "required": [
+            "hoursPerMonth"
+          ],
+          "additionalProperties": false
+        },
+        "baselinePlanId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "planOrder": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "rowOrder": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "defaultRegion",
+        "usageAssumptions",
+        "baselinePlanId",
+        "planOrder",
+        "rowOrder"
+      ],
+      "additionalProperties": false
+    },
+    "plans": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string"
+          },
+          "memo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "memo"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rows": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cells": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "cells"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "serviceInstances": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "serviceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "profileId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "region": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "enum": [
+                  "inherit",
+                  "override"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "mode"
+            ],
+            "additionalProperties": false,
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "override"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "value"
+              ]
+            }
+          },
+          "selectors": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "components": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "inputs": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
+              },
+              "required": [
+                "enabled",
+                "inputs"
+              ],
+              "additionalProperties": true
+            }
+          }
+        },
+        "required": [
+          "id",
+          "serviceId",
+          "profileId",
+          "region",
+          "selectors",
+          "components"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "savedAt": {
+      "type": "string"
+    },
+    "priceData": {
+      "type": "object",
+      "properties": {
+        "buildId": {
+          "type": "string"
+        },
+        "publicationDate": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "project",
+    "plans",
+    "rows",
+    "serviceInstances"
+  ],
+  "additionalProperties": false
+}

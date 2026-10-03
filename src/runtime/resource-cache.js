@@ -10,7 +10,8 @@ export class ResourceCache {
     this.pending.set(key, promise); return promise;
   }
   async json(url, validate = () => true, sha256) {
-    const response = await this.fetcher(url, { cache: 'no-cache' });
+    const fetcher = this.fetcher;
+    const response = await fetcher(url, { cache: 'no-cache', signal: AbortSignal.timeout(30000) });
     if (!response.ok) throw Error(`HTTP ${response.status}: ${url}`);
     const text = await response.text();
     let data;
