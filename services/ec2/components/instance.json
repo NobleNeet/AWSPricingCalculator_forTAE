@@ -45,7 +45,38 @@
       "minimum": "0"
     }
   ],
-  "fixedFilters": [],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute Instance"
+    },
+    {
+      "field": "attributes.tenancy",
+      "op": "eq",
+      "valueFrom": "profile.tenancy"
+    },
+    {
+      "field": "attributes.capacitystatus",
+      "op": "eq",
+      "value": "Used"
+    },
+    {
+      "field": "attributes.preInstalledSw",
+      "op": "eq",
+      "value": "NA"
+    },
+    {
+      "field": "attributes.marketoption",
+      "op": "eq",
+      "value": "OnDemand"
+    },
+    {
+      "field": "attributes.licenseModel",
+      "op": "eq",
+      "value": "No License required"
+    }
+  ],
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
@@ -53,11 +84,6 @@
         "field": "attributes.operatingSystem",
         "op": "eq",
         "valueFrom": "profile.os"
-      },
-      {
-        "field": "attributes.tenancy",
-        "op": "eq",
-        "valueFrom": "profile.tenancy"
       },
       {
         "field": "attributes.instanceType",
