@@ -1,4 +1,4 @@
-import { appState, definitions } from './app.js';
+import { appState, definitions, replaceProject } from './app.js';
 import { fillDefinitionDefaults, detailStateKey } from './drawer-state-model.js';
 
 function domDetailStateKey(details, index = 0) {
@@ -6,6 +6,31 @@ function domDetailStateKey(details, index = 0) {
   const fieldset = details.closest('fieldset');
   const legend = fieldset?.querySelector(':scope > legend')?.textContent?.trim();
   return detailStateKey(summary, legend, index);
+}
+
+function decorateLambdaDrawer(content) {
+  const architecture = content.querySelector('#input-profile--architecture');
+  if (!architecture) return;
+  const labels = {
+    'AWS-Lambda-Duration': 'x86',
+    'AWS-Lambda-Duration-ARM': 'arm64'
+  };
+  [...architecture.options].forEach(option => { if (labels[option.value]) option.textContent = labels[option.value]; });
+  const snapStart = content.querySelector('#input-profile--snapStartMode');
+  if (snapStart) {
+    const snapLabels = {
+      disabled: 'Disabled',
+      'java-managed-no-charge': 'Java managed runtime (no SnapStart surcharge)',
+      'billable-runtime': 'Billable runtime'
+    };
+    [...snapStart.options].forEach(option => { if (snapLabels[option.value]) option.textContent = snapLabels[option.value]; });
+  }
+  [...content.querySelectorAll('fieldset')].forEach(fieldset => {
+    const manualToggle = fieldset.querySelector('[data-toggle]');
+    const inactive = [...fieldset.querySelectorAll('.notice-text')].some(node => node.textContent.includes('無効中'));
+    const userFields = fieldset.querySelector('[data-field]');
+    fieldset.hidden = !manualToggle && !userFields && inactive;
+  });
 }
 
 export function installDrawerStateSync({ root = document, state = appState, definitionStore = definitions } = {}) {
@@ -25,6 +50,7 @@ export function installDrawerStateSync({ root = document, state = appState, defi
       const saved = openDetails.get(domDetailStateKey(details, index));
       if (saved !== undefined) details.open = saved;
     });
+    decorateLambdaDrawer(content);
   };
 
   const onToggle = event => {
@@ -52,7 +78,7 @@ export function installDrawerStateSync({ root = document, state = appState, defi
       const pkg = await definitionStore.package(instance.serviceId);
       fillDefinitionDefaults(pkg, instance);
     } catch {
-      // The normal editor path will report Definition loading failures.
+      // The normal editor path reports Definition loading failures.
     }
     const current = root.querySelector(`[data-action="edit"][data-instance="${CSS.escape(instanceId)}"]`);
     if (!current) return;
@@ -65,6 +91,7 @@ export function installDrawerStateSync({ root = document, state = appState, defi
   const onClose = () => openDetails.clear();
   drawer.addEventListener('close', onClose);
 
+  queueMicrotask(restoreDetailState);
   return () => {
     workspace.removeEventListener('click', onEdit, true);
     content.removeEventListener('toggle', onToggle, true);
@@ -73,4 +100,21 @@ export function installDrawerStateSync({ root = document, state = appState, defi
   };
 }
 
-if (typeof document !== 'undefined') installDrawerStateSync();
+async function hydrateLoadedProject() {
+  const state = appState();
+  let changed = false;
+  for (const instance of Object.values(state.serviceInstances)) {
+    try {
+      const pkg = await definitions.package(instance.serviceId);
+      changed = fillDefinitionDefaults(pkg, instance) || changed;
+    } catch {
+      // Preserve unavailable services exactly as restored.
+    }
+  }
+  if (changed) await replaceProject(state);
+}
+
+if (typeof document !== 'undefined') {
+  installDrawerStateSync();
+  await hydrateLoadedProject();
+}
