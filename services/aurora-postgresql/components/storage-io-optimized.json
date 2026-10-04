@@ -30,12 +30,12 @@
         "field": "usageType",
         "op": "in",
         "value": [
-          "APN1-Aurora:IO-OptimizedStorageUsage",
-          "APN3-Aurora:IO-OptimizedStorageUsage",
-          "Aurora:IO-OptimizedStorageUsage",
-          "USE2-Aurora:IO-OptimizedStorageUsage",
-          "USW1-Aurora:IO-OptimizedStorageUsage",
-          "USW2-Aurora:IO-OptimizedStorageUsage"
+          "APN1-Aurora:StorageIOOptimizedUsage",
+          "APN3-Aurora:StorageIOOptimizedUsage",
+          "Aurora:StorageIOOptimizedUsage",
+          "USE2-Aurora:StorageIOOptimizedUsage",
+          "USW1-Aurora:StorageIOOptimizedUsage",
+          "USW2-Aurora:StorageIOOptimizedUsage"
         ]
       }
     ],
