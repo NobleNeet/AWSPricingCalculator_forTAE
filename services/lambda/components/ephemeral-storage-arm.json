@@ -1,22 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "ephemeral-storage-arm",
-  "label": "Ephemeral storage",
+  "label": "On-demand ephemeral storage",
   "selectors": [],
-  "usageInputs": [
-    {
-      "id": "additionalStorageMb",
-      "label": "Additional ephemeral storage above included 512 MB",
-      "type": "number",
-      "default": "0",
-      "minimum": "0",
-      "maximum": "9728",
-      "ui": {
-        "advanced": true,
-        "help": "Lambda includes 512 MB of ephemeral storage at no additional charge. Enter only the additional configured storage above 512 MB; the maximum total configuration is 10,240 MB."
-      }
-    }
-  ],
+  "usageInputs": [],
   "fixedFilters": [],
   "enabledWhen": {
     "field": "profile.architecture",
@@ -28,18 +15,10 @@
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {
-        "field": "attributes.group",
-        "op": "eq",
-        "value": "AWS-Lambda-Storage-Duration-ARM"
-      }
+      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Storage-Duration-ARM" }
     ],
     "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "eq",
-        "value": "GB-Seconds"
-      }
+      { "field": "unit", "op": "eq", "value": "GB-Seconds" }
     ]
   },
   "calculation": {
@@ -48,7 +27,7 @@
       "sources": [
         { "valueFrom": "profile.requestsPerMonth" },
         { "valueFrom": "profile.averageDurationMs" },
-        { "valueFrom": "component.additionalStorageMb" }
+        { "valueFrom": "profile.additionalStorageMb" }
       ],
       "combine": "multiply"
     },
