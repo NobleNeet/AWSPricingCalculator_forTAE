@@ -8,5 +8,6 @@
   <dialog id="service-drawer" class="drawer"><div class="dialog-heading"><h2 id="drawer-title">サービスを編集</h2><button data-close="service-drawer" aria-label="編集を閉じる">×</button></div><div id="drawer-content"></div></dialog>
   <dialog id="restore-modal"><div class="dialog-heading"><h2>Project JSONを復元</h2><button data-close="restore-modal" aria-label="復元を閉じる">×</button></div><p>JSONを貼り付けて復元します。</p><label>Project JSON<textarea id="restore-text" rows="14"></textarea></label><button id="restore-submit" class="primary">復元する</button><div id="restore-report" role="status"></div></dialog>
   <script type="module" src="src/app/app.js"></script>
+  <script type="module" src="src/app/drawer-state-sync.js"></script>
   <script type="module" src="src/app/ec2-instance-table.js"></script>
 </body></html>
