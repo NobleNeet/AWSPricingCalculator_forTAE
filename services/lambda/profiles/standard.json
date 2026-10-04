@@ -17,34 +17,92 @@
     },
     {
       "id": "requestsPerMonth",
-      "label": "Requests / month",
+      "label": "On-demand requests / month",
       "type": "number",
       "default": "1000000",
       "minimum": "0",
       "ui": {
-        "help": "Total Lambda function invocation requests per month. Free Tier is intentionally not subtracted by this calculator."
+        "help": "Requests executed without Provisioned Concurrency. Free Tier is intentionally not subtracted by this calculator."
       }
     },
     {
       "id": "averageDurationMs",
-      "label": "Average duration / request (ms)",
+      "label": "On-demand average duration / request (ms)",
       "type": "number",
       "default": "100",
       "minimum": "0",
       "maximum": "900000",
       "ui": {
-        "help": "Average billed execution duration per invocation in milliseconds. Lambda duration is billed at millisecond granularity."
+        "help": "Average billed execution duration for on-demand invocations in milliseconds."
       }
     },
     {
       "id": "memoryMb",
-      "label": "Memory (MB)",
+      "label": "On-demand memory (MB)",
       "type": "number",
       "default": "128",
       "minimum": "128",
       "maximum": "10240",
       "ui": {
-        "help": "Configured Lambda function memory. AWS Lambda supports 128 MB through 10,240 MB."
+        "help": "Configured memory for the on-demand Lambda workload."
+      }
+    },
+    {
+      "id": "provisionedConcurrency",
+      "label": "Provisioned concurrency",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true,
+        "help": "Number of pre-initialized execution environments configured for Provisioned Concurrency."
+      }
+    },
+    {
+      "id": "provisionedHoursPerMonth",
+      "label": "Provisioned concurrency enabled hours / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "maximum": "730",
+      "ui": {
+        "advanced": true,
+        "help": "Total billed time that Provisioned Concurrency is enabled during the month. AWS bills each enabled period with five-minute rounding; enter the resulting aggregate billed hours when schedules are fragmented."
+      }
+    },
+    {
+      "id": "provisionedRequestsPerMonth",
+      "label": "Requests using Provisioned Concurrency / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true,
+        "help": "Requests handled while Provisioned Concurrency is enabled. Spillover requests should be included in the on-demand request inputs instead."
+      }
+    },
+    {
+      "id": "provisionedAverageDurationMs",
+      "label": "Provisioned average duration / request (ms)",
+      "type": "number",
+      "default": "100",
+      "minimum": "0",
+      "maximum": "900000",
+      "ui": {
+        "advanced": true,
+        "help": "Average billed duration for requests executed with Provisioned Concurrency."
+      }
+    },
+    {
+      "id": "provisionedMemoryMb",
+      "label": "Provisioned memory (MB)",
+      "type": "number",
+      "default": "128",
+      "minimum": "128",
+      "maximum": "10240",
+      "ui": {
+        "advanced": true,
+        "help": "Memory configured for the function version or alias using Provisioned Concurrency."
       }
     }
   ],
@@ -59,6 +117,11 @@
     "requests",
     "duration",
     "ephemeral-storage-x86",
-    "ephemeral-storage-arm"
+    "ephemeral-storage-arm",
+    "provisioned-requests",
+    "provisioned-duration-x86",
+    "provisioned-duration-arm",
+    "provisioned-capacity-x86",
+    "provisioned-capacity-arm"
   ]
 }
