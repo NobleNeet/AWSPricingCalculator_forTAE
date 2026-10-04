@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "response-streaming-arm",
+  "label": "HTTP response streaming",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "all": [
+      { "field": "profile.architecture", "op": "eq", "value": "AWS-Lambda-Duration-ARM" },
+      { "field": "profile.streamingRequestsPerMonth", "op": "neq", "value": "0" }
+    ]
+  },
+  "optional": true,
+  "defaultEnabled": false,
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Processed-Bytes-ARM" }
+    ],
+    "dimensionFilters": [
+      { "field": "unit", "op": "eq", "value": "Processed-Gigabytes" }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        { "valueFrom": "profile.streamingRequestsPerMonth" },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.averageStreamedResponseMb",
+            "transforms": [
+              { "type": "subtract", "value": "6" },
+              { "type": "minimum", "value": "0" }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      { "type": "scale", "factor": "0.0009765625" }
+    ],
+    "outputUnit": "Processed-Gigabytes"
+  },
+  "limitations": ["free-tier", "account-specific-discount", "network-transfer"]
+}
