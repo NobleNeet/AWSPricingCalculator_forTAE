@@ -24,7 +24,7 @@
       {
         "field": "operation",
         "op": "eq",
-        "value": "CreateDBInstance:0021"
+        "value": "CreateDBInstance"
       },
       {
         "field": "usageType",
