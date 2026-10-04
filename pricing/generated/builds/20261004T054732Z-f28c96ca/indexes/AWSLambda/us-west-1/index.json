@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "group": [
+      "AWS-Lambda-Duration",
+      "AWS-Lambda-Duration-ARM",
+      "AWS-Lambda-Requests"
+    ],
+    "groupDescription": [
+      "Invocation call for a Lambda function",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM"
+    ],
+    "location": [
+      "US West (N. California)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "us-west-1"
+    ],
+    "servicecode": [
+      "AWSLambda"
+    ],
+    "servicename": [
+      "AWS Lambda"
+    ],
+    "usagetype": [
+      "USW1-Lambda-GB-Second",
+      "USW1-Lambda-GB-Second-ARM",
+      "USW1-Request"
+    ]
+  },
+  "buildId": "20261004T054732Z-f28c96ca",
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}

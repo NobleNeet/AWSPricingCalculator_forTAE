@@ -1,0 +1,141 @@
+{
+  "buildId": "20261004T054732Z-f28c96ca",
+  "products": [
+    {
+      "attributes": {
+        "group": "S3-API-Tier1",
+        "groupDescription": "PUT/COPY/POST or LIST requests",
+        "location": "EU (Frankfurt)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-central-1",
+        "servicecode": "AmazonS3",
+        "servicename": "Amazon Simple Storage Service",
+        "usagetype": "EUC1-Requests-Tier1"
+      },
+      "operation": "",
+      "productFamily": "API Request",
+      "sku": "F5832W93RMW27RD7",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0054 per 1,000 PUT, COPY, POST, or LIST requests",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000054000"
+                },
+                "rateCode": "F5832W93RMW27RD7.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EUC1-Requests-Tier1"
+    },
+    {
+      "attributes": {
+        "availability": "99.99%",
+        "durability": "99.999999999%",
+        "location": "EU (Frankfurt)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-central-1",
+        "servicecode": "AmazonS3",
+        "servicename": "Amazon Simple Storage Service",
+        "storageClass": "General Purpose",
+        "usagetype": "EUC1-TimedStorage-ByteHrs",
+        "volumeType": "Standard"
+      },
+      "operation": "",
+      "productFamily": "Storage",
+      "sku": "NRYRNCXF5TWHB476",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "51200",
+                "description": "$0.0235 per GB - next 450 TB / month of storage used",
+                "endRange": "512000",
+                "pricePerUnit": {
+                  "USD": "0.0235000000"
+                },
+                "rateCode": "NRYRNCXF5TWHB476.JRTCKXETXF.D42MF2PVJS",
+                "unit": "GB-Mo"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0.0245 per GB - first 50 TB / month of storage used",
+                "endRange": "51200",
+                "pricePerUnit": {
+                  "USD": "0.0245000000"
+                },
+                "rateCode": "NRYRNCXF5TWHB476.JRTCKXETXF.PGHJ3S3EYE",
+                "unit": "GB-Mo"
+              },
+              {
+                "beginRange": "512000",
+                "description": "$0.0225 per GB - storage used / month over 500 TB",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0225000000"
+                },
+                "rateCode": "NRYRNCXF5TWHB476.JRTCKXETXF.PXJDJ3YRG3",
+                "unit": "GB-Mo"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EUC1-TimedStorage-ByteHrs"
+    },
+    {
+      "attributes": {
+        "group": "S3-API-Tier2",
+        "groupDescription": "GET and all other requests",
+        "location": "EU (Frankfurt)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-central-1",
+        "servicecode": "AmazonS3",
+        "servicename": "Amazon Simple Storage Service",
+        "usagetype": "EUC1-Requests-Tier2"
+      },
+      "operation": "",
+      "productFamily": "API Request",
+      "sku": "TUSXZSTYY6YJH244",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0043 per 10,000 GET and all other requests",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000004300"
+                },
+                "rateCode": "TUSXZSTYY6YJH244.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EUC1-Requests-Tier2"
+    }
+  ],
+  "region": "eu-central-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonS3"
+}
