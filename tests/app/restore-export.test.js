@@ -24,6 +24,20 @@ test('restore fatal, partial unknown data, independent configurations and new pr
   const partial = restoreProject(JSON.stringify(state), options); assert.equal(partial.fatal, false); assert.ok(partial.issues.some(i => i.code === 'UNKNOWN_SERVICE'));
   assert.equal(state.serviceInstances[instance.id].serviceId, 'future-service');
 });
+test('empty Project keeps a null baseline without a repair warning', async () => {
+  const schema = await readJson('schemas/project.schema.json');
+  const empty = newProject();
+  const report = restoreProject(JSON.stringify(empty), { schema });
+  assert.equal(report.fatal, false);
+  assert.equal(report.project.project.baselinePlanId, null);
+  assert.equal(report.issues.some(issue => issue.code === 'BASELINE_REPAIRED'), false);
+
+  const populated = newProject(); const plan = addPlan(populated); populated.project.baselinePlanId = 'missing-plan';
+  const repaired = restoreProject(JSON.stringify(populated), { schema });
+  assert.equal(repaired.fatal, false);
+  assert.equal(repaired.project.project.baselinePlanId, plan);
+  assert.ok(repaired.issues.some(issue => issue.code === 'BASELINE_REPAIRED'));
+});
 test('explicit migration, no path rejection and legacy mock values preserved without pricing guess', async () => {
   const schema = await readJson('schemas/project.schema.json');
   const old = newProject(); old.schemaVersion = 0;
