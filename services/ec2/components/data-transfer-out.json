@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "data-transfer-out",
+  "label": "Data transfer out to Internet",
+  "optional": true,
+  "defaultEnabled": false,
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "gbPerMonth",
+      "label": "Data transfer out (GB / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "インターネット向けの月間送信量です。受信（Data transfer in）は通常無料のため、このComponentでは課金対象のoutboundのみを扱います。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Data Transfer"
+      },
+      {
+        "field": "usageType",
+        "op": "eq",
+        "value": "DataTransfer-Out-Bytes"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB"
+  },
+  "limitations": [
+    "free-tier",
+    "tier-pricing",
+    "account-specific-discount",
+    "aggregate-billing"
+  ]
+}
