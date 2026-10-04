@@ -58,8 +58,15 @@ export async function semanticValidation(packages, candidate) {
   return result;
 }
 export async function goldenValidation(packages, candidate, rawDirectory) {
+  const required = new Map();
+  for (const pkg of packages) for (const golden of pkg.golden) {
+    const serviceCode = pkg.service.priceSource.serviceCode;
+    const region = golden.project?.region ?? golden.project?.defaultRegion ?? 'ap-northeast-1';
+    const key = sourceKey(serviceCode, region);
+    if (candidate.data[key]) required.set(key, candidate.data[key]);
+  }
   const raw = {};
-  for (const [key, source] of Object.entries(candidate.data)) {
+  for (const [key, source] of required) {
     try { raw[key] = await readJson(path.join(rawDirectory ?? 'tests/fixtures/aws', source.serviceCode, `${source.region}.json`)); }
     catch (error) {
       if (error.code !== 'ENOENT') throw error;
