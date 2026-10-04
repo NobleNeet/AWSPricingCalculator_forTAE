@@ -18,20 +18,12 @@
     "provisionedMemoryMb": "128"
   },
   "components": {
-    "requests": {
-      "enabled": true,
-      "inputs": {}
-    },
-    "duration": {
-      "enabled": true,
-      "inputs": {}
-    },
-    "ephemeral-storage-x86": {
-      "enabled": true,
-      "inputs": {
-        "additionalStorageMb": "0"
-      }
-    }
+    "requests": { "enabled": true, "inputs": {} },
+    "duration": { "enabled": true, "inputs": {} },
+    "ephemeral-storage-x86": { "enabled": false, "inputs": { "additionalStorageMb": "0" } },
+    "provisioned-requests": { "enabled": false, "inputs": {} },
+    "provisioned-duration-x86": { "enabled": false, "inputs": {} },
+    "provisioned-capacity-x86": { "enabled": false, "inputs": {} }
   },
   "expected": {
     "requests": {
@@ -43,10 +35,7 @@
       },
       "unit": "Request",
       "quantity": "1000000",
-      "limitations": [
-        "free-tier",
-        "account-specific-discount"
-      ]
+      "limitations": ["free-tier", "account-specific-discount"]
     },
     "duration": {
       "attributes": {
