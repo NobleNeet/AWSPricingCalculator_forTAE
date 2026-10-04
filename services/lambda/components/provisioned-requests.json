@@ -5,8 +5,12 @@
   "selectors": [],
   "usageInputs": [],
   "fixedFilters": [],
-  "optional": true,
-  "defaultEnabled": false,
+  "enabledWhen": {
+    "all": [
+      { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
+      { "field": "profile.provisionedRequestsPerMonth", "op": "neq", "value": "0" }
+    ]
+  },
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [

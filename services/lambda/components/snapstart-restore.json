@@ -9,7 +9,7 @@
     "all": [
       { "field": "profile.snapStartMode", "op": "eq", "value": "billable-runtime" },
       { "field": "profile.provisionedConcurrency", "op": "eq", "value": "0" },
-      { "field": "profile.additionalStorageMb", "op": "eq", "value": "0" }
+      { "field": "profile.ephemeralStorageMb", "op": "eq", "value": "512" }
     ]
   },
   "priceQuery": {

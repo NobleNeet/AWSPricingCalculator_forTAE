@@ -6,12 +6,12 @@
   "usageInputs": [],
   "fixedFilters": [],
   "enabledWhen": {
-    "field": "profile.architecture",
-    "op": "eq",
-    "value": "AWS-Lambda-Duration"
+    "all": [
+      { "field": "profile.architecture", "op": "eq", "value": "AWS-Lambda-Duration" },
+      { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
+      { "field": "profile.provisionedRequestsPerMonth", "op": "neq", "value": "0" }
+    ]
   },
-  "optional": true,
-  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [

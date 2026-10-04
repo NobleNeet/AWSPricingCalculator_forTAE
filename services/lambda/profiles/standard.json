@@ -5,14 +5,14 @@
   "selectors": [
     {
       "id": "architecture",
-      "label": "Compute architecture",
+      "label": "Architecture",
       "type": "select",
       "default": "AWS-Lambda-Duration",
       "options": { "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"] }
     },
     {
       "id": "requestsPerMonth",
-      "label": "On-demand requests / month",
+      "label": "Requests / month",
       "type": "number",
       "default": "1000000",
       "minimum": "0",
@@ -20,7 +20,7 @@
     },
     {
       "id": "averageDurationMs",
-      "label": "On-demand average duration / request (ms)",
+      "label": "Average duration / request (ms)",
       "type": "number",
       "default": "100",
       "minimum": "0",
@@ -37,15 +37,15 @@
       "ui": { "help": "Configured function memory. The same function configuration is used for on-demand, Provisioned Concurrency, and SnapStart pricing." }
     },
     {
-      "id": "additionalStorageMb",
-      "label": "Additional ephemeral storage above included 512 MB",
+      "id": "ephemeralStorageMb",
+      "label": "Ephemeral storage (MB)",
       "type": "number",
-      "default": "0",
-      "minimum": "0",
-      "maximum": "9728",
+      "default": "512",
+      "minimum": "512",
+      "maximum": "10240",
       "ui": {
         "advanced": true,
-        "help": "Lambda includes 512 MB at no additional charge. Enter the additional configured storage above 512 MB; maximum total ephemeral storage is 10,240 MB. SnapStart is available only when this value is 0."
+        "help": "Total configured ephemeral storage. Lambda includes the first 512 MB at no additional charge; only the amount above 512 MB is billed."
       }
     },
     {
@@ -66,6 +66,7 @@
       "default": "0",
       "minimum": "0",
       "maximum": "730",
+      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
       "ui": { "advanced": true, "help": "Total billed time that Provisioned Concurrency is enabled during the month. AWS bills each enabled period with five-minute rounding; enter the resulting aggregate billed hours when schedules are fragmented." }
     },
     {
@@ -74,6 +75,7 @@
       "type": "number",
       "default": "0",
       "minimum": "0",
+      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
       "ui": { "advanced": true, "help": "Requests handled while Provisioned Concurrency is enabled. Spillover requests should be included in the on-demand request inputs instead." }
     },
     {
@@ -83,6 +85,7 @@
       "default": "100",
       "minimum": "0",
       "maximum": "900000",
+      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
       "ui": { "advanced": true, "help": "Average billed duration for requests executed with Provisioned Concurrency." }
     },
     {
@@ -117,7 +120,7 @@
       "enabledWhen": {
         "all": [
           { "field": "profile.provisionedConcurrency", "op": "eq", "value": "0" },
-          { "field": "profile.additionalStorageMb", "op": "eq", "value": "0" }
+          { "field": "profile.ephemeralStorageMb", "op": "eq", "value": "512" }
         ]
       },
       "options": { "values": ["disabled", "java-managed-no-charge", "billable-runtime"] },
