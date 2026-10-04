@@ -1,1 +1,22 @@
-{"schemaVersion":1,"regionPrefixes":["APN1-"],"rules":[]}
+{
+  "schemaVersion": 1,
+  "regionPrefixes": [
+    "APN1-",
+    "APN2-",
+    "APN3-",
+    "APS1-",
+    "APS2-",
+    "APS3-",
+    "USE2-",
+    "USW1-",
+    "USW2-",
+    "CAN1-",
+    "EUC1-",
+    "EU-",
+    "EUW2-",
+    "EUW3-",
+    "EUN1-",
+    "SAE1-"
+  ],
+  "rules": []
+}
