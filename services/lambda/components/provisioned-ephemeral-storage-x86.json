@@ -6,20 +6,17 @@
   "usageInputs": [],
   "fixedFilters": [],
   "enabledWhen": {
-    "field": "profile.architecture",
-    "op": "eq",
-    "value": "AWS-Lambda-Duration"
+    "all": [
+      { "field": "profile.architecture", "op": "eq", "value": "AWS-Lambda-Duration" },
+      { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
+      { "field": "profile.provisionedRequestsPerMonth", "op": "neq", "value": "0" },
+      { "field": "profile.ephemeralStorageMb", "op": "neq", "value": "512" }
+    ]
   },
-  "optional": true,
-  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
-    "productFilters": [
-      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Storage-Duration" }
-    ],
-    "dimensionFilters": [
-      { "field": "unit", "op": "eq", "value": "GB-Seconds" }
-    ]
+    "productFilters": [ { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Storage-Duration" } ],
+    "dimensionFilters": [ { "field": "unit", "op": "eq", "value": "GB-Seconds" } ]
   },
   "calculation": {
     "model": "unit",
@@ -27,13 +24,11 @@
       "sources": [
         { "valueFrom": "profile.provisionedRequestsPerMonth" },
         { "valueFrom": "profile.provisionedAverageDurationMs" },
-        { "valueFrom": "profile.additionalStorageMb" }
+        { "value": { "type": "transformed", "valueFrom": "profile.ephemeralStorageMb", "transforms": [ { "type": "subtract", "value": "512" }, { "type": "minimum", "value": "0" } ] } }
       ],
       "combine": "multiply"
     },
-    "transforms": [
-      { "type": "scale", "factor": "0.0000009765625" }
-    ],
+    "transforms": [ { "type": "scale", "factor": "0.0000009765625" } ],
     "outputUnit": "GB-Seconds"
   },
   "limitations": ["account-specific-discount", "aggregate-billing"]

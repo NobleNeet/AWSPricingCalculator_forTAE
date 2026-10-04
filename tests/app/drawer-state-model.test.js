@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { fillDefinitionDefaults, detailStateKey } from '../../src/app/drawer-state-model.js';
+import { fillDefinitionDefaults, migrateDefinitionInputs, detailStateKey } from '../../src/app/drawer-state-model.js';
 
 test('fillDefinitionDefaults hydrates newly added profile and component defaults without overwriting saved values', () => {
   const pkg = {
+    service: { id: 'test' },
     profiles: {
       standard: {
         selectors: [
@@ -15,16 +16,8 @@ test('fillDefinitionDefaults hydrates newly added profile and component defaults
       }
     },
     components: {
-      streaming: {
-        defaultEnabled: true,
-        selectors: [],
-        usageInputs: [{ id: 'responseMb', default: '6' }]
-      },
-      snapstart: {
-        defaultEnabled: false,
-        selectors: [],
-        usageInputs: []
-      }
+      streaming: { defaultEnabled: true, selectors: [], usageInputs: [{ id: 'responseMb', default: '6' }] },
+      snapstart: { defaultEnabled: false, selectors: [], usageInputs: [] }
     }
   };
   const instance = {
@@ -34,14 +27,22 @@ test('fillDefinitionDefaults hydrates newly added profile and component defaults
   };
 
   assert.equal(fillDefinitionDefaults(pkg, instance), true);
-  assert.deepEqual(instance.selectors, {
-    architecture: 'arm',
-    streamingRequestsPerMonth: '0',
-    snapStartMode: 'disabled'
-  });
+  assert.deepEqual(instance.selectors, { architecture: 'arm', streamingRequestsPerMonth: '0', snapStartMode: 'disabled' });
   assert.equal(instance.components.streaming.inputs.responseMb, '12');
   assert.deepEqual(instance.components.snapstart, { enabled: false, inputs: {} });
   assert.equal(fillDefinitionDefaults(pkg, instance), false);
+});
+
+test('legacy Lambda additional ephemeral storage migrates to AWS total-storage input', () => {
+  const pkg = {
+    service: { id: 'lambda' },
+    profiles: { standard: { selectors: [{ id: 'ephemeralStorageMb', default: '512' }], components: [] } },
+    components: {}
+  };
+  const instance = { profileId: 'standard', selectors: { additionalStorageMb: '512' }, components: {} };
+  assert.equal(migrateDefinitionInputs(pkg, instance), true);
+  assert.deepEqual(instance.selectors, { ephemeralStorageMb: '1024' });
+  assert.equal(migrateDefinitionInputs(pkg, instance), false);
 });
 
 test('detailStateKey distinguishes profile and component details deterministically', () => {
