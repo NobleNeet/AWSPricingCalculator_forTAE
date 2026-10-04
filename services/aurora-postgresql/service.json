@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "aurora-postgresql",
+  "label": "Amazon Aurora for PostgreSQL",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "profiles": [
+    "provisioned-standard",
+    "provisioned-io-optimized",
+    "serverless-standard",
+    "serverless-io-optimized"
+  ],
+  "defaultProfile": "provisioned-standard"
+}
