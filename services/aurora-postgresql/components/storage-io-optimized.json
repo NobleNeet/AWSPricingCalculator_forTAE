@@ -25,6 +25,18 @@
         "field": "attributes.volumeType",
         "op": "eq",
         "value": "IO Optimized-Aurora"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-Aurora:IO-OptimizedStorageUsage",
+          "APN3-Aurora:IO-OptimizedStorageUsage",
+          "Aurora:IO-OptimizedStorageUsage",
+          "USE2-Aurora:IO-OptimizedStorageUsage",
+          "USW1-Aurora:IO-OptimizedStorageUsage",
+          "USW2-Aurora:IO-OptimizedStorageUsage"
+        ]
       }
     ],
     "dimensionFilters": [
