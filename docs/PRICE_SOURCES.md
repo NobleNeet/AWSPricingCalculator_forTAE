@@ -1,6 +1,6 @@
 # Initial Price Data and supported meters
 
-Data is AWS Public Price List **On-Demand USD**, Tokyo (`ap-northeast-1`). Metadata is fetched before version-pinned regional files, following [AWS Bulk API documentation](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api-fetching-price-list-files-manually.html). Raw bulk input remains in ignored `.work/raw/`; `tests/fixtures/aws/` contains only small, explicitly selected real AWS Golden evidence samples, not bulk files.
+Data is AWS Public Price List **On-Demand USD** for the formally supported Japan and United States regions: Tokyo (`ap-northeast-1`), Osaka (`ap-northeast-3`), N. Virginia (`us-east-1`), Ohio (`us-east-2`), N. California (`us-west-1`), and Oregon (`us-west-2`). Tokyo remains the canonical coverage-reference region. Metadata is fetched before version-pinned regional files, following [AWS Bulk API documentation](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api-fetching-price-list-files-manually.html). Raw bulk input remains in ignored `.work/raw/`; `tests/fixtures/aws/` contains only small, explicitly selected real AWS Golden evidence samples, not bulk files.
 
 Initial source publications:
 
