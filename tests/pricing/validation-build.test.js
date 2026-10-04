@@ -26,6 +26,20 @@ test('semantic and independent raw Golden validation detect incorrect expectatio
   pkg.golden[0].verification.meter.quantity = '731';
   assert.equal(runGolden([pkg], candidate.data, { [key]: raw }).issues[0].code, 'GOLDEN_FAILED');
 });
+test('coverage inventory is canonical while supported pricing resolves in every region', () => {
+  const { pkg, candidate } = fixture();
+  pkg.components.meter.priceQuery.productFilters = [{ field: 'productFamily', op: 'eq', value: 'Compute' }];
+  pkg.coverage = { schemaVersion: 1, categories: [{ filters: [{ field: 'productFamily', op: 'eq', value: 'Compute' }], status: 'mapped', componentId: 'meter' }] };
+  const secondary = structuredClone(candidate.data[key]);
+  secondary.region = 'us-east-1';
+  secondary.products[0].attributes.regionCode = 'us-east-1';
+  secondary.products.push({ ...structuredClone(secondary.products[0]), sku: 'region-only', productFamily: 'Region only unrelated category' });
+  candidate.data['Example/us-east-1'] = secondary;
+  const result = validatePriceData([pkg], candidate.data, { regionPrefixes: ['APN1-'], rules: [] }, { Example: { rules: [] } });
+  assert.equal(result.issues.length, 0);
+  assert.deepEqual(Object.keys(result.coverage), ['example/ap-northeast-1']);
+  assert.ok(result.resolutions.some(resolution => resolution.region === 'us-east-1'));
+});
 test('price-only, new SKU, unit/ambiguity/deletion and validation failure classification', () => {
   const { pkg, candidate } = fixture();
   const previous = candidate.data;
