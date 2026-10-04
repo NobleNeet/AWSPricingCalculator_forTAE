@@ -10,6 +10,8 @@ on:
       - 'src/pricing/**'
       - 'tools/pricing-cli/**'
       - 'tools/price-update.js'
+      - 'tools/price-update-matrix.js'
+      - 'tools/merge-semantic-shards.js'
       - '.github/workflows/price-update.yml'
   schedule:
     - cron: '23 2 * * *'
@@ -23,8 +25,7 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
-      publishable: ${{ steps.pipeline.outputs.publishable }}
-      build_id: ${{ steps.pipeline.outputs.build_id }}
+      needs_update: ${{ steps.prepare.outputs.needs_update }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,22 +36,97 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - name: Capture changed files for scoped Definition refresh
-        id: changed-files
+      - name: Prepare normalized immutable candidate
+        id: prepare
+        run: node tools/price-update-matrix.js prepare
+      - uses: actions/upload-artifact@v4
+        if: steps.prepare.outputs.needs_update == 'true'
+        with:
+          name: price-update-workspace
+          path: |
+            .work/update/candidate
+            .work/update/golden-raw
+            .work/update/reports
+            .work/update/source-metadata.json
+            .work/update/prepare-state.json
+          include-hidden-files: true
+          compression-level: 1
+      - uses: actions/upload-artifact@v4
+        if: steps.prepare.outputs.needs_update != 'true'
+        with:
+          name: price-analysis
+          path: .work/update/reports
+          include-hidden-files: true
+
+  semantic:
+    needs: prepare
+    if: needs.prepare.outputs.needs_update == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+      - name: Validate semantic shard ${{ matrix.shard }}
         shell: bash
         run: |
-          mkdir -p .work
-          if [[ "${{ github.event_name }}" == "push" && -n "${{ github.event.before }}" && "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]]; then
-            git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" > .work/price-update-changed-files.txt
-            echo "file=.work/price-update-changed-files.txt" >> "$GITHUB_OUTPUT"
-          else
-            echo "file=" >> "$GITHUB_OUTPUT"
+          set +e
+          PRICE_VALIDATE_SHARD_INDEX=${{ matrix.shard }} \
+          PRICE_VALIDATE_SHARD_COUNT=4 \
+          node tools/pricing-cli/cli.js validate-price-data \
+            --input .work/update/candidate \
+            --output .work/update/shards/shard-${{ matrix.shard }}.json
+          rc=$?
+          if [[ $rc -eq 2 ]]; then
+            exit 2
           fi
-      - name: Check source through validated immutable build
-        id: pipeline
-        env:
-          PRICE_UPDATE_CHANGED_FILES: ${{ steps.changed-files.outputs.file }}
-        run: node tools/price-update.js
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: semantic-shard-${{ matrix.shard }}
+          path: .work/update/shards/shard-${{ matrix.shard }}.json
+          if-no-files-found: error
+
+  finalize:
+    needs: [prepare, semantic]
+    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic.result == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      publishable: ${{ steps.finalize.outputs.publishable }}
+      build_id: ${{ steps.finalize.outputs.build_id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: semantic-shard-*
+          path: .work/update/shards
+          merge-multiple: true
+      - name: Merge semantic validation shards
+        run: node tools/merge-semantic-shards.js .work/update/shards .work/update/reports/validate-price-data.json 4
+      - name: Finalize validated immutable build
+        id: finalize
+        run: node tools/price-update-matrix.js finalize
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -58,16 +134,17 @@ jobs:
           path: .work/update/reports
           include-hidden-files: true
       - uses: actions/upload-artifact@v4
-        if: steps.pipeline.outputs.publishable == 'true'
+        if: steps.finalize.outputs.publishable == 'true'
         with:
           name: validated-price-candidate
           path: |
             .work/update/staged
             .work/update/reports
           include-hidden-files: true
+
   publish:
-    needs: prepare
-    if: needs.prepare.outputs.publishable == 'true'
+    needs: finalize
+    if: needs.finalize.outputs.publishable == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -98,6 +175,7 @@ jobs:
           git commit -m 'Publish validated AWS Price DB build'
           git push origin HEAD:main
           echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
   deploy:
     needs: publish
     permissions:
