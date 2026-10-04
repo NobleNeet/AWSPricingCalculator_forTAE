@@ -8,6 +8,7 @@ import { definitionFingerprint, PRICING_CONTRACT_FILES } from './pricing-cli/fin
 import { sourceKey } from './pricing-cli/source.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
+import { evaluateService } from '../src/pricing/core.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
 const GLOBAL_FINGERPRINT_FILES = new Set([
@@ -46,24 +47,42 @@ export function definitionRefreshServiceCodes(packages, changedFiles) {
   return recognizedFingerprintChange && affected.size > 0 ? affected : null;
 }
 
-export async function refreshGoldenEvidence(packages, rawDirectory, output) {
+export async function refreshGoldenEvidence(packages, rawDirectory, output, candidateDirectoryPath) {
+  if (!candidateDirectoryPath) throw new Error('Golden evidence requires a normalized candidate directory');
+  const candidate = await loadCandidate(candidateDirectoryPath);
   const groups = new Map();
   for (const pkg of packages) for (const golden of pkg.golden) {
     const code = pkg.service.priceSource.serviceCode;
     const region = golden.project?.region ?? golden.project?.defaultRegion ?? 'ap-northeast-1';
     const key = sourceKey(code, region);
     const group = groups.get(key) ?? { code, region, entries: [] };
-    group.entries.push(golden); groups.set(key, group);
+    group.entries.push({ pkg, golden });
+    groups.set(key, group);
   }
   for (const { code, region, entries } of groups.values()) {
     let raw;
     try { raw = await readJson(path.join(rawDirectory, code, `${region}.json`)); }
     catch (error) { if (error.code === 'ENOENT') raw = await readJson(`tests/fixtures/aws/${code}.json`); else throw error; }
+    const key = sourceKey(code, region);
+    const source = candidate.data[key] ?? (candidate.data[code]?.region === region || !candidate.data[code]?.region ? candidate.data[code] : undefined);
+    if (!source) throw new Error(`Golden evidence ${code}/${region}: normalized source missing`);
     const sample = { offerCode: raw.offerCode, version: raw.version, publicationDate: raw.publicationDate, products: {}, terms: { OnDemand: {} } };
-    for (const golden of entries) for (const verification of Object.values(golden.verification)) {
-      const products = Object.values(raw.products).filter(p => Object.entries(verification.attributes).every(([key, value]) => p.attributes[key] === value) && (!verification.productFamily || p.productFamily === verification.productFamily));
-      if (products.length !== 1) throw Error(`Golden evidence ${code}/${region}: ${products.length} products`);
-      const product = products[0]; sample.products[product.sku] = product; sample.terms.OnDemand[product.sku] = raw.terms.OnDemand[product.sku];
+    for (const { pkg, golden } of entries) {
+      const result = evaluateService(
+        pkg,
+        golden,
+        { ...golden.project, region, defaultRegion: golden.project?.defaultRegion ?? region },
+        source.products ?? []
+      );
+      for (const componentId of Object.keys(golden.verification)) {
+        const sku = result.components[componentId]?.resolution?.product?.sku;
+        if (!sku) throw new Error(`Golden evidence ${code}/${region}/${golden.id}/${componentId}: resolved SKU missing`);
+        const product = raw.products[sku];
+        const terms = raw.terms.OnDemand[sku];
+        if (!product || !terms) throw new Error(`Golden evidence ${code}/${region}/${golden.id}/${componentId}: raw SKU ${sku} missing`);
+        sample.products[sku] = product;
+        sample.terms.OnDemand[sku] = terms;
+      }
     }
     await writeJson(path.join(output, code, `${region}.json`), sample);
   }
@@ -147,7 +166,7 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
     else {
       summary.buildId = buildId;
       summary.buildManifestSha256 = checksum(await readFile(path.join(stage, 'pricing/builds', buildId, 'build-manifest.json'), 'utf8'));
-      await refreshGoldenEvidence(packages, rawDirectory, path.join(stage, 'fixtures'));
+      await refreshGoldenEvidence(packages, rawDirectory, path.join(stage, 'fixtures'), candidate);
     }
   }
   await writeJson(path.join(work, 'reports/summary.json'), summary);
