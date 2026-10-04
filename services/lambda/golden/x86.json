@@ -7,21 +7,19 @@
     "hoursPerMonth": "730"
   },
   "selectors": {
-    "architecture": "AWS-Lambda-Duration"
+    "architecture": "AWS-Lambda-Duration",
+    "requestsPerMonth": "1000000",
+    "averageDurationMs": "100",
+    "memoryMb": "128"
   },
   "components": {
     "requests": {
       "enabled": true,
-      "inputs": {
-        "requests": "1000000"
-      }
+      "inputs": {}
     },
     "duration": {
       "enabled": true,
-      "inputs": {
-        "seconds": "100000",
-        "memoryGb": "0.125"
-      }
+      "inputs": {}
     }
   },
   "expected": {
