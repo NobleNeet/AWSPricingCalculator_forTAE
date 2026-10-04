@@ -55,3 +55,14 @@ test('active input DAG evaluates parents first and excludes disabled saved value
   context.profile.toggle = true; assert.deepEqual(activeInputs(inputs, saved, context, [], []), { parent: '5', child: '10' });
   assert.deepEqual(saved, { parent: '5', child: '10' });
 });
+test('missing saved inputs use definition defaults without mutating saved state', () => {
+  const inputs = [
+    { id: 'addedLater', label: 'Added later', type: 'number', default: '42', minimum: '0' },
+    { id: 'stillRequired', label: 'Still required', type: 'number' }
+  ];
+  const saved = { stillRequired: '7' };
+  const context = { profile: {}, component: saved };
+  assert.deepEqual(activeInputs(inputs, saved, context, [], []), { addedLater: '42', stillRequired: '7' });
+  assert.deepEqual(saved, { stillRequired: '7' });
+  assert.throws(() => activeInputs([{ id: 'required', label: 'Required', type: 'number' }], {}, { profile: {}, component: {} }, [], []), code('MISSING_INPUT'));
+});
