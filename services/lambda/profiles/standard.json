@@ -57,6 +57,8 @@
   ],
   "components": [
     "requests",
-    "duration"
+    "duration",
+    "ephemeral-storage-x86",
+    "ephemeral-storage-arm"
   ]
 }
