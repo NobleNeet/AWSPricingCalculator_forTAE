@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-duration-arm",
+  "label": "Provisioned concurrency compute duration",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "field": "profile.architecture",
+    "op": "eq",
+    "value": "AWS-Lambda-Duration-ARM"
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "AWS-Lambda-Duration-Provisioned-ARM"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Lambda-GB-Second"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        { "valueFrom": "profile.provisionedRequestsPerMonth" },
+        { "valueFrom": "profile.provisionedAverageDurationMs" },
+        { "valueFrom": "profile.provisionedMemoryMb" }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "scale",
+        "factor": "0.0000009765625"
+      }
+    ],
+    "outputUnit": "Lambda-GB-Second"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "aggregate-billing"
+  ]
+}
