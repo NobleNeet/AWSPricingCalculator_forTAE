@@ -39,6 +39,11 @@ async function runTask(task) {
     { [serviceCode]: normalizer },
     { includeCoverage }
   );
+  const publishSkus = new Set();
+  for (const resolution of checked.resolutions) {
+    const sku = resolution.result.components[resolution.componentId]?.resolution?.product.sku;
+    if (sku) publishSkus.add(sku);
+  }
 
   return {
     taskId: task.taskId,
@@ -47,6 +52,7 @@ async function runTask(task) {
     issues: checked.issues,
     coverage: checked.coverage,
     branches: checked.resolutions.length,
+    publishSkus: [...publishSkus],
     products: source.products.length,
     elapsedMs: Math.round(performance.now() - started)
   };
