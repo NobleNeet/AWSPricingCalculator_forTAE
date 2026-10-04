@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-io-optimized",
+  "label": "Provisioned / Aurora I/O-Optimized",
+  "selectors": [],
+  "fixedFilters": [
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Aurora PostgreSQL"
+    }
+  ],
+  "components": [
+    "instance-io-optimized",
+    "storage-io-optimized"
+  ]
+}
