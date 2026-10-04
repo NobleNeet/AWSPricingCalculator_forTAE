@@ -27,6 +27,7 @@ test('NO_CHANGE pipeline never downloads; breaking and ERROR never build', async
     const result = await priceUpdate({ work, execute, previousDefinitionSha256: await definitionFingerprint(await loadPackages()) });
     assert.equal(result.publishable, false); assert.equal(commands.includes('build'), false);
     if (scenario === 'NO_CHANGE') assert.deepEqual(commands, ['check-source']);
+    else if (scenario === 'VALIDATION_ERROR') assert.deepEqual(commands, ['check-source', 'download', 'normalize', 'inventory', 'validate-definitions', 'validate-price-data', 'run-golden']);
     else assert.deepEqual(commands, ['check-source', 'download', 'normalize', 'inventory', 'validate-definitions', 'validate-price-data', 'run-golden', 'classify-change']);
   }
 });
@@ -44,7 +45,11 @@ test('unchanged AWS metadata still refreshes raw source when Definition fingerpr
   };
   const result = await priceUpdate({ work, execute, previousDefinitionSha256: 'changed-definition' });
   assert.equal(result.status, 'REJECTED'); assert.ok(commands.includes('download'));
+  assert.equal(commands.includes('classify-change'), false);
   const metadata = JSON.parse(await readFile(path.join(work, 'source-metadata.json'))); assert.equal(metadata.sources.Example.changed, true);
+  const change = JSON.parse(await readFile(path.join(work, 'reports/classify-change.json')));
+  assert.equal(change.classification, 'STRUCTURE_BREAKING');
+  assert.equal(change.skippedDueToValidation, true);
 });
 async function stagedFixture(classification) {
   const work = await mkdtemp(path.join(tmpdir(), 'tae-promote-')), generated = path.join(work, 'generated'), stage = path.join(work, 'stage'), reports = path.join(work, 'reports');
