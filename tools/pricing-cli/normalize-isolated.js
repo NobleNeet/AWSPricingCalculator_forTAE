@@ -38,8 +38,8 @@ export async function normalizeIsolated(options = {}) {
   const directory = options.output ?? '.work/candidate';
   const rawDirectory = options.raw ?? '.work/raw';
   const buildId = options['build-id'] ?? 'candidate';
-  const configuredConcurrency = Number.parseInt(process.env.PRICE_NORMALIZE_CONCURRENCY ?? '2', 10);
-  const concurrency = Number.isInteger(configuredConcurrency) && configuredConcurrency > 0 ? configuredConcurrency : 2;
+  const configuredConcurrency = Number.parseInt(process.env.PRICE_NORMALIZE_CONCURRENCY ?? '4', 10);
+  const concurrency = Number.isInteger(configuredConcurrency) && configuredConcurrency > 0 ? configuredConcurrency : 4;
   const sources = Object.entries(metadata.sources);
 
   await runConcurrent(sources, concurrency, async ([key, source]) => {
