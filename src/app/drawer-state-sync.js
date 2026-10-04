@@ -8,6 +8,32 @@ function domDetailStateKey(details, index = 0) {
   return detailStateKey(summary, legend, index);
 }
 
+function relabelSelect(select, labels) {
+  if (!select) return;
+  [...select.options].forEach(option => {
+    if (labels[option.value]) option.textContent = labels[option.value];
+  });
+}
+
+function applyLambdaPresentation(root, content) {
+  if (root.getElementById('drawer-title')?.textContent?.trim() !== 'AWS Lambda') return;
+  relabelSelect(content.querySelector('#input-profile--architecture'), {
+    'AWS-Lambda-Duration': 'x86',
+    'AWS-Lambda-Duration-ARM': 'arm64'
+  });
+  relabelSelect(content.querySelector('#input-profile--snapStartMode'), {
+    disabled: 'Disabled',
+    'java-managed-no-charge': 'Java managed runtime (no additional SnapStart charge)',
+    'billable-runtime': 'Billable SnapStart runtime'
+  });
+  [...content.querySelectorAll('fieldset')].forEach(fieldset => {
+    const notice = [...fieldset.querySelectorAll(':scope > .notice-text')]
+      .find(node => node.textContent?.includes('無効中'));
+    const hasComponentControls = fieldset.querySelector('[data-field], [data-toggle]');
+    fieldset.hidden = Boolean(notice && !hasComponentControls);
+  });
+}
+
 export function installDrawerStateSync({ root = document, state = appState, definitionStore = definitions } = {}) {
   const workspace = root.getElementById('workspace');
   const drawer = root.getElementById('service-drawer');
@@ -25,6 +51,7 @@ export function installDrawerStateSync({ root = document, state = appState, defi
       const saved = openDetails.get(domDetailStateKey(details, index));
       if (saved !== undefined) details.open = saved;
     });
+    applyLambdaPresentation(root, content);
   };
 
   const onToggle = event => {
