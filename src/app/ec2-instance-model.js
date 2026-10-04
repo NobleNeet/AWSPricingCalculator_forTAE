@@ -5,20 +5,20 @@ export const EC2_INSTANCE_COLUMNS = [
 const numberFrom = value => { const match = String(value ?? '').replace(/,/g, '').match(/-?\d+(?:\.\d+)?/); return match ? Number(match[0]) : null; };
 const hourlyFrom = product => {
   const dimensions = product.terms?.onDemand?.flatMap(term => term.priceDimensions ?? []) ?? [];
-  const dimension = dimensions.find(item => item.unit === 'Hrs' && Number(item.pricePerUnit?.USD) >= 0);
-  return dimension ? Number(dimension.pricePerUnit.USD) : null;
+  const candidates = dimensions.filter(item => item.unit === 'Hrs' && Number(item.pricePerUnit?.USD) >= 0).map(item => Number(item.pricePerUnit.USD));
+  return candidates.length === 1 ? candidates[0] : null;
 };
 
-export function instanceRows(products, operatingSystem) {
+export function instanceRows(products, operatingSystem, tenancy = 'Shared') {
   const rows = new Map();
+  const ambiguous = new Set();
   for (const product of products) {
     const a = product.attributes ?? {}, type = a.instanceType;
     if (!type || a.operatingSystem !== operatingSystem) continue;
-    if (a.tenancy && a.tenancy !== 'Shared') continue;
+    if (a.tenancy && a.tenancy !== tenancy) continue;
     if (a.preInstalledSw && a.preInstalledSw !== 'NA') continue;
     if (a.capacitystatus && a.capacitystatus !== 'Used') continue;
     if (a.marketoption && a.marketoption !== 'OnDemand') continue;
-    if (a.operation && a.operation !== 'RunInstances') continue;
     const hourly = hourlyFrom(product); if (hourly === null) continue;
     const row = {
       instanceType: type,
@@ -31,8 +31,10 @@ export function instanceRows(products, operatingSystem) {
       currentGeneration: a.currentGeneration ?? ''
     };
     const previous = rows.get(type);
-    if (!previous || row.hourly < previous.hourly) rows.set(type, row);
+    if (!previous) rows.set(type, row);
+    else if (previous.hourly !== row.hourly) ambiguous.add(type);
   }
+  for (const type of ambiguous) rows.get(type).hourly = null;
   return [...rows.values()].sort((a, b) => a.instanceType.localeCompare(b.instanceType, 'en', { numeric: true }));
 }
 
