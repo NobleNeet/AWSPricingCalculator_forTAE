@@ -98,7 +98,7 @@ export function reachableCases(pkg, products, region = 'ap-northeast-1') {
             sample.components[componentId].inputs = branch.component;
             const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
             sample.components[componentId].enabled = true;
-            cases.push({ pkg: narrow, instance: sample, project: base.project, componentId, products: scopedProducts });
+            cases.push({ pkg: narrow, instance: sample, project: base.project, componentId, products: scopedProducts, profileProducts: products });
           }
         }
       }
@@ -125,7 +125,7 @@ export function validatePriceData(packages, data, common, normalizers, options =
       const cases = reachableCases(pkg, source.products, source.region);
       if (!cases.length) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id, region: source.region }));
       for (const sample of cases) {
-        const result = evaluateService(sample.pkg, sample.instance, sample.project, sample.products);
+        const result = evaluateService(sample.pkg, sample.instance, sample.project, sample.products, sample.profileProducts);
         issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId: sample.instance.profileId, region: source.region })));
         resolutions.push({ serviceId: pkg.service.id, profileId: sample.instance.profileId, componentId: sample.componentId, instance: sample.instance, result, region: source.region, sourceKey });
       }
