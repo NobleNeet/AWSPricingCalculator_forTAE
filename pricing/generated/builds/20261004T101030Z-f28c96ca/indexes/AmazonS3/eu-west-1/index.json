@@ -1,0 +1,51 @@
+{
+  "attributes": {
+    "availability": [
+      "99.99%"
+    ],
+    "durability": [
+      "99.999999999%"
+    ],
+    "group": [
+      "S3-API-Tier1",
+      "S3-API-Tier2"
+    ],
+    "groupDescription": [
+      "GET and all other requests",
+      "PUT/COPY/POST or LIST requests"
+    ],
+    "location": [
+      "EU (Ireland)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "eu-west-1"
+    ],
+    "servicecode": [
+      "AmazonS3"
+    ],
+    "servicename": [
+      "Amazon Simple Storage Service"
+    ],
+    "storageClass": [
+      "General Purpose"
+    ],
+    "usagetype": [
+      "EU-Requests-Tier1",
+      "EU-Requests-Tier2",
+      "EU-TimedStorage-ByteHrs"
+    ],
+    "volumeType": [
+      "Standard"
+    ]
+  },
+  "buildId": "20261004T101030Z-f28c96ca",
+  "region": "eu-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonS3"
+}

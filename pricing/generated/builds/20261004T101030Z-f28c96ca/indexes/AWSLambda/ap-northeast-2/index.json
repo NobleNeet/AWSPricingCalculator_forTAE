@@ -1,0 +1,59 @@
+{
+  "attributes": {
+    "group": [
+      "AWS-Lambda-Duration",
+      "AWS-Lambda-Duration-ARM",
+      "AWS-Lambda-Duration-Provisioned",
+      "AWS-Lambda-Duration-Provisioned-ARM",
+      "AWS-Lambda-Provisioned-Concurrency",
+      "AWS-Lambda-Provisioned-Concurrency-ARM",
+      "AWS-Lambda-Requests",
+      "AWS-Lambda-Storage-Duration",
+      "AWS-Lambda-Storage-Duration-ARM"
+    ],
+    "groupDescription": [
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+      "Invocation call for a Lambda function",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM"
+    ],
+    "location": [
+      "Asia Pacific (Seoul)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "ap-northeast-2"
+    ],
+    "servicecode": [
+      "AWSLambda"
+    ],
+    "servicename": [
+      "AWS Lambda"
+    ],
+    "usagetype": [
+      "APN2-Lambda-GB-Second",
+      "APN2-Lambda-GB-Second-ARM",
+      "APN2-Lambda-Provisioned-Concurrency",
+      "APN2-Lambda-Provisioned-Concurrency-ARM",
+      "APN2-Lambda-Provisioned-GB-Second",
+      "APN2-Lambda-Provisioned-GB-Second-ARM",
+      "APN2-Lambda-Storage-GB-Second",
+      "APN2-Lambda-Storage-GB-Second-ARM",
+      "APN2-Request"
+    ]
+  },
+  "buildId": "20261004T101030Z-f28c96ca",
+  "region": "ap-northeast-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}
