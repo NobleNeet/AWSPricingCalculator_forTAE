@@ -35,6 +35,8 @@ test('ordered transforms, units, decimal precision and missing usage', () => {
   const c = { ...calculation, transforms: [{ type: 'minimum', value: '2.1' }, { type: 'increment', value: '2' }, { type: 'scale', factor: '0.1' }, { type: 'rounding', mode: 'ceil' }, { type: 'unitConversion', factor: '0.001', from: 'ms', to: 'Hrs' }] };
   assert.equal(calculate(c, { component: { hours: '0.1', count: '1' } }, dim()).billingQuantity, '0.001');
   assert.equal(calculate(calculation, { component: { hours: '0.1', count: '0.2' } }, dim()).amountUsd, '0.002');
+  const requestCalculation = { model: 'unit', usage: { sources: [{ valueFrom: 'component.requests' }], combine: 'multiply' }, transforms: [], outputUnit: 'Request' };
+  assert.equal(calculate(requestCalculation, { component: { requests: '1000' } }, dim('0', 'Inf', '0.000001', { unit: 'Requests' })).amountUsd, '0.001');
   assert.throws(() => calculate(calculation, { component: {} }, dim()), code('MISSING_USAGE'));
   assert.throws(() => calculate(calculation, { component: { hours: '-1', count: '1' } }, dim()), code('INVALID_USAGE'));
   assert.throws(() => calculate(calculation, { component: { hours: '1', count: '1' } }, dim('0', 'Inf', '1', { unit: 'GB' })), code('UNIT_MISMATCH'));
