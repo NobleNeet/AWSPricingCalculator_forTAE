@@ -20,21 +20,36 @@ function flattenSources(sources = {}) {
   return flattened;
 }
 
+export async function runConcurrent(items, limit, task) {
+  if (!Number.isInteger(limit) || limit < 1) throw Error('Normalization concurrency must be a positive integer');
+  let cursor = 0;
+  const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (cursor < items.length) {
+      const index = cursor++;
+      await task(items[index], index);
+    }
+  });
+  await Promise.all(runners);
+}
+
 export async function normalizeIsolated(options = {}) {
   const loaded = await readJson(options.input ?? '.work/source-metadata.json');
   const metadata = { ...loaded, sources: flattenSources(loaded.sources) };
   const directory = options.output ?? '.work/candidate';
   const rawDirectory = options.raw ?? '.work/raw';
   const buildId = options['build-id'] ?? 'candidate';
+  const configuredConcurrency = Number.parseInt(process.env.PRICE_NORMALIZE_CONCURRENCY ?? '2', 10);
+  const concurrency = Number.isInteger(configuredConcurrency) && configuredConcurrency > 0 ? configuredConcurrency : 2;
+  const sources = Object.entries(metadata.sources);
 
-  for (const [key, source] of Object.entries(metadata.sources)) {
+  await runConcurrent(sources, concurrency, async ([key, source]) => {
     if (key !== sourceKey(source.serviceCode, source.region)) throw Error(`Invalid source key ${key}`);
     if (source.changed) {
       await execFileAsync(process.execPath, [worker, path.join(rawDirectory, source.serviceCode, `${source.region}.json`), directory, source.serviceCode, source.region, buildId], {
         env: { ...process.env, NODE_OPTIONS: process.env.NODE_OPTIONS ?? '--max-old-space-size=4096' },
         maxBuffer: 1024 * 1024
       });
-      continue;
+      return;
     }
     if (!options.previous) throw Error('Unchanged source requires previous build');
     for (const [folder, file] of [['sources', 'products.json'], ['indexes', 'index.json']]) {
@@ -42,7 +57,7 @@ export async function normalizeIsolated(options = {}) {
       await mkdir(path.dirname(destination), { recursive: true });
       await copyFile(path.join(options.previous, folder, source.serviceCode, source.region, file), destination);
     }
-  }
+  });
   await writeJson(path.join(directory, 'source-metadata.json'), metadata);
-  return report('normalize', [], { directory });
+  return report('normalize', [], { directory, concurrency });
 }
