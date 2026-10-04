@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { instanceRows, matchesColumn, filterRows } from '../../src/app/ec2-instance-model.js';
 
-const product = (instanceType, { os = 'Linux', tenancy = 'Shared', vcpu = '4', memory = '16 GiB', hourly = '0.25', family = 'General purpose', current = 'Yes' } = {}) => ({
-  attributes: { instanceType, operatingSystem: os, tenancy, preInstalledSw: 'NA', capacitystatus: 'Used', marketoption: 'OnDemand', operation: 'RunInstances', vcpu, memory, instanceFamily: family, networkPerformance: 'Up to 12.5 Gigabit', storage: 'EBS only', currentGeneration: current },
+const product = (instanceType, { os = 'Linux', tenancy = 'Shared', software = 'NA', vcpu = '4', memory = '16 GiB', hourly = '0.25', family = 'General purpose', current = 'Yes' } = {}) => ({
+  attributes: { instanceType, operatingSystem: os, tenancy, preInstalledSw: software, capacitystatus: 'Used', marketoption: 'OnDemand', operation: 'RunInstances', vcpu, memory, instanceFamily: family, networkPerformance: 'Up to 12.5 Gigabit', storage: 'EBS only', currentGeneration: current },
   terms: { onDemand: [{ priceDimensions: [{ unit: 'Hrs', pricePerUnit: { USD: hourly } }] }] }
 });
 
@@ -21,6 +21,17 @@ test('instanceRows follows the selected tenancy', () => {
   assert.equal(rows.length, 1);
   assert.equal(rows[0].instanceType, 'm7i.large');
   assert.equal(rows[0].hourly, 0.50);
+});
+
+test('instanceRows follows the selected pre-installed software', () => {
+  const rows = instanceRows([
+    product('m7i.large', { os: 'Windows', software: 'NA', hourly: '0.50' }),
+    product('m7i.large', { os: 'Windows', software: 'SQL Std', hourly: '1.25' }),
+    product('m7i.xlarge', { os: 'Windows', software: 'SQL Web', hourly: '0.80' })
+  ], 'Windows', 'Shared', 'SQL Std');
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].instanceType, 'm7i.large');
+  assert.equal(rows[0].hourly, 1.25);
 });
 
 test('numeric column filters support comparison operators', () => {

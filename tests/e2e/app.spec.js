@@ -10,6 +10,14 @@ test('create, real EC2, multiple services, duplicate, replace, usage, row add an
   await page.locator('[data-service="ec2"]').click();
   await expect(page.locator('#service-drawer')).toBeVisible();
   await expect(page.locator('[data-instance-picker="ec2"]')).toBeVisible();
+  const software = page.locator('[data-scope="profile"][data-field="software"]');
+  await expect(software).toHaveValue('NA');
+  const os = page.locator('[data-scope="profile"][data-field="os"]');
+  await expect(os.locator('option[value="Windows"]')).toHaveCount(1);
+  await os.selectOption('Windows');
+  await expect(page.locator('[data-scope="profile"][data-field="software"]')).toHaveValue('NA');
+  await page.locator('[data-scope="profile"][data-field="os"]').selectOption('Linux');
+  await expect(page.locator('[data-scope="profile"][data-field="software"]')).toHaveValue('NA');
   const calculatorOrder = await page.evaluate(() => {
     const nodes = [
       document.querySelector('#input-component-instance-quantity')?.closest('label'),

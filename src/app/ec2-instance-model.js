@@ -9,14 +9,14 @@ const hourlyFrom = product => {
   return candidates.length === 1 ? candidates[0] : null;
 };
 
-export function instanceRows(products, operatingSystem, tenancy = 'Shared') {
+export function instanceRows(products, operatingSystem, tenancy = 'Shared', preInstalledSw = 'NA') {
   const rows = new Map();
   const ambiguous = new Set();
   for (const product of products) {
     const a = product.attributes ?? {}, type = a.instanceType;
     if (!type || a.operatingSystem !== operatingSystem) continue;
     if (a.tenancy && a.tenancy !== tenancy) continue;
-    if (a.preInstalledSw && a.preInstalledSw !== 'NA') continue;
+    if ((a.preInstalledSw ?? 'NA') !== preInstalledSw) continue;
     if (a.capacitystatus && a.capacitystatus !== 'Used') continue;
     if (a.marketoption && a.marketoption !== 'OnDemand') continue;
     const hourly = hourlyFrom(product); if (hourly === null) continue;
