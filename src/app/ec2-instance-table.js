@@ -4,42 +4,75 @@ import { EC2_INSTANCE_COLUMNS as COLUMNS, instanceRows, filterRows } from './ec2
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const drawer = document.getElementById('service-drawer');
 
+function drawerBounds() {
+  return { min: Math.min(510, window.innerWidth), max: Math.max(Math.min(window.innerWidth * 0.96, window.innerWidth), Math.min(510, window.innerWidth)) };
+}
+
+function setDrawerWidth(width) {
+  const { min, max } = drawerBounds();
+  const next = Math.round(Math.min(max, Math.max(min, width)));
+  drawer.style.width = `${next}px`;
+  const slider = drawer.querySelector('[data-ec2-drawer-width]');
+  const value = drawer.querySelector('.ec2-drawer-width-value');
+  if (slider) {
+    slider.min = String(Math.round(min));
+    slider.max = String(Math.round(max));
+    slider.value = String(next);
+  }
+  if (value) value.textContent = `${next}px`;
+}
+
 function ensureResizableDrawer() {
   drawer.classList.add('ec2-wide');
-  if (drawer.querySelector('.ec2-drawer-resizer')) return;
-  const resizer = document.createElement('div');
-  resizer.className = 'ec2-drawer-resizer';
-  resizer.setAttribute('role', 'separator');
-  resizer.setAttribute('aria-orientation', 'vertical');
-  resizer.setAttribute('aria-label', 'EC2編集パネルの幅を変更');
-  drawer.append(resizer);
-  resizer.addEventListener('pointerdown', event => {
-    if (window.innerWidth <= 800) return;
-    resizer.classList.add('dragging');
-    resizer.setPointerCapture(event.pointerId);
-    const move = moveEvent => {
-      const min = 510;
-      const max = window.innerWidth * 0.96;
-      const width = Math.min(max, Math.max(min, window.innerWidth - moveEvent.clientX));
-      drawer.style.width = `${width}px`;
-    };
-    const end = endEvent => {
-      resizer.classList.remove('dragging');
-      if (resizer.hasPointerCapture(endEvent.pointerId)) resizer.releasePointerCapture(endEvent.pointerId);
-      resizer.removeEventListener('pointermove', move);
-      resizer.removeEventListener('pointerup', end);
-      resizer.removeEventListener('pointercancel', end);
-    };
-    resizer.addEventListener('pointermove', move);
-    resizer.addEventListener('pointerup', end);
-    resizer.addEventListener('pointercancel', end);
-  });
+  const { max } = drawerBounds();
+  if (!drawer.style.width) setDrawerWidth(Math.min(1200, max));
+
+  if (!drawer.querySelector('.ec2-drawer-resizer')) {
+    const resizer = document.createElement('div');
+    resizer.className = 'ec2-drawer-resizer';
+    resizer.setAttribute('role', 'separator');
+    resizer.setAttribute('aria-orientation', 'vertical');
+    resizer.setAttribute('aria-label', 'EC2編集パネルの幅を変更');
+    resizer.title = '左右にドラッグしてパネル幅を変更';
+    drawer.append(resizer);
+    resizer.addEventListener('pointerdown', event => {
+      if (window.innerWidth <= 800) return;
+      event.preventDefault();
+      resizer.classList.add('dragging');
+      resizer.setPointerCapture(event.pointerId);
+      const move = moveEvent => setDrawerWidth(window.innerWidth - moveEvent.clientX);
+      const end = endEvent => {
+        resizer.classList.remove('dragging');
+        if (resizer.hasPointerCapture(endEvent.pointerId)) resizer.releasePointerCapture(endEvent.pointerId);
+        resizer.removeEventListener('pointermove', move);
+        resizer.removeEventListener('pointerup', end);
+        resizer.removeEventListener('pointercancel', end);
+      };
+      resizer.addEventListener('pointermove', move);
+      resizer.addEventListener('pointerup', end);
+      resizer.addEventListener('pointercancel', end);
+    });
+  }
+
+  if (!drawer.querySelector('.ec2-drawer-width-controls')) {
+    const controls = document.createElement('div');
+    controls.className = 'ec2-drawer-width-controls';
+    controls.innerHTML = '<label>パネル幅 <input type="range" data-ec2-drawer-width aria-label="EC2編集パネルの幅"><span class="ec2-drawer-width-value"></span></label><button type="button" data-ec2-drawer-default>標準</button><button type="button" data-ec2-drawer-max>最大</button>';
+    const heading = drawer.querySelector('.dialog-heading');
+    heading?.after(controls);
+    const slider = controls.querySelector('[data-ec2-drawer-width]');
+    slider.addEventListener('input', () => setDrawerWidth(Number(slider.value)));
+    controls.querySelector('[data-ec2-drawer-default]').addEventListener('click', () => setDrawerWidth(510));
+    controls.querySelector('[data-ec2-drawer-max]').addEventListener('click', () => setDrawerWidth(drawerBounds().max));
+    setDrawerWidth(parseFloat(drawer.style.width) || Math.min(1200, drawerBounds().max));
+  }
 }
 
 function resetDrawerWidth() {
   drawer.classList.remove('ec2-wide');
   drawer.style.width = '';
   drawer.querySelector('.ec2-drawer-resizer')?.remove();
+  drawer.querySelector('.ec2-drawer-width-controls')?.remove();
 }
 
 function tableHtml(rows, selected, filters, sortKey, sortDirection) {
@@ -88,4 +121,5 @@ function scan() {
 }
 new MutationObserver(scan).observe(document.getElementById('drawer-content'), { childList: true, subtree: true });
 drawer.addEventListener('close', resetDrawerWidth);
+window.addEventListener('resize', () => { if (drawer.classList.contains('ec2-wide') && window.innerWidth > 800) setDrawerWidth(parseFloat(drawer.style.width) || 1200); });
 scan();
