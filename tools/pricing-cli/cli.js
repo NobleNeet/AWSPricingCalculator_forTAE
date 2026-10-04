@@ -14,6 +14,7 @@ import { validatePriceData } from './semantics.js';
 import { validatePublishedPriceDataParallel } from './semantic-parallel.js';
 import { runGolden } from './golden.js';
 import { classifyChange } from './drift.js';
+import { classifyChangeParallel } from './drift-parallel.js';
 import { buildPriceDb } from './build.js';
 import { schemaValidator } from '../schema.js';
 import { definitionFingerprint } from './fingerprint.js';
@@ -170,7 +171,8 @@ export async function run(command, options = {}) {
     }
     if (command === 'run-golden') { const checked = await goldenValidation(packages, candidate, options.raw); result = report(command, checked.issues, { cases: checked.cases }); }
     if (command === 'classify-change') {
-      const previous = await loadCandidate(await candidateDirectory(options.previous));
+      const previousDir = await candidateDirectory(options.previous);
+      const previous = await loadCandidate(previousDir);
       const checked = await getSemantic();
       const skus = checked.publishSkus ?? {};
       if (!checked.publishSkus) {
@@ -179,9 +181,20 @@ export async function run(command, options = {}) {
           if (sku) (skus[sample.sourceKey] ??= new Set()).add(sku);
         }
       }
-      const mappedData = Object.fromEntries(Object.entries(candidate.data).map(([key, data]) => [key, { ...data, products: data.products.filter(product => skus[key]?.has(product.sku)) }]));
-      const change = classifyChange(packages, previous.data, mappedData, checked.issues);
-      result = report(command, change.issues, { classification: change.classification, publishable: change.publishable, rateDiff: change.rateDiff });
+      let change;
+      if (options.services) {
+        const mappedData = Object.fromEntries(Object.entries(candidate.data).map(([key, data]) => [key, { ...data, products: data.products.filter(product => skus[key]?.has(product.sku)) }]));
+        change = classifyChange(packages, previous.data, mappedData, checked.issues);
+      } else {
+        change = await classifyChangeParallel(packages, previousDir, candidateDir, previous.data, candidate.data, skus, checked.issues);
+      }
+      result = report(command, change.issues, {
+        classification: change.classification,
+        publishable: change.publishable,
+        rateDiff: change.rateDiff,
+        workers: change.concurrency,
+        taskTimings: change.taskTimings
+      });
     }
     if (command === 'build') {
       const definitionIssues = await validateDefinitions(packages);
