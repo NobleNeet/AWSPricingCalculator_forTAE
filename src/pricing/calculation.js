@@ -2,6 +2,11 @@ import { decimal } from './decimal.js';
 import { resolveValue } from './filter.js';
 import { fail } from './issues.js';
 
+function canonicalUnit(unit) {
+  if (unit === 'Requests') return 'Request';
+  return unit;
+}
+
 export function calculate(calculation, context, dimension) {
   if (calculation.model !== 'unit' || calculation.usage.combine !== 'multiply' || !calculation.usage.sources.length) fail('INVALID_CALCULATION', 'Unsupported calculation model or usage.');
   let rawUsage = decimal('1');
@@ -47,7 +52,7 @@ export function calculate(calculation, context, dimension) {
     }
   }
   if (convertedUnit && convertedUnit !== calculation.outputUnit) fail('UNIT_MISMATCH', 'Final conversion unit differs from outputUnit.');
-  if (calculation.outputUnit !== dimension.unit) fail('UNIT_MISMATCH', `Expected ${calculation.outputUnit}, received ${dimension.unit}.`);
+  if (canonicalUnit(calculation.outputUnit) !== canonicalUnit(dimension.unit)) fail('UNIT_MISMATCH', `Expected ${calculation.outputUnit}, received ${dimension.unit}.`);
   const price = decimal(dimension.pricePerUnit.USD);
   return { rawUsage: rawUsage.toString(), billingQuantity: quantity.toString(), billingUnit: dimension.unit, unitPriceUsd: price.toString(), amountUsd: quantity.times(price).toString(), issues: [] };
 }
