@@ -38,17 +38,31 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      - name: Check published Price DB matches Definitions
+        id: readiness
+        run: node tools/pages-readiness.js
+
+      - name: Explain deferred deployment
+        if: steps.readiness.outputs.ready != 'true'
+        run: echo 'Pages deployment deferred; Scheduled Price Update will deploy after publishing a matching validated Price DB.'
+
       - run: npm run validate
+        if: steps.readiness.outputs.ready == 'true'
       - run: npm run build:site
+        if: steps.readiness.outputs.ready == 'true'
 
       - name: Setup Pages
+        if: steps.readiness.outputs.ready == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload static production estimator
+        if: steps.readiness.outputs.ready == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.work/site
 
       - name: Deploy to GitHub Pages
+        if: steps.readiness.outputs.ready == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
