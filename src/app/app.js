@@ -143,19 +143,15 @@ $('workspace').addEventListener('click', async event => {
 });
 $('catalog-search').addEventListener('input', renderCatalog); $('catalog-filter').addEventListener('change', renderCatalog);
 $('catalog-list').addEventListener('click', async event => {
-  const button = event.target.closest('[data-service]'); if (!button || !target) return;
-  const selectedTarget = target, selectedProject = state, serviceId = button.dataset.service;
+  const button = event.target.closest('[data-service]'); if (!button) return;
+  const selectedTarget = target, selectedProject = state;
   button.disabled = true;
-  // The user already committed to this selection. Close the catalog immediately so
-  // asynchronous Definition loading cannot be invalidated by dialog open/close timing.
-  $('catalog-modal').close();
   try {
-    const pkg = await definitions.package(serviceId), instance = createInstance(pkg);
-    if (state !== selectedProject || !state.plans[selectedTarget.planId]) return;
-    placeService(state, selectedTarget.planId, instance, selectedTarget.rowId); save();
-    editing = instance.id; $('service-drawer').showModal();
+    const pkg = await definitions.package(button.dataset.service), instance = createInstance(pkg);
+    if (target !== selectedTarget || state !== selectedProject || !$('catalog-modal').open) return;
+    placeService(state, selectedTarget.planId, instance, selectedTarget.rowId); save(); $('catalog-modal').close(); editing = instance.id; $('service-drawer').showModal();
     await evaluate(instance.id); await renderDrawer();
-  } catch (error) { message(error.message); }
+  } catch (error) { message(error.message); button.disabled = false; }
 });
 $('catalog-modal').addEventListener('close', () => { target = null; });
 $('service-drawer').addEventListener('close', () => { editing = null; });
