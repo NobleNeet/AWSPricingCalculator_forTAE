@@ -51,6 +51,7 @@ test('Lambda drawer follows calculator inputs and keeps Advanced open while auto
   await page.locator('[data-service="lambda"]').click();
   await expect(page.locator('#service-drawer')).toBeVisible();
 
+  const visibleMeter = label => page.locator('#drawer-content fieldset:not([hidden]) > legend').filter({ hasText: label });
   const architecture = page.locator('#input-profile--architecture');
   await expect(architecture.locator('option:checked')).toHaveText('x86');
   await expect(page.getByText('Componentを有効にする')).toHaveCount(0);
@@ -63,7 +64,7 @@ test('Lambda drawer follows calculator inputs and keeps Advanced open while auto
   await storage.fill('1024');
   await storage.press('Tab');
   await expect(advanced).toHaveAttribute('open', '');
-  await expect(page.getByText('On-demand ephemeral storage', { exact: true })).toHaveCount(1);
+  await expect(visibleMeter('On-demand ephemeral storage')).toHaveCount(1);
   await expect(page.locator('#input-profile--snapStartMode')).toBeDisabled();
 
   await storage.fill('512');
@@ -77,9 +78,9 @@ test('Lambda drawer follows calculator inputs and keeps Advanced open while auto
   await page.locator('#input-profile--provisionedHoursPerMonth').press('Tab');
   await page.locator('#input-profile--provisionedRequestsPerMonth').fill('1000');
   await page.locator('#input-profile--provisionedRequestsPerMonth').press('Tab');
-  await expect(page.getByText('Provisioned concurrency capacity', { exact: true })).toHaveCount(1);
-  await expect(page.getByText('Provisioned concurrency compute duration', { exact: true })).toHaveCount(1);
-  await expect(page.getByText('Provisioned concurrency requests', { exact: true })).toHaveCount(1);
+  await expect(visibleMeter('Provisioned concurrency capacity')).toHaveCount(1);
+  await expect(visibleMeter('Provisioned concurrency compute duration')).toHaveCount(1);
+  await expect(visibleMeter('Provisioned concurrency requests')).toHaveCount(1);
 
   const streamingRequests = page.locator('#input-profile--streamingRequestsPerMonth');
   await streamingRequests.fill('1000');
@@ -87,7 +88,7 @@ test('Lambda drawer follows calculator inputs and keeps Advanced open while auto
   await page.locator('#input-profile--averageStreamedResponseMb').fill('7');
   await page.locator('#input-profile--averageStreamedResponseMb').press('Tab');
   await expect(advanced).toHaveAttribute('open', '');
-  await expect(page.getByText('HTTP response streaming', { exact: true })).toHaveCount(1);
+  await expect(visibleMeter('HTTP response streaming')).toHaveCount(1);
 
   await concurrency.fill('0');
   await concurrency.press('Tab');
@@ -98,8 +99,8 @@ test('Lambda drawer follows calculator inputs and keeps Advanced open while auto
   await expect(page.locator('#input-profile--snapStartCachedVersionHours')).toBeEnabled();
   await page.locator('#input-profile--snapStartRestoresPerMonth').fill('10');
   await page.locator('#input-profile--snapStartRestoresPerMonth').press('Tab');
-  await expect(page.getByText('SnapStart snapshot cache', { exact: true })).toHaveCount(1);
-  await expect(page.getByText('SnapStart restores', { exact: true })).toHaveCount(1);
+  await expect(visibleMeter('SnapStart snapshot cache')).toHaveCount(1);
+  await expect(visibleMeter('SnapStart restores')).toHaveCount(1);
 });
 
 test('mobile Drawer stays usable at narrow viewport', async ({ page }) => {
