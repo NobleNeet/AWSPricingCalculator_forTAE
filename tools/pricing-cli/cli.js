@@ -78,7 +78,7 @@ async function semanticValidationParallel(packages, candidate, directory) {
   if (!semanticCache.has(cacheKey)) {
     const pending = (async () => {
       const checked = await validatePublishedPriceDataParallel(packages, directory, candidateManifest(candidate));
-      return appendSchemaIssues(candidate, checked);
+      return checked.shardIndex === 0 ? appendSchemaIssues(candidate, checked) : checked;
     })();
     semanticCache.set(cacheKey, pending);
   }
@@ -166,7 +166,10 @@ export async function run(command, options = {}) {
         coverage: checked.coverage,
         branches: checked.branches ?? checked.resolutions.length,
         workers: checked.concurrency,
-        taskTimings: checked.taskTimings
+        taskTimings: checked.taskTimings,
+        shardIndex: checked.shardIndex ?? 0,
+        shardCount: checked.shardCount ?? 1,
+        publishSkus: Object.fromEntries(Object.entries(checked.publishSkus ?? {}).map(([key, values]) => [key, [...values].sort()]))
       });
     }
     if (command === 'run-golden') { const checked = await goldenValidation(packages, candidate, options.raw); result = report(command, checked.issues, { cases: checked.cases }); }
