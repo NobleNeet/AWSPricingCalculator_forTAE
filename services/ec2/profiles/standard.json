@@ -31,38 +31,7 @@
       }
     }
   ],
-  "fixedFilters": [
-    {
-      "field": "productFamily",
-      "op": "eq",
-      "value": "Compute Instance"
-    },
-    {
-      "field": "attributes.tenancy",
-      "op": "eq",
-      "valueFrom": "profile.tenancy"
-    },
-    {
-      "field": "attributes.capacitystatus",
-      "op": "eq",
-      "value": "Used"
-    },
-    {
-      "field": "attributes.preInstalledSw",
-      "op": "eq",
-      "value": "NA"
-    },
-    {
-      "field": "attributes.marketoption",
-      "op": "eq",
-      "value": "OnDemand"
-    },
-    {
-      "field": "attributes.licenseModel",
-      "op": "eq",
-      "value": "No License required"
-    }
-  ],
+  "fixedFilters": [],
   "components": [
     "instance",
     "ebs",
