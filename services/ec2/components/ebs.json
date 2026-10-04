@@ -11,14 +11,12 @@
       "type": "select",
       "default": "gp3",
       "options": {
-        "attribute": "volumeApiName",
-        "filters": [
-          {
-            "field": "productFamily",
-            "op": "eq",
-            "value": "Storage"
-          }
+        "values": [
+          "gp3"
         ]
+      },
+      "ui": {
+        "help": "EC2組み込みEBSでは、まず全リージョンで検証済みのgp3を扱います。他のEBSタイプは価格ディメンションと追加IOPS/throughput料金を含めて個別に検証してから追加します。"
       }
     }
   ],
@@ -34,16 +32,15 @@
       }
     }
   ],
-  "fixedFilters": [
-    {
-      "field": "productFamily",
-      "op": "eq",
-      "value": "Storage"
-    }
-  ],
+  "fixedFilters": [],
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Storage"
+      },
       {
         "field": "attributes.volumeApiName",
         "op": "eq",
