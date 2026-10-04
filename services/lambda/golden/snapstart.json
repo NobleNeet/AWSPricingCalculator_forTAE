@@ -2,16 +2,13 @@
   "schemaVersion": 1,
   "id": "snapstart",
   "profileId": "standard",
-  "project": {
-    "region": "ap-northeast-1",
-    "hoursPerMonth": "730"
-  },
+  "project": { "region": "ap-northeast-1", "hoursPerMonth": "730" },
   "selectors": {
     "architecture": "AWS-Lambda-Duration",
     "requestsPerMonth": "1000",
     "averageDurationMs": "100",
     "memoryMb": "1024",
-    "additionalStorageMb": "0",
+    "ephemeralStorageMb": "512",
     "provisionedConcurrency": "0",
     "provisionedHoursPerMonth": "0",
     "provisionedRequestsPerMonth": "0",
@@ -32,75 +29,15 @@
     "snapstart-restore": { "enabled": true, "inputs": {} }
   },
   "expected": {
-    "requests": {
-      "attributes": {
-        "group": "AWS-Lambda-Requests",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-Request",
-        "operation": ""
-      },
-      "unit": "Request",
-      "quantity": "1000",
-      "limitations": ["free-tier", "account-specific-discount"]
-    },
-    "duration": {
-      "attributes": {
-        "group": "AWS-Lambda-Duration",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-Lambda-GB-Second",
-        "operation": ""
-      },
-      "unit": "Lambda-GB-Second",
-      "quantity": "100",
-      "limitations": ["free-tier", "account-specific-discount", "aggregate-billing", "network-transfer", "organization-usage-aggregation", "tier-pricing"]
-    },
-    "snapstart-cache": {
-      "attributes": {
-        "group": "AWS-Lambda-SnapStart-Cache",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-Lambda-SnapStart-Cached-GB-S",
-        "operation": ""
-      },
-      "unit": "GB-Seconds",
-      "quantity": "10800",
-      "limitations": ["account-specific-discount"]
-    },
-    "snapstart-restore": {
-      "attributes": {
-        "group": "AWS-Lambda-SnapStart-Restore",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-Lambda-SnapStart-Restored-GB",
-        "operation": ""
-      },
-      "unit": "GB",
-      "quantity": "10",
-      "limitations": ["account-specific-discount"]
-    }
+    "requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "unit": "Request", "quantity": "1000", "limitations": ["free-tier", "account-specific-discount"] },
+    "duration": { "attributes": { "group": "AWS-Lambda-Duration", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-GB-Second", "operation": "" }, "unit": "Lambda-GB-Second", "quantity": "100", "limitations": ["free-tier", "account-specific-discount", "aggregate-billing", "network-transfer", "organization-usage-aggregation", "tier-pricing"] },
+    "snapstart-cache": { "attributes": { "group": "AWS-Lambda-SnapStart-Cache", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-SnapStart-Cached-GB-S", "operation": "" }, "unit": "GB-Seconds", "quantity": "10800", "limitations": ["account-specific-discount"] },
+    "snapstart-restore": { "attributes": { "group": "AWS-Lambda-SnapStart-Restore", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-SnapStart-Restored-GB", "operation": "" }, "unit": "GB", "quantity": "10", "limitations": ["account-specific-discount"] }
   },
   "verification": {
-    "requests": {
-      "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" },
-      "productFamily": "Serverless",
-      "unit": "Request",
-      "quantity": "1000"
-    },
-    "duration": {
-      "attributes": { "group": "AWS-Lambda-Duration", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-GB-Second", "operation": "" },
-      "productFamily": "Serverless",
-      "unit": "Lambda-GB-Second",
-      "quantity": "100"
-    },
-    "snapstart-cache": {
-      "attributes": { "group": "AWS-Lambda-SnapStart-Cache", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-SnapStart-Cached-GB-S", "operation": "" },
-      "productFamily": "Serverless",
-      "unit": "GB-Seconds",
-      "quantity": "10800"
-    },
-    "snapstart-restore": {
-      "attributes": { "group": "AWS-Lambda-SnapStart-Restore", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-SnapStart-Restored-GB", "operation": "" },
-      "productFamily": "Serverless",
-      "unit": "GB",
-      "quantity": "10"
-    }
+    "requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "productFamily": "Serverless", "unit": "Request", "quantity": "1000" },
+    "duration": { "attributes": { "group": "AWS-Lambda-Duration", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-GB-Second", "operation": "" }, "productFamily": "Serverless", "unit": "Lambda-GB-Second", "quantity": "100" },
+    "snapstart-cache": { "attributes": { "group": "AWS-Lambda-SnapStart-Cache", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-SnapStart-Cached-GB-S", "operation": "" }, "productFamily": "Serverless", "unit": "GB-Seconds", "quantity": "10800" },
+    "snapstart-restore": { "attributes": { "group": "AWS-Lambda-SnapStart-Restore", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-SnapStart-Restored-GB", "operation": "" }, "productFamily": "Serverless", "unit": "GB", "quantity": "10" }
   }
 }
