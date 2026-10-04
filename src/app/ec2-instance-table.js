@@ -3,6 +3,17 @@ import { EC2_INSTANCE_COLUMNS as COLUMNS, instanceRows, filterRows } from './ec2
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const drawer = document.getElementById('service-drawer');
+const drawerTitle = document.getElementById('drawer-title');
+
+function isEc2Drawer() {
+  return drawerTitle?.textContent?.trim() === 'Amazon EC2';
+}
+
+function currentRegion() {
+  const drawerRegion = document.getElementById('drawer-region')?.value;
+  if (drawerRegion && drawerRegion !== 'inherit') return drawerRegion;
+  return document.getElementById('project-region')?.value || 'ap-northeast-1';
+}
 
 function drawerBounds() {
   return { min: Math.min(510, window.innerWidth), max: Math.max(Math.min(window.innerWidth * 0.96, window.innerWidth), Math.min(510, window.innerWidth)) };
@@ -86,7 +97,7 @@ function tableHtml(rows, selected, filters, sortKey, sortDirection) {
 }
 
 async function enhance(select) {
-  if (select.dataset.ec2Enhanced === 'true') return;
+  if (!isEc2Drawer() || select.dataset.ec2Enhanced === 'true') return;
   select.dataset.ec2Enhanced = 'true';
   ensureResizableDrawer();
   const label = select.closest('label'); if (!label) return;
@@ -94,8 +105,9 @@ async function enhance(select) {
   label.after(picker); select.classList.add('ec2-original-select');
   try {
     const os = document.querySelector('[data-scope="profile"][data-field="os"]')?.value ?? 'Linux';
-    const data = await prices.products('AmazonEC2', 'ap-northeast-1');
-    if (!picker.isConnected) return;
+    const region = currentRegion();
+    const data = await prices.products('AmazonEC2', region);
+    if (!picker.isConnected || !isEc2Drawer()) return;
     const rows = instanceRows(data.products, os), filters = Object.fromEntries(COLUMNS.map(([key]) => [key, '']));
     let sortKey = 'instanceType', sortDirection = 'asc';
     const render = () => {
@@ -115,6 +127,10 @@ async function enhance(select) {
 }
 
 function scan() {
+  if (!isEc2Drawer()) {
+    resetDrawerWidth();
+    return;
+  }
   const select = document.querySelector('#input-component-instance-instanceType');
   if (select) enhance(select);
   else resetDrawerWidth();
