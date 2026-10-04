@@ -13,14 +13,17 @@ export async function buildPriceDb(candidate, directory, buildId, validation) {
   const publicationDate = Object.values(candidate.metadata.sources).map(s => s.publicationDate).sort().at(-1);
   const manifest = { schemaVersion: 1, buildId, generatedAt, publicationDate, currency: 'USD', sources: {} };
   if (validation.definitionSha256) manifest.definitionSha256 = validation.definitionSha256;
-  // Precompute every resource before placing the immutable build.
   const resources = [];
-  for (const [code, original] of Object.entries(candidate.data).sort()) {
-    const data = { ...original, buildId, products: validation.publishSkus?.[code] ? original.products.filter(p => validation.publishSkus[code].has(p.sku)) : original.products };
-    const index = buildIndex(data.products, buildId, code, data.region);
-    const productsPath = `sources/${code}/${data.region}/products.json`, indexPath = `indexes/${code}/${data.region}/index.json`;
+  for (const [key, original] of Object.entries(candidate.data).sort(([a], [b]) => a.localeCompare(b))) {
+    const code = original.serviceCode, region = original.region;
+    const published = validation.publishSkus?.[key];
+    const data = { ...original, buildId, products: published ? original.products.filter(p => published.has(p.sku)) : original.products };
+    const index = buildIndex(data.products, buildId, code, region);
+    const productsPath = `sources/${code}/${region}/products.json`, indexPath = `indexes/${code}/${region}/index.json`;
     const productsText = encode(data), indexText = encode(index);
-    manifest.sources[code] = { [data.region]: { ...candidate.metadata.sources[code], changed: undefined, productsPath, indexPath, productsSha256: checksum(productsText), indexSha256: checksum(indexText), productsBytes: Buffer.byteLength(productsText), indexBytes: Buffer.byteLength(indexText) } };
+    const metadata = candidate.metadata.sources[key];
+    if (!metadata) throw Error(`Source metadata missing for ${key}`);
+    (manifest.sources[code] ??= {})[region] = { ...metadata, changed: undefined, productsPath, indexPath, productsSha256: checksum(productsText), indexSha256: checksum(indexText), productsBytes: Buffer.byteLength(productsText), indexBytes: Buffer.byteLength(indexText) };
     resources.push([productsPath, productsText], [indexPath, indexText]);
   }
   for (const [relative, text] of resources) { const file = path.join(root, relative); await mkdir(path.dirname(file), { recursive: true }); await writeFile(file, text, { flag: 'wx' }); }
