@@ -1,5 +1,15 @@
 name: Scheduled Price Update
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'services/**'
+      - 'pricing/normalization/**'
+      - 'pricing/limitations.json'
+      - 'pricing/sources.json'
+      - 'tools/pricing-cli/**'
+      - 'tools/price-update.js'
+      - '.github/workflows/price-update.yml'
   schedule:
     - cron: '23 2 * * *'
   workflow_dispatch:
