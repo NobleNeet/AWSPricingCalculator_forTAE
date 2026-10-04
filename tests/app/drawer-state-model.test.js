@@ -4,6 +4,7 @@ import { fillDefinitionDefaults, detailStateKey } from '../../src/app/drawer-sta
 
 test('fillDefinitionDefaults hydrates newly added profile and component defaults without overwriting saved values', () => {
   const pkg = {
+    service: { id: 'example' },
     profiles: {
       standard: {
         selectors: [
@@ -41,6 +42,29 @@ test('fillDefinitionDefaults hydrates newly added profile and component defaults
   });
   assert.equal(instance.components.streaming.inputs.responseMb, '12');
   assert.deepEqual(instance.components.snapstart, { enabled: false, inputs: {} });
+  assert.equal(fillDefinitionDefaults(pkg, instance), false);
+});
+
+test('fillDefinitionDefaults migrates legacy Lambda additional storage to total ephemeral storage', () => {
+  const pkg = {
+    service: { id: 'lambda' },
+    profiles: {
+      standard: {
+        selectors: [{ id: 'ephemeralStorageMb', default: '512' }],
+        components: []
+      }
+    },
+    components: {}
+  };
+  const instance = {
+    profileId: 'standard',
+    selectors: { additionalStorageMb: '512' },
+    components: {}
+  };
+
+  assert.equal(fillDefinitionDefaults(pkg, instance), true);
+  assert.equal(instance.selectors.ephemeralStorageMb, '1024');
+  assert.equal(Object.prototype.hasOwnProperty.call(instance.selectors, 'additionalStorageMb'), false);
   assert.equal(fillDefinitionDefaults(pkg, instance), false);
 });
 
