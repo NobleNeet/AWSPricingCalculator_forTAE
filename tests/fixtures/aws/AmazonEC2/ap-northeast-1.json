@@ -1,0 +1,296 @@
+{
+  "offerCode": "AmazonEC2",
+  "products": {
+    "2KRSTFABXH77P2FQ": {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxIopsBurstPerformance": "3000 for volumes <= 1 TiB",
+        "maxIopsvolume": "16000",
+        "maxThroughputvolume": "250 MiB/s",
+        "maxVolumeSize": "16 TiB",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "storageMedia": "SSD-backed",
+        "usagetype": "APN1-EBS:VolumeUsage.gp2",
+        "volumeApiName": "gp2",
+        "volumeType": "General Purpose"
+      },
+      "productFamily": "Storage",
+      "sku": "2KRSTFABXH77P2FQ"
+    },
+    "7TFGMV47Q2PEQ9W7": {
+      "attributes": {
+        "group": "EBS IOPS",
+        "groupDescription": "IOPS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "provisioned": "Yes",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "usagetype": "APN1-EBS:VolumeP-IOPS.gp3",
+        "volumeApiName": "gp3"
+      },
+      "productFamily": "System Operation",
+      "sku": "7TFGMV47Q2PEQ9W7"
+    },
+    "C8Y3GJZBQTH8T5JV": {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxIopsvolume": "80000",
+        "maxThroughputvolume": "2000 MiB/s",
+        "maxVolumeSize": "64 TiB",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "storageMedia": "SSD-backed",
+        "usagetype": "APN1-EBS:VolumeUsage.gp3",
+        "volumeApiName": "gp3",
+        "volumeType": "General Purpose"
+      },
+      "productFamily": "Storage",
+      "sku": "C8Y3GJZBQTH8T5JV"
+    },
+    "DAPC5MD4ZQN9K67N": {
+      "attributes": {
+        "availabilityzone": "NA",
+        "capacitystatus": "Used",
+        "classicnetworkingsupport": "false",
+        "clockSpeed": "3.1 GHz",
+        "currentGeneration": "Yes",
+        "dedicatedEbsThroughput": "Up to 2085 Mbps",
+        "dedicatedEbsThroughputDescription": "87 Mbps",
+        "ecu": "NA",
+        "enhancedNetworkingSupported": "No",
+        "gpuMemory": "NA",
+        "instanceFamily": "General purpose",
+        "instanceFamilyCategory": "General Purpose",
+        "instanceType": "t3.micro",
+        "intelAvx2Available": "Yes",
+        "intelAvxAvailable": "Yes",
+        "intelTurboAvailable": "Yes",
+        "licenseModel": "No License required",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "marketoption": "OnDemand",
+        "memory": "1 GiB",
+        "networkPerformance": "Up to 5 Gigabit",
+        "normalizationSizeFactor": "0.5",
+        "operatingSystem": "Linux",
+        "operation": "RunInstances",
+        "physicalProcessor": "Intel Skylake E5 2686 v5",
+        "preInstalledSw": "NA",
+        "processorArchitecture": "64-bit",
+        "processorFeatures": "AVX; AVX2; Intel AVX; Intel AVX2; Intel AVX512; Intel Turbo",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "storage": "EBS only",
+        "tenancy": "Shared",
+        "usagetype": "APN1-BoxUsage:t3.micro",
+        "vcpu": "2",
+        "vpcnetworkingsupport": "true"
+      },
+      "productFamily": "Compute Instance",
+      "sku": "DAPC5MD4ZQN9K67N"
+    },
+    "PCKHHBTPD7TEQ3K4": {
+      "attributes": {
+        "group": "EBS Throughput",
+        "groupDescription": "Charge per Provisioned mbps",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "provisioned": "Yes",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "usagetype": "APN1-EBS:VolumeP-Throughput.gp3",
+        "volumeApiName": "gp3"
+      },
+      "productFamily": "Provisioned Throughput",
+      "sku": "PCKHHBTPD7TEQ3K4"
+    },
+    "XPV6RFWY6M7R7MEF": {
+      "attributes": {
+        "availabilityzone": "NA",
+        "capacitystatus": "Used",
+        "classicnetworkingsupport": "false",
+        "clockSpeed": "3.2 GHz",
+        "currentGeneration": "Yes",
+        "dedicatedEbsThroughput": "Up to 10000 Mbps",
+        "dedicatedEbsThroughputDescription": "650 Mbps",
+        "ecu": "NA",
+        "enhancedNetworkingSupported": "Yes",
+        "gpuMemory": "NA",
+        "instanceFamily": "General purpose",
+        "instanceFamilyCategory": "General Purpose",
+        "instanceType": "m7i.large",
+        "intelAvx2Available": "Yes",
+        "intelAvxAvailable": "Yes",
+        "intelTurboAvailable": "Yes",
+        "licenseModel": "No License required",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "marketoption": "OnDemand",
+        "memory": "8 GiB",
+        "networkPerformance": "Up to 12500 Megabit",
+        "normalizationSizeFactor": "4",
+        "operatingSystem": "Windows",
+        "operation": "RunInstances:0002",
+        "physicalProcessor": "Intel Xeon Scalable (Sapphire Rapids)",
+        "preInstalledSw": "NA",
+        "processorArchitecture": "64-bit",
+        "processorFeatures": "Intel AVX; Intel AVX2; Intel AVX512; Intel Turbo; Intel AMX",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "storage": "EBS only",
+        "tenancy": "Shared",
+        "usagetype": "APN1-BoxUsage:m7i.large",
+        "vcpu": "2",
+        "vpcnetworkingsupport": "true"
+      },
+      "productFamily": "Compute Instance",
+      "sku": "XPV6RFWY6M7R7MEF"
+    }
+  },
+  "publicationDate": "2026-09-25T17:45:21Z",
+  "terms": {
+    "OnDemand": {
+      "2KRSTFABXH77P2FQ": {
+        "2KRSTFABXH77P2FQ.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "2KRSTFABXH77P2FQ.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.12 per GB-month of General Purpose SSD (gp2) provisioned storage - Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.1200000000"
+              },
+              "rateCode": "2KRSTFABXH77P2FQ.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "2KRSTFABXH77P2FQ",
+          "termAttributes": {}
+        }
+      },
+      "7TFGMV47Q2PEQ9W7": {
+        "7TFGMV47Q2PEQ9W7.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "7TFGMV47Q2PEQ9W7.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.006 per provisioned IOPS-month of gp3 - Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0060000000"
+              },
+              "rateCode": "7TFGMV47Q2PEQ9W7.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "IOPS-Mo"
+            }
+          },
+          "sku": "7TFGMV47Q2PEQ9W7",
+          "termAttributes": {}
+        }
+      },
+      "C8Y3GJZBQTH8T5JV": {
+        "C8Y3GJZBQTH8T5JV.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "C8Y3GJZBQTH8T5JV.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.096 per GB-month of General Purpose (gp3) provisioned storage - Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0960000000"
+              },
+              "rateCode": "C8Y3GJZBQTH8T5JV.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "C8Y3GJZBQTH8T5JV",
+          "termAttributes": {}
+        }
+      },
+      "DAPC5MD4ZQN9K67N": {
+        "DAPC5MD4ZQN9K67N.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "DAPC5MD4ZQN9K67N.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0136 per On Demand Linux t3.micro Instance Hour",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0136000000"
+              },
+              "rateCode": "DAPC5MD4ZQN9K67N.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "DAPC5MD4ZQN9K67N",
+          "termAttributes": {}
+        }
+      },
+      "PCKHHBTPD7TEQ3K4": {
+        "PCKHHBTPD7TEQ3K4.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "PCKHHBTPD7TEQ3K4.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.048 per provisioned MiBps-month of gp3 - Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "49.1520000000"
+              },
+              "rateCode": "PCKHHBTPD7TEQ3K4.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GiBps-mo"
+            }
+          },
+          "sku": "PCKHHBTPD7TEQ3K4",
+          "termAttributes": {}
+        }
+      },
+      "XPV6RFWY6M7R7MEF": {
+        "XPV6RFWY6M7R7MEF.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "XPV6RFWY6M7R7MEF.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.2222 per On Demand Windows m7i.large Instance Hour",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2222000000"
+              },
+              "rateCode": "XPV6RFWY6M7R7MEF.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "XPV6RFWY6M7R7MEF",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260925174521"
+}

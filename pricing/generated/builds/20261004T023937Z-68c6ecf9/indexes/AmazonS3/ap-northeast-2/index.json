@@ -1,0 +1,51 @@
+{
+  "attributes": {
+    "availability": [
+      "99.99%"
+    ],
+    "durability": [
+      "99.999999999%"
+    ],
+    "group": [
+      "S3-API-Tier1",
+      "S3-API-Tier2"
+    ],
+    "groupDescription": [
+      "GET and all other requests",
+      "PUT/COPY/POST or LIST requests"
+    ],
+    "location": [
+      "Asia Pacific (Seoul)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "ap-northeast-2"
+    ],
+    "servicecode": [
+      "AmazonS3"
+    ],
+    "servicename": [
+      "Amazon Simple Storage Service"
+    ],
+    "storageClass": [
+      "General Purpose"
+    ],
+    "usagetype": [
+      "APN2-Requests-Tier1",
+      "APN2-Requests-Tier2",
+      "APN2-TimedStorage-ByteHrs"
+    ],
+    "volumeType": [
+      "Standard"
+    ]
+  },
+  "buildId": "20261004T023937Z-68c6ecf9",
+  "region": "ap-northeast-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonS3"
+}

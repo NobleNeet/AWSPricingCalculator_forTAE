@@ -1,0 +1,41 @@
+{
+  "attributes": {
+    "group": [
+      "AWS-Lambda-Duration",
+      "AWS-Lambda-Duration-ARM",
+      "AWS-Lambda-Requests"
+    ],
+    "groupDescription": [
+      "Invocation call for a Lambda function",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM"
+    ],
+    "location": [
+      "EU (Stockholm)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "eu-north-1"
+    ],
+    "servicecode": [
+      "AWSLambda"
+    ],
+    "servicename": [
+      "AWS Lambda"
+    ],
+    "usagetype": [
+      "EUN1-Lambda-GB-Second",
+      "EUN1-Lambda-GB-Second-ARM",
+      "EUN1-Request"
+    ]
+  },
+  "buildId": "20261004T023937Z-68c6ecf9",
+  "region": "eu-north-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}

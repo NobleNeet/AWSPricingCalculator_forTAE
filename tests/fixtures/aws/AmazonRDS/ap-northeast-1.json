@@ -1,0 +1,193 @@
+{
+  "offerCode": "AmazonRDS",
+  "products": {
+    "QSZ96MWJHP7X7JWV": {
+      "attributes": {
+        "currentGeneration": "Yes",
+        "databaseEngine": "PostgreSQL",
+        "deploymentOption": "Multi-AZ",
+        "engineCode": "14",
+        "instanceFamily": "General purpose",
+        "instanceType": "db.t3.micro",
+        "instanceTypeFamily": "T3",
+        "licenseModel": "No license required",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "1 GiB",
+        "networkPerformance": "Low to Moderate",
+        "normalizationSizeFactor": "1",
+        "operation": "CreateDBInstance:0014",
+        "physicalProcessor": "Intel Skylake E5 2686 v5 (2.5 GHz)",
+        "processorArchitecture": "64-bit",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "EBS Only",
+        "unbundledLicensing": "FALSE",
+        "usagetype": "APN1-Multi-AZUsage:db.t3.micro",
+        "vcpu": "2"
+      },
+      "productFamily": "Database Instance",
+      "sku": "QSZ96MWJHP7X7JWV"
+    },
+    "V3SXBAA72P93JFMB": {
+      "attributes": {
+        "databaseEngine": "PostgreSQL",
+        "deploymentOption": "Multi-AZ",
+        "engineCode": "14",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxVolumeSize": "16 TB",
+        "minVolumeSize": "5 GB",
+        "operation": "CreateDBInstance:0014",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "SSD",
+        "usagetype": "APN1-RDS:Multi-AZ-GP3-Storage",
+        "volumeType": "General Purpose-GP3"
+      },
+      "productFamily": "Database Storage",
+      "sku": "V3SXBAA72P93JFMB"
+    },
+    "YM9AR73XYRPUSCN3": {
+      "attributes": {
+        "databaseEngine": "PostgreSQL",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "14",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxVolumeSize": "16 TB",
+        "minVolumeSize": "5 GB",
+        "operation": "CreateDBInstance:0014",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "SSD",
+        "usagetype": "APN1-RDS:GP3-Storage",
+        "volumeType": "General Purpose-GP3"
+      },
+      "productFamily": "Database Storage",
+      "sku": "YM9AR73XYRPUSCN3"
+    },
+    "YXENKSJFV9BXQF4N": {
+      "attributes": {
+        "currentGeneration": "Yes",
+        "databaseEngine": "PostgreSQL",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "14",
+        "instanceFamily": "General purpose",
+        "instanceType": "db.t4g.micro",
+        "instanceTypeFamily": "T4G",
+        "licenseModel": "No license required",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "1 GiB",
+        "networkPerformance": "Up to 5 Gigabit",
+        "normalizationSizeFactor": "0.5",
+        "operation": "CreateDBInstance:0014",
+        "physicalProcessor": "AWS Graviton2",
+        "processorArchitecture": "64-bit",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "EBS Only",
+        "unbundledLicensing": "FALSE",
+        "usagetype": "APN1-InstanceUsage:db.t4g.micro",
+        "vcpu": "2"
+      },
+      "productFamily": "Database Instance",
+      "sku": "YXENKSJFV9BXQF4N"
+    }
+  },
+  "publicationDate": "2026-10-01T06:02:30Z",
+  "terms": {
+    "OnDemand": {
+      "QSZ96MWJHP7X7JWV": {
+        "QSZ96MWJHP7X7JWV.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "QSZ96MWJHP7X7JWV.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.056 per db.t3.micro Multi-AZ instance hour (or partial hour) running PostgreSQL",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0560000000"
+              },
+              "rateCode": "QSZ96MWJHP7X7JWV.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "QSZ96MWJHP7X7JWV",
+          "termAttributes": {}
+        }
+      },
+      "V3SXBAA72P93JFMB": {
+        "V3SXBAA72P93JFMB.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "V3SXBAA72P93JFMB.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.276 per GB-month of provisioned GP3 storage for Multi-AZ deployments running PostgreSQL",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2760000000"
+              },
+              "rateCode": "V3SXBAA72P93JFMB.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "V3SXBAA72P93JFMB",
+          "termAttributes": {}
+        }
+      },
+      "YM9AR73XYRPUSCN3": {
+        "YM9AR73XYRPUSCN3.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "YM9AR73XYRPUSCN3.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.138 per GB-month of provisioned GP3 storage running PostgreSQL",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.1380000000"
+              },
+              "rateCode": "YM9AR73XYRPUSCN3.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "YM9AR73XYRPUSCN3",
+          "termAttributes": {}
+        }
+      },
+      "YXENKSJFV9BXQF4N": {
+        "YXENKSJFV9BXQF4N.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "YXENKSJFV9BXQF4N.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$ 0.025 per RDS db.t4g.micro Single-AZ instance hour (or partial hour) running PostgreSQL",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0250000000"
+              },
+              "rateCode": "YXENKSJFV9BXQF4N.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "YXENKSJFV9BXQF4N",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20261001060230"
+}
