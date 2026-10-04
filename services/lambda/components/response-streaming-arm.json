@@ -7,8 +7,7 @@
   "fixedFilters": [],
   "enabledWhen": {
     "all": [
-      { "field": "profile.architecture", "op": "eq", "value": "AWS-Lambda-Duration-ARM" },
-      { "field": "profile.streamingRequestsPerMonth", "op": "neq", "value": "0" }
+      { "field": "profile.architecture", "op": "eq", "value": "AWS-Lambda-Duration-ARM" }
     ]
   },
   "priceQuery": {
