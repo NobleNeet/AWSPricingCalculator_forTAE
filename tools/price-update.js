@@ -4,11 +4,16 @@ import { run, writeJson, loadCandidate, candidateDirectory } from './pricing-cli
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
-import { definitionFingerprint } from './pricing-cli/fingerprint.js';
+import { definitionFingerprint, PRICING_CONTRACT_FILES } from './pricing-cli/fingerprint.js';
 import { sourceKey } from './pricing-cli/source.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
+const GLOBAL_FINGERPRINT_FILES = new Set([
+  'pricing/normalization/common.json',
+  'pricing/limitations.json',
+  ...PRICING_CONTRACT_FILES
+]);
 
 export function definitionRefreshServiceCodes(packages, changedFiles) {
   if (!Array.isArray(changedFiles) || changedFiles.length === 0) return null;
@@ -18,7 +23,7 @@ export function definitionRefreshServiceCodes(packages, changedFiles) {
   let recognizedFingerprintChange = false;
 
   for (const file of changedFiles) {
-    if (file === 'pricing/normalization/common.json' || file === 'pricing/limitations.json') return null;
+    if (GLOBAL_FINGERPRINT_FILES.has(file)) return null;
 
     const serviceMatch = file.match(/^services\/([^/]+)\//);
     if (serviceMatch) {
