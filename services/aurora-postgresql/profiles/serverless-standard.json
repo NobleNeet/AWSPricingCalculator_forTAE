@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "serverless-standard",
+  "label": "Serverless v2 / Aurora Standard",
+  "selectors": [],
+  "fixedFilters": [
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Aurora PostgreSQL"
+    }
+  ],
+  "components": [
+    "serverless-standard",
+    "storage-standard",
+    "io-requests"
+  ]
+}
