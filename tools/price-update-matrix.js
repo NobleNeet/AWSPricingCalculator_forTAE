@@ -69,6 +69,7 @@ async function prepare(work) {
   await record(work, 'inventory', { input: candidate, output: path.join(work, 'reports', 'inventory-data.json') });
   const definition = await record(work, 'validate-definitions', {});
   if (definition.summary.error) throw new Error(`Definition validation failed with ${definition.summary.error} errors`);
+  await refreshGoldenEvidence(packages, rawDirectory, path.join(work, 'golden-raw'));
   await writeJson(path.join(work, 'prepare-state.json'), {
     schemaVersion: 1,
     previousBuildId: active.activeBuildId,
@@ -87,7 +88,7 @@ async function finalize(work) {
   const definition = await readJson(path.join(work, 'reports', 'validate-definitions.json'));
   const semantic = await readJson(path.join(work, 'reports', 'validate-price-data.json'));
   const candidateDirectoryPath = path.join(work, 'candidate');
-  const rawDirectory = path.join(work, 'raw');
+  const rawDirectory = path.join(work, 'golden-raw');
   const stage = path.join(work, 'staged');
   const packages = await loadPackages();
   const candidate = await loadCandidate(candidateDirectoryPath);
