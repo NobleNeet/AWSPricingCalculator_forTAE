@@ -2,6 +2,12 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export const AWS_ORIGIN = 'https://pricing.us-east-1.amazonaws.com';
+export const sourceKey = (serviceCode, region) => `${serviceCode}/${region}`;
+export const configuredRegions = config => {
+  const regions = Array.isArray(config.regions) ? config.regions : config.region ? [config.region] : [];
+  if (!regions.length) throw new Error('At least one pricing region is required.');
+  return [...new Set(regions)];
+};
 export async function fetchJson(url, fetcher = fetch) {
   let last;
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -13,15 +19,22 @@ export async function fetchJson(url, fetcher = fetch) {
   }
   throw last;
 }
+function previousSource(previous, serviceCode, region) {
+  return previous[sourceKey(serviceCode, region)] ?? (previous[serviceCode]?.region === region ? previous[serviceCode] : undefined);
+}
 export async function checkSources(config, previous = {}, fetcher = fetch) {
   const sources = {};
+  const regions = configuredRegions(config);
   for (const serviceCode of config.serviceCodes) {
     const metadataUrl = `${AWS_ORIGIN}/offers/v1.0/aws/${serviceCode}/current/region_index.json`;
     const metadata = await fetchJson(metadataUrl, fetcher);
-    const relative = metadata.regions?.[config.region]?.currentVersionUrl;
-    if (!relative || !relative.startsWith(`/offers/v1.0/aws/${serviceCode}/`)) throw new Error(`Missing or invalid source ${serviceCode}/${config.region}`);
-    const sourceUrl = `${AWS_ORIGIN}${relative}`;
-    sources[serviceCode] = { serviceCode, region: config.region, sourceUrl, metadataUrl, publicationDate: metadata.publicationDate, version: relative.split('/')[5], changed: previous[serviceCode]?.sourceUrl !== sourceUrl };
+    for (const region of regions) {
+      const relative = metadata.regions?.[region]?.currentVersionUrl;
+      if (!relative || !relative.startsWith(`/offers/v1.0/aws/${serviceCode}/`)) throw new Error(`Missing or invalid source ${serviceCode}/${region}`);
+      const sourceUrl = `${AWS_ORIGIN}${relative}`;
+      const key = sourceKey(serviceCode, region);
+      sources[key] = { serviceCode, region, sourceUrl, metadataUrl, publicationDate: metadata.publicationDate, version: relative.split('/')[5], changed: previousSource(previous, serviceCode, region)?.sourceUrl !== sourceUrl };
+    }
   }
   return { schemaVersion: 1, status: Object.values(sources).some(s => s.changed) ? 'CHANGED' : 'NO_CHANGE', sources };
 }
@@ -32,7 +45,8 @@ export async function downloadSources(metadata, directory, fetcher = fetch) {
     if (!source.changed) continue;
     const raw = await fetchJson(source.sourceUrl, fetcher);
     if (raw.offerCode !== source.serviceCode || raw.version !== source.version) throw new Error('AWS source/version mismatch');
-    const file = path.join(directory, `${source.serviceCode}.json`);
+    const file = path.join(directory, source.serviceCode, `${source.region}.json`);
+    await mkdir(path.dirname(file), { recursive: true });
     await writeFile(file, JSON.stringify(raw)); files.push(file);
   }
   return files;
