@@ -2,6 +2,45 @@ import { prices } from './app.js';
 import { EC2_INSTANCE_COLUMNS as COLUMNS, instanceRows, filterRows } from './ec2-instance-model.js';
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const drawer = document.getElementById('service-drawer');
+
+function ensureResizableDrawer() {
+  drawer.classList.add('ec2-wide');
+  if (drawer.querySelector('.ec2-drawer-resizer')) return;
+  const resizer = document.createElement('div');
+  resizer.className = 'ec2-drawer-resizer';
+  resizer.setAttribute('role', 'separator');
+  resizer.setAttribute('aria-orientation', 'vertical');
+  resizer.setAttribute('aria-label', 'EC2編集パネルの幅を変更');
+  drawer.append(resizer);
+  resizer.addEventListener('pointerdown', event => {
+    if (window.innerWidth <= 800) return;
+    resizer.classList.add('dragging');
+    resizer.setPointerCapture(event.pointerId);
+    const move = moveEvent => {
+      const min = 510;
+      const max = window.innerWidth * 0.96;
+      const width = Math.min(max, Math.max(min, window.innerWidth - moveEvent.clientX));
+      drawer.style.width = `${width}px`;
+    };
+    const end = endEvent => {
+      resizer.classList.remove('dragging');
+      if (resizer.hasPointerCapture(endEvent.pointerId)) resizer.releasePointerCapture(endEvent.pointerId);
+      resizer.removeEventListener('pointermove', move);
+      resizer.removeEventListener('pointerup', end);
+      resizer.removeEventListener('pointercancel', end);
+    };
+    resizer.addEventListener('pointermove', move);
+    resizer.addEventListener('pointerup', end);
+    resizer.addEventListener('pointercancel', end);
+  });
+}
+
+function resetDrawerWidth() {
+  drawer.classList.remove('ec2-wide');
+  drawer.style.width = '';
+  drawer.querySelector('.ec2-drawer-resizer')?.remove();
+}
 
 function tableHtml(rows, selected, filters, sortKey, sortDirection) {
   const filtered = filterRows(rows, filters);
@@ -16,6 +55,7 @@ function tableHtml(rows, selected, filters, sortKey, sortDirection) {
 async function enhance(select) {
   if (select.dataset.ec2Enhanced === 'true') return;
   select.dataset.ec2Enhanced = 'true';
+  ensureResizableDrawer();
   const label = select.closest('label'); if (!label) return;
   const picker = document.createElement('div'); picker.className = 'ec2-instance-picker'; picker.innerHTML = '<p>EC2インスタンス一覧を読み込んでいます…</p>';
   label.after(picker); select.classList.add('ec2-original-select');
@@ -41,6 +81,11 @@ async function enhance(select) {
   } catch (error) { picker.innerHTML = `<p class="invalid">EC2インスタンス一覧を表示できません: ${esc(error.message)}</p>`; select.classList.remove('ec2-original-select'); }
 }
 
-function scan() { const select = document.querySelector('#input-component-instance-instanceType'); if (select) enhance(select); }
+function scan() {
+  const select = document.querySelector('#input-component-instance-instanceType');
+  if (select) enhance(select);
+  else resetDrawerWidth();
+}
 new MutationObserver(scan).observe(document.getElementById('drawer-content'), { childList: true, subtree: true });
+drawer.addEventListener('close', resetDrawerWidth);
 scan();
