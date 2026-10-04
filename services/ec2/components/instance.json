@@ -28,13 +28,13 @@
   "usageInputs": [
     {
       "id": "hours",
-      "label": "Expected utilization (hours / month)",
+      "label": "Expected utilization of EC2 instances (hours / month)",
       "type": "number",
       "default": "730",
       "minimum": "0",
       "maximum": "744",
       "ui": {
-        "help": "On-Demand固定のため、AWS Pricing CalculatorのExpected utilizationを月間稼働時間として直接入力します。"
+        "help": "AWS Pricing CalculatorのOn-Demand見積りに対応し、1インスタンスあたりの月間稼働時間を0〜744時間で直接入力します。RI/Savings Plans最適化用のWorkload（一定/日次/週次/月次スパイク）は本ツールでは扱いません。"
       }
     },
     {
