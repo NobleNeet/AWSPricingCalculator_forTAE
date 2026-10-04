@@ -25,6 +25,18 @@
         "field": "attributes.group",
         "op": "eq",
         "value": "Aurora I/O Operation"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-Aurora:StorageIOUsage",
+          "APN3-Aurora:StorageIOUsage",
+          "Aurora:StorageIOUsage",
+          "USE2-Aurora:StorageIOUsage",
+          "USW1-Aurora:StorageIOUsage",
+          "USW2-Aurora:StorageIOUsage"
+        ]
       }
     ],
     "dimensionFilters": [
