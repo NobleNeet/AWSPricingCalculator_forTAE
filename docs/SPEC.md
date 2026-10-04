@@ -196,6 +196,8 @@ AWS Pricing CalculatorにあるWorkload（一定使用量、日次・週次・�
 
 この省略は「On-Demand固定」を理由に通常利用量を省略するものではなく、通常利用量は `Expected utilization of EC2 instances` として必ず指定可能にする。
 
+EC2 Drawerのcompute入力はAWS Pricing Calculatorの主要操作順に寄せ、Tenancy、Operating systemの後に `Number of EC2 instances`、EC2 instance type比較表、`Expected utilization of EC2 instances` の順で表示する。Workloadは上記方針により表示しない。EBS等の別課金Componentはcompute入力の後に続ける。
+
 ---
 
 ## 7. 比較表示

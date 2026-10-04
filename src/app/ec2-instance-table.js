@@ -134,12 +134,19 @@ function tableConfig(kind) {
   };
 }
 
+function alignEc2CalculatorFieldOrder(instanceTypeLabel, kind) {
+  if (kind !== 'ec2') return;
+  const quantityLabel = document.querySelector('#input-component-instance-quantity')?.closest('label');
+  if (quantityLabel && quantityLabel !== instanceTypeLabel) instanceTypeLabel.before(quantityLabel);
+}
+
 async function enhance(select, kind) {
   const marker = `${kind}Enhanced`;
   if (select.dataset[marker] === 'true') return;
   select.dataset[marker] = 'true';
   ensureResizableDrawer(kind);
   const label = select.closest('label'); if (!label) return;
+  alignEc2CalculatorFieldOrder(label, kind);
   const config = tableConfig(kind);
   const picker = document.createElement('div');
   picker.className = 'ec2-instance-picker';

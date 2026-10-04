@@ -9,6 +9,17 @@ test('create, real EC2, multiple services, duplicate, replace, usage, row add an
   await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
   await page.locator('[data-service="ec2"]').click();
   await expect(page.locator('#service-drawer')).toBeVisible();
+  await expect(page.locator('[data-instance-picker="ec2"]')).toBeVisible();
+  const calculatorOrder = await page.evaluate(() => {
+    const nodes = [
+      document.querySelector('#input-component-instance-quantity')?.closest('label'),
+      document.querySelector('#input-component-instance-instanceType')?.closest('label'),
+      document.querySelector('[data-instance-picker="ec2"]'),
+      document.querySelector('#input-component-instance-hours')?.closest('label')
+    ];
+    return nodes.every(Boolean) && nodes.slice(1).every((node, index) => Boolean(nodes[index].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING));
+  });
+  expect(calculatorOrder).toBe(true);
   await expect(page.locator('#workspace')).toContainText(expected.ec2.display);
   await page.getByLabel('編集を閉じる').click();
   await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
