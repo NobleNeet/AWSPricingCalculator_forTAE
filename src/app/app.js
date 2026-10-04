@@ -126,80 +126,94 @@ function openCatalog(planId, rowId) {
 }
 document.addEventListener('click', event => { const button = event.target.closest('[data-close]'); if (button) $(button.dataset.close).close(); });
 $('workspace').addEventListener('click', async event => {
-  const button = event.target.closest('button'); if (!button) return;
-  const action = button.dataset.action;
-  if (action === 'add-plan') { addPlan(state); save(); render(); return; }
-  if (action === 'baseline') { state.project.baselinePlanId = button.dataset.plan; save(); render(); return; }
-  if (action === 'rename-plan') {
-    const plan = state.plans[button.dataset.plan], name = prompt('Plan名', plan.name); if (name === null) return;
-    const memo = prompt('メモ', plan.memo ?? ''); if (memo === null) return;
-    plan.name = name.trim() || plan.name; plan.memo = memo; save(); render(); return;
-  }
-  if (action === 'duplicate-plan') { duplicatePlan(state, button.dataset.plan); save(); await evaluateAll(); render(); return; }
-  if (action === 'delete-plan') { if (confirm('このPlanを削除しますか？')) { deletePlan(state, button.dataset.plan); save(); await evaluateAll(); render(); } return; }
-  if (action === 'add-service') { openCatalog(button.dataset.plan, button.dataset.row); return; }
-  if (action === 'remove-service') { removeService(state, button.dataset.plan, button.dataset.row); save(); await evaluateAll(); render(); return; }
-  if (action === 'label-row') { const row = state.rows[button.dataset.row], label = prompt('比較行の名前', row.label ?? ''); if (label !== null) { row.label = label; save(); render(); } return; }
-  if (action === 'edit') { editing = button.dataset.instance; await renderDrawer(); $('service-drawer').showModal(); return; }
-  if (action === 'retry') { await evaluate(button.dataset.instance); }
+  const button = event.target.closest('[data-action]'); if (!button) return;
+  const { action, plan, row, instance } = button.dataset;
+  if (action === 'add-plan') addPlan(state);
+  if (action === 'duplicate-plan') { duplicatePlan(state, plan); await evaluateAll(); }
+  if (action === 'delete-plan') deletePlan(state, plan);
+  if (action === 'baseline') state.project.baselinePlanId = plan;
+  if (action === 'rename-plan') { const name = prompt('Plan名', state.plans[plan].name); if (name !== null) state.plans[plan].name = name; const memo = prompt('Planメモ', state.plans[plan].memo); if (memo !== null) state.plans[plan].memo = memo; }
+  if (action === 'label-row') { const label = prompt('比較行名（空欄で自動生成）', state.rows[row].label ?? ''); if (label !== null) state.rows[row].label = label || null; }
+  if (action === 'add-service') { openCatalog(plan, row); return; }
+  if (action === 'remove-service') { if (editing === state.rows[row]?.cells[plan]) { $('service-drawer').close(); editing = null; } removeService(state, plan, row); }
+  if (action === 'edit') { editing = instance; $('service-drawer').showModal(); await renderDrawer(); return; }
+  if (action === 'retry') { await evaluate(instance); return; }
+  save(); render();
 });
+$('catalog-search').addEventListener('input', renderCatalog); $('catalog-filter').addEventListener('change', renderCatalog);
 $('catalog-list').addEventListener('click', async event => {
-  const button = event.target.closest('[data-service]'); if (!button || button.disabled) return;
-  const pkg = await definitions.package(button.dataset.service), profileId = pkg.service.profiles[0];
-  const instance = createInstance(button.dataset.service, profileId, state.project.defaultRegion, pkg);
-  placeService(state, target.planId, target.rowId, instance); $('catalog-modal').close(); save(); await evaluate(instance.id); render();
+  const button = event.target.closest('[data-service]'); if (!button) return;
+  const selectedTarget = target, selectedProject = state;
+  button.disabled = true;
+  try {
+    const pkg = await definitions.package(button.dataset.service), instance = createInstance(pkg);
+    if (target !== selectedTarget || state !== selectedProject || !$('catalog-modal').open) return;
+    placeService(state, selectedTarget.planId, instance, selectedTarget.rowId); save(); $('catalog-modal').close(); editing = instance.id; $('service-drawer').showModal();
+    await evaluate(instance.id); await renderDrawer();
+  } catch (error) { message(error.message); button.disabled = false; }
 });
-$('catalog-search').addEventListener('input', renderCatalog);
-$('catalog-filter').addEventListener('change', renderCatalog);
+$('catalog-modal').addEventListener('close', () => { target = null; });
+$('service-drawer').addEventListener('close', () => { editing = null; });
+$('drawer-content').addEventListener('change', async event => {
+  const input = event.target, instance = state.serviceInstances[editing]; if (!instance) return;
+  if (input.dataset.field) {
+    const value = input.type === 'checkbox' ? input.checked : input.value;
+    if (input.dataset.scope === 'profile') instance.selectors[input.dataset.field] = value;
+    else (instance.components[input.dataset.component] ??= { enabled: true, inputs: {} }).inputs[input.dataset.field] = value;
+  } else if (input.dataset.toggle) instance.components[input.dataset.toggle].enabled = input.checked;
+  else if (input.id === 'drawer-region') instance.region = input.value === 'inherit' ? { mode: 'inherit' } : { mode: 'override', value: input.value };
+  else if (input.id === 'drawer-profile') { const pkg = await definitions.package(instance.serviceId); const fresh = createInstance(pkg, input.value); instance.profileId = input.value; instance.selectors = { ...fresh.selectors, ...instance.selectors }; instance.components = { ...fresh.components, ...instance.components }; }
+  else return;
+  save(); await evaluate(editing);
+});
+$('drawer-content').addEventListener('click', event => { if (event.target.closest('[data-drawer-retry]')) evaluate(editing); });
 $('project-name').addEventListener('change', event => { state.project.name = event.target.value; save(); });
-$('project-region').addEventListener('change', async event => { state.project.defaultRegion = event.target.value; save(); await evaluateAll(); renderCatalog(); render(); });
-$('project-hours').addEventListener('change', async event => { state.project.usageAssumptions.hoursPerMonth = Number(event.target.value); save(); await evaluateAll(); render(); });
-$('service-drawer').addEventListener('change', async event => {
-  const instance = state.serviceInstances[editing]; if (!instance) return;
-  if (event.target.id === 'drawer-profile') {
-    const pkg = await definitions.package(instance.serviceId); instance.profileId = event.target.value;
-    instance.selectors = {}; instance.components = {};
-    const profile = pkg.profiles[instance.profileId];
-    for (const input of profile.selectors) if (input.default !== undefined) instance.selectors[input.id] = input.default;
-    for (const componentId of profile.components) {
-      const component = pkg.components[componentId], inputs = {};
-      for (const input of [...component.selectors, ...component.usageInputs]) if (input.default !== undefined) inputs[input.id] = input.default;
-      instance.components[componentId] = { enabled: !component.optional, inputs };
-    }
-  } else if (event.target.id === 'drawer-region') {
-    instance.region = event.target.value === 'inherit' ? { mode: 'inherit' } : { mode: 'override', value: event.target.value };
-  } else if (event.target.dataset.toggle) {
-    instance.components[event.target.dataset.toggle].enabled = event.target.checked;
-  } else if (event.target.dataset.field) {
-    const targetValues = event.target.dataset.scope === 'profile' ? instance.selectors : instance.components[event.target.dataset.component].inputs;
-    targetValues[event.target.dataset.field] = event.target.type === 'checkbox' ? event.target.checked : event.target.type === 'number' ? Number(event.target.value) : event.target.value;
-  } else return;
-  save(); await evaluate(editing); await renderDrawer();
-});
-$('service-drawer').addEventListener('click', async event => { if (event.target.matches('[data-drawer-retry]')) await renderDrawer(); });
-$('new-project').addEventListener('click', async () => { if (!confirm('現在のProjectを破棄して新規作成しますか？')) return; state = newProject(); results.clear(); save(); render(); });
-$('restore-open').addEventListener('click', () => { $('restore-text').value = ''; $('restore-report').textContent = ''; $('restore-modal').showModal(); });
-$('restore-submit').addEventListener('click', async () => {
-  try {
-    const restored = restoreProject($('restore-text').value, projectSchema, catalog);
-    state = restored.state; results.clear(); save(); render(); await evaluateAll();
-    $('restore-report').textContent = restored.warnings.length ? restored.warnings.join(' / ') : '復元しました。';
-  } catch (error) { $('restore-report').textContent = error.message; }
-});
-$('json-export').addEventListener('click', () => import('./export.js').then(module => module.downloadProjectJson(state, prices)));
-$('csv-export').addEventListener('click', () => import('./export.js').then(module => module.downloadCsv(state, results, catalog)));
-$('pdf-export').addEventListener('click', () => import('./export.js').then(module => module.downloadPdfAndJson(state, results, catalog, prices)));
-$('check-price').addEventListener('click', async () => { await prices.refreshManifest(); $('price-meta').textContent = `Price Data: ${prices.publicationDate ?? 'unknown'} · build ${prices.buildId ?? 'unknown'}`; await evaluateAll(); });
-
-async function init() {
-  try {
-    [catalog, projectSchema] = await Promise.all([definitions.catalog(), definitions.projectSchema()]);
-    const limitationList = await definitions.limitations(); limitations = new Map(limitationList.map(item => [item.id, item]));
-    $('catalog-filter').innerHTML += [...new Set(catalog.map(item => item.serviceCode))].map(code => `<option value="${escape(code)}">${escape(code)}</option>`).join('');
-    await prices.refreshManifest(); $('price-meta').textContent = `Price Data: ${prices.publicationDate ?? 'unknown'} · build ${prices.buildId ?? 'unknown'}`;
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) { try { state = restoreProject(saved, projectSchema, catalog).state; } catch { /* keep new project */ } }
-    render(); await evaluateAll();
-  } catch (error) { message(`初期化に失敗しました: ${error.message}`); render(); }
+$('project-hours').addEventListener('change', async event => { state.project.usageAssumptions.hoursPerMonth = event.target.value; save(); await evaluateAll(); });
+$('project-region').addEventListener('change', async event => { state.project.defaultRegion = event.target.value; save(); await evaluateAll(); renderCatalog(); });
+$('new-project').addEventListener('click', () => { if (!state.project.planOrder.length || confirm('現在のProjectを新規Projectに切り替えますか？')) { state = newProject(); results.clear(); editing = null; $('service-drawer').close(); save(); render(); } });
+export function downloadText(name, text, type = 'application/json') {
+  const url = URL.createObjectURL(new Blob([text], { type })); const anchor = document.createElement('a'); anchor.href = url; anchor.download = name; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-init();
+export function projectJson() { return serializeProject(state, { buildId: prices.buildId, publicationDate: prices.publicationDate }); }
+$('json-export').addEventListener('click', () => downloadText('aws-project.json', projectJson()));
+$('restore-open').addEventListener('click', () => $('restore-modal').showModal());
+$('restore-submit').addEventListener('click', async () => {
+  const text = $('restore-text').value;
+  const packages = new Map();
+  try {
+    const parsed = JSON.parse(text);
+    await Promise.all([...new Set(Object.values(parsed.serviceInstances ?? {}).map(instance => instance?.serviceId).filter(Boolean))].map(async id => { try { packages.set(id, await definitions.package(id)); } catch { /* Partial restoration remains possible. */ } }));
+  } catch { /* The pure restore parser reports fatal errors. */ }
+  const report = restoreProject(text, { schema: projectSchema, packages, currentBuildId: prices.buildId });
+  $('restore-report').textContent = `${report.fatal ? '復元失敗（現在のProjectは変更されません）' : '復元完了'}\n${report.issues.map(item => `${item.code}: ${item.message}`).join('\n')}`;
+  if (!report.fatal) await replaceProject(report.project);
+});
+for (const kind of ['csv', 'pdf']) $(`${kind}-export`).addEventListener('click', async () => {
+  try { const exports = await import('./export.js'); await exports.exportProject(kind, { state, results, catalog, definitions, limitations, prices, json: projectJson(), download: downloadText }); }
+  catch (error) { message(`出力エラー: ${error.message}`); }
+});
+export async function replaceProject(next) { state = next; results.clear(); editing = null; $('service-drawer').close(); save(); render(); await evaluateAll(); }
+export const appState = () => state;
+function renderMetadata() { $('price-meta').textContent = prices.publicationDate ? `Price Data ${prices.publicationDate} · ${prices.buildId}${prices.stale ? ' · stale（新buildまたは最新確認失敗。使用中buildで計算）' : ''}` : 'Price Dataを取得できません（Project編集・保存は継続できます）'; }
+$('check-price').addEventListener('click', async () => { await prices.initialize().catch(() => {}); await prices.checkLatest(); renderMetadata(); await evaluateAll(); });
+async function initialize() {
+  try { const response = await fetch('./schemas/project.schema.json'); if (!response.ok) throw Error('Schema fetch failure'); projectSchema = await response.json(); }
+  catch { message('Project Schemaを取得できません。復元を利用するには再読込してください。'); $('restore-submit').disabled = true; }
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem('awsPricingCalculator.project.v1');
+    if (saved) {
+      const report = restoreProject(saved, { schema: projectSchema });
+      if (!report.fatal) { state = report.project; if (report.issues.length) message(report.issues.map(item => item.message).join(' / ')); }
+      else message('保存Projectを安全に復元できません。保存データは保持して新規Projectを表示します。');
+    }
+  } catch { message('保存Projectを読み込めません。新規Projectを表示します。'); }
+  render();
+  const tasks = await Promise.allSettled([definitions.catalog(), prices.initialize(), fetch('./pricing/limitations.json').then(response => response.json())]);
+  if (tasks[0].status === 'fulfilled') catalog = tasks[0].value.services;
+  else message('Service Catalogを読み込めません。再読込で再試行してください。');
+  if (tasks[2].status === 'fulfilled') limitations = new Map(tasks[2].value.limitations.map(item => [item.id, item]));
+  if (tasks[1].status === 'fulfilled') catalog = catalog.map(service => ({ ...service, available: service.available && !!tasks[1].value.sources[service.serviceCode]?.[state.project.defaultRegion] }));
+  $('catalog-filter').innerHTML = '<option value="">すべて</option>' + [...new Set(catalog.map(service => service.serviceCode))].map(code => `<option>${escape(code)}</option>`).join('');
+  renderMetadata(); render(); await evaluateAll();
+}
+await initialize();
