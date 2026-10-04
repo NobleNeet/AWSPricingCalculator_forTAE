@@ -10,6 +10,7 @@ import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
 import { classifyChangeParallel } from './pricing-cli/drift-parallel.js';
 import { refreshGoldenEvidence } from './price-update.js';
+import { refreshGoldenEvidenceTolerant } from './golden-evidence.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
 
@@ -69,7 +70,7 @@ async function prepare(work) {
   await record(work, 'inventory', { input: candidate, output: path.join(work, 'reports', 'inventory-data.json') });
   const definition = await record(work, 'validate-definitions', {});
   if (definition.summary.error) throw new Error(`Definition validation failed with ${definition.summary.error} errors`);
-  await refreshGoldenEvidence(packages, rawDirectory, path.join(work, 'golden-raw'), candidate);
+  await refreshGoldenEvidenceTolerant(packages, rawDirectory, path.join(work, 'golden-raw'), candidate);
   await writeJson(path.join(work, 'prepare-state.json'), {
     schemaVersion: 1,
     previousBuildId: active.activeBuildId,
