@@ -41,6 +41,25 @@ test('ordered transforms, units, decimal precision and missing usage', () => {
   assert.throws(() => calculate(calculation, { component: { hours: '-1', count: '1' } }, dim()), code('INVALID_USAGE'));
   assert.throws(() => calculate(calculation, { component: { hours: '1', count: '1' } }, dim('0', 'Inf', '1', { unit: 'GB' })), code('UNIT_MISMATCH'));
 });
+test('transformed usage sources apply per-source allowance before multiplication', () => {
+  const streaming = {
+    model: 'unit',
+    usage: {
+      sources: [
+        { valueFrom: 'profile.requests' },
+        { value: { type: 'transformed', valueFrom: 'profile.responseMb', transforms: [{ type: 'subtract', value: '6' }, { type: 'minimum', value: '0' }] } }
+      ],
+      combine: 'multiply'
+    },
+    transforms: [{ type: 'scale', factor: '0.0009765625' }],
+    outputUnit: 'Processed-Gigabytes'
+  };
+  const dimension = dim('0', 'Inf', '0.008', { unit: 'Processed-Gigabytes' });
+  assert.equal(calculate(streaming, { profile: { requests: '1000', responseMb: '7' } }, dimension).billingQuantity, '0.9765625');
+  assert.equal(calculate(streaming, { profile: { requests: '1000', responseMb: '6' } }, dimension).billingQuantity, '0');
+  assert.equal(calculate(streaming, { profile: { requests: '1000', responseMb: '5' } }, dimension).billingQuantity, '0');
+  assert.throws(() => calculate({ ...streaming, usage: { ...streaming.usage, sources: [{ value: { type: 'transformed', valueFrom: 'profile.responseMb', transforms: [{ type: 'subtract', value: '6' }] } }] } }, { profile: { responseMb: '5' } }, dimension), code('INVALID_USAGE'));
+});
 test('disabled inputs and components stay out of calculation context', () => {
   const pkg = { profiles: { standard: { selectors: [], fixedFilters: [], components: ['instance'] } }, components: { instance: { selectors: [], usageInputs: [{ id: 'hours', label: 'Hours', type: 'number' }, { id: 'count', label: 'Count', type: 'number', enabledWhen: { field: 'profile.x', op: 'exists' } }], fixedFilters: [], priceQuery: query, calculation, limitations: [] } } };
   const instance = { profileId: 'standard', selectors: {}, components: { instance: { inputs: { hours: '1', count: '99' } } } };
