@@ -10,21 +10,15 @@
     "op": "eq",
     "value": "AWS-Lambda-Duration-ARM"
   },
+  "optional": true,
+  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {
-        "field": "attributes.group",
-        "op": "eq",
-        "value": "AWS-Lambda-Provisioned-Concurrency-ARM"
-      }
+      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Provisioned-Concurrency-ARM" }
     ],
     "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "eq",
-        "value": "Lambda-GB-Second"
-      }
+      { "field": "unit", "op": "eq", "value": "Lambda-GB-Second" }
     ]
   },
   "calculation": {
@@ -38,15 +32,9 @@
       "combine": "multiply"
     },
     "transforms": [
-      {
-        "type": "scale",
-        "factor": "3.515625"
-      }
+      { "type": "scale", "factor": "3.515625" }
     ],
     "outputUnit": "Lambda-GB-Second"
   },
-  "limitations": [
-    "account-specific-discount",
-    "aggregate-billing"
-  ]
+  "limitations": ["account-specific-discount", "aggregate-billing"]
 }
