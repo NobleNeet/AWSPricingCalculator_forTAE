@@ -42,6 +42,66 @@ test('create, real EC2, multiple services, duplicate, replace, usage, row add an
   await expect(page.getByRole('button', { name: 'Planを削除', exact: true })).toHaveCount(0);
   await page.screenshot({ path: 'test-results/workspace.png', fullPage: true });
 });
+
+test('Lambda drawer follows calculator inputs and keeps Advanced open while automatic meters react', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('#price-meta')).toContainText(activeBuildId);
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
+  await page.locator('[data-service="lambda"]').click();
+  await expect(page.locator('#service-drawer')).toBeVisible();
+
+  const architecture = page.locator('#input-profile--architecture');
+  await expect(architecture.locator('option:checked')).toHaveText('x86');
+  await expect(page.getByText('Componentを有効にする')).toHaveCount(0);
+
+  const advanced = page.locator('#drawer-content > details').first();
+  await advanced.locator('summary').click();
+  await expect(advanced).toHaveAttribute('open', '');
+
+  const storage = page.locator('#input-profile--ephemeralStorageMb');
+  await storage.fill('1024');
+  await storage.press('Tab');
+  await expect(advanced).toHaveAttribute('open', '');
+  await expect(page.getByText('On-demand ephemeral storage', { exact: true })).toHaveCount(1);
+  await expect(page.locator('#input-profile--snapStartMode')).toBeDisabled();
+
+  await storage.fill('512');
+  await storage.press('Tab');
+  const concurrency = page.locator('#input-profile--provisionedConcurrency');
+  await concurrency.fill('2');
+  await concurrency.press('Tab');
+  await expect(advanced).toHaveAttribute('open', '');
+  await expect(page.locator('#input-profile--provisionedHoursPerMonth')).toBeEnabled();
+  await page.locator('#input-profile--provisionedHoursPerMonth').fill('10');
+  await page.locator('#input-profile--provisionedHoursPerMonth').press('Tab');
+  await page.locator('#input-profile--provisionedRequestsPerMonth').fill('1000');
+  await page.locator('#input-profile--provisionedRequestsPerMonth').press('Tab');
+  await expect(page.getByText('Provisioned concurrency capacity', { exact: true })).toHaveCount(1);
+  await expect(page.getByText('Provisioned concurrency compute duration', { exact: true })).toHaveCount(1);
+  await expect(page.getByText('Provisioned concurrency requests', { exact: true })).toHaveCount(1);
+
+  const streamingRequests = page.locator('#input-profile--streamingRequestsPerMonth');
+  await streamingRequests.fill('1000');
+  await streamingRequests.press('Tab');
+  await page.locator('#input-profile--averageStreamedResponseMb').fill('7');
+  await page.locator('#input-profile--averageStreamedResponseMb').press('Tab');
+  await expect(advanced).toHaveAttribute('open', '');
+  await expect(page.getByText('HTTP response streaming', { exact: true })).toHaveCount(1);
+
+  await concurrency.fill('0');
+  await concurrency.press('Tab');
+  const snapStart = page.locator('#input-profile--snapStartMode');
+  await expect(snapStart).toBeEnabled();
+  await snapStart.selectOption('billable-runtime');
+  await expect(advanced).toHaveAttribute('open', '');
+  await expect(page.locator('#input-profile--snapStartCachedVersionHours')).toBeEnabled();
+  await page.locator('#input-profile--snapStartRestoresPerMonth').fill('10');
+  await page.locator('#input-profile--snapStartRestoresPerMonth').press('Tab');
+  await expect(page.getByText('SnapStart snapshot cache', { exact: true })).toHaveCount(1);
+  await expect(page.getByText('SnapStart restores', { exact: true })).toHaveCount(1);
+});
+
 test('mobile Drawer stays usable at narrow viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('./'); await expect(page.locator('#price-meta')).toContainText(activeBuildId);
