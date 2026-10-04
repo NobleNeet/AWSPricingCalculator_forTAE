@@ -1,9 +1,8 @@
 import { evaluateService } from '../../src/pricing/core.js';
 import { decimal, sum } from '../../src/pricing/decimal.js';
 import { issue } from '../../src/pricing/issues.js';
+import { sourceKey } from './source.js';
 
-// Independent raw verifier: no production filter, query, dimension or calculation import.
-// Each Golden declares literal semantic attributes and an independently derived quantity.
 export function verifyRawPrice(raw, verification) {
   const candidates = Object.values(raw.products).filter(product => Object.entries(verification.attributes).every(([key, value]) => product.attributes[key] === value) && (!verification.productFamily || product.productFamily === verification.productFamily));
   if (candidates.length !== 1) throw Error(`Independent verifier: ${candidates.length} products`);
@@ -23,7 +22,9 @@ export function runGolden(packages, data, rawSources) {
     const covered = new Set();
     for (const golden of pkg.golden) {
       covered.add(golden.profileId);
-      const result = evaluateService(pkg, golden, golden.project, data[pkg.service.priceSource.serviceCode]?.products ?? []);
+      const region = golden.project?.region ?? golden.project?.defaultRegion ?? 'ap-northeast-1';
+      const key = sourceKey(pkg.service.priceSource.serviceCode, region);
+      const result = evaluateService(pkg, golden, { ...golden.project, region, defaultRegion: golden.project?.defaultRegion ?? region }, data[key]?.products ?? []);
       try {
         if (result.amountUsd === null) throw Error(JSON.stringify(result.issues));
         const expectedAmounts = [];
@@ -31,15 +32,17 @@ export function runGolden(packages, data, rawSources) {
           const actual = result.components[componentId];
           if (expected.disabled) { if (actual.state !== 'disabled') throw Error(`${componentId}: expected disabled`); continue; }
           if (actual.resolution.skuCount !== 1 || actual.billingUnit !== expected.unit || actual.billingQuantity !== expected.quantity) throw Error(`${componentId}: structure/quantity mismatch`);
-          for (const [key, value] of Object.entries(expected.attributes)) if (actual.resolution.product.attributes[key] !== value) throw Error(`${componentId}: semantic ${key} mismatch`);
+          for (const [keyName, value] of Object.entries(expected.attributes)) if (actual.resolution.product.attributes[keyName] !== value) throw Error(`${componentId}: semantic ${keyName} mismatch`);
           for (const id of expected.limitations ?? []) if (!actual.limitations.includes(id)) throw Error(`${componentId}: missing ${id}`);
-          const verified = verifyRawPrice(rawSources[pkg.service.priceSource.serviceCode], golden.verification[componentId]);
+          const raw = rawSources[key];
+          if (!raw) throw Error(`Raw source missing for ${key}`);
+          const verified = verifyRawPrice(raw, golden.verification[componentId]);
           if (actual.unitPriceUsd !== verified.unitPriceUsd || actual.amountUsd !== verified.amountUsd) throw Error(`${componentId}: independent price mismatch`);
           expectedAmounts.push(verified.amountUsd);
         }
         if (!decimal(result.amountUsd).eq(sum(expectedAmounts))) throw Error('Service total mismatch');
-        cases.push({ serviceId: pkg.service.id, goldenId: golden.id, status: 'passed' });
-      } catch (error) { issues.push(issue('GOLDEN_FAILED', error.message, { serviceId: pkg.service.id, profileId: golden.profileId, path: `golden/${golden.id}` })); }
+        cases.push({ serviceId: pkg.service.id, goldenId: golden.id, region, status: 'passed' });
+      } catch (error) { issues.push(issue('GOLDEN_FAILED', error.message, { serviceId: pkg.service.id, profileId: golden.profileId, path: `golden/${golden.id}`, region })); }
     }
     for (const profile of pkg.service.profiles) if (!covered.has(profile)) issues.push(issue('GOLDEN_COVERAGE_MISSING', `No Golden for ${profile}.`, { serviceId: pkg.service.id }));
   }
