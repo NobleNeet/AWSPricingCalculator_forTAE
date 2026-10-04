@@ -8,7 +8,8 @@
   },
   "selectors": {
     "tenancy": "Shared",
-    "os": "Windows"
+    "os": "Windows",
+    "software": "NA"
   },
   "components": {
     "instance": {

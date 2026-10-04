@@ -20,6 +20,11 @@
             "field": "attributes.tenancy",
             "op": "eq",
             "valueFrom": "profile.tenancy"
+          },
+          {
+            "field": "attributes.preInstalledSw",
+            "op": "eq",
+            "valueFrom": "profile.software"
           }
         ]
       }
@@ -64,7 +69,7 @@
     {
       "field": "attributes.preInstalledSw",
       "op": "eq",
-      "value": "NA"
+      "valueFrom": "profile.software"
     },
     {
       "field": "attributes.marketoption",

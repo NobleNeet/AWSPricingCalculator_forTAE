@@ -24,10 +24,91 @@
       "type": "select",
       "default": "Linux",
       "options": {
-        "values": [
-          "Linux",
-          "Windows"
+        "attribute": "operatingSystem",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Compute Instance"
+          },
+          {
+            "field": "attributes.tenancy",
+            "op": "eq",
+            "valueFrom": "profile.tenancy"
+          },
+          {
+            "field": "attributes.preInstalledSw",
+            "op": "eq",
+            "value": "NA"
+          },
+          {
+            "field": "attributes.capacitystatus",
+            "op": "eq",
+            "value": "Used"
+          },
+          {
+            "field": "attributes.marketoption",
+            "op": "eq",
+            "value": "OnDemand"
+          },
+          {
+            "field": "attributes.licenseModel",
+            "op": "eq",
+            "value": "No License required"
+          },
+          {
+            "field": "attributes.operatingSystem",
+            "op": "neq",
+            "value": "NA"
+          }
         ]
+      },
+      "ui": {
+        "help": "現在のRegion・TenancyでAWS Public Price Listに存在するOn-DemandのOS候補を表示します。"
+      }
+    },
+    {
+      "id": "software",
+      "label": "Pre-installed software",
+      "type": "select",
+      "default": "NA",
+      "options": {
+        "attribute": "preInstalledSw",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Compute Instance"
+          },
+          {
+            "field": "attributes.tenancy",
+            "op": "eq",
+            "valueFrom": "profile.tenancy"
+          },
+          {
+            "field": "attributes.operatingSystem",
+            "op": "eq",
+            "valueFrom": "profile.os"
+          },
+          {
+            "field": "attributes.capacitystatus",
+            "op": "eq",
+            "value": "Used"
+          },
+          {
+            "field": "attributes.marketoption",
+            "op": "eq",
+            "value": "OnDemand"
+          },
+          {
+            "field": "attributes.licenseModel",
+            "op": "eq",
+            "value": "No License required"
+          }
+        ]
+      },
+      "ui": {
+        "help": "AWS Public Price ListのpreInstalledSwを使用します。WindowsではNAのほかSQL Web / SQL Std / SQL Entなど、実際に存在する候補だけを表示します。"
       }
     }
   ],

@@ -129,7 +129,8 @@ function tableConfig(kind) {
     makeRows: data => instanceRows(
       data.products,
       document.querySelector('[data-scope="profile"][data-field="os"]')?.value ?? 'Linux',
-      document.querySelector('[data-scope="profile"][data-field="tenancy"]')?.value ?? 'Shared'
+      document.querySelector('[data-scope="profile"][data-field="tenancy"]')?.value ?? 'Shared',
+      document.querySelector('[data-scope="profile"][data-field="software"]')?.value ?? 'NA'
     )
   };
 }
