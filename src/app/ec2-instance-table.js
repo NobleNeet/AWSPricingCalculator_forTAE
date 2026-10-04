@@ -126,7 +126,11 @@ function tableConfig(kind) {
     serviceCode: 'AmazonEC2',
     loadingLabel: 'EC2インスタンス一覧',
     prefix: 'EC2',
-    makeRows: data => instanceRows(data.products, document.querySelector('[data-scope="profile"][data-field="os"]')?.value ?? 'Linux')
+    makeRows: data => instanceRows(
+      data.products,
+      document.querySelector('[data-scope="profile"][data-field="os"]')?.value ?? 'Linux',
+      document.querySelector('[data-scope="profile"][data-field="tenancy"]')?.value ?? 'Shared'
+    )
   };
 }
 
