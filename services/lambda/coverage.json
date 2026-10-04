@@ -186,9 +186,8 @@
           "value": "GB-Seconds"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "snapstart-cache"
     },
     {
       "filters": [
@@ -213,9 +212,8 @@
           "value": "GB-Seconds"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "ephemeral-storage-arm"
     },
     {
       "filters": [
@@ -240,9 +238,8 @@
           "value": "GB-Seconds"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "ephemeral-storage-x86"
     },
     {
       "filters": [
@@ -348,9 +345,8 @@
           "value": "GB"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "snapstart-restore"
     },
     {
       "filters": [
@@ -13873,9 +13869,8 @@
           "value": "Lambda-GB-Second"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "provisioned-capacity-arm"
     },
     {
       "filters": [
@@ -13900,9 +13895,8 @@
           "value": "Lambda-GB-Second"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "provisioned-capacity-x86"
     },
     {
       "filters": [
@@ -13927,9 +13921,8 @@
           "value": "Lambda-GB-Second"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "provisioned-duration-arm"
     },
     {
       "filters": [
@@ -13954,9 +13947,8 @@
           "value": "Lambda-GB-Second"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "provisioned-duration-x86"
     },
     {
       "filters": [
@@ -13981,9 +13973,8 @@
           "value": "Processed-Gigabytes"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "response-streaming-arm"
     },
     {
       "filters": [
@@ -14008,9 +13999,8 @@
           "value": "Processed-Gigabytes"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside AWS Lambda initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "response-streaming-x86"
     },
     {
       "filters": [
