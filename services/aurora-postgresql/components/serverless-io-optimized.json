@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "serverless-io-optimized",
+  "label": "Serverless v2 compute",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "acuHours",
+      "label": "ACU-hours / month",
+      "type": "number",
+      "default": "730",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "ServerlessV2"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "CreateDBInstance"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "ACU-Hr"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.acuHours"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "ACU-Hr"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "aggregate-billing",
+    "network-transfer"
+  ]
+}

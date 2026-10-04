@@ -3,6 +3,18 @@
   "services": [
     {
       "available": true,
+      "id": "aurora-postgresql",
+      "label": "Amazon Aurora for PostgreSQL",
+      "profiles": [
+        "provisioned-standard",
+        "provisioned-io-optimized",
+        "serverless-standard",
+        "serverless-io-optimized"
+      ],
+      "serviceCode": "AmazonRDS"
+    },
+    {
+      "available": true,
       "id": "ebs",
       "label": "Amazon EBS",
       "profiles": [

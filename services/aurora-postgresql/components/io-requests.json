@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "io-requests",
+  "label": "Aurora I/O requests",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "requests",
+      "label": "I/O requests / month",
+      "type": "number",
+      "default": "1000000",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "System Operation"
+      },
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "Aurora I/O Operation"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "IOs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.requests"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "IOs"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}
