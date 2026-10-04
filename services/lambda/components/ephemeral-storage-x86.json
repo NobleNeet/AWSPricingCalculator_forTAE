@@ -6,12 +6,11 @@
   "usageInputs": [],
   "fixedFilters": [],
   "enabledWhen": {
-    "field": "profile.architecture",
-    "op": "eq",
-    "value": "AWS-Lambda-Duration"
+    "all": [
+      { "field": "profile.architecture", "op": "eq", "value": "AWS-Lambda-Duration" },
+      { "field": "profile.ephemeralStorageMb", "op": "neq", "value": "512" }
+    ]
   },
-  "optional": true,
-  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
@@ -27,7 +26,16 @@
       "sources": [
         { "valueFrom": "profile.requestsPerMonth" },
         { "valueFrom": "profile.averageDurationMs" },
-        { "valueFrom": "profile.additionalStorageMb" }
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.ephemeralStorageMb",
+            "transforms": [
+              { "type": "subtract", "value": "512" },
+              { "type": "minimum", "value": "0" }
+            ]
+          }
+        }
       ],
       "combine": "multiply"
     },
