@@ -106,18 +106,21 @@ export function reachableCases(pkg, products, region = 'ap-northeast-1') {
   }
   return cases;
 }
-export function validatePriceData(packages, data, common, normalizers) {
+export function validatePriceData(packages, data, common, normalizers, options = {}) {
+  const { includeCoverage = true } = options;
   const issues = [], coverage = {}, resolutions = [];
   for (const pkg of packages) {
     const code = pkg.service.priceSource.serviceCode;
     const sources = Object.entries(data).filter(([, source]) => source.serviceCode === code);
     if (!sources.length) { issues.push(issue('PRICE_SOURCE_NOT_FOUND', 'Price source missing.', { serviceId: pkg.service.id })); continue; }
-    const coverageSource = sources.find(([, source]) => source.region === COVERAGE_REFERENCE_REGION) ?? sources[0];
-    const [coverageSourceKey, coverageData] = coverageSource;
-    const categories = inventory(coverageData, common, normalizers[coverageData.serviceCode]);
-    const checked = validateCoverage(categories, pkg.coverage);
-    coverage[`${pkg.service.id}/${coverageData.region}`] = checked.summary;
-    issues.push(...checked.issues.map(i => ({ ...i, serviceId: pkg.service.id, region: coverageData.region })));
+    if (includeCoverage) {
+      const coverageSource = sources.find(([, source]) => source.region === COVERAGE_REFERENCE_REGION) ?? sources[0];
+      const [, coverageData] = coverageSource;
+      const categories = inventory(coverageData, common, normalizers[coverageData.serviceCode]);
+      const checked = validateCoverage(categories, pkg.coverage);
+      coverage[`${pkg.service.id}/${coverageData.region}`] = checked.summary;
+      issues.push(...checked.issues.map(i => ({ ...i, serviceId: pkg.service.id, region: coverageData.region })));
+    }
     for (const [sourceKey, source] of sources) {
       const cases = reachableCases(pkg, source.products, source.region);
       if (!cases.length) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id, region: source.region }));
@@ -131,7 +134,6 @@ export function validatePriceData(packages, data, common, normalizers) {
         issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId, region: source.region })));
       }
     }
-    void coverageSourceKey;
   }
   return { issues, coverage, resolutions };
 }
