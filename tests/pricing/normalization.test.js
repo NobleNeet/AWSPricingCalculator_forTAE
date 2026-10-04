@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { normalize, encode } from '../../tools/pricing-cli/normalize.js';
 import { inventory, validateCoverage } from '../../tools/pricing-cli/inventory.js';
 import { checkSources, downloadSources } from '../../tools/pricing-cli/source.js';
+import { runConcurrent } from '../../tools/pricing-cli/normalize-isolated.js';
 import { mkdtemp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -39,4 +40,18 @@ test('metadata unchanged skips bulk download', async () => {
   assert.equal(next.status, 'NO_CHANGE');
   assert.deepEqual(await downloadSources(next, await mkdtemp(path.join(tmpdir(), 'tae-download-')), fetcher), []);
   assert.equal(fetchCount, 2);
+});
+test('isolated normalization runner respects concurrency limit and processes every source once', async () => {
+  let active = 0, peak = 0;
+  const processed = [];
+  await runConcurrent([1, 2, 3, 4, 5], 2, async value => {
+    active++;
+    peak = Math.max(peak, active);
+    await new Promise(resolve => setTimeout(resolve, 5));
+    processed.push(value);
+    active--;
+  });
+  assert.equal(peak, 2);
+  assert.deepEqual(processed.sort((a, b) => a - b), [1, 2, 3, 4, 5]);
+  await assert.rejects(() => runConcurrent([1], 0, async () => {}), /positive integer/);
 });
