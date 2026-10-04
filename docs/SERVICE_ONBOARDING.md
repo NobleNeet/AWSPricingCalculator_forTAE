@@ -43,6 +43,26 @@ AWS Pricing Calculator (`https://calculator.aws/`) の該当サービス作成�
 
 AWS Pricing Calculator UIは料金値の正本ではない。
 
+#### Calculator URLとSPAの扱い
+
+AWS Pricing Calculatorのサービス作成画面は、例えばLambdaでは次のようなURLで表される。
+
+```text
+https://calculator.aws/#/createCalculator/Lambda
+```
+
+対象サービスのCalculator URLについては次の規則に従う。
+
+1. ユーザーが対象サービスのCalculator URLを提示している場合は、そのURLを対象画面の参照先として使用する。
+2. URLが提示されていない場合は、実装担当がサービス名から該当サービス作成画面を自ら特定する。通常依頼でユーザーによるURL提示を必須条件としてはならない。
+3. 対象URLを特定できた場合は、調査記録、実装メモ、test/docs等の適切な場所にURLを残す。
+4. `calculator.aws` はSPAであり、`#` 以降のfragmentやサービス固有フォームはJavaScript実行後にブラウザ上で構築される。そのため、単純なHTTP取得でベースHTMLを取得しただけでは対象サービス画面を確認したものとみなさない。
+5. primary / advanced / 条件付き項目 / defaults / dependenciesを調査するときは、可能な限りJavaScript実行後のレンダリング済み実画面を確認できるブラウザ環境を使用する。
+6. Calculatorの実画面を確認できない場合は、AWS公式service documentation、pricing page、Public Price List等から入力項目と課金意味論を補完する。ただし、確認できていないCalculator固有UIを推測で「存在する」と断定してはならない。
+7. 実装担当だけでは対象サービスURLを特定できず、かつ公式資料からも対象画面を確定できない場合に限り、ユーザーへCalculator URLまたは画面情報の提示を求めてよい。
+
+URLを知っていることと、Calculatorのレンダリング済み入力フォームを確認できていることは別の状態として扱う。
+
 ### 2.2 料金値の正本
 
 料金値、SKU、Price Dimension、対象region、On-Demand termの正本はAWS Public Price Listとする。
@@ -208,18 +228,21 @@ UI上のセクション境界とComponent境界は必ずしも1:1でなくてよ
 
 新サービスごとに最低限次を調査する。
 
-1. Calculatorの該当サービス画面を特定する
-2. 全primary入力を列挙する
-3. Advancedを開き、追加項目を列挙する
-4. 条件変更によって新たに現れる入力を確認する
-5. 各入力の初期値と候補を確認する
-6. 購入プラン関連項目を識別し、On-Demand固定ポリシーに従い除外する
-7. Project共通項目との重複を除外する
-8. 残った項目をProfile / selector / usageInput / Componentへ分類する
-9. Public Price List上のSKU・attributes・dimensionsへ対応付ける
-10. Calculatorにはあるが安全に対応できない項目をLimitation/未対応として整理する
+1. Calculatorの該当サービス画面とサービス固有URLを特定する
+2. URLを開いただけで完了とせず、SPAのJavaScript実行後にレンダリングされた実画面であることを確認する
+3. 全primary入力を列挙する
+4. Advancedを開き、追加項目を列挙する
+5. 条件変更によって新たに現れる入力を確認する
+6. 各入力の初期値と候補を確認する
+7. 購入プラン関連項目を識別し、On-Demand固定ポリシーに従い除外する
+8. Project共通項目との重複を除外する
+9. 残った項目をProfile / selector / usageInput / Componentへ分類する
+10. Public Price List上のSKU・attributes・dimensionsへ対応付ける
+11. Calculatorにはあるが安全に対応できない項目をLimitation/未対応として整理する
 
 画面を一度見ただけで項目一覧を確定してはならない。条件付き項目とAdvanced項目も確認する。
+
+Calculatorのレンダリング済み実画面を取得できない場合は、その事実を調査記録に明記し、公式資料で確認できた事実と、Calculator UIでは未確認の事項を区別する。
 
 ---
 
@@ -234,7 +257,7 @@ UI上のセクション境界とComponent境界は必ずしも1:1でなくてよ
 [1] 最新main / AGENTS / 正本docsを確認
         |
         v
-[2] calculator.aws 該当サービス画面を調査
+[2] calculator.aws 該当サービスURLを特定し、レンダリング済み実画面を調査
     - primary
     - advanced
     - 条件付き項目
@@ -303,7 +326,8 @@ Lambdaの見積項目を公式Calculator相当にして
 特段の限定がなければ、この依頼は次を含む。
 
 - 現在のrepository確認
-- Calculator UI調査
+- Calculator URLの自律的な特定
+- Calculatorのレンダリング済みUI調査
 - 公式AWS資料調査
 - Public Price List調査
 - 採用項目の自律決定
@@ -319,6 +343,8 @@ Lambdaの見積項目を公式Calculator相当にして
 
 ユーザーが明示的に「設計だけ」「調査だけ」「実装はしない」等と指定した場合だけ範囲を縮小する。
 
+Calculator URLは、ユーザーが提示した場合は利用するが、通常依頼において提示必須とはしない。実装担当が自力で特定可能な限り、自律的に調査を続行する。
+
 ---
 
 ## 9. 人間へ質問してよい条件
@@ -329,10 +355,11 @@ Lambdaの見積項目を公式Calculator相当にして
 
 - AWS公式資料同士が明白に矛盾し、安全な解釈を決定できない
 - Calculator UIの意味が公式資料とPrice Listのどちらからも確定できない
+- 対象サービスのCalculator URLを実装担当だけでは特定できず、公式資料からも対象画面を確定できないため、ユーザーからURLまたは画面情報を得なければ調査を進められない
 - 既存DSLの意味論変更が不可避で、複数の非互換案から製品判断が必要
 - 外部権限不足によりcommit/publish/deployを続行できない
 
-単に項目数が多い、Price Listが巨大、testが失敗した、UI実装が複雑、といった理由では停止しない。
+単にCalculatorがSPAである、単純なHTTP取得でフォームHTMLを取得できない、項目数が多い、Price Listが巨大、testが失敗した、UI実装が複雑、といった理由では停止しない。可能なブラウザ手段や公式資料による調査へ進む。
 
 ---
 
@@ -341,6 +368,8 @@ Lambdaの見積項目を公式Calculator相当にして
 新サービス追加は最低限以下を満たして完了とする。
 
 - Calculatorの主要On-Demand見積項目が棚卸し済み
+- 対象Calculator URLが特定済み、または特定不能理由が記録済み
+- Calculator UIをレンダリング済み実画面で確認済み、または確認不能範囲が明示済み
 - 採用/除外理由が本仕様と整合している
 - Definition schema/reference/dependency validationがPASS
 - 対応regionのPrice DataからSKUが決定論的に解決できる
