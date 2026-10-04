@@ -18,8 +18,26 @@
     "productFilters": [
       {
         "field": "usageType",
-        "op": "eq",
-        "value": "APN1-Requests-Tier2"
+        "op": "in",
+        "value": [
+          "APN1-Requests-Tier2",
+          "APN2-Requests-Tier2",
+          "APN3-Requests-Tier2",
+          "APS1-Requests-Tier2",
+          "APS2-Requests-Tier2",
+          "APS3-Requests-Tier2",
+          "CAN1-Requests-Tier2",
+          "EUC1-Requests-Tier2",
+          "EUN1-Requests-Tier2",
+          "EU-Requests-Tier2",
+          "EUW2-Requests-Tier2",
+          "EUW3-Requests-Tier2",
+          "SAE1-Requests-Tier2",
+          "Requests-Tier2",
+          "USE2-Requests-Tier2",
+          "USW1-Requests-Tier2",
+          "USW2-Requests-Tier2"
+        ]
       },
       {
         "field": "operation",
