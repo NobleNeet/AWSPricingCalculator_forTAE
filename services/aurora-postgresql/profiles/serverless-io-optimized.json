@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "serverless-io-optimized",
+  "label": "Serverless v2 / Aurora I/O-Optimized",
+  "selectors": [],
+  "fixedFilters": [
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Aurora PostgreSQL"
+    }
+  ],
+  "components": [
+    "serverless-io-optimized",
+    "storage-io-optimized"
+  ]
+}
