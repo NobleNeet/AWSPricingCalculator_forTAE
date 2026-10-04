@@ -11,11 +11,14 @@ import { inventory } from './inventory.js';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { validatePriceData } from './semantics.js';
+import { validatePublishedPriceDataParallel } from './semantic-parallel.js';
 import { runGolden } from './golden.js';
 import { classifyChange } from './drift.js';
 import { buildPriceDb } from './build.js';
 import { schemaValidator } from '../schema.js';
 import { definitionFingerprint } from './fingerprint.js';
+
+const semanticCache = new Map();
 
 export async function writeJson(file, data) {
   await mkdir(path.dirname(file), { recursive: true });
@@ -48,14 +51,42 @@ export async function candidateDirectory(input) {
   const active = await readJson('pricing/generated/manifest.json');
   return `pricing/generated/builds/${active.activeBuildId}`;
 }
+async function appendSchemaIssues(candidate, result) {
+  const validate = await schemaValidator('pricing/products');
+  for (const [key, data] of Object.entries(candidate.data)) if (!validate(data)) result.issues.push(issue('SCHEMA_ERROR', `${key}: ${JSON.stringify(validate.errors)}`));
+  return result;
+}
 export async function semanticValidation(packages, candidate) {
   const common = await readJson('pricing/normalization/common.json');
   const codes = [...new Set(Object.values(candidate.data).map(source => source.serviceCode))];
   const normalizers = Object.fromEntries(await Promise.all(codes.map(async code => [code, await readJson(`pricing/normalization/services/${code}.json`).catch(error => error.code === 'ENOENT' ? { rules: [], discriminators: [] } : Promise.reject(error))])));
-  const result = validatePriceData(packages, candidate.data, common, normalizers);
-  const validate = await schemaValidator('pricing/products');
-  for (const [key, data] of Object.entries(candidate.data)) if (!validate(data)) result.issues.push(issue('SCHEMA_ERROR', `${key}: ${JSON.stringify(validate.errors)}`));
-  return result;
+  return appendSchemaIssues(candidate, validatePriceData(packages, candidate.data, common, normalizers));
+}
+function candidateManifest(candidate) {
+  const sources = {};
+  for (const source of Object.values(candidate.metadata.sources)) {
+    (sources[source.serviceCode] ??= {})[source.region] = {
+      ...source,
+      productsPath: `sources/${source.serviceCode}/${source.region}/products.json`
+    };
+  }
+  return { sources };
+}
+async function semanticValidationParallel(packages, candidate, directory) {
+  const cacheKey = path.resolve(directory);
+  if (!semanticCache.has(cacheKey)) {
+    const pending = (async () => {
+      const checked = await validatePublishedPriceDataParallel(packages, directory, candidateManifest(candidate));
+      return appendSchemaIssues(candidate, checked);
+    })();
+    semanticCache.set(cacheKey, pending);
+  }
+  try {
+    return await semanticCache.get(cacheKey);
+  } catch (error) {
+    semanticCache.delete(cacheKey);
+    throw error;
+  }
 }
 export async function goldenValidation(packages, candidate, rawDirectory) {
   const required = new Map();
@@ -108,6 +139,7 @@ export async function run(command, options = {}) {
       }
       if (key !== sourceKey(source.serviceCode, source.region)) throw Error(`Invalid source key ${key}`);
     }
+    semanticCache.delete(path.resolve(directory));
     await writeJson(path.join(directory, 'source-metadata.json'), metadata);
     return report(command, [], { directory });
   }
@@ -121,20 +153,31 @@ export async function run(command, options = {}) {
   }
   if (['validate-price-data', 'run-golden', 'classify-change', 'build'].includes(command)) {
     const packages = await loadPackages(options.services ?? 'services');
-    const candidate = await loadCandidate(await candidateDirectory(options.input));
+    const candidateDir = await candidateDirectory(options.input);
+    const candidate = await loadCandidate(candidateDir);
+    const getSemantic = () => options.services
+      ? semanticValidation(packages, candidate)
+      : semanticValidationParallel(packages, candidate, candidateDir);
     let result;
     if (command === 'validate-price-data') {
-      const checked = await semanticValidation(packages, candidate);
-      result = report(command, checked.issues, { coverage: checked.coverage, branches: checked.resolutions.length });
+      const checked = await getSemantic();
+      result = report(command, checked.issues, {
+        coverage: checked.coverage,
+        branches: checked.branches ?? checked.resolutions.length,
+        workers: checked.concurrency,
+        taskTimings: checked.taskTimings
+      });
     }
     if (command === 'run-golden') { const checked = await goldenValidation(packages, candidate, options.raw); result = report(command, checked.issues, { cases: checked.cases }); }
     if (command === 'classify-change') {
       const previous = await loadCandidate(await candidateDirectory(options.previous));
-      const checked = await semanticValidation(packages, candidate);
-      const skus = {};
-      for (const sample of checked.resolutions) {
-        const sku = sample.result.components[sample.componentId]?.resolution?.product.sku;
-        if (sku) (skus[sample.sourceKey] ??= new Set()).add(sku);
+      const checked = await getSemantic();
+      const skus = checked.publishSkus ?? {};
+      if (!checked.publishSkus) {
+        for (const sample of checked.resolutions) {
+          const sku = sample.result.components[sample.componentId]?.resolution?.product.sku;
+          if (sku) (skus[sample.sourceKey] ??= new Set()).add(sku);
+        }
       }
       const mappedData = Object.fromEntries(Object.entries(candidate.data).map(([key, data]) => [key, { ...data, products: data.products.filter(product => skus[key]?.has(product.sku)) }]));
       const change = classifyChange(packages, previous.data, mappedData, checked.issues);
@@ -142,14 +185,16 @@ export async function run(command, options = {}) {
     }
     if (command === 'build') {
       const definitionIssues = await validateDefinitions(packages);
-      const semantic = await semanticValidation(packages, candidate);
+      const semantic = await getSemantic();
       const golden = await goldenValidation(packages, candidate, options.raw);
       const issues = [...definitionIssues, ...semantic.issues, ...golden.issues];
       if (issues.some(i => i.severity === 'error')) return report(command, issues);
-      const publishSkus = {};
-      for (const resolution of semantic.resolutions) {
-        const sku = resolution.result.components[resolution.componentId]?.resolution?.product.sku;
-        if (sku) (publishSkus[resolution.sourceKey] ??= new Set()).add(sku);
+      const publishSkus = semantic.publishSkus ?? {};
+      if (!semantic.publishSkus) {
+        for (const resolution of semantic.resolutions) {
+          const sku = resolution.result.components[resolution.componentId]?.resolution?.product.sku;
+          if (sku) (publishSkus[resolution.sourceKey] ??= new Set()).add(sku);
+        }
       }
       const manifest = await buildPriceDb(candidate, options.output ?? 'pricing/generated', options['build-id'], { issues, publishSkus, definitionSha256: await definitionFingerprint(packages) });
       return report(command, [], { build: manifest });
