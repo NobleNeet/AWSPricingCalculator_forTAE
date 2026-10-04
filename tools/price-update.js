@@ -6,6 +6,9 @@ import { checksum } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
 import { definitionFingerprint } from './pricing-cli/fingerprint.js';
 import { sourceKey } from './pricing-cli/source.js';
+import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
+
+const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
 
 export async function refreshGoldenEvidence(packages, rawDirectory, output) {
   const groups = new Map();
@@ -29,7 +32,7 @@ export async function refreshGoldenEvidence(packages, rawDirectory, output) {
     await writeJson(path.join(output, code, `${region}.json`), sample);
   }
 }
-export async function priceUpdate({ work = '.work/update', execute = run, previousDefinitionSha256 } = {}) {
+export async function priceUpdate({ work = '.work/update', execute = defaultExecute, previousDefinitionSha256 } = {}) {
   await mkdir(work, { recursive: true });
   const reports = {};
   const previousDirectory = await candidateDirectory();
