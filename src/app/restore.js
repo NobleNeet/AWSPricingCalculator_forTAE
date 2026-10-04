@@ -1,4 +1,5 @@
 import { newId, newProject } from './project-store.js';
+import { migrateDefinitionInputs } from './drawer-state-model.js';
 import { validateSchema } from '../runtime/schema-validation.js';
 import { issue } from '../pricing/issues.js';
 
@@ -12,7 +13,6 @@ export function migrateMock(legacy) {
     const cells = {};
     for (const [planId, cell] of Object.entries(row.cells ?? {})) if (cell) {
       const id = newId('service');
-      // Mock settings are retained as opaque legacy input; no inferred pricing translation.
       state.serviceInstances[id] = { id, serviceId: `legacy-${cell.service ?? 'unknown'}`, profileId: 'legacy', region: { mode: 'inherit' }, selectors: {}, components: {}, legacyInput: structuredClone(cell) };
       cells[planId] = id;
     }
@@ -64,6 +64,7 @@ export function restoreProject(text, { schema, packages, currentBuildId, migrati
       if (!pkg) { warning('UNKNOWN_SERVICE', `Unknown/unavailable Service ${instance.serviceId}; data preserved`, { path: `serviceInstances/${id}` }); continue; }
       const profile = pkg.profiles[instance.profileId];
       if (!profile) { warning('UNKNOWN_PROFILE', `Unknown Profile ${instance.profileId}; data preserved`, { path: `serviceInstances/${id}` }); continue; }
+      if (migrateDefinitionInputs(pkg, instance)) warning('DEFINITION_INPUT_MIGRATED', 'Service inputs migrated to the current Definition', { path: `serviceInstances/${id}` });
       const selectors = new Set(profile.selectors.map(input => input.id));
       for (const key of Object.keys(instance.selectors ?? {})) if (!selectors.has(key)) warning('UNKNOWN_FIELD', `Unknown selector ${key}; preserved`, { path: `serviceInstances/${id}/selectors/${key}` });
       for (const [componentId, component] of Object.entries(instance.components ?? {})) {
