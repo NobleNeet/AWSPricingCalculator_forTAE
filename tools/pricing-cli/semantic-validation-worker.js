@@ -1,7 +1,7 @@
 import { parentPort, workerData } from 'node:worker_threads';
 import path from 'node:path';
 import { loadPackages, readJson } from './package-loader.js';
-import { validatePriceData, COVERAGE_REFERENCE_REGION } from './semantics.js';
+import { validatePriceData } from './semantics.js';
 
 const packages = await loadPackages();
 const common = await readJson('pricing/normalization/common.json');
@@ -27,7 +27,7 @@ async function normalizerFor(serviceCode) {
 
 async function runTask(task) {
   const started = performance.now();
-  const { serviceCode, region, productsPath } = task;
+  const { serviceCode, region, productsPath, includeCoverage } = task;
   const servicePackages = packageGroups.get(serviceCode) ?? [];
   const source = await readJson(path.join(workerData.directory, productsPath));
   const normalizer = await normalizerFor(serviceCode);
@@ -37,7 +37,7 @@ async function runTask(task) {
     data,
     common,
     { [serviceCode]: normalizer },
-    { includeCoverage: region === COVERAGE_REFERENCE_REGION }
+    { includeCoverage }
   );
 
   return {
