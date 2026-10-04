@@ -1,12 +1,16 @@
 import { prices } from './app.js';
-import { EC2_INSTANCE_COLUMNS as COLUMNS, instanceRows, filterRows } from './ec2-instance-model.js';
+import { EC2_INSTANCE_COLUMNS, instanceRows, filterRows } from './ec2-instance-model.js';
+import { RDS_INSTANCE_COLUMNS, rdsInstanceRows, filterRdsRows } from './rds-instance-model.js';
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const drawer = document.getElementById('service-drawer');
 const drawerTitle = document.getElementById('drawer-title');
 
-function isEc2Drawer() {
-  return drawerTitle?.textContent?.trim() === 'Amazon EC2';
+function drawerKind() {
+  const title = drawerTitle?.textContent?.trim();
+  if (title === 'Amazon EC2') return 'ec2';
+  if (title === 'Amazon RDS for PostgreSQL') return 'rds';
+  return null;
 }
 
 function currentRegion() {
@@ -23,7 +27,7 @@ function setDrawerWidth(width) {
   const { min, max } = drawerBounds();
   const next = Math.round(Math.min(max, Math.max(min, width)));
   drawer.style.width = `${next}px`;
-  const slider = drawer.querySelector('[data-ec2-drawer-width]');
+  const slider = drawer.querySelector('[data-instance-drawer-width]');
   const value = drawer.querySelector('.ec2-drawer-width-value');
   if (slider) {
     slider.min = String(Math.round(min));
@@ -33,7 +37,7 @@ function setDrawerWidth(width) {
   if (value) value.textContent = `${next}px`;
 }
 
-function ensureResizableDrawer() {
+function ensureResizableDrawer(kind) {
   drawer.classList.add('ec2-wide');
   const { max } = drawerBounds();
   if (!drawer.style.width) setDrawerWidth(Math.min(1200, max));
@@ -43,7 +47,7 @@ function ensureResizableDrawer() {
     resizer.className = 'ec2-drawer-resizer';
     resizer.setAttribute('role', 'separator');
     resizer.setAttribute('aria-orientation', 'vertical');
-    resizer.setAttribute('aria-label', 'EC2編集パネルの幅を変更');
+    resizer.setAttribute('aria-label', '編集パネルの幅を変更');
     resizer.title = '左右にドラッグしてパネル幅を変更';
     drawer.append(resizer);
     resizer.addEventListener('pointerdown', event => {
@@ -68,13 +72,13 @@ function ensureResizableDrawer() {
   if (!drawer.querySelector('.ec2-drawer-width-controls')) {
     const controls = document.createElement('div');
     controls.className = 'ec2-drawer-width-controls';
-    controls.innerHTML = '<label>パネル幅 <input type="range" data-ec2-drawer-width aria-label="EC2編集パネルの幅"><span class="ec2-drawer-width-value"></span></label><button type="button" data-ec2-drawer-default>標準</button><button type="button" data-ec2-drawer-max>最大</button>';
+    controls.innerHTML = `<label>パネル幅 <input type="range" data-instance-drawer-width aria-label="${kind === 'rds' ? 'RDS' : 'EC2'}編集パネルの幅"><span class="ec2-drawer-width-value"></span></label><button type="button" data-instance-drawer-default>標準</button><button type="button" data-instance-drawer-max>最大</button>`;
     const heading = drawer.querySelector('.dialog-heading');
     heading?.after(controls);
-    const slider = controls.querySelector('[data-ec2-drawer-width]');
+    const slider = controls.querySelector('[data-instance-drawer-width]');
     slider.addEventListener('input', () => setDrawerWidth(Number(slider.value)));
-    controls.querySelector('[data-ec2-drawer-default]').addEventListener('click', () => setDrawerWidth(510));
-    controls.querySelector('[data-ec2-drawer-max]').addEventListener('click', () => setDrawerWidth(drawerBounds().max));
+    controls.querySelector('[data-instance-drawer-default]').addEventListener('click', () => setDrawerWidth(510));
+    controls.querySelector('[data-instance-drawer-max]').addEventListener('click', () => setDrawerWidth(drawerBounds().max));
     setDrawerWidth(parseFloat(drawer.style.width) || Math.min(1200, drawerBounds().max));
   }
 }
@@ -86,53 +90,94 @@ function resetDrawerWidth() {
   drawer.querySelector('.ec2-drawer-width-controls')?.remove();
 }
 
-function tableHtml(rows, selected, filters, sortKey, sortDirection) {
-  const filtered = filterRows(rows, filters);
+function displayCell(row, key) {
+  if (key === 'hourly') return row.hourly === null ? '—' : `$${row.hourly.toFixed(6)}`;
+  if (key === 'memory') return esc(row.memoryLabel || (row.memory ?? '—'));
+  return esc(row[key] ?? '—');
+}
+
+function tableHtml({ rows, selected, filters, sortKey, sortDirection, columns, filterRowsFn, prefix }) {
+  const filtered = filterRowsFn(rows, filters);
   filtered.sort((a, b) => {
     const left = a[sortKey], right = b[sortKey];
     const result = typeof left === 'number' && typeof right === 'number' ? left - right : String(left ?? '').localeCompare(String(right ?? ''), 'ja', { numeric: true });
     return sortDirection === 'desc' ? -result : result;
   });
-  return `<div class="ec2-instance-summary">${filtered.length} / ${rows.length} 件</div><div class="ec2-instance-scroll"><table class="ec2-instance-table"><thead><tr>${COLUMNS.map(([key, label]) => `<th><button type="button" class="ec2-sort" data-ec2-sort="${key}">${esc(label)}${sortKey === key ? (sortDirection === 'asc' ? ' ▲' : ' ▼') : ''}</button></th>`).join('')}</tr><tr class="ec2-filter-row">${COLUMNS.map(([key, label, kind]) => `<th><input data-ec2-filter="${key}" value="${esc(filters[key] ?? '')}" placeholder="${kind === 'number' ? '例: >=4' : '絞り込み'}" aria-label="${esc(label)}を絞り込み"></th>`).join('')}</tr></thead><tbody>${filtered.map(row => `<tr class="${row.instanceType === selected ? 'selected' : ''}"><td><button type="button" class="ec2-instance-select" data-ec2-instance="${esc(row.instanceType)}">${esc(row.instanceType)}</button></td><td>${esc(row.family)}</td><td>${esc(row.category || '—')}</td><td>${esc(row.vcpu ?? '—')}</td><td>${esc(row.physicalCores ?? '—')}</td><td>${esc(row.memoryLabel || '—')}</td><td>${esc(row.network || '—')}</td><td>${esc(row.storage || '—')}</td><td>${row.hourly === null ? '—' : `$${row.hourly.toFixed(6)}`}</td><td>${esc(row.currentGeneration || '—')}</td></tr>`).join('') || '<tr><td colspan="10">条件に一致するインスタンスはありません。</td></tr>'}</tbody></table></div>`;
+  return `<div class="ec2-instance-summary">${filtered.length} / ${rows.length} 件</div><div class="ec2-instance-scroll"><table class="ec2-instance-table"><thead><tr>${columns.map(([key, label]) => `<th><button type="button" class="ec2-sort" data-instance-sort="${key}">${esc(label)}${sortKey === key ? (sortDirection === 'asc' ? ' ▲' : ' ▼') : ''}</button></th>`).join('')}</tr><tr class="ec2-filter-row">${columns.map(([key, label, kind]) => `<th><input data-instance-filter="${key}" value="${esc(filters[key] ?? '')}" placeholder="${kind === 'number' ? '例: >=4' : '絞り込み'}" aria-label="${esc(label)}を絞り込み"></th>`).join('')}</tr></thead><tbody>${filtered.map(row => `<tr class="${row.instanceType === selected ? 'selected' : ''}">${columns.map(([key], index) => `<td>${index === 0 ? `<button type="button" class="ec2-instance-select" data-instance-choice="${esc(row.instanceType)}">${esc(row.instanceType)}</button>` : displayCell(row, key)}</td>`).join('')}</tr>`).join('') || `<tr><td colspan="${columns.length}">条件に一致する${prefix}インスタンスはありません。</td></tr>`}</tbody></table></div>`;
 }
 
-async function enhance(select) {
-  if (!isEc2Drawer() || select.dataset.ec2Enhanced === 'true') return;
-  select.dataset.ec2Enhanced = 'true';
-  ensureResizableDrawer();
+function tableConfig(kind) {
+  if (kind === 'rds') {
+    return {
+      columns: RDS_INSTANCE_COLUMNS,
+      filterRowsFn: filterRdsRows,
+      serviceCode: 'AmazonRDS',
+      loadingLabel: 'RDS DBインスタンス一覧',
+      prefix: 'DB',
+      makeRows: data => rdsInstanceRows(data.products, {
+        deployment: document.querySelector('[data-scope="profile"][data-field="deployment"]')?.value ?? 'Single-AZ',
+        databaseEngine: 'PostgreSQL'
+      })
+    };
+  }
+  return {
+    columns: EC2_INSTANCE_COLUMNS,
+    filterRowsFn: filterRows,
+    serviceCode: 'AmazonEC2',
+    loadingLabel: 'EC2インスタンス一覧',
+    prefix: 'EC2',
+    makeRows: data => instanceRows(data.products, document.querySelector('[data-scope="profile"][data-field="os"]')?.value ?? 'Linux')
+  };
+}
+
+async function enhance(select, kind) {
+  const marker = `${kind}Enhanced`;
+  if (select.dataset[marker] === 'true') return;
+  select.dataset[marker] = 'true';
+  ensureResizableDrawer(kind);
   const label = select.closest('label'); if (!label) return;
-  const picker = document.createElement('div'); picker.className = 'ec2-instance-picker'; picker.innerHTML = '<p>EC2インスタンス一覧を読み込んでいます…</p>';
-  label.after(picker); select.classList.add('ec2-original-select');
+  const config = tableConfig(kind);
+  const picker = document.createElement('div');
+  picker.className = 'ec2-instance-picker';
+  picker.dataset.instancePicker = kind;
+  picker.innerHTML = `<p>${config.loadingLabel}を読み込んでいます…</p>`;
+  label.after(picker);
+  select.classList.add('ec2-original-select');
   try {
-    const os = document.querySelector('[data-scope="profile"][data-field="os"]')?.value ?? 'Linux';
     const region = currentRegion();
-    const data = await prices.products('AmazonEC2', region);
-    if (!picker.isConnected || !isEc2Drawer()) return;
-    const rows = instanceRows(data.products, os), filters = Object.fromEntries(COLUMNS.map(([key]) => [key, '']));
+    const data = await prices.products(config.serviceCode, region);
+    if (!picker.isConnected || drawerKind() !== kind) return;
+    const rows = config.makeRows(data);
+    const filters = Object.fromEntries(config.columns.map(([key]) => [key, '']));
     let sortKey = 'instanceType', sortDirection = 'asc';
     const render = () => {
-      const activeKey = document.activeElement?.dataset?.ec2Filter, caret = activeKey ? document.activeElement.selectionStart : null;
-      picker.innerHTML = tableHtml(rows, select.value, filters, sortKey, sortDirection);
-      if (activeKey) { const input = picker.querySelector(`[data-ec2-filter="${activeKey}"]`); input?.focus(); if (caret !== null) input?.setSelectionRange(caret, caret); }
+      const activeKey = document.activeElement?.dataset?.instanceFilter, caret = activeKey ? document.activeElement.selectionStart : null;
+      picker.innerHTML = tableHtml({ rows, selected: select.value, filters, sortKey, sortDirection, columns: config.columns, filterRowsFn: config.filterRowsFn, prefix: config.prefix });
+      if (activeKey) { const input = picker.querySelector(`[data-instance-filter="${activeKey}"]`); input?.focus(); if (caret !== null) input?.setSelectionRange(caret, caret); }
     };
-    picker.addEventListener('input', event => { const key = event.target.dataset.ec2Filter; if (!key) return; filters[key] = event.target.value; render(); });
+    picker.addEventListener('input', event => { const key = event.target.dataset.instanceFilter; if (!key) return; filters[key] = event.target.value; render(); });
     picker.addEventListener('click', event => {
-      const sort = event.target.closest('[data-ec2-sort]');
-      if (sort) { const key = sort.dataset.ec2Sort; sortDirection = sortKey === key && sortDirection === 'asc' ? 'desc' : 'asc'; sortKey = key; render(); return; }
-      const choice = event.target.closest('[data-ec2-instance]'); if (!choice) return;
-      select.value = choice.dataset.ec2Instance; select.dispatchEvent(new Event('change', { bubbles: true }));
+      const sort = event.target.closest('[data-instance-sort]');
+      if (sort) { const key = sort.dataset.instanceSort; sortDirection = sortKey === key && sortDirection === 'asc' ? 'desc' : 'asc'; sortKey = key; render(); return; }
+      const choice = event.target.closest('[data-instance-choice]'); if (!choice) return;
+      select.value = choice.dataset.instanceChoice;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
     });
     render();
-  } catch (error) { picker.innerHTML = `<p class="invalid">EC2インスタンス一覧を表示できません: ${esc(error.message)}</p>`; select.classList.remove('ec2-original-select'); }
+  } catch (error) {
+    picker.innerHTML = `<p class="invalid">${config.loadingLabel}を表示できません: ${esc(error.message)}</p>`;
+    select.classList.remove('ec2-original-select');
+  }
 }
 
 function scan() {
-  if (!isEc2Drawer()) {
+  const kind = drawerKind();
+  if (!kind) {
     resetDrawerWidth();
     return;
   }
   const select = document.querySelector('#input-component-instance-instanceType');
-  if (select) enhance(select);
+  if (select) enhance(select, kind);
   else resetDrawerWidth();
 }
 new MutationObserver(scan).observe(document.getElementById('drawer-content'), { childList: true, subtree: true });
