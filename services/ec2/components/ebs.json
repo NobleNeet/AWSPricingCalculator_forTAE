@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs",
+  "label": "Amazon Elastic Block Store (EBS)",
+  "optional": true,
+  "defaultEnabled": true,
+  "selectors": [
+    {
+      "id": "volumeType",
+      "label": "Storage volume",
+      "type": "select",
+      "default": "gp3",
+      "options": {
+        "attribute": "volumeApiName",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Storage"
+          }
+        ]
+      }
+    }
+  ],
+  "usageInputs": [
+    {
+      "id": "storageGb",
+      "label": "Storage amount (GB)",
+      "type": "number",
+      "default": "30",
+      "minimum": "0",
+      "ui": {
+        "help": "AWS Pricing CalculatorのEC2見積りと同じく、既定値は30 GBです。0 GBでEBSを付けない見積りにできます。"
+      }
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Storage"
+    }
+  ],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.volumeApiName",
+        "op": "eq",
+        "valueFrom": "component.volumeType"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.storageGb"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}
