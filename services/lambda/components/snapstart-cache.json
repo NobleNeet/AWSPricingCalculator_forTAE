@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "snapstart-cache",
+  "label": "SnapStart snapshot cache",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "all": [
+      { "field": "profile.snapStartMode", "op": "eq", "value": "billable-runtime" },
+      { "field": "profile.provisionedConcurrency", "op": "eq", "value": "0" },
+      { "field": "profile.additionalStorageMb", "op": "eq", "value": "0" }
+    ]
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-SnapStart-Cache" }
+    ],
+    "dimensionFilters": [
+      { "field": "unit", "op": "eq", "value": "GB-Seconds" }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        { "valueFrom": "profile.snapStartCachedVersionHours" },
+        { "valueFrom": "profile.memoryMb" }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      { "type": "scale", "factor": "3.515625" }
+    ],
+    "outputUnit": "GB-Seconds"
+  },
+  "limitations": ["account-specific-discount"]
+}
