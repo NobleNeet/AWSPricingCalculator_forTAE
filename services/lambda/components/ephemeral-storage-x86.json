@@ -23,6 +23,8 @@
     "op": "eq",
     "value": "AWS-Lambda-Duration"
   },
+  "optional": true,
+  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
