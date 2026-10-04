@@ -1,6 +1,6 @@
 # AWSPricingCalculator_forTAE 仕様書
 
-最終更新: 2026-10-04
+最終更新: 2026-10-05
 
 本書はユーザーから見た挙動・Projectデータ・出力仕様の正本とする。
 料金データ基盤、Service Definition、Pricing Engine、CI/CD等の内部仕様は `docs/PRICING_ARCHITECTURE.md` を正本とする。
@@ -182,6 +182,19 @@ DrawerはService Definitionから動的生成する。
 親selector変更等で現在値が候補外になった場合、別値へ自動置換せず「要再選択」とする。
 
 無効化された入力・Componentの保存値は保持してよいが、無効中は料金計算へ使用しない。
+
+### 6.1 EC2のOn-Demand利用量
+
+EC2は本アプリのOn-Demand固定方針に従い、AWS Pricing Calculatorの `Expected utilization of EC2 instances` に相当する月間稼働時間を直接入力する。
+
+- 入力値は1インスタンスあたりの月間稼働時間とし、`0`〜`744` 時間を許容する。
+- 既定値は `730` 時間/月とする。
+- インスタンス数は別入力とし、EC2 compute料金の課金数量は `Expected utilization × Number of EC2 instances` で求める。
+- Service Definition上の入力ID `hours` は既存Project JSONとの互換性のため維持する。
+
+AWS Pricing CalculatorにあるWorkload（一定使用量、日次・週次・月次スパイク）は、Reserved Instances等とOn-Demandの組み合わせを検討するための利用パターンであり、本アプリではRI / Savings Plansを対象外としているため入力項目として実装しない。
+
+この省略は「On-Demand固定」を理由に通常利用量を省略するものではなく、通常利用量は `Expected utilization of EC2 instances` として必ず指定可能にする。
 
 ---
 
