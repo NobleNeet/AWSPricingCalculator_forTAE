@@ -7,15 +7,52 @@ function canonicalUnit(unit) {
   return unit;
 }
 
+function resolveUsageSource(source, context) {
+  if (source.value && typeof source.value === 'object' && !Array.isArray(source.value)) {
+    const expression = source.value;
+    if (expression.type !== 'transformed' || typeof expression.valueFrom !== 'string' || !Array.isArray(expression.transforms)) {
+      fail('INVALID_CALCULATION', 'Invalid transformed usage source.');
+    }
+    const resolved = resolveValue({ valueFrom: expression.valueFrom }, context);
+    if (!resolved.exists) fail('MISSING_USAGE', `Missing ${expression.valueFrom}.`);
+    let value = decimal(resolved.value);
+    if (value.isNegative()) fail('INVALID_USAGE', 'Usage must be nonnegative.');
+    for (const transform of expression.transforms) {
+      switch (transform.type) {
+        case 'subtract':
+          value = value.minus(decimal(transform.value));
+          break;
+        case 'minimum': {
+          const minimum = decimal(transform.value);
+          if (minimum.isNegative()) fail('INVALID_TRANSFORM', 'Negative minimum.');
+          value = value.lt(minimum) ? minimum : value;
+          break;
+        }
+        case 'scale': {
+          const factor = decimal(transform.factor);
+          if (!factor.gt('0')) fail('INVALID_TRANSFORM', 'Factor must be positive.');
+          value = value.times(factor);
+          break;
+        }
+        default:
+          fail('INVALID_TRANSFORM', 'Unknown source transform.');
+      }
+    }
+    if (value.isNegative()) fail('INVALID_USAGE', 'Transformed usage must be nonnegative.');
+    return value;
+  }
+  const resolved = resolveValue(source, context);
+  if (!resolved.exists) fail('MISSING_USAGE', `Missing ${source.valueFrom}.`);
+  const value = decimal(resolved.value);
+  if (value.isNegative()) fail('INVALID_USAGE', 'Usage must be nonnegative.');
+  return value;
+}
+
 export function calculate(calculation, context, dimension) {
   if (calculation.model !== 'unit' || calculation.usage.combine !== 'multiply' || !calculation.usage.sources.length) fail('INVALID_CALCULATION', 'Unsupported calculation model or usage.');
   let rawUsage = decimal('1');
   for (const source of calculation.usage.sources) {
-    const resolved = resolveValue(source, context);
-    if (!resolved.exists) fail('MISSING_USAGE', `Missing ${source.valueFrom}.`);
-    const value = decimal(resolved.value);
-    if (value.isNegative()) fail('INVALID_USAGE', 'Usage must be nonnegative.');
-    rawUsage = rawUsage.times(value);
+    rawUsage = rawUsage.times(resolveUsageSource(source, context));
   }
   let quantity = rawUsage;
   let convertedUnit;
