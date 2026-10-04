@@ -54,7 +54,8 @@ export function restoreProject(text, { schema, packages, currentBuildId, migrati
         used.add(row.cells[planId]);
       }
     }
-    if (!next.project.planOrder.includes(next.project.baselinePlanId)) { next.project.baselinePlanId = next.project.planOrder[0] ?? null; warning('BASELINE_REPAIRED', 'Baseline set to first available Plan'); }
+    if (!next.project.planOrder.length) next.project.baselinePlanId = null;
+    else if (!next.project.planOrder.includes(next.project.baselinePlanId)) { next.project.baselinePlanId = next.project.planOrder[0]; warning('BASELINE_REPAIRED', 'Baseline set to first available Plan'); }
     for (const [id, instance] of Object.entries(next.serviceInstances)) {
       if (!object(instance)) throw Error('Invalid Service Instance');
       instance.id = id;
