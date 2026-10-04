@@ -11,14 +11,22 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
   const rateDiff = [];
   for (const pkg of packages) {
     const code = pkg.service.priceSource.serviceCode;
-    if (!previous[code] || !candidate[code]) { warning = true; continue; }
-    if (encode(semantic(previous[code])) !== encode(semantic(candidate[code]))) warning = true;
-    for (const sample of reachableCases(pkg, previous[code].products)) {
-      const oldResult = evaluateService(sample.pkg, sample.instance, sample.project, previous[code].products);
-      const newResult = evaluateService(sample.pkg, sample.instance, sample.project, candidate[code].products);
-      breaks.push(...newResult.issues);
-      const oldComponent = oldResult.components[sample.componentId], next = newResult.components[sample.componentId];
-      if (oldComponent?.unitPriceUsd !== next?.unitPriceUsd) rateDiff.push({ serviceId: pkg.service.id, componentId: sample.componentId, selectors: sample.instance.selectors, inputs: sample.instance.components[sample.componentId].inputs, previous: oldComponent?.unitPriceUsd, current: next?.unitPriceUsd });
+    const keys = new Set([
+      ...Object.entries(previous).filter(([, source]) => source.serviceCode === code).map(([key]) => key),
+      ...Object.entries(candidate).filter(([, source]) => source.serviceCode === code).map(([key]) => key)
+    ]);
+    if (!keys.size) { warning = true; continue; }
+    for (const key of keys) {
+      const before = previous[key], after = candidate[key];
+      if (!before || !after) { warning = true; continue; }
+      if (encode(semantic(before)) !== encode(semantic(after))) warning = true;
+      for (const sample of reachableCases(pkg, before.products, before.region)) {
+        const oldResult = evaluateService(sample.pkg, sample.instance, sample.project, before.products);
+        const newResult = evaluateService(sample.pkg, sample.instance, sample.project, after.products);
+        breaks.push(...newResult.issues.map(issue => ({ ...issue, region: after.region })));
+        const oldComponent = oldResult.components[sample.componentId], next = newResult.components[sample.componentId];
+        if (oldComponent?.unitPriceUsd !== next?.unitPriceUsd) rateDiff.push({ serviceId: pkg.service.id, region: after.region, componentId: sample.componentId, selectors: sample.instance.selectors, inputs: sample.instance.components[sample.componentId].inputs, previous: oldComponent?.unitPriceUsd, current: next?.unitPriceUsd });
+      }
     }
   }
   return { classification: breaks.length ? 'STRUCTURE_BREAKING' : warning ? 'STRUCTURE_WARNING' : 'PRICE_ONLY', publishable: !breaks.length, issues: breaks, rateDiff };
