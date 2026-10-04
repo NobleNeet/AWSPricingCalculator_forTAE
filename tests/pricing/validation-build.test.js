@@ -26,6 +26,16 @@ test('semantic and independent raw Golden validation detect incorrect expectatio
   pkg.golden[0].verification.meter.quantity = '731';
   assert.equal(runGolden([pkg], candidate.data, { [key]: raw }).issues[0].code, 'GOLDEN_FAILED');
 });
+test('numeric profile conditions are probed so conditional meters remain semantically reachable', () => {
+  const { pkg, candidate } = fixture();
+  pkg.profiles.standard.selectors = [{ id: 'requestCount', label: 'Requests', type: 'number', default: '0', minimum: '0' }];
+  pkg.components.meter.enabledWhen = { field: 'profile.requestCount', op: 'neq', value: '0' };
+  const result = validatePriceData([pkg], candidate.data, { regionPrefixes: ['APN1-'], rules: [] }, { Example: { rules: [] } });
+  assert.equal(result.issues.length, 0);
+  const resolution = result.resolutions.find(item => item.componentId === 'meter');
+  assert.ok(resolution);
+  assert.notEqual(resolution.instance.selectors.requestCount, '0');
+});
 test('coverage inventory is canonical while supported pricing resolves in every region', () => {
   const { pkg, candidate } = fixture();
   pkg.components.meter.priceQuery.productFilters = [{ field: 'productFamily', op: 'eq', value: 'Compute' }];
