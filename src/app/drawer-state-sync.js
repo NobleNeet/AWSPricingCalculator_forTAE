@@ -11,7 +11,8 @@ function domDetailStateKey(details, index = 0) {
 function relabelSelect(select, labels) {
   if (!select) return;
   [...select.options].forEach(option => {
-    if (labels[option.value]) option.textContent = labels[option.value];
+    const label = labels[option.value];
+    if (label && option.textContent !== label) option.textContent = label;
   });
 }
 
