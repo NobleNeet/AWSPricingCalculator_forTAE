@@ -8,6 +8,10 @@ function domDetailStateKey(details, index = 0) {
   return detailStateKey(summary, legend, index);
 }
 
+function setOptionLabel(option, label) {
+  if (label && option.textContent !== label) option.textContent = label;
+}
+
 function decorateLambdaDrawer(content) {
   const architecture = content.querySelector('#input-profile--architecture');
   if (!architecture) return;
@@ -15,7 +19,7 @@ function decorateLambdaDrawer(content) {
     'AWS-Lambda-Duration': 'x86',
     'AWS-Lambda-Duration-ARM': 'arm64'
   };
-  [...architecture.options].forEach(option => { if (labels[option.value]) option.textContent = labels[option.value]; });
+  [...architecture.options].forEach(option => setOptionLabel(option, labels[option.value]));
   const snapStart = content.querySelector('#input-profile--snapStartMode');
   if (snapStart) {
     const snapLabels = {
@@ -23,13 +27,14 @@ function decorateLambdaDrawer(content) {
       'java-managed-no-charge': 'Java managed runtime (no SnapStart surcharge)',
       'billable-runtime': 'Billable runtime'
     };
-    [...snapStart.options].forEach(option => { if (snapLabels[option.value]) option.textContent = snapLabels[option.value]; });
+    [...snapStart.options].forEach(option => setOptionLabel(option, snapLabels[option.value]));
   }
   [...content.querySelectorAll('fieldset')].forEach(fieldset => {
     const manualToggle = fieldset.querySelector('[data-toggle]');
     const inactive = [...fieldset.querySelectorAll('.notice-text')].some(node => node.textContent.includes('無効中'));
     const userFields = fieldset.querySelector('[data-field]');
-    fieldset.hidden = !manualToggle && !userFields && inactive;
+    const hidden = !manualToggle && !userFields && inactive;
+    if (fieldset.hidden !== hidden) fieldset.hidden = hidden;
   });
 }
 
@@ -48,7 +53,7 @@ export function installDrawerStateSync({ root = document, state = appState, defi
   const restoreDetailState = () => {
     [...content.querySelectorAll('details')].forEach((details, index) => {
       const saved = openDetails.get(domDetailStateKey(details, index));
-      if (saved !== undefined) details.open = saved;
+      if (saved !== undefined && details.open !== saved) details.open = saved;
     });
     decorateLambdaDrawer(content);
   };
