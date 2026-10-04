@@ -2,14 +2,15 @@
 
 最終更新: 2026-10-04
 
-本書は `docs/IMPLEMENTATION_PLAN.md` に定義された Phase 1〜11 を、Codex CLI に対する **1回の `/goal` 指示から人間の追加指示なしで順次完了させるための運用仕様**である。
+本書は `docs/IMPLEMENTATION_PLAN.md` に定義されたPhase実装、および新サービス追加・既存サービス拡充を、人間の追加指示なしで完了させるための運用仕様である。
 
 本書は料金・UI仕様そのものを変更しない。仕様の優先順位は以下とする。
 
 1. `docs/SPEC.md`
 2. `docs/PRICING_ARCHITECTURE.md`
-3. `docs/AUTONOMOUS_IMPLEMENTATION.md`（実装の進め方）
-4. `docs/IMPLEMENTATION_PLAN.md`（Phaseごとの実装内容）
+3. `docs/SERVICE_ONBOARDING.md`（新サービス追加・既存サービス拡充時）
+4. `docs/AUTONOMOUS_IMPLEMENTATION.md`（実装の進め方）
+5. `docs/IMPLEMENTATION_PLAN.md`（Phaseごとの実装内容）
 
 `IMPLEMENTATION_PLAN.md` 内にある各Phase個別の `/goal` 例や「1 Phase = 1 Goal」という旧運用記述と本書が競合する場合は、**本書を優先する**。
 
@@ -19,7 +20,9 @@
 
 通常の実装開始時、人間はCodexへ `/goal` を1回だけ与える。
 
-Codexはその後、以下を自律的に行う。
+Codexはその後、必要な作業を内部sub-goalへ分解し、自律的に実行する。
+
+大規模初期実装では次のPhase進行を使う。
 
 ```text
 Phase 1
@@ -29,14 +32,16 @@ Phase 1
   -> Phase完了判定
   -> Phase 2
   -> ...
-  -> Phase 11
+  -> 最終Phase
   -> 最終E2E / hardening
   -> 完了報告
 ```
 
-Phase間で人間の確認・承認・追加 `/goal` を要求しない。
+新サービス追加・既存サービス拡充では `docs/SERVICE_ONBOARDING.md` のend-to-endフローを使う。
 
-各Phaseは依存順に進める。後続Phaseに必要な前提が不足している場合は、現在Phaseまたは必要な先行Phaseへ戻って修正し、その後再度前進する。
+通常の実装ステップ間で人間の確認・承認・追加 `/goal` を要求しない。
+
+後続作業に必要な前提が不足している場合は、必要な先行実装へ戻って修正し、その後再度前進する。
 
 ---
 
@@ -50,15 +55,18 @@ Codexは実装中に不明点が生じても、まず以下を自分で確認す
 - `AGENTS.md`
 - `docs/SPEC.md`
 - `docs/PRICING_ARCHITECTURE.md`
+- `docs/SERVICE_ONBOARDING.md`（service onboarding時）
 - `docs/IMPLEMENTATION_PLAN.md`
 - 既存test / fixture / workflow
 - 必要な公式AWS資料
+- AWS Pricing Calculatorの該当サービス画面（service onboarding時）
+- AWS Public Price List
 
 単純な実装上の選択肢について、人間へ質問して停止しない。
 
 ### 2.2 自分で修正して再試行する
 
-build/test/validationが失敗した場合、原則として以下を繰り返す。
+build/test/validation/Actions/deployが失敗した場合、原則として以下を繰り返す。
 
 ```text
 失敗
@@ -66,10 +74,12 @@ build/test/validationが失敗した場合、原則として以下を繰り返�
 -> 修正
 -> narrow test
 -> repository-level test/validation
+-> 必要ならcommit/push
+-> Actions/deploy再確認
 -> 成功まで反復
 ```
 
-1回の失敗を理由にPhaseを中断しない。
+1回の失敗を理由に作業を中断しない。
 
 ### 2.3 実装上の裁量
 
@@ -84,6 +94,7 @@ build/test/validationが失敗した場合、原則として以下を繰り返�
 - retry間隔等の小規模定数
 - file分割の細部
 - dependencyの選定（仕様制約に適合する範囲）
+- Calculator項目を既存Profile/Component/selector/usageInputへどう分割するか
 
 ---
 
@@ -104,19 +115,17 @@ warningが残る場合は、仕様上許容されるwarningかを確認して記
 
 Phase完了時の報告は作業ログとして保持してよいが、**人間の返答を待たずに次Phaseへ進む**。
 
+Service onboardingでは `docs/SERVICE_ONBOARDING.md` の完成条件も同じく内部ゲートとして扱う。
+
 ---
 
 ## 4. Phase間の進行
 
 ### 4.1 原則直列
 
-基本順序は以下とする。
+大規模初期実装の基本順序は `docs/IMPLEMENTATION_PLAN.md` に従う。
 
-```text
-1 -> 2 -> 3 -> 4 -> 5 -> 6/7 -> 8 -> 9 -> 10 -> 11
-```
-
-Phase 6と7は依存関係を満たす範囲で並行・前後入替してよいが、Phase 8開始前に両方を完了する。
+依存関係を満たす範囲で並行・前後入替してよいが、後続Phase開始前に必要な先行Phaseを完了する。
 
 ### 4.2 前のPhaseへ戻ることを許可する
 
@@ -128,20 +137,11 @@ Phase 6と7は依存関係を満たす範囲で並行・前後入替してよい
 
 ### 4.3 Phaseごとのcommit
 
-可能な限りPhase単位でreview可能なcommitを作る。
-
-推奨:
-
-```text
-Phase 1 completion commit
-Phase 2 completion commit
-...
-Phase 11 completion commit
-```
+可能な限りreview可能な単位でcommitを作る。
 
 細かな中間commitを追加してもよい。
 
-人間のmerge承認をPhase間ゲートにはしない。同一作業branch上で最終Phaseまで継続してよい。
+人間のmerge承認を通常の実装ゲートにはしない。同一作業branchまたは許可されたmain更新上で完了まで継続してよい。
 
 ---
 
@@ -161,6 +161,10 @@ Phase 11 completion commit
 - lint/build warningの修正
 - 既存コードの必要なrefactor
 - docsの実装状況更新
+- Calculator画面の入力項目棚卸し
+- On-Demand固定ポリシーに基づく購入プラン項目の除外
+- Project共通項目との重複除外
+- Service Definitionへの標準的なマッピング
 
 「どちらでも仕様を満たす」選択肢は、保守性・単純性・testabilityを優先して決める。
 
@@ -176,6 +180,7 @@ Phase 11 completion commit
 
 - `docs/SPEC.md`
 - `docs/PRICING_ARCHITECTURE.md`
+- service onboarding時の `docs/SERVICE_ONBOARDING.md`
 
 この場合、推測で一方を選ばない。
 
@@ -221,6 +226,10 @@ Phase 11 completion commit
 - 1 Phaseが想定より大きくなった
 - 後続Phaseで先行Phaseの修正が必要になった
 - AWS Price List fixtureの追加が必要
+- Calculatorの入力項目が多い
+- Price Listが巨大
+- Price DB再生成に時間がかかる
+- GitHub Actionsが一度失敗した
 
 これらはCodexが自律的に解決する。
 
@@ -228,7 +237,7 @@ Phase 11 completion commit
 
 ## 8. 進捗管理
 
-Codexは長時間実装で現在地を失わないため、Phase状態を継続的に管理する。
+Codexは長時間実装で現在地を失わないため、Phaseまたはonboarding stepの状態を継続的に管理する。
 
 推奨状態:
 
@@ -243,42 +252,49 @@ blocked
 
 ただし、progress fileそのものを仕様の正本にはしない。
 
-Phase完了時には最低限以下を記録する。
+区切りごとに最低限以下を記録する。
 
-- completed Phase
+- completed step / Phase
 - 主な変更
 - tests / validations
 - warning
-- 次Phase
+- 次step
 
-その後、返答待ちせず次Phaseを開始する。
+その後、返答待ちせず次作業を開始する。
 
 ---
 
 ## 9. 外部情報の利用
 
-Phase 4/7等でAWSの現在情報が必要な場合、Codexは公式AWS資料・Price List等を自ら参照して進める。
+AWSの現在情報が必要な場合、Codexは公式AWS資料・AWS Pricing Calculator・Public Price List等を自ら参照して進める。
 
-人間へURLや料金カテゴリの調査を依頼しない。
+人間へURL、入力項目、料金カテゴリ、SKU、単価の調査を依頼しない。
 
 料金値の正本は常に仕様どおりAWS Public Price Listとする。
+
+Service onboardingでは、Calculator UIを入力項目・依存関係・初期値・primary/advanced区分の主要参照先とし、Price Listを料金値の正本とする。両者だけで意味が不明な場合は公式AWS docsで補完する。
 
 ---
 
 ## 10. 最終完了条件
 
-Phase 11終了後、`docs/IMPLEMENTATION_PLAN.md` の「完成判定」をすべて検証する。
+大規模初期実装では `docs/IMPLEMENTATION_PLAN.md` の完成判定をすべて検証する。
 
-一部条件がFAILなら、該当Phaseへ戻って修正し、再度Phase 11検証を行う。
+Service onboardingでは `docs/SERVICE_ONBOARDING.md` の完成条件をすべて検証する。
+
+一部条件がFAILなら、該当実装へ戻って修正し、再度最終検証を行う。
 
 全条件がPASSした時点でのみ実装完了とする。
 
 最終報告には以下を含める。
 
-- Phase 1〜11の完了状態
-- 実装した主要機能
+- 実装した主要機能または追加サービス
+- Calculatorから採用した主要入力項目
+- 明示的に除外した項目と理由
 - test / validation / E2E結果
-- GitHub Actions結果または検証状況
+- Price DB build/publish結果（該当時）
+- GitHub Actions結果
+- GitHub Pages deploy結果
 - 残存warning / known limitation
 - 仕様変更の有無
 - 最終commit一覧または主要commit
@@ -289,8 +305,40 @@ Phase 11終了後、`docs/IMPLEMENTATION_PLAN.md` の「完成判定」をすべ
 
 通常運用では、各Phase個別 `/goal` は使用しない。
 
-人間は「Phase 1から11まで自律実行する」という1回の総合 `/goal` を与える。
+人間は1回の総合 `/goal` を与える。
 
-Codexはその総合goalを、Phaseごとの内部sub-goalへ自分で分解して実行する。
+Codexはその総合goalを内部sub-goalへ自分で分解して実行する。
 
 `docs/IMPLEMENTATION_PLAN.md` に記載されたPhase個別 `/goal` 文面は、デバッグ・再開・特定Phaseのみ再実行する際の参考テンプレートとして扱う。
+
+---
+
+## 12. 新サービス追加依頼の標準解釈
+
+Web版ChatGPTの「AWS見積もりツール」Project、Codex、その他repositoryへ書き込み可能な実装エージェントに対して、例えば次の依頼が与えられた場合:
+
+```text
+AWS Fargateを追加して
+```
+
+これは設計相談ではなく、特段の限定がない限り **end-to-endの実装依頼** と解釈する。
+
+実装担当は次を自律実行する。
+
+1. 最新mainと正本docsを確認
+2. `docs/SERVICE_ONBOARDING.md` に従ってCalculator画面を調査
+3. 公式AWS docsとPublic Price Listを調査
+4. On-Demand固定で採用項目を決定
+5. Definition / UI / 必要なgeneric codeを実装
+6. test / Golden / validation / E2Eを追加・実行
+7. 失敗を修正して全required checkを通す
+8. commit/push
+9. GitHub Actionsを追跡
+10. Price DB更新が必要ならvalidated buildをpublish
+11. GitHub Pages deploy成功まで追跡
+12. 公開版の代表操作を確認
+13. 完了報告
+
+途中で「次に進めてよいか」を人間へ確認しない。
+
+ユーザーが `調査だけ`、`設計だけ`、`Definitionだけ`、`デプロイしない` 等と明示した場合のみ、その指定に合わせてscopeを縮小する。
