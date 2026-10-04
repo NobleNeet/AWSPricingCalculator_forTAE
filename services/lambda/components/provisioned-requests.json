@@ -5,25 +5,20 @@
   "selectors": [],
   "usageInputs": [],
   "fixedFilters": [],
-  "optional": true,
-  "defaultEnabled": false,
+  "enabledWhen": {
+    "all": [
+      { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
+      { "field": "profile.provisionedRequestsPerMonth", "op": "neq", "value": "0" }
+    ]
+  },
   "priceQuery": {
     "expect": "singleSku",
-    "productFilters": [
-      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Requests" }
-    ],
-    "dimensionFilters": [
-      { "field": "unit", "op": "in", "value": ["Request", "Requests"] }
-    ]
+    "productFilters": [ { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Requests" } ],
+    "dimensionFilters": [ { "field": "unit", "op": "in", "value": ["Request", "Requests"] } ]
   },
   "calculation": {
     "model": "unit",
-    "usage": {
-      "sources": [
-        { "valueFrom": "profile.provisionedRequestsPerMonth" }
-      ],
-      "combine": "multiply"
-    },
+    "usage": { "sources": [ { "valueFrom": "profile.provisionedRequestsPerMonth" } ], "combine": "multiply" },
     "transforms": [],
     "outputUnit": "Request"
   },
