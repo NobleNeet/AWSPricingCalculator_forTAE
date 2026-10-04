@@ -10,7 +10,12 @@
     "architecture": "AWS-Lambda-Duration",
     "requestsPerMonth": "1000000",
     "averageDurationMs": "100",
-    "memoryMb": "128"
+    "memoryMb": "128",
+    "provisionedConcurrency": "0",
+    "provisionedHoursPerMonth": "0",
+    "provisionedRequestsPerMonth": "0",
+    "provisionedAverageDurationMs": "100",
+    "provisionedMemoryMb": "128"
   },
   "components": {
     "requests": {
@@ -20,6 +25,12 @@
     "duration": {
       "enabled": true,
       "inputs": {}
+    },
+    "ephemeral-storage-x86": {
+      "enabled": true,
+      "inputs": {
+        "additionalStorageMb": "0"
+      }
     }
   },
   "expected": {
