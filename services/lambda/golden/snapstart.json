@@ -11,7 +11,7 @@
     "requestsPerMonth": "1000",
     "averageDurationMs": "100",
     "memoryMb": "1024",
-    "additionalStorageMb": "0",
+    "ephemeralStorageMb": "512",
     "provisionedConcurrency": "0",
     "provisionedHoursPerMonth": "0",
     "provisionedRequestsPerMonth": "0",
