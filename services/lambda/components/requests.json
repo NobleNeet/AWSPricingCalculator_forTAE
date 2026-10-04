@@ -3,15 +3,7 @@
   "id": "requests",
   "label": "Invocations",
   "selectors": [],
-  "usageInputs": [
-    {
-      "id": "requests",
-      "label": "Requests / month",
-      "type": "number",
-      "default": "1000000",
-      "minimum": "0"
-    }
-  ],
+  "usageInputs": [],
   "fixedFilters": [],
   "priceQuery": {
     "expect": "singleSku",
@@ -38,7 +30,7 @@
     "usage": {
       "sources": [
         {
-          "valueFrom": "component.requests"
+          "valueFrom": "profile.requestsPerMonth"
         }
       ],
       "combine": "multiply"
