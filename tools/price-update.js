@@ -4,11 +4,46 @@ import { run, writeJson, loadCandidate, candidateDirectory } from './pricing-cli
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
-import { definitionFingerprint } from './pricing-cli/fingerprint.js';
+import { definitionFingerprint, PRICING_CONTRACT_FILES } from './pricing-cli/fingerprint.js';
 import { sourceKey } from './pricing-cli/source.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
+const GLOBAL_FINGERPRINT_FILES = new Set([
+  'pricing/normalization/common.json',
+  'pricing/limitations.json',
+  ...PRICING_CONTRACT_FILES
+]);
+
+export function definitionRefreshServiceCodes(packages, changedFiles) {
+  if (!Array.isArray(changedFiles) || changedFiles.length === 0) return null;
+  const packageCodes = new Map(packages.map(pkg => [path.basename(pkg.directory), pkg.service.priceSource.serviceCode]));
+  const knownCodes = new Set(packages.map(pkg => pkg.service.priceSource.serviceCode));
+  const affected = new Set();
+  let recognizedFingerprintChange = false;
+
+  for (const file of changedFiles) {
+    if (GLOBAL_FINGERPRINT_FILES.has(file)) return null;
+
+    const serviceMatch = file.match(/^services\/([^/]+)\//);
+    if (serviceMatch) {
+      recognizedFingerprintChange = true;
+      const code = packageCodes.get(serviceMatch[1]);
+      if (!code) return null;
+      affected.add(code);
+      continue;
+    }
+
+    const normalizerMatch = file.match(/^pricing\/normalization\/services\/([^/]+)\.json$/);
+    if (normalizerMatch) {
+      recognizedFingerprintChange = true;
+      if (!knownCodes.has(normalizerMatch[1])) return null;
+      affected.add(normalizerMatch[1]);
+    }
+  }
+
+  return recognizedFingerprintChange && affected.size > 0 ? affected : null;
+}
 
 export async function refreshGoldenEvidence(packages, rawDirectory, output) {
   const groups = new Map();
@@ -32,7 +67,7 @@ export async function refreshGoldenEvidence(packages, rawDirectory, output) {
     await writeJson(path.join(output, code, `${region}.json`), sample);
   }
 }
-export async function priceUpdate({ work = '.work/update', execute = defaultExecute, previousDefinitionSha256 } = {}) {
+export async function priceUpdate({ work = '.work/update', execute = defaultExecute, previousDefinitionSha256, changedFiles } = {}) {
   await mkdir(work, { recursive: true });
   const reports = {};
   const previousDirectory = await candidateDirectory();
@@ -42,6 +77,7 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
   const packages = await loadPackages();
   const fingerprint = await definitionFingerprint(packages);
   const definitionsChanged = fingerprint !== (previousDefinitionSha256 ?? activeBuild.definitionSha256);
+  const definitionRefreshCodes = definitionsChanged ? definitionRefreshServiceCodes(packages, changedFiles) : null;
   const record = async (command, options) => {
     const result = await execute(command, options); reports[command] = result;
     await writeJson(path.join(work, 'reports', `${command}.json`), result); return result;
@@ -58,9 +94,12 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
   }
   if (definitionsChanged) {
     const metadata = await readJson(metadataFile);
-    for (const item of Object.values(metadata.sources)) item.changed = true;
+    for (const item of Object.values(metadata.sources)) {
+      if (definitionRefreshCodes === null || definitionRefreshCodes.has(item.serviceCode)) item.changed = true;
+    }
     await writeJson(metadataFile, metadata);
     reports['check-source'].definitionsChanged = true;
+    reports['check-source'].definitionRefreshServiceCodes = definitionRefreshCodes === null ? 'ALL' : [...definitionRefreshCodes].sort();
     await writeJson(path.join(work, 'reports/check-source.json'), reports['check-source']);
   }
   const rawDirectory = path.join(work, 'raw'), candidate = path.join(work, 'candidate'), stage = path.join(work, 'staged');
@@ -90,7 +129,10 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
 if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
   try {
     const work = process.argv[2] ?? '.work/update';
-    const result = await priceUpdate({ work });
+    const changedFiles = process.env.PRICE_UPDATE_CHANGED_FILES
+      ? (await readFile(process.env.PRICE_UPDATE_CHANGED_FILES, 'utf8')).split(/\r?\n/).map(value => value.trim()).filter(Boolean)
+      : undefined;
+    const result = await priceUpdate({ work, changedFiles });
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `publishable=${result.publishable}\nbuild_id=${result.buildId ?? ''}\n`);
     if (process.env.GITHUB_STEP_SUMMARY) {

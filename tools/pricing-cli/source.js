@@ -2,6 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export const AWS_ORIGIN = 'https://pricing.us-east-1.amazonaws.com';
+export const DOWNLOAD_CONCURRENCY = 2;
 export const sourceKey = (serviceCode, region) => `${serviceCode}/${region}`;
 export const configuredRegions = config => {
   const regions = Array.isArray(config.regions) ? config.regions : config.region ? [config.region] : [];
@@ -38,16 +39,25 @@ export async function checkSources(config, previous = {}, fetcher = fetch) {
   }
   return { schemaVersion: 1, status: Object.values(sources).some(s => s.changed) ? 'CHANGED' : 'NO_CHANGE', sources };
 }
-export async function downloadSources(metadata, directory, fetcher = fetch) {
+export async function downloadSources(metadata, directory, fetcher = fetch, concurrency = DOWNLOAD_CONCURRENCY) {
+  if (!Number.isInteger(concurrency) || concurrency < 1) throw new TypeError('Download concurrency must be a positive integer.');
   await mkdir(directory, { recursive: true });
-  const files = [];
-  for (const source of Object.values(metadata.sources)) {
-    if (!source.changed) continue;
-    const raw = await fetchJson(source.sourceUrl, fetcher);
-    if (raw.offerCode !== source.serviceCode || raw.version !== source.version) throw new Error('AWS source/version mismatch');
-    const file = path.join(directory, source.serviceCode, `${source.region}.json`);
-    await mkdir(path.dirname(file), { recursive: true });
-    await writeFile(file, JSON.stringify(raw)); files.push(file);
-  }
+  const changed = Object.values(metadata.sources).filter(source => source.changed);
+  const files = new Array(changed.length);
+  let next = 0;
+  const worker = async () => {
+    while (true) {
+      const index = next++;
+      if (index >= changed.length) return;
+      const source = changed[index];
+      const raw = await fetchJson(source.sourceUrl, fetcher);
+      if (raw.offerCode !== source.serviceCode || raw.version !== source.version) throw new Error('AWS source/version mismatch');
+      const file = path.join(directory, source.serviceCode, `${source.region}.json`);
+      await mkdir(path.dirname(file), { recursive: true });
+      await writeFile(file, JSON.stringify(raw));
+      files[index] = file;
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(concurrency, changed.length) }, () => worker()));
   return files;
 }
