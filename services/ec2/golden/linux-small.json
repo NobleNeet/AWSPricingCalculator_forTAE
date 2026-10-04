@@ -20,16 +20,10 @@
       }
     },
     "ebs": {
-      "enabled": false,
+      "enabled": true,
       "inputs": {
         "volumeType": "gp3",
         "storageGb": "30"
-      }
-    },
-    "data-transfer-out": {
-      "enabled": false,
-      "inputs": {
-        "gbPerMonth": "0"
       }
     }
   },
@@ -56,6 +50,20 @@
         "network-transfer",
         "aggregate-billing"
       ]
+    },
+    "ebs": {
+      "attributes": {
+        "volumeApiName": "gp3",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeUsage.gp3",
+        "operation": ""
+      },
+      "unit": "GB-Mo",
+      "quantity": "30",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
     }
   },
   "verification": {
@@ -75,6 +83,17 @@
       "productFamily": "Compute Instance",
       "unit": "Hrs",
       "quantity": "730"
+    },
+    "ebs": {
+      "attributes": {
+        "volumeApiName": "gp3",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeUsage.gp3",
+        "operation": ""
+      },
+      "productFamily": "Storage",
+      "unit": "GB-Mo",
+      "quantity": "30"
     }
   }
 }
