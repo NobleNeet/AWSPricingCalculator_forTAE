@@ -7,6 +7,7 @@ import { encode } from './pricing-cli/normalize.js';
 import { definitionFingerprint, PRICING_CONTRACT_FILES } from './pricing-cli/fingerprint.js';
 import { sourceKey } from './pricing-cli/source.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
+import { report } from './pricing-cli/report.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
 const GLOBAL_FINGERPRINT_FILES = new Set([
@@ -77,9 +78,18 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
   const packages = await loadPackages();
   const fingerprint = await definitionFingerprint(packages);
   const definitionsChanged = fingerprint !== (previousDefinitionSha256 ?? activeBuild.definitionSha256);
-  const definitionRefreshCodes = definitionsChanged ? definitionRefreshServiceCodes(packages, changedFiles) : null;
+  // changedFiles only describes the immediately preceding commit. If the last published
+  // build is older because a previous Definition refresh was rejected, scoping from that
+  // list can strand unpublished services. Production therefore falls back to a full
+  // Definition refresh unless an explicit baseline fingerprint was supplied by a caller.
+  const definitionRefreshCodes = definitionsChanged && previousDefinitionSha256 !== undefined
+    ? definitionRefreshServiceCodes(packages, changedFiles)
+    : null;
   const record = async (command, options) => {
-    const result = await execute(command, options); reports[command] = result;
+    const started = performance.now();
+    const rawResult = await execute(command, options);
+    const result = { ...rawResult, elapsedMs: Math.round(performance.now() - started) };
+    reports[command] = result;
     await writeJson(path.join(work, 'reports', `${command}.json`), result); return result;
   };
   const metadataFile = path.join(work, 'source-metadata.json');
@@ -109,7 +119,24 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
   const definition = await record('validate-definitions', {});
   const semantic = await record('validate-price-data', { input: candidate });
   const golden = await record('run-golden', { input: candidate, raw: rawDirectory });
-  const change = await record('classify-change', { input: candidate, previous: previousDirectory });
+  const validationIssues = [...definition.issues, ...semantic.issues, ...golden.issues].filter(issue => issue.severity === 'error');
+  let change;
+  if (validationIssues.length) {
+    const started = performance.now();
+    change = {
+      ...report('classify-change', validationIssues, {
+        classification: 'STRUCTURE_BREAKING',
+        publishable: false,
+        rateDiff: [],
+        skippedDueToValidation: true
+      }),
+      elapsedMs: Math.round(performance.now() - started)
+    };
+    reports['classify-change'] = change;
+    await writeJson(path.join(work, 'reports/classify-change.json'), change);
+  } else {
+    change = await record('classify-change', { input: candidate, previous: previousDirectory });
+  }
   const publishable = [definition, semantic, golden, change].every(r => r.status === 'passed' && r.summary.error === 0) && ['PRICE_ONLY', 'STRUCTURE_WARNING'].includes(change.classification) && change.publishable === true;
   const summary = { schemaVersion: 1, status: publishable ? 'VALIDATED' : 'REJECTED', publishable, classification: change.classification, previousBuildId: active.activeBuildId };
   if (publishable) {
