@@ -1,47 +1,11 @@
 import { appState, definitions } from './app.js';
+import { fillDefinitionDefaults, detailStateKey } from './drawer-state-model.js';
 
-function clone(value) {
-  return value === undefined ? undefined : structuredClone(value);
-}
-
-export function fillDefinitionDefaults(pkg, instance) {
-  const profile = pkg.profiles[instance.profileId];
-  if (!profile) return false;
-  let changed = false;
-  instance.selectors ??= {};
-  for (const input of profile.selectors) {
-    if (input.default === undefined || Object.prototype.hasOwnProperty.call(instance.selectors, input.id)) continue;
-    instance.selectors[input.id] = clone(input.default);
-    changed = true;
-  }
-  instance.components ??= {};
-  for (const componentId of profile.components) {
-    const definition = pkg.components[componentId];
-    if (!definition) continue;
-    if (!instance.components[componentId]) {
-      instance.components[componentId] = { enabled: definition.defaultEnabled ?? true, inputs: {} };
-      changed = true;
-    }
-    const saved = instance.components[componentId];
-    if (saved.enabled === undefined) {
-      saved.enabled = definition.defaultEnabled ?? true;
-      changed = true;
-    }
-    saved.inputs ??= {};
-    for (const input of [...definition.selectors, ...definition.usageInputs]) {
-      if (input.default === undefined || Object.prototype.hasOwnProperty.call(saved.inputs, input.id)) continue;
-      saved.inputs[input.id] = clone(input.default);
-      changed = true;
-    }
-  }
-  return changed;
-}
-
-export function detailStateKey(details, index = 0) {
+function domDetailStateKey(details, index = 0) {
   const summary = details.querySelector(':scope > summary')?.textContent?.trim() ?? 'details';
   const fieldset = details.closest('fieldset');
   const legend = fieldset?.querySelector(':scope > legend')?.textContent?.trim();
-  return `${legend ? `component:${legend}` : 'profile'}:${summary}:${index}`;
+  return detailStateKey(summary, legend, index);
 }
 
 export function installDrawerStateSync({ root = document, state = appState, definitionStore = definitions } = {}) {
@@ -54,11 +18,11 @@ export function installDrawerStateSync({ root = document, state = appState, defi
   let replayingEdit = false;
 
   const captureDetailState = () => {
-    [...content.querySelectorAll('details')].forEach((details, index) => openDetails.set(detailStateKey(details, index), details.open));
+    [...content.querySelectorAll('details')].forEach((details, index) => openDetails.set(domDetailStateKey(details, index), details.open));
   };
   const restoreDetailState = () => {
     [...content.querySelectorAll('details')].forEach((details, index) => {
-      const saved = openDetails.get(detailStateKey(details, index));
+      const saved = openDetails.get(domDetailStateKey(details, index));
       if (saved !== undefined) details.open = saved;
     });
   };
@@ -67,7 +31,7 @@ export function installDrawerStateSync({ root = document, state = appState, defi
     if (!(event.target instanceof HTMLDetailsElement)) return;
     const details = [...content.querySelectorAll('details')];
     const index = details.indexOf(event.target);
-    openDetails.set(detailStateKey(event.target, index), event.target.open);
+    openDetails.set(domDetailStateKey(event.target, index), event.target.open);
   };
   content.addEventListener('toggle', onToggle, true);
 
