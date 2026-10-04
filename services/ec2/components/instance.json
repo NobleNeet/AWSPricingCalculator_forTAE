@@ -15,6 +15,11 @@
             "field": "attributes.operatingSystem",
             "op": "eq",
             "valueFrom": "profile.os"
+          },
+          {
+            "field": "attributes.tenancy",
+            "op": "eq",
+            "valueFrom": "profile.tenancy"
           }
         ]
       }
@@ -23,14 +28,18 @@
   "usageInputs": [
     {
       "id": "hours",
-      "label": "Hours / month",
+      "label": "Expected utilization (hours / month)",
       "type": "number",
       "default": "730",
-      "minimum": "0"
+      "minimum": "0",
+      "maximum": "744",
+      "ui": {
+        "help": "On-Demand固定のため、AWS Pricing CalculatorのExpected utilizationを月間稼働時間として直接入力します。"
+      }
     },
     {
       "id": "quantity",
-      "label": "Instances",
+      "label": "Number of EC2 instances",
       "type": "number",
       "default": "1",
       "minimum": "0"
@@ -44,6 +53,11 @@
         "field": "attributes.operatingSystem",
         "op": "eq",
         "valueFrom": "profile.os"
+      },
+      {
+        "field": "attributes.tenancy",
+        "op": "eq",
+        "valueFrom": "profile.tenancy"
       },
       {
         "field": "attributes.instanceType",
