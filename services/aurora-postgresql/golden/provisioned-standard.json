@@ -15,8 +15,8 @@
     "io-requests": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "group": "Aurora I/O Operation"}, "unit": "IOs", "quantity": "1000000"}
   },
   "verification": {
-    "instance": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "instanceType": "db.t4g.medium", "storage": "EBS Only", "regionCode": "ap-northeast-1"}, "productFamily": "Database Instance", "unit": "Hrs", "quantity": "730"},
-    "storage": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "volumeType": "General Purpose-Aurora", "regionCode": "ap-northeast-1"}, "productFamily": "Database Storage", "unit": "GB-Mo", "quantity": "20"},
-    "io-requests": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "group": "Aurora I/O Operation", "regionCode": "ap-northeast-1"}, "productFamily": "System Operation", "unit": "IOs", "quantity": "1000000"}
+    "instance": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "instanceType": "db.t4g.medium", "storage": "EBS Only", "regionCode": "ap-northeast-1", "usagetype": "APN1-InstanceUsage:db.t4g.medium"}, "productFamily": "Database Instance", "unit": "Hrs", "quantity": "730"},
+    "storage": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "volumeType": "General Purpose-Aurora", "regionCode": "ap-northeast-1", "usagetype": "APN1-Aurora:StorageUsage"}, "productFamily": "Database Storage", "unit": "GB-Mo", "quantity": "20"},
+    "io-requests": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "group": "Aurora I/O Operation", "regionCode": "ap-northeast-1", "usagetype": "APN1-Aurora:StorageIOUsage"}, "productFamily": "System Operation", "unit": "IOs", "quantity": "1000000"}
   }
 }
