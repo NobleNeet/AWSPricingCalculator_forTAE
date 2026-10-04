@@ -16,7 +16,7 @@ export function inputOrder(inputs, namespace) {
     if (seen.has(input.id)) return;
     seen.add(input.id);
     const json = JSON.stringify(input);
-    for (const dependency of inputs) if (json.includes(`"${namespace}.${dependency.id}"`)) visit(dependency);
+    for (const dependency of inputs) if (json.includes(`\"${namespace}.${dependency.id}\"`)) visit(dependency);
     ordered.push(input);
   };
   inputs.forEach(visit);
@@ -34,6 +34,51 @@ function branches(inputs, namespace, context, products, filters) {
   }
   return contexts;
 }
+function conditionValues(condition, field, values = []) {
+  if (!condition) return values;
+  if (Array.isArray(condition.all)) for (const child of condition.all) conditionValues(child, field, values);
+  if (Array.isArray(condition.any)) for (const child of condition.any) conditionValues(child, field, values);
+  if (condition.not) conditionValues(condition.not, field, values);
+  if (condition.field === field && Object.hasOwn(condition, 'value')) {
+    if (Array.isArray(condition.value)) values.push(...condition.value);
+    else values.push(condition.value);
+  }
+  return values;
+}
+function numericCandidates(input, condition) {
+  const values = new Set();
+  const add = value => {
+    if (value === undefined || value === null || value === '') return;
+    const number = Number(value);
+    if (!Number.isFinite(number)) return;
+    if (input.minimum !== undefined && number < Number(input.minimum)) return;
+    if (input.maximum !== undefined && number > Number(input.maximum)) return;
+    values.add(String(value));
+  };
+  add(input.default);
+  for (const value of conditionValues(condition, `profile.${input.id}`)) add(value);
+  add(input.minimum);
+  add(input.maximum);
+  add('0');
+  add('1');
+  return [...values];
+}
+function componentContexts(profile, component, context) {
+  if (enabled(component.enabledWhen, context)) return [context];
+  const conditionText = JSON.stringify(component.enabledWhen ?? null);
+  const probes = profile.selectors.filter(input => input.type === 'number' && conditionText.includes(`\"profile.${input.id}\"`));
+  if (!probes.length) return [];
+  let contexts = [context];
+  for (const input of probes) {
+    const next = [];
+    for (const current of contexts) {
+      if (!enabled(input.enabledWhen, current)) { next.push(current); continue; }
+      for (const value of numericCandidates(input, component.enabledWhen)) next.push({ ...current, profile: { ...current.profile, [input.id]: value } });
+    }
+    contexts = next;
+  }
+  return contexts.filter(current => enabled(component.enabledWhen, current));
+}
 export function reachableCases(pkg, products, region = 'ap-northeast-1') {
   const cases = [];
   for (const profileId of pkg.service.profiles) {
@@ -43,17 +88,18 @@ export function reachableCases(pkg, products, region = 'ap-northeast-1') {
     for (const context of branches(profile.selectors, 'profile', base, products, profile.fixedFilters)) {
       for (const componentId of profile.components) {
         const component = pkg.components[componentId];
-        if (!enabled(component.enabledWhen, context)) continue;
-        const start = { ...context, component: instance.components[componentId].inputs };
-        const filters = [...profile.fixedFilters, ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
-        const scopedProducts = products.filter(product => matches(product, filters, context));
-        for (const branch of branches(component.selectors, 'component', start, scopedProducts, filters)) {
-          const sample = structuredClone(instance);
-          sample.selectors = branch.profile;
-          sample.components[componentId].inputs = branch.component;
-          const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
-          sample.components[componentId].enabled = true;
-          cases.push({ pkg: narrow, instance: sample, project: base.project, componentId, products: scopedProducts });
+        for (const componentContext of componentContexts(profile, component, context)) {
+          const start = { ...componentContext, component: instance.components[componentId].inputs };
+          const filters = [...profile.fixedFilters, ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+          const scopedProducts = products.filter(product => matches(product, filters, componentContext));
+          for (const branch of branches(component.selectors, 'component', start, scopedProducts, filters)) {
+            const sample = structuredClone(instance);
+            sample.selectors = branch.profile;
+            sample.components[componentId].inputs = branch.component;
+            const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
+            sample.components[componentId].enabled = true;
+            cases.push({ pkg: narrow, instance: sample, project: base.project, componentId, products: scopedProducts });
+          }
         }
       }
     }
