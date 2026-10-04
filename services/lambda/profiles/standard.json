@@ -8,8 +8,7 @@
       "label": "Architecture",
       "type": "select",
       "default": "AWS-Lambda-Duration",
-      "options": { "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"] },
-      "ui": { "optionLabels": { "AWS-Lambda-Duration": "x86", "AWS-Lambda-Duration-ARM": "arm64" } }
+      "options": { "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"] }
     },
     {
       "id": "requestsPerMonth",
@@ -127,12 +126,7 @@
       "options": { "values": ["disabled", "java-managed-no-charge", "billable-runtime"] },
       "ui": {
         "advanced": true,
-        "optionLabels": {
-          "disabled": "Disabled",
-          "java-managed-no-charge": "Java managed runtime (no additional SnapStart charge)",
-          "billable-runtime": "Billable SnapStart runtime"
-        },
-        "help": "Use Java managed runtime for supported Java runtimes with no additional SnapStart charge. Billable SnapStart cannot be combined with Provisioned Concurrency or ephemeral storage above 512 MB."
+        "help": "Use java-managed-no-charge for supported Java managed runtimes. Use billable-runtime for SnapStart configurations subject to cache and restore pricing. SnapStart cannot be combined with Provisioned Concurrency or ephemeral storage above 512 MB."
       }
     },
     {
