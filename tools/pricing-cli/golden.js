@@ -22,9 +22,11 @@ export function runGolden(packages, data, rawSources) {
     const covered = new Set();
     for (const golden of pkg.golden) {
       covered.add(golden.profileId);
+      const code = pkg.service.priceSource.serviceCode;
       const region = golden.project?.region ?? golden.project?.defaultRegion ?? 'ap-northeast-1';
-      const key = sourceKey(pkg.service.priceSource.serviceCode, region);
-      const result = evaluateService(pkg, golden, { ...golden.project, region, defaultRegion: golden.project?.defaultRegion ?? region }, data[key]?.products ?? []);
+      const key = sourceKey(code, region);
+      const source = data[key] ?? (data[code]?.region === region || !data[code]?.region ? data[code] : undefined);
+      const result = evaluateService(pkg, golden, { ...golden.project, region, defaultRegion: golden.project?.defaultRegion ?? region }, source?.products ?? []);
       try {
         if (result.amountUsd === null) throw Error(JSON.stringify(result.issues));
         const expectedAmounts = [];
@@ -34,7 +36,7 @@ export function runGolden(packages, data, rawSources) {
           if (actual.resolution.skuCount !== 1 || actual.billingUnit !== expected.unit || actual.billingQuantity !== expected.quantity) throw Error(`${componentId}: structure/quantity mismatch`);
           for (const [keyName, value] of Object.entries(expected.attributes)) if (actual.resolution.product.attributes[keyName] !== value) throw Error(`${componentId}: semantic ${keyName} mismatch`);
           for (const id of expected.limitations ?? []) if (!actual.limitations.includes(id)) throw Error(`${componentId}: missing ${id}`);
-          const raw = rawSources[key];
+          const raw = rawSources[key] ?? rawSources[code];
           if (!raw) throw Error(`Raw source missing for ${key}`);
           const verified = verifyRawPrice(raw, golden.verification[componentId]);
           if (actual.unitPriceUsd !== verified.unitPriceUsd || actual.amountUsd !== verified.amountUsd) throw Error(`${componentId}: independent price mismatch`);
