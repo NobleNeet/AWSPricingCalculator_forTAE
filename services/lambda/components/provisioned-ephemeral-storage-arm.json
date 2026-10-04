@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-ephemeral-storage-arm",
+  "label": "Provisioned concurrency ephemeral storage",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "field": "profile.architecture",
+    "op": "eq",
+    "value": "AWS-Lambda-Duration-ARM"
+  },
+  "optional": true,
+  "defaultEnabled": false,
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Storage-Duration-ARM" }
+    ],
+    "dimensionFilters": [
+      { "field": "unit", "op": "eq", "value": "GB-Seconds" }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        { "valueFrom": "profile.provisionedRequestsPerMonth" },
+        { "valueFrom": "profile.provisionedAverageDurationMs" },
+        { "valueFrom": "profile.additionalStorageMb" }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      { "type": "scale", "factor": "0.0000009765625" }
+    ],
+    "outputUnit": "GB-Seconds"
+  },
+  "limitations": ["account-specific-discount", "aggregate-billing"]
+}
