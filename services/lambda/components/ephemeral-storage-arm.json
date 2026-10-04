@@ -23,6 +23,8 @@
     "op": "eq",
     "value": "AWS-Lambda-Duration-ARM"
   },
+  "optional": true,
+  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
@@ -51,15 +53,9 @@
       "combine": "multiply"
     },
     "transforms": [
-      {
-        "type": "scale",
-        "factor": "0.0000009765625"
-      }
+      { "type": "scale", "factor": "0.0000009765625" }
     ],
     "outputUnit": "GB-Seconds"
   },
-  "limitations": [
-    "account-specific-discount",
-    "aggregate-billing"
-  ]
+  "limitations": ["account-specific-discount", "aggregate-billing"]
 }
