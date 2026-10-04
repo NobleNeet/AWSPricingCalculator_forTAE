@@ -2,7 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export const AWS_ORIGIN = 'https://pricing.us-east-1.amazonaws.com';
-export const DOWNLOAD_CONCURRENCY = 2;
+export const DOWNLOAD_CONCURRENCY = 4;
 export const sourceKey = (serviceCode, region) => `${serviceCode}/${region}`;
 export const configuredRegions = config => {
   const regions = Array.isArray(config.regions) ? config.regions : config.region ? [config.region] : [];
