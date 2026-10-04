@@ -11,8 +11,6 @@
       { "field": "profile.streamingRequestsPerMonth", "op": "neq", "value": "0" }
     ]
   },
-  "optional": true,
-  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
