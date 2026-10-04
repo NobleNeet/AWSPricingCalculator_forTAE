@@ -21,8 +21,26 @@
     "productFilters": [
       {
         "field": "usageType",
-        "op": "eq",
-        "value": "APN1-EBS:VolumeP-Throughput.gp3"
+        "op": "in",
+        "value": [
+          "APN1-EBS:VolumeP-Throughput.gp3",
+          "APN2-EBS:VolumeP-Throughput.gp3",
+          "APN3-EBS:VolumeP-Throughput.gp3",
+          "APS1-EBS:VolumeP-Throughput.gp3",
+          "APS2-EBS:VolumeP-Throughput.gp3",
+          "APS3-EBS:VolumeP-Throughput.gp3",
+          "CAN1-EBS:VolumeP-Throughput.gp3",
+          "EUC1-EBS:VolumeP-Throughput.gp3",
+          "EUN1-EBS:VolumeP-Throughput.gp3",
+          "EU-EBS:VolumeP-Throughput.gp3",
+          "EUW2-EBS:VolumeP-Throughput.gp3",
+          "EUW3-EBS:VolumeP-Throughput.gp3",
+          "SAE1-EBS:VolumeP-Throughput.gp3",
+          "EBS:VolumeP-Throughput.gp3",
+          "USE2-EBS:VolumeP-Throughput.gp3",
+          "USW1-EBS:VolumeP-Throughput.gp3",
+          "USW2-EBS:VolumeP-Throughput.gp3"
+        ]
       }
     ],
     "dimensionFilters": [
