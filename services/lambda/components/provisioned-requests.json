@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-requests",
+  "label": "Provisioned concurrency requests",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "AWS-Lambda-Requests"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "in",
+        "value": ["Request", "Requests"]
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        { "valueFrom": "profile.provisionedRequestsPerMonth" }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Request"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
