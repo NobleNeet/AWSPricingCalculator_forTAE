@@ -12,7 +12,7 @@
   ],
   "components": [
     "serverless-standard",
-    "storage-standard",
+    "storage",
     "io-requests"
   ]
 }
