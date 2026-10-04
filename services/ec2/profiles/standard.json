@@ -34,7 +34,6 @@
   "fixedFilters": [],
   "components": [
     "instance",
-    "ebs",
-    "data-transfer-out"
+    "ebs"
   ]
 }
