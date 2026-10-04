@@ -11,19 +11,20 @@
     "requestsPerMonth": "1",
     "averageDurationMs": "1000",
     "memoryMb": "128",
+    "additionalStorageMb": "0",
     "provisionedConcurrency": "0",
     "provisionedHoursPerMonth": "0",
     "provisionedRequestsPerMonth": "0",
-    "provisionedAverageDurationMs": "100",
-    "provisionedMemoryMb": "128"
+    "provisionedAverageDurationMs": "100"
   },
   "components": {
     "requests": { "enabled": true, "inputs": {} },
     "duration": { "enabled": true, "inputs": {} },
-    "ephemeral-storage-arm": { "enabled": false, "inputs": { "additionalStorageMb": "0" } },
+    "ephemeral-storage-arm": { "enabled": false, "inputs": {} },
     "provisioned-requests": { "enabled": false, "inputs": {} },
     "provisioned-duration-arm": { "enabled": false, "inputs": {} },
-    "provisioned-capacity-arm": { "enabled": false, "inputs": {} }
+    "provisioned-capacity-arm": { "enabled": false, "inputs": {} },
+    "provisioned-ephemeral-storage-arm": { "enabled": false, "inputs": {} }
   },
   "expected": {
     "requests": {
