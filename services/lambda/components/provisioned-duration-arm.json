@@ -27,7 +27,7 @@
       "sources": [
         { "valueFrom": "profile.provisionedRequestsPerMonth" },
         { "valueFrom": "profile.provisionedAverageDurationMs" },
-        { "valueFrom": "profile.provisionedMemoryMb" }
+        { "valueFrom": "profile.memoryMb" }
       ],
       "combine": "multiply"
     },
