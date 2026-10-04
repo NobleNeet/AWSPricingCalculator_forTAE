@@ -18,7 +18,7 @@ export function activeInputs(inputs, saved, context, products, filters, namespac
     if (visited.has(input.id)) return;
     visiting.add(input.id);
     const references = JSON.stringify({ enabledWhen: input.enabledWhen, options: input.options });
-    for (const dependency of inputs) if (references.includes(`"${namespace}.${dependency.id}"`)) visit(dependency);
+    for (const dependency of inputs) if (references.includes(`\"${namespace}.${dependency.id}\"`)) visit(dependency);
     visiting.delete(input.id); visited.add(input.id); ordered.push(input);
   };
   inputs.forEach(visit);
@@ -41,14 +41,14 @@ export function activeInputs(inputs, saved, context, products, filters, namespac
   }
   return active;
 }
-export function evaluateService(pkg, instance, project, products) {
+export function evaluateService(pkg, instance, project, products, profileProducts = products) {
   const components = {};
   const issues = [];
   try {
     const profile = pkg.profiles[instance.profileId];
     if (!profile) fail('UNKNOWN_PROFILE', 'Unknown profile.');
     const context = { project, profile: instance.selectors ?? {}, component: {} };
-    context.profile = activeInputs(profile.selectors, context.profile, context, products, profile.fixedFilters, 'profile');
+    context.profile = activeInputs(profile.selectors, context.profile, context, profileProducts, profile.fixedFilters, 'profile');
     for (const id of profile.components) {
       const definition = pkg.components[id];
       const saved = instance.components?.[id] ?? {};
