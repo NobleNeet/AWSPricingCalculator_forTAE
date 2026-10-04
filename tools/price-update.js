@@ -1,23 +1,32 @@
-import { readFile, mkdir, writeFile, appendFile } from 'node:fs/promises';
+import { readFile, mkdir, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { run, writeJson, loadCandidate, candidateDirectory } from './pricing-cli/cli.js';
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
 import { definitionFingerprint } from './pricing-cli/fingerprint.js';
+import { sourceKey } from './pricing-cli/source.js';
 
 export async function refreshGoldenEvidence(packages, rawDirectory, output) {
-  for (const code of new Set(packages.map(pkg => pkg.service.priceSource.serviceCode))) {
+  const groups = new Map();
+  for (const pkg of packages) for (const golden of pkg.golden) {
+    const code = pkg.service.priceSource.serviceCode;
+    const region = golden.project?.region ?? golden.project?.defaultRegion ?? 'ap-northeast-1';
+    const key = sourceKey(code, region);
+    const group = groups.get(key) ?? { code, region, entries: [] };
+    group.entries.push(golden); groups.set(key, group);
+  }
+  for (const { code, region, entries } of groups.values()) {
     let raw;
-    try { raw = await readJson(path.join(rawDirectory, `${code}.json`)); }
+    try { raw = await readJson(path.join(rawDirectory, code, `${region}.json`)); }
     catch (error) { if (error.code === 'ENOENT') raw = await readJson(`tests/fixtures/aws/${code}.json`); else throw error; }
     const sample = { offerCode: raw.offerCode, version: raw.version, publicationDate: raw.publicationDate, products: {}, terms: { OnDemand: {} } };
-    for (const pkg of packages.filter(pkg => pkg.service.priceSource.serviceCode === code)) for (const golden of pkg.golden) for (const verification of Object.values(golden.verification)) {
+    for (const golden of entries) for (const verification of Object.values(golden.verification)) {
       const products = Object.values(raw.products).filter(p => Object.entries(verification.attributes).every(([key, value]) => p.attributes[key] === value) && (!verification.productFamily || p.productFamily === verification.productFamily));
-      if (products.length !== 1) throw Error(`Golden evidence ${code}: ${products.length} products`);
+      if (products.length !== 1) throw Error(`Golden evidence ${code}/${region}: ${products.length} products`);
       const product = products[0]; sample.products[product.sku] = product; sample.terms.OnDemand[product.sku] = raw.terms.OnDemand[product.sku];
     }
-    await writeJson(path.join(output, `${code}.json`), sample);
+    await writeJson(path.join(output, code, `${region}.json`), sample);
   }
 }
 export async function priceUpdate({ work = '.work/update', execute = run, previousDefinitionSha256 } = {}) {
@@ -46,8 +55,6 @@ export async function priceUpdate({ work = '.work/update', execute = run, previo
   }
   if (definitionsChanged) {
     const metadata = await readJson(metadataFile);
-    // Published data contains mapped resources only. Changed Definitions need
-    // the complete source again to discover newly mapped meters/candidates.
     for (const item of Object.values(metadata.sources)) item.changed = true;
     await writeJson(metadataFile, metadata);
     reports['check-source'].definitionsChanged = true;
