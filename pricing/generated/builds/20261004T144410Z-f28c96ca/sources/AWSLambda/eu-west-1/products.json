@@ -1,0 +1,529 @@
+{
+  "buildId": "20261004T144410Z-f28c96ca",
+  "products": [
+    {
+      "attributes": {
+        "group": "AWS-Lambda-SnapStart-Restore",
+        "groupDescription": "Snapshot GB restored, measured in GB of memory and disk assigned to function",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-SnapStart-Restored-GB"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "6AEAYTX6DK2EYWJG",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.0001397998 per GB for Lambda-SnapStart-Restored-GB usage in EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0001397998"
+                },
+                "rateCode": "6AEAYTX6DK2EYWJG.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-SnapStart-Restored-GB"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Storage-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "83UZGV2B4WAZRJSR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage - EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000340"
+                },
+                "rateCode": "83UZGV2B4WAZRJSR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Storage-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "groupDescription": "Invocation call for a Lambda function",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Request"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "B5V2RNHAWGVJBZD3",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Requests - EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "B5V2RNHAWGVJBZD3.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Request"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Provisioned-Concurrency"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "BP8P7CBMNM86SRMW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency - EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000046460"
+                },
+                "rateCode": "BP8P7CBMNM86SRMW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Provisioned-Concurrency"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency-ARM",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Provisioned-Concurrency-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "GF4FW9CVSAGVG6K3",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency for ARM - EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000037168"
+                },
+                "rateCode": "GF4FW9CVSAGVG6K3.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Provisioned-Concurrency-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-SnapStart-Cache",
+        "groupDescription": "Duration a snapshot is cached for, weighted by memory and disk assigned to function, measured in GB-S",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-SnapStart-Cached-GB-S"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "K6Z88FCWUJGBFCGZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.0000015046 per GB-Second for Lambda-SnapStart-Cached-GB-S usage in EU  (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000015046"
+                },
+                "rateCode": "K6Z88FCWUJGBFCGZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-SnapStart-Cached-GB-S"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "KXNSA7NBRHBHXXPS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "7500000000",
+                "description": "AWS Lambda - Total Compute for ARM - EU (Ireland)-Tier-2",
+                "endRange": "18750000000",
+                "pricePerUnit": {
+                  "USD": "0.0000120001"
+                },
+                "rateCode": "KXNSA7NBRHBHXXPS.JRTCKXETXF.6JGAYSJBNY",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute for ARM - EU (Ireland)-Tier-1",
+                "endRange": "7500000000",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "KXNSA7NBRHBHXXPS.JRTCKXETXF.6NBUNBXSC3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "18750000000",
+                "description": "AWS Lambda - Total Compute for ARM - EU (Ireland)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000106667"
+                },
+                "rateCode": "KXNSA7NBRHBHXXPS.JRTCKXETXF.AVR3V96UTF",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Storage-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "N6RU8DUAHRJJA9F9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage for ARM - EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000340"
+                },
+                "rateCode": "N6RU8DUAHRJJA9F9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Storage-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes-ARM",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation for ARM",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Streaming-Response-Processed-Bytes-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "R4V6848ZUNEZ66K6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for Lambda-Streaming-Response-Processed-Bytes-ARM in EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "R4V6848ZUNEZ66K6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Streaming-Response-Processed-Bytes-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "SGGKTWDV7PGMPPSJ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute - EU (Ireland)-Tier-1",
+                "endRange": "6000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000166667"
+                },
+                "rateCode": "SGGKTWDV7PGMPPSJ.JRTCKXETXF.CUKFZ388N3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "6000000000",
+                "description": "AWS Lambda - Total Compute - EU (Ireland)-Tier-2",
+                "endRange": "15000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000150000"
+                },
+                "rateCode": "SGGKTWDV7PGMPPSJ.JRTCKXETXF.QZE2SB4KVB",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "15000000000",
+                "description": "AWS Lambda - Total Compute - EU (Ireland)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "SGGKTWDV7PGMPPSJ.JRTCKXETXF.V7R92EXG27",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Streaming-Response-Processed-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "WJCZC8VHP7VMDTAY",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for of Lambda-Streaming-Response-Processed-Bytes usage in EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "WJCZC8VHP7VMDTAY.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Streaming-Response-Processed-Bytes"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Provisioned-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZS4KB9WXZA5FWZ7A",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) - EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000108407"
+                },
+                "rateCode": "ZS4KB9WXZA5FWZ7A.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Provisioned-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned-ARM",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "EU (Ireland)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "eu-west-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "EU-Lambda-Provisioned-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZYAUXG9GHD6A9GDK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) for ARM - EU (Ireland)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000086726"
+                },
+                "rateCode": "ZYAUXG9GHD6A9GDK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "EU-Lambda-Provisioned-GB-Second-ARM"
+    }
+  ],
+  "region": "eu-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}

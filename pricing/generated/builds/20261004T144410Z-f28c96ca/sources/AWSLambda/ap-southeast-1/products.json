@@ -1,0 +1,529 @@
+{
+  "buildId": "20261004T144410Z-f28c96ca",
+  "products": [
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "groupDescription": "Invocation call for a Lambda function",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Request"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "36D3E7396ZKUSWWW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Requests - Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "36D3E7396ZKUSWWW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Request"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "67ZV6RMYY72YSRDC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute - Asia Pacific (Singapore)-Tier-1",
+                "endRange": "6000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000166667"
+                },
+                "rateCode": "67ZV6RMYY72YSRDC.JRTCKXETXF.CUKFZ388N3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "6000000000",
+                "description": "AWS Lambda - Total Compute - Asia Pacific (Singapore)-Tier-2",
+                "endRange": "15000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000150000"
+                },
+                "rateCode": "67ZV6RMYY72YSRDC.JRTCKXETXF.QZE2SB4KVB",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "15000000000",
+                "description": "AWS Lambda - Total Compute - Asia Pacific (Singapore)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "67ZV6RMYY72YSRDC.JRTCKXETXF.V7R92EXG27",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Storage-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "8FAV96E74NWR9SG9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage - Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000370"
+                },
+                "rateCode": "8FAV96E74NWR9SG9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Storage-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Provisioned-Concurrency"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "A4HTACA65772T7MD",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency - Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000051991"
+                },
+                "rateCode": "A4HTACA65772T7MD.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Provisioned-Concurrency"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-SnapStart-Cache",
+        "groupDescription": "Duration a snapshot is cached for, weighted by memory and disk assigned to function, measured in GB-S",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-SnapStart-Cached-GB-S"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "E2CQ2TR9GD4R6QCV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.0000015046 per GB-Second for Lambda-SnapStart-Cached-GB-S usage in Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000015046"
+                },
+                "rateCode": "E2CQ2TR9GD4R6QCV.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-SnapStart-Cached-GB-S"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Streaming-Response-Processed-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "FH5RZCCN9VAATCBU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for of Lambda-Streaming-Response-Processed-Bytes usage in Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "FH5RZCCN9VAATCBU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Streaming-Response-Processed-Bytes"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency-ARM",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Provisioned-Concurrency-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "GWU2KWMWQX7K69Q6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency for ARM - Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000041593"
+                },
+                "rateCode": "GWU2KWMWQX7K69Q6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Provisioned-Concurrency-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "KSD76ZR243WEPWRS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "7500000000",
+                "description": "AWS Lambda - Total Compute for ARM - Asia Pacific (Singapore)-Tier-2",
+                "endRange": "18750000000",
+                "pricePerUnit": {
+                  "USD": "0.0000120001"
+                },
+                "rateCode": "KSD76ZR243WEPWRS.JRTCKXETXF.6JGAYSJBNY",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute for ARM - Asia Pacific (Singapore)-Tier-1",
+                "endRange": "7500000000",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "KSD76ZR243WEPWRS.JRTCKXETXF.6NBUNBXSC3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "18750000000",
+                "description": "AWS Lambda - Total Compute for ARM - Asia Pacific (Singapore)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000106667"
+                },
+                "rateCode": "KSD76ZR243WEPWRS.JRTCKXETXF.AVR3V96UTF",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Storage-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "M49Z5B8UP2XTPTGN",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage for ARM - Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000370"
+                },
+                "rateCode": "M49Z5B8UP2XTPTGN.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Storage-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-SnapStart-Restore",
+        "groupDescription": "Snapshot GB restored, measured in GB of memory and disk assigned to function",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-SnapStart-Restored-GB"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "NV6564E2BY3Q4MDA",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.0001397998 per GB for Lambda-SnapStart-Restored-GB usage in Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0001397998"
+                },
+                "rateCode": "NV6564E2BY3Q4MDA.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-SnapStart-Restored-GB"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes-ARM",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation for ARM",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Streaming-Response-Processed-Bytes-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "SDXDPTMBE42BDBD5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for Lambda-Streaming-Response-Processed-Bytes-ARM in Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "SDXDPTMBE42BDBD5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Streaming-Response-Processed-Bytes-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned-ARM",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Provisioned-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "TKGJ9CWTB5SPB7R5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) for ARM - Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000097050"
+                },
+                "rateCode": "TKGJ9CWTB5SPB7R5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Provisioned-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+        "location": "Asia Pacific (Singapore)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-southeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APS1-Lambda-Provisioned-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "Z43QGMUZW4S2XN34",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) - Asia Pacific (Singapore)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000121313"
+                },
+                "rateCode": "Z43QGMUZW4S2XN34.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APS1-Lambda-Provisioned-GB-Second"
+    }
+  ],
+  "region": "ap-southeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}
