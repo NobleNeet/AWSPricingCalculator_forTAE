@@ -47,7 +47,16 @@ Project全体にDefault Regionを持つ。初期値は `ap-northeast-1` (Tokyo) 
 
 Service InstanceはProject Regionを継承するのを標準とし、データモデル上は個別Region overrideを持てる。正式対応Region外を指定した場合は料金計算不可とする。
 
-初期正式対応Regionは `ap-northeast-1` とする。
+正式対応Regionは日本および米国の以下6リージョンとする。
+
+- `ap-northeast-1` (Tokyo)
+- `ap-northeast-3` (Osaka)
+- `us-east-1` (N. Virginia)
+- `us-east-2` (Ohio)
+- `us-west-1` (N. California)
+- `us-west-2` (Oregon)
+
+Price Data更新およびsemantic validationはこの正式対応Region集合を対象とする。正式対応Regionを追加する場合は、Price Data更新負荷とService Definitionの地域差を検証した上で明示的に追加する。
 
 ### 2.4 Price Data更新
 
