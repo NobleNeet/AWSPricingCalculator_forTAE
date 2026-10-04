@@ -7,6 +7,7 @@
     "hoursPerMonth": "730"
   },
   "selectors": {
+    "tenancy": "Shared",
     "os": "Windows"
   },
   "components": {
@@ -16,6 +17,19 @@
         "instanceType": "m7i.large",
         "hours": "100.5",
         "quantity": "2"
+      }
+    },
+    "ebs": {
+      "enabled": false,
+      "inputs": {
+        "volumeType": "gp3",
+        "storageGb": "30"
+      }
+    },
+    "data-transfer-out": {
+      "enabled": false,
+      "inputs": {
+        "gbPerMonth": "0"
       }
     }
   },
