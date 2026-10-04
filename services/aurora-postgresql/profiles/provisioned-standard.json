@@ -11,8 +11,8 @@
     }
   ],
   "components": [
-    "instance-standard",
-    "storage-standard",
+    "instance",
+    "storage",
     "io-requests"
   ]
 }
