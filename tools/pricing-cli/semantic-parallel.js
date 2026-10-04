@@ -38,7 +38,7 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
   const tasks = sourceTasks(packages, manifest);
   const defaultConcurrency = Math.max(1, Math.min(4, os.availableParallelism?.() ?? os.cpus().length ?? 1));
   const concurrency = Math.min(tasks.length || 1, positiveInt(options.concurrency ?? process.env.PRICE_VALIDATE_CONCURRENCY, defaultConcurrency));
-  if (!tasks.length) return { issues: [], coverage: {}, branches: 0, concurrency, taskTimings: [] };
+  if (!tasks.length) return { issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [] };
 
   const results = new Array(tasks.length);
   const workers = [];
@@ -111,11 +111,16 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
     products: result.products,
     elapsedMs: result.elapsedMs
   }));
+  const publishSkus = Object.fromEntries(results.map(result => [
+    `${result.serviceCode}/${result.region}`,
+    new Set(result.publishSkus)
+  ]));
 
   return {
     issues: results.flatMap(result => result.issues),
     coverage: Object.assign({}, ...results.map(result => result.coverage)),
     branches: results.reduce((sum, result) => sum + result.branches, 0),
+    publishSkus,
     concurrency,
     taskTimings
   };
