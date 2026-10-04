@@ -1,0 +1,65 @@
+{
+  "attributes": {
+    "group": [
+      "AWS-Lambda-Duration",
+      "AWS-Lambda-Duration-ARM",
+      "AWS-Lambda-Duration-Provisioned",
+      "AWS-Lambda-Duration-Provisioned-ARM",
+      "AWS-Lambda-Provisioned-Concurrency",
+      "AWS-Lambda-Provisioned-Concurrency-ARM",
+      "AWS-Lambda-Requests",
+      "AWS-Lambda-SnapStart-Cache",
+      "AWS-Lambda-SnapStart-Restore",
+      "AWS-Lambda-Storage-Duration",
+      "AWS-Lambda-Storage-Duration-ARM"
+    ],
+    "groupDescription": [
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+      "Duration a snapshot is cached for, weighted by memory and disk assigned to function, measured in GB-S",
+      "Invocation call for a Lambda function",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+      "Snapshot GB restored, measured in GB of memory and disk assigned to function"
+    ],
+    "location": [
+      "Canada (Central)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "ca-central-1"
+    ],
+    "servicecode": [
+      "AWSLambda"
+    ],
+    "servicename": [
+      "AWS Lambda"
+    ],
+    "usagetype": [
+      "CAN1-Lambda-GB-Second",
+      "CAN1-Lambda-GB-Second-ARM",
+      "CAN1-Lambda-Provisioned-Concurrency",
+      "CAN1-Lambda-Provisioned-Concurrency-ARM",
+      "CAN1-Lambda-Provisioned-GB-Second",
+      "CAN1-Lambda-Provisioned-GB-Second-ARM",
+      "CAN1-Lambda-SnapStart-Cached-GB-S",
+      "CAN1-Lambda-SnapStart-Restored-GB",
+      "CAN1-Lambda-Storage-GB-Second",
+      "CAN1-Lambda-Storage-GB-Second-ARM",
+      "CAN1-Request"
+    ]
+  },
+  "buildId": "20261004T132927Z-f28c96ca",
+  "region": "ca-central-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}
