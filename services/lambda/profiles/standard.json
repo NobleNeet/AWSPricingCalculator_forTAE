@@ -8,9 +8,7 @@
       "label": "Compute architecture",
       "type": "select",
       "default": "AWS-Lambda-Duration",
-      "options": {
-        "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"]
-      }
+      "options": { "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"] }
     },
     {
       "id": "requestsPerMonth",
@@ -18,9 +16,7 @@
       "type": "number",
       "default": "1000000",
       "minimum": "0",
-      "ui": {
-        "help": "Requests executed without Provisioned Concurrency. Free Tier is intentionally not subtracted by this calculator."
-      }
+      "ui": { "help": "Requests executed without Provisioned Concurrency. Free Tier is intentionally not subtracted by this calculator." }
     },
     {
       "id": "averageDurationMs",
@@ -29,9 +25,7 @@
       "default": "100",
       "minimum": "0",
       "maximum": "900000",
-      "ui": {
-        "help": "Average billed execution duration for on-demand invocations in milliseconds."
-      }
+      "ui": { "help": "Average billed execution duration for on-demand invocations in milliseconds." }
     },
     {
       "id": "memoryMb",
@@ -40,9 +34,7 @@
       "default": "128",
       "minimum": "128",
       "maximum": "10240",
-      "ui": {
-        "help": "Configured function memory. The same function configuration is used for on-demand and Provisioned Concurrency execution."
-      }
+      "ui": { "help": "Configured function memory. The same function configuration is used for on-demand, Provisioned Concurrency, and SnapStart pricing." }
     },
     {
       "id": "additionalStorageMb",
@@ -53,7 +45,7 @@
       "maximum": "9728",
       "ui": {
         "advanced": true,
-        "help": "Lambda includes 512 MB at no additional charge. Enter the additional configured storage above 512 MB; maximum total ephemeral storage is 10,240 MB. This configuration applies to both on-demand and Provisioned Concurrency invocations."
+        "help": "Lambda includes 512 MB at no additional charge. Enter the additional configured storage above 512 MB; maximum total ephemeral storage is 10,240 MB. SnapStart is available only when this value is 0."
       }
     },
     {
@@ -64,7 +56,7 @@
       "minimum": "0",
       "ui": {
         "advanced": true,
-        "help": "Number of pre-initialized execution environments configured for Provisioned Concurrency."
+        "help": "Number of pre-initialized execution environments configured for Provisioned Concurrency. SnapStart and Provisioned Concurrency cannot be enabled on the same function version."
       }
     },
     {
@@ -74,10 +66,7 @@
       "default": "0",
       "minimum": "0",
       "maximum": "730",
-      "ui": {
-        "advanced": true,
-        "help": "Total billed time that Provisioned Concurrency is enabled during the month. AWS bills each enabled period with five-minute rounding; enter the resulting aggregate billed hours when schedules are fragmented."
-      }
+      "ui": { "advanced": true, "help": "Total billed time that Provisioned Concurrency is enabled during the month. AWS bills each enabled period with five-minute rounding; enter the resulting aggregate billed hours when schedules are fragmented." }
     },
     {
       "id": "provisionedRequestsPerMonth",
@@ -85,10 +74,7 @@
       "type": "number",
       "default": "0",
       "minimum": "0",
-      "ui": {
-        "advanced": true,
-        "help": "Requests handled while Provisioned Concurrency is enabled. Spillover requests should be included in the on-demand request inputs instead."
-      }
+      "ui": { "advanced": true, "help": "Requests handled while Provisioned Concurrency is enabled. Spillover requests should be included in the on-demand request inputs instead." }
     },
     {
       "id": "provisionedAverageDurationMs",
@@ -97,9 +83,47 @@
       "default": "100",
       "minimum": "0",
       "maximum": "900000",
+      "ui": { "advanced": true, "help": "Average billed duration for requests executed with Provisioned Concurrency." }
+    },
+    {
+      "id": "snapStartMode",
+      "label": "SnapStart pricing mode",
+      "type": "select",
+      "default": "disabled",
+      "enabledWhen": {
+        "all": [
+          { "field": "profile.provisionedConcurrency", "op": "eq", "value": "0" },
+          { "field": "profile.additionalStorageMb", "op": "eq", "value": "0" }
+        ]
+      },
+      "options": { "values": ["disabled", "java-managed-no-charge", "billable-runtime"] },
       "ui": {
         "advanced": true,
-        "help": "Average billed duration for requests executed with Provisioned Concurrency."
+        "help": "Use java-managed-no-charge for supported Java managed runtimes. Use billable-runtime for SnapStart configurations subject to cache and restore pricing. SnapStart cannot be combined with Provisioned Concurrency or ephemeral storage above 512 MB."
+      }
+    },
+    {
+      "id": "snapStartCachedVersionHours",
+      "label": "SnapStart cached version-hours / month",
+      "type": "number",
+      "default": "3",
+      "minimum": "3",
+      "enabledWhen": { "field": "profile.snapStartMode", "op": "eq", "value": "billable-runtime" },
+      "ui": {
+        "advanced": true,
+        "help": "Sum billed cache time across active published SnapStart versions. AWS bills each version for at least three hours and then per millisecond while active."
+      }
+    },
+    {
+      "id": "snapStartRestoresPerMonth",
+      "label": "SnapStart restores / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "enabledWhen": { "field": "profile.snapStartMode", "op": "eq", "value": "billable-runtime" },
+      "ui": {
+        "advanced": true,
+        "help": "Number of execution-environment restores from the cached snapshot during the month."
       }
     }
   ],
@@ -117,6 +141,8 @@
     "provisioned-capacity-x86",
     "provisioned-capacity-arm",
     "provisioned-ephemeral-storage-x86",
-    "provisioned-ephemeral-storage-arm"
+    "provisioned-ephemeral-storage-arm",
+    "snapstart-cache",
+    "snapstart-restore"
   ]
 }
