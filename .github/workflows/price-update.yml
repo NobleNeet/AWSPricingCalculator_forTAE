@@ -27,14 +27,29 @@ jobs:
       build_id: ${{ steps.pipeline.outputs.build_id }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Capture changed files for scoped Definition refresh
+        id: changed-files
+        shell: bash
+        run: |
+          mkdir -p .work
+          if [[ "${{ github.event_name }}" == "push" && -n "${{ github.event.before }}" && "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]]; then
+            git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" > .work/price-update-changed-files.txt
+            echo "file=.work/price-update-changed-files.txt" >> "$GITHUB_OUTPUT"
+          else
+            echo "file=" >> "$GITHUB_OUTPUT"
+          fi
       - name: Check source through validated immutable build
         id: pipeline
+        env:
+          PRICE_UPDATE_CHANGED_FILES: ${{ steps.changed-files.outputs.file }}
         run: node tools/price-update.js
       - uses: actions/upload-artifact@v4
         if: always()
