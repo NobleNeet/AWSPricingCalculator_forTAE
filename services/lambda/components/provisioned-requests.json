@@ -5,21 +5,15 @@
   "selectors": [],
   "usageInputs": [],
   "fixedFilters": [],
+  "optional": true,
+  "defaultEnabled": false,
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {
-        "field": "attributes.group",
-        "op": "eq",
-        "value": "AWS-Lambda-Requests"
-      }
+      { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Requests" }
     ],
     "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "in",
-        "value": ["Request", "Requests"]
-      }
+      { "field": "unit", "op": "in", "value": ["Request", "Requests"] }
     ]
   },
   "calculation": {
@@ -33,7 +27,5 @@
     "transforms": [],
     "outputUnit": "Request"
   },
-  "limitations": [
-    "account-specific-discount"
-  ]
+  "limitations": ["account-specific-discount"]
 }
