@@ -10,9 +10,10 @@ Before changing behavior or pricing semantics, read these documents in this orde
 
 1. `docs/SPEC.md` — user-visible behavior, Project/Plan/Row model, save/restore, PDF/CSV and runtime UI behavior.
 2. `docs/PRICING_ARCHITECTURE.md` — Service Definition, Price DB, Pricing Core, validation, CLI and CI/CD architecture.
-3. `docs/AUTONOMOUS_IMPLEMENTATION.md` — how Codex must execute Phase 1 through the final phase without human intervention.
-4. `docs/IMPLEMENTATION_PLAN.md` — phased implementation plan and completion criteria.
-5. `docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md` — design-history index only; it is not the current specification.
+3. `docs/SERVICE_ONBOARDING.md` — rules for adding a new AWS service or expanding an existing service from the AWS Pricing Calculator UI under the On-Demand-only policy.
+4. `docs/AUTONOMOUS_IMPLEMENTATION.md` — how Codex must execute implementation work without unnecessary human intervention.
+5. `docs/IMPLEMENTATION_PLAN.md` — phased implementation plan and completion criteria.
+6. `docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md` — design-history index only; it is not the current specification.
 
 If code and documentation disagree, do not silently invent a new behavior. Follow the current source-of-truth documents unless the `/goal` explicitly requests a specification change.
 
@@ -25,13 +26,15 @@ Implementation work is expected to be assigned through `/goal`.
 The normal workflow is **one overall `/goal` for the complete implementation**, not one human-issued goal per phase.
 
 - Read `docs/AUTONOMOUS_IMPLEMENTATION.md` before starting implementation.
-- Decompose the overall goal into the phases defined in `docs/IMPLEMENTATION_PLAN.md`.
-- Start at Phase 1 and continue through the final phase without waiting for human confirmation between phases.
-- Treat each phase's completion criteria as an internal gate. Do not advance while known required checks fail.
-- When a test/build/validation fails, diagnose, fix, rerun, and continue. A normal implementation failure is not a reason to ask the user what to do.
-- If a later phase exposes a defect in an earlier phase, return to the earlier implementation, fix it, revalidate, then resume forward progress.
+- When adding a new AWS service or expanding service estimate fields, also read and follow `docs/SERVICE_ONBOARDING.md` before deciding which fields to implement.
+- A request such as `AWS Fargateを追加して` is a complete service-onboarding request unless the user explicitly limits the scope. It includes research, implementation, tests, Price DB work when required, commit/push, Actions verification, and Pages deployment verification.
+- Decompose the overall goal into the phases defined in `docs/IMPLEMENTATION_PLAN.md` where those phases are relevant to the requested change.
+- Continue through all work required by the goal without waiting for human confirmation between normal implementation steps.
+- Treat each relevant completion criterion as an internal gate. Do not advance while known required checks fail.
+- When a test/build/validation or deployment fails, diagnose, fix, rerun, and continue. A normal implementation failure is not a reason to ask the user what to do.
+- If later work exposes a defect in an earlier implementation, return to it, fix it, revalidate, then resume forward progress.
 - Do not stop merely because the work is large or spans many files.
-- Prefer phase-sized reviewable commits, but do not require human merge/approval between phases.
+- Prefer reviewable commits, but do not require human merge/approval between normal implementation steps.
 - Phase-specific `/goal` examples in `docs/IMPLEMENTATION_PLAN.md` are fallback templates for targeted reruns/debugging, not the default workflow.
 
 Only stop for a genuine blocker defined in `docs/AUTONOMOUS_IMPLEMENTATION.md`, such as an irreconcilable source-of-truth specification conflict, an unavoidable pricing/data compatibility semantic change, missing external permissions that cannot be worked around, or an unsafe destructive action that is not already authorized by the specifications.
@@ -50,6 +53,16 @@ For ordinary implementation choices, choose a reasonable solution and continue.
 - Monetary/usage calculation must use decimal-safe arithmetic and avoid intermediate display rounding.
 - Price DB generation/validation must be deterministic where specified.
 
+## Service onboarding
+
+For a new service or an expansion of an existing service:
+
+- Use the AWS Pricing Calculator service screen as the primary reference for estimate inputs, defaults, dependencies, conditional fields, and primary/advanced grouping.
+- Keep purchase-plan choices On-Demand-only; do not add Reserved, Savings Plans, Spot, commitment-term, or upfront-payment choices unless the source-of-truth specification is explicitly changed.
+- Do not omit operational or usage inputs merely because payment plans are fixed to On-Demand.
+- Use AWS Public Price List as the pricing truth; never copy calculator-displayed prices into Definitions.
+- Follow the end-to-end workflow and completion gate in `docs/SERVICE_ONBOARDING.md`, including deployment verification.
+
 ## Mock isolation
 
 The historical UI discussion mock is isolated under `mock/`.
@@ -61,16 +74,17 @@ The historical UI discussion mock is isolated under `mock/`.
 
 ## Verification
 
-For every implementation phase:
+For every implementation phase or onboarding step:
 
 - Add or update automated tests for changed deterministic logic.
 - Run narrow relevant tests first, then repository-level validation commands defined by the implementation plan.
 - Validate JSON Schema/reference/dependency/Golden behavior where relevant.
-- Do not mark a phase complete while known required validation errors remain.
+- Do not mark work complete while known required validation errors remain.
 - Record changed files, tests run, warnings and deferred items as progress information.
-- After recording completion, continue automatically to the next phase rather than waiting for a response.
+- Continue automatically after each normal implementation gate rather than waiting for a response.
+- When the goal changes the deployed application, verify the relevant GitHub Actions and GitHub Pages deployment before reporting completion.
 
-At the final phase, run the full completion checklist in `docs/IMPLEMENTATION_PLAN.md`. If any required item fails, return to the responsible phase, fix it, and repeat final verification.
+At the final phase, run the applicable completion checklist in `docs/IMPLEMENTATION_PLAN.md` and, for service onboarding, `docs/SERVICE_ONBOARDING.md`. If any required item fails, return to the responsible implementation, fix it, and repeat final verification.
 
 ## Generated data
 
