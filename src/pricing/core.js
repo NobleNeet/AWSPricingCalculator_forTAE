@@ -25,7 +25,8 @@ export function activeInputs(inputs, saved, context, products, filters, namespac
   context[namespace] = active;
   for (const input of ordered) {
     if (!enabled(input.enabledWhen, context)) continue;
-    const value = saved[input.id];
+    const hasSavedValue = Object.prototype.hasOwnProperty.call(saved, input.id);
+    const value = hasSavedValue ? saved[input.id] : input.default;
     if (value === undefined) fail('MISSING_INPUT', `Input ${input.id} is required.`);
     if (input.type === 'select') {
       const valid = input.options.values ? input.options.values.includes(value) : products.some(product => fieldValue(product, `attributes.${input.options.attribute}`).value === value && matches(product, [...filters, ...(input.options.filters ?? [])], context));
