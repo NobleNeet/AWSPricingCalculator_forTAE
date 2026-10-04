@@ -7,6 +7,11 @@ function positiveInt(value, fallback) {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
+function nonNegativeInt(value, fallback) {
+  const parsed = Number.parseInt(value ?? '', 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
 function sourceTasks(packages, manifest) {
   const serviceCodes = [...new Set(packages.map(pkg => pkg.service.priceSource.serviceCode))];
   const tasks = [];
@@ -35,10 +40,16 @@ function createWorker(directory) {
 }
 
 export async function validatePublishedPriceDataParallel(packages, directory, manifest, options = {}) {
-  const tasks = sourceTasks(packages, manifest);
+  const allTasks = sourceTasks(packages, manifest);
+  const shardCount = positiveInt(options.shardCount ?? process.env.PRICE_VALIDATE_SHARD_COUNT, 1);
+  const shardIndex = nonNegativeInt(options.shardIndex ?? process.env.PRICE_VALIDATE_SHARD_INDEX, 0);
+  if (shardIndex >= shardCount) throw new Error(`Invalid semantic shard ${shardIndex}/${shardCount}`);
+  const tasks = allTasks
+    .filter(task => task.taskId % shardCount === shardIndex)
+    .map((task, taskId) => ({ ...task, globalTaskId: task.taskId, taskId }));
   const defaultConcurrency = Math.max(1, Math.min(4, os.availableParallelism?.() ?? os.cpus().length ?? 1));
   const concurrency = Math.min(tasks.length || 1, positiveInt(options.concurrency ?? process.env.PRICE_VALIDATE_CONCURRENCY, defaultConcurrency));
-  if (!tasks.length) return { issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [] };
+  if (!tasks.length) return { issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [], shardIndex, shardCount };
 
   const results = new Array(tasks.length);
   const workers = [];
@@ -76,7 +87,7 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
         results[message.result.taskId] = message.result;
         completed += 1;
         const result = message.result;
-        console.log(`validate-price-data task: service=${result.serviceCode}, region=${result.region}, branches=${result.branches}, products=${result.products}, elapsed_ms=${result.elapsedMs}`);
+        console.log(`validate-price-data shard=${shardIndex}/${shardCount} task: service=${result.serviceCode}, region=${result.region}, branches=${result.branches}, products=${result.products}, elapsed_ms=${result.elapsedMs}`);
         if (completed === tasks.length) {
           if (!settled) {
             settled = true;
@@ -122,6 +133,8 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
     branches: results.reduce((sum, result) => sum + result.branches, 0),
     publishSkus,
     concurrency,
-    taskTimings
+    taskTimings,
+    shardIndex,
+    shardCount
   };
 }
