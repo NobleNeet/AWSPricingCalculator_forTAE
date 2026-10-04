@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "standard",
-  "label": "Standard",
+  "label": "Lambda Functions",
   "selectors": [
     {
       "id": "architecture",
@@ -13,6 +13,38 @@
           "AWS-Lambda-Duration",
           "AWS-Lambda-Duration-ARM"
         ]
+      }
+    },
+    {
+      "id": "requestsPerMonth",
+      "label": "Requests / month",
+      "type": "number",
+      "default": "1000000",
+      "minimum": "0",
+      "ui": {
+        "help": "Total Lambda function invocation requests per month. Free Tier is intentionally not subtracted by this calculator."
+      }
+    },
+    {
+      "id": "averageDurationMs",
+      "label": "Average duration / request (ms)",
+      "type": "number",
+      "default": "100",
+      "minimum": "0",
+      "maximum": "900000",
+      "ui": {
+        "help": "Average billed execution duration per invocation in milliseconds. Lambda duration is billed at millisecond granularity."
+      }
+    },
+    {
+      "id": "memoryMb",
+      "label": "Memory (MB)",
+      "type": "number",
+      "default": "128",
+      "minimum": "128",
+      "maximum": "10240",
+      "ui": {
+        "help": "Configured Lambda function memory. AWS Lambda supports 128 MB through 10,240 MB."
       }
     }
   ],
