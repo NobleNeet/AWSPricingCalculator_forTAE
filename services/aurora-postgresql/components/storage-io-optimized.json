@@ -22,6 +22,11 @@
         "value": "Database Storage"
       },
       {
+        "field": "operation",
+        "op": "eq",
+        "value": "CreateDBInstance:0021"
+      },
+      {
         "field": "attributes.volumeType",
         "op": "eq",
         "value": "IO Optimized-Aurora"
