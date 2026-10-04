@@ -9,10 +9,7 @@
       "type": "select",
       "default": "AWS-Lambda-Duration",
       "options": {
-        "values": [
-          "AWS-Lambda-Duration",
-          "AWS-Lambda-Duration-ARM"
-        ]
+        "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"]
       }
     },
     {
@@ -38,13 +35,25 @@
     },
     {
       "id": "memoryMb",
-      "label": "On-demand memory (MB)",
+      "label": "Memory (MB)",
       "type": "number",
       "default": "128",
       "minimum": "128",
       "maximum": "10240",
       "ui": {
-        "help": "Configured memory for the on-demand Lambda workload."
+        "help": "Configured function memory. The same function configuration is used for on-demand and Provisioned Concurrency execution."
+      }
+    },
+    {
+      "id": "additionalStorageMb",
+      "label": "Additional ephemeral storage above included 512 MB",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "maximum": "9728",
+      "ui": {
+        "advanced": true,
+        "help": "Lambda includes 512 MB at no additional charge. Enter the additional configured storage above 512 MB; maximum total ephemeral storage is 10,240 MB. This configuration applies to both on-demand and Provisioned Concurrency invocations."
       }
     },
     {
@@ -92,26 +101,10 @@
         "advanced": true,
         "help": "Average billed duration for requests executed with Provisioned Concurrency."
       }
-    },
-    {
-      "id": "provisionedMemoryMb",
-      "label": "Provisioned memory (MB)",
-      "type": "number",
-      "default": "128",
-      "minimum": "128",
-      "maximum": "10240",
-      "ui": {
-        "advanced": true,
-        "help": "Memory configured for the function version or alias using Provisioned Concurrency."
-      }
     }
   ],
   "fixedFilters": [
-    {
-      "field": "productFamily",
-      "op": "eq",
-      "value": "Serverless"
-    }
+    { "field": "productFamily", "op": "eq", "value": "Serverless" }
   ],
   "components": [
     "requests",
@@ -122,6 +115,8 @@
     "provisioned-duration-x86",
     "provisioned-duration-arm",
     "provisioned-capacity-x86",
-    "provisioned-capacity-arm"
+    "provisioned-capacity-arm",
+    "provisioned-ephemeral-storage-x86",
+    "provisioned-ephemeral-storage-arm"
   ]
 }
