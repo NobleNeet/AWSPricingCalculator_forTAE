@@ -11,19 +11,20 @@
     "requestsPerMonth": "1000000",
     "averageDurationMs": "100",
     "memoryMb": "128",
+    "additionalStorageMb": "0",
     "provisionedConcurrency": "0",
     "provisionedHoursPerMonth": "0",
     "provisionedRequestsPerMonth": "0",
-    "provisionedAverageDurationMs": "100",
-    "provisionedMemoryMb": "128"
+    "provisionedAverageDurationMs": "100"
   },
   "components": {
     "requests": { "enabled": true, "inputs": {} },
     "duration": { "enabled": true, "inputs": {} },
-    "ephemeral-storage-x86": { "enabled": false, "inputs": { "additionalStorageMb": "0" } },
+    "ephemeral-storage-x86": { "enabled": false, "inputs": {} },
     "provisioned-requests": { "enabled": false, "inputs": {} },
     "provisioned-duration-x86": { "enabled": false, "inputs": {} },
-    "provisioned-capacity-x86": { "enabled": false, "inputs": {} }
+    "provisioned-capacity-x86": { "enabled": false, "inputs": {} },
+    "provisioned-ephemeral-storage-x86": { "enabled": false, "inputs": {} }
   },
   "expected": {
     "requests": {
