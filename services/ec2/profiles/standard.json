@@ -4,6 +4,21 @@
   "label": "Standard",
   "selectors": [
     {
+      "id": "tenancy",
+      "label": "Tenancy",
+      "type": "select",
+      "default": "Shared",
+      "options": {
+        "values": [
+          "Shared",
+          "Dedicated"
+        ]
+      },
+      "ui": {
+        "help": "On-DemandのShared Instances / Dedicated Instancesを選択します。Dedicated Hostsはホスト単位課金のため別Profile相当として未対応です。"
+      }
+    },
+    {
       "id": "os",
       "label": "Operating system",
       "type": "select",
@@ -25,7 +40,7 @@
     {
       "field": "attributes.tenancy",
       "op": "eq",
-      "value": "Shared"
+      "valueFrom": "profile.tenancy"
     },
     {
       "field": "attributes.capacitystatus",
@@ -49,6 +64,8 @@
     }
   ],
   "components": [
-    "instance"
+    "instance",
+    "ebs",
+    "data-transfer-out"
   ]
 }
