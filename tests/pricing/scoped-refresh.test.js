@@ -29,9 +29,12 @@ test('service-specific normalizer refreshes only its service', () => {
   assert.deepEqual([...codes], ['AWSLambda']);
 });
 
-test('shared fingerprint inputs and unknown scope safely fall back to full refresh', () => {
+test('shared fingerprint inputs and pricing contract changes safely fall back to full refresh', () => {
   assert.equal(definitionRefreshServiceCodes(packages, ['pricing/normalization/common.json']), null);
   assert.equal(definitionRefreshServiceCodes(packages, ['pricing/limitations.json']), null);
+  assert.equal(definitionRefreshServiceCodes(packages, ['tools/pricing-cli/semantics.js']), null);
+  assert.equal(definitionRefreshServiceCodes(packages, ['src/pricing/core.js']), null);
+  assert.equal(definitionRefreshServiceCodes(packages, ['services/lambda/coverage.json', 'tools/pricing-cli/semantics.js']), null);
   assert.equal(definitionRefreshServiceCodes(packages, ['tools/price-update.js']), null);
   assert.equal(definitionRefreshServiceCodes(packages, undefined), null);
 });
