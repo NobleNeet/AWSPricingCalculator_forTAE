@@ -27,7 +27,7 @@
       "sources": [
         { "valueFrom": "profile.provisionedConcurrency" },
         { "valueFrom": "profile.provisionedHoursPerMonth" },
-        { "valueFrom": "profile.provisionedMemoryMb" }
+        { "valueFrom": "profile.memoryMb" }
       ],
       "combine": "multiply"
     },
