@@ -7,21 +7,19 @@
     "hoursPerMonth": "730"
   },
   "selectors": {
-    "architecture": "AWS-Lambda-Duration-ARM"
+    "architecture": "AWS-Lambda-Duration-ARM",
+    "requestsPerMonth": "1",
+    "averageDurationMs": "1000",
+    "memoryMb": "128"
   },
   "components": {
     "requests": {
       "enabled": true,
-      "inputs": {
-        "requests": "0"
-      }
+      "inputs": {}
     },
     "duration": {
       "enabled": true,
-      "inputs": {
-        "seconds": "1",
-        "memoryGb": "0.125"
-      }
+      "inputs": {}
     }
   },
   "expected": {
@@ -33,7 +31,7 @@
         "operation": ""
       },
       "unit": "Request",
-      "quantity": "0",
+      "quantity": "1",
       "limitations": [
         "free-tier",
         "account-specific-discount"
@@ -68,7 +66,7 @@
       },
       "productFamily": "Serverless",
       "unit": "Request",
-      "quantity": "0"
+      "quantity": "1"
     },
     "duration": {
       "attributes": {
