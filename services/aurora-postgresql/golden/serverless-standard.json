@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "serverless-standard",
+  "profileId": "serverless-standard",
+  "project": {"region": "ap-northeast-1", "hoursPerMonth": "730"},
+  "selectors": {},
+  "components": {
+    "serverless-standard": {"enabled": true, "inputs": {"acuHours": "730"}},
+    "storage": {"enabled": true, "inputs": {"gbMonths": "20"}},
+    "io-requests": {"enabled": true, "inputs": {"requests": "1000000"}}
+  },
+  "expected": {
+    "serverless-standard": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "operation": "CreateDBInstance:0021"}, "unit": "ACU-Hr", "quantity": "730"},
+    "storage": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "volumeType": "General Purpose-Aurora"}, "unit": "GB-Mo", "quantity": "20"},
+    "io-requests": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "group": "Aurora I/O Operation"}, "unit": "IOs", "quantity": "1000000"}
+  },
+  "verification": {
+    "serverless-standard": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "operation": "CreateDBInstance:0021", "regionCode": "ap-northeast-1"}, "productFamily": "ServerlessV2", "unit": "ACU-Hr", "quantity": "730"},
+    "storage": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "volumeType": "General Purpose-Aurora", "regionCode": "ap-northeast-1"}, "productFamily": "Database Storage", "unit": "GB-Mo", "quantity": "20"},
+    "io-requests": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "group": "Aurora I/O Operation", "regionCode": "ap-northeast-1"}, "productFamily": "System Operation", "unit": "IOs", "quantity": "1000000"}
+  }
+}
