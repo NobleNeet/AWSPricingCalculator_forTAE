@@ -24,7 +24,19 @@
       {
         "field": "operation",
         "op": "eq",
-        "value": "CreateDBInstance"
+        "value": "CreateDBInstance:0021"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-Aurora:ServerlessV2IOOptimizedUsage",
+          "APN3-Aurora:ServerlessV2IOOptimizedUsage",
+          "Aurora:ServerlessV2IOOptimizedUsage",
+          "USE2-Aurora:ServerlessV2IOOptimizedUsage",
+          "USW1-Aurora:ServerlessV2IOOptimizedUsage",
+          "USW2-Aurora:ServerlessV2IOOptimizedUsage"
+        ]
       }
     ],
     "dimensionFilters": [
