@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs-gp3-throughput",
+  "label": "EBS gp3 provisioned throughput",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "throughputMibps",
+      "label": "Provisioned throughput (MiB/s)",
+      "type": "number",
+      "default": "125",
+      "minimum": "125",
+      "maximum": "2000",
+      "ui": {
+        "help": "gp3は125 MiB/sまでストレージ料金に含まれます。125 MiB/sを超える分だけを追加課金します。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-EBS:VolumeP-Throughput.gp3",
+          "APN3-EBS:VolumeP-Throughput.gp3",
+          "EBS:VolumeP-Throughput.gp3",
+          "USE2-EBS:VolumeP-Throughput.gp3",
+          "USW1-EBS:VolumeP-Throughput.gp3",
+          "USW2-EBS:VolumeP-Throughput.gp3"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GiBps-mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.throughputMibps",
+            "transforms": [
+              {
+                "type": "subtract",
+                "value": "125"
+              },
+              {
+                "type": "minimum",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "unitConversion",
+        "factor": "0.0009765625",
+        "from": "MiBps-mo",
+        "to": "GiBps-mo"
+      }
+    ],
+    "outputUnit": "GiBps-mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.ebsVolumeType",
+    "op": "eq",
+    "value": "gp3"
+  }
+}
