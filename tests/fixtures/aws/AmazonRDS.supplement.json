@@ -9,6 +9,7 @@
         "regionCode": "ap-northeast-1",
         "servicecode": "AmazonRDS",
         "servicename": "Amazon Relational Database Service",
+        "storage": "Aurora IO Optimization Mode",
         "usagetype": "APN1-Aurora:LimitlessUsage"
       },
       "productFamily": "Limitless",
