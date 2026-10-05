@@ -207,6 +207,18 @@ AWS Pricing CalculatorにあるWorkload（一定使用量、日次・週次・�
 
 EC2 Drawerのcompute入力はAWS Pricing Calculatorの主要操作順に寄せ、Tenancy、Operating systemの後に `Number of EC2 instances`、EC2 instance type比較表、`Expected utilization of EC2 instances` の順で表示する。Workloadは上記方針により表示しない。EBS等の別課金Componentはcompute入力の後に続ける。
 
+### 6.2 EC2組み込みEBS
+
+EC2 DrawerのAmazon EBS欄では、AWS Pricing Calculatorの組み込みEBS入力に合わせて `Storage volume` と `Storage amount` を指定できる。
+
+- 既定値は `gp3` / `30 GB` とする。
+- ストレージ容量だけで料金を決定できる構成として `gp3`、`gp2`、`st1`、`sc1` を選択可能とする。
+- `gp3` は3,000 IOPS / 125 MiB/sの料金込みベースライン性能を前提とする。
+- `gp3` のベースラインを超える追加Provisioned IOPS / throughputは現段階では入力・計算しない。
+- `io1` / `io2` はProvisioned IOPSを別料金メーターとして同時に計算する必要があるため、複数メーター対応まではEC2組み込みEBSの選択肢へ出さない。
+
+追加IOPS / throughputまたはProvisioned IOPS SSDを対応する際は、ストレージ料金だけを表示して完全なEBS料金であるかのように扱わず、必要な料金メーターをすべて合算できる状態で有効化する。
+
 ---
 
 ## 7. 比較表示
