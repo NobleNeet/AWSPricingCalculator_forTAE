@@ -110,11 +110,35 @@
       "ui": {
         "help": "AWS Public Price ListのpreInstalledSwを使用します。WindowsではNAのほかSQL Web / SQL Std / SQL Entなど、実際に存在する候補だけを表示します。"
       }
+    },
+    {
+      "id": "ebsVolumeType",
+      "label": "EBS volume type",
+      "type": "select",
+      "default": "gp3",
+      "options": {
+        "values": [
+          "none",
+          "gp3",
+          "gp2",
+          "st1",
+          "sc1",
+          "io1",
+          "io2"
+        ]
+      },
+      "ui": {
+        "help": "EC2組み込みEBSのボリューム種別です。noneでEBS料金を除外します。gp3では追加IOPS/throughput、io1/io2ではProvisioned IOPSも別課金メーターとして計算します。"
+      }
     }
   ],
   "fixedFilters": [],
   "components": [
     "instance",
-    "ebs"
+    "ebs",
+    "ebs-gp3-iops",
+    "ebs-gp3-throughput",
+    "ebs-io1-iops",
+    "ebs-io2-iops"
   ]
 }
