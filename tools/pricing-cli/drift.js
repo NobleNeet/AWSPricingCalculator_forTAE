@@ -20,9 +20,26 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
       const before = previous[key], after = candidate[key];
       if (!before || !after) { warning = true; continue; }
       if (encode(semantic(before)) !== encode(semantic(after))) warning = true;
-      for (const sample of reachableCases(pkg, before.products, before.region)) {
-        const oldResult = evaluateService(sample.pkg, sample.instance, sample.project, before.products);
-        const newResult = evaluateService(sample.pkg, sample.instance, sample.project, after.products);
+      const beforeByServiceCode = { [code]: before.products };
+      const afterByServiceCode = { [code]: after.products };
+      for (const sample of reachableCases(pkg, beforeByServiceCode, before.region)) {
+        const oldResult = evaluateService(
+          sample.pkg,
+          sample.instance,
+          sample.project,
+          sample.products,
+          sample.profileProducts,
+          sample.productsByServiceCode
+        );
+        const newProducts = afterByServiceCode[code];
+        const newResult = evaluateService(
+          sample.pkg,
+          sample.instance,
+          sample.project,
+          newProducts,
+          newProducts,
+          afterByServiceCode
+        );
         breaks.push(...newResult.issues.map(issue => ({ ...issue, region: after.region })));
         const oldComponent = oldResult.components[sample.componentId], next = newResult.components[sample.componentId];
         if (oldComponent?.unitPriceUsd !== next?.unitPriceUsd) rateDiff.push({ serviceId: pkg.service.id, region: after.region, componentId: sample.componentId, selectors: sample.instance.selectors, inputs: sample.instance.components[sample.componentId].inputs, previous: oldComponent?.unitPriceUsd, current: next?.unitPriceUsd });
