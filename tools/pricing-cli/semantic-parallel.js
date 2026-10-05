@@ -53,19 +53,57 @@ function createWorker(directory) {
   });
 }
 
+function workflowBatch(options = {}) {
+  const raw = options.batch ?? process.env.PRICE_VALIDATE_BATCH_JSON;
+  if (!raw) return null;
+  if (typeof raw === 'object') return raw;
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`Invalid PRICE_VALIDATE_BATCH_JSON: ${error.message}`);
+  }
+}
+
 export async function validatePublishedPriceDataParallel(packages, directory, manifest, options = {}) {
   const allTasks = sourceTasks(packages, manifest);
-  const shardCount = positiveInt(options.shardCount ?? process.env.PRICE_VALIDATE_SHARD_COUNT, 1);
-  const shardIndex = nonNegativeInt(options.shardIndex ?? process.env.PRICE_VALIDATE_SHARD_INDEX, 0);
-  if (shardIndex >= shardCount) throw new Error(`Invalid semantic shard ${shardIndex}/${shardCount}`);
-  const tasks = allTasks
-    .filter(task => task.taskId % shardCount === shardIndex)
-    .map((task, taskId) => ({ ...task, globalTaskId: task.taskId, taskId }));
+  const batch = workflowBatch(options);
+  let shardCount = 1;
+  let shardIndex = 0;
+  let tasks;
+
+  if (batch) {
+    const sourceTask = allTasks.find(task =>
+      task.serviceCode === batch.serviceCode || task.serviceCode === batch.service_code
+        ? task.region === batch.region
+        : false
+    );
+    if (!sourceTask) throw new Error(`Unknown semantic batch source: ${batch.serviceCode ?? batch.service_code}/${batch.region}`);
+    const serviceCode = batch.serviceCode ?? batch.service_code;
+    if (sourceTask.serviceCode !== serviceCode) throw new Error(`Semantic batch service mismatch: ${serviceCode}`);
+    tasks = [{
+      ...sourceTask,
+      taskId: 0,
+      globalTaskId: sourceTask.taskId,
+      batchId: batch.batchId ?? batch.batch_id,
+      caseOffset: nonNegativeInt(batch.caseOffset ?? batch.case_offset, 0),
+      caseLimit: positiveInt(batch.caseLimit ?? batch.case_limit, 25000),
+      includeCoverage: Boolean(batch.includeCoverage ?? batch.include_coverage),
+      includeDefaults: Boolean(batch.includeDefaults ?? batch.include_defaults)
+    }];
+  } else {
+    shardCount = positiveInt(options.shardCount ?? process.env.PRICE_VALIDATE_SHARD_COUNT, 1);
+    shardIndex = nonNegativeInt(options.shardIndex ?? process.env.PRICE_VALIDATE_SHARD_INDEX, 0);
+    if (shardIndex >= shardCount) throw new Error(`Invalid semantic shard ${shardIndex}/${shardCount}`);
+    tasks = allTasks
+      .filter(task => task.taskId % shardCount === shardIndex)
+      .map((task, taskId) => ({ ...task, globalTaskId: task.taskId, taskId }));
+  }
+
   const cpuLimit = Math.max(1, Math.min(2, os.availableParallelism?.() ?? os.cpus().length ?? 1));
   const concurrency = Math.min(tasks.length || 1, positiveInt(options.concurrency ?? process.env.PRICE_VALIDATE_CONCURRENCY, cpuLimit));
   const taskTimeoutMs = positiveInt(options.taskTimeoutMs ?? process.env.PRICE_VALIDATE_TASK_TIMEOUT_MS, 600000);
   const heartbeatMs = positiveInt(options.heartbeatMs ?? process.env.PRICE_VALIDATE_HEARTBEAT_MS, 30000);
-  if (!tasks.length) return { issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [], shardIndex, shardCount };
+  if (!tasks.length) return { issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [], shardIndex, shardCount, batchId: batch?.batchId ?? batch?.batch_id };
 
   const results = new Array(tasks.length);
   const workers = [];
@@ -93,7 +131,7 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
       if (!task) return;
       worker.lastProgressAt = Date.now();
       worker.taskTimeout = setTimeout(() => {
-        fail(new Error(`Semantic validation task made no progress for ${taskTimeoutMs} ms for ${task.serviceCode}/${task.region}`));
+        fail(new Error(`Semantic validation task made no progress for ${taskTimeoutMs} ms for ${task.serviceCode}/${task.region}${task.batchId ? ` batch=${task.batchId}` : ''}`));
       }, taskTimeoutMs);
     };
 
@@ -111,12 +149,12 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
       worker.taskStartedAt = Date.now();
       worker.lastProgressAt = worker.taskStartedAt;
       worker.processedCases = 0;
-      console.log(`validate-price-data shard=${shardIndex}/${shardCount} task start: service=${task.serviceCode}, region=${task.region}, task=${index + 1}/${tasks.length}`);
+      console.log(`validate-price-data shard=${shardIndex}/${shardCount} task start: service=${task.serviceCode}, region=${task.region}, batch=${task.batchId ?? '-'}, offset=${task.caseOffset ?? 0}, limit=${task.caseLimit ?? 'all'}, task=${index + 1}/${tasks.length}`);
       armProgressTimeout(worker);
       worker.heartbeat = setInterval(() => {
         const elapsedSeconds = Math.round((Date.now() - worker.taskStartedAt) / 1000);
         const idleSeconds = Math.round((Date.now() - worker.lastProgressAt) / 1000);
-        console.log(`validate-price-data shard=${shardIndex}/${shardCount} heartbeat: service=${task.serviceCode}, region=${task.region}, elapsed_s=${elapsedSeconds}, idle_s=${idleSeconds}, processed_cases=${worker.processedCases}`);
+        console.log(`validate-price-data shard=${shardIndex}/${shardCount} heartbeat: service=${task.serviceCode}, region=${task.region}, batch=${task.batchId ?? '-'}, elapsed_s=${elapsedSeconds}, idle_s=${idleSeconds}, processed_cases=${worker.processedCases}`);
       }, heartbeatMs);
       worker.postMessage({ type: 'task', task });
     };
@@ -133,7 +171,7 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
         if (message.type === 'progress') {
           worker.processedCases = message.processedCases;
           armProgressTimeout(worker);
-          console.log(`validate-price-data shard=${shardIndex}/${shardCount} case batch: service=${message.serviceCode}, region=${message.region}, processed_cases=${message.processedCases}, batch_cases=${message.batchCases}, elapsed_ms=${message.elapsedMs}`);
+          console.log(`validate-price-data shard=${shardIndex}/${shardCount} case batch: service=${message.serviceCode}, region=${message.region}, batch=${message.batchId ?? '-'}, processed_cases=${message.processedCases}, batch_cases=${message.batchCases}, elapsed_ms=${message.elapsedMs}`);
           return;
         }
         if (message.type !== 'result') return;
@@ -141,7 +179,7 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
         results[message.result.taskId] = message.result;
         completed += 1;
         const result = message.result;
-        console.log(`validate-price-data shard=${shardIndex}/${shardCount} task done: service=${result.serviceCode}, region=${result.region}, branches=${result.branches}, scanned_products=${result.scannedProducts}, selected_products=${result.selectedProducts}, chunks=${result.chunks}, elapsed_ms=${result.elapsedMs}, progress=${completed}/${tasks.length}`);
+        console.log(`validate-price-data shard=${shardIndex}/${shardCount} task done: service=${result.serviceCode}, region=${result.region}, batch=${result.batchId ?? '-'}, branches=${result.branches}, scanned_products=${result.scannedProducts}, selected_products=${result.selectedProducts}, chunks=${result.chunks}, elapsed_ms=${result.elapsedMs}, progress=${completed}/${tasks.length}`);
         if (completed === tasks.length) {
           if (!settled) {
             settled = true;
@@ -177,8 +215,11 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
   }
 
   const taskTimings = results.map(result => ({
+    batchId: result.batchId,
     serviceCode: result.serviceCode,
     region: result.region,
+    caseOffset: result.caseOffset,
+    caseLimit: result.caseLimit,
     branches: result.branches,
     scannedProducts: result.scannedProducts,
     selectedProducts: result.selectedProducts,
@@ -200,6 +241,9 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
     concurrency,
     taskTimings,
     shardIndex,
-    shardCount
+    shardCount,
+    batchId: batch?.batchId ?? batch?.batch_id,
+    caseOffset: batch ? nonNegativeInt(batch.caseOffset ?? batch.case_offset, 0) : undefined,
+    caseLimit: batch ? positiveInt(batch.caseLimit ?? batch.case_limit, 25000) : undefined
   };
 }
