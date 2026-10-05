@@ -13,6 +13,9 @@ on:
       - 'tools/price-update-matrix.js'
       - 'tools/semantic-batch-plan.js'
       - 'tools/merge-semantic-batches.js'
+      - 'tools/drift-batch-plan.js'
+      - 'tools/drift-batch-run.js'
+      - 'tools/merge-drift-batches.js'
       - '.github/workflows/price-update.yml'
   schedule:
     - cron: '23 2 * * *'
@@ -142,15 +145,173 @@ jobs:
           path: .work/update/batches/batch-${{ matrix.batch_id }}.json
           if-no-files-found: error
 
-  finalize:
+  semantic-merge:
     needs: [prepare, semantic-plan, semantic]
     if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success' && needs.semantic.result == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: semantic-plan
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: semantic-batch-*
+          path: .work/update/batches
+          merge-multiple: true
+      - name: Merge semantic validation batches
+        run: node tools/merge-semantic-batches.js .work/update/semantic-plan.json .work/update/batches .work/update/validate-price-data.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: semantic-report
+          path: .work/update/validate-price-data.json
+          if-no-files-found: error
+
+  golden:
+    needs: prepare
+    if: needs.prepare.outputs.needs_update == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+      - name: Run golden validation independently
+        shell: bash
+        run: |
+          set +e
+          node tools/pricing-cli/cli.js run-golden \
+            --input .work/update/candidate \
+            --raw .work/update/golden-raw \
+            --output .work/update/run-golden.json
+          rc=$?
+          if [[ $rc -eq 2 ]]; then
+            exit 2
+          fi
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: golden-report
+          path: .work/update/run-golden.json
+          if-no-files-found: error
+
+  drift-plan:
+    needs: [prepare, semantic-merge]
+    if: needs.prepare.outputs.needs_update == 'true' && needs.semantic-merge.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      batch_count: ${{ steps.plan.outputs.batch_count }}
+    env:
+      PRICE_DRIFT_WORKFLOW_BATCH_TASKS: '1'
+      PRICE_DRIFT_MAX_WORKFLOW_BATCHES: '240'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          name: semantic-report
+          path: .work/update/reports
+      - name: Plan drift workflow batches
+        id: plan
+        shell: bash
+        run: |
+          node tools/drift-batch-plan.js .work/update .work/update/drift-plan.json
+          node --input-type=module - <<'NODE' >> "$GITHUB_OUTPUT"
+          import { readFile } from 'node:fs/promises';
+          const plan = JSON.parse(await readFile('.work/update/drift-plan.json', 'utf8'));
+          console.log(`matrix=${JSON.stringify(plan.matrix)}`);
+          console.log(`batch_count=${plan.summary.batches}`);
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drift-plan
+          path: .work/update/drift-plan.json
+          if-no-files-found: error
+
+  drift:
+    needs: [prepare, drift-plan]
+    if: needs.prepare.outputs.needs_update == 'true' && needs.drift-plan.result == 'success'
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJSON(needs.drift-plan.outputs.matrix) }}
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      PRICE_VALIDATE_CONCURRENCY: '2'
-      PRICE_DRIFT_TASK_TIMEOUT_MS: '600000'
-      PRICE_DRIFT_HEARTBEAT_MS: '30000'
+      PRICE_DRIFT_BATCH_JSON: ${{ toJSON(matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          name: drift-plan
+          path: .work/update
+      - name: Classify drift batch ${{ matrix.batch_id }}
+        run: node tools/drift-batch-run.js .work/update .work/update/drift-batches/batch-${{ matrix.batch_id }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drift-batch-${{ matrix.batch_id }}
+          path: .work/update/drift-batches/batch-${{ matrix.batch_id }}.json
+          if-no-files-found: error
+
+  drift-merge:
+    needs: [prepare, drift-plan, drift]
+    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.drift-plan.result == 'success' && needs.drift.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: drift-plan
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: drift-batch-*
+          path: .work/update/drift-batches
+          merge-multiple: true
+      - name: Merge drift classification batches
+        run: node tools/merge-drift-batches.js .work/update/drift-plan.json .work/update/drift-batches .work/update/classify-change.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drift-report
+          path: .work/update/classify-change.json
+          if-no-files-found: error
+
+  finalize:
+    needs: [prepare, semantic-merge, golden, drift-merge]
+    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic-merge.result == 'success' && needs.golden.result == 'success' && needs.drift-merge.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PRICE_FINALIZE_PREVALIDATED: 'true'
     outputs:
       publishable: ${{ steps.finalize.outputs.publishable }}
       build_id: ${{ steps.finalize.outputs.build_id }}
@@ -169,16 +330,17 @@ jobs:
           path: .work/update
       - uses: actions/download-artifact@v4
         with:
-          name: semantic-plan
-          path: .work/update
+          name: semantic-report
+          path: .work/update/reports
       - uses: actions/download-artifact@v4
         with:
-          pattern: semantic-batch-*
-          path: .work/update/batches
-          merge-multiple: true
-      - name: Merge semantic validation batches
-        run: node tools/merge-semantic-batches.js .work/update/semantic-plan.json .work/update/batches .work/update/reports/validate-price-data.json
-      - name: Finalize validated immutable build
+          name: golden-report
+          path: .work/update/reports
+      - uses: actions/download-artifact@v4
+        with:
+          name: drift-report
+          path: .work/update/reports
+      - name: Finalize prevalidated immutable build
         id: finalize
         run: node tools/price-update-matrix.js finalize
       - uses: actions/upload-artifact@v4
