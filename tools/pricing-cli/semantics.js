@@ -82,8 +82,7 @@ function componentContexts(profile, component, context) {
 function sourceCodeFor(pkg, componentId) {
   return pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
 }
-export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeast-1') {
-  const cases = [];
+export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-northeast-1') {
   const defaultCode = pkg.service.priceSource.serviceCode;
   const profileProducts = productsByServiceCode[defaultCode] ?? [];
   for (const profileId of pkg.service.profiles) {
@@ -106,7 +105,7 @@ export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeas
             const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
             sample.components[componentId].enabled = true;
             const scopedByCode = { ...productsByServiceCode, [componentCode]: scopedProducts };
-            cases.push({
+            yield {
               pkg: narrow,
               instance: sample,
               project: base.project,
@@ -114,18 +113,57 @@ export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeas
               products: componentCode === defaultCode ? scopedProducts : profileProducts,
               profileProducts,
               productsByServiceCode: scopedByCode
-            });
+            };
           }
         }
       }
     }
   }
-  return cases;
+}
+export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeast-1') {
+  return [...reachableCaseIterator(pkg, productsByServiceCode, region)];
+}
+function productsForSource(pkg, data, source) {
+  const defaultCode = pkg.service.priceSource.serviceCode;
+  const requiredCodes = [...new Set([defaultCode, ...Object.values(pkg.service.priceSource.componentOverrides ?? {})])];
+  const productsByServiceCode = {};
+  for (const code of requiredCodes) {
+    const entry = Object.values(data).find(candidate => candidate.serviceCode === code && candidate.region === source.region);
+    if (!entry) return null;
+    productsByServiceCode[code] = entry.products;
+  }
+  return productsByServiceCode;
+}
+export function countPriceDataCases(packages, data) {
+  let count = 0;
+  for (const pkg of packages) {
+    const defaultCode = pkg.service.priceSource.serviceCode;
+    const sources = Object.values(data).filter(source => source.serviceCode === defaultCode);
+    for (const source of sources) {
+      const productsByServiceCode = productsForSource(pkg, data, source);
+      if (!productsByServiceCode) continue;
+      for (const _sample of reachableCaseIterator(pkg, productsByServiceCode, source.region)) count += 1;
+    }
+  }
+  return count;
 }
 export function validatePriceData(packages, data, common, normalizers, options = {}) {
-  const { includeCoverage = true, caseBatchSize = 250, onCaseBatch } = options;
+  const {
+    includeCoverage = true,
+    caseBatchSize = 250,
+    onCaseBatch,
+    caseOffset = 0,
+    caseLimit = Number.POSITIVE_INFINITY,
+    includeDefaultChecks = true,
+    includeStructuralChecks = true
+  } = options;
   const issues = [], coverage = {}, resolutions = [];
   let processedCases = 0;
+  let seenCases = 0;
+  let evaluatedCases = 0;
+  let exhausted = false;
+
+  packageLoop:
   for (const pkg of packages) {
     const defaultCode = pkg.service.priceSource.serviceCode;
     const requiredCodes = [...new Set([defaultCode, ...Object.values(pkg.service.priceSource.componentOverrides ?? {})])];
@@ -148,14 +186,29 @@ export function validatePriceData(packages, data, common, normalizers, options =
         else productsByServiceCode[code] = entry.products;
       }
       if (missing) continue;
-      const cases = reachableCases(pkg, productsByServiceCode, source.region);
-      if (!cases.length) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id, region: source.region }));
+
+      if (includeDefaultChecks) {
+        for (const profileId of pkg.service.profiles) {
+          const result = evaluateService(pkg, defaults(pkg, profileId), { region: source.region, defaultRegion: source.region, hoursPerMonth: '730' }, productsByServiceCode[defaultCode], productsByServiceCode[defaultCode], productsByServiceCode);
+          issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId, region: source.region })));
+        }
+      }
+
+      let reachable = 0;
       let batchCases = 0;
-      for (const sample of cases) {
+      for (const sample of reachableCaseIterator(pkg, productsByServiceCode, source.region)) {
+        reachable += 1;
+        const caseIndex = seenCases++;
+        if (caseIndex < caseOffset) continue;
+        if (evaluatedCases >= caseLimit) {
+          exhausted = true;
+          break;
+        }
         const result = evaluateService(sample.pkg, sample.instance, sample.project, sample.products, sample.profileProducts, sample.productsByServiceCode);
         issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId: sample.instance.profileId, region: source.region })));
         resolutions.push({ serviceId: pkg.service.id, profileId: sample.instance.profileId, componentId: sample.componentId, instance: sample.instance, result, region: source.region, sourceKey });
         processedCases += 1;
+        evaluatedCases += 1;
         batchCases += 1;
         if (batchCases >= caseBatchSize) {
           onCaseBatch?.({ serviceId: pkg.service.id, region: source.region, processedCases, batchCases });
@@ -163,11 +216,9 @@ export function validatePriceData(packages, data, common, normalizers, options =
         }
       }
       if (batchCases > 0) onCaseBatch?.({ serviceId: pkg.service.id, region: source.region, processedCases, batchCases });
-      for (const profileId of pkg.service.profiles) {
-        const result = evaluateService(pkg, defaults(pkg, profileId), { region: source.region, defaultRegion: source.region, hoursPerMonth: '730' }, productsByServiceCode[defaultCode], productsByServiceCode[defaultCode], productsByServiceCode);
-        issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId, region: source.region })));
-      }
+      if (reachable === 0 && includeStructuralChecks) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id, region: source.region }));
+      if (exhausted) break packageLoop;
     }
   }
-  return { issues, coverage, resolutions };
+  return { issues, coverage, resolutions, processedCases, seenCases };
 }
