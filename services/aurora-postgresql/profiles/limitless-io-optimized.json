@@ -12,6 +12,7 @@
   ],
   "components": [
     "limitless-compute",
+    "database-insights-limitless",
     "storage-io-optimized",
     "backup-storage",
     "snapshot-export"
