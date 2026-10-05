@@ -3,6 +3,7 @@ import { loadPackages, readJson } from './package-loader.js';
 import { countPriceDataCases, validatePriceData } from './semantics.js';
 import { loadProductsMatching } from './product-chunks.js';
 import { matches } from '../../src/pricing/filter.js';
+import { mappingForComponent, priceSourceForComponent } from '../../src/pricing/mapping.js';
 import { accumulateInventory, finalizeInventory, validateCoverage } from './inventory.js';
 import { issue } from '../../src/pricing/issues.js';
 import { schemaValidator } from '../schema.js';
@@ -30,10 +31,6 @@ async function normalizerFor(serviceCode) {
   return normalizer;
 }
 
-function sourceCodeFor(pkg, componentId) {
-  return pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
-}
-
 function staticFilters(filters = []) {
   return filters.filter(filter => !filter.valueFrom);
 }
@@ -44,8 +41,13 @@ function filterGroupsFor(servicePackages, serviceCode) {
     const profile = pkg.profiles[profileId];
     if (pkg.service.priceSource.serviceCode === serviceCode) groups.push(staticFilters(profile.fixedFilters ?? []));
     for (const componentId of profile.components) {
-      if (sourceCodeFor(pkg, componentId) !== serviceCode) continue;
+      if (priceSourceForComponent(pkg, componentId) !== serviceCode) continue;
       const component = pkg.components[componentId];
+      const mapping = mappingForComponent(pkg, componentId);
+      if (mapping) {
+        groups.push(staticFilters(mapping.productMatchers ?? []));
+        continue;
+      }
       const profileFilters = serviceCode === pkg.service.priceSource.serviceCode ? profile.fixedFilters ?? [] : [];
       groups.push(staticFilters([
         ...profileFilters,
@@ -153,7 +155,7 @@ async function runTask(task) {
     const sku = resolution.result.components[resolution.componentId]?.resolution?.product.sku;
     if (!sku) continue;
     const pkg = packageByServiceId.get(resolution.serviceId);
-    const code = pkg ? sourceCodeFor(pkg, resolution.componentId) : serviceCode;
+    const code = pkg ? priceSourceForComponent(pkg, resolution.componentId) : serviceCode;
     const key = `${code}/${region}`;
     (publishSkus[key] ??= new Set()).add(sku);
   }
