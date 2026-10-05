@@ -126,7 +126,10 @@ async function finalize(work) {
   const rawDirectory = path.join(work, 'golden-raw');
   const stage = path.join(work, 'staged');
   const packages = await loadPackages();
-  const golden = await record(work, 'run-golden', { input: candidateDirectoryPath, raw: rawDirectory });
+  const prevalidated = process.env.PRICE_FINALIZE_PREVALIDATED === 'true';
+  const golden = prevalidated
+    ? await readJson(path.join(work, 'reports', 'run-golden.json'))
+    : await record(work, 'run-golden', { input: candidateDirectoryPath, raw: rawDirectory });
   const validationIssues = [...definition.issues, ...semantic.issues, ...golden.issues].filter(issue => issue.severity === 'error');
   const publishSkus = restorePublishSkus(semantic.publishSkus);
 
@@ -142,6 +145,8 @@ async function finalize(work) {
       }),
       elapsedMs: Math.round(performance.now() - started)
     };
+  } else if (prevalidated) {
+    change = await readJson(path.join(work, 'reports', 'classify-change.json'));
   } else {
     const previousDirectory = await candidateDirectory();
     const previousMetadata = await loadSourceDescriptors(previousDirectory);
