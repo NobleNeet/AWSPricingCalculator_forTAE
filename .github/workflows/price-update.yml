@@ -11,7 +11,8 @@ on:
       - 'tools/pricing-cli/**'
       - 'tools/price-update.js'
       - 'tools/price-update-matrix.js'
-      - 'tools/merge-semantic-shards.js'
+      - 'tools/semantic-batch-plan.js'
+      - 'tools/merge-semantic-batches.js'
       - '.github/workflows/price-update.yml'
   schedule:
     - cron: '23 2 * * *'
@@ -58,19 +59,18 @@ jobs:
           path: .work/update/reports
           include-hidden-files: true
 
-  semantic:
+  semantic-plan:
     needs: prepare
     if: needs.prepare.outputs.needs_update == 'true'
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [0, 1, 2, 3]
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      batch_count: ${{ steps.plan.outputs.batch_count }}
     env:
-      PRICE_VALIDATE_CONCURRENCY: '2'
-      PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
-      PRICE_VALIDATE_HEARTBEAT_MS: '30000'
+      PRICE_VALIDATE_PLAN_CONCURRENCY: '2'
+      PRICE_VALIDATE_WORKFLOW_BATCH_CASES: '25000'
+      PRICE_VALIDATE_MAX_WORKFLOW_BATCHES: '240'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -82,15 +82,55 @@ jobs:
         with:
           name: price-update-workspace
           path: .work/update
-      - name: Validate semantic shard ${{ matrix.shard }}
+      - name: Plan semantic workflow batches
+        id: plan
+        shell: bash
+        run: |
+          node tools/semantic-batch-plan.js .work/update/candidate .work/update/semantic-plan.json
+          node --input-type=module - <<'NODE' >> "$GITHUB_OUTPUT"
+          import { readFile } from 'node:fs/promises';
+          const plan = JSON.parse(await readFile('.work/update/semantic-plan.json', 'utf8'));
+          console.log(`matrix=${JSON.stringify(plan.matrix)}`);
+          console.log(`batch_count=${plan.summary.batches}`);
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: semantic-plan
+          path: .work/update/semantic-plan.json
+          if-no-files-found: error
+
+  semantic:
+    needs: [prepare, semantic-plan]
+    if: needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success'
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJSON(needs.semantic-plan.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PRICE_VALIDATE_CONCURRENCY: '1'
+      PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
+      PRICE_VALIDATE_HEARTBEAT_MS: '30000'
+      PRICE_VALIDATE_BATCH_JSON: ${{ toJSON(matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+      - name: Validate semantic batch ${{ matrix.batch_id }}
         shell: bash
         run: |
           set +e
-          PRICE_VALIDATE_SHARD_INDEX=${{ matrix.shard }} \
-          PRICE_VALIDATE_SHARD_COUNT=4 \
           node tools/pricing-cli/cli.js validate-price-data \
             --input .work/update/candidate \
-            --output .work/update/shards/shard-${{ matrix.shard }}.json
+            --output .work/update/batches/batch-${{ matrix.batch_id }}.json
           rc=$?
           if [[ $rc -eq 2 ]]; then
             exit 2
@@ -98,13 +138,13 @@ jobs:
           exit 0
       - uses: actions/upload-artifact@v4
         with:
-          name: semantic-shard-${{ matrix.shard }}
-          path: .work/update/shards/shard-${{ matrix.shard }}.json
+          name: semantic-batch-${{ matrix.batch_id }}
+          path: .work/update/batches/batch-${{ matrix.batch_id }}.json
           if-no-files-found: error
 
   finalize:
-    needs: [prepare, semantic]
-    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic.result == 'success'
+    needs: [prepare, semantic-plan, semantic]
+    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success' && needs.semantic.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -129,11 +169,15 @@ jobs:
           path: .work/update
       - uses: actions/download-artifact@v4
         with:
-          pattern: semantic-shard-*
-          path: .work/update/shards
+          name: semantic-plan
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: semantic-batch-*
+          path: .work/update/batches
           merge-multiple: true
-      - name: Merge semantic validation shards
-        run: node tools/merge-semantic-shards.js .work/update/shards .work/update/reports/validate-price-data.json 4
+      - name: Merge semantic validation batches
+        run: node tools/merge-semantic-batches.js .work/update/semantic-plan.json .work/update/batches .work/update/reports/validate-price-data.json
       - name: Finalize validated immutable build
         id: finalize
         run: node tools/price-update-matrix.js finalize
