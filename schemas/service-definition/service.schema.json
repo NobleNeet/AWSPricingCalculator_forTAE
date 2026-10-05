@@ -24,7 +24,12 @@
       "minItems": 1,
       "uniqueItems": true
     },
-    "defaultProfile": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"}
+    "defaultProfile": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "pricingMappings": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+      "uniqueItems": true
+    }
   },
   "required": ["schemaVersion", "id", "label", "priceSource", "profiles", "defaultProfile"],
   "additionalProperties": false
