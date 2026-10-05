@@ -66,6 +66,11 @@ jobs:
       matrix:
         shard: [0, 1, 2, 3]
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PRICE_VALIDATE_CONCURRENCY: '2'
+      PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
+      PRICE_VALIDATE_HEARTBEAT_MS: '30000'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
