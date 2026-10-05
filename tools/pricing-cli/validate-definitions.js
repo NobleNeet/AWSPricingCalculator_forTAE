@@ -36,6 +36,17 @@ export async function validateDefinitions(packages) {
     if (!schemaValid) continue;
     if (pkg.directory && path.basename(pkg.directory) !== pkg.service.id) add('FILE_ID_MISMATCH', 'Service directory differs from id.');
     if (!pkg.service.profiles?.includes(pkg.service.defaultProfile)) add('INVALID_DEFAULT', 'Default profile is not declared.');
+    const declaredMappings = new Set(pkg.service.pricingMappings ?? []);
+    for (const id of declaredMappings) if (!pkg.pricingMappings?.[id]) add('MISSING_PRICING_MAPPING', `Missing pricing mapping ${id}.`, { path: `pricing-mappings/${id}` });
+    for (const id of Object.keys(pkg.pricingMappings ?? {})) if (!declaredMappings.has(id)) add('ORPHAN_DEFINITION', `Unreferenced pricing mapping ${id}.`, { path: `pricing-mappings/${id}` });
+    const mappingsByComponent = new Map();
+    for (const [mappingId, mapping] of Object.entries(pkg.pricingMappings ?? {})) {
+      if (!pkg.components[mapping.componentId]) add('INVALID_REFERENCE', `Pricing mapping ${mappingId} references unknown component ${mapping.componentId}.`, { componentId: mapping.componentId, path: `pricing-mappings/${mappingId}` });
+      const ids = mappingsByComponent.get(mapping.componentId) ?? [];
+      ids.push(mappingId);
+      mappingsByComponent.set(mapping.componentId, ids);
+    }
+    for (const [componentId, mappingIds] of mappingsByComponent) if (mappingIds.length > 1) add('AMBIGUOUS_PRICING_MAPPING', `Component ${componentId} has multiple pricing mappings: ${mappingIds.join(', ')}.`, { componentId });
     const usedComponents = new Set();
     for (const id of pkg.service.profiles ?? []) if (!pkg.profiles[id]) add('MISSING_PROFILE', `Missing profile ${id}.`);
     for (const [id, profile] of Object.entries(pkg.profiles)) {
@@ -84,9 +95,6 @@ export async function validateDefinitions(packages) {
       }
     }
     for (const componentId of Object.keys(pkg.components)) if (!usedComponents.has(componentId)) add('ORPHAN_DEFINITION', `Unreferenced component ${componentId}.`);
-    for (const [mappingId, mapping] of Object.entries(pkg.pricingMappings ?? {})) {
-      if (!pkg.components[mapping.componentId]) add('INVALID_REFERENCE', `Pricing mapping ${mappingId} references unknown component ${mapping.componentId}.`, { componentId: mapping.componentId, path: `pricing-mappings/${mappingId}` });
-    }
     for (const component of Object.values(pkg.components)) for (const id of component.limitations ?? []) if (!limitationIds.has(id)) add('UNKNOWN_LIMITATION', `Unknown limitation ${id}.`);
     for (const category of pkg.coverage?.categories ?? []) {
       if (category.status === 'mapped' && !pkg.components[category.componentId]) add('INVALID_REFERENCE', `Coverage references ${category.componentId}.`);
