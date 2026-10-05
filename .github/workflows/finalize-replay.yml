@@ -1,0 +1,124 @@
+name: Finalize Price Update Replay
+
+on:
+  push:
+    branches:
+      - main
+      - fix/finalize-replay-155
+    paths:
+      - '.github/finalize-replay.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pricing-finalize-replay
+  cancel-in-progress: true
+
+jobs:
+  finalize-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      publishable: ${{ steps.finalize.outputs.publishable }}
+      build_id: ${{ steps.finalize.outputs.build_id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Read replay source run
+        id: replay
+        shell: bash
+        run: |
+          node --input-type=module - <<'NODE' >> "$GITHUB_OUTPUT"
+          import { readFile } from 'node:fs/promises';
+          const config = JSON.parse(await readFile('.github/finalize-replay.json', 'utf8'));
+          if (!Number.isInteger(config.runId) || config.runId <= 0) throw new Error('finalize replay runId must be a positive integer');
+          console.log(`run_id=${config.runId}`);
+          NODE
+      - uses: actions/download-artifact@v4
+        with:
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.replay.outputs.run_id }}
+          github-token: ${{ github.token }}
+          name: price-update-workspace
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.replay.outputs.run_id }}
+          github-token: ${{ github.token }}
+          name: semantic-report
+          path: .work/update/reports
+      - name: Re-run finalize from preserved validated data
+        id: finalize
+        env:
+          PRICE_FINALIZE_PREVALIDATED: 'false'
+        run: node tools/price-update-matrix.js finalize
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finalize-replay-analysis
+          path: .work/update/reports
+          include-hidden-files: true
+      - uses: actions/upload-artifact@v4
+        if: steps.finalize.outputs.publishable == 'true'
+        with:
+          name: validated-price-candidate-replay
+          path: |
+            .work/update/staged
+            .work/update/reports
+          include-hidden-files: true
+
+  publish:
+    needs: finalize-replay
+    if: github.ref == 'refs/heads/main' && needs.finalize-replay.outputs.publishable == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+    outputs:
+      commit: ${{ steps.commit.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-price-candidate-replay
+          path: .work/update
+      - name: Verify proof, retain current + previous, promote manifest
+        run: node tools/publish-price-build.js
+      - run: npm run validate
+      - name: Commit and push replayed validated publication
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pricing/generated services/catalog.json tests/fixtures/aws
+          git commit -m '[skip ci] Publish replayed validated AWS Price DB build'
+          git push origin HEAD:main
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: publish
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
+    with:
+      ref: ${{ needs.publish.outputs.commit }}
