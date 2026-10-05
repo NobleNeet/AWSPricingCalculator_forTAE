@@ -17,9 +17,8 @@ export async function promoteBuild({ stage, reports, generated = 'pricing/genera
   }
   const classification = await readJson(path.join(reports, 'classify-change.json'));
   if (!classification.publishable || classification.classification !== summary.classification) throw Error('Publish classification proof mismatch');
-  const active = await readJson(path.join(generated, 'manifest.json'));
-  if (active.activeBuildId !== (expectedPrevious ?? summary.previousBuildId)) throw Error('Active build changed while candidate was prepared');
   if (!/^[a-zA-Z0-9-]+$/.test(summary.buildId)) throw Error('Invalid build ID');
+
   const root = path.join(stage, 'pricing/builds', summary.buildId);
   const text = await readFile(path.join(root, 'build-manifest.json'), 'utf8');
   if (checksum(text) !== summary.buildManifestSha256) throw Error('Build proof checksum mismatch');
@@ -36,6 +35,17 @@ export async function promoteBuild({ stage, reports, generated = 'pricing/genera
       if (!validate(data) || data.buildId !== manifest.buildId || data.serviceCode !== code || data.region !== region) throw Error('Build resource schema/identity mismatch');
     }
   }
+
+  const active = await readJson(path.join(generated, 'manifest.json'));
+  const previousBuildId = expectedPrevious ?? summary.previousBuildId;
+  if (active.activeBuildId === summary.buildId) {
+    const publishedManifestText = await readFile(path.join(generated, 'builds', summary.buildId, 'build-manifest.json'), 'utf8');
+    if (checksum(publishedManifestText) !== summary.buildManifestSha256) throw Error('Active build ID matches candidate but published build proof differs');
+    console.log(`publication: build ${summary.buildId} is already active; treating promotion as idempotent success`);
+    return { activeBuildId: summary.buildId, previousBuildId, alreadyPublished: true };
+  }
+  if (active.activeBuildId !== previousBuildId) throw Error('Active build changed while candidate was prepared');
+
   const destination = path.join(generated, 'builds', summary.buildId);
   try { await access(destination); throw Error('Immutable build already exists'); } catch (error) { if (error.code !== 'ENOENT') throw error; }
   await cp(root, destination, { recursive: true, errorOnExist: true, force: false });
@@ -46,7 +56,7 @@ export async function promoteBuild({ stage, reports, generated = 'pricing/genera
   const temp = path.join(generated, `manifest-${summary.buildId}.tmp`);
   await writeFile(temp, encode({ schemaVersion: 1, activeBuildId: manifest.buildId, publicationDate: manifest.publicationDate }));
   await rename(temp, path.join(generated, 'manifest.json'));
-  return { activeBuildId: manifest.buildId, previousBuildId: active.activeBuildId };
+  return { activeBuildId: manifest.buildId, previousBuildId: active.activeBuildId, alreadyPublished: false };
 }
 if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
   const work = process.argv[2] ?? '.work/update';
