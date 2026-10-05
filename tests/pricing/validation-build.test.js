@@ -9,6 +9,7 @@ import { normalize } from '../../tools/pricing-cli/normalize.js';
 import { validatePriceData } from '../../tools/pricing-cli/semantics.js';
 import { runGolden } from '../../tools/pricing-cli/golden.js';
 import { classifyChange } from '../../tools/pricing-cli/drift.js';
+import { driftTasks } from '../../tools/pricing-cli/drift-parallel.js';
 import { buildPriceDb, checksum } from '../../tools/pricing-cli/build.js';
 
 const key = 'Example/ap-northeast-1';
@@ -65,6 +66,19 @@ test('price-only, new SKU, unit/ambiguity/deletion and validation failure classi
   assert.equal(classifyChange([pkg], previous, next).publishable, false);
   next[key].products = [];
   assert.equal(classifyChange([pkg], previous, next).publishable, false);
+});
+test('drift tasks include component-level price sources and only require source descriptors', () => {
+  const { pkg } = fixture();
+  pkg.service.priceSource.componentOverrides = { meter: 'Auxiliary' };
+  const previous = {
+    'Example/ap-northeast-1': { serviceCode: 'Example', region: 'ap-northeast-1' },
+    'Auxiliary/ap-northeast-1': { serviceCode: 'Auxiliary', region: 'ap-northeast-1' }
+  };
+  const candidate = structuredClone(previous);
+  const { tasks, missingService } = driftTasks([pkg], previous, candidate, {});
+  assert.equal(missingService, false);
+  assert.deepEqual(tasks.map(task => task.serviceCode).sort(), ['Auxiliary', 'Example']);
+  assert.ok(tasks.every(task => !Object.hasOwn(task, 'products')));
 });
 test('immutable build has content checksums, does not promote manifest, rejects invalid candidate', async () => {
   const { candidate } = fixture();

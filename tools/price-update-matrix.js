@@ -21,16 +21,49 @@ async function writeOutput(values) {
 
 async function record(work, command, options) {
   const started = performance.now();
+  console.log(`${command}: start`);
   const rawResult = await defaultExecute(command, options);
   const result = { ...rawResult, elapsedMs: Math.round(performance.now() - started) };
   await writeJson(path.join(work, 'reports', `${command}.json`), result);
+  console.log(`${command}: done elapsed_ms=${result.elapsedMs}`);
   return result;
+}
+
+function flattenSourceDescriptors(sources = {}) {
+  const flattened = {};
+  for (const [key, value] of Object.entries(sources)) {
+    if (value?.serviceCode && value?.region) flattened[key.includes('/') ? key : `${value.serviceCode}/${value.region}`] = value;
+    else if (value && typeof value === 'object') {
+      for (const source of Object.values(value)) {
+        if (source?.serviceCode && source?.region) flattened[`${source.serviceCode}/${source.region}`] = source;
+      }
+    }
+  }
+  return flattened;
+}
+
+async function loadSourceDescriptors(directory) {
+  try {
+    const metadata = await readJson(path.join(directory, 'source-metadata.json'));
+    return { schemaVersion: metadata.schemaVersion ?? 1, sources: flattenSourceDescriptors(metadata.sources) };
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    const build = await readJson(path.join(directory, 'build-manifest.json'));
+    return { schemaVersion: 1, sources: flattenSourceDescriptors(build.sources) };
+  }
+}
+
+function priceSourceCodes(packages) {
+  return [...new Set(packages.flatMap(pkg => [
+    pkg.service.priceSource.serviceCode,
+    ...Object.values(pkg.service.priceSource.componentOverrides ?? {})
+  ]))].sort();
 }
 
 async function prepare(work) {
   await mkdir(work, { recursive: true });
   const previousDirectory = await candidateDirectory();
-  const previous = await loadCandidate(previousDirectory);
+  const previousMetadata = await loadSourceDescriptors(previousDirectory);
   const active = await readJson('pricing/generated/manifest.json');
   const activeBuild = await readJson(path.join(previousDirectory, 'build-manifest.json'));
   const packages = await loadPackages();
@@ -38,9 +71,9 @@ async function prepare(work) {
   const definitionsChanged = fingerprint !== activeBuild.definitionSha256;
 
   const previousFile = path.join(work, 'previous-sources.json');
-  await writeJson(previousFile, previous.metadata);
+  await writeJson(previousFile, previousMetadata);
   const config = await readJson('pricing/sources.json');
-  config.serviceCodes = [...new Set(packages.map(pkg => pkg.service.priceSource.serviceCode))].sort();
+  config.serviceCodes = priceSourceCodes(packages);
   const configFile = path.join(work, 'sources.json');
   await writeJson(configFile, config);
   const metadataFile = path.join(work, 'source-metadata.json');
@@ -92,7 +125,6 @@ async function finalize(work) {
   const rawDirectory = path.join(work, 'golden-raw');
   const stage = path.join(work, 'staged');
   const packages = await loadPackages();
-  const candidate = await loadCandidate(candidateDirectoryPath);
   const golden = await record(work, 'run-golden', { input: candidateDirectoryPath, raw: rawDirectory });
   const validationIssues = [...definition.issues, ...semantic.issues, ...golden.issues].filter(issue => issue.severity === 'error');
   const publishSkus = restorePublishSkus(semantic.publishSkus);
@@ -111,14 +143,16 @@ async function finalize(work) {
     };
   } else {
     const previousDirectory = await candidateDirectory();
-    const previous = await loadCandidate(previousDirectory);
+    const previousMetadata = await loadSourceDescriptors(previousDirectory);
+    const candidateMetadata = await loadSourceDescriptors(candidateDirectoryPath);
     const started = performance.now();
+    console.log(`classify-change: start sources_previous=${Object.keys(previousMetadata.sources).length} sources_candidate=${Object.keys(candidateMetadata.sources).length}`);
     const classified = await classifyChangeParallel(
       packages,
       previousDirectory,
       candidateDirectoryPath,
-      previous.data,
-      candidate.data,
+      previousMetadata.sources,
+      candidateMetadata.sources,
       publishSkus,
       []
     );
@@ -132,6 +166,7 @@ async function finalize(work) {
       }),
       elapsedMs: Math.round(performance.now() - started)
     };
+    console.log(`classify-change: done elapsed_ms=${change.elapsedMs}`);
   }
   await writeJson(path.join(work, 'reports', 'classify-change.json'), change);
 
@@ -150,6 +185,8 @@ async function finalize(work) {
     const metadata = await readJson(path.join(work, 'source-metadata.json'));
     const buildId = `${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z')}-${checksum(encode(metadata)).slice(0, 8)}`;
     const started = performance.now();
+    console.log('build: loading candidate after drift workers have terminated');
+    const candidate = await loadCandidate(candidateDirectoryPath);
     const buildManifest = await buildPriceDb(candidate, path.join(stage, 'pricing'), buildId, {
       issues: [...definition.issues, ...semantic.issues, ...golden.issues],
       publishSkus,
@@ -157,6 +194,7 @@ async function finalize(work) {
     });
     const built = { ...report('build', [], { build: buildManifest }), elapsedMs: Math.round(performance.now() - started) };
     await writeJson(path.join(work, 'reports', 'build.json'), built);
+    console.log(`build: done elapsed_ms=${built.elapsedMs}`);
     summary.buildId = buildId;
     summary.buildManifestSha256 = checksum(await readFile(path.join(stage, 'pricing', 'builds', buildId, 'build-manifest.json'), 'utf8'));
     await refreshGoldenEvidence(packages, rawDirectory, path.join(stage, 'fixtures'), candidateDirectoryPath);

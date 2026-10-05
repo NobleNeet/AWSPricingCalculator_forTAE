@@ -101,6 +101,11 @@ jobs:
     needs: [prepare, semantic]
     if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic.result == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PRICE_VALIDATE_CONCURRENCY: '2'
+      PRICE_DRIFT_TASK_TIMEOUT_MS: '600000'
+      PRICE_DRIFT_HEARTBEAT_MS: '30000'
     outputs:
       publishable: ${{ steps.finalize.outputs.publishable }}
       build_id: ${{ steps.finalize.outputs.build_id }}
