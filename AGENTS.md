@@ -12,9 +12,10 @@ Before changing behavior or pricing semantics, read these documents in this orde
 2. `docs/PRICING_ARCHITECTURE.md` — Service Definition, Price DB, Pricing Core, validation, CLI and CI/CD architecture.
 3. `docs/PRICING_MAPPING_ARCHITECTURE.md` — service-specific AWS Price List mapping, semantic-resolution responsibility, drift handling and finalize behavior. For pricing-item meaning resolution or semantic/finalize behavior, this document takes precedence over older generic-resolution assumptions in `docs/PRICING_ARCHITECTURE.md`.
 4. `docs/SERVICE_ONBOARDING.md` — rules for adding a new AWS service or expanding an existing service from the AWS Pricing Calculator UI under the On-Demand-only policy.
-5. `docs/AUTONOMOUS_IMPLEMENTATION.md` — how Codex must execute implementation work without unnecessary human intervention.
-6. `docs/IMPLEMENTATION_PLAN.md` — phased implementation plan and completion criteria.
-7. `docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md` — design-history index only; it is not the current specification.
+5. `docs/ONBOARDING_PROMOTION_QUEUE.md` — branch/PR queue rules for running multiple service onboarding or re-onboarding jobs in parallel while serializing main integration, Price DB publication, and Pages deployment.
+6. `docs/AUTONOMOUS_IMPLEMENTATION.md` — how Codex must execute implementation work without unnecessary human intervention.
+7. `docs/IMPLEMENTATION_PLAN.md` — phased implementation plan and completion criteria.
+8. `docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md` — design-history index only; it is not the current specification.
 
 If code and documentation disagree, do not silently invent a new behavior. Follow the current source-of-truth documents unless the `/goal` explicitly requests a specification change.
 
@@ -27,8 +28,8 @@ Implementation work is expected to be assigned through `/goal`.
 The normal workflow is **one overall `/goal` for the complete implementation**, not one human-issued goal per phase.
 
 - Read `docs/AUTONOMOUS_IMPLEMENTATION.md` before starting implementation.
-- When adding a new AWS service or expanding service estimate fields, also read and follow both `docs/PRICING_MAPPING_ARCHITECTURE.md` and `docs/SERVICE_ONBOARDING.md` before deciding which fields or pricing mappings to implement.
-- A request such as `AWS Fargateを追加して` is a complete service-onboarding request unless the user explicitly limits the scope. It includes research, implementation, tests, Price DB work when required, commit/push, Actions verification, and Pages deployment verification.
+- When adding a new AWS service or expanding service estimate fields, also read and follow `docs/PRICING_MAPPING_ARCHITECTURE.md`, `docs/SERVICE_ONBOARDING.md`, and `docs/ONBOARDING_PROMOTION_QUEUE.md` before deciding which fields or pricing mappings to implement.
+- A request such as `AWS Fargateを追加して` is a complete service-onboarding request unless the user explicitly limits the scope. It includes research, implementation, tests, Price DB work when required, queued promotion, Actions verification, and Pages deployment verification.
 - Decompose the overall goal into the phases defined in `docs/IMPLEMENTATION_PLAN.md` where those phases are relevant to the requested change.
 - Continue through all work required by the goal without waiting for human confirmation between normal implementation steps.
 - Treat each relevant completion criterion as an internal gate. Do not advance while known required checks fail.
@@ -58,7 +59,7 @@ For ordinary implementation choices, choose a reasonable solution and continue.
 
 ## Service onboarding
 
-For a new service or an expansion of an existing service:
+For a new service or an expansion/re-onboarding of an existing service:
 
 - Use the AWS Pricing Calculator service screen as the primary reference for estimate inputs, defaults, dependencies, conditional fields, and primary/advanced grouping.
 - Keep purchase-plan choices On-Demand-only; do not add Reserved, Savings Plans, Spot, commitment-term, or upfront-payment choices unless the source-of-truth specification is explicitly changed.
@@ -67,6 +68,13 @@ For a new service or an expansion of an existing service:
 - Inspect actual Public Price List products and price dimensions during onboarding and create deterministic service-specific Pricing Mappings for each supported pricing component.
 - Do not defer unresolved pricing meaning to a future generic semantic resolver or scheduled workflow.
 - Follow the end-to-end workflow and completion gate in `docs/SERVICE_ONBOARDING.md`, including deployment verification.
+- Do not implement service onboarding directly on `main`. New services use `onboard/<serviceId>`; re-onboarding uses `reonboard/<serviceId>`.
+- Different service IDs may be worked on concurrently in separate branches/chats. Do not run multiple onboarding jobs for the same service ID concurrently.
+- When branch implementation and branch CI are complete, open/retain a PR and apply `onboarding-ready`; do not directly merge it into `main`.
+- `.github/workflows/onboarding-promotion.yml` owns serialized promotion. It integrates one ready PR into latest `main`, revalidates the merged candidate, waits for the matching Price DB publication and Pages deployment, then advances the next queued PR.
+- Treat `onboarding-ready` PRs as the durable queue. Do not rely on GitHub Actions concurrency pending runs as the queue state.
+- `services/catalog.json` is reconciled during promotion from `services/*/service.json` using `tools/generate-service-catalog.js`; do not add ad-hoc conflict logic for concurrent catalog edits.
+- A branch being READY/queued is not final completion. Report onboarding complete only after serialized promotion, Price DB publication, and Pages deployment succeed.
 
 ## Mock isolation
 
@@ -90,7 +98,7 @@ For every implementation phase or onboarding step:
 - Continue automatically after each normal implementation gate rather than waiting for a response.
 - When the goal changes the deployed application, verify the relevant GitHub Actions and GitHub Pages deployment before reporting completion.
 
-At the final phase, run the applicable completion checklist in `docs/IMPLEMENTATION_PLAN.md` and, for service onboarding, `docs/SERVICE_ONBOARDING.md`. If any required item fails, return to the responsible implementation, fix it, and repeat final verification.
+At the final phase, run the applicable completion checklist in `docs/IMPLEMENTATION_PLAN.md` and, for service onboarding, `docs/SERVICE_ONBOARDING.md` plus `docs/ONBOARDING_PROMOTION_QUEUE.md`. If any required item fails, return to the responsible implementation, fix it, and repeat final verification.
 
 ## Generated data
 
