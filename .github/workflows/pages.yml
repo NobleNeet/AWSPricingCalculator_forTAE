@@ -47,8 +47,6 @@ jobs:
         if: steps.readiness.outputs.ready != 'true'
         run: echo 'Pages deployment deferred; Scheduled Price Update will deploy after publishing a matching validated Price DB.'
 
-      - run: npm run validate
-        if: steps.readiness.outputs.ready == 'true'
       - run: npm run build:site
         if: steps.readiness.outputs.ready == 'true'
 
