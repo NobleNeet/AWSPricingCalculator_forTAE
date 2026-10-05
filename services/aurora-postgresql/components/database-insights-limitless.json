@@ -29,7 +29,8 @@
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {"field": "operation", "op": "eq", "value": "Aurora-PostgreSQL:Limitless"}
+      {"field": "operation", "op": "eq", "value": "Aurora-PostgreSQL:Limitless"},
+      {"field": "attributes.group", "op": "eq", "value": "CW-DatabaseInsights"}
     ],
     "dimensionFilters": [
       {"field": "unit", "op": "eq", "value": "ACU-Hours"}
