@@ -4,7 +4,7 @@ import { classifyChange } from './drift.js';
 import { loadProductsForSkus } from './product-chunks.js';
 import { priceSourceForComponent } from '../../src/pricing/mapping.js';
 
-function sourceScopedPackage(pkg, serviceCode) {
+export function sourceScopedPackage(pkg, serviceCode) {
   const profiles = Object.fromEntries(Object.entries(pkg.profiles).map(([profileId, profile]) => [
     profileId,
     {
