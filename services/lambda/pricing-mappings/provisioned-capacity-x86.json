@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-capacity-x86",
+  "componentId": "provisioned-capacity-x86",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Provisioned-Concurrency" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "Lambda-GB-Second" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "x86 Provisioned Concurrency capacity meter."
+}
