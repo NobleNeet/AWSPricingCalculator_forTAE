@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "componentId": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "priceSource": {
+      "type": "object",
+      "properties": {
+        "serviceCode": {"type": "string", "minLength": 1}
+      },
+      "required": ["serviceCode"],
+      "additionalProperties": false
+    },
+    "productMatchers": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/productMatcher"}
+    },
+    "dimensionMatchers": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/dimensionMatcher"}
+    },
+    "expect": {
+      "type": "object",
+      "properties": {
+        "products": {"type": "integer", "minimum": 1},
+        "billableDimensions": {"type": "integer", "minimum": 1}
+      },
+      "required": ["products", "billableDimensions"],
+      "additionalProperties": false
+    },
+    "notes": {"type": "string", "minLength": 1}
+  },
+  "required": ["schemaVersion", "id", "componentId", "priceSource", "productMatchers", "dimensionMatchers", "expect"],
+  "additionalProperties": false,
+  "$defs": {
+    "matcherValue": {
+      "properties": {
+        "op": {"enum": ["eq", "neq", "in", "notIn", "exists", "notExists"]},
+        "value": {},
+        "valueFrom": {"type": "string", "pattern": "^(project|profile|component)\\.[a-zA-Z][a-zA-Z0-9-]*$"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"op": {"enum": ["eq", "neq"]}}},
+          "then": {
+            "oneOf": [
+              {"required": ["value"], "not": {"required": ["valueFrom"]}},
+              {"required": ["valueFrom"], "not": {"required": ["value"]}}
+            ]
+          }
+        },
+        {
+          "if": {"properties": {"op": {"enum": ["in", "notIn"]}}},
+          "then": {
+            "required": ["value"],
+            "properties": {"value": {"type": "array", "minItems": 1}},
+            "not": {"required": ["valueFrom"]}
+          }
+        },
+        {
+          "if": {"properties": {"op": {"enum": ["exists", "notExists"]}}},
+          "then": {
+            "not": {
+              "anyOf": [
+                {"required": ["value"]},
+                {"required": ["valueFrom"]}
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "productMatcher": {
+      "type": "object",
+      "properties": {
+        "field": {"type": "string", "pattern": "^(productFamily|operation|usageType|attributes\\.[a-zA-Z][a-zA-Z0-9]*)$"},
+        "op": {"enum": ["eq", "neq", "in", "notIn", "exists", "notExists"]},
+        "value": {},
+        "valueFrom": {"type": "string", "pattern": "^(project|profile|component)\\.[a-zA-Z][a-zA-Z0-9-]*$"}
+      },
+      "required": ["field", "op"],
+      "additionalProperties": false,
+      "allOf": [{"$ref": "#/$defs/matcherValue"}]
+    },
+    "dimensionMatcher": {
+      "type": "object",
+      "properties": {
+        "field": {"enum": ["unit", "description", "beginRange", "endRange"]},
+        "op": {"enum": ["eq", "neq", "in", "notIn", "exists", "notExists"]},
+        "value": {},
+        "valueFrom": {"type": "string", "pattern": "^(project|profile|component)\\.[a-zA-Z][a-zA-Z0-9-]*$"}
+      },
+      "required": ["field", "op"],
+      "additionalProperties": false,
+      "allOf": [{"$ref": "#/$defs/matcherValue"}]
+    }
+  }
+}
