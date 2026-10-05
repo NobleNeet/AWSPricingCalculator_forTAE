@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs-gp3-iops",
+  "label": "EBS gp3 provisioned IOPS",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "provisionedIops",
+      "label": "Provisioned IOPS",
+      "type": "number",
+      "default": "3000",
+      "minimum": "3000",
+      "maximum": "80000",
+      "ui": {
+        "help": "gp3は3,000 IOPSまでストレージ料金に含まれます。3,000 IOPSを超える分だけを追加課金します。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-EBS:VolumeP-IOPS.gp3",
+          "APN3-EBS:VolumeP-IOPS.gp3",
+          "EBS:VolumeP-IOPS.gp3",
+          "USE2-EBS:VolumeP-IOPS.gp3",
+          "USW1-EBS:VolumeP-IOPS.gp3",
+          "USW2-EBS:VolumeP-IOPS.gp3"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "IOPS-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.provisionedIops",
+            "transforms": [
+              {
+                "type": "subtract",
+                "value": "3000"
+              },
+              {
+                "type": "minimum",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "IOPS-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.ebsVolumeType",
+    "op": "eq",
+    "value": "gp3"
+  }
+}
