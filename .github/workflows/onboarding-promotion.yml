@@ -1,0 +1,253 @@
+name: Service Onboarding Promotion Queue
+
+on:
+  pull_request:
+    types: [opened, reopened, labeled, unlabeled]
+  workflow_run:
+    workflows: ["Scheduled Price Update"]
+    types: [completed]
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+  checks: read
+
+concurrency:
+  group: service-onboarding-promotion-dispatch
+  cancel-in-progress: false
+
+jobs:
+  promote-next:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GH_TOKEN: ${{ github.token }}
+      READY_LABEL: onboarding-ready
+      PROMOTING_LABEL: onboarding-promoting
+      BLOCKED_LABEL: onboarding-blocked
+    steps:
+      - name: Ensure queue labels exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          ensure_label() {
+            local name="$1" color="$2" description="$3"
+            gh api -X GET "repos/${GITHUB_REPOSITORY}/labels/${name}" >/dev/null 2>&1 && return 0
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/labels" \
+              -f name="$name" -f color="$color" -f description="$description" >/dev/null
+          }
+          ensure_label "$READY_LABEL" '0e8a16' 'Service onboarding is ready for serialized promotion to main'
+          ensure_label "$PROMOTING_LABEL" 'fbca04' 'Service onboarding is currently being promoted'
+          ensure_label "$BLOCKED_LABEL" 'd73a4a' 'Service onboarding promotion needs intervention'
+
+      - name: Stop if the latest price publication is not healthy
+        id: pricing_guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          latest="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" \
+            -f branch=main -f per_page=1)"
+          count="$(jq -r '.total_count' <<<"$latest")"
+          if [[ "$count" == "0" ]]; then
+            echo 'healthy=true' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          status="$(jq -r '.workflow_runs[0].status' <<<"$latest")"
+          conclusion="$(jq -r '.workflow_runs[0].conclusion // ""' <<<"$latest")"
+          url="$(jq -r '.workflow_runs[0].html_url' <<<"$latest")"
+          echo "Latest price update: status=$status conclusion=$conclusion $url"
+
+          if [[ "$status" != "completed" ]]; then
+            echo 'healthy=false' >> "$GITHUB_OUTPUT"
+            echo 'Price update is queued/in progress; promotion remains queued.'
+            exit 0
+          fi
+          if [[ "$conclusion" != "success" ]]; then
+            echo 'healthy=false' >> "$GITHUB_OUTPUT"
+            echo 'Latest price update failed or was cancelled; fail closed until it succeeds.'
+            exit 0
+          fi
+          echo 'healthy=true' >> "$GITHUB_OUTPUT"
+
+      - name: Select oldest ready onboarding PR
+        if: steps.pricing_guard.outputs.healthy == 'true'
+        id: select
+        shell: bash
+        run: |
+          set -euo pipefail
+          prs="$(gh pr list --repo "$GITHUB_REPOSITORY" --state open --label "$READY_LABEL" \
+            --limit 100 --json number,createdAt,isDraft,headRefName,headRefOid,title,url)"
+          selected="$(jq -c '[.[] | select(.isDraft == false) | select(.headRefName | startswith("onboard/") or startswith("reonboard/"))] | sort_by(.createdAt) | .[0] // empty' <<<"$prs")"
+          if [[ -z "$selected" ]]; then
+            echo 'found=false' >> "$GITHUB_OUTPUT"
+            echo 'No ready onboarding PRs.'
+            exit 0
+          fi
+
+          number="$(jq -r '.number' <<<"$selected")"
+          head_ref="$(jq -r '.headRefName' <<<"$selected")"
+          head_sha="$(jq -r '.headRefOid' <<<"$selected")"
+          title="$(jq -r '.title' <<<"$selected")"
+          url="$(jq -r '.url' <<<"$selected")"
+          echo "Selected PR #$number ($head_ref): $title"
+          echo "found=true" >> "$GITHUB_OUTPUT"
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+          echo "head_ref=$head_ref" >> "$GITHUB_OUTPUT"
+          echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
+          echo "title=$title" >> "$GITHUB_OUTPUT"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        if: steps.select.outputs.found == 'true'
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Mark promotion in progress
+        if: steps.select.outputs.found == 'true'
+        shell: bash
+        run: |
+          gh pr edit "${{ steps.select.outputs.number }}" --repo "$GITHUB_REPOSITORY" --add-label "$PROMOTING_LABEL"
+
+      - name: Merge candidate into latest main worktree
+        if: steps.select.outputs.found == 'true'
+        id: merge_candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr="${{ steps.select.outputs.number }}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin "pull/${pr}/head:promotion-candidate"
+
+          set +e
+          git merge --no-ff --no-commit promotion-candidate
+          rc=$?
+          set -e
+          if [[ $rc -ne 0 ]]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            if [[ -n "$conflicts" && "$(printf '%s\n' "$conflicts" | grep -vx 'services/catalog.json' || true)" == "" ]]; then
+              echo 'Only services/catalog.json conflicted; resolving from service.json sources.'
+              git checkout --ours services/catalog.json
+              git add services/catalog.json
+            else
+              printf 'Unresolved promotion conflicts:\n%s\n' "$conflicts"
+              git merge --abort || true
+              echo 'mergeable=false' >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+
+          node tools/generate-service-catalog.js
+          git add services/catalog.json
+          echo 'mergeable=true' >> "$GITHUB_OUTPUT"
+
+      - name: Block PR on merge conflict
+        if: steps.select.outputs.found == 'true' && steps.merge_candidate.outputs.mergeable == 'false'
+        shell: bash
+        run: |
+          pr="${{ steps.select.outputs.number }}"
+          gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --remove-label "$READY_LABEL" --remove-label "$PROMOTING_LABEL" --add-label "$BLOCKED_LABEL"
+          gh pr comment "$pr" --repo "$GITHUB_REPOSITORY" --body 'Promotion was blocked because the branch no longer merges cleanly with current main. Rebase/update the onboarding branch, re-run validation, then re-apply `onboarding-ready`.'
+
+      - name: Install dependencies
+        if: steps.merge_candidate.outputs.mergeable == 'true'
+        run: npm ci
+
+      - name: Validate merged candidate
+        if: steps.merge_candidate.outputs.mergeable == 'true'
+        id: validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm test
+          node tools/ci-validate.js
+          npx playwright install --with-deps chromium
+          npm run test:e2e
+          npm run build:site
+
+      - name: Commit and push promoted service
+        if: steps.merge_candidate.outputs.mergeable == 'true' && steps.validate.outcome == 'success'
+        id: push
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr="${{ steps.select.outputs.number }}"
+          base_before="$(git rev-parse HEAD)"
+          git commit -m "Promote service onboarding PR #${pr}"
+          promoted_sha="$(git rev-parse HEAD)"
+
+          git fetch origin main
+          if [[ "$(git rev-parse origin/main)" != "$base_before" ]]; then
+            echo 'main advanced during validation; leave PR queued for a later retry.'
+            git reset --hard "$base_before"
+            gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --remove-label "$PROMOTING_LABEL" || true
+            echo 'pushed=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git push origin HEAD:main
+          echo "promoted_sha=$promoted_sha" >> "$GITHUB_OUTPUT"
+          echo 'pushed=true' >> "$GITHUB_OUTPUT"
+
+      - name: Wait for matching price update and deployment
+        if: steps.push.outputs.pushed == 'true'
+        id: wait_price
+        shell: bash
+        run: |
+          set -euo pipefail
+          target_sha="${{ steps.push.outputs.promoted_sha }}"
+          run_id=''
+
+          for _ in $(seq 1 60); do
+            runs="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" \
+              -f branch=main -f per_page=50)"
+            run_id="$(jq -r --arg sha "$target_sha" '.workflow_runs[] | select(.head_sha == $sha) | .id' <<<"$runs" | head -n1)"
+            if [[ -n "$run_id" ]]; then
+              break
+            fi
+            sleep 5
+          done
+
+          if [[ -z "$run_id" ]]; then
+            echo 'No price-update run appeared for the promoted main commit.'
+            exit 1
+          fi
+
+          echo "Following price-update run $run_id"
+          while true; do
+            run="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}")"
+            status="$(jq -r '.status' <<<"$run")"
+            conclusion="$(jq -r '.conclusion // ""' <<<"$run")"
+            url="$(jq -r '.html_url' <<<"$run")"
+            echo "price-update: status=$status conclusion=$conclusion $url"
+            if [[ "$status" == 'completed' ]]; then
+              echo "conclusion=$conclusion" >> "$GITHUB_OUTPUT"
+              echo "url=$url" >> "$GITHUB_OUTPUT"
+              [[ "$conclusion" == 'success' ]]
+              exit $?
+            fi
+            sleep 20
+          done
+
+      - name: Mark successful promotion
+        if: steps.push.outputs.pushed == 'true' && steps.wait_price.outcome == 'success'
+        shell: bash
+        run: |
+          pr="${{ steps.select.outputs.number }}"
+          gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --remove-label "$PROMOTING_LABEL" --remove-label "$BLOCKED_LABEL" || true
+          gh pr comment "$pr" --repo "$GITHUB_REPOSITORY" --body "Promotion completed. The service was integrated into main and the matching Price DB publication + Pages deployment succeeded. ${{ steps.wait_price.outputs.url }}"
+
+      - name: Mark failed publication
+        if: always() && steps.push.outputs.pushed == 'true' && steps.wait_price.outcome == 'failure'
+        shell: bash
+        run: |
+          pr="${{ steps.select.outputs.number }}"
+          gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --remove-label "$PROMOTING_LABEL" --add-label "$BLOCKED_LABEL" || true
+          gh pr comment "$pr" --repo "$GITHUB_REPOSITORY" --body 'The service reached main, but the matching Price DB publication / Pages deployment failed. The promotion queue is fail-closed until `Scheduled Price Update` succeeds again.'
