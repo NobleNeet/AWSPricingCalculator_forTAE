@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs-io2-iops",
+  "label": "EBS io2 provisioned IOPS",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "provisionedIops",
+      "label": "Provisioned IOPS",
+      "type": "number",
+      "default": "100",
+      "minimum": "100",
+      "maximum": "256000",
+      "ui": {
+        "help": "io2はプロビジョニングしたIOPS数が追加課金されます。本ツールのTier方針に従い、32,000 IOPSを超える場合も最初の有料単価を全量へ適用する保守的概算です。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-EBS:VolumeP-IOPS.io2",
+          "APN3-EBS:VolumeP-IOPS.io2",
+          "EBS:VolumeP-IOPS.io2",
+          "USE2-EBS:VolumeP-IOPS.io2",
+          "USW1-EBS:VolumeP-IOPS.io2",
+          "USW2-EBS:VolumeP-IOPS.io2"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "IOPS-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.provisionedIops"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "IOPS-Mo"
+  },
+  "limitations": [
+    "tier-pricing",
+    "free-tier",
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.ebsVolumeType",
+    "op": "eq",
+    "value": "io2"
+  }
+}

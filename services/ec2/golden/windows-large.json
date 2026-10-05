@@ -9,7 +9,8 @@
   "selectors": {
     "tenancy": "Shared",
     "os": "Windows",
-    "software": "NA"
+    "software": "NA",
+    "ebsVolumeType": "none"
   },
   "components": {
     "instance": {
@@ -21,9 +22,8 @@
       }
     },
     "ebs": {
-      "enabled": false,
+      "enabled": true,
       "inputs": {
-        "volumeType": "gp3",
         "storageGb": "30"
       }
     },

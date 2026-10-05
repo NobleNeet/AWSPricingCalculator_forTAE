@@ -15,6 +15,24 @@ export function migrateDefinitionInputs(pkg, instance) {
     delete instance.selectors.additionalStorageMb;
     changed = true;
   }
+
+  const hasEbsVolumeType = profile.selectors.some(input => input.id === 'ebsVolumeType');
+  if (pkg.service?.id === 'ec2' && hasEbsVolumeType) {
+    const legacyEbs = instance.components?.ebs;
+    if (!Object.prototype.hasOwnProperty.call(instance.selectors, 'ebsVolumeType') && legacyEbs) {
+      if (legacyEbs.enabled === false) instance.selectors.ebsVolumeType = 'none';
+      else if (Object.prototype.hasOwnProperty.call(legacyEbs.inputs ?? {}, 'volumeType')) instance.selectors.ebsVolumeType = clone(legacyEbs.inputs.volumeType);
+      changed = true;
+    }
+    if (legacyEbs && Object.prototype.hasOwnProperty.call(legacyEbs.inputs ?? {}, 'volumeType')) {
+      delete legacyEbs.inputs.volumeType;
+      changed = true;
+    }
+    if (legacyEbs?.enabled === false) {
+      legacyEbs.enabled = true;
+      changed = true;
+    }
+  }
   return changed;
 }
 

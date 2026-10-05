@@ -33,14 +33,25 @@ test('all initial real service schemas and independently verified AWS Golden sam
   assert.equal(result.cases.length, packages.reduce((count, pkg) => count + pkg.golden.length, 0));
 });
 
-test('EC2 embedded EBS exposes storage-priced volume types without provisioned-performance meters', async () => {
+test('EC2 embedded EBS models storage and provisioned performance as independent meters', async () => {
   const packages = await loadPackages();
   const ec2 = packages.find(pkg => pkg.service.id === 'ec2');
-  const ebs = ec2.components.ebs;
-  const volumeType = ebs.selectors.find(selector => selector.id === 'volumeType');
+  const profile = ec2.profiles.standard;
+  const ebsType = profile.selectors.find(selector => selector.id === 'ebsVolumeType');
+  const storage = ec2.components.ebs;
+  const gp3Iops = ec2.components['ebs-gp3-iops'];
+  const gp3Throughput = ec2.components['ebs-gp3-throughput'];
+  const io1Iops = ec2.components['ebs-io1-iops'];
+  const io2Iops = ec2.components['ebs-io2-iops'];
 
-  assert.deepEqual(volumeType.options.values, ['gp3', 'gp2', 'st1', 'sc1']);
-  assert.equal(volumeType.default, 'gp3');
-  assert.equal(ebs.priceQuery.productFilters.find(filter => filter.field === 'attributes.volumeApiName').valueFrom, 'component.volumeType');
-  assert.equal(ebs.calculation.outputUnit, 'GB-Mo');
+  assert.deepEqual(ebsType.options.values, ['none', 'gp3', 'gp2', 'st1', 'sc1', 'io1', 'io2']);
+  assert.equal(ebsType.default, 'gp3');
+  assert.equal(storage.priceQuery.productFilters.find(filter => filter.field === 'attributes.volumeApiName').valueFrom, 'profile.ebsVolumeType');
+  assert.deepEqual(gp3Iops.enabledWhen, { field: 'profile.ebsVolumeType', op: 'eq', value: 'gp3' });
+  assert.deepEqual(gp3Throughput.enabledWhen, { field: 'profile.ebsVolumeType', op: 'eq', value: 'gp3' });
+  assert.deepEqual(io1Iops.enabledWhen, { field: 'profile.ebsVolumeType', op: 'eq', value: 'io1' });
+  assert.deepEqual(io2Iops.enabledWhen, { field: 'profile.ebsVolumeType', op: 'eq', value: 'io2' });
+  assert.equal(gp3Iops.usageInputs[0].default, '3000');
+  assert.equal(gp3Throughput.usageInputs[0].default, '125');
+  assert.ok(io2Iops.limitations.includes('tier-pricing'));
 });

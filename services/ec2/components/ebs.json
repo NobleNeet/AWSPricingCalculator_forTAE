@@ -1,28 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "ebs",
-  "label": "Amazon Elastic Block Store (EBS)",
-  "optional": true,
-  "defaultEnabled": true,
-  "selectors": [
-    {
-      "id": "volumeType",
-      "label": "Storage volume",
-      "type": "select",
-      "default": "gp3",
-      "options": {
-        "values": [
-          "gp3",
-          "gp2",
-          "st1",
-          "sc1"
-        ]
-      },
-      "ui": {
-        "help": "EC2組み込みEBSでは、ストレージ容量だけで月額を決定できるgp3（ベースライン性能）、gp2、st1、sc1を選択できます。gp3の追加IOPS/throughput、およびio1/io2のProvisioned IOPS料金は別メーター対応後に追加します。"
-      }
-    }
-  ],
+  "label": "Amazon Elastic Block Store (EBS) storage",
+  "selectors": [],
   "usageInputs": [
     {
       "id": "storageGb",
@@ -31,7 +11,7 @@
       "default": "30",
       "minimum": "0",
       "ui": {
-        "help": "AWS Pricing CalculatorのEC2見積りと同じく、既定値は30 GBです。0 GBでEBSを付けない見積りにできます。"
+        "help": "AWS Pricing CalculatorのEC2見積りと同じく、既定値は30 GBです。EBSを使用しない場合はEBS volume typeでnoneを選択します。"
       }
     }
   ],
@@ -47,7 +27,7 @@
       {
         "field": "attributes.volumeApiName",
         "op": "eq",
-        "valueFrom": "component.volumeType"
+        "valueFrom": "profile.ebsVolumeType"
       }
     ],
     "dimensionFilters": [
@@ -74,5 +54,10 @@
   "limitations": [
     "free-tier",
     "account-specific-discount"
-  ]
+  ],
+  "enabledWhen": {
+    "field": "profile.ebsVolumeType",
+    "op": "neq",
+    "value": "none"
+  }
 }
