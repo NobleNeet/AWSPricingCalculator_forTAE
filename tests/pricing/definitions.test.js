@@ -38,3 +38,21 @@ test('schema/reference/duplicate/default/orphan/cycle failures have stable codes
     assert.ok((await validateDefinitions([pkg])).some(i => i.code === code), code);
   }
 });
+
+test('pricing mapping valueFrom references must exist in every profile using the component', async () => {
+  const pkg = fixturePackage();
+  pkg.service.pricingMappings = ['meter'];
+  pkg.pricingMappings = {
+    meter: {
+      schemaVersion: 1,
+      id: 'meter',
+      componentId: 'meter',
+      priceSource: { serviceCode: 'Example' },
+      productMatchers: [{ field: 'attributes.mode', op: 'eq', valueFrom: 'component.missing' }],
+      dimensionMatchers: [{ field: 'unit', op: 'eq', value: 'Hrs' }],
+      expect: { products: 1, billableDimensions: 1 }
+    }
+  };
+  const issues = await validateDefinitions([pkg]);
+  assert.ok(issues.some(entry => entry.code === 'INVALID_REFERENCE' && entry.path === 'pricing-mappings/meter'));
+});
