@@ -12,20 +12,34 @@ function nonNegativeInt(value, fallback) {
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
 }
 
-function sourceTasks(packages, manifest) {
-  const serviceCodes = [...new Set(packages.map(pkg => pkg.service.priceSource.serviceCode))];
+export function sourceTasks(packages, manifest) {
+  const packagesByDefaultCode = new Map();
+  for (const pkg of packages) {
+    const code = pkg.service.priceSource.serviceCode;
+    const group = packagesByDefaultCode.get(code) ?? [];
+    group.push(pkg);
+    packagesByDefaultCode.set(code, group);
+  }
+
   const tasks = [];
-  for (const serviceCode of serviceCodes) {
+  for (const [serviceCode, servicePackages] of packagesByDefaultCode) {
     const sources = Object.entries(manifest.sources?.[serviceCode] ?? {});
     const coverageRegion = sources.some(([region]) => region === COVERAGE_REFERENCE_REGION)
       ? COVERAGE_REFERENCE_REGION
       : sources[0]?.[0];
-    for (const [region, source] of sources) {
+    const requiredCodes = [...new Set(servicePackages.flatMap(pkg => [
+      pkg.service.priceSource.serviceCode,
+      ...Object.values(pkg.service.priceSource.componentOverrides ?? {})
+    ]))];
+    for (const [region] of sources) {
+      const sourceDescriptors = Object.fromEntries(requiredCodes
+        .map(code => [code, manifest.sources?.[code]?.[region]])
+        .filter(([, source]) => source));
       tasks.push({
         taskId: tasks.length,
         serviceCode,
         region,
-        productsPath: source.productsPath,
+        sourceDescriptors,
         includeCoverage: region === coverageRegion
       });
     }
@@ -47,8 +61,10 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
   const tasks = allTasks
     .filter(task => task.taskId % shardCount === shardIndex)
     .map((task, taskId) => ({ ...task, globalTaskId: task.taskId, taskId }));
-  const defaultConcurrency = Math.max(1, Math.min(4, os.availableParallelism?.() ?? os.cpus().length ?? 1));
-  const concurrency = Math.min(tasks.length || 1, positiveInt(options.concurrency ?? process.env.PRICE_VALIDATE_CONCURRENCY, defaultConcurrency));
+  const cpuLimit = Math.max(1, Math.min(2, os.availableParallelism?.() ?? os.cpus().length ?? 1));
+  const concurrency = Math.min(tasks.length || 1, positiveInt(options.concurrency ?? process.env.PRICE_VALIDATE_CONCURRENCY, cpuLimit));
+  const taskTimeoutMs = positiveInt(options.taskTimeoutMs ?? process.env.PRICE_VALIDATE_TASK_TIMEOUT_MS, 600000);
+  const heartbeatMs = positiveInt(options.heartbeatMs ?? process.env.PRICE_VALIDATE_HEARTBEAT_MS, 30000);
   if (!tasks.length) return { issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [], shardIndex, shardCount };
 
   const results = new Array(tasks.length);
@@ -64,15 +80,34 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
       reject(error);
     };
 
+    const clearTaskTimers = worker => {
+      if (worker.taskTimeout) clearTimeout(worker.taskTimeout);
+      if (worker.heartbeat) clearInterval(worker.heartbeat);
+      worker.taskTimeout = null;
+      worker.heartbeat = null;
+    };
+
     const dispatch = worker => {
       if (settled) return;
+      clearTaskTimers(worker);
       const index = cursor++;
       if (index >= tasks.length) {
+        worker.currentTask = null;
         worker.postMessage({ type: 'stop' });
         return;
       }
-      worker.currentTask = tasks[index];
-      worker.postMessage({ type: 'task', task: tasks[index] });
+      const task = tasks[index];
+      worker.currentTask = task;
+      worker.taskStartedAt = Date.now();
+      console.log(`validate-price-data shard=${shardIndex}/${shardCount} task start: service=${task.serviceCode}, region=${task.region}, task=${index + 1}/${tasks.length}`);
+      worker.taskTimeout = setTimeout(() => {
+        fail(new Error(`Semantic validation task timed out after ${taskTimeoutMs} ms for ${task.serviceCode}/${task.region}`));
+      }, taskTimeoutMs);
+      worker.heartbeat = setInterval(() => {
+        const elapsedSeconds = Math.round((Date.now() - worker.taskStartedAt) / 1000);
+        console.log(`validate-price-data shard=${shardIndex}/${shardCount} heartbeat: service=${task.serviceCode}, region=${task.region}, elapsed_s=${elapsedSeconds}`);
+      }, heartbeatMs);
+      worker.postMessage({ type: 'task', task });
     };
 
     for (let index = 0; index < concurrency; index++) {
@@ -80,26 +115,35 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
       workers.push(worker);
       worker.on('message', message => {
         if (message.type === 'error') {
+          clearTaskTimers(worker);
           fail(new Error(message.error));
           return;
         }
         if (message.type !== 'result') return;
+        clearTaskTimers(worker);
         results[message.result.taskId] = message.result;
         completed += 1;
         const result = message.result;
-        console.log(`validate-price-data shard=${shardIndex}/${shardCount} task: service=${result.serviceCode}, region=${result.region}, branches=${result.branches}, products=${result.products}, elapsed_ms=${result.elapsedMs}`);
+        console.log(`validate-price-data shard=${shardIndex}/${shardCount} task done: service=${result.serviceCode}, region=${result.region}, branches=${result.branches}, scanned_products=${result.scannedProducts}, selected_products=${result.selectedProducts}, chunks=${result.chunks}, elapsed_ms=${result.elapsedMs}, progress=${completed}/${tasks.length}`);
         if (completed === tasks.length) {
           if (!settled) {
             settled = true;
-            for (const active of workers) active.postMessage({ type: 'stop' });
+            for (const active of workers) {
+              clearTaskTimers(active);
+              active.postMessage({ type: 'stop' });
+            }
             resolve();
           }
           return;
         }
         dispatch(worker);
       });
-      worker.on('error', fail);
+      worker.on('error', error => {
+        clearTaskTimers(worker);
+        fail(error);
+      });
       worker.on('exit', code => {
+        clearTaskTimers(worker);
         if (!settled && code !== 0) {
           const task = worker.currentTask;
           fail(new Error(`Semantic validation worker exited with code ${code}${task ? ` for ${task.serviceCode}/${task.region}` : ''}`));
@@ -119,13 +163,17 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
     serviceCode: result.serviceCode,
     region: result.region,
     branches: result.branches,
-    products: result.products,
+    scannedProducts: result.scannedProducts,
+    selectedProducts: result.selectedProducts,
+    chunks: result.chunks,
     elapsedMs: result.elapsedMs
   }));
-  const publishSkus = Object.fromEntries(results.map(result => [
-    `${result.serviceCode}/${result.region}`,
-    new Set(result.publishSkus)
-  ]));
+  const publishSkus = {};
+  for (const result of results) for (const [key, skus] of Object.entries(result.publishSkus ?? {})) {
+    const target = publishSkus[key] ?? new Set();
+    for (const sku of skus) target.add(sku);
+    publishSkus[key] = target;
+  }
 
   return {
     issues: results.flatMap(result => result.issues),

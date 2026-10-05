@@ -9,8 +9,8 @@ export function usageTypeClass(usageType, common, specific) {
   const rule = [...common.rules, ...specific.rules].find(rule => value.startsWith(rule.prefix));
   return rule ? rule.class : value;
 }
-export function inventory(data, common, specific) {
-  const categories = new Map();
+
+export function accumulateInventory(categories, data, common, specific) {
   for (const product of data.products) for (const dimension of product.terms.onDemand[0].priceDimensions) {
     const category = { productFamily: product.productFamily, operation: product.operation, usageTypeClass: usageTypeClass(product.usageType, common, specific), unit: dimension.unit, discriminators: Object.fromEntries((specific.discriminators ?? []).filter(key => key in product.attributes).map(key => [key, product.attributes[key]])) };
     const key = encode(category);
@@ -23,8 +23,17 @@ export function inventory(data, common, specific) {
     entry.shapeSignatures.push(JSON.stringify(meterDimensions.map(d => ({ unit: d.unit, allowance: d.freeAllowance === true }))));
     categories.set(key, entry);
   }
+  return categories;
+}
+
+export function finalizeInventory(categories) {
   return [...categories.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, entry]) => ({ ...entry, products: [...new Set(entry.products)].sort(), rawUsageTypes: [...new Set(entry.rawUsageTypes)].sort(), shapes: [...new Map(entry.shapes.map(shape => [encode(shape), shape])).values()], shapeSignatures: [...new Set(entry.shapeSignatures)].sort() }));
 }
+
+export function inventory(data, common, specific) {
+  return finalizeInventory(accumulateInventory(new Map(), data, common, specific));
+}
+
 export function validateCoverage(categories, coverage) {
   const issues = [], summary = { mapped: 0, ignored: 0, unresolved: 0 };
   for (const category of categories) {

@@ -33,16 +33,18 @@ function flattenSources(sources = {}) {
   }
   return flattened;
 }
-export async function loadCandidate(directory) {
-  let metadata;
+export async function loadCandidateMetadata(directory) {
   try {
     const loaded = await readJson(path.join(directory, 'source-metadata.json'));
-    metadata = { ...loaded, sources: flattenSources(loaded.sources) };
+    return { ...loaded, sources: flattenSources(loaded.sources) };
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
     const build = await readJson(path.join(directory, 'build-manifest.json'));
-    metadata = { schemaVersion: 1, sources: flattenSources(build.sources) };
+    return { schemaVersion: 1, sources: flattenSources(build.sources) };
   }
+}
+export async function loadCandidate(directory) {
+  const metadata = await loadCandidateMetadata(directory);
   const data = {};
   for (const [key, source] of Object.entries(metadata.sources)) data[key] = await readJson(path.join(directory, 'sources', source.serviceCode, source.region, 'products.json'));
   return { metadata, data };
@@ -63,24 +65,23 @@ export async function semanticValidation(packages, candidate) {
   const normalizers = Object.fromEntries(await Promise.all(codes.map(async code => [code, await readJson(`pricing/normalization/services/${code}.json`).catch(error => error.code === 'ENOENT' ? { rules: [], discriminators: [] } : Promise.reject(error))])));
   return appendSchemaIssues(candidate, validatePriceData(packages, candidate.data, common, normalizers));
 }
-function candidateManifest(candidate) {
+function candidateManifestFromMetadata(metadata) {
   const sources = {};
-  for (const source of Object.values(candidate.metadata.sources)) {
+  for (const source of Object.values(metadata.sources)) {
     (sources[source.serviceCode] ??= {})[source.region] = {
       ...source,
-      productsPath: `sources/${source.serviceCode}/${source.region}/products.json`
+      productsPath: source.productsPath ?? `sources/${source.serviceCode}/${source.region}/products.json`
     };
   }
   return { sources };
 }
-async function semanticValidationParallel(packages, candidate, directory) {
+function candidateManifest(candidate) {
+  return candidateManifestFromMetadata(candidate.metadata);
+}
+async function semanticValidationParallel(packages, metadata, directory) {
   const cacheKey = path.resolve(directory);
   if (!semanticCache.has(cacheKey)) {
-    const pending = (async () => {
-      const checked = await validatePublishedPriceDataParallel(packages, directory, candidateManifest(candidate));
-      return checked.shardIndex === 0 ? appendSchemaIssues(candidate, checked) : checked;
-    })();
-    semanticCache.set(cacheKey, pending);
+    semanticCache.set(cacheKey, validatePublishedPriceDataParallel(packages, directory, candidateManifestFromMetadata(metadata)));
   }
   try {
     return await semanticCache.get(cacheKey);
@@ -152,13 +153,30 @@ export async function run(command, options = {}) {
     await writeJson(options.output ?? '.work/inventory.json', inventories);
     return report(command, [], { categories: Object.fromEntries(Object.entries(inventories).map(([key, categories]) => [key, categories.length])) });
   }
+  if (command === 'validate-price-data' && !options.services) {
+    const packages = await loadPackages('services');
+    const candidateDir = await candidateDirectory(options.input);
+    const metadata = await loadCandidateMetadata(candidateDir);
+    const checked = await semanticValidationParallel(packages, metadata, candidateDir);
+    const result = report(command, checked.issues, {
+      coverage: checked.coverage,
+      branches: checked.branches,
+      workers: checked.concurrency,
+      taskTimings: checked.taskTimings,
+      shardIndex: checked.shardIndex ?? 0,
+      shardCount: checked.shardCount ?? 1,
+      publishSkus: Object.fromEntries(Object.entries(checked.publishSkus ?? {}).map(([key, values]) => [key, [...values].sort()]))
+    });
+    if (options.output) await writeJson(options.output, result);
+    return result;
+  }
   if (['validate-price-data', 'run-golden', 'classify-change', 'build'].includes(command)) {
     const packages = await loadPackages(options.services ?? 'services');
     const candidateDir = await candidateDirectory(options.input);
     const candidate = await loadCandidate(candidateDir);
     const getSemantic = () => options.services
       ? semanticValidation(packages, candidate)
-      : semanticValidationParallel(packages, candidate, candidateDir);
+      : semanticValidationParallel(packages, candidate.metadata, candidateDir);
     let result;
     if (command === 'validate-price-data') {
       const checked = await getSemantic();
