@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "requests",
+  "componentId": "requests",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Requests" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "in", "value": ["Request", "Requests"] }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "Standard Lambda invocation request meter, resolved by the stable AWSLambda group rather than SKU or regional usage type."
+}
