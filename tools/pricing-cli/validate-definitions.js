@@ -11,6 +11,17 @@ function references(object, result = []) {
   for (const value of Object.values(object)) references(value, result);
   return result;
 }
+
+const PROJECT_KEYS = new Set(['region', 'hoursPerMonth', 'defaultRegion']);
+
+function referenceExists(valueFrom, profileIds, componentIds = new Set()) {
+  const [namespace, key] = valueFrom.split('.');
+  if (namespace === 'project') return PROJECT_KEYS.has(key);
+  if (namespace === 'profile') return profileIds.has(key);
+  if (namespace === 'component') return componentIds.has(key);
+  return false;
+}
+
 export async function validateDefinitions(packages) {
   const schemaNames = ['service', 'profile', 'component', 'pricing-mapping', 'coverage', 'golden'];
   const validators = Object.fromEntries(await Promise.all(schemaNames.map(async name => [name, await schemaValidator(`service-definition/${name}`)])));
@@ -74,10 +85,7 @@ export async function validateDefinitions(packages) {
             } catch { add('INVALID_DEFAULT', `Invalid default for ${input.id}.`); }
           }
         }
-        for (const valueFrom of references(definition)) {
-          const [namespace, key] = valueFrom.split('.');
-          if (namespace === 'project' && !['region', 'hoursPerMonth', 'defaultRegion'].includes(key) || namespace === 'profile' && !profileIds.has(key) || namespace === 'component' && (!componentId || !ids.has(key))) add('INVALID_REFERENCE', `Unknown reference ${valueFrom}.`, { profileId: id, componentId });
-        }
+        for (const valueFrom of references(definition)) if (!referenceExists(valueFrom, profileIds, componentId ? ids : new Set())) add('INVALID_REFERENCE', `Unknown reference ${valueFrom}.`, { profileId: id, componentId });
         const visiting = new Set(), visited = new Set();
         const visit = node => {
           if (visiting.has(node)) { add('DEPENDENCY_CYCLE', `Cycle at ${node}.`); return; }
@@ -87,11 +95,17 @@ export async function validateDefinitions(packages) {
           visiting.delete(node); visited.add(node);
         };
         for (const node of nodes.keys()) visit(node);
+        return ids;
       };
       checkScope(profile.selectors ?? [], profile);
       for (const componentId of profile.components ?? []) {
         const component = pkg.components[componentId];
-        if (component) checkScope([...(component.selectors ?? []), ...(component.usageInputs ?? [])], component, componentId);
+        if (!component) continue;
+        const componentIds = checkScope([...(component.selectors ?? []), ...(component.usageInputs ?? [])], component, componentId);
+        for (const mappingId of mappingsByComponent.get(componentId) ?? []) {
+          const mapping = pkg.pricingMappings[mappingId];
+          for (const valueFrom of references(mapping)) if (!referenceExists(valueFrom, profileIds, componentIds)) add('INVALID_REFERENCE', `Pricing mapping ${mappingId} references unknown ${valueFrom} in profile ${id}.`, { profileId: id, componentId, path: `pricing-mappings/${mappingId}` });
+        }
       }
     }
     for (const componentId of Object.keys(pkg.components)) if (!usedComponents.has(componentId)) add('ORPHAN_DEFINITION', `Unreferenced component ${componentId}.`);
