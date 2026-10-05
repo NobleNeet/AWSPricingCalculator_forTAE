@@ -20,16 +20,17 @@
     "expect": "singleSku",
     "productFilters": [
       {"field": "productFamily", "op": "eq", "value": "System Operation"},
+      {"field": "attributes.databaseEngine", "op": "eq", "value": "Aurora PostgreSQL"},
       {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"},
       {"field": "attributes.group", "op": "eq", "value": "RDS Snapshot Export"}
     ],
-    "dimensionFilters": [{"field": "unit", "op": "eq", "value": "GBs"}]
+    "dimensionFilters": [{"field": "unit", "op": "eq", "value": "GB"}]
   },
   "calculation": {
     "model": "unit",
     "usage": {"sources": [{"valueFrom": "component.processedGb"}], "combine": "multiply"},
     "transforms": [],
-    "outputUnit": "GBs"
+    "outputUnit": "GB"
   },
   "limitations": ["account-specific-discount", "snapshot-export-s3-storage"]
 }

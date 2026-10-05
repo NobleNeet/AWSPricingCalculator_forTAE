@@ -10,52 +10,26 @@
       "type": "number",
       "default": "730",
       "minimum": "0",
-      "ui": {
-        "help": "Enter aggregate Aurora Capacity Unit hours consumed by the DB shard group."
-      }
+      "ui": {"help": "Enter aggregate Aurora Capacity Unit hours consumed by the DB shard group."}
     }
   ],
   "fixedFilters": [],
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {
-        "field": "productFamily",
-        "op": "eq",
-        "value": "Limitless"
-      },
-      {
-        "field": "operation",
-        "op": "eq",
-        "value": "CreateDBInstance:0021"
-      }
+      {"field": "productFamily", "op": "eq", "value": "Limitless"},
+      {"field": "attributes.databaseEngine", "op": "eq", "value": "Aurora PostgreSQL"},
+      {"field": "attributes.storage", "op": "eq", "value": "Aurora IO Optimization Mode"},
+      {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"},
+      {"field": "attributes.limitlesspreview", "op": "notExists"}
     ],
-    "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "eq",
-        "value": "ACU-Hr"
-      }
-    ]
+    "dimensionFilters": [{"field": "unit", "op": "eq", "value": "ACU-Hr"}]
   },
   "calculation": {
     "model": "unit",
-    "usage": {
-      "sources": [
-        {
-          "valueFrom": "component.acuHours"
-        }
-      ],
-      "combine": "multiply"
-    },
+    "usage": {"sources": [{"valueFrom": "component.acuHours"}], "combine": "multiply"},
     "transforms": [],
     "outputUnit": "ACU-Hr"
   },
-  "limitations": [
-    "free-tier",
-    "account-specific-discount",
-    "aggregate-billing",
-    "network-transfer",
-    "database-insights"
-  ]
+  "limitations": ["free-tier", "account-specific-discount", "aggregate-billing", "network-transfer", "database-insights"]
 }
