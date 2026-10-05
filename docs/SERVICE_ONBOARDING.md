@@ -1,6 +1,6 @@
 # AWS Service Onboarding Specification
 
-最終更新: 2026-10-05
+最終更新: 2026-10-06
 
 本書は、新しいAWSサービスをAWSPricingCalculator_forTAEへ追加する場合、および既存サービスの見積入力項目や料金対応を拡充する場合の標準作業フローを定義する。
 
@@ -31,7 +31,8 @@ AWS Fargateを追加して
 - 各ComponentとAWS料金項目の意味対応の確定
 - Pricing Mapping作成
 - Definition / UI実装
-- test / validation
+- 影響を受ける既存testの棚卸しと更新
+- narrow test / test / validation
 - Price DB build / publish
 - commit / push
 - GitHub Actions / Pages確認
@@ -436,31 +437,77 @@ ID固定が不可避な場合は理由を記録し、AWS側変更時はfail-clos
 [12] coverage / limitation整理
         |
         v
-[13] unit / Mapping / Definition / Golden test追加
+[13] 変更影響を受ける既存testを全件棚卸し
         |
         v
-[14] repository-level validation / E2E実行
+[14] unit / Mapping / Definition / Golden / E2Eを新仕様へ更新
         |
         v
-[15] failureを修正して成功まで反復
+[15] 対象サービスのnarrow test / E2Eを実行し成功させる
         |
         v
-[16] commit / push
+[16] repository-level validation / E2E実行
         |
         v
-[17] GitHub Actions確認
+[17] failureを修正して成功まで反復
         |
         v
-[18] Price DB build / validation / publish
+[18] commit / push
         |
         v
-[19] Pages deploy確認
+[19] GitHub Actions確認
         |
         v
-[20] 公開版代表操作確認
+[20] Price DB build / validation / publish
+        |
+        v
+[21] Pages deploy確認
+        |
+        v
+[22] 公開版代表操作確認
 ```
 
 途中の通常の実装判断についてユーザーへ確認を求めない。
+
+### 11.1 Test impact analysisはUI実装と同一工程で行う
+
+Service Definition、drawer UI、入力dependency、selector、options、defaults、conditional visibility、DOM structure、pricing component構成のいずれかを変更した場合、**既存testが旧仕様のまま残っていないかを最初のrepository-wide CIより前に確認する**。
+
+実装担当は、対象service ID、入力ID、component ID、profile ID、drawer locator、表示文言などを手掛かりに、unit / integration / Golden / browser E2Eを検索し、変更の影響を受ける既存testを全件棚卸しする。
+
+対象testについては次を確認する。
+
+- 期待するdefault / option / selector valueが現行Definitionと一致するか
+- primary / advanced / conditional fieldの表示条件が現行UIと一致するか
+- locatorが現行DOM構造を前提としているか
+- dependencyによる再render後も正しい要素を検査しているか
+- assertが意図した契約を直接検査しているか
+- 旧実装だけに必要だった期待値・互換性assertが残っていないか
+
+期待値だけを書き換えて通すことを目的にしてはならない。たとえばDOM attributeを確認すべき契約に対してselected value用assertを使っている場合など、**検査方法そのものが変更後の契約を正しく表現しているかも再評価する**。
+
+### 11.2 Narrow testをrepository-wide CIの前段ゲートとする
+
+影響testの更新後は、対象サービスまたは変更箇所に絞った最小のunit / integration / Golden / E2Eを先に実行する。
+
+対象範囲のtestが失敗している状態で、原因探索を目的としてcommit / pushやrepository-wide GitHub Actionsを繰り返してはならない。
+
+原則順序:
+
+```text
+Definition / UI / Mapping変更
+-> test impact analysis
+-> 影響test更新
+-> narrow test / service-specific E2E
+-> PASS
+-> repository-level test / validation / E2E
+-> commit / push
+-> GitHub Actions
+```
+
+repository-wide validationで初めて発見された失敗は、対象サービス内の見落としなのか、共通基盤または他サービスへの回帰なのかを分類して修正する。
+
+GitHub Actionsは最終的な統合確認であり、既知の旧testを1件ずつ発見するためのデバッガとして使用しない。
 
 ---
 
@@ -548,6 +595,17 @@ scheduled updateで未知カテゴリを検出しても、自動的に既存Comp
 - Component amount
 - Service total
 
+### Layer 5: UI / E2E contract
+
+UIまたはDefinitionが変更された場合は、変更影響を受ける既存browser E2Eを新仕様へ更新済みであることを確認する。
+
+- defaults / options / selector values
+- primary / advanced grouping
+- conditional visibility
+- dependency / rerender behavior
+- locator validity
+- DOM property / attribute / selected stateなどassert対象の意味
+
 新ServiceはERROR 0件を完成条件とする。
 
 ---
@@ -596,7 +654,9 @@ Lambdaの見積項目を公式Calculator相当にして
 - Public Price List実データ調査
 - Pricing Mapping作成
 - Definition / UI実装
-- tests
+- 影響test棚卸しと更新
+- narrow tests
+- repository-level tests
 - Price DB validation/build/publish
 - commit/push
 - Actions確認
@@ -647,6 +707,9 @@ Lambdaの見積項目を公式Calculator相当にして
 - ambiguous / missing料金をfallbackで隠していない
 - coverageの`unresolved = 0`
 - representative Golden CaseがPASS
+- UI / Definition変更の影響を受ける既存testを棚卸し済み
+- 影響testが現行仕様と適切なassert方法へ更新済み
+- 対象サービスのnarrow test / E2Eがrepository-wide CIより前にPASS
 - generic Pricing Coreの既存testを壊していない
 - required Actions成功
 - 必要ならvalidated Price DBがpublish済み
@@ -714,10 +777,13 @@ AWS <Service>を追加して
 6. serviceCode / Product属性 / Price Dimension / unit / rangeをAWS公式資料と突き合わせ、料金意味を再確定する
 7. 現行方式のサービス固有Pricing Mappingを新規作成または全面的に見直す
 8. Mappingを実Price Listへ適用し、一意解決を確認する
-9. Definition / UI / Calculation / coverage / limitation / Golden Case / testsを現行仕様へ合わせる
-10. 旧実装だけに必要だった定義、fallback、compatibility code、workaroundは不要性を確認して削除する
-11. Project / Plan / 保存復元などサービス外の共通仕様との互換性は維持する
-12. Price DB build / validation / publish、Actions、Pages、公開版代表操作まで確認する
+9. Definition / UI / Calculation / coverage / limitation / Golden Caseを現行仕様へ合わせる
+10. Definition / drawer / dependency / selector / option / default / conditional visibilityの変更影響を受ける既存testを全件棚卸しする
+11. 影響を受けるunit / Golden / E2Eを現行仕様へ更新し、期待値だけでなくlocatorやassert方法自体が新しい契約を正しく検査しているか確認する
+12. 対象サービスのnarrow test / E2Eを先に成功させてからrepository-level validation / E2Eへ進む
+13. 旧実装だけに必要だった定義、fallback、compatibility code、workaroundは不要性を確認して削除する
+14. Project / Plan / 保存復元などサービス外の共通仕様との互換性は維持する
+15. Price DB build / validation / publish、Actions、Pages、公開版代表操作まで確認する
 
 判断基準は、**「既存実装との差分を埋める」ではなく「現在このサービスを新規追加するとしたらどう実装するか」**とする。
 
@@ -729,6 +795,7 @@ AWS <Service>を追加して
 - 削除した旧仕様 / 旧ロジック / workaround
 - 現在対応しているPricing Component
 - 意図的に対象外とした入力 / 料金項目と理由
+- 更新した既存testとnarrow test結果
 - Mapping / Golden / repository validation / Actions / Pagesの確認結果
 
 既存generic ruleを削除する場合は、そのruleを利用している他サービスへの影響を確認し、必要なサービスがすべてサービス固有Mappingへ移行済みであることを確認してから削除する。
