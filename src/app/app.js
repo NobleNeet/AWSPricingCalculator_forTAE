@@ -56,6 +56,13 @@ function render() {
     return `<td data-total="${escape(id)}"><div>${summary.complete ? '月額合計' : '計算済み小計'}</div><div class="amount">${escape(money(summary.amountUsd))}</div>${summary.uncalculated ? `<div class="invalid">未計算サービス: ${summary.uncalculated}</div>` : ''}<div class="delta">${delta !== null ? `Baselineとの差額: ${escape(money(delta))}` : '差額: 未計算項目があるため比較不可'}</div></td>`;
   }).join('')}</tr></tbody></table></div>`;
 }
+async function loadProfilePriceProducts(pkg, profile, region) {
+  const defaultCode = pkg.service.priceSource.serviceCode;
+  const overrides = pkg.service.priceSource.componentOverrides ?? {};
+  const codes = [...new Set([defaultCode, ...profile.components.map(id => overrides[id]).filter(Boolean)])];
+  const byServiceCode = Object.fromEntries(await Promise.all(codes.map(async code => [code, (await prices.products(code, region)).products])));
+  return { defaultProducts: byServiceCode[defaultCode], byServiceCode };
+}
 async function evaluate(id) {
   const instance = state.serviceInstances[id]; if (!instance) return;
   const revision = (revisions.get(id) ?? 0) + 1; revisions.set(id, revision);
@@ -65,9 +72,10 @@ async function evaluate(id) {
     if (!catalog.some(service => service.id === instance.serviceId)) throw Object.assign(Error(`未知Service: ${instance.serviceId}`), { code: 'INVALID_DATA' });
     if (!['inherit', 'override'].includes(instance.region?.mode)) throw Object.assign(Error('Region設定が不正です。要再選択'), { code: 'INVALID_DATA' });
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
-    const pkg = await definitions.package(instance.serviceId);
-    const data = await prices.products(pkg.service.priceSource.serviceCode, region);
-    result = evaluateService(pkg, instance, { ...state.project.usageAssumptions, defaultRegion: state.project.defaultRegion, region }, data.products);
+    const pkg = await definitions.package(instance.serviceId), profile = pkg.profiles[instance.profileId];
+    if (!profile) throw Object.assign(Error('未知Profile: 要再選択'), { code: 'INVALID_DATA' });
+    const data = await loadProfilePriceProducts(pkg, profile, region);
+    result = evaluateService(pkg, instance, { ...state.project.usageAssumptions, defaultRegion: state.project.defaultRegion, region }, data.defaultProducts, data.defaultProducts, data.byServiceCode);
   } catch (error) { result = { state: error.code === 'INVALID_DATA' ? 'invalid' : 'unavailable', amountUsd: null, issues: [{ code: error.code ?? 'FETCH_FAILED', severity: 'error', message: error.message }] }; }
   if (!state.serviceInstances[id] || revisions.get(id) !== revision) return;
   results.set(id, result); render();
@@ -95,18 +103,20 @@ async function renderDrawer() {
     if (!profile) throw Error('未知Profile: 要再選択');
     const regionValid = ['inherit', 'override'].includes(instance.region?.mode);
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
-    const data = await prices.products(pkg.service.priceSource.serviceCode, region);
+    const data = await loadProfilePriceProducts(pkg, profile, region);
     if (editing !== id) return;
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
-    const renderProfileFields = advanced => profile.selectors.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.products, profile.fixedFilters, false)).join('');
+    const renderProfileFields = advanced => profile.selectors.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
     $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>Profile<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>Region<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なRegion設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>Project Regionを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>Tokyo override</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" selected>${escape(region)} override</option>` : ''}</select></label>${renderProfileFields(false)}${profile.selectors.some(input => input.ui?.advanced) ? `<details><summary>Advanced</summary>${renderProfileFields(true)}</details>` : ''}${profile.components.map(componentId => {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
       context.component = saved.inputs;
       const inactive = !enabled(definition.enabledWhen, context) || definition.optional && !saved.enabled;
       const filters = [...profile.fixedFilters, ...definition.fixedFilters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
       const inputs = [...definition.selectors, ...definition.usageInputs];
-      const renderFields = advanced => inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'component', componentId, context, data.products, filters, inactive)).join('');
+      const sourceCode = pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
+      const componentProducts = data.byServiceCode[sourceCode] ?? data.defaultProducts;
+      const renderFields = advanced => inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'component', componentId, context, componentProducts, filters, inactive)).join('');
       const component = result?.components?.[componentId];
       return `<fieldset><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>Componentを有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>Advanced</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
     }).join('')}<h3>Pricing Limitation</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
