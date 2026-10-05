@@ -1,4 +1,4 @@
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { encode } from './normalize.js';
 import { readJson } from './package-loader.js';
@@ -66,14 +66,17 @@ async function exists(file) {
   }
 }
 
-function overlaps(chunk, sortedSkus) {
+function chunkContainsRequestedSku(chunk, sortedSkus) {
   if (!sortedSkus.length) return false;
-  const first = chunk.firstSku;
-  const last = chunk.lastSku;
-  if (!first || !last) return true;
-  const min = sortedSkus[0];
-  const max = sortedSkus.at(-1);
-  return !(last.localeCompare(min) < 0 || first.localeCompare(max) > 0);
+  if (!chunk.firstSku || !chunk.lastSku) return true;
+  let low = 0;
+  let high = sortedSkus.length;
+  while (low < high) {
+    const mid = Math.floor((low + high) / 2);
+    if (sortedSkus[mid].localeCompare(chunk.firstSku) < 0) low = mid + 1;
+    else high = mid;
+  }
+  return low < sortedSkus.length && sortedSkus[low].localeCompare(chunk.lastSku) <= 0;
 }
 
 export async function loadProductsForSkus(directory, source, skus) {
@@ -96,7 +99,7 @@ export async function loadProductsForSkus(directory, source, skus) {
   const sortedSkus = [...wanted].sort((a, b) => a.localeCompare(b));
   const products = [];
   const found = new Set();
-  for (const chunk of manifest.chunks.filter(item => overlaps(item, sortedSkus))) {
+  for (const chunk of manifest.chunks.filter(item => chunkContainsRequestedSku(item, sortedSkus))) {
     const loaded = await readJson(path.join(directory, chunk.path));
     for (const product of loaded.products) {
       if (!wanted.has(product.sku)) continue;
