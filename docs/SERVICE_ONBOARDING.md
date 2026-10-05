@@ -1,93 +1,155 @@
 # AWS Service Onboarding Specification
 
-最終更新: 2026-10-04
+最終更新: 2026-10-05
 
-本書は、新しいAWSサービスをAWSPricingCalculator_forTAEへ追加する場合、および既存サービスの見積入力項目をAWS Pricing Calculator相当に拡充する場合の一般規則と標準作業フローを定義する。
+本書は、新しいAWSサービスをAWSPricingCalculator_forTAEへ追加する場合、および既存サービスの見積入力項目や料金対応を拡充する場合の標準作業フローを定義する。
 
-本書は `docs/PRICING_ARCHITECTURE.md` を補完するService onboardingの正本である。料金計算・Definition DSL・Price DB・Pricing Engineの意味論は `docs/PRICING_ARCHITECTURE.md` に従う。ユーザー向けUI・Project/Plan・保存復元等は `docs/SPEC.md` に従う。
+本書は `docs/PRICING_ARCHITECTURE.md` と `docs/PRICING_MAPPING_ARCHITECTURE.md` を補完するService onboardingの正本である。
+
+- UI / Project / Plan / 保存復元: `docs/SPEC.md`
+- Pricing Core / Calculation DSL / Price DB: `docs/PRICING_ARCHITECTURE.md`
+- AWS料金項目の意味解釈 / Pricing Mapping / drift検証: `docs/PRICING_MAPPING_ARCHITECTURE.md`
 
 ---
 
 ## 1. 目的
 
-新サービス追加を、人間が個別に入力項目や料金カテゴリを列挙しなくても再現可能な標準手順にする。
+新サービス追加を、サービス名だけの依頼から最後まで自律的に実行できる再現可能な手順にする。
 
-通常の依頼は、Web版ChatGPTの「AWS見積もりツール」Project内で新しいチャットを開始し、例えば次のようにサービス名だけを指定すればよい。
+通常の依頼例:
 
 ```text
 AWS Fargateを追加して
 ```
 
-この依頼を受けた実装担当は、追加質問を前提にせず、現在のrepositoryと公式AWS情報を自ら調査し、入力項目の選定、Service Definition、Price Data対応、UI、test、validation、commit、GitHub Actions、GitHub Pagesへの反映確認までを一連の作業として実施する。
+この依頼を受けた実装担当は、現在のrepositoryとAWS公式情報を調査し、次を一連の作業として実施する。
 
-単なるDefinitionファイル作成を「追加完了」とは扱わない。
+- Calculator UI調査
+- 入力項目設計
+- 課金Component分解
+- AWS Public Price List実データ調査
+- 各ComponentとAWS料金項目の意味対応の確定
+- Pricing Mapping作成
+- Definition / UI実装
+- test / validation
+- Price DB build / publish
+- commit / push
+- GitHub Actions / Pages確認
+
+単なるDefinition作成、あるいは料金候補をgeneric resolverへ渡すだけでは追加完了としない。
 
 ---
 
-## 2. 情報源の優先順位
+## 2. 基本原則
 
-新サービスの仕様を決めるときは、以下を用途別に使い分ける。
+### 2.1 LLMを使う場所
 
-### 2.1 見積入力UIの基準
+LLM / ChatGPT / Codexは、**サービス取り込み時の意味理解**に使用する。
 
-AWS Pricing Calculator (`https://calculator.aws/`) の該当サービス作成画面を、以下を把握するための主要な参照先とする。
+主な役割:
+
+- Calculator UIの読み取り
+- 公式pricing/service documentationの確認
+- Public Price List候補の探索
+- Product / SKU / Price Dimensionの意味理解
+- アプリ上のComponentとの対応付け
+- Pricing Mapping生成
+- Golden Case設計
+
+一方、scheduled price updateはLLMを必須依存にしない。
+
+### 2.2 意味理解は取り込み時に完了させる
+
+定期更新時に「このSKUは何の料金か」を推測させない。
+
+取り込み時に、各料金Componentについて以下をrepositoryへ固定する。
+
+```text
+アプリ上の料金Component
+        ↓
+どのAWS Price List serviceCodeを見るか
+        ↓
+どのProduct属性で識別するか
+        ↓
+どのPrice Dimensionを使うか
+        ↓
+許容unit / alias / invariant
+```
+
+この固定結果をPricing Mappingと呼ぶ。
+
+### 2.3 共通化対象
+
+共通化するのはMappingを実行する仕組みであり、AWSサービス固有の料金意味ではない。
+
+Shared Pricing Coreへサービス固有`if/else`を増やさない。
+
+---
+
+## 3. 情報源の優先順位
+
+### 3.1 見積入力UI
+
+AWS Pricing Calculator (`https://calculator.aws/`) の該当サービス作成画面を主要参照先とする。
+
+確認対象:
 
 - 入力セクション
+- primary / advanced
 - 入力項目
 - 選択肢
 - 初期値
-- 項目間の依存関係
 - 条件付き表示
-- primary / advanced の区分
-- quantity / usage / duration 等の入力方法
+- 項目間依存
+- quantity / usage / duration入力方式
 
-AWS Pricing Calculator UIは料金値の正本ではない。
+Calculator UIは料金値の正本ではない。
 
-#### Calculator URLとSPAの扱い
+### 3.2 料金値 / SKU / Dimension
 
-AWS Pricing Calculatorのサービス作成画面は、例えばLambdaでは次のようなURLで表される。
+AWS Public Price Listを正本とする。
+
+Calculator画面に表示された単価や月額をDefinitionへ転記してはならない。
+
+### 3.3 課金意味
+
+Calculator UIだけで意味が確定しない場合は、AWS公式pricing page / service documentationとPublic Price List実データを突き合わせる。
+
+優先関係:
+
+- 入力項目 / 操作: Calculator UI
+- 料金値 / SKU / Dimension: Public Price List
+- 課金意味 / 条件: AWS公式docs + Public Price List
+
+根拠不足の料金は推測実装しない。
+
+---
+
+## 4. Calculator URLとSPA
+
+サービス作成画面例:
 
 ```text
 https://calculator.aws/#/createCalculator/Lambda
 ```
 
-対象サービスのCalculator URLについては次の規則に従う。
+規則:
 
-1. ユーザーが対象サービスのCalculator URLを提示している場合は、そのURLを対象画面の参照先として使用する。
-2. URLが提示されていない場合は、実装担当がサービス名から該当サービス作成画面を自ら特定する。通常依頼でユーザーによるURL提示を必須条件としてはならない。
-3. 対象URLを特定できた場合は、調査記録、実装メモ、test/docs等の適切な場所にURLを残す。
-4. `calculator.aws` はSPAであり、`#` 以降のfragmentやサービス固有フォームはJavaScript実行後にブラウザ上で構築される。そのため、単純なHTTP取得でベースHTMLを取得しただけでは対象サービス画面を確認したものとみなさない。
-5. primary / advanced / 条件付き項目 / defaults / dependenciesを調査するときは、可能な限りJavaScript実行後のレンダリング済み実画面を確認できるブラウザ環境を使用する。
-6. Calculatorの実画面を確認できない場合は、AWS公式service documentation、pricing page、Public Price List等から入力項目と課金意味論を補完する。ただし、確認できていないCalculator固有UIを推測で「存在する」と断定してはならない。
-7. 実装担当だけでは対象サービスURLを特定できず、かつ公式資料からも対象画面を確定できない場合に限り、ユーザーへCalculator URLまたは画面情報の提示を求めてよい。
-
-URLを知っていることと、Calculatorのレンダリング済み入力フォームを確認できていることは別の状態として扱う。
-
-### 2.2 料金値の正本
-
-料金値、SKU、Price Dimension、対象region、On-Demand termの正本はAWS Public Price Listとする。
-
-Calculator画面に表示された単価や月額をDefinitionへ転記してはならない。
-
-### 2.3 意味論の確認
-
-Calculator画面だけでは課金意味論が不明確な場合は、AWS公式ドキュメント、AWS pricing page、AWS service documentation等を確認する。
-
-Calculator UI、公式ドキュメント、Public Price Listの間に差異がある場合は次のように扱う。
-
-- 料金値・SKU選択: Public Price Listを優先
-- 入力項目・ユーザー操作: Calculator UIを優先
-- 課金条件・意味: 公式ドキュメントとPrice Listを突き合わせて決定
-
-根拠が不足する場合は推測による料金計算を実装しない。
+1. ユーザーがURLを提示した場合はそのURLを使う
+2. 未提示なら実装担当が自ら特定する
+3. 特定したURLは調査記録やtest/docsへ残す
+4. `calculator.aws` はSPAなので、単純HTTP取得だけで実画面確認済みとはみなさない
+5. primary / advanced / conditional fields / defaults / dependenciesは可能な限りJavaScript実行後の画面で確認する
+6. 実画面を確認できない場合は公式docs / pricing page / Public Price Listで補完し、未確認事項を明示する
+7. URLも画面内容も自力で確定できない場合に限りユーザーへ情報提供を求める
 
 ---
 
-## 3. On-Demand固定ポリシー
+## 5. On-Demand固定ポリシー
 
-本ツールの通常見積はOn-Demand固定とする。
+通常見積はOn-Demand固定とする。
 
-以下の購入・割引方式は入力項目として取り込まない。
+対象外:
 
 - Reserved Instances / Reserved capacity
 - Savings Plans
@@ -97,15 +159,13 @@ Calculator UI、公式ドキュメント、Public Price Listの間に差異が�
 - account-specific discount
 - negotiated/private pricing
 
-ただし、購入プランではなくOn-Demand料金そのものに影響する設定は取り込む。
-
-例:
+ただし、On-Demand料金自体へ影響する以下のような条件は取り込む。
 
 - tenancy
 - operating system / software
 - CPU / memory / instance type
 - storage type / capacity / IOPS / throughput
-- task count / request count / execution duration
+- requests / duration / task count
 - deployment mode
 - data transfer
 - public IPv4
@@ -113,73 +173,47 @@ Calculator UI、公式ドキュメント、Public Price Listの間に差異が�
 - architecture
 - redundancy / Multi-AZ
 
-「On-Demand固定」を理由に、通常利用量や構成条件まで省略してはならない。
+---
+
+## 6. 入力項目の採用規則
+
+Calculatorの入力項目は原則実装候補とする。
+
+必須採用候補:
+
+- SKU選択へ影響
+- Price Dimension選択へ影響
+- 課金数量へ影響
+- 月額へ直接影響
+- 主要利用方式を切り替える
+- Calculator上の主要見積条件
+
+Project Region等の共通項目は重複実装しない。
+
+省略可能なのは、料金意味へ影響しないUI専用項目、完全重複項目、対象外購入プラン等に限定する。
+
+安全に算定できない場合は、次の順序で対応する。
+
+1. 既存Definition / Mapping DSLで表現
+2. Component分割
+3. サービス固有Pricing Mapping追加
+4. generic Mapping DSLの小規模拡張
+5. Pricing Limitationとして明示
+6. それでも不可なら未対応として明示
+
+先頭SKU、最安SKU、類似SKUへのfallbackは禁止する。
 
 ---
 
-## 4. 入力項目の採用規則
+## 7. Definitionへの分類
 
-Calculatorの該当サービス画面に存在する入力項目は、原則として実装候補とする。
+### 7.1 Profile
 
-各項目を次の分類で判断する。
+料金方式またはComponent構成が大きく変わる利用方式だけを分ける。
 
-### 4.1 必須採用
+### 7.2 selector
 
-以下のいずれかに該当する項目は原則として取り込む。
-
-- SKU選択に影響する
-- Price Dimension選択に影響する
-- 課金数量に影響する
-- 月額に直接影響する
-- 同一サービス内の主要な利用方式を切り替える
-- Calculator上で通常ユーザーが見積条件として指定する主要項目
-
-### 4.2 共通項目との重複
-
-Project Region等、アプリ全体ですでに共通入力として持つ項目はService内へ重複実装しない。
-
-Service固有overrideが既存仕様で認められている場合は、その仕組みを使用する。
-
-### 4.3 省略可能
-
-次の項目は、料金意味論に影響しないことを確認できる場合に限り省略してよい。
-
-- Calculator UIだけの表示設定
-- 説明・ナビゲーション専用項目
-- 本ツールですでに別の共通UIとして提供している完全な重複項目
-- Reserved / Savings Plans / Spot等、本仕様で明示的に対象外の購入プラン項目
-
-省略理由は実装時の調査記録またはtest/docsに残す。
-
-### 4.4 安全に算定できない項目
-
-Calculatorに存在しても、現在のPrice ListとDSLから安全に料金算定できない場合は、次の順序で対応する。
-
-1. 既存DSLで正確に表現できるか確認
-2. Component分割で表現できるか確認
-3. generic DSLの小規模拡張が必要か検討
-4. Pricing Limitationとして明示可能か検討
-5. それでも安全に扱えない場合は未対応として明示
-
-先頭SKU、最安SKU、類似SKU、推測単価へのfallbackは禁止する。
-
----
-
-## 5. Definitionへのマッピング規則
-
-Calculatorの画面構成をそのまま巨大な1ファイルへ写経しない。
-
-`docs/PRICING_ARCHITECTURE.md` の論理モデルへ変換する。
-
-### 5.1 Profile
-
-料金方式またはComponent構成が大きく変わる利用方式だけをProfileとして分ける。
-
-単にSKU属性が変わるだけならselectorを優先する。
-
-### 5.2 selector
-
-「何を使うか」を選ぶ項目をselectorとする。
+「何を使うか」を選択する入力。
 
 例:
 
@@ -190,9 +224,9 @@ Calculatorの画面構成をそのまま巨大な1ファイルへ写経しない
 - storage class
 - architecture
 
-### 5.3 usageInput
+### 7.3 usageInput
 
-「どれだけ使うか」をusageInputとする。
+「どれだけ使うか」を示す入力。
 
 例:
 
@@ -203,113 +237,343 @@ Calculatorの画面構成をそのまま巨大な1ファイルへ写経しない
 - vCPU-hours
 - GB-hours
 
-### 5.4 Pricing Component
+### 7.4 Pricing Component
 
-独立した課金メーターはComponent分割する。
+独立課金メーター単位で分割する。
 
-Calculator上で1つのサービス画面に含まれていても、料金メーターが異なる場合は複数Componentへ分ける。
-
-例: EC2の場合
+例: EC2
 
 ```text
 instance
-EBS
+EBS storage
+EBS IOPS
 monitoring
 data transfer
 public IPv4
-additional cost
 ```
 
-UI上のセクション境界とComponent境界は必ずしも1:1でなくてよい。
+UIセクション境界とComponent境界は1:1でなくてよい。
 
 ---
 
-## 6. Calculator画面からの取り込み手順
+## 8. Pricing Mapping作成手順
+
+各Pricing Componentについて、Public Price List実データを直接確認してMappingを作る。
+
+### 8.1 price source確定
+
+最初に、対象Componentがどの`serviceCode`から料金を取るか確定する。
+
+Service全体と異なるprice sourceを使ってよい。
+
+例:
+
+```text
+App Service: EC2
+  instance      -> AmazonEC2
+  data transfer -> AWSDataTransfer
+```
+
+### 8.2 Product候補調査
+
+対象regionのPublic Price Listから候補Productを抽出し、実際の属性値を確認する。
+
+最低限確認する候補field:
+
+- productFamily
+- operation
+- usageType
+- attributes.*
+
+まず候補を広く取得し、料金意味を確認してから安定した識別条件へ絞る。
+
+### 8.3 Dimension調査
+
+対象ProductのOn-Demand TermとPrice Dimensionsについて確認する。
+
+- unit
+- description
+- beginRange
+- endRange
+- free allowanceの有無
+- tier構造
+- 複数paid dimensionの有無
+
+### 8.4 Mappingへ固定
+
+意味を確認した結果を、サービス固有Pricing Mappingとして保存する。
+
+原則としてSKU ID / rateCode固定ではなく、意味を識別できる属性条件を保存する。
+
+概念例:
+
+```json
+{
+  "id": "ebs-gp3-storage",
+  "componentId": "ebs-storage",
+  "priceSource": {"serviceCode": "AmazonEC2"},
+  "productMatchers": [
+    {"field": "productFamily", "op": "eq", "value": "Storage"},
+    {"field": "attributes.volumeApiName", "op": "eq", "value": "gp3"}
+  ],
+  "dimensionMatchers": [
+    {"field": "unit", "op": "in", "values": ["GB-Mo", "GB-month"]}
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  }
+}
+```
+
+### 8.5 alias / 表記揺れ
+
+`GB-Mo` / `GB-month`等、同一意味であることを確認したサービス固有表記揺れはMappingへ記述する。
+
+1サービスの都合だけでgeneric normalizerを変更しない。
+
+### 8.6 Mapping検証
+
+作成したMappingについて、最低限次を確認する。
+
+- 0件にならない
+- 複数件にならない
+- 類似する別料金を拾っていない
+- selector変更で期待する料金へ切り替わる
+- unitがCalculation DSLと整合する
+- 対応regionで成立する
+- source overrideが他Componentのfilterに汚染されない
+
+---
+
+## 9. SKU / rateCode固定禁止
+
+`sku` / `rateCode`固定は原則禁止する。
+
+固定すべきなのはIDではなく、料金意味を識別する契約である。
+
+優先して使用する:
+
+- productFamily
+- operation
+- usageType
+- attributes.*
+- unit
+- beginRange / endRange
+
+ID固定が不可避な場合は理由を記録し、AWS側変更時はfail-closedとする。
+
+---
+
+## 10. Calculatorからの取り込み手順
 
 新サービスごとに最低限次を調査する。
 
-1. Calculatorの該当サービス画面とサービス固有URLを特定する
-2. URLを開いただけで完了とせず、SPAのJavaScript実行後にレンダリングされた実画面であることを確認する
-3. 全primary入力を列挙する
-4. Advancedを開き、追加項目を列挙する
-5. 条件変更によって新たに現れる入力を確認する
-6. 各入力の初期値と候補を確認する
-7. 購入プラン関連項目を識別し、On-Demand固定ポリシーに従い除外する
-8. Project共通項目との重複を除外する
-9. 残った項目をProfile / selector / usageInput / Componentへ分類する
-10. Public Price List上のSKU・attributes・dimensionsへ対応付ける
-11. Calculatorにはあるが安全に対応できない項目をLimitation/未対応として整理する
+1. Calculator URLを特定
+2. レンダリング済み画面を確認
+3. 全primary入力を列挙
+4. Advanced入力を列挙
+5. 条件変更で現れる入力を確認
+6. defaults / options / dependencies確認
+7. On-Demand対象外の購入プラン項目を除外
+8. Project共通項目を除外
+9. Profile / selector / usageInput / Componentへ分類
+10. 各ComponentのPublic Price List実データを取得
+11. 各Componentについてprice sourceを確定
+12. Product候補とattributesを調査
+13. On-Demand Dimensionを調査
+14. AWS公式docsと突き合わせ料金意味を確定
+15. Pricing Mappingを作成
+16. Mappingを実Price Listへ適用して一意解決を確認
+17. Limitation / ignored範囲を整理
+18. Golden Caseを作成
 
-画面を一度見ただけで項目一覧を確定してはならない。条件付き項目とAdvanced項目も確認する。
+**手順10〜16は省略不可**とする。
 
-Calculatorのレンダリング済み実画面を取得できない場合は、その事実を調査記録に明記し、公式資料で確認できた事実と、Calculator UIでは未確認の事項を区別する。
+「後段のgeneric semantic resolverが判定するはず」として意味未確定の候補を残してはならない。
 
 ---
 
-## 7. 新サービス追加の標準作業フロー
-
-ユーザーがサービス追加を依頼した場合、以下を1つの作業として連続実行する。
+## 11. 新サービス追加の標準作業フロー
 
 ```text
 ユーザー: 「AWS <Service>を追加して」
         |
         v
-[1] 最新main / AGENTS / 正本docsを確認
+[1] latest main / AGENTS / source-of-truth docs確認
         |
         v
-[2] calculator.aws 該当サービスURLを特定し、レンダリング済み実画面を調査
-    - primary
-    - advanced
-    - 条件付き項目
-    - defaults / dependencies
+[2] Calculator URL特定・レンダリング済みUI調査
         |
         v
-[3] AWS公式docs + Public Price Listを調査
+[3] primary / advanced / conditional input棚卸し
         |
         v
-[4] On-Demand固定ポリシーで採用項目を決定
+[4] On-Demand固定ポリシーで採用入力決定
         |
         v
-[5] Profile / Component / selector / usageInputを設計
+[5] Profile / Component / selector / usageInput設計
         |
         v
-[6] 必要ならnormalization / generic UIを拡張
+[6] AWS Public Price List実データ取得
         |
         v
-[7] services/<serviceId>/ を実装
+[7] Componentごとにprice source / Product / Dimension候補調査
         |
         v
-[8] unit / Definition / Price Data / Golden testを追加
+[8] AWS公式docsと突合して料金意味を確定
         |
         v
-[9] repository-level validation / E2Eを実行
+[9] ComponentごとのPricing Mapping作成
         |
         v
-[10] 失敗を原因分析して修正し、成功まで反復
+[10] Mappingを実データへ適用して一意解決検証
         |
         v
-[11] commit / push
+[11] Service Definition / UI実装
         |
         v
-[12] GitHub Actionsを確認
+[12] coverage / limitation整理
         |
         v
-[13] Price DB更新が必要なら生成・検証・publishを完了
+[13] unit / Mapping / Definition / Golden test追加
         |
         v
-[14] GitHub Pages deploy成功を確認
+[14] repository-level validation / E2E実行
         |
         v
-[15] 公開版で代表操作を確認して完了報告
+[15] failureを修正して成功まで反復
+        |
+        v
+[16] commit / push
+        |
+        v
+[17] GitHub Actions確認
+        |
+        v
+[18] Price DB build / validation / publish
+        |
+        v
+[19] Pages deploy確認
+        |
+        v
+[20] 公開版代表操作確認
 ```
 
 途中の通常の実装判断についてユーザーへ確認を求めない。
 
 ---
 
-## 8. Web版ChatGPT Projectでの標準依頼
+## 12. scheduled price updateで行うこと
 
-このrepositoryを扱うWeb版ChatGPTの「AWS見積もりツール」Projectでは、次のような短い依頼を新サービス追加の完全な実装依頼として解釈する。
+scheduled updateは意味推論を行わない。
+
+```text
+AWS Price List取得
+-> Pricing Mapping読込
+-> Mapping適用
+-> Product cardinality検証
+-> Dimension cardinality検証
+-> invariant / unit検証
+-> Price DB生成
+-> drift分類
+-> publish
+```
+
+Mappingが成立しない場合はpublishを停止して現在のactive buildを維持する。
+
+代表例:
+
+- 0 Product
+- 2+ Product
+- unit変更
+- 必須attribute消失
+- price source構造変更
+- 非tier複数paid dimension
+
+この失敗はgeneric resolverを修正して無理に通すのではなく、対象サービスのMapping再調査対象とする。
+
+---
+
+## 13. Coverage
+
+`coverage.json`は対象Serviceの意図的な料金範囲を記録する。
+
+- `mapped`: Pricing Mappingあり
+- `ignored`: 対象外。理由必須
+- `unresolved`: 実装途中のみ許可
+
+完成時は`unresolved = 0`。
+
+scheduled updateで未知カテゴリを検出しても、自動的に既存Componentへ分類しない。
+
+必要ならwarning / breaking driftとして出し、再オンボーディングでMappingを追加する。
+
+---
+
+## 14. Validation
+
+最低限次を検証する。
+
+### Layer 1: Schema
+
+- Definition schema
+- Pricing Mapping schema
+- required / enum / ID
+
+### Layer 2: Reference / Dependency
+
+- Profile / Component参照
+- Mapping -> Component参照
+- valueFrom
+- dependency DAG
+
+### Layer 3: Mapping / Price Data
+
+- price source存在
+- Product一意解決
+- Dimension一意解決
+- selector attribute存在
+- accepted unit
+- coverage
+- limitation
+
+### Layer 4: Golden / behavior
+
+- representative selector variation
+- usage variation
+- enabledWhen
+- billing transform boundary
+- resolved semantic attributes
+- Component amount
+- Service total
+
+新ServiceはERROR 0件を完成条件とする。
+
+---
+
+## 15. Golden Case
+
+Goldenは最終金額だけでなく解決経路を検証する。
+
+```text
+input
+-> Pricing Mapping
+-> price source
+-> matched Product semantics
+-> Dimension
+-> billing quantity
+-> Component amount
+-> Service total
+```
+
+SKU ID自体は原則normative assertionにしない。
+
+---
+
+## 16. Web版ChatGPT Projectでの標準依頼
+
+以下の短い依頼を完全なオンボーディング依頼として解釈する。
 
 ```text
 AWS Fargateを追加して
@@ -323,73 +587,89 @@ Amazon DynamoDBを追加して
 Lambdaの見積項目を公式Calculator相当にして
 ```
 
-特段の限定がなければ、この依頼は次を含む。
+明示的な限定がない限り、次を含む。
 
-- 現在のrepository確認
-- Calculator URLの自律的な特定
-- Calculatorのレンダリング済みUI調査
-- 公式AWS資料調査
-- Public Price List調査
-- 採用項目の自律決定
-- Definition/UI/必要なgeneric codeの実装
-- automated tests
+- current repository確認
+- Calculator URL特定
+- rendered UI調査
+- AWS公式資料調査
+- Public Price List実データ調査
+- Pricing Mapping作成
+- Definition / UI実装
+- tests
 - Price DB validation/build/publish
 - commit/push
-- Actions監視
+- Actions確認
 - Pages deploy確認
-- 失敗時の継続修正
+- failure時の継続修正
 
-「コードだけ書く」「Definitionだけ追加する」「調査結果だけ返す」という意味には解釈しない。
-
-ユーザーが明示的に「設計だけ」「調査だけ」「実装はしない」等と指定した場合だけ範囲を縮小する。
-
-Calculator URLは、ユーザーが提示した場合は利用するが、通常依頼において提示必須とはしない。実装担当が自力で特定可能な限り、自律的に調査を続行する。
+「Definitionだけ追加する」という意味には解釈しない。
 
 ---
 
-## 9. 人間へ質問してよい条件
+## 17. 人間へ質問してよい条件
 
 通常は追加質問なしで進める。
 
-質問して停止してよいのは、`docs/AUTONOMOUS_IMPLEMENTATION.md` のblocker条件に加え、次のような場合に限定する。
+停止してよいのは次のような場合に限定する。
 
-- AWS公式資料同士が明白に矛盾し、安全な解釈を決定できない
-- Calculator UIの意味が公式資料とPrice Listのどちらからも確定できない
-- 対象サービスのCalculator URLを実装担当だけでは特定できず、公式資料からも対象画面を確定できないため、ユーザーからURLまたは画面情報を得なければ調査を進められない
-- 既存DSLの意味論変更が不可避で、複数の非互換案から製品判断が必要
-- 外部権限不足によりcommit/publish/deployを続行できない
+- AWS公式資料同士が矛盾し、安全な料金意味を決定できない
+- Calculator / docs / Public Price Listのいずれからも意味を確定できない
+- Calculator URL / UIをどうしても特定できない
+- 既存DSLの意味変更が不可避で製品判断が必要
+- 外部権限不足でcommit/publish/deploy不能
 
-単にCalculatorがSPAである、単純なHTTP取得でフォームHTMLを取得できない、項目数が多い、Price Listが巨大、testが失敗した、UI実装が複雑、といった理由では停止しない。可能なブラウザ手段や公式資料による調査へ進む。
+次はblockerではない。
+
+- Price Listが巨大
+- 項目が多い
+- testが失敗した
+- Mappingが一度で一意にならない
+- CalculatorがSPA
+
+候補を調査し、Mappingを改善して続行する。
 
 ---
 
-## 10. 検証と完成条件
+## 18. 完成条件
 
 新サービス追加は最低限以下を満たして完了とする。
 
-- Calculatorの主要On-Demand見積項目が棚卸し済み
-- 対象Calculator URLが特定済み、または特定不能理由が記録済み
-- Calculator UIをレンダリング済み実画面で確認済み、または確認不能範囲が明示済み
-- 採用/除外理由が本仕様と整合している
-- Definition schema/reference/dependency validationがPASS
-- 対応regionのPrice DataからSKUが決定論的に解決できる
-- ambiguous / missing SKUをfallbackで隠していない
-- representative Golden casesがPASS
-- generic pricing coreの既存testを壊していない
-- 必要なUI操作がE2Eまたは同等の検証を通過
-- Price DB更新が必要な場合はvalidated buildがpublish済み
-- GitHub Actionsのrequired workflowが成功
-- GitHub Pages deployが成功
-- 公開版でサービスを追加・編集・再計算できる
+- Calculator主要On-Demand入力を棚卸し済み
+- Calculator URL特定済み、または不能理由記録済み
+- rendered UI確認済み、または未確認範囲明示済み
+- 各課金Componentが定義済み
+- 各Componentのprice sourceが確定済み
+- Public Price List実データを調査済み
+- 各ComponentにPricing Mappingが存在
+- Mappingが対応regionで一意に成立
+- 不要なSKU/rateCode固定がない
+- ambiguous / missing料金をfallbackで隠していない
+- coverageの`unresolved = 0`
+- representative Golden CaseがPASS
+- generic Pricing Coreの既存testを壊していない
+- required Actions成功
+- 必要ならvalidated Price DBがpublish済み
+- Pages deploy成功
+- 公開版で追加・編集・再計算できる
 
-Calculatorとの金額比較はsanity checkとして利用してよいが、Calculator表示額を料金正本にはしない。
+Calculatorとの金額比較はsanity checkとして使用してよいが、Calculator表示額を料金正本にはしない。
 
 ---
 
-## 11. 既存サービスの拡充
+## 19. 既存サービスの拡充 / 移行
 
-既存サービスについて「公式Calculatorより入力項目が不足している」と判明した場合も、新サービス追加と同じ規則を適用する。
+既存サービスについて入力不足、Mapping不足、generic semantic rule依存が見つかった場合も本手順を適用する。
 
-既存Definitionを最小実装のまま固定せず、Calculatorの現在UIを再調査し、On-Demand対象の主要項目を追加する。
+移行優先順位:
 
-既存Project JSONとの互換性が必要な変更では、default値・optional Component・migration/restore semanticsを確認し、既存保存データを不必要に破壊しない。
+1. 現在のComponentとPrice Queryを確認
+2. 実際に利用しているPublic Price List候補を列挙
+3. 各Componentの意味を再確認
+4. サービス固有Pricing Mappingへ固定
+5. generic semantic workaroundを不要にできるか確認
+6. Golden / Actionsで回帰確認
+
+既存generic ruleは、全対応サービスのMappingへ移行できたことを確認してから削除する。
+
+一括でPricing Coreを書き換えて全サービスを同時破壊する移行は避ける。
