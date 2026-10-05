@@ -1,6 +1,6 @@
 import { parentPort, workerData } from 'node:worker_threads';
 import { loadPackages, readJson } from './package-loader.js';
-import { validatePriceData } from './semantics.js';
+import { countPriceDataCases, validatePriceData } from './semantics.js';
 import { loadProductsMatching } from './product-chunks.js';
 import { matches } from '../../src/pricing/filter.js';
 import { accumulateInventory, finalizeInventory, validateCoverage } from './inventory.js';
@@ -85,16 +85,29 @@ async function runTask(task) {
     normalizersByCode[code] = normalizer;
     const loaded = await loadProductsMatching(workerData.directory, source, productPredicate(servicePackages, code), {
       onChunk: async (chunkData, chunk) => {
-        if (!validateProducts(chunkData)) {
+        if (!task.planOnly && !validateProducts(chunkData)) {
           issues.push(issue('SCHEMA_ERROR', `${code}/${region}/${chunk.path}: ${JSON.stringify(validateProducts.errors)}`));
         }
-        if (includeCoverage && code === serviceCode) accumulateInventory(coverageCategories, chunkData, common, normalizer);
+        if (!task.planOnly && includeCoverage && code === serviceCode) accumulateInventory(coverageCategories, chunkData, common, normalizer);
       }
     });
     data[`${code}/${region}`] = loaded.data;
     scannedProducts += loaded.stats.products;
     selectedProducts += loaded.stats.selectedProducts;
     chunks += loaded.stats.chunks;
+  }
+
+  if (task.planOnly) {
+    return {
+      taskId: task.taskId,
+      serviceCode,
+      region,
+      caseCount: countPriceDataCases(servicePackages, data),
+      scannedProducts,
+      selectedProducts,
+      chunks,
+      elapsedMs: Math.round(performance.now() - started)
+    };
   }
 
   if (includeCoverage) {
@@ -115,9 +128,14 @@ async function runTask(task) {
     {
       includeCoverage: false,
       caseBatchSize,
+      caseOffset: task.caseOffset ?? 0,
+      caseLimit: task.caseLimit ?? Number.POSITIVE_INFINITY,
+      includeDefaultChecks: task.includeDefaults ?? true,
+      includeStructuralChecks: task.includeDefaults ?? true,
       onCaseBatch: progress => parentPort.postMessage({
         type: 'progress',
         taskId: task.taskId,
+        batchId: task.batchId,
         serviceCode,
         region,
         processedCases: progress.processedCases,
@@ -141,8 +159,11 @@ async function runTask(task) {
 
   return {
     taskId: task.taskId,
+    batchId: task.batchId,
     serviceCode,
     region,
+    caseOffset: task.caseOffset ?? 0,
+    caseLimit: task.caseLimit ?? null,
     issues,
     coverage,
     branches: checked.resolutions.length,
@@ -166,6 +187,7 @@ parentPort.on('message', async message => {
     parentPort.postMessage({
       type: 'error',
       taskId: message.task.taskId,
+      batchId: message.task.batchId,
       serviceCode: message.task.serviceCode,
       region: message.task.region,
       error: error.stack ?? error.message
