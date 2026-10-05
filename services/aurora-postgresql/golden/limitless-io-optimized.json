@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "limitless-io-optimized",
+  "profileId": "limitless-io-optimized",
+  "project": {"region": "ap-northeast-1", "hoursPerMonth": "730"},
+  "selectors": {},
+  "components": {
+    "limitless-compute": {"enabled": true, "inputs": {"acuHours": "730"}},
+    "storage-io-optimized": {"enabled": true, "inputs": {"gbMonths": "20"}},
+    "backup-storage": {"enabled": false, "inputs": {"gbMonths": "0"}},
+    "snapshot-export": {"enabled": false, "inputs": {"processedGb": "0"}}
+  },
+  "expected": {
+    "limitless-compute": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "operation": "CreateDBInstance:0021"}, "unit": "ACU-Hr", "quantity": "730"},
+    "storage-io-optimized": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "volumeType": "IO Optimized-Aurora"}, "unit": "GB-Mo", "quantity": "20"}
+  },
+  "verification": {
+    "limitless-compute": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "operation": "CreateDBInstance:0021", "regionCode": "ap-northeast-1"}, "productFamily": "Limitless", "unit": "ACU-Hr", "quantity": "730"},
+    "storage-io-optimized": {"attributes": {"databaseEngine": "Aurora PostgreSQL", "volumeType": "IO Optimized-Aurora", "regionCode": "ap-northeast-1"}, "productFamily": "Database Storage", "unit": "GB-Mo", "quantity": "20"}
+  }
+}
