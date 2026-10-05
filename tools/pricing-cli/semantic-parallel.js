@@ -87,6 +87,16 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
       worker.heartbeat = null;
     };
 
+    const armProgressTimeout = worker => {
+      if (worker.taskTimeout) clearTimeout(worker.taskTimeout);
+      const task = worker.currentTask;
+      if (!task) return;
+      worker.lastProgressAt = Date.now();
+      worker.taskTimeout = setTimeout(() => {
+        fail(new Error(`Semantic validation task made no progress for ${taskTimeoutMs} ms for ${task.serviceCode}/${task.region}`));
+      }, taskTimeoutMs);
+    };
+
     const dispatch = worker => {
       if (settled) return;
       clearTaskTimers(worker);
@@ -99,13 +109,14 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
       const task = tasks[index];
       worker.currentTask = task;
       worker.taskStartedAt = Date.now();
+      worker.lastProgressAt = worker.taskStartedAt;
+      worker.processedCases = 0;
       console.log(`validate-price-data shard=${shardIndex}/${shardCount} task start: service=${task.serviceCode}, region=${task.region}, task=${index + 1}/${tasks.length}`);
-      worker.taskTimeout = setTimeout(() => {
-        fail(new Error(`Semantic validation task timed out after ${taskTimeoutMs} ms for ${task.serviceCode}/${task.region}`));
-      }, taskTimeoutMs);
+      armProgressTimeout(worker);
       worker.heartbeat = setInterval(() => {
         const elapsedSeconds = Math.round((Date.now() - worker.taskStartedAt) / 1000);
-        console.log(`validate-price-data shard=${shardIndex}/${shardCount} heartbeat: service=${task.serviceCode}, region=${task.region}, elapsed_s=${elapsedSeconds}`);
+        const idleSeconds = Math.round((Date.now() - worker.lastProgressAt) / 1000);
+        console.log(`validate-price-data shard=${shardIndex}/${shardCount} heartbeat: service=${task.serviceCode}, region=${task.region}, elapsed_s=${elapsedSeconds}, idle_s=${idleSeconds}, processed_cases=${worker.processedCases}`);
       }, heartbeatMs);
       worker.postMessage({ type: 'task', task });
     };
@@ -117,6 +128,12 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
         if (message.type === 'error') {
           clearTaskTimers(worker);
           fail(new Error(message.error));
+          return;
+        }
+        if (message.type === 'progress') {
+          worker.processedCases = message.processedCases;
+          armProgressTimeout(worker);
+          console.log(`validate-price-data shard=${shardIndex}/${shardCount} case batch: service=${message.serviceCode}, region=${message.region}, processed_cases=${message.processedCases}, batch_cases=${message.batchCases}, elapsed_ms=${message.elapsedMs}`);
           return;
         }
         if (message.type !== 'result') return;

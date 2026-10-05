@@ -93,7 +93,8 @@ export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeas
     for (const context of branches(profile.selectors, 'profile', base, profileProducts, profile.fixedFilters)) {
       for (const componentId of profile.components) {
         const component = pkg.components[componentId];
-        const componentProducts = productsByServiceCode[sourceCodeFor(pkg, componentId)] ?? [];
+        const componentCode = sourceCodeFor(pkg, componentId);
+        const componentProducts = productsByServiceCode[componentCode] ?? [];
         for (const componentContext of componentContexts(profile, component, context)) {
           const start = { ...componentContext, component: instance.components[componentId].inputs };
           const filters = [...profile.fixedFilters, ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
@@ -104,7 +105,16 @@ export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeas
             sample.components[componentId].inputs = branch.component;
             const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
             sample.components[componentId].enabled = true;
-            cases.push({ pkg: narrow, instance: sample, project: base.project, componentId, products: profileProducts, profileProducts, productsByServiceCode });
+            const scopedByCode = { ...productsByServiceCode, [componentCode]: scopedProducts };
+            cases.push({
+              pkg: narrow,
+              instance: sample,
+              project: base.project,
+              componentId,
+              products: componentCode === defaultCode ? scopedProducts : profileProducts,
+              profileProducts,
+              productsByServiceCode: scopedByCode
+            });
           }
         }
       }
@@ -113,8 +123,9 @@ export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeas
   return cases;
 }
 export function validatePriceData(packages, data, common, normalizers, options = {}) {
-  const { includeCoverage = true } = options;
+  const { includeCoverage = true, caseBatchSize = 250, onCaseBatch } = options;
   const issues = [], coverage = {}, resolutions = [];
+  let processedCases = 0;
   for (const pkg of packages) {
     const defaultCode = pkg.service.priceSource.serviceCode;
     const requiredCodes = [...new Set([defaultCode, ...Object.values(pkg.service.priceSource.componentOverrides ?? {})])];
@@ -139,11 +150,19 @@ export function validatePriceData(packages, data, common, normalizers, options =
       if (missing) continue;
       const cases = reachableCases(pkg, productsByServiceCode, source.region);
       if (!cases.length) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id, region: source.region }));
+      let batchCases = 0;
       for (const sample of cases) {
         const result = evaluateService(sample.pkg, sample.instance, sample.project, sample.products, sample.profileProducts, sample.productsByServiceCode);
         issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId: sample.instance.profileId, region: source.region })));
         resolutions.push({ serviceId: pkg.service.id, profileId: sample.instance.profileId, componentId: sample.componentId, instance: sample.instance, result, region: source.region, sourceKey });
+        processedCases += 1;
+        batchCases += 1;
+        if (batchCases >= caseBatchSize) {
+          onCaseBatch?.({ serviceId: pkg.service.id, region: source.region, processedCases, batchCases });
+          batchCases = 0;
+        }
       }
+      if (batchCases > 0) onCaseBatch?.({ serviceId: pkg.service.id, region: source.region, processedCases, batchCases });
       for (const profileId of pkg.service.profiles) {
         const result = evaluateService(pkg, defaults(pkg, profileId), { region: source.region, defaultRegion: source.region, hoursPerMonth: '730' }, productsByServiceCode[defaultCode], productsByServiceCode[defaultCode], productsByServiceCode);
         issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId, region: source.region })));
