@@ -1,6 +1,87 @@
 {
   "offerCode": "AmazonRDS",
   "products": {
+    "2JYBKJ6GVVRFG2QQ": {
+      "attributes": {
+        "currentGeneration": "Yes",
+        "databaseEngine": "Aurora PostgreSQL",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "21",
+        "instanceFamily": "General purpose",
+        "instanceType": "db.t4g.medium",
+        "instanceTypeFamily": "T4G",
+        "licenseModel": "No license required",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "4 GiB",
+        "networkPerformance": "Up to 5 Gigabit",
+        "normalizationSizeFactor": "2",
+        "operation": "CreateDBInstance:0021",
+        "physicalProcessor": "AWS Graviton2",
+        "processorArchitecture": "64-bit",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "EBS Only",
+        "unbundledLicensing": "FALSE",
+        "usagetype": "APN1-InstanceUsage:db.t4g.medium",
+        "vcpu": "2"
+      },
+      "productFamily": "Database Instance",
+      "sku": "2JYBKJ6GVVRFG2QQ"
+    },
+    "E7NHVJRED3R3PUY7": {
+      "attributes": {
+        "databaseEngine": "Aurora PostgreSQL",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "21",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxVolumeSize": "64 TB",
+        "minVolumeSize": "10 GB",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "SSD",
+        "usagetype": "APN1-Aurora:StorageUsage",
+        "volumeType": "General Purpose-Aurora"
+      },
+      "productFamily": "Database Storage",
+      "sku": "E7NHVJRED3R3PUY7"
+    },
+    "HSMQ9C43F35T8QMX": {
+      "attributes": {
+        "databaseEngine": "Aurora PostgreSQL",
+        "engineCode": "21",
+        "group": "Aurora I/O Operation",
+        "groupDescription": "Input/Output Operation",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "usagetype": "APN1-Aurora:StorageIOUsage"
+      },
+      "productFamily": "System Operation",
+      "sku": "HSMQ9C43F35T8QMX"
+    },
+    "NTURMTB2PWMA53X6": {
+      "attributes": {
+        "databaseEngine": "Aurora PostgreSQL",
+        "engineCode": "21",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "usagetype": "APN1-Aurora:ServerlessV2Usage"
+      },
+      "productFamily": "ServerlessV2",
+      "sku": "NTURMTB2PWMA53X6"
+    },
     "QSZ96MWJHP7X7JWV": {
       "attributes": {
         "currentGeneration": "Yes",
@@ -29,6 +110,70 @@
       },
       "productFamily": "Database Instance",
       "sku": "QSZ96MWJHP7X7JWV"
+    },
+    "QXQBYDD8C8FPKXAK": {
+      "attributes": {
+        "currentGeneration": "Yes",
+        "databaseEngine": "Aurora PostgreSQL",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "21",
+        "instanceFamily": "General purpose",
+        "instanceType": "db.t4g.medium",
+        "instanceTypeFamily": "T4G",
+        "licenseModel": "No license required",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "4 GiB",
+        "networkPerformance": "Up to 5 Gigabit",
+        "normalizationSizeFactor": "2.6",
+        "operation": "CreateDBInstance:0021",
+        "physicalProcessor": "AWS Graviton2",
+        "processorArchitecture": "64-bit",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "Aurora IO Optimization Mode",
+        "usagetype": "APN1-InstanceUsageIOOptimized:db.t4g.medium",
+        "vcpu": "2"
+      },
+      "productFamily": "Database Instance",
+      "sku": "QXQBYDD8C8FPKXAK"
+    },
+    "SPPB3CBHFB9RBKYQ": {
+      "attributes": {
+        "databaseEngine": "Aurora PostgreSQL",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "21",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxVolumeSize": "128 TB",
+        "minVolumeSize": "10 GB",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "SSD",
+        "usagetype": "APN1-Aurora:IO-OptimizedStorageUsage",
+        "volumeType": "IO Optimized-Aurora"
+      },
+      "productFamily": "Database Storage",
+      "sku": "SPPB3CBHFB9RBKYQ"
+    },
+    "UD3CK3ZCN4ZBB6CX": {
+      "attributes": {
+        "databaseEngine": "Aurora PostgreSQL",
+        "engineCode": "21",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "Aurora IO Optimization Mode",
+        "usagetype": "APN1-Aurora:ServerlessV2IOOptimizedUsage"
+      },
+      "productFamily": "ServerlessV2",
+      "sku": "UD3CK3ZCN4ZBB6CX"
     },
     "V3SXBAA72P93JFMB": {
       "attributes": {
@@ -103,6 +248,90 @@
   "publicationDate": "2026-10-01T06:02:30Z",
   "terms": {
     "OnDemand": {
+      "2JYBKJ6GVVRFG2QQ": {
+        "2JYBKJ6GVVRFG2QQ.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "2JYBKJ6GVVRFG2QQ.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$ 0.113 per RDS db.t4g.medium Single-AZ instance hour (or partial hour) running Aurora PostgreSQL",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.1130000000"
+              },
+              "rateCode": "2JYBKJ6GVVRFG2QQ.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "2JYBKJ6GVVRFG2QQ",
+          "termAttributes": {}
+        }
+      },
+      "E7NHVJRED3R3PUY7": {
+        "E7NHVJRED3R3PUY7.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "E7NHVJRED3R3PUY7.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.12 per GB-month of consumed storage for Aurora PostgreSQL",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.1200000000"
+              },
+              "rateCode": "E7NHVJRED3R3PUY7.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "E7NHVJRED3R3PUY7",
+          "termAttributes": {}
+        }
+      },
+      "HSMQ9C43F35T8QMX": {
+        "HSMQ9C43F35T8QMX.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "HSMQ9C43F35T8QMX.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.24 per 1 million I/O requests for Aurora PostgreSQL",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0000002400"
+              },
+              "rateCode": "HSMQ9C43F35T8QMX.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "IOs"
+            }
+          },
+          "sku": "HSMQ9C43F35T8QMX",
+          "termAttributes": {}
+        }
+      },
+      "NTURMTB2PWMA53X6": {
+        "NTURMTB2PWMA53X6.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "NTURMTB2PWMA53X6.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.15 per Aurora Capacity Unit hour running Aurora PostgreSQL Serverless v2",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.1500000000"
+              },
+              "rateCode": "NTURMTB2PWMA53X6.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "ACU-Hr"
+            }
+          },
+          "sku": "NTURMTB2PWMA53X6",
+          "termAttributes": {}
+        }
+      },
       "QSZ96MWJHP7X7JWV": {
         "QSZ96MWJHP7X7JWV.JRTCKXETXF": {
           "effectiveDate": "2026-09-01T00:00:00Z",
@@ -121,6 +350,69 @@
             }
           },
           "sku": "QSZ96MWJHP7X7JWV",
+          "termAttributes": {}
+        }
+      },
+      "QXQBYDD8C8FPKXAK": {
+        "QXQBYDD8C8FPKXAK.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "QXQBYDD8C8FPKXAK.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.147 per RDS db.t4g.medium IO-optimized Single-AZ instance hour (or partial hour) running Aurora PostgreSQL.",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.1470000000"
+              },
+              "rateCode": "QXQBYDD8C8FPKXAK.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "QXQBYDD8C8FPKXAK",
+          "termAttributes": {}
+        }
+      },
+      "SPPB3CBHFB9RBKYQ": {
+        "SPPB3CBHFB9RBKYQ.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "SPPB3CBHFB9RBKYQ.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.27 per GB-month of I/O-Optimized consumed storage (Aurora PostgreSQL)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2700000000"
+              },
+              "rateCode": "SPPB3CBHFB9RBKYQ.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "SPPB3CBHFB9RBKYQ",
+          "termAttributes": {}
+        }
+      },
+      "UD3CK3ZCN4ZBB6CX": {
+        "UD3CK3ZCN4ZBB6CX.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "UD3CK3ZCN4ZBB6CX.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.20 per Aurora Capacity Unit hour running Aurora PostgreSQL Serverless v2 IO-Optimized",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2000000000"
+              },
+              "rateCode": "UD3CK3ZCN4ZBB6CX.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "ACU-Hr"
+            }
+          },
+          "sku": "UD3CK3ZCN4ZBB6CX",
           "termAttributes": {}
         }
       },

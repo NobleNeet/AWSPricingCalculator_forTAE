@@ -1,0 +1,71 @@
+{
+  "attributes": {
+    "group": [
+      "AWS-Lambda-Duration",
+      "AWS-Lambda-Duration-ARM",
+      "AWS-Lambda-Duration-Provisioned",
+      "AWS-Lambda-Duration-Provisioned-ARM",
+      "AWS-Lambda-Processed-Bytes",
+      "AWS-Lambda-Processed-Bytes-ARM",
+      "AWS-Lambda-Provisioned-Concurrency",
+      "AWS-Lambda-Provisioned-Concurrency-ARM",
+      "AWS-Lambda-Requests",
+      "AWS-Lambda-SnapStart-Cache",
+      "AWS-Lambda-SnapStart-Restore",
+      "AWS-Lambda-Storage-Duration",
+      "AWS-Lambda-Storage-Duration-ARM"
+    ],
+    "groupDescription": [
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+      "Duration a snapshot is cached for, weighted by memory and disk assigned to function, measured in GB-S",
+      "Invocation call for a Lambda function",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+      "Processed bytes for a streamed response from a Lambda function invocation",
+      "Processed bytes for a streamed response from a Lambda function invocation for ARM",
+      "Snapshot GB restored, measured in GB of memory and disk assigned to function"
+    ],
+    "location": [
+      "Asia Pacific (Tokyo)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "ap-northeast-1"
+    ],
+    "servicecode": [
+      "AWSLambda"
+    ],
+    "servicename": [
+      "AWS Lambda"
+    ],
+    "usagetype": [
+      "APN1-Lambda-GB-Second",
+      "APN1-Lambda-GB-Second-ARM",
+      "APN1-Lambda-Provisioned-Concurrency",
+      "APN1-Lambda-Provisioned-Concurrency-ARM",
+      "APN1-Lambda-Provisioned-GB-Second",
+      "APN1-Lambda-Provisioned-GB-Second-ARM",
+      "APN1-Lambda-SnapStart-Cached-GB-S",
+      "APN1-Lambda-SnapStart-Restored-GB",
+      "APN1-Lambda-Storage-GB-Second",
+      "APN1-Lambda-Storage-GB-Second-ARM",
+      "APN1-Lambda-Streaming-Response-Processed-Bytes",
+      "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM",
+      "APN1-Request"
+    ]
+  },
+  "buildId": "20261005T003603Z-b3d3a849",
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}
