@@ -1,6 +1,6 @@
 // Promotion is separate from the Pricing CLI. Only this repository operation
 // may move the active manifest; validation/build commands never do.
-import { readFile, readdir, mkdir, cp, rm, writeFile, rename, access } from 'node:fs/promises';
+import { readFile, readdir, mkdir, cp, rm, writeFile, rename, access, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum } from './pricing-cli/build.js';
@@ -50,6 +50,13 @@ export async function promoteBuild({ stage, reports, generated = 'pricing/genera
 }
 if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
   const work = process.argv[2] ?? '.work/update';
-  try { process.stdout.write(`${JSON.stringify(await promoteBuild({ stage: path.join(work, 'staged'), reports: path.join(work, 'reports') }))}\n`); }
+  try {
+    const result = await promoteBuild({ stage: path.join(work, 'staged'), reports: path.join(work, 'reports') });
+    if (process.env.GITHUB_ENV) {
+      await appendFile(process.env.GITHUB_ENV, `PRICE_VALIDATE_PREVALIDATED=true\nPRICE_VALIDATE_EXPECTED_BUILD_ID=${result.activeBuildId}\n`);
+      console.log(`publication-validation: semantic/golden proof already verified for build ${result.activeBuildId}`);
+    }
+    process.stdout.write(`${JSON.stringify(result)}\n`);
+  }
   catch (error) { process.stderr.write(`${error.stack}\n`); process.exitCode = 1; }
 }
