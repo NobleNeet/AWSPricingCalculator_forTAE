@@ -9,7 +9,8 @@
     "provisioned-standard",
     "provisioned-io-optimized",
     "serverless-standard",
-    "serverless-io-optimized"
+    "serverless-io-optimized",
+    "limitless-io-optimized"
   ],
   "defaultProfile": "provisioned-standard"
 }
