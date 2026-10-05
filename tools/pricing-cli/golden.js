@@ -16,6 +16,16 @@ export function verifyRawPrice(raw, verification) {
   if (paid.length > 1 && !paid.every((d, i) => i === 0 || paid[i - 1].endRange === d.beginRange)) throw Error('Independent verifier: heterogeneous dimensions');
   return { unitPriceUsd: decimal(paid[0].pricePerUnit.USD).toString(), amountUsd: decimal(verification.quantity).times(paid[0].pricePerUnit.USD).toString() };
 }
+
+function checkResolvedPrice(actual, expected, verification, raw, path) {
+  if (actual.resolution.skuCount !== 1 || actual.billingUnit !== expected.unit || actual.billingQuantity !== expected.quantity) throw Error(`${path}: structure/quantity mismatch`);
+  for (const [keyName, value] of Object.entries(expected.attributes)) if (actual.resolution.product.attributes[keyName] !== value) throw Error(`${path}: semantic ${keyName} mismatch`);
+  for (const id of expected.limitations ?? []) if (!(actual.limitations ?? []).includes(id)) throw Error(`${path}: missing ${id}`);
+  const verified = verifyRawPrice(raw, verification);
+  if (actual.unitPriceUsd !== verified.unitPriceUsd || actual.amountUsd !== verified.amountUsd) throw Error(`${path}: independent price mismatch`);
+  return verified.amountUsd;
+}
+
 export function runGolden(packages, data, rawSources) {
   const issues = [], cases = [];
   for (const pkg of packages) {
@@ -30,17 +40,23 @@ export function runGolden(packages, data, rawSources) {
       try {
         if (result.amountUsd === null) throw Error(JSON.stringify(result.issues));
         const expectedAmounts = [];
+        const raw = rawSources[key] ?? rawSources[code];
+        if (!raw) throw Error(`Raw source missing for ${key}`);
         for (const [componentId, expected] of Object.entries(golden.expected)) {
           const actual = result.components[componentId];
           if (expected.disabled) { if (actual.state !== 'disabled') throw Error(`${componentId}: expected disabled`); continue; }
-          if (actual.resolution.skuCount !== 1 || actual.billingUnit !== expected.unit || actual.billingQuantity !== expected.quantity) throw Error(`${componentId}: structure/quantity mismatch`);
-          for (const [keyName, value] of Object.entries(expected.attributes)) if (actual.resolution.product.attributes[keyName] !== value) throw Error(`${componentId}: semantic ${keyName} mismatch`);
-          for (const id of expected.limitations ?? []) if (!actual.limitations.includes(id)) throw Error(`${componentId}: missing ${id}`);
-          const raw = rawSources[key] ?? rawSources[code];
-          if (!raw) throw Error(`Raw source missing for ${key}`);
-          const verified = verifyRawPrice(raw, golden.verification[componentId]);
-          if (actual.unitPriceUsd !== verified.unitPriceUsd || actual.amountUsd !== verified.amountUsd) throw Error(`${componentId}: independent price mismatch`);
-          expectedAmounts.push(verified.amountUsd);
+          for (const id of expected.limitations ?? []) if (!(actual.limitations ?? []).includes(id)) throw Error(`${componentId}: missing ${id}`);
+          if (expected.meters) {
+            const verification = golden.verification[componentId]?.meters ?? {};
+            for (const [meterId, meterExpected] of Object.entries(expected.meters)) {
+              const actualMeter = actual.meters?.[meterId];
+              if (!actualMeter) throw Error(`${componentId}/${meterId}: meter missing`);
+              if (meterExpected.disabled) { if (actualMeter.state !== 'disabled') throw Error(`${componentId}/${meterId}: expected disabled`); continue; }
+              expectedAmounts.push(checkResolvedPrice(actualMeter, meterExpected, verification[meterId], raw, `${componentId}/${meterId}`));
+            }
+          } else {
+            expectedAmounts.push(checkResolvedPrice(actual, expected, golden.verification[componentId], raw, componentId));
+          }
         }
         if (!decimal(result.amountUsd).eq(sum(expectedAmounts))) throw Error('Service total mismatch');
         cases.push({ serviceId: pkg.service.id, goldenId: golden.id, region, status: 'passed' });
