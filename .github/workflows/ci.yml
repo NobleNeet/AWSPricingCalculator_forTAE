@@ -4,6 +4,7 @@ on:
   pull_request:
 permissions:
   contents: read
+  actions: read
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -25,3 +26,86 @@ jobs:
         with:
           name: browser-e2e-report
           path: playwright-report
+
+  replay-finalize-139:
+    if: github.ref_name == 'fix/replay-finalize-139' || github.head_ref == 'fix/replay-finalize-139'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PRICE_VALIDATE_CONCURRENCY: '1'
+      PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
+      PRICE_VALIDATE_HEARTBEAT_MS: '30000'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 37279134050
+      - uses: actions/download-artifact@v4
+        with:
+          name: semantic-plan
+          path: .work/update
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 37279134050
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: semantic-batch-*
+          path: .work/update/batches
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 37279134050
+      - name: Revalidate affected AmazonRDS semantic batches
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const plan = JSON.parse(await readFile('.work/update/semantic-plan.json', 'utf8'));
+          const batches = plan.matrix.include.filter(batch => batch.service_code === 'AmazonRDS');
+          await writeFile('.work/update/rds-replay-batches.json', JSON.stringify(batches));
+          console.log(`replaying ${batches.length} AmazonRDS semantic batches`);
+          NODE
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          import { spawnSync } from 'node:child_process';
+          const batches = JSON.parse(await readFile('.work/update/rds-replay-batches.json', 'utf8'));
+          for (const batch of batches) {
+            console.log(`revalidate semantic batch ${batch.batch_id} ${batch.service_code}/${batch.region}`);
+            const result = spawnSync(process.execPath, [
+              'tools/pricing-cli/cli.js', 'validate-price-data',
+              '--input', '.work/update/candidate',
+              '--output', `.work/update/batches/batch-${batch.batch_id}.json`
+            ], {
+              stdio: 'inherit',
+              env: { ...process.env, PRICE_VALIDATE_BATCH_JSON: JSON.stringify(batch) }
+            });
+            if (result.status === 2 || result.status === null) process.exit(result.status ?? 2);
+          }
+          NODE
+      - name: Merge refreshed semantic report
+        run: |
+          node tools/merge-semantic-batches.js \
+            .work/update/semantic-plan.json \
+            .work/update/batches \
+            .work/update/reports/validate-price-data.json
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const report = JSON.parse(await readFile('.work/update/reports/validate-price-data.json', 'utf8'));
+          console.log(JSON.stringify({ status: report.status, summary: report.summary, issues: report.issues }, null, 2));
+          if (report.summary?.error) process.exit(1);
+          NODE
+      - name: Replay full finalize from run 139 candidate
+        env:
+          PRICE_FINALIZE_PREVALIDATED: 'false'
+        run: node tools/price-update-matrix.js finalize
