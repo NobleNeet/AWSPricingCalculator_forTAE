@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-capacity-arm",
+  "componentId": "provisioned-capacity-arm",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Provisioned-Concurrency-ARM" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "Lambda-GB-Second" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "Arm Provisioned Concurrency capacity meter."
+}
