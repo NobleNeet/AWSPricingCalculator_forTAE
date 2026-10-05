@@ -5,6 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { groupDriftTasks } from '../../tools/drift-batch-plan.js';
 import { mergeDriftBatches } from '../../tools/merge-drift-batches.js';
+import { driftTasks } from '../../tools/pricing-cli/drift-parallel.js';
+import { sourceScopedPackage } from '../../tools/pricing-cli/drift-task.js';
 
 async function writeJson(file, value) {
   await mkdir(path.dirname(file), { recursive: true });
@@ -17,6 +19,40 @@ test('drift task grouping keeps batches bounded by matrix limit', () => {
   assert.equal(grouped.batchTasks, 3);
   assert.equal(grouped.batches.length, 4);
   assert.deepEqual(grouped.batches.map(batch => batch.task_ids), [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10]]);
+});
+
+test('drift source scoping keeps only components billed by the current AWS price source', () => {
+  const pkg = {
+    service: { priceSource: { serviceCode: 'AmazonRDS', componentOverrides: {} } },
+    profiles: { limitless: { components: ['compute', 'database-insights-limitless'] } },
+    components: { compute: {}, 'database-insights-limitless': {} },
+    pricingMappings: {
+      insights: {
+        id: 'insights',
+        componentId: 'database-insights-limitless',
+        priceSource: { serviceCode: 'AmazonCloudWatch' }
+      }
+    }
+  };
+
+  assert.deepEqual(sourceScopedPackage(pkg, 'AmazonRDS').profiles.limitless.components, ['compute']);
+  assert.deepEqual(sourceScopedPackage(pkg, 'AmazonCloudWatch').profiles.limitless.components, ['database-insights-limitless']);
+});
+
+test('drift tasks include AWS price sources introduced only by pricing mappings', () => {
+  const packages = [{
+    service: { priceSource: { serviceCode: 'AmazonRDS', componentOverrides: {} } },
+    pricingMappings: {
+      insights: { priceSource: { serviceCode: 'AmazonCloudWatch' } }
+    }
+  }];
+  const candidate = {
+    'AmazonRDS/ap-northeast-1': { serviceCode: 'AmazonRDS', region: 'ap-northeast-1' },
+    'AmazonCloudWatch/ap-northeast-1': { serviceCode: 'AmazonCloudWatch', region: 'ap-northeast-1' }
+  };
+  const planned = driftTasks(packages, {}, candidate, {});
+  assert.equal(planned.missingService, false);
+  assert.deepEqual(planned.tasks.map(task => task.serviceCode).sort(), ['AmazonCloudWatch', 'AmazonRDS']);
 });
 
 test('drift batch merge requires every planned task exactly once', async () => {
