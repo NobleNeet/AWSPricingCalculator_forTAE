@@ -82,6 +82,9 @@ function componentContexts(profile, component, context) {
 function sourceCodeFor(pkg, componentId) {
   return pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
 }
+function profileFiltersForSource(pkg, profile, serviceCode) {
+  return serviceCode === pkg.service.priceSource.serviceCode ? profile.fixedFilters : [];
+}
 export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-northeast-1') {
   const defaultCode = pkg.service.priceSource.serviceCode;
   const profileProducts = productsByServiceCode[defaultCode] ?? [];
@@ -96,7 +99,7 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
         const componentProducts = productsByServiceCode[componentCode] ?? [];
         for (const componentContext of componentContexts(profile, component, context)) {
           const start = { ...componentContext, component: instance.components[componentId].inputs };
-          const filters = [...profile.fixedFilters, ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+          const filters = [...profileFiltersForSource(pkg, profile, componentCode), ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
           const scopedProducts = componentProducts.filter(product => matches(product, filters, componentContext));
           for (const branch of branches(component.selectors, 'component', start, scopedProducts, filters)) {
             const sample = structuredClone(instance);

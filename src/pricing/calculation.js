@@ -4,6 +4,7 @@ import { fail } from './issues.js';
 
 function canonicalUnit(unit) {
   if (unit === 'Requests') return 'Request';
+  if (unit === 'GB-month') return 'GB-Mo';
   return unit;
 }
 

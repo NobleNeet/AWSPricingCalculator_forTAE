@@ -33,8 +33,11 @@
     "dimensionFilters": [
       {
         "field": "unit",
-        "op": "eq",
-        "value": "GB-Mo"
+        "op": "in",
+        "value": [
+          "GB-Mo",
+          "GB-month"
+        ]
       }
     ]
   },

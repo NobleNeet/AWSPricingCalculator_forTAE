@@ -61,7 +61,8 @@ export function evaluateService(pkg, instance, project, products, profileProduct
         const sourceProducts = !serviceCode || serviceCode === defaultServiceCode ? products : productsByServiceCode[serviceCode];
         if (!Array.isArray(sourceProducts)) fail('PRICE_SOURCE_NOT_FOUND', `Price source missing for component ${id}: ${serviceCode}.`);
         context.component = saved.inputs ?? {};
-        const filters = [...profile.fixedFilters, ...definition.fixedFilters];
+        const profileFilters = serviceCode === defaultServiceCode ? profile.fixedFilters : [];
+        const filters = [...profileFilters, ...definition.fixedFilters];
         const broadFilters = [...filters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
         const scopedProducts = sourceProducts.filter(product => matches(product, broadFilters, context));
         context.component = activeInputs([...definition.selectors, ...definition.usageInputs], context.component, context, scopedProducts, broadFilters);
