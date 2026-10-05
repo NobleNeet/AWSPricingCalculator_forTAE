@@ -4,6 +4,7 @@ on:
   pull_request:
 permissions:
   contents: read
+  actions: read
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -25,3 +26,66 @@ jobs:
         with:
           name: browser-e2e-report
           path: playwright-report
+
+  replay-finalize-139:
+    if: github.ref_name == 'fix/replay-finalize-139' || github.head_ref == 'fix/replay-finalize-139'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-update-workspace
+          path: .work/update
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 37279134050
+      - uses: actions/download-artifact@v4
+        with:
+          name: semantic-report
+          path: .work/update/reports
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 37279134050
+      - uses: actions/download-artifact@v4
+        with:
+          name: golden-report
+          path: .work/update/reports
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 37279134050
+      - uses: actions/download-artifact@v4
+        with:
+          name: drift-report
+          path: .work/update/reports
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 37279134050
+      - name: Inspect Limitless Database Insights candidates
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const file = '.work/update/candidate/sources/AmazonCloudWatch/ap-northeast-1/products.json';
+          const data = JSON.parse(await readFile(file, 'utf8'));
+          const matches = data.products.filter(product => product.operation === 'Aurora-PostgreSQL:Limitless');
+          console.log(JSON.stringify(matches.map(product => ({
+            sku: product.sku,
+            productFamily: product.productFamily,
+            operation: product.operation,
+            usageType: product.usageType,
+            attributes: product.attributes,
+            dimensions: product.terms.onDemand.flatMap(term => term.priceDimensions.map(dimension => ({
+              unit: dimension.unit,
+              description: dimension.description,
+              price: dimension.pricePerUnit?.USD
+            })))
+          })), null, 2));
+          NODE
+      - name: Replay finalize from run 139 artifacts
+        env:
+          PRICE_FINALIZE_PREVALIDATED: 'true'
+        run: node tools/price-update-matrix.js finalize
