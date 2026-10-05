@@ -110,8 +110,8 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(0);
 
   const provisionedArchitecture = page.locator('#input-profile--provisionedArchitecture');
-  await expect(provisionedArchitecture.locator('option').nth(0)).toHaveText('x86');
-  await expect(provisionedArchitecture.locator('option').nth(1)).toHaveText('arm64');
+  await expect(provisionedArchitecture.locator('option').nth(0)).toHaveValue('AWS-Lambda-Provisioned-Concurrency');
+  await expect(provisionedArchitecture.locator('option').nth(1)).toHaveValue('AWS-Lambda-Provisioned-Concurrency-ARM');
   const provisioned = page.locator('#input-profile--provisionedConcurrency');
   await provisioned.fill('2');
   await provisioned.press('Tab');
