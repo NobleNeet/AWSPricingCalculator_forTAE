@@ -8,7 +8,8 @@
   "enabledWhen": {
     "all": [
       { "field": "profile.architecture", "op": "eq", "value": "AWS-Lambda-Duration" },
-      { "field": "profile.streamingRequestsPerMonth", "op": "neq", "value": "0" }
+      { "field": "profile.invokeMode", "op": "eq", "value": "response-stream" },
+      { "field": "profile.requestsPerMonth", "op": "neq", "value": "0" }
     ]
   },
   "priceQuery": {
@@ -24,7 +25,7 @@
     "model": "unit",
     "usage": {
       "sources": [
-        { "valueFrom": "profile.streamingRequestsPerMonth" },
+        { "valueFrom": "profile.requestsPerMonth" },
         {
           "value": {
             "type": "transformed",

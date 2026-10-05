@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-mixed",
+  "profileId": "standard",
+  "project": { "region": "ap-northeast-1", "hoursPerMonth": "730" },
+  "selectors": {
+    "architecture": "AWS-Lambda-Duration",
+    "ephemeralStorageMb": "512",
+    "requestsPerMonth": "0",
+    "averageDurationMs": "100",
+    "memoryMb": "128",
+    "provisionedArchitecture": "AWS-Lambda-Provisioned-Concurrency-ARM",
+    "provisionedConcurrency": "2",
+    "provisionedHoursPerMonth": "1",
+    "provisionedRequestsPerMonth": "1",
+    "provisionedAverageDurationMs": "100",
+    "provisionedMemoryMb": "1024",
+    "invokeMode": "buffered",
+    "averageStreamedResponseMb": "6"
+  },
+  "components": {
+    "provisioned-requests": { "enabled": true, "inputs": {} },
+    "provisioned-duration-x86": { "enabled": false, "inputs": {} },
+    "provisioned-duration-arm": { "enabled": true, "inputs": {} },
+    "provisioned-capacity-x86": { "enabled": false, "inputs": {} },
+    "provisioned-capacity-arm": { "enabled": true, "inputs": {} }
+  },
+  "expected": {
+    "provisioned-requests": {
+      "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" },
+      "unit": "Request",
+      "quantity": "1",
+      "limitations": ["account-specific-discount"]
+    },
+    "provisioned-duration-arm": {
+      "attributes": { "group": "AWS-Lambda-Duration-Provisioned-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-GB-Second-ARM", "operation": "" },
+      "unit": "Lambda-GB-Second",
+      "quantity": "0.1",
+      "limitations": ["account-specific-discount", "aggregate-billing"]
+    },
+    "provisioned-capacity-arm": {
+      "attributes": { "group": "AWS-Lambda-Provisioned-Concurrency-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-Concurrency-ARM", "operation": "" },
+      "unit": "Lambda-GB-Second",
+      "quantity": "7200",
+      "limitations": ["account-specific-discount", "aggregate-billing"]
+    }
+  },
+  "verification": {
+    "provisioned-requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "productFamily": "Serverless", "unit": "Request", "quantity": "1" },
+    "provisioned-duration-arm": { "attributes": { "group": "AWS-Lambda-Duration-Provisioned-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-GB-Second-ARM", "operation": "" }, "productFamily": "Serverless", "unit": "Lambda-GB-Second", "quantity": "0.1" },
+    "provisioned-capacity-arm": { "attributes": { "group": "AWS-Lambda-Provisioned-Concurrency-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-Concurrency-ARM", "operation": "" }, "productFamily": "Serverless", "unit": "Lambda-GB-Second", "quantity": "7200" }
+  }
+}

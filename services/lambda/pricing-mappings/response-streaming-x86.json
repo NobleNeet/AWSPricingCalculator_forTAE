@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "response-streaming-x86",
+  "componentId": "response-streaming-x86",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Processed-Bytes" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "Processed-Gigabytes" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "x86 HTTP response streaming processed-data meter; buffered invoke mode disables this component and streaming bills only response data above the included first 6 MB per request."
+}

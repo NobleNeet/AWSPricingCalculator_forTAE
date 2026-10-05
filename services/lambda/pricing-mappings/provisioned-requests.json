@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-requests",
+  "componentId": "provisioned-requests",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Requests" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "in", "value": ["Request", "Requests"] }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "Invocation request meter used for requests executed with Provisioned Concurrency; the request price item is the standard AWS-Lambda-Requests meter."
+}

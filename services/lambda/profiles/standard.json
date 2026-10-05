@@ -3,21 +3,137 @@
   "id": "standard",
   "label": "Lambda Functions",
   "selectors": [
-    { "id": "architecture", "label": "Architecture", "type": "select", "default": "AWS-Lambda-Duration", "options": { "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"] } },
-    { "id": "requestsPerMonth", "label": "Requests / month", "type": "number", "default": "1000000", "minimum": "0", "ui": { "help": "Requests executed without Provisioned Concurrency. Free Tier is intentionally not subtracted by this calculator." } },
-    { "id": "averageDurationMs", "label": "Average duration / request (ms)", "type": "number", "default": "100", "minimum": "0", "maximum": "900000", "ui": { "help": "Average billed execution duration in milliseconds." } },
-    { "id": "memoryMb", "label": "Memory (MB)", "type": "number", "default": "128", "minimum": "128", "maximum": "10240", "ui": { "help": "Configured function memory, from 128 MB through 10,240 MB." } },
-    { "id": "ephemeralStorageMb", "label": "Ephemeral storage (MB)", "type": "number", "default": "512", "minimum": "512", "maximum": "10240", "ui": { "help": "Total configured /tmp storage. Lambda includes 512 MB at no additional charge; only storage above 512 MB is billed." } },
-    { "id": "provisionedConcurrency", "label": "Provisioned concurrency", "type": "number", "default": "0", "minimum": "0", "ui": { "advanced": true, "help": "Number of pre-initialized execution environments. SnapStart and Provisioned Concurrency cannot be enabled on the same function version." } },
-    { "id": "provisionedHoursPerMonth", "label": "Provisioned concurrency enabled hours / month", "type": "number", "default": "0", "minimum": "0", "maximum": "730", "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" }, "ui": { "advanced": true, "help": "Total billed time that Provisioned Concurrency is enabled during the month. Enter aggregate billed hours after AWS minimum-period rounding." } },
-    { "id": "provisionedRequestsPerMonth", "label": "Requests using Provisioned Concurrency / month", "type": "number", "default": "0", "minimum": "0", "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" }, "ui": { "advanced": true, "help": "Requests handled while Provisioned Concurrency is enabled. Spillover requests belong in the normal request input." } },
-    { "id": "provisionedAverageDurationMs", "label": "Provisioned average duration / request (ms)", "type": "number", "default": "100", "minimum": "0", "maximum": "900000", "enabledWhen": { "field": "profile.provisionedRequestsPerMonth", "op": "neq", "value": "0" }, "ui": { "advanced": true, "help": "Average billed duration for requests executed with Provisioned Concurrency." } },
-    { "id": "streamingRequestsPerMonth", "label": "HTTP response streaming requests / month", "type": "number", "default": "0", "minimum": "0", "ui": { "advanced": true, "help": "Number of invocations that return an HTTP response stream. These requests remain included in the normal request and duration inputs." } },
-    { "id": "averageStreamedResponseMb", "label": "Average streamed response size / request (MB)", "type": "number", "default": "6", "minimum": "0", "maximum": "200", "enabledWhen": { "field": "profile.streamingRequestsPerMonth", "op": "neq", "value": "0" }, "ui": { "advanced": true, "help": "Only the portion above the first 6 MB written to each streamed response is charged as response-stream data." } },
-    { "id": "snapStartMode", "label": "SnapStart pricing mode", "type": "select", "default": "disabled", "enabledWhen": { "all": [ { "field": "profile.provisionedConcurrency", "op": "eq", "value": "0" }, { "field": "profile.ephemeralStorageMb", "op": "eq", "value": "512" } ] }, "options": { "values": ["disabled", "java-managed-no-charge", "billable-runtime"] }, "ui": { "advanced": true, "help": "SnapStart cannot be combined with Provisioned Concurrency or ephemeral storage above 512 MB. Supported Java managed runtimes do not incur the SnapStart cache/restore surcharge." } },
-    { "id": "snapStartCachedVersionHours", "label": "SnapStart cached version-hours / month", "type": "number", "default": "3", "minimum": "3", "enabledWhen": { "field": "profile.snapStartMode", "op": "eq", "value": "billable-runtime" }, "ui": { "advanced": true, "help": "Sum billed cache time across active published SnapStart versions. Each version is billed for at least three hours." } },
-    { "id": "snapStartRestoresPerMonth", "label": "SnapStart restores / month", "type": "number", "default": "0", "minimum": "0", "enabledWhen": { "field": "profile.snapStartMode", "op": "eq", "value": "billable-runtime" }, "ui": { "advanced": true, "help": "Number of execution-environment restores from the cached snapshot during the month." } }
+    {
+      "id": "architecture",
+      "label": "Architecture",
+      "type": "select",
+      "default": "AWS-Lambda-Duration",
+      "options": { "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"] },
+      "ui": { "help": "Processor architecture for the Lambda Functions section. Pricing is resolved from the corresponding x86 or Arm Public Price List meter." }
+    },
+    {
+      "id": "ephemeralStorageMb",
+      "label": "Amount of ephemeral storage allocated (MB)",
+      "type": "number",
+      "default": "512",
+      "minimum": "512",
+      "maximum": "10240",
+      "ui": { "help": "Configured /tmp storage. The first 512 MB is included; only storage above 512 MB is billed." }
+    },
+    {
+      "id": "requestsPerMonth",
+      "label": "Number of requests / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": { "help": "Monthly Lambda function requests. Free Tier allowances are intentionally not subtracted by this calculator." }
+    },
+    {
+      "id": "averageDurationMs",
+      "label": "Duration of each request (ms)",
+      "type": "number",
+      "default": "100",
+      "minimum": "0",
+      "maximum": "900000",
+      "ui": { "help": "Average billed execution duration in milliseconds." }
+    },
+    {
+      "id": "memoryMb",
+      "label": "Amount of memory allocated (MB)",
+      "type": "number",
+      "default": "128",
+      "minimum": "128",
+      "maximum": "10240",
+      "ui": { "help": "Configured function memory, from 128 MB through 10,240 MB." }
+    },
+    {
+      "id": "provisionedArchitecture",
+      "label": "Provisioned Concurrency architecture",
+      "type": "select",
+      "default": "AWS-Lambda-Provisioned-Concurrency",
+      "options": { "values": ["AWS-Lambda-Provisioned-Concurrency", "AWS-Lambda-Provisioned-Concurrency-ARM"] },
+      "ui": { "advanced": true, "help": "Processor architecture for the Provisioned Concurrency section. This is independent from the Lambda Functions section in the AWS Pricing Calculator." }
+    },
+    {
+      "id": "provisionedConcurrency",
+      "label": "Provisioned concurrency",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": { "advanced": true, "help": "Number of pre-initialized execution environments." }
+    },
+    {
+      "id": "provisionedHoursPerMonth",
+      "label": "Provisioned Concurrency enabled hours / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "maximum": "730",
+      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
+      "ui": { "advanced": true, "help": "Total time Provisioned Concurrency is enabled during the month. AWS bills the enabled period rounded up to the nearest five minutes." }
+    },
+    {
+      "id": "provisionedRequestsPerMonth",
+      "label": "Number of provisioned requests / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
+      "ui": { "advanced": true, "help": "Requests executed while Provisioned Concurrency is enabled. The Lambda Free Tier does not apply to these functions." }
+    },
+    {
+      "id": "provisionedAverageDurationMs",
+      "label": "Duration of each provisioned request (ms)",
+      "type": "number",
+      "default": "100",
+      "minimum": "0",
+      "maximum": "900000",
+      "enabledWhen": { "field": "profile.provisionedRequestsPerMonth", "op": "neq", "value": "0" },
+      "ui": { "advanced": true, "help": "Average billed duration for requests executed with Provisioned Concurrency." }
+    },
+    {
+      "id": "provisionedMemoryMb",
+      "label": "Provisioned Concurrency memory allocated (MB)",
+      "type": "number",
+      "default": "128",
+      "minimum": "128",
+      "maximum": "10240",
+      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
+      "ui": { "advanced": true, "help": "Memory allocation used by the Provisioned Concurrency estimate." }
+    },
+    {
+      "id": "invokeMode",
+      "label": "Invoke mode",
+      "type": "select",
+      "default": "buffered",
+      "options": { "values": ["buffered", "response-stream"] },
+      "ui": { "help": "Buffered responses have no additional response-streaming charge. Choose response-stream to estimate HTTP response streaming processed bytes." }
+    },
+    {
+      "id": "averageStreamedResponseMb",
+      "label": "Average streamed response size / request (MB)",
+      "type": "number",
+      "default": "6",
+      "minimum": "0",
+      "maximum": "200",
+      "enabledWhen": { "field": "profile.invokeMode", "op": "eq", "value": "response-stream" },
+      "ui": { "help": "For response streaming, the first 6 MB written per request is not charged by the processed-bytes meter." }
+    }
   ],
-  "fixedFilters": [ { "field": "productFamily", "op": "eq", "value": "Serverless" } ],
-  "components": ["requests", "duration", "ephemeral-storage-x86", "ephemeral-storage-arm", "provisioned-requests", "provisioned-duration-x86", "provisioned-duration-arm", "provisioned-capacity-x86", "provisioned-capacity-arm", "provisioned-ephemeral-storage-x86", "provisioned-ephemeral-storage-arm", "response-streaming-x86", "response-streaming-arm", "snapstart-cache", "snapstart-restore"]
+  "fixedFilters": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" }
+  ],
+  "components": [
+    "requests",
+    "duration",
+    "ephemeral-storage-x86",
+    "ephemeral-storage-arm",
+    "provisioned-requests",
+    "provisioned-duration-x86",
+    "provisioned-duration-arm",
+    "provisioned-capacity-x86",
+    "provisioned-capacity-arm",
+    "response-streaming-x86",
+    "response-streaming-arm"
+  ]
 }

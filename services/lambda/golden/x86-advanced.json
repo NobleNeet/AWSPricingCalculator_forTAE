@@ -5,23 +5,31 @@
   "project": { "region": "ap-northeast-1", "hoursPerMonth": "730" },
   "selectors": {
     "architecture": "AWS-Lambda-Duration",
+    "ephemeralStorageMb": "1024",
     "requestsPerMonth": "1000",
     "averageDurationMs": "100",
     "memoryMb": "128",
-    "ephemeralStorageMb": "1024",
+    "provisionedArchitecture": "AWS-Lambda-Provisioned-Concurrency",
     "provisionedConcurrency": "2",
     "provisionedHoursPerMonth": "10",
     "provisionedRequestsPerMonth": "1000",
-    "provisionedAverageDurationMs": "100"
+    "provisionedAverageDurationMs": "100",
+    "provisionedMemoryMb": "128",
+    "invokeMode": "buffered",
+    "averageStreamedResponseMb": "6"
   },
   "components": {
     "requests": { "enabled": true, "inputs": {} },
     "duration": { "enabled": true, "inputs": {} },
     "ephemeral-storage-x86": { "enabled": true, "inputs": {} },
+    "ephemeral-storage-arm": { "enabled": false, "inputs": {} },
     "provisioned-requests": { "enabled": true, "inputs": {} },
     "provisioned-duration-x86": { "enabled": true, "inputs": {} },
+    "provisioned-duration-arm": { "enabled": false, "inputs": {} },
     "provisioned-capacity-x86": { "enabled": true, "inputs": {} },
-    "provisioned-ephemeral-storage-x86": { "enabled": true, "inputs": {} }
+    "provisioned-capacity-arm": { "enabled": false, "inputs": {} },
+    "response-streaming-x86": { "enabled": false, "inputs": {} },
+    "response-streaming-arm": { "enabled": false, "inputs": {} }
   },
   "expected": {
     "requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "unit": "Request", "quantity": "1000", "limitations": ["free-tier", "account-specific-discount"] },
@@ -29,8 +37,7 @@
     "ephemeral-storage-x86": { "attributes": { "group": "AWS-Lambda-Storage-Duration", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Storage-GB-Second", "operation": "" }, "unit": "GB-Seconds", "quantity": "50", "limitations": ["account-specific-discount", "aggregate-billing"] },
     "provisioned-requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "unit": "Request", "quantity": "1000", "limitations": ["account-specific-discount"] },
     "provisioned-duration-x86": { "attributes": { "group": "AWS-Lambda-Duration-Provisioned", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-GB-Second", "operation": "" }, "unit": "Lambda-GB-Second", "quantity": "12.5", "limitations": ["account-specific-discount", "aggregate-billing"] },
-    "provisioned-capacity-x86": { "attributes": { "group": "AWS-Lambda-Provisioned-Concurrency", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-Concurrency", "operation": "" }, "unit": "Lambda-GB-Second", "quantity": "9000", "limitations": ["account-specific-discount", "aggregate-billing"] },
-    "provisioned-ephemeral-storage-x86": { "attributes": { "group": "AWS-Lambda-Storage-Duration", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Storage-GB-Second", "operation": "" }, "unit": "GB-Seconds", "quantity": "50", "limitations": ["account-specific-discount", "aggregate-billing"] }
+    "provisioned-capacity-x86": { "attributes": { "group": "AWS-Lambda-Provisioned-Concurrency", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-Concurrency", "operation": "" }, "unit": "Lambda-GB-Second", "quantity": "9000", "limitations": ["account-specific-discount", "aggregate-billing"] }
   },
   "verification": {
     "requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "productFamily": "Serverless", "unit": "Request", "quantity": "1000" },
@@ -38,7 +45,6 @@
     "ephemeral-storage-x86": { "attributes": { "group": "AWS-Lambda-Storage-Duration", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Storage-GB-Second", "operation": "" }, "productFamily": "Serverless", "unit": "GB-Seconds", "quantity": "50" },
     "provisioned-requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "productFamily": "Serverless", "unit": "Request", "quantity": "1000" },
     "provisioned-duration-x86": { "attributes": { "group": "AWS-Lambda-Duration-Provisioned", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-GB-Second", "operation": "" }, "productFamily": "Serverless", "unit": "Lambda-GB-Second", "quantity": "12.5" },
-    "provisioned-capacity-x86": { "attributes": { "group": "AWS-Lambda-Provisioned-Concurrency", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-Concurrency", "operation": "" }, "productFamily": "Serverless", "unit": "Lambda-GB-Second", "quantity": "9000" },
-    "provisioned-ephemeral-storage-x86": { "attributes": { "group": "AWS-Lambda-Storage-Duration", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Storage-GB-Second", "operation": "" }, "productFamily": "Serverless", "unit": "GB-Seconds", "quantity": "50" }
+    "provisioned-capacity-x86": { "attributes": { "group": "AWS-Lambda-Provisioned-Concurrency", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Provisioned-Concurrency", "operation": "" }, "productFamily": "Serverless", "unit": "Lambda-GB-Second", "quantity": "9000" }
   }
 }

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "ephemeral-storage-x86",
+  "componentId": "ephemeral-storage-x86",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Storage-Duration" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "GB-Seconds" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "x86 Lambda ephemeral storage duration above the included 512 MB."
+}

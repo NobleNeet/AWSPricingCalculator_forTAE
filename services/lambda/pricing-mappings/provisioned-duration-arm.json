@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-duration-arm",
+  "componentId": "provisioned-duration-arm",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Duration-Provisioned-ARM" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "Lambda-GB-Second" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "Arm Lambda execution duration while Provisioned Concurrency is enabled."
+}

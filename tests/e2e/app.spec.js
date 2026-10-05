@@ -62,7 +62,7 @@ test('create, real EC2, multiple services, duplicate, replace, usage, row add an
   await page.screenshot({ path: 'test-results/workspace.png', fullPage: true });
 });
 
-test('Lambda drawer follows Calculator-style inputs and automatic pricing dependencies', async ({ page }) => {
+test('Lambda drawer follows current Calculator inputs and automatic pricing dependencies', async ({ page }) => {
   await page.goto('./');
   await expect(page.locator('#price-meta')).toContainText(activeBuildId);
   await page.getByRole('button', { name: '最初の構成案を作る' }).click();
@@ -74,52 +74,66 @@ test('Lambda drawer follows Calculator-style inputs and automatic pricing depend
   await expect(architecture.locator('option').nth(0)).toHaveText('x86');
   await expect(architecture.locator('option').nth(1)).toHaveText('arm64');
   await expect(page.locator('#input-profile--ephemeralStorageMb')).toHaveValue('512');
+  await expect(page.locator('#input-profile--requestsPerMonth')).toHaveValue('0');
+  await expect(page.locator('#input-profile--averageDurationMs')).toHaveValue('100');
+  await expect(page.locator('#input-profile--memoryMb')).toHaveValue('128');
+  await expect(page.locator('#input-profile--invokeMode')).toHaveValue('buffered');
+  await expect(page.locator('#input-profile--averageStreamedResponseMb')).toBeDisabled();
   await expect(page.locator('#service-drawer [data-toggle]')).toHaveCount(0);
   await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(0);
 
   const advanced = page.locator('#drawer-content > details').filter({ hasText: 'Advanced' }).first();
-  await advanced.locator('summary').click();
-  await expect(advanced).toHaveAttribute('open', '');
+  const ensureAdvancedOpen = async () => {
+    if ((await advanced.getAttribute('open')) === null) await advanced.locator('summary').click();
+    await expect(advanced).toHaveAttribute('open', '');
+  };
+  await ensureAdvancedOpen();
 
   const storage = page.locator('#input-profile--ephemeralStorageMb');
   await storage.fill('1024');
   await storage.press('Tab');
-  await expect(advanced).toHaveAttribute('open', '');
+  await ensureAdvancedOpen();
   await expect(page.locator('fieldset:has-text("On-demand ephemeral storage"):visible')).toHaveCount(1);
 
-  const streamingRequests = page.locator('#input-profile--streamingRequestsPerMonth');
-  await streamingRequests.fill('1000');
-  await streamingRequests.press('Tab');
-  await expect(advanced).toHaveAttribute('open', '');
+  const requests = page.locator('#input-profile--requestsPerMonth');
+  await requests.fill('1000');
+  await requests.press('Tab');
+  const invokeMode = page.locator('#input-profile--invokeMode');
+  await invokeMode.selectOption('response-stream');
   await expect(page.locator('#input-profile--averageStreamedResponseMb')).toBeEnabled();
   await page.locator('#input-profile--averageStreamedResponseMb').fill('7');
   await page.locator('#input-profile--averageStreamedResponseMb').press('Tab');
+  await ensureAdvancedOpen();
   await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(1);
+  await invokeMode.selectOption('buffered');
+  await expect(page.locator('#input-profile--averageStreamedResponseMb')).toBeDisabled();
+  await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(0);
 
+  const provisionedArchitecture = page.locator('#input-profile--provisionedArchitecture');
+  await expect(provisionedArchitecture.locator('option').nth(0)).toHaveAttribute('value', 'AWS-Lambda-Provisioned-Concurrency');
+  await expect(provisionedArchitecture.locator('option').nth(1)).toHaveAttribute('value', 'AWS-Lambda-Provisioned-Concurrency-ARM');
   const provisioned = page.locator('#input-profile--provisionedConcurrency');
   await provisioned.fill('2');
   await provisioned.press('Tab');
-  await expect(advanced).toHaveAttribute('open', '');
+  await ensureAdvancedOpen();
   await expect(page.locator('#input-profile--provisionedHoursPerMonth')).toBeEnabled();
   await expect(page.locator('#input-profile--provisionedRequestsPerMonth')).toBeEnabled();
+  await expect(page.locator('#input-profile--provisionedMemoryMb')).toBeEnabled();
   await page.locator('#input-profile--provisionedHoursPerMonth').fill('10');
   await page.locator('#input-profile--provisionedHoursPerMonth').press('Tab');
   await page.locator('#input-profile--provisionedRequestsPerMonth').fill('1000');
   await page.locator('#input-profile--provisionedRequestsPerMonth').press('Tab');
+  await ensureAdvancedOpen();
+  await expect(page.locator('#input-profile--provisionedAverageDurationMs')).toBeEnabled();
   await expect(page.locator('fieldset:has-text("Provisioned concurrency capacity"):visible')).toHaveCount(1);
   await expect(page.locator('fieldset:has-text("Provisioned concurrency requests"):visible')).toHaveCount(1);
-  await expect(page.locator('#input-profile--snapStartMode')).toBeDisabled();
 
   await provisioned.fill('0');
   await provisioned.press('Tab');
-  await storage.fill('512');
-  await storage.press('Tab');
-  await expect(page.locator('#input-profile--snapStartMode')).toBeEnabled();
-  await page.locator('#input-profile--snapStartMode').selectOption('billable-runtime');
-  await expect(page.locator('#input-profile--snapStartCachedVersionHours')).toBeEnabled();
-  await expect(page.locator('#input-profile--snapStartRestoresPerMonth')).toBeEnabled();
-  await expect(page.locator('fieldset:has-text("SnapStart snapshot cache"):visible')).toHaveCount(1);
-  await expect(page.locator('fieldset:has-text("SnapStart restores"):visible')).toHaveCount(1);
+  await expect(page.locator('#input-profile--provisionedHoursPerMonth')).toBeDisabled();
+  await expect(page.locator('#input-profile--provisionedRequestsPerMonth')).toBeDisabled();
+  await expect(page.locator('#input-profile--provisionedMemoryMb')).toBeDisabled();
+  await expect(page.locator('#input-profile--snapStartMode')).toHaveCount(0);
 });
 
 test('mobile Drawer stays usable at narrow viewport', async ({ page }) => {
