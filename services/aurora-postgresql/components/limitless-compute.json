@@ -31,5 +31,5 @@
     "transforms": [],
     "outputUnit": "ACU-Hr"
   },
-  "limitations": ["free-tier", "account-specific-discount", "aggregate-billing", "network-transfer", "database-insights"]
+  "limitations": ["free-tier", "account-specific-discount", "aggregate-billing", "network-transfer"]
 }
