@@ -85,7 +85,7 @@ async function runTask(task) {
     normalizersByCode[code] = normalizer;
     const loaded = await loadProductsMatching(workerData.directory, source, productPredicate(servicePackages, code), {
       onChunk: async (chunkData, chunk) => {
-        if (!task.planOnly && !validateProducts(chunkData)) {
+        if (!task.planOnly && (task.includeDefaults ?? true) && !validateProducts(chunkData)) {
           issues.push(issue('SCHEMA_ERROR', `${code}/${region}/${chunk.path}: ${JSON.stringify(validateProducts.errors)}`));
         }
         if (!task.planOnly && includeCoverage && code === serviceCode) accumulateInventory(coverageCategories, chunkData, common, normalizer);
