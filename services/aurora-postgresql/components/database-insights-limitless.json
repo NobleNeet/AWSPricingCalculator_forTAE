@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "database-insights-limitless",
+  "label": "Aurora Limitless Database - Database Insights",
+  "optional": true,
+  "defaultEnabled": false,
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "monitoredAcus",
+      "label": "Database Insights monitored Aurora Capacity Units (ACUs)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "Enter the Aurora Capacity Units monitored by Database Insights Advanced. Standard mode with the default 7-day history has no additional Database Insights charge."
+      }
+    },
+    {
+      "id": "hours",
+      "label": "Hours / month",
+      "type": "number",
+      "default": "730",
+      "minimum": "0",
+      "ui": {"advanced": true}
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {"field": "operation", "op": "eq", "value": "Aurora-PostgreSQL:Limitless"}
+    ],
+    "dimensionFilters": [
+      {"field": "unit", "op": "eq", "value": "ACU-Hours"}
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {"valueFrom": "component.monitoredAcus"},
+        {"valueFrom": "component.hours"}
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "ACU-Hours"
+  },
+  "limitations": ["account-specific-discount"]
+}
