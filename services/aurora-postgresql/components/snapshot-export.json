@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "id": "snapshot-export",
   "label": "Snapshot Export",
+  "optional": true,
+  "defaultEnabled": false,
   "selectors": [],
   "usageInputs": [
     {
@@ -10,54 +12,24 @@
       "type": "number",
       "default": "0",
       "minimum": "0",
-      "ui": {
-        "help": "AWS bills snapshot export by the full snapshot size processed for each export. Amazon S3 storage for the exported files is a separate charge and is not included here."
-      }
+      "ui": {"help": "AWS bills snapshot export by the full snapshot size processed for each export. Amazon S3 storage for the exported files is a separate charge and is not included here."}
     }
   ],
   "fixedFilters": [],
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {
-        "field": "productFamily",
-        "op": "eq",
-        "value": "System Operation"
-      },
-      {
-        "field": "operation",
-        "op": "eq",
-        "value": "CreateDBInstance:0021"
-      },
-      {
-        "field": "attributes.group",
-        "op": "eq",
-        "value": "RDS Snapshot Export"
-      }
+      {"field": "productFamily", "op": "eq", "value": "System Operation"},
+      {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"},
+      {"field": "attributes.group", "op": "eq", "value": "RDS Snapshot Export"}
     ],
-    "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "eq",
-        "value": "GBs"
-      }
-    ]
+    "dimensionFilters": [{"field": "unit", "op": "eq", "value": "GBs"}]
   },
   "calculation": {
     "model": "unit",
-    "usage": {
-      "sources": [
-        {
-          "valueFrom": "component.processedGb"
-        }
-      ],
-      "combine": "multiply"
-    },
+    "usage": {"sources": [{"valueFrom": "component.processedGb"}], "combine": "multiply"},
     "transforms": [],
     "outputUnit": "GBs"
   },
-  "limitations": [
-    "account-specific-discount",
-    "snapshot-export-s3-storage"
-  ]
+  "limitations": ["account-specific-discount", "snapshot-export-s3-storage"]
 }
