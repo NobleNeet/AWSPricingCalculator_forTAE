@@ -4,5 +4,5 @@
     "AmazonRDS"
   ],
   "reason": "Replay Scheduled Price Update #155 using preserved semantic/golden data and re-run only the false-positive RDS drift batches.",
-  "attempt": 2
+  "attempt": 3
 }
