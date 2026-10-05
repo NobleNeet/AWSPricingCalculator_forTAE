@@ -6,6 +6,23 @@ function billableDimensions(dimensions) {
   return dimensions.filter(dimension => dimension.freeAllowance !== true);
 }
 
+export function mappingsForComponent(pkg, componentId) {
+  return Object.values(pkg.pricingMappings ?? {}).filter(mapping => mapping.componentId === componentId);
+}
+
+export function mappingForComponent(pkg, componentId) {
+  const mappings = mappingsForComponent(pkg, componentId);
+  if (mappings.length > 1) fail('AMBIGUOUS_PRICING_MAPPING', `Component ${componentId} has ${mappings.length} pricing mappings; explicit multi-mapping semantics are not implemented.`);
+  return mappings[0] ?? null;
+}
+
+export function priceSourceForComponent(pkg, componentId) {
+  const mapping = mappingForComponent(pkg, componentId);
+  return mapping?.priceSource?.serviceCode
+    ?? pkg.service?.priceSource?.componentOverrides?.[componentId]
+    ?? pkg.service?.priceSource?.serviceCode;
+}
+
 export function resolvePricingMapping(products, mapping, context = {}) {
   const candidates = products.filter(product => matches(product, mapping.productMatchers ?? [], context));
   const expectedProducts = mapping.expect?.products ?? 1;
