@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { appendFile, mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { run, writeJson, loadCandidate, candidateDirectory } from './pricing-cli/cli.js';
+import { run, writeJson, candidateDirectory } from './pricing-cli/cli.js';
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum, buildPriceDb } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
@@ -9,6 +9,7 @@ import { definitionFingerprint } from './pricing-cli/fingerprint.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
 import { classifyChangeParallel } from './pricing-cli/drift-parallel.js';
+import { loadCandidateForPublish } from './pricing-cli/product-chunks.js';
 import { refreshGoldenEvidence } from './price-update.js';
 import { refreshGoldenEvidenceTolerant } from './golden-evidence.js';
 
@@ -183,10 +184,11 @@ async function finalize(work) {
 
   if (publishable) {
     const metadata = await readJson(path.join(work, 'source-metadata.json'));
+    metadata.sources = flattenSourceDescriptors(metadata.sources);
     const buildId = `${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z')}-${checksum(encode(metadata)).slice(0, 8)}`;
     const started = performance.now();
-    console.log('build: loading candidate after drift workers have terminated');
-    const candidate = await loadCandidate(candidateDirectoryPath);
+    console.log('build: loading only publishable SKUs from candidate chunks');
+    const candidate = await loadCandidateForPublish(candidateDirectoryPath, metadata, publishSkus);
     const buildManifest = await buildPriceDb(candidate, path.join(stage, 'pricing'), buildId, {
       issues: [...definition.issues, ...semantic.issues, ...golden.issues],
       publishSkus,
