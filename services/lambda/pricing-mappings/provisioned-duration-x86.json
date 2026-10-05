@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned-duration-x86",
+  "componentId": "provisioned-duration-x86",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Duration-Provisioned" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "Lambda-GB-Second" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "x86 Lambda execution duration while Provisioned Concurrency is enabled."
+}
