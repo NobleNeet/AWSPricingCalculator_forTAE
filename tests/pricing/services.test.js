@@ -32,3 +32,15 @@ test('all initial real service schemas and independently verified AWS Golden sam
   assert.deepEqual(result.issues, []);
   assert.equal(result.cases.length, packages.reduce((count, pkg) => count + pkg.golden.length, 0));
 });
+
+test('EC2 embedded EBS exposes storage-priced volume types without provisioned-performance meters', async () => {
+  const packages = await loadPackages();
+  const ec2 = packages.find(pkg => pkg.service.id === 'ec2');
+  const ebs = ec2.components.find(component => component.id === 'ebs');
+  const volumeType = ebs.selectors.find(selector => selector.id === 'volumeType');
+
+  assert.deepEqual(volumeType.options.values, ['gp3', 'gp2', 'st1', 'sc1']);
+  assert.equal(volumeType.default, 'gp3');
+  assert.equal(ebs.priceQuery.productFilters.find(filter => filter.field === 'attributes.volumeApiName').valueFrom, 'component.volumeType');
+  assert.equal(ebs.calculation.outputUnit, 'GB-Mo');
+});
