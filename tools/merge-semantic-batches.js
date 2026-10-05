@@ -1,9 +1,13 @@
 #!/usr/bin/env node
-import { readdir } from 'node:fs/promises';
+import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { readJson } from './pricing-cli/package-loader.js';
 import { report } from './pricing-cli/report.js';
-import { writeJson } from './pricing-cli/cli.js';
+
+async function writeJson(file, value) {
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
+}
 
 export async function mergeSemanticBatches(planFile, directory) {
   const plan = await readJson(planFile);
