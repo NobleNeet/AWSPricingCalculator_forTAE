@@ -16,21 +16,9 @@
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {
-        "field": "productFamily",
-        "op": "eq",
-        "value": "Database Storage"
-      },
-      {
-        "field": "operation",
-        "op": "eq",
-        "value": "CreateDBInstance:0021"
-      },
-      {
-        "field": "attributes.volumeType",
-        "op": "eq",
-        "value": "IO Optimized-Aurora"
-      },
+      {"field": "productFamily", "op": "eq", "value": "Database Storage"},
+      {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"},
+      {"field": "attributes.volumeType", "op": "eq", "value": "IO Optimized-Aurora"},
       {
         "field": "usageType",
         "op": "in",
@@ -44,30 +32,13 @@
         ]
       }
     ],
-    "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "eq",
-        "value": "GB-Mo"
-      }
-    ]
+    "dimensionFilters": [{"field": "unit", "op": "eq", "value": "GB-Mo"}]
   },
   "calculation": {
     "model": "unit",
-    "usage": {
-      "sources": [
-        {
-          "valueFrom": "component.gbMonths"
-        }
-      ],
-      "combine": "multiply"
-    },
+    "usage": {"sources": [{"valueFrom": "component.gbMonths"}], "combine": "multiply"},
     "transforms": [],
     "outputUnit": "GB-Mo"
   },
-  "limitations": [
-    "free-tier",
-    "account-specific-discount",
-    "backup-storage"
-  ]
+  "limitations": ["free-tier", "account-specific-discount"]
 }
