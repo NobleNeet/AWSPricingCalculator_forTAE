@@ -673,3 +673,62 @@ Calculatorとの金額比較はsanity checkとして使用してよいが、Calc
 既存generic ruleは、全対応サービスのMappingへ移行できたことを確認してから削除する。
 
 一括でPricing Coreを書き換えて全サービスを同時破壊する移行は避ける。
+
+---
+
+## 20. Service onboarding作業モード
+
+Service onboardingには、次の2つの正式な作業モードを定義する。
+
+### 20.1 New Service Onboarding
+
+未実装のAWSサービスを新たに追加する場合の標準モード。
+
+代表的な依頼:
+
+```text
+AWS <Service>を追加して
+```
+
+このモードでは、本書の新サービス追加フローを最初から最後まで実行する。
+
+### 20.2 Existing Service Re-onboarding
+
+既に実装済みのAWSサービスを、現在の仕様・現在のAWS Pricing Calculator・現在のAWS Public Price Listに基づいて再構築するモード。
+
+代表的な依頼:
+
+```text
+既存のAWS <Service>を現行仕様で再オンボーディングして作り直して
+```
+
+このモードは、旧Definitionや旧Pricing Mappingへ差分修正を加えるだけの作業ではない。
+
+原則:
+
+1. 既存Definition、Pricing Mapping、Price Query、adapter、fallback、サービス固有workaroundを正しいものと仮定しない
+2. 現在のCalculator UIを基準にprimary / advanced / conditional fields、defaults、dependenciesを再調査する
+3. 現在のOn-Demand固定ポリシーに基づき採用入力を再決定する
+4. Profile / selector / usageInput / Pricing Componentを再設計する
+5. 各Pricing ComponentについてPublic Price List実データを改めて調査する
+6. serviceCode / Product属性 / Price Dimension / unit / rangeをAWS公式資料と突き合わせ、料金意味を再確定する
+7. 現行方式のサービス固有Pricing Mappingを新規作成または全面的に見直す
+8. Mappingを実Price Listへ適用し、一意解決を確認する
+9. Definition / UI / Calculation / coverage / limitation / Golden Case / testsを現行仕様へ合わせる
+10. 旧実装だけに必要だった定義、fallback、compatibility code、workaroundは不要性を確認して削除する
+11. Project / Plan / 保存復元などサービス外の共通仕様との互換性は維持する
+12. Price DB build / validation / publish、Actions、Pages、公開版代表操作まで確認する
+
+判断基準は、**「既存実装との差分を埋める」ではなく「現在このサービスを新規追加するとしたらどう実装するか」**とする。
+
+既存実装は比較材料、回帰確認材料、移行時の影響範囲把握には使用してよいが、現在のCalculator UIやsource-of-truth仕様と矛盾する旧挙動を維持する理由にはしない。
+
+再オンボーディング完了時には、最低限次を整理して報告する。
+
+- 旧実装から変更した主要点
+- 削除した旧仕様 / 旧ロジック / workaround
+- 現在対応しているPricing Component
+- 意図的に対象外とした入力 / 料金項目と理由
+- Mapping / Golden / repository validation / Actions / Pagesの確認結果
+
+既存generic ruleを削除する場合は、そのruleを利用している他サービスへの影響を確認し、必要なサービスがすべてサービス固有Mappingへ移行済みであることを確認してから削除する。
