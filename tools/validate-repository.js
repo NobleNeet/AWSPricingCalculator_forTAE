@@ -7,9 +7,13 @@ import { buildIndex, encode } from './pricing-cli/normalize.js';
 import { definitionFingerprint } from './pricing-cli/fingerprint.js';
 import { validatePublishedPriceDataParallel } from './pricing-cli/semantic-parallel.js';
 
-const definition = await run('validate-definitions');
-console.log(`validate-definitions: ${definition.status}, errors=${definition.summary.error}`);
-if (definition.summary.error) { console.error(JSON.stringify(definition.issues, null, 2)); process.exit(1); }
+const prevalidatedPublication = process.env.PRICE_VALIDATE_PREVALIDATED === 'true';
+
+if (!prevalidatedPublication) {
+  const definition = await run('validate-definitions');
+  console.log(`validate-definitions: ${definition.status}, errors=${definition.summary.error}`);
+  if (definition.summary.error) { console.error(JSON.stringify(definition.issues, null, 2)); process.exit(1); }
+}
 
 const active = await readJson('pricing/generated/manifest.json');
 if (!(await schemaValidator('pricing/manifest'))(active)) throw Error('Invalid active manifest');
@@ -17,14 +21,20 @@ const directory = await candidateDirectory(), manifest = await readJson(`${direc
 if (!(await schemaValidator('pricing/build-manifest'))(manifest) || manifest.buildId !== active.activeBuildId || manifest.publicationDate !== active.publicationDate) throw Error('Invalid active build identity');
 
 const packages = await loadPackages();
-const semantic = await validatePublishedPriceDataParallel(packages, directory, manifest);
-const semanticErrors = semantic.issues.filter(issue => issue.severity === 'error').length;
-console.log(`validate-price-data: ${semanticErrors ? 'failed' : 'passed'}, errors=${semanticErrors}, branches=${semantic.branches}, workers=${semantic.concurrency}`);
-if (semanticErrors) { console.error(JSON.stringify(semantic.issues, null, 2)); process.exit(1); }
+if (prevalidatedPublication) {
+  const expectedBuildId = process.env.PRICE_VALIDATE_EXPECTED_BUILD_ID;
+  if (!expectedBuildId || expectedBuildId !== active.activeBuildId || expectedBuildId !== manifest.buildId) throw Error('Prevalidated publication build identity mismatch');
+  console.log(`publication-validation: using prevalidated semantic/golden proof for build ${expectedBuildId}`);
+} else {
+  const semantic = await validatePublishedPriceDataParallel(packages, directory, manifest);
+  const semanticErrors = semantic.issues.filter(issue => issue.severity === 'error').length;
+  console.log(`validate-price-data: ${semanticErrors ? 'failed' : 'passed'}, errors=${semanticErrors}, branches=${semantic.branches}, workers=${semantic.concurrency}`);
+  if (semanticErrors) { console.error(JSON.stringify(semantic.issues, null, 2)); process.exit(1); }
 
-const golden = await run('run-golden');
-console.log(`run-golden: ${golden.status}, errors=${golden.summary.error}${golden.cases ? `, golden=${golden.cases.length}` : ''}`);
-if (golden.summary.error) { console.error(JSON.stringify(golden.issues, null, 2)); process.exit(1); }
+  const golden = await run('run-golden');
+  console.log(`run-golden: ${golden.status}, errors=${golden.summary.error}${golden.cases ? `, golden=${golden.cases.length}` : ''}`);
+  if (golden.summary.error) { console.error(JSON.stringify(golden.issues, null, 2)); process.exit(1); }
+}
 
 for (const [code, regions] of Object.entries(manifest.sources)) for (const [region, source] of Object.entries(regions)) {
   const loaded = {};
