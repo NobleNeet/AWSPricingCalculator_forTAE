@@ -1,5 +1,5 @@
 import { execFile } from 'node:child_process';
-import { copyFile, mkdir } from 'node:fs/promises';
+import { copyFile, cp, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
@@ -32,6 +32,17 @@ export async function runConcurrent(items, limit, task) {
   await Promise.all(runners);
 }
 
+async function copyChunksIfPresent(previous, directory, serviceCode, region) {
+  const source = path.join(previous, 'chunks', serviceCode, region);
+  const destination = path.join(directory, 'chunks', serviceCode, region);
+  try {
+    await mkdir(path.dirname(destination), { recursive: true });
+    await cp(source, destination, { recursive: true });
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+}
+
 export async function normalizeIsolated(options = {}) {
   const loaded = await readJson(options.input ?? '.work/source-metadata.json');
   const metadata = { ...loaded, sources: flattenSources(loaded.sources) };
@@ -57,6 +68,7 @@ export async function normalizeIsolated(options = {}) {
       await mkdir(path.dirname(destination), { recursive: true });
       await copyFile(path.join(options.previous, folder, source.serviceCode, source.region, file), destination);
     }
+    await copyChunksIfPresent(options.previous, directory, source.serviceCode, source.region);
   });
   await writeJson(path.join(directory, 'source-metadata.json'), metadata);
   return report('normalize', [], { directory, concurrency });
