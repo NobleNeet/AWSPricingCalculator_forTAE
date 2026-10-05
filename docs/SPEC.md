@@ -209,15 +209,17 @@ EC2 Drawerのcompute入力はAWS Pricing Calculatorの主要操作順に寄せ�
 
 ### 6.2 EC2組み込みEBS
 
-EC2 DrawerのAmazon EBS欄では、AWS Pricing Calculatorの組み込みEBS入力に合わせて `Storage volume` と `Storage amount` を指定できる。
+EC2 DrawerのAmazon EBS欄では、EBS volume type、Storage amount、およびボリューム種別に応じたProvisioned performanceを指定できる。
 
-- 既定値は `gp3` / `30 GB` とする。
-- ストレージ容量だけで料金を決定できる構成として `gp3`、`gp2`、`st1`、`sc1` を選択可能とする。
-- `gp3` は3,000 IOPS / 125 MiB/sの料金込みベースライン性能を前提とする。
-- `gp3` のベースラインを超える追加Provisioned IOPS / throughputは現段階では入力・計算しない。
-- `io1` / `io2` はProvisioned IOPSを別料金メーターとして同時に計算する必要があるため、複数メーター対応まではEC2組み込みEBSの選択肢へ出さない。
+- 既定値は `gp3` / `30 GB` / `3,000 IOPS` / `125 MiB/s` とする。
+- EBS volume typeは `none`、`gp3`、`gp2`、`st1`、`sc1`、`io1`、`io2` を扱う。`none` はEBS料金を除外する本アプリ内の選択値とする。
+- Storage料金はvolume typeとStorage amountからGB-month課金として計算する。
+- `gp3` は3,000 IOPS / 125 MiB/sまでStorage料金に含め、これを超えるProvisioned IOPS / throughputだけを独立した料金メーターとして加算する。
+- `io1` はStorage料金とProvisioned IOPS料金を独立した料金メーターとして計算し、合算する。
+- `io2` もStorage料金とProvisioned IOPS料金を合算する。ただしio2のProvisioned IOPSはAWS側で段階料金を持つため、本アプリのTier pricing方針に従い、最初の通常有料単価を全IOPSへ適用して `tier-pricing` Limitationを表示する。高IOPSでは実請求より高めになる場合がある。
+- IOPS/容量比、Nitro世代等による実リソース作成可否は料金計算とは別の運用制約であり、現段階では完全な構成バリデーションを行わない。
 
-追加IOPS / throughputまたはProvisioned IOPS SSDを対応する際は、ストレージ料金だけを表示して完全なEBS料金であるかのように扱わず、必要な料金メーターをすべて合算できる状態で有効化する。
+旧Project JSONでEC2 EBSのvolume typeがComponent入力に保存されている場合は、意味を変えずProfile selectorへ移行する。旧EBS Componentが無効だった場合は `none` へ移行し、EBS料金を引き続き除外する。
 
 ---
 
