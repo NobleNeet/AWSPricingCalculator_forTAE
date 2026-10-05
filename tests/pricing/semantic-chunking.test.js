@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { writeProductChunks, loadProductsMatching } from '../../tools/pricing-cli/product-chunks.js';
 import { sourceTasks } from '../../tools/pricing-cli/semantic-parallel.js';
+import { buildSemanticBatches } from '../../tools/pricing-cli/semantic-plan.js';
 
 function product(sku, family = 'Compute Instance') {
   return {
@@ -69,4 +70,30 @@ test('semantic source tasks attach component override sources for the same regio
   assert.equal(tasks.length, 1);
   assert.equal(tasks[0].serviceCode, 'Primary');
   assert.deepEqual(Object.keys(tasks[0].sourceDescriptors).sort(), ['Auxiliary', 'Primary']);
+});
+
+test('semantic workflow batches split case counts into bounded queued jobs', () => {
+  const planned = buildSemanticBatches([
+    { globalTaskId: 0, serviceCode: 'AmazonEC2', region: 'us-east-1', caseCount: 61000, includeCoverage: false },
+    { globalTaskId: 1, serviceCode: 'AmazonRDS', region: 'ap-northeast-1', caseCount: 600, includeCoverage: true },
+    { globalTaskId: 2, serviceCode: 'AWSLambda', region: 'ap-northeast-1', caseCount: 0, includeCoverage: true }
+  ], 25000, 240);
+
+  assert.equal(planned.batchCases, 25000);
+  assert.equal(planned.batches.length, 5);
+  assert.deepEqual(planned.batches.filter(batch => batch.service_code === 'AmazonEC2').map(batch => [batch.case_offset, batch.planned_cases]), [
+    [0, 25000],
+    [25000, 25000],
+    [50000, 11000]
+  ]);
+  assert.equal(planned.batches.find(batch => batch.service_code === 'AmazonRDS').include_coverage, true);
+  assert.equal(planned.batches.find(batch => batch.service_code === 'AWSLambda').planned_cases, 0);
+});
+
+test('semantic workflow planner expands batch size before exceeding matrix limit', () => {
+  const planned = buildSemanticBatches([
+    { globalTaskId: 0, serviceCode: 'AmazonEC2', region: 'us-east-1', caseCount: 1000000, includeCoverage: false }
+  ], 1000, 10);
+  assert.equal(planned.batchCases, 100000);
+  assert.equal(planned.batches.length, 10);
 });
