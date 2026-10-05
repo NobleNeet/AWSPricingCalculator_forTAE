@@ -29,7 +29,8 @@ export function sourceTasks(packages, manifest) {
       : sources[0]?.[0];
     const requiredCodes = [...new Set(servicePackages.flatMap(pkg => [
       pkg.service.priceSource.serviceCode,
-      ...Object.values(pkg.service.priceSource.componentOverrides ?? {})
+      ...Object.values(pkg.service.priceSource.componentOverrides ?? {}),
+      ...Object.values(pkg.pricingMappings ?? {}).map(mapping => mapping.priceSource.serviceCode)
     ]))];
     for (const [region] of sources) {
       const sourceDescriptors = Object.fromEntries(requiredCodes
