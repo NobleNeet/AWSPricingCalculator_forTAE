@@ -8,5 +8,8 @@
   "profiles": [
     "standard"
   ],
-  "defaultProfile": "standard"
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "storage"
+  ]
 }
