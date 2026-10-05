@@ -66,7 +66,7 @@ jobs:
       matrix:
         shard: [0, 1, 2, 3]
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     env:
       PRICE_VALIDATE_CONCURRENCY: '2'
       PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
