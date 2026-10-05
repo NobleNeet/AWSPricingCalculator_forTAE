@@ -47,8 +47,8 @@ export function evaluateService(pkg, instance, project, products, profileProduct
   try {
     const profile = pkg.profiles[instance.profileId];
     if (!profile) fail('UNKNOWN_PROFILE', 'Unknown profile.');
-    const defaultServiceCode = pkg.service.priceSource.serviceCode;
-    const sourceOverrides = pkg.service.priceSource.componentOverrides ?? {};
+    const defaultServiceCode = pkg.service?.priceSource?.serviceCode;
+    const sourceOverrides = pkg.service?.priceSource?.componentOverrides ?? {};
     const context = { project, profile: instance.selectors ?? {}, component: {} };
     context.profile = activeInputs(profile.selectors, context.profile, context, profileProducts, profile.fixedFilters, 'profile');
     for (const id of profile.components) {
@@ -58,7 +58,7 @@ export function evaluateService(pkg, instance, project, products, profileProduct
       if (!enabled(definition.enabledWhen, context) || definition.optional && componentEnabled === false) { components[id] = { state: 'disabled', issues: [] }; continue; }
       try {
         const serviceCode = sourceOverrides[id] ?? defaultServiceCode;
-        const sourceProducts = serviceCode === defaultServiceCode ? products : productsByServiceCode[serviceCode];
+        const sourceProducts = !serviceCode || serviceCode === defaultServiceCode ? products : productsByServiceCode[serviceCode];
         if (!Array.isArray(sourceProducts)) fail('PRICE_SOURCE_NOT_FOUND', `Price source missing for component ${id}: ${serviceCode}.`);
         context.component = saved.inputs ?? {};
         const filters = [...profile.fixedFilters, ...definition.fixedFilters];
