@@ -1,62 +1,11 @@
 {
   "schemaVersion": 1,
   "services": [
-    {
-      "available": true,
-      "id": "aurora-postgresql",
-      "label": "Amazon Aurora for PostgreSQL",
-      "profiles": [
-        "provisioned-standard",
-        "provisioned-io-optimized",
-        "serverless-standard",
-        "serverless-io-optimized"
-      ],
-      "serviceCode": "AmazonRDS"
-    },
-    {
-      "available": true,
-      "id": "ebs",
-      "label": "Amazon EBS",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonEC2"
-    },
-    {
-      "available": true,
-      "id": "ec2",
-      "label": "Amazon EC2",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonEC2"
-    },
-    {
-      "available": true,
-      "id": "rds",
-      "label": "Amazon RDS for PostgreSQL",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonRDS"
-    },
-    {
-      "available": true,
-      "id": "s3",
-      "label": "Amazon S3",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonS3"
-    },
-    {
-      "available": true,
-      "id": "lambda",
-      "label": "AWS Lambda",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AWSLambda"
-    }
+    {"available":true,"id":"aurora-postgresql","label":"Amazon Aurora for PostgreSQL","profiles":["provisioned-standard","provisioned-io-optimized","serverless-standard","serverless-io-optimized","limitless-io-optimized"],"serviceCode":"AmazonRDS"},
+    {"available":true,"id":"ebs","label":"Amazon EBS","profiles":["standard"],"serviceCode":"AmazonEC2"},
+    {"available":true,"id":"ec2","label":"Amazon EC2","profiles":["standard"],"serviceCode":"AmazonEC2"},
+    {"available":true,"id":"rds","label":"Amazon RDS for PostgreSQL","profiles":["standard"],"serviceCode":"AmazonRDS"},
+    {"available":true,"id":"s3","label":"Amazon S3","profiles":["standard"],"serviceCode":"AmazonS3"},
+    {"available":true,"id":"lambda","label":"AWS Lambda","profiles":["standard"],"serviceCode":"AWSLambda"}
   ]
 }

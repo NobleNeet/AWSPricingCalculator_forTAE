@@ -52,7 +52,8 @@ export function evaluateService(pkg, instance, project, products, profileProduct
     for (const id of profile.components) {
       const definition = pkg.components[id];
       const saved = instance.components?.[id] ?? {};
-      if (!enabled(definition.enabledWhen, context) || definition.optional && saved.enabled === false) { components[id] = { state: 'disabled', issues: [] }; continue; }
+      const componentEnabled = saved.enabled ?? definition.defaultEnabled ?? true;
+      if (!enabled(definition.enabledWhen, context) || definition.optional && componentEnabled === false) { components[id] = { state: 'disabled', issues: [] }; continue; }
       try {
         context.component = saved.inputs ?? {};
         const filters = [...profile.fixedFilters, ...definition.fixedFilters];

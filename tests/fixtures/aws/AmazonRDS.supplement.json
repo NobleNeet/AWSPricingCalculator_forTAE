@@ -1,0 +1,41 @@
+{
+  "products": {
+    "AURORAPGLIMITLESS": {
+      "attributes": {
+        "databaseEngine": "Aurora PostgreSQL",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "usagetype": "APN1-Aurora:LimitlessUsage"
+      },
+      "productFamily": "Limitless",
+      "sku": "AURORAPGLIMITLESS"
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "AURORAPGLIMITLESS": {
+        "AURORAPGLIMITLESS.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "AURORAPGLIMITLESS.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "Aurora PostgreSQL Limitless ACU hour fixture",
+              "endRange": "Inf",
+              "pricePerUnit": {"USD": "0.2000000000"},
+              "rateCode": "AURORAPGLIMITLESS.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "ACU-Hr"
+            }
+          },
+          "sku": "AURORAPGLIMITLESS",
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "limitless-compute",
+  "label": "Aurora PostgreSQL Limitless compute",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "acuHours",
+      "label": "ACU-hours / month",
+      "type": "number",
+      "default": "730",
+      "minimum": "0",
+      "ui": {
+        "help": "Enter aggregate Aurora Capacity Unit hours consumed by the DB shard group."
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Limitless"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "CreateDBInstance:0021"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "ACU-Hr"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.acuHours"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "ACU-Hr"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "aggregate-billing",
+    "network-transfer",
+    "database-insights"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "limitless-io-optimized",
+  "label": "Aurora PostgreSQL Limitless Database",
+  "selectors": [],
+  "fixedFilters": [
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Aurora PostgreSQL"
+    }
+  ],
+  "components": [
+    "limitless-compute",
+    "storage-io-optimized",
+    "backup-storage",
+    "snapshot-export"
+  ]
+}
