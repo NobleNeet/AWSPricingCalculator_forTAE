@@ -15,5 +15,8 @@
     "serverless-io-optimized",
     "limitless-io-optimized"
   ],
-  "defaultProfile": "provisioned-standard"
+  "defaultProfile": "provisioned-standard",
+  "pricingMappings": [
+    "database-insights-limitless"
+  ]
 }
