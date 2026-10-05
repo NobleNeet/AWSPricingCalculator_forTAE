@@ -42,6 +42,7 @@ jobs:
           import { readFile } from 'node:fs/promises';
           const config = JSON.parse(await readFile('.github/finalize-replay.json', 'utf8'));
           if (!Number.isInteger(config.runId) || config.runId <= 0) throw new Error('finalize replay runId must be a positive integer');
+          if (!Array.isArray(config.retryServiceCodes) || !config.retryServiceCodes.length) throw new Error('finalize replay retryServiceCodes must be a non-empty array');
           console.log(`run_id=${config.runId}`);
           NODE
       - uses: actions/download-artifact@v4
@@ -58,10 +59,57 @@ jobs:
           github-token: ${{ github.token }}
           name: semantic-report
           path: .work/update/reports
-      - name: Re-run finalize from preserved validated data
+      - uses: actions/download-artifact@v4
+        with:
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.replay.outputs.run_id }}
+          github-token: ${{ github.token }}
+          name: golden-report
+          path: .work/update/reports
+      - uses: actions/download-artifact@v4
+        with:
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.replay.outputs.run_id }}
+          github-token: ${{ github.token }}
+          name: drift-plan
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        with:
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.replay.outputs.run_id }}
+          github-token: ${{ github.token }}
+          pattern: drift-batch-*
+          path: .work/update/drift-batches
+          merge-multiple: true
+      - name: Re-run only affected drift batches
+        shell: bash
+        run: |
+          node --input-type=module - <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          import path from 'node:path';
+          import { loadPackages } from './tools/pricing-cli/package-loader.js';
+          import { runDriftBatch } from './tools/drift-batch-run.js';
+          import { writeJson } from './tools/pricing-cli/cli.js';
+
+          const config = JSON.parse(await readFile('.github/finalize-replay.json', 'utf8'));
+          const plan = JSON.parse(await readFile('.work/update/drift-plan.json', 'utf8'));
+          const packages = await loadPackages('services');
+          const selected = plan.matrix.include.filter(batch =>
+            batch.labels?.some(label => config.retryServiceCodes.some(code => label.startsWith(`${code}/`)))
+          );
+          if (!selected.length) throw new Error('No drift batches matched retryServiceCodes');
+          for (const batch of selected) {
+            const result = await runDriftBatch(plan, batch, packages);
+            await writeJson(path.join('.work/update/drift-batches', `batch-${batch.batch_id}.json`), result);
+            console.log(`replayed drift batch ${batch.batch_id}: ${batch.labels.join(', ')}`);
+          }
+          NODE
+      - name: Re-merge preserved and replayed drift batches
+        run: node tools/merge-drift-batches.js .work/update/drift-plan.json .work/update/drift-batches .work/update/reports/classify-change.json
+      - name: Finalize preserved validated data
         id: finalize
         env:
-          PRICE_FINALIZE_PREVALIDATED: 'false'
+          PRICE_FINALIZE_PREVALIDATED: 'true'
         run: node tools/price-update-matrix.js finalize
       - uses: actions/upload-artifact@v4
         if: always()
