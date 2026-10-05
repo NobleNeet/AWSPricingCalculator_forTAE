@@ -83,13 +83,16 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(0);
 
   const advanced = page.locator('#drawer-content > details').filter({ hasText: 'Advanced' }).first();
-  await advanced.locator('summary').click();
-  await expect(advanced).toHaveAttribute('open', '');
+  const ensureAdvancedOpen = async () => {
+    if ((await advanced.getAttribute('open')) === null) await advanced.locator('summary').click();
+    await expect(advanced).toHaveAttribute('open', '');
+  };
+  await ensureAdvancedOpen();
 
   const storage = page.locator('#input-profile--ephemeralStorageMb');
   await storage.fill('1024');
   await storage.press('Tab');
-  await expect(advanced).toHaveAttribute('open', '');
+  await ensureAdvancedOpen();
   await expect(page.locator('fieldset:has-text("On-demand ephemeral storage"):visible')).toHaveCount(1);
 
   const requests = page.locator('#input-profile--requestsPerMonth');
@@ -100,6 +103,7 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await expect(page.locator('#input-profile--averageStreamedResponseMb')).toBeEnabled();
   await page.locator('#input-profile--averageStreamedResponseMb').fill('7');
   await page.locator('#input-profile--averageStreamedResponseMb').press('Tab');
+  await ensureAdvancedOpen();
   await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(1);
   await invokeMode.selectOption('buffered');
   await expect(page.locator('#input-profile--averageStreamedResponseMb')).toBeDisabled();
@@ -111,7 +115,7 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   const provisioned = page.locator('#input-profile--provisionedConcurrency');
   await provisioned.fill('2');
   await provisioned.press('Tab');
-  await expect(advanced).toHaveAttribute('open', '');
+  await ensureAdvancedOpen();
   await expect(page.locator('#input-profile--provisionedHoursPerMonth')).toBeEnabled();
   await expect(page.locator('#input-profile--provisionedRequestsPerMonth')).toBeEnabled();
   await expect(page.locator('#input-profile--provisionedMemoryMb')).toBeEnabled();
@@ -119,6 +123,7 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await page.locator('#input-profile--provisionedHoursPerMonth').press('Tab');
   await page.locator('#input-profile--provisionedRequestsPerMonth').fill('1000');
   await page.locator('#input-profile--provisionedRequestsPerMonth').press('Tab');
+  await ensureAdvancedOpen();
   await expect(page.locator('#input-profile--provisionedAverageDurationMs')).toBeEnabled();
   await expect(page.locator('fieldset:has-text("Provisioned concurrency capacity"):visible')).toHaveCount(1);
   await expect(page.locator('fieldset:has-text("Provisioned concurrency requests"):visible')).toHaveCount(1);
