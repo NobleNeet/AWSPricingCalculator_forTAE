@@ -1,7 +1,7 @@
-import { evaluateService, selectorCandidates } from '../../src/pricing/core.js';
+import { activeInputs, evaluateService, selectorCandidates } from '../../src/pricing/core.js';
 import { enabled } from '../../src/pricing/conditions.js';
 import { issue } from '../../src/pricing/issues.js';
-import { mappingForComponent, priceSourceForComponent } from '../../src/pricing/mapping.js';
+import { mappingForComponent, priceSourceForComponent, resolvePricingMapping } from '../../src/pricing/mapping.js';
 import { inventory, validateCoverage } from './inventory.js';
 import { matches } from '../../src/pricing/filter.js';
 
@@ -95,6 +95,56 @@ function requiredSourceCodes(pkg) {
     ...Object.values(pkg.service.priceSource.componentOverrides ?? {}),
     ...Object.values(pkg.pricingMappings ?? {}).map(mapping => mapping.priceSource.serviceCode)
   ])];
+}
+function legacyOnlyPackage(pkg, profileId) {
+  const profile = pkg.profiles[profileId];
+  return {
+    ...pkg,
+    profiles: {
+      ...pkg.profiles,
+      [profileId]: {
+        ...profile,
+        components: profile.components.filter(componentId => !mappingForComponent(pkg, componentId))
+      }
+    }
+  };
+}
+function resolveMappedCase(pkg, sample) {
+  const componentId = sample.componentId;
+  const component = pkg.components[componentId];
+  const mapping = mappingForComponent(pkg, componentId);
+  if (!mapping) return null;
+  const serviceCode = priceSourceForComponent(pkg, componentId);
+  const sourceProducts = sample.productsByServiceCode[serviceCode];
+  if (!Array.isArray(sourceProducts)) {
+    const error = new Error(`Price source missing for mapped component ${componentId}: ${serviceCode}.`);
+    error.issue = issue('PRICE_SOURCE_NOT_FOUND', error.message);
+    throw error;
+  }
+
+  const context = {
+    project: sample.project,
+    profile: sample.instance.selectors ?? {},
+    component: sample.instance.components?.[componentId]?.inputs ?? {}
+  };
+  const broadFilters = (mapping.productMatchers ?? []).filter(filter => !filter.valueFrom?.startsWith('component.'));
+  const scopedProducts = sourceProducts.filter(product => matches(product, broadFilters, context));
+  context.component = activeInputs(
+    [...component.selectors, ...component.usageInputs],
+    context.component,
+    context,
+    scopedProducts,
+    broadFilters
+  );
+  const resolution = resolvePricingMapping(scopedProducts, mapping, context);
+  return {
+    state: 'ready',
+    amountUsd: null,
+    components: {
+      [componentId]: { state: 'ready', issues: [], limitations: resolution.limitations ?? [], resolution }
+    },
+    issues: []
+  };
 }
 export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-northeast-1') {
   const defaultCode = pkg.service.priceSource.serviceCode;
@@ -202,7 +252,8 @@ export function validatePriceData(packages, data, common, normalizers, options =
 
       if (includeDefaultChecks) {
         for (const profileId of pkg.service.profiles) {
-          const result = evaluateService(pkg, defaults(pkg, profileId), { region: source.region, defaultRegion: source.region, hoursPerMonth: '730' }, productsByServiceCode[defaultCode], productsByServiceCode[defaultCode], productsByServiceCode);
+          const legacyPkg = legacyOnlyPackage(pkg, profileId);
+          const result = evaluateService(legacyPkg, defaults(pkg, profileId), { region: source.region, defaultRegion: source.region, hoursPerMonth: '730' }, productsByServiceCode[defaultCode], productsByServiceCode[defaultCode], productsByServiceCode);
           issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId, region: source.region })));
         }
       }
@@ -217,9 +268,25 @@ export function validatePriceData(packages, data, common, normalizers, options =
           exhausted = true;
           break;
         }
-        const result = evaluateService(sample.pkg, sample.instance, sample.project, sample.products, sample.profileProducts, sample.productsByServiceCode);
+        const mapping = mappingForComponent(pkg, sample.componentId);
+        let result;
+        if (mapping) {
+          try {
+            result = resolveMappedCase(pkg, sample);
+          } catch (error) {
+            const diagnostic = error.issue ?? issue('INVALID_DATA', error.message);
+            result = {
+              state: 'invalid',
+              amountUsd: null,
+              components: { [sample.componentId]: { state: 'invalid', issues: [diagnostic] } },
+              issues: [{ ...diagnostic, componentId: sample.componentId }]
+            };
+          }
+        } else {
+          result = evaluateService(sample.pkg, sample.instance, sample.project, sample.products, sample.profileProducts, sample.productsByServiceCode);
+        }
         issues.push(...result.issues.map(i => ({ ...i, serviceId: pkg.service.id, profileId: sample.instance.profileId, region: source.region })));
-        resolutions.push({ serviceId: pkg.service.id, profileId: sample.instance.profileId, componentId: sample.componentId, instance: sample.instance, result, region: source.region, sourceKey });
+        resolutions.push({ serviceId: pkg.service.id, profileId: sample.instance.profileId, componentId: sample.componentId, instance: sample.instance, result, region: source.region, sourceKey, resolutionMode: mapping ? 'mapping' : 'legacy' });
         processedCases += 1;
         evaluatedCases += 1;
         batchCases += 1;
