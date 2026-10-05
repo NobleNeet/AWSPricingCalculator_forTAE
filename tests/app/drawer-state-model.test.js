@@ -45,6 +45,40 @@ test('legacy Lambda additional ephemeral storage migrates to AWS total-storage i
   assert.equal(migrateDefinitionInputs(pkg, instance), false);
 });
 
+test('legacy EC2 embedded EBS volume type migrates to profile selector', () => {
+  const pkg = {
+    service: { id: 'ec2' },
+    profiles: { standard: { selectors: [{ id: 'ebsVolumeType', default: 'gp3' }], components: ['ebs'] } },
+    components: { ebs: { selectors: [], usageInputs: [{ id: 'storageGb', default: '30' }] } }
+  };
+  const instance = {
+    profileId: 'standard',
+    selectors: {},
+    components: { ebs: { enabled: true, inputs: { volumeType: 'st1', storageGb: '200' } } }
+  };
+  assert.equal(fillDefinitionDefaults(pkg, instance), true);
+  assert.equal(instance.selectors.ebsVolumeType, 'st1');
+  assert.deepEqual(instance.components.ebs, { enabled: true, inputs: { storageGb: '200' } });
+  assert.equal(fillDefinitionDefaults(pkg, instance), false);
+});
+
+test('disabled legacy EC2 EBS migrates to none without leaving component disabled', () => {
+  const pkg = {
+    service: { id: 'ec2' },
+    profiles: { standard: { selectors: [{ id: 'ebsVolumeType', default: 'gp3' }], components: ['ebs'] } },
+    components: { ebs: { selectors: [], usageInputs: [{ id: 'storageGb', default: '30' }] } }
+  };
+  const instance = {
+    profileId: 'standard',
+    selectors: {},
+    components: { ebs: { enabled: false, inputs: { volumeType: 'gp3', storageGb: '30' } } }
+  };
+  assert.equal(fillDefinitionDefaults(pkg, instance), true);
+  assert.equal(instance.selectors.ebsVolumeType, 'none');
+  assert.equal(instance.components.ebs.enabled, true);
+  assert.equal(instance.components.ebs.inputs.volumeType, undefined);
+});
+
 test('detailStateKey distinguishes profile and component details deterministically', () => {
   assert.equal(detailStateKey('Advanced', undefined, 0), 'profile:Advanced:0');
   assert.equal(detailStateKey('Advanced', 'Compute duration', 3), 'component:Compute duration:Advanced:3');
