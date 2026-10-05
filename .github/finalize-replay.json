@@ -3,6 +3,6 @@
   "retryServiceCodes": [
     "AmazonRDS"
   ],
-  "reason": "Replay Scheduled Price Update #155 using preserved semantic/golden data, re-run only the false-positive RDS drift batches, use lightweight publication integrity validation, skip redundant deployment revalidation, and treat an already-active identical build as idempotent success.",
-  "attempt": 6
+  "reason": "Replay Scheduled Price Update #155 using preserved semantic/golden data, re-run only the false-positive RDS drift batches, use lightweight publication integrity validation, skip redundant deployment revalidation, and treat content-identical already-active builds as idempotent success.",
+  "attempt": 7
 }
