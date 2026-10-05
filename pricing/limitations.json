@@ -1,89 +1,21 @@
 {
   "schemaVersion": 1,
   "limitations": [
-    {
-      "id": "tier-pricing",
-      "severity": "notice",
-      "impactDirection": "estimate-may-be-higher",
-      "message": "Tierを段階積算せず、最初の通常有料単価を全使用量へ適用しています。"
-    },
-    {
-      "id": "free-tier",
-      "severity": "notice",
-      "impactDirection": "estimate-may-be-higher",
-      "message": "Free Tier・無料利用枠は控除しません。"
-    },
-    {
-      "id": "account-specific-discount",
-      "severity": "notice",
-      "impactDirection": "estimate-may-be-higher",
-      "message": "USD On-Demand、税別。RI・Savings Plans・Spot・個別割引は対象外です。"
-    },
-    {
-      "id": "minimum-storage-duration",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "Minimum storage durationの追加料金は計算しません。"
-    },
-    {
-      "id": "early-deletion",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "Early deletionの追加料金は計算しません。"
-    },
-    {
-      "id": "lifecycle-event-charge",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "Lifecycle移行等のイベント料金は含みません。"
-    },
-    {
-      "id": "organization-usage-aggregation",
-      "severity": "notice",
-      "impactDirection": "estimate-may-be-higher",
-      "message": "組織全体のusage aggregationによる割引は計算しません。"
-    },
-    {
-      "id": "cpu-credits",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "Burstable instanceの追加CPU credit料金は含みません。"
-    },
-    {
-      "id": "network-transfer",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "データ転送・関連ネットワーク料金は含みません。"
-    },
-    {
-      "id": "aggregate-billing",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "月間集計値を入力してください。個別の開始停止・実行履歴に依存するminimumやroundingは再構成しません。"
-    },
-    {
-      "id": "extended-support",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "RDS Extended Support料金は含みません。"
-    },
-    {
-      "id": "rds-extra-storage-performance",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "RDS gp3の追加IOPS・throughput料金は含みません。"
-    },
-    {
-      "id": "backup-storage",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "追加backup・snapshot storage料金は含みません。"
-    },
-    {
-      "id": "unsupported-pricing-category",
-      "severity": "warning",
-      "impactDirection": "estimate-may-be-lower",
-      "message": "初期対応Component以外の料金カテゴリは計算しません。"
-    }
+    {"id":"tier-pricing","severity":"notice","impactDirection":"estimate-may-be-higher","message":"Tierを段階積算せず、最初の通常有料単価を全使用量へ適用しています。"},
+    {"id":"free-tier","severity":"notice","impactDirection":"estimate-may-be-higher","message":"Free Tier・無料利用枠は控除しません。"},
+    {"id":"account-specific-discount","severity":"notice","impactDirection":"estimate-may-be-higher","message":"USD On-Demand、税別。RI・Savings Plans・Spot・個別割引は対象外です。"},
+    {"id":"minimum-storage-duration","severity":"warning","impactDirection":"estimate-may-be-lower","message":"Minimum storage durationの追加料金は計算しません。"},
+    {"id":"early-deletion","severity":"warning","impactDirection":"estimate-may-be-lower","message":"Early deletionの追加料金は計算しません。"},
+    {"id":"lifecycle-event-charge","severity":"warning","impactDirection":"estimate-may-be-lower","message":"Lifecycle移行等のイベント料金は含みません。"},
+    {"id":"organization-usage-aggregation","severity":"notice","impactDirection":"estimate-may-be-higher","message":"組織全体のusage aggregationによる割引は計算しません。"},
+    {"id":"cpu-credits","severity":"warning","impactDirection":"estimate-may-be-lower","message":"Burstable instanceの追加CPU credit料金は含みません。"},
+    {"id":"network-transfer","severity":"warning","impactDirection":"estimate-may-be-lower","message":"データ転送・関連ネットワーク料金は含みません。"},
+    {"id":"aggregate-billing","severity":"warning","impactDirection":"estimate-may-be-lower","message":"月間集計値を入力してください。個別の開始停止・実行履歴に依存するminimumやroundingは再構成しません。"},
+    {"id":"extended-support","severity":"warning","impactDirection":"estimate-may-be-lower","message":"RDS Extended Support料金は含みません。"},
+    {"id":"rds-extra-storage-performance","severity":"warning","impactDirection":"estimate-may-be-lower","message":"RDS gp3の追加IOPS・throughput料金は含みません。"},
+    {"id":"backup-storage","severity":"warning","impactDirection":"estimate-may-be-lower","message":"追加backup・snapshot storage料金は含みません。"},
+    {"id":"snapshot-export-s3-storage","severity":"warning","impactDirection":"estimate-may-be-lower","message":"Snapshot Exportの処理料金のみを計算します。エクスポート先Amazon S3の保存・リクエスト料金は別途S3として見積もってください。"},
+    {"id":"database-insights","severity":"warning","impactDirection":"estimate-may-be-lower","message":"CloudWatch Database Insights Advancedの料金は現在このAurora見積には含みません。Standard modeの7日分は追加料金なしですが、Advancedおよび有料保持は別途CloudWatch料金が発生します。"},
+    {"id":"unsupported-pricing-category","severity":"warning","impactDirection":"estimate-may-be-lower","message":"初期対応Component以外の料金カテゴリは計算しません。"}
   ]
 }
