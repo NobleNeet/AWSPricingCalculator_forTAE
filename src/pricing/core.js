@@ -2,6 +2,7 @@ import { enabled } from './conditions.js';
 import { decimal, sum } from './decimal.js';
 import { matches, fieldValue } from './filter.js';
 import { resolvePrice } from './price-query.js';
+import { mappingForComponent, priceSourceForComponent, resolvePricingMapping } from './mapping.js';
 import { calculate } from './calculation.js';
 import { fail, issue } from './issues.js';
 
@@ -48,7 +49,6 @@ export function evaluateService(pkg, instance, project, products, profileProduct
     const profile = pkg.profiles[instance.profileId];
     if (!profile) fail('UNKNOWN_PROFILE', 'Unknown profile.');
     const defaultServiceCode = pkg.service?.priceSource?.serviceCode;
-    const sourceOverrides = pkg.service?.priceSource?.componentOverrides ?? {};
     const context = { project, profile: instance.selectors ?? {}, component: {} };
     context.profile = activeInputs(profile.selectors, context.profile, context, profileProducts, profile.fixedFilters, 'profile');
     for (const id of profile.components) {
@@ -57,16 +57,21 @@ export function evaluateService(pkg, instance, project, products, profileProduct
       const componentEnabled = saved.enabled ?? definition.defaultEnabled ?? true;
       if (!enabled(definition.enabledWhen, context) || definition.optional && componentEnabled === false) { components[id] = { state: 'disabled', issues: [] }; continue; }
       try {
-        const serviceCode = sourceOverrides[id] ?? defaultServiceCode;
+        const mapping = mappingForComponent(pkg, id);
+        const serviceCode = priceSourceForComponent(pkg, id);
         const sourceProducts = !serviceCode || serviceCode === defaultServiceCode ? products : productsByServiceCode[serviceCode];
         if (!Array.isArray(sourceProducts)) fail('PRICE_SOURCE_NOT_FOUND', `Price source missing for component ${id}: ${serviceCode}.`);
         context.component = saved.inputs ?? {};
-        const profileFilters = serviceCode === defaultServiceCode ? profile.fixedFilters : [];
-        const filters = [...profileFilters, ...definition.fixedFilters];
-        const broadFilters = [...filters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+        const legacyProfileFilters = serviceCode === defaultServiceCode ? profile.fixedFilters : [];
+        const legacyFilters = [...legacyProfileFilters, ...definition.fixedFilters];
+        const resolutionFilters = mapping ? mapping.productMatchers : definition.priceQuery.productFilters;
+        const fixedFilters = mapping ? [] : legacyFilters;
+        const broadFilters = [...fixedFilters, ...resolutionFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
         const scopedProducts = sourceProducts.filter(product => matches(product, broadFilters, context));
         context.component = activeInputs([...definition.selectors, ...definition.usageInputs], context.component, context, scopedProducts, broadFilters);
-        const resolution = resolvePrice(scopedProducts, definition.priceQuery, context, filters);
+        const resolution = mapping
+          ? resolvePricingMapping(scopedProducts, mapping, context)
+          : resolvePrice(scopedProducts, definition.priceQuery, context, legacyFilters);
         const limitations = [...new Set([...definition.limitations, ...resolution.limitations])];
         const result = calculate(definition.calculation, context, resolution.dimension);
         components[id] = { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution };
