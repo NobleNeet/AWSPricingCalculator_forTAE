@@ -2,14 +2,20 @@ import { parentPort, workerData } from 'node:worker_threads';
 import path from 'node:path';
 import { loadPackages, readJson } from './package-loader.js';
 import { classifyChange } from './drift.js';
+import { loadProductsForSkus } from './product-chunks.js';
 
 const packages = await loadPackages();
 const packageGroups = new Map();
 for (const pkg of packages) {
-  const serviceCode = pkg.service.priceSource.serviceCode;
-  const group = packageGroups.get(serviceCode) ?? [];
-  group.push(pkg);
-  packageGroups.set(serviceCode, group);
+  const serviceCodes = new Set([
+    pkg.service.priceSource.serviceCode,
+    ...Object.values(pkg.service.priceSource.componentOverrides ?? {})
+  ]);
+  for (const serviceCode of serviceCodes) {
+    const group = packageGroups.get(serviceCode) ?? [];
+    group.push(pkg);
+    packageGroups.set(serviceCode, group);
+  }
 }
 
 async function runTask(task) {
@@ -20,13 +26,13 @@ async function runTask(task) {
   const before = hasBefore
     ? await readJson(path.join(workerData.previousDirectory, 'sources', serviceCode, region, 'products.json'))
     : undefined;
-  let after = hasAfter
-    ? await readJson(path.join(workerData.candidateDirectory, 'sources', serviceCode, region, 'products.json'))
+  const after = hasAfter
+    ? await loadProductsForSkus(
+      workerData.candidateDirectory,
+      { serviceCode, region },
+      new Set(publishSkus)
+    )
     : undefined;
-  if (after) {
-    const allowed = new Set(publishSkus);
-    after = { ...after, products: after.products.filter(product => allowed.has(product.sku)) };
-  }
   const checked = classifyChange(
     servicePackages,
     before ? { [key]: before } : {},
@@ -40,6 +46,7 @@ async function runTask(task) {
     issues: checked.issues,
     warning: checked.classification === 'STRUCTURE_WARNING',
     rateDiff: checked.rateDiff,
+    candidateProductsLoaded: after?.products.length ?? 0,
     elapsedMs: Math.round(performance.now() - started)
   };
 }
