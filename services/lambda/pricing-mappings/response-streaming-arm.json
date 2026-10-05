@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "response-streaming-arm",
+  "componentId": "response-streaming-arm",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "value": "AWS-Lambda-Processed-Bytes-ARM" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "Processed-Gigabytes" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "Arm HTTP response streaming processed-data meter; buffered invoke mode disables this component and streaming bills only response data above the included first 6 MB per request."
+}
