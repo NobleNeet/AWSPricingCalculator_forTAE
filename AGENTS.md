@@ -67,6 +67,8 @@ For a new service or an expansion/re-onboarding of an existing service:
 - Use AWS Public Price List as the pricing truth; never copy calculator-displayed prices into Definitions.
 - Inspect actual Public Price List products and price dimensions during onboarding and create deterministic service-specific Pricing Mappings for each supported pricing component.
 - Do not defer unresolved pricing meaning to a future generic semantic resolver or scheduled workflow.
+- Treat test impact analysis as part of Definition/UI implementation, not as cleanup after CI failure. When Definition, drawer UI, dependencies, selectors, options, defaults, conditional visibility, DOM structure, or component structure changes, search all affected existing unit/Golden/E2E tests and update their expectations, locators, and assertion methods before repository-wide CI.
+- Run the narrowest relevant service-specific tests and E2E first. Do not use repeated commit/push/Actions runs to discover known stale tests one failure at a time; advance to repository-wide validation only after the affected narrow tests pass.
 - Follow the end-to-end workflow and completion gate in `docs/SERVICE_ONBOARDING.md`, including deployment verification.
 - Do not implement service onboarding directly on `main`. New services use `onboard/<serviceId>`; re-onboarding uses `reonboard/<serviceId>`.
 - Different service IDs may be worked on concurrently in separate branches/chats. Do not run multiple onboarding jobs for the same service ID concurrently.
@@ -90,7 +92,8 @@ The historical UI discussion mock is isolated under `mock/`.
 For every implementation phase or onboarding step:
 
 - Add or update automated tests for changed deterministic logic.
-- Run narrow relevant tests first, then repository-level validation commands defined by the implementation plan.
+- For onboarding/re-onboarding UI or Definition changes, inventory affected existing tests before full validation; update stale expectations, locators, and assertion semantics as part of the implementation change itself.
+- Run narrow relevant tests first, including service-specific browser E2E where applicable, then repository-level validation commands defined by the implementation plan.
 - Validate JSON Schema/reference/dependency/Golden behavior where relevant.
 - Validate service-specific Pricing Mappings against actual Public Price List candidate data where relevant.
 - Do not mark work complete while known required validation errors remain.
