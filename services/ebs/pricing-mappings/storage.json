@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "storage",
+  "componentId": "storage",
+  "priceSource": {
+    "serviceCode": "AmazonEC2"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Storage"
+    },
+    {
+      "field": "attributes.volumeApiName",
+      "op": "eq",
+      "valueFrom": "profile.volume"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "in",
+      "value": [
+        "GB-Mo",
+        "GB-month"
+      ]
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "EBS provisioned storage mapping. GB-Mo and GB-month are accepted here as service-specific equivalent AWS storage unit spellings rather than by semantic finalize heuristics."
+}
