@@ -91,6 +91,21 @@
       "productFamily": "Serverless",
       "sku": "FSYUV9NMNDEXRJ5H"
     },
+    "J2PCAT8GTKGHMPPE": {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes"
+      },
+      "productFamily": "Serverless",
+      "sku": "J2PCAT8GTKGHMPPE"
+    },
     "JETQZE68FCXZH4YC": {
       "attributes": {
         "group": "AWS-Lambda-SnapStart-Cache",
@@ -120,6 +135,21 @@
       },
       "productFamily": "Serverless",
       "sku": "RH4PFTVX4T4KZF9J"
+    },
+    "SU5948MRY5A8GWNM": {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes-ARM",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation for ARM",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM"
+      },
+      "productFamily": "Serverless",
+      "sku": "SU5948MRY5A8GWNM"
     },
     "VZ2BZJB73ZRZTDTK": {
       "attributes": {
@@ -318,6 +348,27 @@
           "termAttributes": {}
         }
       },
+      "J2PCAT8GTKGHMPPE": {
+        "J2PCAT8GTKGHMPPE.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "J2PCAT8GTKGHMPPE.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.008 per GiB for of Lambda-Streaming-Response-Processed-Bytes usage in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0080000000"
+              },
+              "rateCode": "J2PCAT8GTKGHMPPE.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Processed-Gigabytes"
+            }
+          },
+          "sku": "J2PCAT8GTKGHMPPE",
+          "termAttributes": {}
+        }
+      },
       "JETQZE68FCXZH4YC": {
         "JETQZE68FCXZH4YC.JRTCKXETXF": {
           "effectiveDate": "2026-09-01T00:00:00Z",
@@ -357,6 +408,27 @@
             }
           },
           "sku": "RH4PFTVX4T4KZF9J",
+          "termAttributes": {}
+        }
+      },
+      "SU5948MRY5A8GWNM": {
+        "SU5948MRY5A8GWNM.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "SU5948MRY5A8GWNM.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.008 per GiB for Lambda-Streaming-Response-Processed-Bytes-ARM in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0080000000"
+              },
+              "rateCode": "SU5948MRY5A8GWNM.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Processed-Gigabytes"
+            }
+          },
+          "sku": "SU5948MRY5A8GWNM",
           "termAttributes": {}
         }
       },

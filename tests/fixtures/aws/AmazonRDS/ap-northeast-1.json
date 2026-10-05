@@ -82,6 +82,22 @@
       "productFamily": "ServerlessV2",
       "sku": "NTURMTB2PWMA53X6"
     },
+    "PHCZW4PHVBVNVGGJ": {
+      "attributes": {
+        "databaseEngine": "Aurora PostgreSQL",
+        "engineCode": "21",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "Aurora IO Optimization Mode",
+        "usagetype": "APN1-Aurora:IO-OptimizedLimitlessACUUsage-Limitless"
+      },
+      "productFamily": "Limitless",
+      "sku": "PHCZW4PHVBVNVGGJ"
+    },
     "QSZ96MWJHP7X7JWV": {
       "attributes": {
         "currentGeneration": "Yes",
@@ -329,6 +345,27 @@
             }
           },
           "sku": "NTURMTB2PWMA53X6",
+          "termAttributes": {}
+        }
+      },
+      "PHCZW4PHVBVNVGGJ": {
+        "PHCZW4PHVBVNVGGJ.JRTCKXETXF": {
+          "effectiveDate": "2026-09-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "PHCZW4PHVBVNVGGJ.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 0.20 per Aurora Capacity Unit hour running Aurora PostgreSQL Limitless",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2000000000"
+              },
+              "rateCode": "PHCZW4PHVBVNVGGJ.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "ACU-Hr"
+            }
+          },
+          "sku": "PHCZW4PHVBVNVGGJ",
           "termAttributes": {}
         }
       },
