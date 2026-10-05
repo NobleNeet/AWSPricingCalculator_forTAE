@@ -8,5 +8,18 @@
   "profiles": [
     "standard"
   ],
-  "defaultProfile": "standard"
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "requests",
+    "duration",
+    "ephemeral-storage-x86",
+    "ephemeral-storage-arm",
+    "provisioned-requests",
+    "provisioned-duration-x86",
+    "provisioned-duration-arm",
+    "provisioned-capacity-x86",
+    "provisioned-capacity-arm",
+    "response-streaming-x86",
+    "response-streaming-arm"
+  ]
 }
