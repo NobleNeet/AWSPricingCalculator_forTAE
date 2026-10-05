@@ -3,9 +3,25 @@ import { verifyRawPrice } from '../../tools/pricing-cli/golden.js';
 import { money, sum } from '../../src/pricing/decimal.js';
 
 export const activeBuildId = (await readJson('pricing/generated/manifest.json')).activeBuildId;
+
+function verificationAmounts(raw, verificationById, overrides) {
+  const amounts = [];
+  for (const [id, verification] of Object.entries(verificationById)) {
+    if (verification.meters) {
+      for (const [meterId, meter] of Object.entries(verification.meters)) {
+        const key = `${id}.${meterId}`;
+        amounts.push(verifyRawPrice(raw, { ...meter, quantity: overrides[key] ?? meter.quantity }).amountUsd);
+      }
+      continue;
+    }
+    amounts.push(verifyRawPrice(raw, { ...verification, quantity: overrides[id] ?? verification.quantity }).amountUsd);
+  }
+  return amounts;
+}
+
 export async function goldenAmount(service, goldenId, overrides = {}) {
   const golden = await readJson(`services/${service}/golden/${goldenId}.json`), definition = await readJson(`services/${service}/service.json`), raw = await readJson(`tests/fixtures/aws/${definition.priceSource.serviceCode}.json`);
-  const amounts = Object.entries(golden.verification).map(([id, verification]) => verifyRawPrice(raw, { ...verification, quantity: overrides[id] ?? verification.quantity }).amountUsd);
+  const amounts = verificationAmounts(raw, golden.verification, overrides);
   return { raw: sum(amounts).toString(), display: money(sum(amounts)) };
 }
 export const expected = {
