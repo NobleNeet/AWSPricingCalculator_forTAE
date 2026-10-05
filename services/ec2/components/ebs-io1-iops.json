@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs-io1-iops",
+  "label": "EBS io1 provisioned IOPS",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "provisionedIops",
+      "label": "Provisioned IOPS",
+      "type": "number",
+      "default": "100",
+      "minimum": "100",
+      "maximum": "64000",
+      "ui": {
+        "help": "io1はプロビジョニングしたIOPS数が追加課金されます。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-EBS:VolumeP-IOPS.piops",
+          "APN3-EBS:VolumeP-IOPS.piops",
+          "EBS:VolumeP-IOPS.piops",
+          "USE2-EBS:VolumeP-IOPS.piops",
+          "USW1-EBS:VolumeP-IOPS.piops",
+          "USW2-EBS:VolumeP-IOPS.piops"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "IOPS-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.provisionedIops"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "IOPS-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.ebsVolumeType",
+    "op": "eq",
+    "value": "io1"
+  }
+}
