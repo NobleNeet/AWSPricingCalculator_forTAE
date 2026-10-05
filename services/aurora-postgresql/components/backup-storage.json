@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "id": "backup-storage",
   "label": "Additional backup storage",
+  "optional": true,
+  "defaultEnabled": false,
   "selectors": [],
   "usageInputs": [
     {
@@ -10,49 +12,23 @@
       "type": "number",
       "default": "0",
       "minimum": "0",
-      "ui": {
-        "help": "Enter billable backup and snapshot storage beyond Aurora's included allocation."
-      }
+      "ui": {"help": "Enter billable backup and snapshot storage beyond Aurora's included allocation."}
     }
   ],
   "fixedFilters": [],
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {
-        "field": "productFamily",
-        "op": "eq",
-        "value": "Storage Snapshot"
-      },
-      {
-        "field": "operation",
-        "op": "eq",
-        "value": "CreateDBInstance:0021"
-      }
+      {"field": "productFamily", "op": "eq", "value": "Storage Snapshot"},
+      {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"}
     ],
-    "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "eq",
-        "value": "GB-Mo"
-      }
-    ]
+    "dimensionFilters": [{"field": "unit", "op": "eq", "value": "GB-Mo"}]
   },
   "calculation": {
     "model": "unit",
-    "usage": {
-      "sources": [
-        {
-          "valueFrom": "component.gbMonths"
-        }
-      ],
-      "combine": "multiply"
-    },
+    "usage": {"sources": [{"valueFrom": "component.gbMonths"}], "combine": "multiply"},
     "transforms": [],
     "outputUnit": "GB-Mo"
   },
-  "limitations": [
-    "free-tier",
-    "account-specific-discount"
-  ]
+  "limitations": ["free-tier", "account-specific-discount"]
 }
