@@ -10,10 +10,11 @@ Before changing behavior or pricing semantics, read these documents in this orde
 
 1. `docs/SPEC.md` — user-visible behavior, Project/Plan/Row model, save/restore, PDF/CSV and runtime UI behavior.
 2. `docs/PRICING_ARCHITECTURE.md` — Service Definition, Price DB, Pricing Core, validation, CLI and CI/CD architecture.
-3. `docs/SERVICE_ONBOARDING.md` — rules for adding a new AWS service or expanding an existing service from the AWS Pricing Calculator UI under the On-Demand-only policy.
-4. `docs/AUTONOMOUS_IMPLEMENTATION.md` — how Codex must execute implementation work without unnecessary human intervention.
-5. `docs/IMPLEMENTATION_PLAN.md` — phased implementation plan and completion criteria.
-6. `docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md` — design-history index only; it is not the current specification.
+3. `docs/PRICING_MAPPING_ARCHITECTURE.md` — service-specific AWS Price List mapping, semantic-resolution responsibility, drift handling and finalize behavior. For pricing-item meaning resolution or semantic/finalize behavior, this document takes precedence over older generic-resolution assumptions in `docs/PRICING_ARCHITECTURE.md`.
+4. `docs/SERVICE_ONBOARDING.md` — rules for adding a new AWS service or expanding an existing service from the AWS Pricing Calculator UI under the On-Demand-only policy.
+5. `docs/AUTONOMOUS_IMPLEMENTATION.md` — how Codex must execute implementation work without unnecessary human intervention.
+6. `docs/IMPLEMENTATION_PLAN.md` — phased implementation plan and completion criteria.
+7. `docs/PRICING_ARCHITECTURE_DECISION_HISTORY.md` — design-history index only; it is not the current specification.
 
 If code and documentation disagree, do not silently invent a new behavior. Follow the current source-of-truth documents unless the `/goal` explicitly requests a specification change.
 
@@ -26,7 +27,7 @@ Implementation work is expected to be assigned through `/goal`.
 The normal workflow is **one overall `/goal` for the complete implementation**, not one human-issued goal per phase.
 
 - Read `docs/AUTONOMOUS_IMPLEMENTATION.md` before starting implementation.
-- When adding a new AWS service or expanding service estimate fields, also read and follow `docs/SERVICE_ONBOARDING.md` before deciding which fields to implement.
+- When adding a new AWS service or expanding service estimate fields, also read and follow both `docs/PRICING_MAPPING_ARCHITECTURE.md` and `docs/SERVICE_ONBOARDING.md` before deciding which fields or pricing mappings to implement.
 - A request such as `AWS Fargateを追加して` is a complete service-onboarding request unless the user explicitly limits the scope. It includes research, implementation, tests, Price DB work when required, commit/push, Actions verification, and Pages deployment verification.
 - Decompose the overall goal into the phases defined in `docs/IMPLEMENTATION_PLAN.md` where those phases are relevant to the requested change.
 - Continue through all work required by the goal without waiting for human confirmation between normal implementation steps.
@@ -44,7 +45,9 @@ For ordinary implementation choices, choose a reasonable solution and continue.
 ## Architecture constraints
 
 - Browser application server/backend database are not part of the design; deployment remains static GitHub Pages plus GitHub Actions.
-- Pricing logic must not be embedded as service-name-specific branches when it can be expressed by the generic Definition/DSL model.
+- Pricing logic must not be embedded as service-name-specific branches when it can be expressed by the generic Definition/DSL/Mapping model.
+- AWS pricing-item meaning is resolved during service onboarding and persisted as service-specific Pricing Mapping data. Scheduled price updates must validate those mappings deterministically rather than infer unknown pricing semantics.
+- Service-specific unit aliases, price-source overrides, product attribute combinations and similar semantic details belong in `services/<serviceId>/` mappings unless they are demonstrably safe global rules.
 - Shared Pricing Core must remain independent of DOM, `window`, `localStorage`, filesystem and network access.
 - Browser-only loading/state code and Node-only CLI/filesystem/network code stay outside the shared Pricing Core.
 - Arbitrary JavaScript expressions in Service Definitions are prohibited. `adapter.js` is exceptional and requires explicit justification.
@@ -61,6 +64,8 @@ For a new service or an expansion of an existing service:
 - Keep purchase-plan choices On-Demand-only; do not add Reserved, Savings Plans, Spot, commitment-term, or upfront-payment choices unless the source-of-truth specification is explicitly changed.
 - Do not omit operational or usage inputs merely because payment plans are fixed to On-Demand.
 - Use AWS Public Price List as the pricing truth; never copy calculator-displayed prices into Definitions.
+- Inspect actual Public Price List products and price dimensions during onboarding and create deterministic service-specific Pricing Mappings for each supported pricing component.
+- Do not defer unresolved pricing meaning to a future generic semantic resolver or scheduled workflow.
 - Follow the end-to-end workflow and completion gate in `docs/SERVICE_ONBOARDING.md`, including deployment verification.
 
 ## Mock isolation
@@ -79,6 +84,7 @@ For every implementation phase or onboarding step:
 - Add or update automated tests for changed deterministic logic.
 - Run narrow relevant tests first, then repository-level validation commands defined by the implementation plan.
 - Validate JSON Schema/reference/dependency/Golden behavior where relevant.
+- Validate service-specific Pricing Mappings against actual Public Price List candidate data where relevant.
 - Do not mark work complete while known required validation errors remain.
 - Record changed files, tests run, warnings and deferred items as progress information.
 - Continue automatically after each normal implementation gate rather than waiting for a response.
@@ -88,6 +94,6 @@ At the final phase, run the applicable completion checklist in `docs/IMPLEMENTAT
 
 ## Generated data
 
-- Do not hand-edit generated Price DB files as a substitute for fixing source Definitions, normalizers or builders.
+- Do not hand-edit generated Price DB files as a substitute for fixing source Definitions, Pricing Mappings, normalizers or builders.
 - Raw AWS bulk Price List files are temporary inputs and should not be committed unless a specification change explicitly says otherwise.
 - Publishing an active Price DB build is a separate promotion step; validation/build success alone must not implicitly change the active manifest.
