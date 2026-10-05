@@ -3,7 +3,10 @@
   "id": "aurora-postgresql",
   "label": "Amazon Aurora for PostgreSQL",
   "priceSource": {
-    "serviceCode": "AmazonRDS"
+    "serviceCode": "AmazonRDS",
+    "componentOverrides": {
+      "database-insights-limitless": "AmazonCloudWatch"
+    }
   },
   "profiles": [
     "provisioned-standard",
