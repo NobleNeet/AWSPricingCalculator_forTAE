@@ -12,6 +12,6 @@ export const expected = {
   ec2: await goldenAmount('ec2', 'linux-small'),
   ec2Edited: await goldenAmount('ec2', 'linux-small', { instance: '100' }),
   s3: await goldenAmount('s3', 'standard'),
-  lambda: await goldenAmount('lambda', 'x86'),
+  lambda: await goldenAmount('lambda', 'x86', { requests: '0', duration: '0' }),
   ebs: await goldenAmount('ebs', 'gp3-extra', { storage: '100', iops: '0', throughput: '0' })
 };
