@@ -41,6 +41,17 @@ export function activeInputs(inputs, saved, context, products, filters, namespac
   }
   return active;
 }
+
+function evaluateMeter(meter, products, context, filters) {
+  if (!enabled(meter.enabledWhen, context)) return { state: 'disabled', issues: [] };
+  const broadFilters = [...filters, ...meter.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+  const scopedProducts = products.filter(product => matches(product, broadFilters, context));
+  const resolution = resolvePrice(scopedProducts, meter.priceQuery, context, filters);
+  const limitations = [...new Set([...(meter.limitations ?? []), ...resolution.limitations])];
+  const result = calculate(meter.calculation, context, resolution.dimension);
+  return { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution };
+}
+
 export function evaluateService(pkg, instance, project, products, profileProducts = products) {
   const components = {};
   const issues = [];
@@ -57,13 +68,42 @@ export function evaluateService(pkg, instance, project, products, profileProduct
       try {
         context.component = saved.inputs ?? {};
         const filters = [...profile.fixedFilters, ...definition.fixedFilters];
-        const broadFilters = [...filters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+        const metered = Array.isArray(definition.meters);
+        const broadFilters = metered ? filters : [...filters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
         const scopedProducts = products.filter(product => matches(product, broadFilters, context));
-        context.component = activeInputs([...definition.selectors, ...definition.usageInputs], context.component, context, scopedProducts, broadFilters);
-        const resolution = resolvePrice(scopedProducts, definition.priceQuery, context, filters);
-        const limitations = [...new Set([...definition.limitations, ...resolution.limitations])];
-        const result = calculate(definition.calculation, context, resolution.dimension);
-        components[id] = { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution };
+        context.component = activeInputs([...(definition.selectors ?? []), ...(definition.usageInputs ?? [])], context.component, context, scopedProducts, broadFilters);
+        if (metered) {
+          const meters = {};
+          const meterIssues = [];
+          for (const meter of definition.meters) {
+            try {
+              meters[meter.id] = evaluateMeter(meter, products, context, filters);
+            } catch (error) {
+              const diagnostic = error.issue ?? issue('INVALID_DATA', error.message);
+              meters[meter.id] = { state: 'invalid', issues: [diagnostic] };
+              meterIssues.push({ ...diagnostic, meterId: meter.id });
+            }
+          }
+          if (meterIssues.length) {
+            components[id] = { state: 'invalid', issues: meterIssues, meters };
+            issues.push(...meterIssues.map(item => ({ ...item, componentId: id })));
+            continue;
+          }
+          const activeMeters = Object.values(meters).filter(meter => meter.state !== 'disabled');
+          const limitations = [...new Set([...definition.limitations, ...activeMeters.flatMap(meter => meter.limitations ?? [])])];
+          components[id] = {
+            state: limitations.length ? 'warning' : 'ready',
+            amountUsd: sum(activeMeters.filter(meter => meter.amountUsd !== undefined).map(meter => meter.amountUsd)).toString(),
+            limitations,
+            meters,
+            issues: []
+          };
+        } else {
+          const resolution = resolvePrice(scopedProducts, definition.priceQuery, context, filters);
+          const limitations = [...new Set([...definition.limitations, ...resolution.limitations])];
+          const result = calculate(definition.calculation, context, resolution.dimension);
+          components[id] = { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution };
+        }
       } catch (error) {
         const diagnostic = error.issue ?? issue('INVALID_DATA', error.message);
         components[id] = { state: 'invalid', issues: [diagnostic] };

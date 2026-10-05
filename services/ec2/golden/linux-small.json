@@ -24,7 +24,9 @@
       "enabled": true,
       "inputs": {
         "volumeType": "gp3",
-        "storageGb": "30"
+        "storageGb": "30",
+        "provisionedIops": "6000",
+        "throughputMibps": "250"
       }
     }
   },
@@ -53,18 +55,42 @@
       ]
     },
     "ebs": {
-      "attributes": {
-        "volumeApiName": "gp3",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-EBS:VolumeUsage.gp3",
-        "operation": ""
-      },
-      "unit": "GB-Mo",
-      "quantity": "30",
       "limitations": [
         "free-tier",
         "account-specific-discount"
-      ]
+      ],
+      "meters": {
+        "storage": {
+          "attributes": {
+            "volumeApiName": "gp3",
+            "regionCode": "ap-northeast-1",
+            "usagetype": "APN1-EBS:VolumeUsage.gp3",
+            "operation": ""
+          },
+          "unit": "GB-Mo",
+          "quantity": "30"
+        },
+        "gp3-iops": {
+          "attributes": {
+            "volumeApiName": "gp3",
+            "regionCode": "ap-northeast-1",
+            "usagetype": "APN1-EBS:VolumeP-IOPS.gp3",
+            "operation": ""
+          },
+          "unit": "IOPS-Mo",
+          "quantity": "3000"
+        },
+        "gp3-throughput": {
+          "attributes": {
+            "volumeApiName": "gp3",
+            "regionCode": "ap-northeast-1",
+            "usagetype": "APN1-EBS:VolumeP-Throughput.gp3",
+            "operation": ""
+          },
+          "unit": "GiBps-mo",
+          "quantity": "0.1220703125"
+        }
+      }
     }
   },
   "verification": {
@@ -86,15 +112,41 @@
       "quantity": "730"
     },
     "ebs": {
-      "attributes": {
-        "volumeApiName": "gp3",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-EBS:VolumeUsage.gp3",
-        "operation": ""
-      },
-      "productFamily": "Storage",
-      "unit": "GB-Mo",
-      "quantity": "30"
+      "meters": {
+        "storage": {
+          "attributes": {
+            "volumeApiName": "gp3",
+            "regionCode": "ap-northeast-1",
+            "usagetype": "APN1-EBS:VolumeUsage.gp3",
+            "operation": ""
+          },
+          "productFamily": "Storage",
+          "unit": "GB-Mo",
+          "quantity": "30"
+        },
+        "gp3-iops": {
+          "attributes": {
+            "volumeApiName": "gp3",
+            "regionCode": "ap-northeast-1",
+            "usagetype": "APN1-EBS:VolumeP-IOPS.gp3",
+            "operation": ""
+          },
+          "productFamily": "System Operation",
+          "unit": "IOPS-Mo",
+          "quantity": "3000"
+        },
+        "gp3-throughput": {
+          "attributes": {
+            "volumeApiName": "gp3",
+            "regionCode": "ap-northeast-1",
+            "usagetype": "APN1-EBS:VolumeP-Throughput.gp3",
+            "operation": ""
+          },
+          "productFamily": "Provisioned Throughput",
+          "unit": "GiBps-mo",
+          "quantity": "0.1220703125"
+        }
+      }
     }
   }
 }

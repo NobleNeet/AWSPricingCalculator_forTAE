@@ -8,7 +8,7 @@ export const COVERAGE_REFERENCE_REGION = 'ap-northeast-1';
 
 export function defaults(pkg, profileId = pkg.service.defaultProfile) {
   const profile = pkg.profiles[profileId];
-  return { serviceId: pkg.service.id, profileId, region: { mode: 'inherit' }, selectors: Object.fromEntries(profile.selectors.filter(input => input.default !== undefined).map(input => [input.id, input.default])), components: Object.fromEntries(profile.components.map(id => [id, { enabled: pkg.components[id].defaultEnabled ?? true, inputs: Object.fromEntries([...pkg.components[id].selectors, ...pkg.components[id].usageInputs].filter(input => input.default !== undefined).map(input => [input.id, input.default])) }])) };
+  return { serviceId: pkg.service.id, profileId, region: { mode: 'inherit' }, selectors: Object.fromEntries(profile.selectors.filter(input => input.default !== undefined).map(input => [input.id, input.default])), components: Object.fromEntries(profile.components.map(id => [id, { enabled: pkg.components[id].defaultEnabled ?? true, inputs: Object.fromEntries([...(pkg.components[id].selectors ?? []), ...(pkg.components[id].usageInputs ?? [])].filter(input => input.default !== undefined).map(input => [input.id, input.default])) }])) };
 }
 export function inputOrder(inputs, namespace) {
   const ordered = [], seen = new Set();
@@ -90,9 +90,11 @@ export function reachableCases(pkg, products, region = 'ap-northeast-1') {
         const component = pkg.components[componentId];
         for (const componentContext of componentContexts(profile, component, context)) {
           const start = { ...componentContext, component: instance.components[componentId].inputs };
-          const filters = [...profile.fixedFilters, ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+          const meterQueries = component.meters?.map(meter => meter.priceQuery) ?? [component.priceQuery];
+          const staticMeterFilters = meterQueries.flatMap(query => query?.productFilters?.filter(f => !f.valueFrom?.startsWith('component.')) ?? []);
+          const filters = component.meters ? [...profile.fixedFilters, ...component.fixedFilters] : [...profile.fixedFilters, ...component.fixedFilters, ...staticMeterFilters];
           const scopedProducts = products.filter(product => matches(product, filters, componentContext));
-          for (const branch of branches(component.selectors, 'component', start, scopedProducts, filters)) {
+          for (const branch of branches(component.selectors ?? [], 'component', start, scopedProducts, filters)) {
             const sample = structuredClone(instance);
             sample.selectors = branch.profile;
             sample.components[componentId].inputs = branch.component;

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "ebs",
   "label": "Amazon Elastic Block Store (EBS)",
   "optional": true,
@@ -19,7 +19,7 @@
         ]
       },
       "ui": {
-        "help": "EC2組み込みEBSでは、ストレージ容量だけで月額を決定できるgp3（ベースライン性能）、gp2、st1、sc1を選択できます。gp3の追加IOPS/throughput、およびio1/io2のProvisioned IOPS料金は別メーター対応後に追加します。"
+        "help": "EC2組み込みEBSではgp3、gp2、st1、sc1を選択できます。gp3ではストレージに加えて、ベースラインを超えるProvisioned IOPSとthroughputも個別メーターで計算します。"
       }
     }
   ],
@@ -33,44 +33,201 @@
       "ui": {
         "help": "AWS Pricing CalculatorのEC2見積りと同じく、既定値は30 GBです。0 GBでEBSを付けない見積りにできます。"
       }
+    },
+    {
+      "id": "provisionedIops",
+      "label": "Provisioned IOPS",
+      "type": "number",
+      "default": "3000",
+      "minimum": "3000",
+      "maximum": "16000",
+      "enabledWhen": {
+        "field": "component.volumeType",
+        "op": "eq",
+        "value": "gp3"
+      },
+      "ui": {
+        "help": "gp3は3,000 IOPSまでストレージ料金に含まれます。3,000を超えるProvisioned IOPSのみ追加課金として計算します。"
+      }
+    },
+    {
+      "id": "throughputMibps",
+      "label": "Provisioned throughput (MiB/s)",
+      "type": "number",
+      "default": "125",
+      "minimum": "125",
+      "maximum": "2000",
+      "enabledWhen": {
+        "field": "component.volumeType",
+        "op": "eq",
+        "value": "gp3"
+      },
+      "ui": {
+        "help": "gp3は125 MiB/sまでストレージ料金に含まれます。125 MiB/sを超えるthroughputのみ追加課金として計算します。"
+      }
     }
   ],
   "fixedFilters": [],
-  "priceQuery": {
-    "expect": "singleSku",
-    "productFilters": [
-      {
-        "field": "productFamily",
-        "op": "eq",
-        "value": "Storage"
+  "meters": [
+    {
+      "id": "storage",
+      "label": "Provisioned storage",
+      "priceQuery": {
+        "expect": "singleSku",
+        "productFilters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Storage"
+          },
+          {
+            "field": "attributes.volumeApiName",
+            "op": "eq",
+            "valueFrom": "component.volumeType"
+          }
+        ],
+        "dimensionFilters": [
+          {
+            "field": "unit",
+            "op": "eq",
+            "value": "GB-Mo"
+          }
+        ]
       },
-      {
-        "field": "attributes.volumeApiName",
-        "op": "eq",
-        "valueFrom": "component.volumeType"
+      "calculation": {
+        "model": "unit",
+        "usage": {
+          "sources": [
+            {
+              "valueFrom": "component.storageGb"
+            }
+          ],
+          "combine": "multiply"
+        },
+        "transforms": [],
+        "outputUnit": "GB-Mo"
       }
-    ],
-    "dimensionFilters": [
-      {
-        "field": "unit",
-        "op": "eq",
-        "value": "GB-Mo"
-      }
-    ]
-  },
-  "calculation": {
-    "model": "unit",
-    "usage": {
-      "sources": [
-        {
-          "valueFrom": "component.storageGb"
-        }
-      ],
-      "combine": "multiply"
     },
-    "transforms": [],
-    "outputUnit": "GB-Mo"
-  },
+    {
+      "id": "gp3-iops",
+      "label": "gp3 additional Provisioned IOPS",
+      "enabledWhen": {
+        "field": "component.volumeType",
+        "op": "eq",
+        "value": "gp3"
+      },
+      "priceQuery": {
+        "expect": "singleSku",
+        "productFilters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "System Operation"
+          },
+          {
+            "field": "attributes.volumeApiName",
+            "op": "eq",
+            "value": "gp3"
+          }
+        ],
+        "dimensionFilters": [
+          {
+            "field": "unit",
+            "op": "eq",
+            "value": "IOPS-Mo"
+          }
+        ]
+      },
+      "calculation": {
+        "model": "unit",
+        "usage": {
+          "sources": [
+            {
+              "value": {
+                "type": "transformed",
+                "valueFrom": "component.provisionedIops",
+                "transforms": [
+                  {
+                    "type": "subtract",
+                    "value": "3000"
+                  },
+                  {
+                    "type": "minimum",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          ],
+          "combine": "multiply"
+        },
+        "transforms": [],
+        "outputUnit": "IOPS-Mo"
+      }
+    },
+    {
+      "id": "gp3-throughput",
+      "label": "gp3 additional Provisioned throughput",
+      "enabledWhen": {
+        "field": "component.volumeType",
+        "op": "eq",
+        "value": "gp3"
+      },
+      "priceQuery": {
+        "expect": "singleSku",
+        "productFilters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Provisioned Throughput"
+          },
+          {
+            "field": "attributes.volumeApiName",
+            "op": "eq",
+            "value": "gp3"
+          }
+        ],
+        "dimensionFilters": [
+          {
+            "field": "unit",
+            "op": "eq",
+            "value": "GiBps-mo"
+          }
+        ]
+      },
+      "calculation": {
+        "model": "unit",
+        "usage": {
+          "sources": [
+            {
+              "value": {
+                "type": "transformed",
+                "valueFrom": "component.throughputMibps",
+                "transforms": [
+                  {
+                    "type": "subtract",
+                    "value": "125"
+                  },
+                  {
+                    "type": "minimum",
+                    "value": "0"
+                  }
+                ]
+              }
+            }
+          ],
+          "combine": "multiply"
+        },
+        "transforms": [
+          {
+            "type": "scale",
+            "factor": "0.0009765625"
+          }
+        ],
+        "outputUnit": "GiBps-mo"
+      }
+    }
+  ],
   "limitations": [
     "free-tier",
     "account-specific-discount"
