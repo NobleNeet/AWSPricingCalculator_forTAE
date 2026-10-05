@@ -46,12 +46,20 @@ test('failure isolation, explicit retry, stale cached prices and generation mism
 test('Definition cache deduplicates package fetches and validates safe reference paths', async () => {
   const counts = {};
   const data = {
-    'service.json': { schemaVersion: 1, id: 'example', label: 'Example', profiles: ['standard'], defaultProfile: 'standard', priceSource: { serviceCode: 'Example' } },
+    'service.json': { schemaVersion: 1, id: 'example', label: 'Example', profiles: ['standard'], defaultProfile: 'standard', priceSource: { serviceCode: 'Example' }, pricingMappings: ['meter'] },
     'standard.json': { schemaVersion: 1, id: 'standard', selectors: [], fixedFilters: [], components: ['meter'] },
-    'meter.json': { schemaVersion: 1, id: 'meter', priceQuery: { expect: 'singleSku' }, calculation: { model: 'unit' }, selectors: [], usageInputs: [], limitations: [] }
+    'meter.json': { schemaVersion: 1, id: 'meter', priceQuery: { expect: 'singleSku' }, calculation: { model: 'unit' }, selectors: [], usageInputs: [], limitations: [] },
+    'mapping:meter.json': { schemaVersion: 1, id: 'meter', componentId: 'meter', priceSource: { serviceCode: 'Example' }, productMatchers: [], dimensionMatchers: [], expect: { products: 1, billableDimensions: 1 } }
   };
-  const store = new DefinitionStore({ fetcher: async url => { counts[url] = (counts[url] ?? 0) + 1; return { ok: true, text: async () => JSON.stringify(data[url.split('/').at(-1)]) }; } });
-  await Promise.all([store.package('example'), store.package('example')]);
+  const store = new DefinitionStore({ fetcher: async url => {
+    counts[url] = (counts[url] ?? 0) + 1;
+    const name = url.split('/').at(-1);
+    const body = url.includes('/pricing-mappings/') ? data[`mapping:${name}`] : data[name];
+    return { ok: true, text: async () => JSON.stringify(body) };
+  } });
+  const [first, second] = await Promise.all([store.package('example'), store.package('example')]);
+  assert.equal(first, second);
+  assert.equal(first.pricingMappings.meter.componentId, 'meter');
   assert.equal(Object.values(counts).every(n => n === 1), true);
   await assert.rejects(() => store.package('../outside'), /Invalid service ID/);
 });
