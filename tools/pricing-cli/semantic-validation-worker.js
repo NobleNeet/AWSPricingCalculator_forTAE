@@ -1,10 +1,15 @@
 import { parentPort, workerData } from 'node:worker_threads';
-import path from 'node:path';
 import { loadPackages, readJson } from './package-loader.js';
 import { validatePriceData } from './semantics.js';
+import { loadProductsMatching } from './product-chunks.js';
+import { matches } from '../../src/pricing/filter.js';
+import { accumulateInventory, finalizeInventory, validateCoverage } from './inventory.js';
+import { issue } from '../../src/pricing/issues.js';
+import { schemaValidator } from '../schema.js';
 
 const packages = await loadPackages();
 const common = await readJson('pricing/normalization/common.json');
+const validateProducts = await schemaValidator('pricing/products');
 const packageGroups = new Map();
 const normalizers = new Map();
 
@@ -25,35 +30,108 @@ async function normalizerFor(serviceCode) {
   return normalizer;
 }
 
+function sourceCodeFor(pkg, componentId) {
+  return pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
+}
+
+function staticFilters(filters = []) {
+  return filters.filter(filter => !filter.valueFrom);
+}
+
+function filterGroupsFor(servicePackages, serviceCode) {
+  const groups = [];
+  for (const pkg of servicePackages) for (const profileId of pkg.service.profiles) {
+    const profile = pkg.profiles[profileId];
+    if (pkg.service.priceSource.serviceCode === serviceCode) groups.push(staticFilters(profile.fixedFilters ?? []));
+    for (const componentId of profile.components) {
+      if (sourceCodeFor(pkg, componentId) !== serviceCode) continue;
+      const component = pkg.components[componentId];
+      groups.push(staticFilters([
+        ...(profile.fixedFilters ?? []),
+        ...(component.fixedFilters ?? []),
+        ...(component.priceQuery?.productFilters ?? [])
+      ]));
+    }
+  }
+  return groups;
+}
+
+function productPredicate(servicePackages, serviceCode) {
+  const groups = filterGroupsFor(servicePackages, serviceCode);
+  if (!groups.length || groups.some(filters => filters.length === 0)) return () => true;
+  return product => groups.some(filters => matches(product, filters, {}));
+}
+
 async function runTask(task) {
   const started = performance.now();
-  const { serviceCode, region, productsPath, includeCoverage } = task;
+  const { serviceCode, region, sourceDescriptors, includeCoverage } = task;
   const servicePackages = packageGroups.get(serviceCode) ?? [];
-  const source = await readJson(path.join(workerData.directory, productsPath));
-  const normalizer = await normalizerFor(serviceCode);
-  const data = { [`${serviceCode}/${region}`]: source };
+  const issues = [];
+  const coverage = {};
+  const data = {};
+  const normalizersByCode = {};
+  const coverageCategories = new Map();
+  let scannedProducts = 0;
+  let selectedProducts = 0;
+  let chunks = 0;
+
+  for (const [code, source] of Object.entries(sourceDescriptors ?? {})) {
+    const normalizer = await normalizerFor(code);
+    normalizersByCode[code] = normalizer;
+    const loaded = await loadProductsMatching(workerData.directory, source, productPredicate(servicePackages, code), {
+      onChunk: async (chunkData, chunk) => {
+        if (!validateProducts(chunkData)) {
+          issues.push(issue('SCHEMA_ERROR', `${code}/${region}/${chunk.path}: ${JSON.stringify(validateProducts.errors)}`));
+        }
+        if (includeCoverage && code === serviceCode) accumulateInventory(coverageCategories, chunkData, common, normalizer);
+      }
+    });
+    data[`${code}/${region}`] = loaded.data;
+    scannedProducts += loaded.stats.products;
+    selectedProducts += loaded.stats.selectedProducts;
+    chunks += loaded.stats.chunks;
+  }
+
+  if (includeCoverage) {
+    const categories = finalizeInventory(coverageCategories);
+    for (const pkg of servicePackages) {
+      const checkedCoverage = validateCoverage(categories, pkg.coverage);
+      coverage[`${pkg.service.id}/${region}`] = checkedCoverage.summary;
+      issues.push(...checkedCoverage.issues.map(entry => ({ ...entry, serviceId: pkg.service.id, region })));
+    }
+  }
+
   const checked = validatePriceData(
     servicePackages,
     data,
     common,
-    { [serviceCode]: normalizer },
-    { includeCoverage }
+    normalizersByCode,
+    { includeCoverage: false }
   );
-  const publishSkus = new Set();
+  issues.push(...checked.issues);
+
+  const packageByServiceId = new Map(servicePackages.map(pkg => [pkg.service.id, pkg]));
+  const publishSkus = {};
   for (const resolution of checked.resolutions) {
     const sku = resolution.result.components[resolution.componentId]?.resolution?.product.sku;
-    if (sku) publishSkus.add(sku);
+    if (!sku) continue;
+    const pkg = packageByServiceId.get(resolution.serviceId);
+    const code = pkg ? sourceCodeFor(pkg, resolution.componentId) : serviceCode;
+    const key = `${code}/${region}`;
+    (publishSkus[key] ??= new Set()).add(sku);
   }
 
   return {
     taskId: task.taskId,
     serviceCode,
     region,
-    issues: checked.issues,
-    coverage: checked.coverage,
+    issues,
+    coverage,
     branches: checked.resolutions.length,
-    publishSkus: [...publishSkus],
-    products: source.products.length,
+    publishSkus: Object.fromEntries(Object.entries(publishSkus).map(([key, values]) => [key, [...values]])),
+    scannedProducts,
+    selectedProducts,
+    chunks,
     elapsedMs: Math.round(performance.now() - started)
   };
 }
