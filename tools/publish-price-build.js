@@ -8,6 +8,50 @@ import { encode } from './pricing-cli/normalize.js';
 import { schemaValidator } from './schema.js';
 import { generateCatalog } from './pricing-cli/catalog.js';
 
+function normalizeBuildIdentity(value) {
+  if (Array.isArray(value)) return value.map(normalizeBuildIdentity);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.entries(value).map(([key, item]) => [
+    key,
+    key === 'buildId' ? '__BUILD_ID__' : normalizeBuildIdentity(item)
+  ]));
+}
+
+function comparableManifest(manifest) {
+  const normalized = normalizeBuildIdentity(manifest);
+  delete normalized.generatedAt;
+  for (const regions of Object.values(normalized.sources ?? {})) {
+    for (const source of Object.values(regions ?? {})) {
+      delete source.productsSha256;
+      delete source.indexSha256;
+      delete source.productsBytes;
+      delete source.indexBytes;
+    }
+  }
+  return normalized;
+}
+
+async function sameBuildContent(candidateRoot, candidateManifest, activeRoot, activeManifest) {
+  if (encode(comparableManifest(candidateManifest)) !== encode(comparableManifest(activeManifest))) return false;
+  for (const [code, regions] of Object.entries(candidateManifest.sources)) for (const [region, candidateSource] of Object.entries(regions)) {
+    const activeSource = activeManifest.sources?.[code]?.[region];
+    if (!activeSource) return false;
+    for (const kind of ['products', 'index']) {
+      const pathKey = `${kind}Path`, shaKey = `${kind}Sha256`, bytesKey = `${kind}Bytes`;
+      if (candidateSource[pathKey] !== activeSource[pathKey]) return false;
+      const candidateText = await readFile(path.join(candidateRoot, candidateSource[pathKey]), 'utf8');
+      const activeText = await readFile(path.join(activeRoot, activeSource[pathKey]), 'utf8');
+      if (checksum(activeText) !== activeSource[shaKey] || Buffer.byteLength(activeText) !== activeSource[bytesKey]) {
+        throw Error(`Active ${kind} resource checksum mismatch for ${code}/${region}`);
+      }
+      const candidateData = normalizeBuildIdentity(JSON.parse(candidateText));
+      const activeData = normalizeBuildIdentity(JSON.parse(activeText));
+      if (encode(candidateData) !== encode(activeData)) return false;
+    }
+  }
+  return true;
+}
+
 export async function promoteBuild({ stage, reports, generated = 'pricing/generated', expectedPrevious, catalogFile = 'services/catalog.json', fixtureDirectory = 'tests/fixtures/aws', packages } = {}) {
   const summary = await readJson(path.join(reports, 'summary.json'));
   if (!summary.publishable || summary.status !== 'VALIDATED' || !['PRICE_ONLY', 'STRUCTURE_WARNING'].includes(summary.classification)) throw Error('Publish rejected: validation or STRUCTURE_BREAKING');
@@ -44,7 +88,16 @@ export async function promoteBuild({ stage, reports, generated = 'pricing/genera
     console.log(`publication: build ${summary.buildId} is already active; treating promotion as idempotent success`);
     return { activeBuildId: summary.buildId, previousBuildId, alreadyPublished: true };
   }
-  if (active.activeBuildId !== previousBuildId) throw Error('Active build changed while candidate was prepared');
+
+  if (active.activeBuildId !== previousBuildId) {
+    const activeRoot = path.join(generated, 'builds', active.activeBuildId);
+    const activeManifest = await readJson(path.join(activeRoot, 'build-manifest.json'));
+    if (await sameBuildContent(root, manifest, activeRoot, activeManifest)) {
+      console.log(`publication: candidate ${summary.buildId} is content-identical to active build ${active.activeBuildId}; treating promotion as idempotent success`);
+      return { activeBuildId: active.activeBuildId, previousBuildId, alreadyPublished: true, equivalentCandidateBuildId: summary.buildId };
+    }
+    throw Error('Active build changed while candidate was prepared');
+  }
 
   const destination = path.join(generated, 'builds', summary.buildId);
   try { await access(destination); throw Error('Immutable build already exists'); } catch (error) { if (error.code !== 'ENOENT') throw error; }
