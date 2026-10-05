@@ -36,7 +36,7 @@ test('all initial real service schemas and independently verified AWS Golden sam
 test('EC2 embedded EBS exposes storage-priced volume types without provisioned-performance meters', async () => {
   const packages = await loadPackages();
   const ec2 = packages.find(pkg => pkg.service.id === 'ec2');
-  const ebs = ec2.components.find(component => component.id === 'ebs');
+  const ebs = ec2.components.ebs;
   const volumeType = ebs.selectors.find(selector => selector.id === 'volumeType');
 
   assert.deepEqual(volumeType.options.values, ['gp3', 'gp2', 'st1', 'sc1']);
