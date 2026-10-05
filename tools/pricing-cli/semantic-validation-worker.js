@@ -46,8 +46,9 @@ function filterGroupsFor(servicePackages, serviceCode) {
     for (const componentId of profile.components) {
       if (sourceCodeFor(pkg, componentId) !== serviceCode) continue;
       const component = pkg.components[componentId];
+      const profileFilters = serviceCode === pkg.service.priceSource.serviceCode ? profile.fixedFilters ?? [] : [];
       groups.push(staticFilters([
-        ...(profile.fixedFilters ?? []),
+        ...profileFilters,
         ...(component.fixedFilters ?? []),
         ...(component.priceQuery?.productFilters ?? [])
       ]));
