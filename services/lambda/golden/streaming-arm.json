@@ -19,9 +19,23 @@
     "averageStreamedResponseMb": "7"
   },
   "components": {
+    "requests": { "enabled": true, "inputs": {} },
+    "duration": { "enabled": true, "inputs": {} },
     "response-streaming-arm": { "enabled": true, "inputs": {} }
   },
   "expected": {
+    "requests": {
+      "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" },
+      "unit": "Request",
+      "quantity": "1000",
+      "limitations": ["free-tier", "account-specific-discount"]
+    },
+    "duration": {
+      "attributes": { "group": "AWS-Lambda-Duration-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-GB-Second-ARM", "operation": "" },
+      "unit": "Lambda-GB-Second",
+      "quantity": "12.5",
+      "limitations": ["free-tier", "account-specific-discount", "aggregate-billing", "network-transfer", "organization-usage-aggregation", "tier-pricing"]
+    },
     "response-streaming-arm": {
       "attributes": { "group": "AWS-Lambda-Processed-Bytes-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM", "operation": "" },
       "unit": "Processed-Gigabytes",
@@ -30,11 +44,8 @@
     }
   },
   "verification": {
-    "response-streaming-arm": {
-      "attributes": { "group": "AWS-Lambda-Processed-Bytes-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM", "operation": "" },
-      "productFamily": "Serverless",
-      "unit": "Processed-Gigabytes",
-      "quantity": "0.9765625"
-    }
+    "requests": { "attributes": { "group": "AWS-Lambda-Requests", "regionCode": "ap-northeast-1", "usagetype": "APN1-Request", "operation": "" }, "productFamily": "Serverless", "unit": "Request", "quantity": "1000" },
+    "duration": { "attributes": { "group": "AWS-Lambda-Duration-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-GB-Second-ARM", "operation": "" }, "productFamily": "Serverless", "unit": "Lambda-GB-Second", "quantity": "12.5" },
+    "response-streaming-arm": { "attributes": { "group": "AWS-Lambda-Processed-Bytes-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM", "operation": "" }, "productFamily": "Serverless", "unit": "Processed-Gigabytes", "quantity": "0.9765625" }
   }
 }
