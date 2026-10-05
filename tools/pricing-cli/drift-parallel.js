@@ -9,7 +9,8 @@ function positiveInt(value, fallback) {
 function priceSourceCodes(packages) {
   return [...new Set(packages.flatMap(pkg => [
     pkg.service.priceSource.serviceCode,
-    ...Object.values(pkg.service.priceSource.componentOverrides ?? {})
+    ...Object.values(pkg.service.priceSource.componentOverrides ?? {}),
+    ...Object.values(pkg.pricingMappings ?? {}).map(mapping => mapping.priceSource.serviceCode)
   ]))];
 }
 
