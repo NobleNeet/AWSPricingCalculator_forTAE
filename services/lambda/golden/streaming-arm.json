@@ -5,26 +5,25 @@
   "project": { "region": "ap-northeast-1", "hoursPerMonth": "730" },
   "selectors": {
     "architecture": "AWS-Lambda-Duration-ARM",
-    "requestsPerMonth": "0",
+    "ephemeralStorageMb": "512",
+    "requestsPerMonth": "1000",
     "averageDurationMs": "100",
     "memoryMb": "128",
-    "ephemeralStorageMb": "512",
+    "provisionedArchitecture": "AWS-Lambda-Provisioned-Concurrency-ARM",
     "provisionedConcurrency": "0",
-    "streamingRequestsPerMonth": "1000",
-    "averageStreamedResponseMb": "7",
-    "snapStartMode": "disabled"
+    "provisionedHoursPerMonth": "0",
+    "provisionedRequestsPerMonth": "0",
+    "provisionedAverageDurationMs": "100",
+    "provisionedMemoryMb": "128",
+    "invokeMode": "response-stream",
+    "averageStreamedResponseMb": "7"
   },
   "components": {
     "response-streaming-arm": { "enabled": true, "inputs": {} }
   },
   "expected": {
     "response-streaming-arm": {
-      "attributes": {
-        "group": "AWS-Lambda-Processed-Bytes-ARM",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM",
-        "operation": ""
-      },
+      "attributes": { "group": "AWS-Lambda-Processed-Bytes-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM", "operation": "" },
       "unit": "Processed-Gigabytes",
       "quantity": "0.9765625",
       "limitations": ["free-tier", "account-specific-discount", "network-transfer"]
@@ -32,12 +31,7 @@
   },
   "verification": {
     "response-streaming-arm": {
-      "attributes": {
-        "group": "AWS-Lambda-Processed-Bytes-ARM",
-        "regionCode": "ap-northeast-1",
-        "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM",
-        "operation": ""
-      },
+      "attributes": { "group": "AWS-Lambda-Processed-Bytes-ARM", "regionCode": "ap-northeast-1", "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM", "operation": "" },
       "productFamily": "Serverless",
       "unit": "Processed-Gigabytes",
       "quantity": "0.9765625"
