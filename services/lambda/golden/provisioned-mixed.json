@@ -6,7 +6,7 @@
   "selectors": {
     "architecture": "AWS-Lambda-Duration",
     "ephemeralStorageMb": "512",
-    "requestsPerMonth": "1",
+    "requestsPerMonth": "0",
     "averageDurationMs": "100",
     "memoryMb": "128",
     "provisionedArchitecture": "AWS-Lambda-Provisioned-Concurrency-ARM",
