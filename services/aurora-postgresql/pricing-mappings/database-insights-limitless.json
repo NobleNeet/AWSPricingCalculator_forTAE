@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "database-insights-limitless",
+  "componentId": "database-insights-limitless",
+  "priceSource": {
+    "serviceCode": "AmazonCloudWatch"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "CloudWatch Database Insights"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "Aurora-PostgreSQL:Limitless"
+    },
+    {
+      "field": "attributes.databaseEngineType",
+      "op": "eq",
+      "value": "Aurora-PostgreSQL"
+    },
+    {
+      "field": "attributes.instanceConfigurationType",
+      "op": "eq",
+      "value": "Limitless"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "CW-DatabaseInsights"
+    },
+    {
+      "field": "attributes.retention",
+      "op": "notExists"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "ACU-Hours"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Aurora PostgreSQL Limitless Database Insights Advanced compute monitoring. AWS billing guidance identifies DatabaseInsights-ACU-Hours for Aurora-PostgreSQL:Limitless. Standard-mode retention products use retention=FMR/AMR and are intentionally excluded rather than resolved by generic semantic heuristics."
+}
