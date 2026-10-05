@@ -15,7 +15,7 @@ export async function buildPriceDb(candidate, directory, buildId, validation) {
   const manifest = { schemaVersion: 1, buildId, generatedAt, publicationDate, currency: 'USD', sources: {} };
   if (validation.definitionSha256) manifest.definitionSha256 = validation.definitionSha256;
   const resources = [];
-  const chunkWrites = [];
+  const chunkData = [];
   for (const [key, original] of Object.entries(candidate.data).sort(([a], [b]) => a.localeCompare(b))) {
     const code = original.serviceCode, region = original.region;
     const published = validation.publishSkus?.[key];
@@ -25,16 +25,16 @@ export async function buildPriceDb(candidate, directory, buildId, validation) {
     const productsText = encode(data), indexText = encode(index);
     const metadata = candidate.metadata.sources[key];
     if (!metadata) throw Error(`Source metadata missing for ${key}`);
-    chunkWrites.push((async () => {
-      const chunked = await writeProductChunks(root, data);
-      (manifest.sources[code] ??= {})[region].chunkManifestPath = chunked.manifestPath;
-      (manifest.sources[code] ??= {})[region].chunkCount = chunked.manifest.chunks.length;
-    })());
     (manifest.sources[code] ??= {})[region] = { ...metadata, changed: undefined, productsPath, indexPath, productsSha256: checksum(productsText), indexSha256: checksum(indexText), productsBytes: Buffer.byteLength(productsText), indexBytes: Buffer.byteLength(indexText) };
     resources.push([productsPath, productsText], [indexPath, indexText]);
+    chunkData.push([code, region, data]);
   }
   for (const [relative, text] of resources) { const file = path.join(root, relative); await mkdir(path.dirname(file), { recursive: true }); await writeFile(file, text, { flag: 'wx' }); }
-  await Promise.all(chunkWrites);
+  for (const [code, region, data] of chunkData) {
+    const chunked = await writeProductChunks(root, data);
+    manifest.sources[code][region].chunkManifestPath = chunked.manifestPath;
+    manifest.sources[code][region].chunkCount = chunked.manifest.chunks.length;
+  }
   await writeFile(path.join(root, 'build-manifest.json'), encode(manifest), { flag: 'wx' });
   return manifest;
 }
