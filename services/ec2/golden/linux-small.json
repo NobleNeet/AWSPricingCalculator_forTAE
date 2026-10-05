@@ -9,7 +9,8 @@
   "selectors": {
     "tenancy": "Shared",
     "os": "Linux",
-    "software": "NA"
+    "software": "NA",
+    "ebsVolumeType": "gp3"
   },
   "components": {
     "instance": {
@@ -23,8 +24,19 @@
     "ebs": {
       "enabled": true,
       "inputs": {
-        "volumeType": "gp3",
         "storageGb": "30"
+      }
+    },
+    "ebs-gp3-iops": {
+      "enabled": true,
+      "inputs": {
+        "provisionedIops": "3000"
+      }
+    },
+    "ebs-gp3-throughput": {
+      "enabled": true,
+      "inputs": {
+        "throughputMibps": "125"
       }
     }
   },
@@ -65,6 +77,32 @@
         "free-tier",
         "account-specific-discount"
       ]
+    },
+    "ebs-gp3-iops": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeP-IOPS.gp3",
+        "operation": ""
+      },
+      "unit": "IOPS-Mo",
+      "quantity": "0",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "ebs-gp3-throughput": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeP-Throughput.gp3",
+        "operation": ""
+      },
+      "unit": "GiBps-mo",
+      "quantity": "0",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
     }
   },
   "verification": {
@@ -95,6 +133,26 @@
       "productFamily": "Storage",
       "unit": "GB-Mo",
       "quantity": "30"
+    },
+    "ebs-gp3-iops": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeP-IOPS.gp3",
+        "operation": ""
+      },
+      "productFamily": "System Operation",
+      "unit": "IOPS-Mo",
+      "quantity": "0"
+    },
+    "ebs-gp3-throughput": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-EBS:VolumeP-Throughput.gp3",
+        "operation": ""
+      },
+      "productFamily": "Provisioned Throughput",
+      "unit": "GiBps-mo",
+      "quantity": "0"
     }
   }
 }
