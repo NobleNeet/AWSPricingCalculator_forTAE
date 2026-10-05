@@ -20,7 +20,9 @@
     "expect": "singleSku",
     "productFilters": [
       {"field": "productFamily", "op": "eq", "value": "Storage Snapshot"},
-      {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"}
+      {"field": "attributes.databaseEngine", "op": "eq", "value": "Aurora PostgreSQL"},
+      {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"},
+      {"field": "attributes.limitlesspreview", "op": "notExists"}
     ],
     "dimensionFilters": [{"field": "unit", "op": "eq", "value": "GB-Mo"}]
   },
