@@ -1,6 +1,7 @@
 import { evaluateService, selectorCandidates } from '../../src/pricing/core.js';
 import { enabled } from '../../src/pricing/conditions.js';
 import { issue } from '../../src/pricing/issues.js';
+import { mappingForComponent, priceSourceForComponent } from '../../src/pricing/mapping.js';
 import { inventory, validateCoverage } from './inventory.js';
 import { matches } from '../../src/pricing/filter.js';
 
@@ -79,11 +80,21 @@ function componentContexts(profile, component, context) {
   }
   return contexts.filter(current => enabled(component.enabledWhen, current));
 }
-function sourceCodeFor(pkg, componentId) {
-  return pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
-}
 function profileFiltersForSource(pkg, profile, serviceCode) {
   return serviceCode === pkg.service.priceSource.serviceCode ? profile.fixedFilters : [];
+}
+function componentResolutionFilters(pkg, profile, componentId, serviceCode) {
+  const component = pkg.components[componentId];
+  const mapping = mappingForComponent(pkg, componentId);
+  if (mapping) return mapping.productMatchers ?? [];
+  return [...profileFiltersForSource(pkg, profile, serviceCode), ...component.fixedFilters, ...component.priceQuery.productFilters];
+}
+function requiredSourceCodes(pkg) {
+  return [...new Set([
+    pkg.service.priceSource.serviceCode,
+    ...Object.values(pkg.service.priceSource.componentOverrides ?? {}),
+    ...Object.values(pkg.pricingMappings ?? {}).map(mapping => mapping.priceSource.serviceCode)
+  ])];
 }
 export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-northeast-1') {
   const defaultCode = pkg.service.priceSource.serviceCode;
@@ -95,11 +106,11 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
     for (const context of branches(profile.selectors, 'profile', base, profileProducts, profile.fixedFilters)) {
       for (const componentId of profile.components) {
         const component = pkg.components[componentId];
-        const componentCode = sourceCodeFor(pkg, componentId);
+        const componentCode = priceSourceForComponent(pkg, componentId);
         const componentProducts = productsByServiceCode[componentCode] ?? [];
         for (const componentContext of componentContexts(profile, component, context)) {
           const start = { ...componentContext, component: instance.components[componentId].inputs };
-          const filters = [...profileFiltersForSource(pkg, profile, componentCode), ...component.fixedFilters, ...component.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
+          const filters = componentResolutionFilters(pkg, profile, componentId, componentCode).filter(f => !f.valueFrom?.startsWith('component.'));
           const scopedProducts = componentProducts.filter(product => matches(product, filters, componentContext));
           for (const branch of branches(component.selectors, 'component', start, scopedProducts, filters)) {
             const sample = structuredClone(instance);
@@ -127,8 +138,7 @@ export function reachableCases(pkg, productsByServiceCode, region = 'ap-northeas
   return [...reachableCaseIterator(pkg, productsByServiceCode, region)];
 }
 function productsForSource(pkg, data, source) {
-  const defaultCode = pkg.service.priceSource.serviceCode;
-  const requiredCodes = [...new Set([defaultCode, ...Object.values(pkg.service.priceSource.componentOverrides ?? {})])];
+  const requiredCodes = requiredSourceCodes(pkg);
   const productsByServiceCode = {};
   for (const code of requiredCodes) {
     const entry = Object.values(data).find(candidate => candidate.serviceCode === code && candidate.region === source.region);
@@ -169,7 +179,7 @@ export function validatePriceData(packages, data, common, normalizers, options =
   packageLoop:
   for (const pkg of packages) {
     const defaultCode = pkg.service.priceSource.serviceCode;
-    const requiredCodes = [...new Set([defaultCode, ...Object.values(pkg.service.priceSource.componentOverrides ?? {})])];
+    const requiredCodes = requiredSourceCodes(pkg);
     const sources = Object.entries(data).filter(([, source]) => source.serviceCode === defaultCode);
     if (!sources.length) { issues.push(issue('PRICE_SOURCE_NOT_FOUND', 'Price source missing.', { serviceId: pkg.service.id })); continue; }
     if (includeCoverage) {
