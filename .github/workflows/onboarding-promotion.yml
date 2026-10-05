@@ -172,6 +172,15 @@ jobs:
           npm run test:e2e
           npm run build:site
 
+      - name: Block PR on merged-candidate validation failure
+        if: failure() && steps.merge_candidate.outputs.mergeable == 'true' && steps.validate.outcome == 'failure'
+        shell: bash
+        run: |
+          pr="${{ steps.select.outputs.number }}"
+          git merge --abort || true
+          gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --remove-label "$READY_LABEL" --remove-label "$PROMOTING_LABEL" --add-label "$BLOCKED_LABEL" || true
+          gh pr comment "$pr" --repo "$GITHUB_REPOSITORY" --body 'Promotion was blocked because the candidate failed repository validation after merging with the latest main. Fix the onboarding branch, re-run branch CI, then re-apply `onboarding-ready`.' || true
+
       - name: Commit and push promoted service
         if: steps.merge_candidate.outputs.mergeable == 'true' && steps.validate.outcome == 'success'
         id: push
