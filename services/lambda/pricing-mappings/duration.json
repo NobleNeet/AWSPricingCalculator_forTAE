@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "duration",
+  "componentId": "duration",
+  "priceSource": { "serviceCode": "AWSLambda" },
+  "productMatchers": [
+    { "field": "productFamily", "op": "eq", "value": "Serverless" },
+    { "field": "attributes.group", "op": "eq", "valueFrom": "profile.architecture" }
+  ],
+  "dimensionMatchers": [
+    { "field": "unit", "op": "eq", "value": "Lambda-GB-Second" }
+  ],
+  "expect": { "products": 1, "billableDimensions": 1 },
+  "notes": "On-demand Lambda duration meter. The Calculator architecture selector chooses the corresponding x86 or Arm AWSLambda group."
+}
