@@ -62,6 +62,11 @@ function productPredicate(servicePackages, serviceCode) {
   return product => groups.some(filters => matches(product, filters, {}));
 }
 
+function positiveInt(value, fallback) {
+  const parsed = Number.parseInt(value ?? '', 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 async function runTask(task) {
   const started = performance.now();
   const { serviceCode, region, sourceDescriptors, includeCoverage } = task;
@@ -101,12 +106,25 @@ async function runTask(task) {
     }
   }
 
+  const caseBatchSize = positiveInt(process.env.PRICE_VALIDATE_CASE_BATCH_SIZE, 250);
   const checked = validatePriceData(
     servicePackages,
     data,
     common,
     normalizersByCode,
-    { includeCoverage: false }
+    {
+      includeCoverage: false,
+      caseBatchSize,
+      onCaseBatch: progress => parentPort.postMessage({
+        type: 'progress',
+        taskId: task.taskId,
+        serviceCode,
+        region,
+        processedCases: progress.processedCases,
+        batchCases: progress.batchCases,
+        elapsedMs: Math.round(performance.now() - started)
+      })
+    }
   );
   issues.push(...checked.issues);
 
