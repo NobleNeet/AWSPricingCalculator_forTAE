@@ -24,7 +24,7 @@
     "expect": {
       "type": "object",
       "properties": {
-        "products": {"type": "integer", "minimum": 1},
+        "products": {"const": 1},
         "billableDimensions": {"type": "integer", "minimum": 1}
       },
       "required": ["products", "billableDimensions"],
@@ -36,6 +36,7 @@
   "additionalProperties": false,
   "$defs": {
     "matcherValue": {
+      "type": "object",
       "properties": {
         "op": {"enum": ["eq", "neq", "in", "notIn", "exists", "notExists"]},
         "value": {},
