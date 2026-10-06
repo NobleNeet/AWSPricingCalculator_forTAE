@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ArchivedEvents-Bytes"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "ArchiveEvents"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GigaBytes"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "archive-processing"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Event-64K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "PutEvents"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "64K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "custom-events-ingestion"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Event-64K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "ReceivedPartnerEvents"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "64K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "partner-events-ingestion"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Event-8K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "DiscoveryEvent"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "8K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "schema-discovery"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Invocation-64K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CrossAccountInvoke-AWSEvent"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "64K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "cross-account-management-delivery"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Invocation-64K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CrossAccountInvoke-CustomEvent"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "64K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "cross-account-custom-delivery"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Invocation-64K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CrossAccountInvoke-PartnerEvent"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "64K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "cross-account-partner-delivery"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Invocation-64K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "InvokeApiDestination"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "64K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "api-destinations"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Request-64K-Chunks"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "PipeRequest"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "64K-Chunks"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "pipes"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ScheduledInvocation"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "Invocation"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Invocations"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "scheduler"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TimedStorage-ByteHrs"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "StandardStorage"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "archive-storage"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-BusRetention-ByteHrs"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-DeduplicationByContent-64K-ChunkSize"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Operations"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-Deserialization-64K-ChunkSize"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Operations"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-Egress-Bytes"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-Ingress-Bytes"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-SubscriberRetention-ByteHrs"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Mo"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-Transformation-64K-ChunkSize"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Operations"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}
