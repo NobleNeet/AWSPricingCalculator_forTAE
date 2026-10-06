@@ -1,0 +1,17 @@
+{
+  "buildId": "20261006T135617Z-12d70da0",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 6,
+      "firstSku": "5KTAXCA3CGS4ZJ6N",
+      "lastSku": "Z6ZQ2YST5YY3RFRX",
+      "path": "chunks/awskms/ap-northeast-3/00000.json",
+      "sha256": "8e749d9e602798ea968c238aec9d59518690d181ee5d56f287d841024767c42f"
+    }
+  ],
+  "productCount": 6,
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "awskms"
+}

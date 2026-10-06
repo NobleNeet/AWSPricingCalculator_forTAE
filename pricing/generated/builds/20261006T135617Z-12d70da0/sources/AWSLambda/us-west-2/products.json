@@ -1,0 +1,455 @@
+{
+  "buildId": "20261006T135617Z-12d70da0",
+  "products": [
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Provisioned-Concurrency"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "67MDK2GR6PRT8GW8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000041667"
+                },
+                "rateCode": "67MDK2GR6PRT8GW8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Provisioned-Concurrency"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes-ARM",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation for ARM",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Streaming-Response-Processed-Bytes-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "FKVF2FFZFKHXNVJ2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for Lambda-Streaming-Response-Processed-Bytes-ARM in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "FKVF2FFZFKHXNVJ2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Streaming-Response-Processed-Bytes-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Storage-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "HXET4S4G5F9Y7FP6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000309"
+                },
+                "rateCode": "HXET4S4G5F9Y7FP6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Storage-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Provisioned-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "MP7NQ6MSH3HNCZP6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000097222"
+                },
+                "rateCode": "MP7NQ6MSH3HNCZP6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Provisioned-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Storage-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "N9TMQ3FMNJR97GYZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage for ARM - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000309"
+                },
+                "rateCode": "N9TMQ3FMNJR97GYZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Storage-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned-ARM",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Provisioned-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "NBKU6R2APCBC2G7F",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) for ARM - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000077778"
+                },
+                "rateCode": "NBKU6R2APCBC2G7F.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Provisioned-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Streaming-Response-Processed-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "NZGRMXV87W8HQUH8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for of Lambda-Streaming-Response-Processed-Bytes usage in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "NZGRMXV87W8HQUH8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Streaming-Response-Processed-Bytes"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "T3BEHFG5V4TZDT76",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "7500000000",
+                "description": "AWS Lambda - Total Compute for ARM - US West (Oregon)-Tier-2",
+                "endRange": "18750000000",
+                "pricePerUnit": {
+                  "USD": "0.0000120001"
+                },
+                "rateCode": "T3BEHFG5V4TZDT76.JRTCKXETXF.6JGAYSJBNY",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute for ARM - US West (Oregon)-Tier-1",
+                "endRange": "7500000000",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "T3BEHFG5V4TZDT76.JRTCKXETXF.6NBUNBXSC3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "18750000000",
+                "description": "AWS Lambda - Total Compute for ARM - US West (Oregon)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000106667"
+                },
+                "rateCode": "T3BEHFG5V4TZDT76.JRTCKXETXF.AVR3V96UTF",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "XCU6U9G4FCKZQWG9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute - US West (Oregon)-Tier-1",
+                "endRange": "6000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000166667"
+                },
+                "rateCode": "XCU6U9G4FCKZQWG9.JRTCKXETXF.CUKFZ388N3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "6000000000",
+                "description": "AWS Lambda - Total Compute - US West (Oregon)-Tier-2",
+                "endRange": "15000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000150000"
+                },
+                "rateCode": "XCU6U9G4FCKZQWG9.JRTCKXETXF.QZE2SB4KVB",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "15000000000",
+                "description": "AWS Lambda - Total Compute - US West (Oregon)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "XCU6U9G4FCKZQWG9.JRTCKXETXF.V7R92EXG27",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency-ARM",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Lambda-Provisioned-Concurrency-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZCX9CRYDARE655VR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency for ARM - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000033334"
+                },
+                "rateCode": "ZCX9CRYDARE655VR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Lambda-Provisioned-Concurrency-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "groupDescription": "Invocation call for a Lambda function",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USW2-Request"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZWHFK83WS2P4WZR6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Requests - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "ZWHFK83WS2P4WZR6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Request"
+    }
+  ],
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}
