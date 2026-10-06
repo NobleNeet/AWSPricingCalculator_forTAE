@@ -291,6 +291,36 @@ Product/Dimensionの意味的識別結果が同一で単価だけ変わった場
 
 ---
 
+## 10.5 Incremental drift validation
+
+Scheduled Price Updateのdrift検証は、前回publish済みbuildを検証済みbaselineとして再利用し、変更局所性に従って不要な再検証を省略する。
+
+検証対象は次の順序で絞り込む。
+
+```text
+pricing contract / service Definition fingerprint
+-> serviceCode
+-> region
+-> relevant SKU
+-> reachable case
+```
+
+規則:
+
+1. build manifestへglobal pricing contract fingerprintとservice単位Definition fingerprintを保存する。
+2. global pricing contractが変化した場合、または旧buildにfingerprintが存在しない場合はfail-safeで全price sourceを再検証する。
+3. service固有Definition / Pricing Mappingだけが変化した場合、そのserviceが実際に参照するprice sourceだけをDefinition refresh対象とする。Mappingのcomponent override sourceも含める。
+4. Definition変更もAWS source変更もないserviceCode/regionはdrift task自体を作成しない。
+5. AWS source versionが変化しても、semantic validationがpublish対象として選択したSKU集合のnormalized Product/Dimension内容が前buildと完全一致するregionはdrift評価を再実行せずreuseする。
+6. SKU集合とsemantic structureが同一で単価だけが変化した場合は、変更SKUを含まないreachable caseをreuseし、変更SKUへ到達し得るcaseだけを再評価する。
+7. SKU追加/削除、attribute、unit、range、dimension構造等のsemantic changeがある場合はprice-only shortcutを使用せず、そのtaskを通常どおり再検証する。
+8. normalized product chunkにはcontent SHA-256を記録し、同一chunkを機械的に識別可能にする。chunk fingerprintは診断・将来のより細粒度なreuseにも使用できるが、fingerprint一致が確認できない場合は再検証側へ倒す。
+9. reuseは常にfail-closedとする。必要なfingerprint、baseline、SKU集合、semantic equalityのいずれかを確認できない場合はskipしてはならない。
+
+この最適化は検証意味論を変更しない。省略できるのは「前回成功済みで、入力契約と対象料金内容が同一であることを決定論的に証明できる処理」だけである。
+
+---
+
 ## 11. semantic validation / finalizeの責務変更
 
 従来のsemantic validation / finalizeに、次の責務を持たせない。
