@@ -85,3 +85,22 @@ test('missing saved inputs use definition defaults without mutating saved state'
   assert.deepEqual(saved, { stillRequired: '7' });
   assert.throws(() => activeInputs([{ id: 'required', label: 'Required', type: 'number' }], {}, { profile: {}, component: {} }, [], []), code('MISSING_INPUT'));
 });
+
+
+test('transformed usage sources can round a per-item billing chunk before multiplication', () => {
+  const chunked = {
+    model: 'unit',
+    usage: {
+      sources: [
+        { valueFrom: 'profile.events' },
+        { value: { type: 'transformed', valueFrom: 'profile.payloadKb', transforms: [{ type: 'scale', factor: '0.015625' }, { type: 'rounding', mode: 'ceil' }] } }
+      ],
+      combine: 'multiply'
+    },
+    transforms: [],
+    outputUnit: '64K-Chunks'
+  };
+  const dimension = dim('0', 'Inf', '0.000001', { unit: '64K-Chunks' });
+  assert.equal(calculate(chunked, { profile: { events: '1000000', payloadKb: '64' } }, dimension).billingQuantity, '1000000');
+  assert.equal(calculate(chunked, { profile: { events: '1000000', payloadKb: '65' } }, dimension).billingQuantity, '2000000');
+});
