@@ -147,3 +147,50 @@ test('mobile Drawer stays usable at narrow viewport', async ({ page }) => {
   expect(bounds.x).toBeGreaterThanOrEqual(0); expect(bounds.x + bounds.width).toBeLessThanOrEqual(390);
   await page.screenshot({ path: 'test-results/mobile-drawer.png', fullPage: true });
 });
+
+
+test('KMS drawer follows AWS Pricing Calculator service-setting inputs', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('#price-meta')).toContainText(activeBuildId);
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
+  await page.locator('[data-service="kms"]').click();
+  await expect(page.locator('#service-drawer')).toBeVisible();
+
+  const keyCount = page.locator('#input-component-key-versions-billableKeyVersions');
+  const symmetric = page.locator('#input-component-requests-standard-requests');
+  const asymmetric = page.locator('#input-component-requests-asymmetric-requests');
+  const rsa2048 = page.locator('#input-component-requests-asymmetric-rsa2048-requests');
+  const eccPair = page.locator('#input-component-requests-generate-data-key-pair-ecc-requests');
+  const rsaPair = page.locator('#input-component-requests-generate-data-key-pair-rsa-requests');
+
+  await expect(keyCount).toHaveValue('5');
+  await expect(symmetric).toHaveValue('2000000');
+  await expect(asymmetric).toHaveValue('0');
+  await expect(rsa2048).toHaveValue('0');
+  await expect(eccPair).toHaveValue('0');
+  await expect(rsaPair).toHaveValue('0');
+
+  await expect(page.getByText('Number of customer managed customer master keys (CMK)', { exact: true })).toBeVisible();
+  await expect(page.getByText('Number of symmetric requests', { exact: true })).toBeVisible();
+  await expect(page.getByText('Number of asymmetric requests other than RSA 2048', { exact: true })).toBeVisible();
+  await expect(page.getByText('Number of asymmetric requests related to RSA 2048', { exact: true })).toBeVisible();
+  await expect(page.getByText('Number of ECC GenerateDataKeyPair requests', { exact: true })).toBeVisible();
+  await expect(page.getByText('Number of RSA GenerateDataKeyPair requests', { exact: true })).toBeVisible();
+
+  const calculatorOrder = await page.evaluate(() => {
+    const ids = [
+      'input-component-key-versions-billableKeyVersions',
+      'input-component-requests-standard-requests',
+      'input-component-requests-asymmetric-requests',
+      'input-component-requests-asymmetric-rsa2048-requests',
+      'input-component-requests-generate-data-key-pair-ecc-requests',
+      'input-component-requests-generate-data-key-pair-rsa-requests'
+    ];
+    const nodes = ids.map(id => document.getElementById(id)?.closest('label'));
+    return nodes.every(Boolean) && nodes.slice(1).every((node, index) =>
+      Boolean(nodes[index].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING)
+    );
+  });
+  expect(calculatorOrder).toBe(true);
+});
