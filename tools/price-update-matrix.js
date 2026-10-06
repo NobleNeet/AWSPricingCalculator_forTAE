@@ -5,7 +5,12 @@ import { run, writeJson, candidateDirectory } from './pricing-cli/cli.js';
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum, buildPriceDb } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
-import { definitionFingerprint } from './pricing-cli/fingerprint.js';
+import {
+  changedPriceSourceCodes,
+  contractFingerprints,
+  definitionFingerprint,
+  packagePriceSourceCodes
+} from './pricing-cli/fingerprint.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
 import { classifyChangeParallel } from './pricing-cli/drift-parallel.js';
@@ -55,10 +60,7 @@ async function loadSourceDescriptors(directory) {
 }
 
 function priceSourceCodes(packages) {
-  return [...new Set(packages.flatMap(pkg => [
-    pkg.service.priceSource.serviceCode,
-    ...Object.values(pkg.service.priceSource.componentOverrides ?? {})
-  ]))].sort();
+  return [...new Set(packages.flatMap(packagePriceSourceCodes))].sort();
 }
 
 async function prepare(work) {
@@ -69,7 +71,11 @@ async function prepare(work) {
   const activeBuild = await readJson(path.join(previousDirectory, 'build-manifest.json'));
   const packages = await loadPackages();
   const fingerprint = await definitionFingerprint(packages);
+  const contracts = await contractFingerprints(packages);
   const definitionsChanged = fingerprint !== activeBuild.definitionSha256;
+  const definitionRefreshCodes = definitionsChanged
+    ? changedPriceSourceCodes(packages, activeBuild.contractFingerprints, contracts)
+    : new Set();
 
   const previousFile = path.join(work, 'previous-sources.json');
   await writeJson(previousFile, previousMetadata);
@@ -87,13 +93,21 @@ async function prepare(work) {
     return summary;
   }
 
-  if (definitionsChanged) {
+  {
     const metadata = await readJson(metadataFile);
-    for (const item of Object.values(metadata.sources)) item.changed = true;
+    for (const item of Object.values(metadata.sources)) {
+      item.awsChanged = Boolean(item.changed);
+      item.definitionChanged = definitionRefreshCodes.has(item.serviceCode);
+      if (item.definitionChanged) item.changed = true;
+    }
     await writeJson(metadataFile, metadata);
     const sourceReport = await readJson(path.join(work, 'reports', 'check-source.json'));
-    sourceReport.definitionsChanged = true;
-    sourceReport.definitionRefreshServiceCodes = 'ALL';
+    sourceReport.definitionsChanged = definitionsChanged;
+    sourceReport.definitionRefreshServiceCodes = [...definitionRefreshCodes].sort();
+    sourceReport.awsChangedSources = Object.entries(metadata.sources)
+      .filter(([, item]) => item.awsChanged)
+      .map(([key]) => key)
+      .sort();
     await writeJson(path.join(work, 'reports', 'check-source.json'), sourceReport);
   }
 
@@ -106,9 +120,11 @@ async function prepare(work) {
   if (definition.summary.error) throw new Error(`Definition validation failed with ${definition.summary.error} errors`);
   await refreshGoldenEvidenceTolerant(packages, rawDirectory, path.join(work, 'golden-raw'), candidate);
   await writeJson(path.join(work, 'prepare-state.json'), {
-    schemaVersion: 1,
+    schemaVersion: 2,
     previousBuildId: active.activeBuildId,
-    definitionSha256: fingerprint
+    definitionSha256: fingerprint,
+    contractFingerprints: contracts,
+    definitionRefreshServiceCodes: [...definitionRefreshCodes].sort()
   });
   await writeOutput({ needs_update: 'true', publishable: 'false', build_id: '' });
   return { schemaVersion: 1, status: 'PREPARED', publishable: false, previousBuildId: active.activeBuildId };
@@ -197,7 +213,8 @@ async function finalize(work) {
     const buildManifest = await buildPriceDb(candidate, path.join(stage, 'pricing'), buildId, {
       issues: [...definition.issues, ...semantic.issues, ...golden.issues],
       publishSkus,
-      definitionSha256: state.definitionSha256
+      definitionSha256: state.definitionSha256,
+      contractFingerprints: state.contractFingerprints
     });
     const built = { ...report('build', [], { build: buildManifest }), elapsedMs: Math.round(performance.now() - started) };
     await writeJson(path.join(work, 'reports', 'build.json'), built);
