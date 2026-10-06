@@ -1,0 +1,408 @@
+{
+  "offerCode": "AWSEvents",
+  "products": {
+    "SG5BXRDK8SBA9Y57": {
+      "sku": "SG5BXRDK8SBA9Y57",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Event-64K-Chunks",
+        "operation": "PutEvents",
+        "eventType": "Custom Event",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "7VJYBCQEVTW5GYEJ": {
+      "sku": "7VJYBCQEVTW5GYEJ",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Event-64K-Chunks",
+        "operation": "ReceivedPartnerEvents",
+        "eventType": "Partner Event",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "FYGDQTAUXE9MYWM7": {
+      "sku": "FYGDQTAUXE9MYWM7",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Invocation-64K-Chunks",
+        "operation": "CrossAccountInvoke-AWSEvent",
+        "eventType": "Cross-Account AWS Event",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "27RKWVB4U8R6UTHP": {
+      "sku": "27RKWVB4U8R6UTHP",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Invocation-64K-Chunks",
+        "operation": "CrossAccountInvoke-CustomEvent",
+        "eventType": "Cross-Account Custom Event",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "BVQZAPYST7AEQHMQ": {
+      "sku": "BVQZAPYST7AEQHMQ",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Invocation-64K-Chunks",
+        "operation": "CrossAccountInvoke-PartnerEvent",
+        "eventType": "Cross-Account Partner Event",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "N9HUKE25CZ9Q4667": {
+      "sku": "N9HUKE25CZ9Q4667",
+      "productFamily": "CloudWatch Events",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Invocation-64K-Chunks",
+        "operation": "InvokeApiDestination",
+        "eventType": "APIDestination",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "UA76NUFPSF2YA2BQ": {
+      "sku": "UA76NUFPSF2YA2BQ",
+      "productFamily": "CloudWatch Events",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-ArchivedEvents-Bytes",
+        "operation": "ArchiveEvents",
+        "eventType": "Archive Event",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "KCK8Z988QU294FPN": {
+      "sku": "KCK8Z988QU294FPN",
+      "productFamily": "CloudWatch Events",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-TimedStorage-ByteHrs",
+        "operation": "StandardStorage",
+        "eventType": "Event Storage",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "C7FAR2R8C6KWSG5G": {
+      "sku": "C7FAR2R8C6KWSG5G",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Request-64K-Chunks",
+        "operation": "PipeRequest",
+        "request": "Pipe Request",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "M3FWYWWN9HEEQ6Y8": {
+      "sku": "M3FWYWWN9HEEQ6Y8",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-Event-8K-Chunks",
+        "operation": "DiscoveryEvent",
+        "eventType": "Discovery Event",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events"
+      }
+    },
+    "29C3758CBCYNXH8B": {
+      "sku": "29C3758CBCYNXH8B",
+      "productFamily": "EventBridge",
+      "attributes": {
+        "servicecode": "AWSEvents",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-ScheduledInvocation",
+        "operation": "Invocation",
+        "invocation": "Scheduled Invocation",
+        "regionCode": "ap-northeast-1",
+        "servicename": "CloudWatch Events",
+        "timeWindow": "N/A"
+      }
+    }
+  },
+  "publicationDate": "2026-09-24T16:39:03Z",
+  "terms": {
+    "OnDemand": {
+      "SG5BXRDK8SBA9Y57": {
+        "SG5BXRDK8SBA9Y57.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "SG5BXRDK8SBA9Y57",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "SG5BXRDK8SBA9Y57.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "SG5BXRDK8SBA9Y57.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$1.00 per million EventBridge custom events received in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "64K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000010000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "7VJYBCQEVTW5GYEJ": {
+        "7VJYBCQEVTW5GYEJ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "7VJYBCQEVTW5GYEJ",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "7VJYBCQEVTW5GYEJ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "7VJYBCQEVTW5GYEJ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$1.00 per million EventBridge partner events received in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "64K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000010000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "FYGDQTAUXE9MYWM7": {
+        "FYGDQTAUXE9MYWM7.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "FYGDQTAUXE9MYWM7",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "FYGDQTAUXE9MYWM7.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "FYGDQTAUXE9MYWM7.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$1.00 per million cross-account invocations with AWS management events in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "64K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000010000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "27RKWVB4U8R6UTHP": {
+        "27RKWVB4U8R6UTHP.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "27RKWVB4U8R6UTHP",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "27RKWVB4U8R6UTHP.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "27RKWVB4U8R6UTHP.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.05 per million cross-account invocations with custom events in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "64K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000000500"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "BVQZAPYST7AEQHMQ": {
+        "BVQZAPYST7AEQHMQ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "BVQZAPYST7AEQHMQ",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "BVQZAPYST7AEQHMQ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "BVQZAPYST7AEQHMQ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.05 per million cross-account invocations with partner events in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "64K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000000500"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "N9HUKE25CZ9Q4667": {
+        "N9HUKE25CZ9Q4667.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "N9HUKE25CZ9Q4667",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "N9HUKE25CZ9Q4667.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "N9HUKE25CZ9Q4667.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.24 per million invocations of API Destinations in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "64K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000002400"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "UA76NUFPSF2YA2BQ": {
+        "UA76NUFPSF2YA2BQ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "UA76NUFPSF2YA2BQ",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.13 per GB for ArchivedEvents-Bytes:ArchiveEvents in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GigaBytes",
+              "pricePerUnit": {
+                "USD": "0.1300000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "KCK8Z988QU294FPN": {
+        "KCK8Z988QU294FPN.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "KCK8Z988QU294FPN",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.025 per GB-Mo for TimedStorage-ByteHrs:StandardStorage in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB-Mo",
+              "pricePerUnit": {
+                "USD": "0.0250000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "C7FAR2R8C6KWSG5G": {
+        "C7FAR2R8C6KWSG5G.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "C7FAR2R8C6KWSG5G",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "C7FAR2R8C6KWSG5G.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "C7FAR2R8C6KWSG5G.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.50 per million Pipes requests in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "64K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000005000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "M3FWYWWN9HEEQ6Y8": {
+        "M3FWYWWN9HEEQ6Y8.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "M3FWYWWN9HEEQ6Y8",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "M3FWYWWN9HEEQ6Y8.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "M3FWYWWN9HEEQ6Y8.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.10 per million ingested events for schema discovery in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "8K-Chunks",
+              "pricePerUnit": {
+                "USD": "0.0000001000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "29C3758CBCYNXH8B": {
+        "29C3758CBCYNXH8B.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "29C3758CBCYNXH8B",
+          "effectiveDate": "2026-09-24T00:00:00Z",
+          "priceDimensions": {
+            "29C3758CBCYNXH8B.JRTCKXETXF.FREE": {
+              "rateCode": "29C3758CBCYNXH8B.JRTCKXETXF.FREE",
+              "description": "$0 for the first 14 million scheduled invocations",
+              "beginRange": "0",
+              "endRange": "14000000",
+              "unit": "Invocations",
+              "pricePerUnit": {
+                "USD": "0.0000000000"
+              },
+              "appliesTo": []
+            },
+            "29C3758CBCYNXH8B.JRTCKXETXF.PAID": {
+              "rateCode": "29C3758CBCYNXH8B.JRTCKXETXF.PAID",
+              "description": "$1.25 per million scheduled invocations in Asia Pacific (Tokyo)",
+              "beginRange": "14000000",
+              "endRange": "Inf",
+              "unit": "Invocations",
+              "pricePerUnit": {
+                "USD": "0.0000012500"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260924163903"
+}
