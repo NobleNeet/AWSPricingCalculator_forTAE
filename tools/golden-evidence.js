@@ -18,6 +18,24 @@ function addRawSku(sample, raw, sku) {
   return true;
 }
 
+export async function readGoldenRawSource(rawDirectory, code, region, fixtureDirectory = 'tests/fixtures/aws') {
+  const candidates = [
+    path.join(rawDirectory, code, `${region}.json`),
+    path.join(fixtureDirectory, code, `${region}.json`),
+    path.join(fixtureDirectory, `${code}.json`)
+  ];
+  let missing;
+  for (const file of candidates) {
+    try {
+      return await readJson(file);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+      missing = error;
+    }
+  }
+  throw missing ?? new Error(`Golden raw source missing for ${code}/${region}`);
+}
+
 export async function refreshGoldenEvidenceTolerant(packages, rawDirectory, output, candidateDirectoryPath) {
   if (!candidateDirectoryPath) throw new Error('Golden evidence requires a normalized candidate directory');
   const candidate = await loadCandidate(candidateDirectoryPath);
@@ -33,13 +51,7 @@ export async function refreshGoldenEvidenceTolerant(packages, rawDirectory, outp
   }
 
   for (const { code, region, entries } of groups.values()) {
-    let raw;
-    try {
-      raw = await readJson(path.join(rawDirectory, code, `${region}.json`));
-    } catch (error) {
-      if (error.code === 'ENOENT') raw = await readJson(`tests/fixtures/aws/${code}.json`);
-      else throw error;
-    }
+    const raw = await readGoldenRawSource(rawDirectory, code, region);
 
     const key = sourceKey(code, region);
     const source = candidate.data[key] ?? (candidate.data[code]?.region === region || !candidate.data[code]?.region ? candidate.data[code] : undefined);
