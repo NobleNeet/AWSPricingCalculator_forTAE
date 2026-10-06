@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "archive-storage",
+  "label": "Event replay archive storage",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "CloudWatch Events"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "StandardStorage"
+      },
+      {
+        "field": "attributes.eventType",
+        "op": "eq",
+        "value": "Event Storage"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.archiveStorageGbMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
