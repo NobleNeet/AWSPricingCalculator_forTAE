@@ -34,6 +34,15 @@
     },
     {
       "available": true,
+      "id": "eventbridge",
+      "label": "Amazon EventBridge",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSEvents"
+    },
+    {
+      "available": true,
       "id": "rds",
       "label": "Amazon RDS for PostgreSQL",
       "profiles": [
@@ -67,15 +76,6 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
-    },
-    {
-      "available": true,
-      "id": "eventbridge",
-      "label": "Amazon EventBridge",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AWSEvents"
     }
   ]
 }
