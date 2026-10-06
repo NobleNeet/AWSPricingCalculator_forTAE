@@ -26,7 +26,7 @@ function productDigest(products) {
   return checksum(encode(products));
 }
 
-function priceOnlyChangedSkus(before, after) {
+export function priceOnlyChangedSkus(before, after) {
   if (!before || !after) return null;
   const beforeBySku = new Map(before.products.map(product => [product.sku, product]));
   const afterBySku = new Map(after.products.map(product => [product.sku, product]));
