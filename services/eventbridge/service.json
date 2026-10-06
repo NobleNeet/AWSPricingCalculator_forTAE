@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "eventbridge",
+  "label": "Amazon EventBridge",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "custom-events-ingestion",
+    "opt-in-data-events-ingestion",
+    "partner-events-ingestion",
+    "cross-account-management-delivery",
+    "cross-account-custom-delivery",
+    "cross-account-partner-delivery",
+    "api-destinations",
+    "replayed-events",
+    "archive-processing",
+    "archive-storage",
+    "pipes",
+    "schema-discovery",
+    "scheduler"
+  ]
+}
