@@ -1,0 +1,65 @@
+{
+  "attributes": {
+    "group": [
+      "AWS-Lambda-Duration",
+      "AWS-Lambda-Duration-ARM",
+      "AWS-Lambda-Duration-Provisioned",
+      "AWS-Lambda-Duration-Provisioned-ARM",
+      "AWS-Lambda-Processed-Bytes",
+      "AWS-Lambda-Processed-Bytes-ARM",
+      "AWS-Lambda-Provisioned-Concurrency",
+      "AWS-Lambda-Provisioned-Concurrency-ARM",
+      "AWS-Lambda-Requests",
+      "AWS-Lambda-Storage-Duration",
+      "AWS-Lambda-Storage-Duration-ARM"
+    ],
+    "groupDescription": [
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+      "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+      "Invocation call for a Lambda function",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+      "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+      "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+      "Processed bytes for a streamed response from a Lambda function invocation",
+      "Processed bytes for a streamed response from a Lambda function invocation for ARM"
+    ],
+    "location": [
+      "US West (Oregon)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "us-west-2"
+    ],
+    "servicecode": [
+      "AWSLambda"
+    ],
+    "servicename": [
+      "AWS Lambda"
+    ],
+    "usagetype": [
+      "USW2-Lambda-GB-Second",
+      "USW2-Lambda-GB-Second-ARM",
+      "USW2-Lambda-Provisioned-Concurrency",
+      "USW2-Lambda-Provisioned-Concurrency-ARM",
+      "USW2-Lambda-Provisioned-GB-Second",
+      "USW2-Lambda-Provisioned-GB-Second-ARM",
+      "USW2-Lambda-Storage-GB-Second",
+      "USW2-Lambda-Storage-GB-Second-ARM",
+      "USW2-Lambda-Streaming-Response-Processed-Bytes",
+      "USW2-Lambda-Streaming-Response-Processed-Bytes-ARM",
+      "USW2-Request"
+    ]
+  },
+  "buildId": "20261006T075700Z-67e64dfb",
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}

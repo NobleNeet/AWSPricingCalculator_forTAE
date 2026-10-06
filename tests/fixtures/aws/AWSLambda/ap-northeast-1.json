@@ -31,21 +31,6 @@
       "productFamily": "Serverless",
       "sku": "8DSSBVMYVUE4A85P"
     },
-    "AGXEH64S3V5J5BM5": {
-      "attributes": {
-        "group": "AWS-Lambda-SnapStart-Restore",
-        "groupDescription": "Snapshot GB restored, measured in GB of memory and disk assigned to function",
-        "location": "Asia Pacific (Tokyo)",
-        "locationType": "AWS Region",
-        "operation": "",
-        "regionCode": "ap-northeast-1",
-        "servicecode": "AWSLambda",
-        "servicename": "AWS Lambda",
-        "usagetype": "APN1-Lambda-SnapStart-Restored-GB"
-      },
-      "productFamily": "Serverless",
-      "sku": "AGXEH64S3V5J5BM5"
-    },
     "CQ446M27PP4V4UVB": {
       "attributes": {
         "group": "AWS-Lambda-Duration-Provisioned",
@@ -105,21 +90,6 @@
       },
       "productFamily": "Serverless",
       "sku": "J2PCAT8GTKGHMPPE"
-    },
-    "JETQZE68FCXZH4YC": {
-      "attributes": {
-        "group": "AWS-Lambda-SnapStart-Cache",
-        "groupDescription": "Duration a snapshot is cached for, weighted by memory and disk assigned to function, measured in GB-S",
-        "location": "Asia Pacific (Tokyo)",
-        "locationType": "AWS Region",
-        "operation": "",
-        "regionCode": "ap-northeast-1",
-        "servicecode": "AWSLambda",
-        "servicename": "AWS Lambda",
-        "usagetype": "APN1-Lambda-SnapStart-Cached-GB-S"
-      },
-      "productFamily": "Serverless",
-      "sku": "JETQZE68FCXZH4YC"
     },
     "RH4PFTVX4T4KZF9J": {
       "attributes": {
@@ -242,27 +212,6 @@
           "termAttributes": {}
         }
       },
-      "AGXEH64S3V5J5BM5": {
-        "AGXEH64S3V5J5BM5.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
-          "offerTermCode": "JRTCKXETXF",
-          "priceDimensions": {
-            "AGXEH64S3V5J5BM5.JRTCKXETXF.6YS6EN2CT7": {
-              "appliesTo": [],
-              "beginRange": "0",
-              "description": "USD 0.0001397998 per GB for Lambda-SnapStart-Restored-GB usage in Asia Pacific (Tokyo)",
-              "endRange": "Inf",
-              "pricePerUnit": {
-                "USD": "0.0001397998"
-              },
-              "rateCode": "AGXEH64S3V5J5BM5.JRTCKXETXF.6YS6EN2CT7",
-              "unit": "GB"
-            }
-          },
-          "sku": "AGXEH64S3V5J5BM5",
-          "termAttributes": {}
-        }
-      },
       "CQ446M27PP4V4UVB": {
         "CQ446M27PP4V4UVB.JRTCKXETXF": {
           "effectiveDate": "2026-09-01T00:00:00Z",
@@ -366,27 +315,6 @@
             }
           },
           "sku": "J2PCAT8GTKGHMPPE",
-          "termAttributes": {}
-        }
-      },
-      "JETQZE68FCXZH4YC": {
-        "JETQZE68FCXZH4YC.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
-          "offerTermCode": "JRTCKXETXF",
-          "priceDimensions": {
-            "JETQZE68FCXZH4YC.JRTCKXETXF.6YS6EN2CT7": {
-              "appliesTo": [],
-              "beginRange": "0",
-              "description": "USD 0.0000015046 per GB-Second for Lambda-SnapStart-Cached-GB-S usage in Asia Pacific (Tokyo)",
-              "endRange": "Inf",
-              "pricePerUnit": {
-                "USD": "0.0000015046"
-              },
-              "rateCode": "JETQZE68FCXZH4YC.JRTCKXETXF.6YS6EN2CT7",
-              "unit": "GB-Seconds"
-            }
-          },
-          "sku": "JETQZE68FCXZH4YC",
           "termAttributes": {}
         }
       },
