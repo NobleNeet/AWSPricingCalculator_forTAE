@@ -209,12 +209,13 @@ jobs:
     needs: [prepare, semantic-merge]
     if: needs.prepare.outputs.needs_update == 'true' && needs.semantic-merge.result == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     outputs:
       matrix: ${{ steps.plan.outputs.matrix }}
       batch_count: ${{ steps.plan.outputs.batch_count }}
     env:
-      PRICE_DRIFT_WORKFLOW_BATCH_TASKS: '1'
+      PRICE_DRIFT_PLAN_CONCURRENCY: '2'
+      PRICE_DRIFT_WORKFLOW_BATCH_CASES: '10000'
       PRICE_DRIFT_MAX_WORKFLOW_BATCHES: '240'
     steps:
       - uses: actions/checkout@v4
@@ -256,8 +257,12 @@ jobs:
       max-parallel: 8
       matrix: ${{ fromJSON(needs.drift-plan.outputs.matrix) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Individual work is case-sharded. Keep a long hard ceiling so active shards are
+    # not killed by the old 30-minute wall-clock limit; progress is emitted every
+    # PRICE_DRIFT_CASE_BATCH_SIZE reachable cases.
+    timeout-minutes: 360
     env:
+      PRICE_DRIFT_CASE_BATCH_SIZE: '250'
       PRICE_DRIFT_BATCH_JSON: ${{ toJSON(matrix) }}
     steps:
       - uses: actions/checkout@v4
