@@ -20,7 +20,7 @@ function packagesForServiceCode(packages, serviceCode) {
   return packages.map(pkg => sourceScopedPackage(pkg, serviceCode)).filter(Boolean);
 }
 
-export async function runDriftTask(packages, task, { previousDirectory, candidateDirectory }) {
+export async function runDriftTask(packages, task, { previousDirectory, candidateDirectory }, options = {}) {
   const started = performance.now();
   const { serviceCode, region, hasBefore, hasAfter, publishSkus } = task;
   const key = `${serviceCode}/${region}`;
@@ -37,7 +37,16 @@ export async function runDriftTask(packages, task, { previousDirectory, candidat
     : undefined;
 
   const defaultSourcePackages = servicePackages.filter(pkg => pkg.service.priceSource.serviceCode === serviceCode);
-  let checked = { classification: 'PRICE_ONLY', publishable: true, issues: [], rateDiff: [] };
+  let checked = {
+    classification: 'PRICE_ONLY',
+    publishable: true,
+    issues: [],
+    rateDiff: [],
+    processedCases: 0,
+    seenCases: 0,
+    progressCases: 0,
+    exhausted: false
+  };
   let warning = false;
 
   if (defaultSourcePackages.length) {
@@ -45,7 +54,8 @@ export async function runDriftTask(packages, task, { previousDirectory, candidat
       defaultSourcePackages,
       before ? { [key]: before } : {},
       after ? { [key]: after } : {},
-      []
+      [],
+      options
     );
     warning ||= checked.classification === 'STRUCTURE_WARNING';
   }
@@ -68,6 +78,10 @@ export async function runDriftTask(packages, task, { previousDirectory, candidat
     warning,
     rateDiff: checked.rateDiff,
     candidateProductsLoaded: after?.products.length ?? 0,
+    processedCases: checked.processedCases,
+    seenCases: checked.seenCases,
+    progressCases: checked.progressCases,
+    exhausted: checked.exhausted,
     elapsedMs: Math.round(performance.now() - started)
   };
 }
