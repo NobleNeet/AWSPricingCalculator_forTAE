@@ -9,6 +9,7 @@ import { sourceKey } from './pricing-cli/source.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
 import { evaluateService } from '../src/pricing/core.js';
+import { readGoldenRawSource } from './golden-evidence.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
 const GLOBAL_FINGERPRINT_FILES = new Set([
@@ -60,9 +61,7 @@ export async function refreshGoldenEvidence(packages, rawDirectory, output, cand
     groups.set(key, group);
   }
   for (const { code, region, entries } of groups.values()) {
-    let raw;
-    try { raw = await readJson(path.join(rawDirectory, code, `${region}.json`)); }
-    catch (error) { if (error.code === 'ENOENT') raw = await readJson(`tests/fixtures/aws/${code}.json`); else throw error; }
+    const raw = await readGoldenRawSource(rawDirectory, code, region);
     const key = sourceKey(code, region);
     const source = candidate.data[key] ?? (candidate.data[code]?.region === region || !candidate.data[code]?.region ? candidate.data[code] : undefined);
     if (!source) throw new Error(`Golden evidence ${code}/${region}: normalized source missing`);
