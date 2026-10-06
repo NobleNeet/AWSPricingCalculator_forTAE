@@ -1,18 +1,15 @@
 {
   "schemaVersion": 1,
   "id": "requests-generate-data-key-pair-rsa",
-  "label": "GenerateDataKeyPair RSA requests",
+  "label": "RSA GenerateDataKeyPair requests",
   "selectors": [],
   "usageInputs": [
     {
       "id": "requests",
-      "label": "Requests / month",
+      "label": "Number of RSA GenerateDataKeyPair requests",
       "type": "number",
       "default": "0",
-      "minimum": "0",
-      "ui": {
-        "help": "GenerateDataKeyPair requests for RSA key pairs."
-      }
+      "minimum": "0"
     }
   ],
   "fixedFilters": [],
