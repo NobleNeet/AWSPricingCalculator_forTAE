@@ -103,6 +103,31 @@
     "definitionSha256": {
       "type": "string",
       "pattern": "^[0-9a-f]{64}$"
+    },
+    "contractFingerprints": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "global": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "services": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "global",
+        "services"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
