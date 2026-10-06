@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "payloadSizeKb": "65",
+    "customEventsMillions": "1",
+    "schedulerInvocationsMillions": "1",
+    "archiveStorageGbMonth": "10"
+  },
+  "components": {},
+  "expected": {
+    "custom-events-ingestion": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Event-64K-Chunks",
+        "operation": "PutEvents",
+        "eventType": "Custom Event"
+      },
+      "unit": "64K-Chunks",
+      "quantity": "2000000",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "scheduler": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-ScheduledInvocation",
+        "operation": "Invocation"
+      },
+      "unit": "Invocations",
+      "quantity": "1000000",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "archive-storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-TimedStorage-ByteHrs",
+        "operation": "StandardStorage",
+        "eventType": "Event Storage"
+      },
+      "unit": "GB-Mo",
+      "quantity": "10",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "custom-events-ingestion": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Event-64K-Chunks",
+        "operation": "PutEvents",
+        "eventType": "Custom Event"
+      },
+      "productFamily": "EventBridge",
+      "unit": "64K-Chunks",
+      "quantity": "2000000"
+    },
+    "scheduler": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-ScheduledInvocation",
+        "operation": "Invocation"
+      },
+      "productFamily": "EventBridge",
+      "unit": "Invocations",
+      "quantity": "1000000"
+    },
+    "archive-storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-TimedStorage-ByteHrs",
+        "operation": "StandardStorage",
+        "eventType": "Event Storage"
+      },
+      "productFamily": "CloudWatch Events",
+      "unit": "GB-Mo",
+      "quantity": "10"
+    }
+  }
+}
