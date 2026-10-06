@@ -3,7 +3,7 @@ import { evaluateService } from '../../src/pricing/core.js';
 import { reachableCaseIterator } from './semantics.js';
 import { encode } from './normalize.js';
 
-function semanticProduct(product) {
+export function semanticProduct(product) {
   return {
     ...product,
     terms: {
@@ -35,8 +35,12 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
     caseLimit = Number.POSITIVE_INFINITY,
     includeStructural = true,
     caseBatchSize = 250,
-    onCaseBatch
+    onCaseBatch,
+    priceOnlyChangedSkus
   } = options;
+  const changedSkuSet = priceOnlyChangedSkus
+    ? (priceOnlyChangedSkus instanceof Set ? priceOnlyChangedSkus : new Set(priceOnlyChangedSkus))
+    : null;
   const breaks = candidateIssues.filter(i => i.severity === 'error');
   let warning = false;
   const rateDiff = [];
@@ -45,6 +49,7 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
   let progressCases = 0;
   let batchCases = 0;
   let exhausted = false;
+  let reusedCases = 0;
 
   const emitProgress = force => {
     if (!onCaseBatch || (!force && batchCases < caseBatchSize) || batchCases === 0) return;
@@ -96,6 +101,13 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
           break packageLoop;
         }
 
+        if (changedSkuSet && !sample.products.some(product => changedSkuSet.has(product.sku))) {
+          processedCases += 1;
+          reusedCases += 1;
+          emitProgress(false);
+          continue;
+        }
+
         const oldResult = evaluateService(
           sample.pkg,
           sample.instance,
@@ -104,6 +116,15 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
           sample.profileProducts,
           sample.productsByServiceCode
         );
+        const oldComponent = oldResult.components[sample.componentId];
+        const oldSku = oldComponent?.resolution?.product?.sku;
+        if (changedSkuSet && oldSku && !changedSkuSet.has(oldSku)) {
+          processedCases += 1;
+          reusedCases += 1;
+          emitProgress(false);
+          continue;
+        }
+
         const newProducts = afterByServiceCode[code];
         const newResult = evaluateService(
           sample.pkg,
@@ -114,7 +135,6 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
           afterByServiceCode
         );
         breaks.push(...newResult.issues.map(issue => ({ ...issue, region: after.region })));
-        const oldComponent = oldResult.components[sample.componentId];
         const next = newResult.components[sample.componentId];
         if (oldComponent?.unitPriceUsd !== next?.unitPriceUsd) {
           rateDiff.push({
@@ -142,6 +162,7 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
     processedCases,
     seenCases,
     progressCases,
+    reusedCases,
     exhausted
   };
 }
