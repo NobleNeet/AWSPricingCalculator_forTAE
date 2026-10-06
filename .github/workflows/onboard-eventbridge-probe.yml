@@ -1,5 +1,6 @@
 name: EventBridge onboarding probe
 on:
+  pull_request:
   push:
     branches: [onboard/eventbridge]
     paths:
