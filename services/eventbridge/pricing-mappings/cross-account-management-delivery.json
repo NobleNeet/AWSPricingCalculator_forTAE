@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "cross-account-management-delivery",
+  "componentId": "cross-account-management-delivery",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "EventBridge"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "CrossAccountInvoke-AWSEvent"
+    },
+    {
+      "field": "attributes.eventType",
+      "op": "eq",
+      "value": "Cross-Account AWS Event"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "64K-Chunks"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Cross-account AWS management event delivery."
+}
