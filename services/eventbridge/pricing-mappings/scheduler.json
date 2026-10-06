@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "scheduler",
+  "componentId": "scheduler",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "EventBridge"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "Invocation"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Invocations"
+    },
+    {
+      "field": "beginRange",
+      "op": "eq",
+      "value": "14000000"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Scheduler paid dimension is selected explicitly; the 14M free allowance is intentionally not subtracted."
+}
