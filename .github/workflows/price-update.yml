@@ -19,6 +19,7 @@ on:
       - '.github/workflows/price-update.yml'
   schedule:
     - cron: '23 2 * * *'
+  # Also dispatched explicitly by onboarding-promotion because GITHUB_TOKEN pushes do not chain workflows.
   workflow_dispatch:
 permissions:
   contents: read
