@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "api-destinations",
+  "componentId": "api-destinations",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "CloudWatch Events"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "InvokeApiDestination"
+    },
+    {
+      "field": "attributes.eventType",
+      "op": "eq",
+      "value": "APIDestination"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "64K-Chunks"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "API Destinations invocation meter."
+}
