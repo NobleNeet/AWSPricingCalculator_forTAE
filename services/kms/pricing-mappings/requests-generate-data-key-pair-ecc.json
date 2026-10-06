@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "requests-generate-data-key-pair-ecc",
+  "componentId": "requests-generate-data-key-pair-ecc",
+  "priceSource": {
+    "serviceCode": "awskms"
+  },
+  "productMatchers": [
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "awskms-Requests-GenerateDatakeyPair-ECC"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Requests"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "GenerateDataKeyPair ECC request meter."
+}

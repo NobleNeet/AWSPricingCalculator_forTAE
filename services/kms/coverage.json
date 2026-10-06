@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "KMS-Keys"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Keys"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "key-versions"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "KMS-Requests"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "requests-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "KMS-Requests-Asymmetric"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "requests-asymmetric"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "KMS-Requests-Asymmetric-RSA_2048"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "requests-asymmetric-rsa2048"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "KMS-Requests-GenerateDatakeyPair-ECC"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "requests-generate-data-key-pair-ecc"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "KMS-Requests-GenerateDatakeyPair-RSA"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "requests-generate-data-key-pair-rsa"
+    }
+  ]
+}

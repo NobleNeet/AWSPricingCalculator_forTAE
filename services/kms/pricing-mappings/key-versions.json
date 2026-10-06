@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "key-versions",
+  "componentId": "key-versions",
+  "priceSource": {
+    "serviceCode": "awskms"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Encryption Key"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Keys"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Customer managed KMS key-version storage meter; SKU and rateCode are intentionally not pinned."
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "requests-standard",
+  "componentId": "requests-standard",
+  "priceSource": {
+    "serviceCode": "awskms"
+  },
+  "productMatchers": [
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "awskms-APIRequest-All"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Requests"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "General KMS API request meter."
+}
