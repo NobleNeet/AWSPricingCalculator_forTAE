@@ -35,6 +35,7 @@ test('product chunks bound each file and load only requested SKUs', async () => 
   assert.equal(written.manifestPath, chunkManifestRelativePath('Example', 'ap-northeast-1'));
   assert.equal(written.manifest.productCount, 12);
   assert.deepEqual(written.manifest.chunks.map(chunk => chunk.count), [5, 5, 2]);
+  assert.ok(written.manifest.chunks.every(chunk => /^[a-f0-9]{64}$/.test(chunk.sha256)));
 
   const loaded = await loadProductsForSkus(
     root,
