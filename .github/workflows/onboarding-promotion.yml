@@ -146,6 +146,19 @@ jobs:
 
           node tools/generate-service-catalog.js
           git add services/catalog.json
+
+          service_ids="$(git diff --cached --name-only HEAD \\
+            | awk -F/ '$1 == "services" && NF >= 3 { print $2 }' \\
+            | sort -u \\
+            | paste -sd, -)"
+          if [[ -z "$service_ids" ]]; then
+            echo 'No service definition directory changed; refusing onboarding promotion without a validation scope.'
+            git merge --abort || true
+            echo 'mergeable=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Onboarding validation scope: $service_ids"
+          echo "service_ids=$service_ids" >> "$GITHUB_OUTPUT"
           echo 'mergeable=true' >> "$GITHUB_OUTPUT"
 
       - name: Block PR on merge conflict
@@ -229,7 +242,8 @@ jobs:
 
           if [[ -z "$run_id" ]]; then
             echo "No automatic price-update run appeared for $target_sha; dispatching it explicitly."
-            gh workflow run price-update.yml --repo "$GITHUB_REPOSITORY" --ref main
+            gh workflow run price-update.yml --repo "$GITHUB_REPOSITORY" --ref main \\
+              -f validation_scope_service_ids="${{ steps.merge_candidate.outputs.service_ids }}"
             for _ in $(seq 1 60); do
               runs="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" \
                 -f branch=main -f per_page=50)"
