@@ -21,6 +21,11 @@ on:
     - cron: '23 2 * * *'
   # Also dispatched explicitly by onboarding-promotion because GITHUB_TOKEN pushes do not chain workflows.
   workflow_dispatch:
+    inputs:
+      validation_scope_service_ids:
+        description: 'Comma-separated internal service ids for onboarding-scoped heavy validation. Empty means full validation.'
+        required: false
+        type: string
 permissions:
   contents: read
 concurrency:
@@ -29,6 +34,8 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-latest
+    env:
+      PRICE_UPDATE_SCOPE_SERVICE_IDS: ${{ inputs.validation_scope_service_ids || '' }}
     outputs:
       needs_update: ${{ steps.prepare.outputs.needs_update }}
     steps:
