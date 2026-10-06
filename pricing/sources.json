@@ -8,5 +8,12 @@
     "us-west-1",
     "us-west-2"
   ],
-  "serviceCodes": ["AmazonEC2", "AmazonS3", "AWSLambda", "AmazonRDS", "AmazonCloudWatch"]
+  "serviceCodes": [
+    "AmazonEC2",
+    "AmazonS3",
+    "AWSLambda",
+    "AmazonRDS",
+    "AmazonCloudWatch",
+    "awskms"
+  ]
 }

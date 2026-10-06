@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "requests-generate-data-key-pair-rsa",
+  "label": "GenerateDataKeyPair RSA requests",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "requests",
+      "label": "Requests / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "GenerateDataKeyPair requests for RSA key pairs."
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "awskms-Requests-GenerateDatakeyPair-RSA"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Requests"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.requests"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Requests"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

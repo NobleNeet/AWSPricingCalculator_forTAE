@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "rules": [
+    {
+      "prefix": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-ECC",
+      "class": "KMS-Requests-GenerateDatakeyPair-ECC"
+    },
+    {
+      "prefix": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-RSA",
+      "class": "KMS-Requests-GenerateDatakeyPair-RSA"
+    },
+    {
+      "prefix": "ap-northeast-1-KMS-Requests-Asymmetric-RSA_2048",
+      "class": "KMS-Requests-Asymmetric-RSA_2048"
+    },
+    {
+      "prefix": "ap-northeast-1-KMS-Requests-Asymmetric",
+      "class": "KMS-Requests-Asymmetric"
+    },
+    {
+      "prefix": "ap-northeast-1-KMS-Requests",
+      "class": "KMS-Requests"
+    },
+    {
+      "prefix": "ap-northeast-1-KMS-Keys",
+      "class": "KMS-Keys"
+    },
+    {
+      "prefix": "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-ECC",
+      "class": "KMS-Requests-GenerateDatakeyPair-ECC"
+    },
+    {
+      "prefix": "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-RSA",
+      "class": "KMS-Requests-GenerateDatakeyPair-RSA"
+    },
+    {
+      "prefix": "ap-northeast-3-KMS-Requests-Asymmetric-RSA_2048",
+      "class": "KMS-Requests-Asymmetric-RSA_2048"
+    },
+    {
+      "prefix": "ap-northeast-3-KMS-Requests-Asymmetric",
+      "class": "KMS-Requests-Asymmetric"
+    },
+    {
+      "prefix": "ap-northeast-3-KMS-Requests",
+      "class": "KMS-Requests"
+    },
+    {
+      "prefix": "ap-northeast-3-KMS-Keys",
+      "class": "KMS-Keys"
+    },
+    {
+      "prefix": "us-east-1-KMS-Requests-GenerateDatakeyPair-ECC",
+      "class": "KMS-Requests-GenerateDatakeyPair-ECC"
+    },
+    {
+      "prefix": "us-east-1-KMS-Requests-GenerateDatakeyPair-RSA",
+      "class": "KMS-Requests-GenerateDatakeyPair-RSA"
+    },
+    {
+      "prefix": "us-east-1-KMS-Requests-Asymmetric-RSA_2048",
+      "class": "KMS-Requests-Asymmetric-RSA_2048"
+    },
+    {
+      "prefix": "us-east-1-KMS-Requests-Asymmetric",
+      "class": "KMS-Requests-Asymmetric"
+    },
+    {
+      "prefix": "us-east-1-KMS-Requests",
+      "class": "KMS-Requests"
+    },
+    {
+      "prefix": "us-east-1-KMS-Keys",
+      "class": "KMS-Keys"
+    },
+    {
+      "prefix": "us-east-2-KMS-Requests-GenerateDatakeyPair-ECC",
+      "class": "KMS-Requests-GenerateDatakeyPair-ECC"
+    },
+    {
+      "prefix": "us-east-2-KMS-Requests-GenerateDatakeyPair-RSA",
+      "class": "KMS-Requests-GenerateDatakeyPair-RSA"
+    },
+    {
+      "prefix": "us-east-2-KMS-Requests-Asymmetric-RSA_2048",
+      "class": "KMS-Requests-Asymmetric-RSA_2048"
+    },
+    {
+      "prefix": "us-east-2-KMS-Requests-Asymmetric",
+      "class": "KMS-Requests-Asymmetric"
+    },
+    {
+      "prefix": "us-east-2-KMS-Requests",
+      "class": "KMS-Requests"
+    },
+    {
+      "prefix": "us-east-2-KMS-Keys",
+      "class": "KMS-Keys"
+    },
+    {
+      "prefix": "us-west-1-KMS-Requests-GenerateDatakeyPair-ECC",
+      "class": "KMS-Requests-GenerateDatakeyPair-ECC"
+    },
+    {
+      "prefix": "us-west-1-KMS-Requests-GenerateDatakeyPair-RSA",
+      "class": "KMS-Requests-GenerateDatakeyPair-RSA"
+    },
+    {
+      "prefix": "us-west-1-KMS-Requests-Asymmetric-RSA_2048",
+      "class": "KMS-Requests-Asymmetric-RSA_2048"
+    },
+    {
+      "prefix": "us-west-1-KMS-Requests-Asymmetric",
+      "class": "KMS-Requests-Asymmetric"
+    },
+    {
+      "prefix": "us-west-1-KMS-Requests",
+      "class": "KMS-Requests"
+    },
+    {
+      "prefix": "us-west-1-KMS-Keys",
+      "class": "KMS-Keys"
+    },
+    {
+      "prefix": "us-west-2-KMS-Requests-GenerateDatakeyPair-ECC",
+      "class": "KMS-Requests-GenerateDatakeyPair-ECC"
+    },
+    {
+      "prefix": "us-west-2-KMS-Requests-GenerateDatakeyPair-RSA",
+      "class": "KMS-Requests-GenerateDatakeyPair-RSA"
+    },
+    {
+      "prefix": "us-west-2-KMS-Requests-Asymmetric-RSA_2048",
+      "class": "KMS-Requests-Asymmetric-RSA_2048"
+    },
+    {
+      "prefix": "us-west-2-KMS-Requests-Asymmetric",
+      "class": "KMS-Requests-Asymmetric"
+    },
+    {
+      "prefix": "us-west-2-KMS-Requests",
+      "class": "KMS-Requests"
+    },
+    {
+      "prefix": "us-west-2-KMS-Keys",
+      "class": "KMS-Keys"
+    }
+  ],
+  "discriminators": []
+}

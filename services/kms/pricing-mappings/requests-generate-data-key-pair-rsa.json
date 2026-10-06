@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "requests-generate-data-key-pair-rsa",
+  "componentId": "requests-generate-data-key-pair-rsa",
+  "priceSource": {
+    "serviceCode": "awskms"
+  },
+  "productMatchers": [
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "awskms-Requests-GenerateDatakeyPair-RSA"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Requests"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "GenerateDataKeyPair RSA request meter."
+}

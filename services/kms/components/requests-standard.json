@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "requests-standard",
+  "label": "Standard KMS API requests",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "requests",
+      "label": "Requests / month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "General KMS API requests billed by the standard request meter. The monthly free allowance is intentionally not subtracted."
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "awskms-APIRequest-All"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Requests"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.requests"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Requests"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {},
+  "components": {
+    "key-versions": {
+      "enabled": true,
+      "inputs": {
+        "billableKeyVersions": "3"
+      }
+    },
+    "requests-standard": {
+      "enabled": true,
+      "inputs": {
+        "requests": "10000"
+      }
+    },
+    "requests-asymmetric": {
+      "enabled": true,
+      "inputs": {
+        "requests": "10000"
+      }
+    },
+    "requests-asymmetric-rsa2048": {
+      "enabled": true,
+      "inputs": {
+        "requests": "10000"
+      }
+    },
+    "requests-generate-data-key-pair-ecc": {
+      "enabled": true,
+      "inputs": {
+        "requests": "10000"
+      }
+    },
+    "requests-generate-data-key-pair-rsa": {
+      "enabled": true,
+      "inputs": {
+        "requests": "10000"
+      }
+    }
+  },
+  "expected": {
+    "key-versions": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Keys",
+        "operation": ""
+      },
+      "unit": "Keys",
+      "quantity": "3",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "requests-standard": {
+      "attributes": {
+        "group": "awskms-APIRequest-All",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests",
+        "operation": ""
+      },
+      "unit": "Requests",
+      "quantity": "10000",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "requests-asymmetric": {
+      "attributes": {
+        "group": "awskms-Requests-Asymmetric",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-Asymmetric",
+        "operation": ""
+      },
+      "unit": "Requests",
+      "quantity": "10000",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "requests-asymmetric-rsa2048": {
+      "attributes": {
+        "group": "aws-kms-Requests-Asymmetric-RSA_2048",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-Asymmetric-RSA_2048",
+        "operation": ""
+      },
+      "unit": "Requests",
+      "quantity": "10000",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "requests-generate-data-key-pair-ecc": {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-ECC",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-ECC",
+        "operation": ""
+      },
+      "unit": "Requests",
+      "quantity": "10000",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "requests-generate-data-key-pair-rsa": {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-RSA",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-RSA",
+        "operation": ""
+      },
+      "unit": "Requests",
+      "quantity": "10000",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "key-versions": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Keys",
+        "operation": ""
+      },
+      "productFamily": "Encryption Key",
+      "unit": "Keys",
+      "quantity": "3"
+    },
+    "requests-standard": {
+      "attributes": {
+        "group": "awskms-APIRequest-All",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests",
+        "operation": ""
+      },
+      "productFamily": "API Request",
+      "unit": "Requests",
+      "quantity": "10000"
+    },
+    "requests-asymmetric": {
+      "attributes": {
+        "group": "awskms-Requests-Asymmetric",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-Asymmetric",
+        "operation": ""
+      },
+      "productFamily": "",
+      "unit": "Requests",
+      "quantity": "10000"
+    },
+    "requests-asymmetric-rsa2048": {
+      "attributes": {
+        "group": "aws-kms-Requests-Asymmetric-RSA_2048",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-Asymmetric-RSA_2048",
+        "operation": ""
+      },
+      "productFamily": "",
+      "unit": "Requests",
+      "quantity": "10000"
+    },
+    "requests-generate-data-key-pair-ecc": {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-ECC",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-ECC",
+        "operation": ""
+      },
+      "productFamily": "",
+      "unit": "Requests",
+      "quantity": "10000"
+    },
+    "requests-generate-data-key-pair-rsa": {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-RSA",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-RSA",
+        "operation": ""
+      },
+      "productFamily": "",
+      "unit": "Requests",
+      "quantity": "10000"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "key-versions",
+  "label": "Customer managed key versions",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "billableKeyVersions",
+      "label": "Billable customer managed key versions / month",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "help": "Count the base customer managed key plus its first and second rotated versions. Later rotations do not add another monthly storage charge under current AWS KMS pricing."
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Encryption Key"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Keys"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.billableKeyVersions"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Keys"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

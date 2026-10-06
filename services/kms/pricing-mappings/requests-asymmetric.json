@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "requests-asymmetric",
+  "componentId": "requests-asymmetric",
+  "priceSource": {
+    "serviceCode": "awskms"
+  },
+  "productMatchers": [
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "awskms-Requests-Asymmetric"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Requests"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Asymmetric KMS request meter excluding RSA 2048."
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "requests-asymmetric-rsa2048",
+  "componentId": "requests-asymmetric-rsa2048",
+  "priceSource": {
+    "serviceCode": "awskms"
+  },
+  "productMatchers": [
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "aws-kms-Requests-Asymmetric-RSA_2048"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Requests"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "RSA 2048 asymmetric request meter."
+}

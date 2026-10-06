@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "kms",
+  "label": "AWS Key Management Service (KMS)",
+  "priceSource": {
+    "serviceCode": "awskms"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "key-versions",
+    "requests-standard",
+    "requests-asymmetric",
+    "requests-asymmetric-rsa2048",
+    "requests-generate-data-key-pair-ecc",
+    "requests-generate-data-key-pair-rsa"
+  ]
+}
