@@ -11,42 +11,31 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect Tokyo AWSEvents Public Price List
+      - name: Inspect AWSEvents Public Price List for supported project regions
         shell: bash
         run: |
           node --input-type=module - <<'NODE'
-          const url = 'https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/current/ap-northeast-1/index.json';
-          const response = await fetch(url);
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          const raw = await response.json();
-          const rows = [];
-          for (const [sku, product] of Object.entries(raw.products ?? {})) {
-            const terms = Object.values(raw.terms?.OnDemand?.[sku] ?? {});
-            for (const term of terms) {
-              for (const dimension of Object.values(term.priceDimensions ?? {})) {
+          const regions = ['ap-northeast-1','ap-northeast-3','us-east-1','us-east-2','us-west-1','us-west-2'];
+          for (const region of regions) {
+            const url = `https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/current/${region}/index.json`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`${region}: HTTP ${response.status}`);
+            const raw = await response.json();
+            const rows = [];
+            for (const [sku, product] of Object.entries(raw.products ?? {})) {
+              const a = product.attributes ?? {};
+              if (a.regionCode !== region) continue;
+              const terms = Object.values(raw.terms?.OnDemand?.[sku] ?? {});
+              for (const term of terms) for (const d of Object.values(term.priceDimensions ?? {})) {
                 rows.push({
-                  sku,
-                  productFamily: product.productFamily ?? '',
-                  attributes: product.attributes ?? {},
-                  unit: dimension.unit,
-                  description: dimension.description,
-                  beginRange: dimension.beginRange,
-                  endRange: dimension.endRange,
-                  pricePerUnit: dimension.pricePerUnit?.USD
+                  sku, productFamily: product.productFamily ?? '', usageType: a.usagetype ?? '',
+                  operation: a.operation ?? '', eventType: a.eventType ?? '', request: a.request ?? '',
+                  invocation: a.invocation ?? '', eventsV2: a['eventsv2-meteringdimension'] ?? '',
+                  unit: d.unit, beginRange: d.beginRange, endRange: d.endRange, price: d.pricePerUnit?.USD
                 });
               }
             }
+            rows.sort((a,b)=>a.usageType.localeCompare(b.usageType)||a.operation.localeCompare(b.operation)||a.beginRange.localeCompare(b.beginRange));
+            console.log('REGION_SUMMARY '+JSON.stringify({region,publicationDate:raw.publicationDate,version:raw.version,rows}));
           }
-          rows.sort((a,b) =>
-            String(a.attributes?.usagetype ?? '').localeCompare(String(b.attributes?.usagetype ?? '')) ||
-            String(a.attributes?.operation ?? '').localeCompare(String(b.attributes?.operation ?? '')) ||
-            String(a.description ?? '').localeCompare(String(b.description ?? ''))
-          );
-          console.log(JSON.stringify({
-            publicationDate: raw.publicationDate,
-            version: raw.version,
-            offerCode: raw.offerCode,
-            rowCount: rows.length,
-            rows
-          }, null, 2));
           NODE
