@@ -1,0 +1,51 @@
+name: EventBridge onboarding probe
+on:
+  push:
+    branches: [onboard/eventbridge]
+    paths:
+      - '.github/workflows/onboard-eventbridge-probe.yml'
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect Tokyo AWSEvents Public Price List
+        shell: bash
+        run: |
+          node --input-type=module - <<'NODE'
+          const url = 'https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/current/ap-northeast-1/index.json';
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const raw = await response.json();
+          const rows = [];
+          for (const [sku, product] of Object.entries(raw.products ?? {})) {
+            const terms = Object.values(raw.terms?.OnDemand?.[sku] ?? {});
+            for (const term of terms) {
+              for (const dimension of Object.values(term.priceDimensions ?? {})) {
+                rows.push({
+                  sku,
+                  productFamily: product.productFamily ?? '',
+                  attributes: product.attributes ?? {},
+                  unit: dimension.unit,
+                  description: dimension.description,
+                  beginRange: dimension.beginRange,
+                  endRange: dimension.endRange,
+                  pricePerUnit: dimension.pricePerUnit?.USD
+                });
+              }
+            }
+          }
+          rows.sort((a,b) =>
+            String(a.attributes?.usagetype ?? '').localeCompare(String(b.attributes?.usagetype ?? '')) ||
+            String(a.attributes?.operation ?? '').localeCompare(String(b.attributes?.operation ?? '')) ||
+            String(a.description ?? '').localeCompare(String(b.description ?? ''))
+          );
+          console.log(JSON.stringify({
+            publicationDate: raw.publicationDate,
+            version: raw.version,
+            offerCode: raw.offerCode,
+            rowCount: rows.length,
+            rows
+          }, null, 2));
+          NODE
