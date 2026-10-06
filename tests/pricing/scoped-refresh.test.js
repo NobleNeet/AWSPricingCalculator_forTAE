@@ -1,7 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
 import { definitionRefreshServiceCodes } from '../../tools/price-update.js';
 import { changedPriceSourceCodes } from '../../tools/pricing-cli/fingerprint.js';
+import { readGoldenRawSource } from '../../tools/golden-evidence.js';
 
 const packages = [
   { directory: 'services/lambda', service: { priceSource: { serviceCode: 'AWSLambda' } } },
@@ -102,4 +106,18 @@ test('missing or changed global fingerprint safely refreshes every price source'
     )].sort(),
     ['AmazonCloudWatch', 'AmazonRDS'].sort()
   );
+});
+
+
+test('Golden evidence fallback prefers the published region fixture over the legacy service fixture', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'tae-golden-fallback-'));
+  const rawDirectory = path.join(root, 'raw');
+  const fixtureDirectory = path.join(root, 'fixtures');
+  await mkdir(rawDirectory, { recursive: true });
+  await mkdir(path.join(fixtureDirectory, 'Example'), { recursive: true });
+  await writeFile(path.join(fixtureDirectory, 'Example.json'), JSON.stringify({ marker: 'legacy' }));
+  await writeFile(path.join(fixtureDirectory, 'Example', 'ap-northeast-1.json'), JSON.stringify({ marker: 'regional' }));
+
+  const source = await readGoldenRawSource(rawDirectory, 'Example', 'ap-northeast-1', fixtureDirectory);
+  assert.equal(source.marker, 'regional');
 });
