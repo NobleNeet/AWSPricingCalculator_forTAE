@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "archive-processing",
+  "componentId": "archive-processing",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "CloudWatch Events"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "ArchiveEvents"
+    },
+    {
+      "field": "attributes.eventType",
+      "op": "eq",
+      "value": "Archive Event"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GigaBytes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Event replay archive processing meter."
+}
