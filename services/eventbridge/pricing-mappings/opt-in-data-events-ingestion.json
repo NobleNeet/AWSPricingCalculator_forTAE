@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "opt-in-data-events-ingestion",
+  "componentId": "opt-in-data-events-ingestion",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "EventBridge"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "PutEvents"
+    },
+    {
+      "field": "attributes.eventType",
+      "op": "eq",
+      "value": "Custom Event"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "64K-Chunks"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS opt-in data events use the classic paid 64 KB event-ingestion meter exposed by AWSEvents."
+}
