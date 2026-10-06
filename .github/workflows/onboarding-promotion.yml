@@ -14,7 +14,7 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
-  actions: read
+  actions: write
   checks: read
 
 concurrency:
@@ -214,7 +214,10 @@ jobs:
           target_sha="${{ steps.push.outputs.promoted_sha }}"
           run_id=''
 
-          for _ in $(seq 1 60); do
+          # A push made with GITHUB_TOKEN does not start another workflow.
+          # Give any externally-triggered push run a short chance to appear, then
+          # explicitly dispatch Scheduled Price Update for the promoted main SHA.
+          for _ in $(seq 1 6); do
             runs="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" \
               -f branch=main -f per_page=50)"
             run_id="$(jq -r --arg sha "$target_sha" '.workflow_runs[] | select(.head_sha == $sha) | .id' <<<"$runs" | head -n1)"
@@ -225,7 +228,21 @@ jobs:
           done
 
           if [[ -z "$run_id" ]]; then
-            echo 'No price-update run appeared for the promoted main commit.'
+            echo "No automatic price-update run appeared for $target_sha; dispatching it explicitly."
+            gh workflow run price-update.yml --repo "$GITHUB_REPOSITORY" --ref main
+            for _ in $(seq 1 60); do
+              runs="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" \
+                -f branch=main -f per_page=50)"
+              run_id="$(jq -r --arg sha "$target_sha" '.workflow_runs[] | select(.head_sha == $sha) | .id' <<<"$runs" | head -n1)"
+              if [[ -n "$run_id" ]]; then
+                break
+              fi
+              sleep 5
+            done
+          fi
+
+          if [[ -z "$run_id" ]]; then
+            echo 'No price-update run appeared for the promoted main commit even after explicit dispatch.'
             exit 1
           fi
 
