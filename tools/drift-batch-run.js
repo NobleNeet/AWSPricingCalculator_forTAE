@@ -51,7 +51,7 @@ export async function runDriftBatch(plan, batch, packages) {
     }
   );
   console.log(
-    `drift batch=${batch.batch_id} task done: service=${result.serviceCode}, region=${result.region}, rate_diff=${result.rateDiff.length}, processed_cases=${result.processedCases}, seen_cases=${result.seenCases}, elapsed_ms=${result.elapsedMs}`
+    `drift batch=${batch.batch_id} task done: service=${result.serviceCode}, region=${result.region}, reuse=${result.reuseMode}, rate_diff=${result.rateDiff.length}, processed_cases=${result.processedCases}, reused_cases=${result.reusedCases ?? 0}, seen_cases=${result.seenCases}, elapsed_ms=${result.elapsedMs}`
   );
 
   const issues = result.issues ?? [];
@@ -64,6 +64,8 @@ export async function runDriftBatch(plan, batch, packages) {
     plannedCases: batch.planned_cases ?? null,
     includeStructural,
     processedCases: result.processedCases,
+    reusedCases: result.reusedCases ?? 0,
+    reuseMode: result.reuseMode,
     seenCases: result.seenCases,
     classification: issues.length ? 'STRUCTURE_BREAKING' : result.warning ? 'STRUCTURE_WARNING' : 'PRICE_ONLY',
     publishable: !issues.length,
@@ -76,6 +78,8 @@ export async function runDriftBatch(plan, batch, packages) {
       caseOffset,
       caseLimit,
       processedCases: result.processedCases,
+      reusedCases: result.reusedCases ?? 0,
+      reuseMode: result.reuseMode,
       candidateProductsLoaded: result.candidateProductsLoaded,
       elapsedMs: result.elapsedMs
     }]
