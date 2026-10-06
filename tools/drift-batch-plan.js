@@ -86,12 +86,29 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
   const candidateDirectory = path.join(work, 'candidate');
   const previous = await loadCandidateMetadata(previousDirectory);
   const candidate = await loadCandidateMetadata(candidateDirectory);
-  const { tasks, missingService } = driftTasks(
+  const planned = driftTasks(
     packages,
     previous.sources,
     candidate.sources,
     restorePublishSkus(semantic.publishSkus)
   );
+  const definitionRefreshCodes = new Set(state.definitionRefreshServiceCodes ?? []);
+  const tasks = planned.tasks.filter(task => {
+    const key = `${task.serviceCode}/${task.region}`;
+    const source = candidate.sources[key];
+    if (!source) return true;
+    if (definitionRefreshCodes.has(task.serviceCode)) return true;
+    // New metadata records distinguish an AWS publication change from a source
+    // that was refreshed only because its Definition changed. Legacy metadata
+    // without awsChanged is conservatively revalidated.
+    return source.awsChanged !== false;
+  });
+  const missingService = planned.missingService;
+  const skippedTasks = planned.tasks.filter(task => !tasks.includes(task)).map(task => ({
+    serviceCode: task.serviceCode,
+    region: task.region,
+    reason: 'unchanged-service-source'
+  }));
 
   const plannerConcurrency = positiveInt(
     options.planConcurrency ?? process.env.PRICE_DRIFT_PLAN_CONCURRENCY,
@@ -132,8 +149,10 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
     missingService,
     tasks: countedTasks,
     matrix: { include: grouped.batches },
+    skippedTasks,
     summary: {
       tasks: countedTasks.length,
+      skippedTasks: skippedTasks.length,
       totalCases: grouped.totalCases,
       batches: grouped.batches.length,
       casesPerBatch: grouped.batchCases,
