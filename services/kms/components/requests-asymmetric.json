@@ -1,18 +1,15 @@
 {
   "schemaVersion": 1,
   "id": "requests-asymmetric",
-  "label": "Asymmetric requests (excluding RSA 2048)",
+  "label": "Asymmetric requests other than RSA 2048",
   "selectors": [],
   "usageInputs": [
     {
       "id": "requests",
-      "label": "Requests / month",
+      "label": "Number of asymmetric requests other than RSA 2048",
       "type": "number",
       "default": "0",
-      "minimum": "0",
-      "ui": {
-        "help": "Asymmetric KMS requests excluding RSA 2048."
-      }
+      "minimum": "0"
     }
   ],
   "fixedFilters": [],

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "id": "requests-standard",
-  "label": "Standard KMS API requests",
+  "label": "Symmetric requests",
   "selectors": [],
   "usageInputs": [
     {
       "id": "requests",
-      "label": "Requests / month",
+      "label": "Number of symmetric requests",
       "type": "number",
-      "default": "0",
+      "default": "2000000",
       "minimum": "0",
       "ui": {
         "help": "General KMS API requests billed by the standard request meter. The monthly free allowance is intentionally not subtracted."

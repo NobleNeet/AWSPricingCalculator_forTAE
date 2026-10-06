@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "id": "key-versions",
-  "label": "Customer managed key versions",
+  "label": "Customer managed customer master keys (CMK)",
   "selectors": [],
   "usageInputs": [
     {
       "id": "billableKeyVersions",
-      "label": "Billable customer managed key versions / month",
+      "label": "Number of customer managed customer master keys (CMK)",
       "type": "number",
-      "default": "1",
+      "default": "5",
       "minimum": "0",
       "ui": {
-        "help": "Count the base customer managed key plus its first and second rotated versions. Later rotations do not add another monthly storage charge under current AWS KMS pricing."
+        "help": "Matches the AWS Pricing Calculator KMS input for the number of customer managed CMKs. Key rotation versions are not entered separately in the Calculator screen."
       }
     }
   ],
