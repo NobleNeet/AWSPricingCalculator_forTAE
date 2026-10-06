@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "KMS",
+  "selectors": [],
+  "fixedFilters": [],
+  "components": [
+    "key-versions",
+    "requests-standard",
+    "requests-asymmetric",
+    "requests-asymmetric-rsa2048",
+    "requests-generate-data-key-pair-ecc",
+    "requests-generate-data-key-pair-rsa"
+  ]
+}
