@@ -26,7 +26,13 @@ export async function buildPriceDb(candidate, directory, buildId, validation) {
     const productsText = encode(data), indexText = encode(index);
     const metadata = candidate.metadata.sources[key];
     if (!metadata) throw Error(`Source metadata missing for ${key}`);
-    (manifest.sources[code] ??= {})[region] = { ...metadata, changed: undefined, productsPath, indexPath, productsSha256: checksum(productsText), indexSha256: checksum(indexText), productsBytes: Buffer.byteLength(productsText), indexBytes: Buffer.byteLength(indexText) };
+    const {
+      changed: _changed,
+      awsChanged: _awsChanged,
+      definitionChanged: _definitionChanged,
+      ...publishedMetadata
+    } = metadata;
+    (manifest.sources[code] ??= {})[region] = { ...publishedMetadata, productsPath, indexPath, productsSha256: checksum(productsText), indexSha256: checksum(indexText), productsBytes: Buffer.byteLength(productsText), indexBytes: Buffer.byteLength(indexText) };
     resources.push([productsPath, productsText], [indexPath, indexText]);
     chunkData.push([code, region, data]);
   }
