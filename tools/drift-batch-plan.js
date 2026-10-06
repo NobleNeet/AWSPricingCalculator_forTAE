@@ -4,6 +4,10 @@ import { loadPackages, readJson } from './pricing-cli/package-loader.js';
 import { loadCandidateMetadata, writeJson } from './pricing-cli/cli.js';
 import { driftTasks } from './pricing-cli/drift-parallel.js';
 import { planSemanticBatches } from './pricing-cli/semantic-plan.js';
+import {
+  effectiveValidationSourceCodes,
+  filterPackagesBySourceCodes
+} from './pricing-cli/update-scope.js';
 
 function positiveInt(value, fallback) {
   const parsed = Number.parseInt(value ?? '', 10);
@@ -86,8 +90,14 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
   const candidateDirectory = path.join(work, 'candidate');
   const previous = await loadCandidateMetadata(previousDirectory);
   const candidate = await loadCandidateMetadata(candidateDirectory);
+  const sourceCodes = effectiveValidationSourceCodes(state, candidate);
+  const scopedPackages = filterPackagesBySourceCodes(packages, sourceCodes);
+  if (!scopedPackages.length) throw new Error('Drift validation scope resolved to no service packages.');
+  if (sourceCodes !== null) {
+    console.log(`drift-plan scoped: services=${scopedPackages.map(pkg => pkg.service.id).join(',')} price_sources=${[...sourceCodes].sort().join(',')}`);
+  }
   const planned = driftTasks(
-    packages,
+    scopedPackages,
     previous.sources,
     candidate.sources,
     restorePublishSkus(semantic.publishSkus)
@@ -115,7 +125,7 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
     2
   );
   const previousPlan = await planSemanticBatches(
-    packages,
+    scopedPackages,
     previousDirectory,
     manifestFromMetadata(previous),
     {
@@ -157,7 +167,10 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
       batches: grouped.batches.length,
       casesPerBatch: grouped.batchCases,
       maxBatches,
-      plannerConcurrency
+      plannerConcurrency,
+      scope: sourceCodes === null ? 'all' : 'onboarding',
+      scopeServiceIds: scopedPackages.map(pkg => pkg.service.id).sort(),
+      scopeServiceCodes: sourceCodes === null ? [] : [...sourceCodes].sort()
     }
   };
 }

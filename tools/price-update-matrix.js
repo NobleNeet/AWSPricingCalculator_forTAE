@@ -17,6 +17,7 @@ import { classifyChangeParallel } from './pricing-cli/drift-parallel.js';
 import { loadCandidateForPublish } from './pricing-cli/product-chunks.js';
 import { refreshGoldenEvidence } from './price-update.js';
 import { refreshGoldenEvidenceTolerant } from './golden-evidence.js';
+import { resolveRequestedValidationScope } from './pricing-cli/update-scope.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
 
@@ -70,6 +71,13 @@ async function prepare(work) {
   const active = await readJson('pricing/generated/manifest.json');
   const activeBuild = await readJson(path.join(previousDirectory, 'build-manifest.json'));
   const packages = await loadPackages();
+  const requestedScope = resolveRequestedValidationScope(
+    packages,
+    process.env.PRICE_UPDATE_SCOPE_SERVICE_IDS ?? ''
+  );
+  if (requestedScope.serviceIds.length) {
+    console.log(`price update validation scope: services=${requestedScope.serviceIds.join(',')} price_sources=${requestedScope.serviceCodes.join(',')}`);
+  }
   const fingerprint = await definitionFingerprint(packages);
   const contracts = await contractFingerprints(packages);
   const definitionsChanged = fingerprint !== activeBuild.definitionSha256;
@@ -124,7 +132,9 @@ async function prepare(work) {
     previousBuildId: active.activeBuildId,
     definitionSha256: fingerprint,
     contractFingerprints: contracts,
-    definitionRefreshServiceCodes: [...definitionRefreshCodes].sort()
+    definitionRefreshServiceCodes: [...definitionRefreshCodes].sort(),
+    requestedScopeServiceIds: requestedScope.serviceIds,
+    requestedScopeServiceCodes: requestedScope.serviceCodes
   });
   await writeOutput({ needs_update: 'true', publishable: 'false', build_id: '' });
   return { schemaVersion: 1, status: 'PREPARED', publishable: false, previousBuildId: active.activeBuildId };

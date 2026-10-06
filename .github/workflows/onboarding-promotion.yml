@@ -146,6 +146,16 @@ jobs:
 
           node tools/generate-service-catalog.js
           git add services/catalog.json
+
+          service_ids="$(git diff --cached --name-only HEAD | awk -F/ '$1 == "services" && NF >= 3 { print $2 }' | sort -u | paste -sd, -)"
+          if [[ -z "$service_ids" ]]; then
+            echo 'No service definition directory changed; refusing onboarding promotion without a validation scope.'
+            git merge --abort || true
+            echo 'mergeable=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Onboarding validation scope: $service_ids"
+          echo "service_ids=$service_ids" >> "$GITHUB_OUTPUT"
           echo 'mergeable=true' >> "$GITHUB_OUTPUT"
 
       - name: Block PR on merge conflict
@@ -214,32 +224,24 @@ jobs:
           target_sha="${{ steps.push.outputs.promoted_sha }}"
           run_id=''
 
-          # A push made with GITHUB_TOKEN does not start another workflow.
-          # Give any externally-triggered push run a short chance to appear, then
-          # explicitly dispatch Scheduled Price Update for the promoted main SHA.
-          for _ in $(seq 1 6); do
+          # GITHUB_TOKEN pushes do not chain workflows. Always dispatch a scoped
+          # workflow_dispatch here so onboarding cannot accidentally fall back to
+          # a full-service validation run triggered by another actor.
+          before_run_id="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" -f branch=main -f per_page=50 \
+            | jq -r '[.workflow_runs[].id] | max // 0')"
+          echo "Dispatching scoped price update for services: ${{ steps.merge_candidate.outputs.service_ids }}"
+          gh workflow run price-update.yml --repo "$GITHUB_REPOSITORY" --ref main \
+            -f validation_scope_service_ids="${{ steps.merge_candidate.outputs.service_ids }}"
+
+          for _ in $(seq 1 60); do
             runs="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" \
               -f branch=main -f per_page=50)"
-            run_id="$(jq -r --arg sha "$target_sha" '.workflow_runs[] | select(.head_sha == $sha) | .id' <<<"$runs" | head -n1)"
+            run_id="$(jq -r --arg sha "$target_sha" --argjson before "$before_run_id" '.workflow_runs[] | select(.head_sha == $sha and .event == "workflow_dispatch" and .id > $before) | .id' <<<"$runs" | head -n1)"
             if [[ -n "$run_id" ]]; then
               break
             fi
             sleep 5
           done
-
-          if [[ -z "$run_id" ]]; then
-            echo "No automatic price-update run appeared for $target_sha; dispatching it explicitly."
-            gh workflow run price-update.yml --repo "$GITHUB_REPOSITORY" --ref main
-            for _ in $(seq 1 60); do
-              runs="$(gh api -X GET "repos/${GITHUB_REPOSITORY}/actions/workflows/price-update.yml/runs" \
-                -f branch=main -f per_page=50)"
-              run_id="$(jq -r --arg sha "$target_sha" '.workflow_runs[] | select(.head_sha == $sha) | .id' <<<"$runs" | head -n1)"
-              if [[ -n "$run_id" ]]; then
-                break
-              fi
-              sleep 5
-            done
-          fi
 
           if [[ -z "$run_id" ]]; then
             echo 'No price-update run appeared for the promoted main commit even after explicit dispatch.'
