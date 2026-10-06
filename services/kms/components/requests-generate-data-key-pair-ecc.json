@@ -1,18 +1,15 @@
 {
   "schemaVersion": 1,
   "id": "requests-generate-data-key-pair-ecc",
-  "label": "GenerateDataKeyPair ECC requests",
+  "label": "ECC GenerateDataKeyPair requests",
   "selectors": [],
   "usageInputs": [
     {
       "id": "requests",
-      "label": "Requests / month",
+      "label": "Number of ECC GenerateDataKeyPair requests",
       "type": "number",
       "default": "0",
-      "minimum": "0",
-      "ui": {
-        "help": "GenerateDataKeyPair requests for ECC key pairs."
-      }
+      "minimum": "0"
     }
   ],
   "fixedFilters": [],
