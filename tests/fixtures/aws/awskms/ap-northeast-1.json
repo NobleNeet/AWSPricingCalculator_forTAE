@@ -1,0 +1,221 @@
+{
+  "offerCode": "awskms",
+  "products": {
+    "7D2WD6EVZZWEUUVU": {
+      "attributes": {
+        "group": "awskms-Requests-Asymmetric",
+        "groupDescription": "AWS KMS Asymmetric Requests except RSA_2048API",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-1-KMS-Requests-Asymmetric"
+      },
+      "sku": "7D2WD6EVZZWEUUVU"
+    },
+    "7GQ3EMEAP2U5KT22": {
+      "attributes": {
+        "group": "aws-kms-Requests-Asymmetric-RSA_2048",
+        "groupDescription": "AWS KMS Asymmetric Requests RSA_2048",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-1-KMS-Requests-Asymmetric-RSA_2048"
+      },
+      "sku": "7GQ3EMEAP2U5KT22"
+    },
+    "9TTBZ6EPKQEFQ4SK": {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-RSA",
+        "groupDescription": "AWS KMS API Requests GenerateDatakeyPair RSA",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-RSA"
+      },
+      "sku": "9TTBZ6EPKQEFQ4SK"
+    },
+    "N8BUJG9DJJEJWAKG": {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-ECC",
+        "groupDescription": "AWS KMS API Requests GenerateDatakeyPair ECC",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-1-KMS-Requests-GenerateDatakeyPair-ECC"
+      },
+      "sku": "N8BUJG9DJJEJWAKG"
+    },
+    "VJNSHSJEC3XAPATF": {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-1-KMS-Keys"
+      },
+      "productFamily": "Encryption Key",
+      "sku": "VJNSHSJEC3XAPATF"
+    },
+    "ZXP6ZS4WWG9FNXHG": {
+      "attributes": {
+        "group": "awskms-APIRequest-All",
+        "groupDescription": "All AWS KMS API requests",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-1-KMS-Requests"
+      },
+      "productFamily": "API Request",
+      "sku": "ZXP6ZS4WWG9FNXHG"
+    }
+  },
+  "publicationDate": "2026-09-11T12:46:01Z",
+  "terms": {
+    "OnDemand": {
+      "7D2WD6EVZZWEUUVU": {
+        "7D2WD6EVZZWEUUVU.JRTCKXETXF": {
+          "effectiveDate": "2025-07-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "7D2WD6EVZZWEUUVU.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.15 per 10000 KMS Asymmetric Requests excluding RSA 2048 in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0000150000"
+              },
+              "rateCode": "7D2WD6EVZZWEUUVU.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Requests"
+            }
+          },
+          "sku": "7D2WD6EVZZWEUUVU",
+          "termAttributes": {}
+        }
+      },
+      "7GQ3EMEAP2U5KT22": {
+        "7GQ3EMEAP2U5KT22.JRTCKXETXF": {
+          "effectiveDate": "2025-07-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "7GQ3EMEAP2U5KT22.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.03 per 10000 KMS RSA 2048 requests in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0000030000"
+              },
+              "rateCode": "7GQ3EMEAP2U5KT22.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Requests"
+            }
+          },
+          "sku": "7GQ3EMEAP2U5KT22",
+          "termAttributes": {}
+        }
+      },
+      "9TTBZ6EPKQEFQ4SK": {
+        "9TTBZ6EPKQEFQ4SK.JRTCKXETXF": {
+          "effectiveDate": "2025-07-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "9TTBZ6EPKQEFQ4SK.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$12 per 10000 RSA Generate Data Key Pair Requests in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0012000000"
+              },
+              "rateCode": "9TTBZ6EPKQEFQ4SK.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Requests"
+            }
+          },
+          "sku": "9TTBZ6EPKQEFQ4SK",
+          "termAttributes": {}
+        }
+      },
+      "N8BUJG9DJJEJWAKG": {
+        "N8BUJG9DJJEJWAKG.JRTCKXETXF": {
+          "effectiveDate": "2025-07-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "N8BUJG9DJJEJWAKG.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.1 per 10000 ECC Generate Data Key Pair Requests in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0000100000"
+              },
+              "rateCode": "N8BUJG9DJJEJWAKG.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Requests"
+            }
+          },
+          "sku": "N8BUJG9DJJEJWAKG",
+          "termAttributes": {}
+        }
+      },
+      "VJNSHSJEC3XAPATF": {
+        "VJNSHSJEC3XAPATF.JRTCKXETXF": {
+          "effectiveDate": "2025-07-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "VJNSHSJEC3XAPATF.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$1 per customer managed KMS key version in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "1.0000000000"
+              },
+              "rateCode": "VJNSHSJEC3XAPATF.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Keys"
+            }
+          },
+          "sku": "VJNSHSJEC3XAPATF",
+          "termAttributes": {}
+        }
+      },
+      "ZXP6ZS4WWG9FNXHG": {
+        "ZXP6ZS4WWG9FNXHG.JRTCKXETXF": {
+          "effectiveDate": "2025-07-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "ZXP6ZS4WWG9FNXHG.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.03 per 10000 KMS requests in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0000030000"
+              },
+              "rateCode": "ZXP6ZS4WWG9FNXHG.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Requests"
+            }
+          },
+          "sku": "ZXP6ZS4WWG9FNXHG",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260911124601"
+}

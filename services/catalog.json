@@ -52,21 +52,21 @@
     },
     {
       "available": true,
-      "id": "lambda",
-      "label": "AWS Lambda",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AWSLambda"
-    },
-    {
-      "available": true,
       "id": "kms",
       "label": "AWS Key Management Service (KMS)",
       "profiles": [
         "standard"
       ],
       "serviceCode": "awskms"
+    },
+    {
+      "available": true,
+      "id": "lambda",
+      "label": "AWS Lambda",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSLambda"
     }
   ]
 }
