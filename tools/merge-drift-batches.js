@@ -52,6 +52,9 @@ export async function mergeDriftBatches(planFile, directory) {
     plannedCases: plan.summary?.totalCases ?? null,
     casesPerBatch: plan.summary?.casesPerBatch ?? null,
     processedCases: batches.reduce((sum, batch) => sum + (batch.processedCases ?? 0), 0),
+    reusedCases: batches.reduce((sum, batch) => sum + (batch.reusedCases ?? 0), 0),
+    reusedRegions: batches.filter(batch => batch.reuseMode === 'region-identical').length,
+    skippedTasks: plan.skippedTasks ?? [],
     taskTimings: batches.flatMap(batch => batch.taskTimings ?? [])
   });
 }

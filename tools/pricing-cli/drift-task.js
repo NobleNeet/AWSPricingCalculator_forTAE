@@ -1,8 +1,10 @@
 import path from 'node:path';
 import { readJson } from './package-loader.js';
-import { classifyChange } from './drift.js';
+import { classifyChange, semanticProduct } from './drift.js';
 import { loadProductsForSkus } from './product-chunks.js';
 import { priceSourceForComponent } from '../../src/pricing/mapping.js';
+import { checksum } from './build.js';
+import { encode } from './normalize.js';
 
 export function sourceScopedPackage(pkg, serviceCode) {
   const profiles = Object.fromEntries(Object.entries(pkg.profiles).map(([profileId, profile]) => [
@@ -18,6 +20,26 @@ export function sourceScopedPackage(pkg, serviceCode) {
 
 function packagesForServiceCode(packages, serviceCode) {
   return packages.map(pkg => sourceScopedPackage(pkg, serviceCode)).filter(Boolean);
+}
+
+function productDigest(products) {
+  return checksum(encode(products));
+}
+
+export function priceOnlyChangedSkus(before, after) {
+  if (!before || !after) return null;
+  const beforeBySku = new Map(before.products.map(product => [product.sku, product]));
+  const afterBySku = new Map(after.products.map(product => [product.sku, product]));
+  if (beforeBySku.size !== afterBySku.size) return null;
+  for (const sku of beforeBySku.keys()) if (!afterBySku.has(sku)) return null;
+
+  const changed = new Set();
+  for (const [sku, oldProduct] of beforeBySku) {
+    const nextProduct = afterBySku.get(sku);
+    if (checksum(encode(semanticProduct(oldProduct))) !== checksum(encode(semanticProduct(nextProduct)))) return null;
+    if (checksum(encode(oldProduct)) !== checksum(encode(nextProduct))) changed.add(sku);
+  }
+  return changed;
 }
 
 export async function runDriftTask(packages, task, { previousDirectory, candidateDirectory }, options = {}) {
@@ -45,19 +67,34 @@ export async function runDriftTask(packages, task, { previousDirectory, candidat
     processedCases: 0,
     seenCases: 0,
     progressCases: 0,
+    reusedCases: 0,
     exhausted: false
   };
   let warning = false;
+  let reuseMode = 'none';
 
-  if (defaultSourcePackages.length) {
-    checked = classifyChange(
-      defaultSourcePackages,
-      before ? { [key]: before } : {},
-      after ? { [key]: after } : {},
-      [],
-      options
-    );
-    warning ||= checked.classification === 'STRUCTURE_WARNING';
+  if (defaultSourcePackages.length && before && after && productDigest(before.products) === productDigest(after.products)) {
+    reuseMode = 'region-identical';
+  } else if (defaultSourcePackages.length) {
+    const changedSkus = priceOnlyChangedSkus(before, after);
+    const optimizedOptions = changedSkus
+      ? { ...options, priceOnlyChangedSkus: changedSkus }
+      : options;
+    if (changedSkus) reuseMode = changedSkus.size ? 'price-only-sku' : 'region-identical';
+    if (changedSkus?.size === 0) {
+      // Exact product equality is normally caught above. Keep this as a defensive
+      // path for semantically identical representations.
+      reuseMode = 'region-identical';
+    } else {
+      checked = classifyChange(
+        defaultSourcePackages,
+        before ? { [key]: before } : {},
+        after ? { [key]: after } : {},
+        [],
+        optimizedOptions
+      );
+      warning ||= checked.classification === 'STRUCTURE_WARNING';
+    }
   }
 
   // A component-level override or Pricing Mapping can use a different AWS service
@@ -77,10 +114,12 @@ export async function runDriftTask(packages, task, { previousDirectory, candidat
     issues: checked.issues,
     warning,
     rateDiff: checked.rateDiff,
+    reuseMode,
     candidateProductsLoaded: after?.products.length ?? 0,
     processedCases: checked.processedCases,
     seenCases: checked.seenCases,
     progressCases: checked.progressCases,
+    reusedCases: checked.reusedCases ?? 0,
     exhausted: checked.exhausted,
     elapsedMs: Math.round(performance.now() - started)
   };

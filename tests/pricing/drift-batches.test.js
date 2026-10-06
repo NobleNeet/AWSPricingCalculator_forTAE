@@ -6,7 +6,7 @@ import path from 'node:path';
 import { groupDriftTasks } from '../../tools/drift-batch-plan.js';
 import { mergeDriftBatches } from '../../tools/merge-drift-batches.js';
 import { driftTasks } from '../../tools/pricing-cli/drift-parallel.js';
-import { sourceScopedPackage } from '../../tools/pricing-cli/drift-task.js';
+import { priceOnlyChangedSkus, sourceScopedPackage } from '../../tools/pricing-cli/drift-task.js';
 
 async function writeJson(file, value) {
   await mkdir(path.dirname(file), { recursive: true });
@@ -131,4 +131,43 @@ test('drift batch merge accepts multiple case shards for one task and requires e
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+
+function pricedProduct(sku, price, overrides = {}) {
+  return {
+    sku,
+    productFamily: 'Compute',
+    operation: '',
+    usageType: 'Example',
+    attributes: { instanceType: 'm1', ...overrides.attributes },
+    terms: {
+      onDemand: [{
+        offerTermCode: 'JRTCKXETXF',
+        effectiveDate: '2026-01-01T00:00:00Z',
+        priceDimensions: [{
+          rateCode: `${sku}.rate`,
+          description: 'Example rate',
+          unit: 'Hrs',
+          beginRange: '0',
+          endRange: 'Inf',
+          pricePerUnit: { USD: price }
+        }]
+      }]
+    }
+  };
+}
+
+test('price-only SKU detection isolates changed rates and rejects semantic changes', () => {
+  const before = { products: [pricedProduct('a', '1.0'), pricedProduct('b', '2.0')] };
+  const afterPrice = { products: [pricedProduct('a', '1.1'), pricedProduct('b', '2.0')] };
+  assert.deepEqual([...priceOnlyChangedSkus(before, afterPrice)], ['a']);
+
+  const afterSemantic = {
+    products: [pricedProduct('a', '1.1', { attributes: { instanceType: 'm2' } }), pricedProduct('b', '2.0')]
+  };
+  assert.equal(priceOnlyChangedSkus(before, afterSemantic), null);
+
+  const afterAdded = { products: [...afterPrice.products, pricedProduct('c', '3.0')] };
+  assert.equal(priceOnlyChangedSkus(before, afterAdded), null);
 });

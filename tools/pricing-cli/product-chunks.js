@@ -1,4 +1,5 @@
 import { access, mkdir, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { encode } from './normalize.js';
 import { readJson } from './package-loader.js';
@@ -34,9 +35,11 @@ export async function writeProductChunks(directory, data, options = {}) {
       region: data.region,
       products
     };
-    await writeFile(path.join(directory, relativePath), encode(payload));
+    const text = encode(payload);
+    await writeFile(path.join(directory, relativePath), text);
     chunks.push({
       path: relativePath,
+      sha256: createHash('sha256').update(text).digest('hex'),
       count: products.length,
       firstSku: products[0]?.sku ?? null,
       lastSku: products.at(-1)?.sku ?? null
