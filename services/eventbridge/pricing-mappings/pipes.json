@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "pipes",
+  "componentId": "pipes",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "EventBridge"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "PipeRequest"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "64K-Chunks"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "EventBridge Pipes request meter after filtering."
+}

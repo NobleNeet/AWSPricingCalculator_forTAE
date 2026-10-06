@@ -35,6 +35,10 @@ function resolveUsageSource(source, context) {
           value = value.times(factor);
           break;
         }
+        case 'rounding':
+          if (transform.mode !== 'ceil') fail('INVALID_TRANSFORM', 'Only ceil is supported.');
+          value = value.ceil();
+          break;
         default:
           fail('INVALID_TRANSFORM', 'Unknown source transform.');
       }

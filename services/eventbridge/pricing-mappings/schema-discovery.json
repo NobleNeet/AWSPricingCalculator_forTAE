@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "schema-discovery",
+  "componentId": "schema-discovery",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "EventBridge"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "DiscoveryEvent"
+    },
+    {
+      "field": "attributes.eventType",
+      "op": "eq",
+      "value": "Discovery Event"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "8K-Chunks"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Schema Discovery paid regional meter; Free Tier is not subtracted."
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "id": "cross-account-partner-delivery",
+  "label": "Cross-account partner event delivery",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "EventBridge"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "CrossAccountInvoke-PartnerEvent"
+      },
+      {
+        "field": "attributes.eventType",
+        "op": "eq",
+        "value": "Cross-Account Partner Event"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "64K-Chunks"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.crossAccountPartnerEventsMillions"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.payloadSizeKb",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "0.015625"
+              },
+              {
+                "type": "rounding",
+                "mode": "ceil"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "scale",
+        "factor": "1000000"
+      }
+    ],
+    "outputUnit": "64K-Chunks"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

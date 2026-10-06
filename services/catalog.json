@@ -67,6 +67,15 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
+    },
+    {
+      "available": true,
+      "id": "eventbridge",
+      "label": "Amazon EventBridge",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSEvents"
     }
   ]
 }

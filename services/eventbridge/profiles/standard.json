@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "EventBridge",
+  "selectors": [
+    {
+      "id": "payloadSizeKb",
+      "label": "Payload size (KB)",
+      "type": "number",
+      "default": "1",
+      "minimum": "0.001",
+      "ui": {
+        "help": "Payload size used for EventBridge 64 KB chunk billing and Schema Discovery 8 KB chunk billing. The supplied AWS Calculator screenshot shows KB; unshown unit-dropdown alternatives are not inferred."
+      }
+    },
+    {
+      "id": "awsManagementEventsMillions",
+      "label": "AWS management events (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "AWS management event ingestion is free on the classic event bus; the value is retained as an official Calculator input and does not add an ingestion charge."
+      }
+    },
+    {
+      "id": "awsOptInDataEventsMillions",
+      "label": "AWS opt-in data events (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    },
+    {
+      "id": "customEventsMillions",
+      "label": "Custom events (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    },
+    {
+      "id": "partnerEventsMillions",
+      "label": "Partner events (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    },
+    {
+      "id": "crossAccountManagementEventsMillions",
+      "label": "AWS management events delivered cross-account (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "crossAccountCustomEventsMillions",
+      "label": "Custom events delivered to another event bus/account (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "crossAccountPartnerEventsMillions",
+      "label": "Partner events delivered cross-account (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "apiDestinationInvocationsMillions",
+      "label": "API destination invocations (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "replayedEventsMillions",
+      "label": "Replayed events (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "archiveEventsMillions",
+      "label": "Events processed for archive (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "archiveStorageGbMonth",
+      "label": "Archive storage (GB-month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "pipesRequestsMillions",
+      "label": "Pipes requests after filtering (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true
+      }
+    },
+    {
+      "id": "schemaDiscoveryEventsMillions",
+      "label": "Schema Discovery events (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true,
+        "help": "The 5 million-event free allowance is intentionally not subtracted by this calculator."
+      }
+    },
+    {
+      "id": "schedulerInvocationsMillions",
+      "label": "Scheduler invocations (million / month)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "advanced": true,
+        "help": "The 14 million-invocation free allowance is intentionally not subtracted by this calculator."
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "opt-in-data-events-ingestion",
+    "custom-events-ingestion",
+    "partner-events-ingestion",
+    "cross-account-management-delivery",
+    "cross-account-custom-delivery",
+    "cross-account-partner-delivery",
+    "api-destinations",
+    "replayed-events",
+    "archive-processing",
+    "archive-storage",
+    "pipes",
+    "schema-discovery",
+    "scheduler"
+  ]
+}

@@ -399,6 +399,8 @@ Tierでもfree allowanceでもない異種paid dimensionsが複数残る場合�
 複数sourceは `multiply` を正式対応とする。
 単純なusage加算が必要な場合は、まずComponent分割を検討する。
 
+個々のusage sourceに対して、他sourceとの乗算前に限定的なtransformを適用できる。現行runtimeで正式に使用するsource-level primitiveは `subtract`、`minimum`、`scale`、`rounding(mode=ceil)` とする。これは、Lambdaのリクエスト単位控除やEventBridgeの「1イベントごとに64 KB/8 KBへ切り上げてから件数を掛ける」ようなper-item課金を、aggregate後の誤った丸めにせず表現するために用いる。
+
 ### 8.3 transforms
 
 順序付きarrayとして適用する。

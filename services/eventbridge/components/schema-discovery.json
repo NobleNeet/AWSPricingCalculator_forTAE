@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "schema-discovery",
+  "label": "Schema Discovery ingestion",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "EventBridge"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "DiscoveryEvent"
+      },
+      {
+        "field": "attributes.eventType",
+        "op": "eq",
+        "value": "Discovery Event"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "8K-Chunks"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.schemaDiscoveryEventsMillions"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.payloadSizeKb",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "0.125"
+              },
+              {
+                "type": "rounding",
+                "mode": "ceil"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "scale",
+        "factor": "1000000"
+      }
+    ],
+    "outputUnit": "8K-Chunks"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

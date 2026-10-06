@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "scheduler",
+  "label": "EventBridge Scheduler invocations",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "EventBridge"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "Invocation"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Invocations"
+      },
+      {
+        "field": "beginRange",
+        "op": "eq",
+        "value": "14000000"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.schedulerInvocationsMillions"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "scale",
+        "factor": "1000000"
+      }
+    ],
+    "outputUnit": "Invocations"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}
