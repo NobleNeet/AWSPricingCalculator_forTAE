@@ -1,7 +1,12 @@
 #!/usr/bin/env node
-import { loadPackages } from './pricing-cli/package-loader.js';
+import path from 'node:path';
+import { loadPackages, readJson } from './pricing-cli/package-loader.js';
 import { loadCandidateMetadata, writeJson } from './pricing-cli/cli.js';
 import { planSemanticBatches } from './pricing-cli/semantic-plan.js';
+import {
+  effectiveValidationSourceCodes,
+  filterPackagesBySourceCodes
+} from './pricing-cli/update-scope.js';
 
 function manifestFromMetadata(metadata) {
   const sources = {};
@@ -20,7 +25,17 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
     const output = process.argv[3] ?? '.work/update/semantic-plan.json';
     const packages = await loadPackages('services');
     const metadata = await loadCandidateMetadata(directory);
-    const plan = await planSemanticBatches(packages, directory, manifestFromMetadata(metadata));
+    const state = await readJson(path.join(path.dirname(directory), 'prepare-state.json'));
+    const sourceCodes = effectiveValidationSourceCodes(state, metadata);
+    const scopedPackages = filterPackagesBySourceCodes(packages, sourceCodes);
+    if (!scopedPackages.length) throw new Error('Semantic validation scope resolved to no service packages.');
+    if (sourceCodes !== null) {
+      console.log(`semantic-plan scoped: services=${scopedPackages.map(pkg => pkg.service.id).join(',')} price_sources=${[...sourceCodes].sort().join(',')}`);
+    }
+    const plan = await planSemanticBatches(scopedPackages, directory, manifestFromMetadata(metadata));
+    plan.summary.scope = sourceCodes === null ? 'all' : 'onboarding';
+    plan.summary.scopeServiceIds = scopedPackages.map(pkg => pkg.service.id).sort();
+    plan.summary.scopeServiceCodes = sourceCodes === null ? [] : [...sourceCodes].sort();
     await writeJson(output, plan);
     process.stdout.write(`${JSON.stringify(plan.summary, null, 2)}\n`);
   } catch (error) {
