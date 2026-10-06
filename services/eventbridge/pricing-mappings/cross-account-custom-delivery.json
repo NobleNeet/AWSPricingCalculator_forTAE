@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "cross-account-custom-delivery",
+  "componentId": "cross-account-custom-delivery",
+  "priceSource": {
+    "serviceCode": "AWSEvents"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "EventBridge"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "CrossAccountInvoke-CustomEvent"
+    },
+    {
+      "field": "attributes.eventType",
+      "op": "eq",
+      "value": "Cross-Account Custom Event"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "64K-Chunks"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Cross-account custom event delivery."
+}
