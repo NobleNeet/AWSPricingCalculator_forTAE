@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "archive-processing",
+  "label": "Event replay archive processing",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "CloudWatch Events"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "ArchiveEvents"
+      },
+      {
+        "field": "attributes.eventType",
+        "op": "eq",
+        "value": "Archive Event"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GigaBytes"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.archiveEventsMillions"
+        },
+        {
+          "valueFrom": "profile.payloadSizeKb"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "scale",
+        "factor": "0.95367431640625"
+      }
+    ],
+    "outputUnit": "GigaBytes"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
