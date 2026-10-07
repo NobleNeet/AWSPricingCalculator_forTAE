@@ -46,7 +46,7 @@
       "attributes": {
         "regionCode": "ap-northeast-1",
         "usagetype": "APN1-DataTransferOut",
-        "dataTransferOut": "DataTransferOut"
+        "storage": "NoStorage"
       },
       "unit": "GigaBytes",
       "quantity": "20",
@@ -107,7 +107,7 @@
       "attributes": {
         "regionCode": "ap-northeast-1",
         "usagetype": "APN1-DataTransferOut",
-        "dataTransferOut": "DataTransferOut"
+        "storage": "NoStorage"
       },
       "productFamily": "AWS Amplify",
       "unit": "GigaBytes",
