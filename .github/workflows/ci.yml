@@ -9,6 +9,18 @@ concurrency:
   cancel-in-progress: true
 jobs:
   validate:
+    # Pull requests already validate GitHub's synthetic merge result. After that
+    # result is merged, rerunning the same full suite on the merge commit is
+    # redundant. Keep push validation for direct human pushes to main/branches,
+    # while bot-generated publication/promotion commits are validated by their
+    # producing workflows before they are pushed.
+    if: >-
+      github.event_name == 'pull_request' ||
+      (
+        github.event_name == 'push' &&
+        github.actor != 'github-actions[bot]' &&
+        !startsWith(github.event.head_commit.message, 'Merge pull request #')
+      )
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
