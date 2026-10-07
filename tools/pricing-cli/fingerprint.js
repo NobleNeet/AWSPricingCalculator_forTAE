@@ -36,8 +36,11 @@ export const PRICING_CONTRACT_FILES = [
   'tools/pricing-cli/normalize.js',
   'tools/pricing-cli/package-loader.js',
   'tools/pricing-cli/product-chunks.js',
+  'tools/pricing-cli/semantic-json.js',
+  'tools/pricing-cli/semantic-parallel.js',
   'tools/pricing-cli/semantic-validation-worker.js',
   'tools/pricing-cli/semantics.js',
+  'tools/schema.js',
   'schemas/pricing/products.schema.json'
 ];
 
