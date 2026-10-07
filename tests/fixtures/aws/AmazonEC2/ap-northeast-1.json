@@ -161,12 +161,12 @@
       "sku": "XPV6RFWY6M7R7MEF"
     }
   },
-  "publicationDate": "2026-09-25T17:45:21Z",
+  "publicationDate": "2026-10-06T17:24:54Z",
   "terms": {
     "OnDemand": {
       "2KRSTFABXH77P2FQ": {
         "2KRSTFABXH77P2FQ.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "2KRSTFABXH77P2FQ.JRTCKXETXF.6YS6EN2CT7": {
@@ -187,7 +187,7 @@
       },
       "7TFGMV47Q2PEQ9W7": {
         "7TFGMV47Q2PEQ9W7.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "7TFGMV47Q2PEQ9W7.JRTCKXETXF.6YS6EN2CT7": {
@@ -208,7 +208,7 @@
       },
       "C8Y3GJZBQTH8T5JV": {
         "C8Y3GJZBQTH8T5JV.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "C8Y3GJZBQTH8T5JV.JRTCKXETXF.6YS6EN2CT7": {
@@ -229,7 +229,7 @@
       },
       "DAPC5MD4ZQN9K67N": {
         "DAPC5MD4ZQN9K67N.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "DAPC5MD4ZQN9K67N.JRTCKXETXF.6YS6EN2CT7": {
@@ -250,7 +250,7 @@
       },
       "PCKHHBTPD7TEQ3K4": {
         "PCKHHBTPD7TEQ3K4.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "PCKHHBTPD7TEQ3K4.JRTCKXETXF.6YS6EN2CT7": {
@@ -271,7 +271,7 @@
       },
       "XPV6RFWY6M7R7MEF": {
         "XPV6RFWY6M7R7MEF.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "XPV6RFWY6M7R7MEF.JRTCKXETXF.6YS6EN2CT7": {
@@ -292,5 +292,5 @@
       }
     }
   },
-  "version": "20260925174521"
+  "version": "20261006172454"
 }
