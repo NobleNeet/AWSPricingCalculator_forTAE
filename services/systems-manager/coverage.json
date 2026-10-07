@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "JustInTimeAccessHour"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "jit-node-hours"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "IM-ResponsePlan-Months-Tier1"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Months"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "incident-response-plans"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "JustInTimeAccessHour-Trial"
+        }
+      ],
+      "status": "ignored",
+      "reason": "AWS publishes a separate zero-price JIT trial product. Repository policy does not subtract or select promotional free allowances; the paid product is used for estimates.",
+      "limitationId": "free-tier"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "notIn",
+          "value": [
+            "JustInTimeAccessHour",
+            "IM-ResponsePlan-Months-Tier1",
+            "JustInTimeAccessHour-Trial"
+          ]
+        }
+      ],
+      "status": "ignored",
+      "reason": "Other AWS Systems Manager pricing categories are not exposed by the supplied authoritative Systems Manager Calculator screen and are not inferred into this drawer.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}
