@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo-arm",
+  "profileId": "on-demand-ec2",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "operatingSystem": "Linux"
+  },
+  "components": {
+    "build-minutes": {
+      "enabled": true,
+      "selectors": {
+        "computeType": "arm1.2xlarge",
+        "durationUnit": "minutes"
+      },
+      "inputs": {
+        "buildsPerMonth": "1",
+        "averageBuildMinutes": "10"
+      }
+    }
+  },
+  "expected": {
+    "build-minutes": {
+      "attributes": {
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.2xlarge",
+        "operatingSystem": "Linux"
+      },
+      "unit": "minutes",
+      "quantity": "10",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "build-minutes": {
+      "attributes": {
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.2xlarge",
+        "operatingSystem": "Linux"
+      },
+      "productFamily": "Compute",
+      "unit": "minutes",
+      "quantity": "10"
+    }
+  }
+}

@@ -94,6 +94,15 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
+    },
+    {
+      "available": true,
+      "id": "codebuild",
+      "label": "AWS CodeBuild",
+      "profiles": [
+        "on-demand-ec2"
+      ],
+      "serviceCode": "CodeBuild"
     }
   ]
 }

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "in",
+          "value": [
+            "Build-Min:Linux:g1.small",
+            "Build-Min:Linux:g1.medium",
+            "Build-Min:Linux:g1.large",
+            "Build-Min:Linux:g1.xlarge",
+            "Build-Min:Linux:g1.2xlarge",
+            "Build-Min:ARM:g1.small",
+            "Build-Min:ARM:g1.medium",
+            "Build-Min:ARM:g1.large",
+            "Build-Min:ARM:g1.xlarge",
+            "Build-Min:ARM:g1.2xlarge",
+            "Build-Min:LinuxGPU:g1.small",
+            "Build-Min:LinuxGPU:g1.large",
+            "Build-Min:Windows:g1.medium",
+            "Build-Min:Windows:g1.large",
+            "Build-Min:Windows:g1.xlarge",
+            "Build-Min:Windows:g1.2xlarge"
+          ]
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "minutes"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "build-minutes"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "notIn",
+          "value": [
+            "Build-Min:Linux:g1.small",
+            "Build-Min:Linux:g1.medium",
+            "Build-Min:Linux:g1.large",
+            "Build-Min:Linux:g1.xlarge",
+            "Build-Min:Linux:g1.2xlarge",
+            "Build-Min:ARM:g1.small",
+            "Build-Min:ARM:g1.medium",
+            "Build-Min:ARM:g1.large",
+            "Build-Min:ARM:g1.xlarge",
+            "Build-Min:ARM:g1.2xlarge",
+            "Build-Min:LinuxGPU:g1.small",
+            "Build-Min:LinuxGPU:g1.large",
+            "Build-Min:Windows:g1.medium",
+            "Build-Min:Windows:g1.large",
+            "Build-Min:Windows:g1.xlarge",
+            "Build-Min:Windows:g1.2xlarge"
+          ]
+        }
+      ],
+      "status": "ignored",
+      "reason": "On-Demand Lambda, Docker, Sandbox, Reserved Capacity and other CodeBuild meters are outside the supplied On-Demand EC2 Calculator screen and are not inferred into this estimate.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}

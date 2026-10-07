@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "on-demand-ec2",
+  "label": "On-Demand EC2",
+  "selectors": [
+    {
+      "id": "operatingSystem",
+      "label": "Operating system",
+      "type": "select",
+      "default": "Linux",
+      "options": {
+        "attribute": "operatingSystem",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Compute"
+          },
+          {
+            "field": "attributes.computeFamily",
+            "op": "eq",
+            "value": "OnDemand-EC2"
+          }
+        ]
+      },
+      "ui": {
+        "help": "AWS Pricing Calculator の On-Demand EC2 に存在する operating system を現在の Region の AWS Public Price List から表示します。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "build-minutes"
+  ]
+}

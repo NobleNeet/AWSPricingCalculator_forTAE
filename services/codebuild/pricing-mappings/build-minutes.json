@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "build-minutes",
+  "componentId": "build-minutes",
+  "priceSource": {
+    "serviceCode": "CodeBuild"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute"
+    },
+    {
+      "field": "attributes.computeFamily",
+      "op": "eq",
+      "value": "OnDemand-EC2"
+    },
+    {
+      "field": "attributes.computeType",
+      "op": "eq",
+      "valueFrom": "component.computeType"
+    },
+    {
+      "field": "attributes.operatingSystem",
+      "op": "eq",
+      "valueFrom": "profile.operatingSystem"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "minutes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS CodeBuild On-Demand EC2 build-minute meter selected by compute type and operating system."
+}
