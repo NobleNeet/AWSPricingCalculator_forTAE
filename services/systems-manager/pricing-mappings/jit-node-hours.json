@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "jit-node-hours",
+  "componentId": "jit-node-hours",
+  "priceSource": {
+    "serviceCode": "AWSSystemsManager"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Systems Manager"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "JustInTimeAccessHour"
+    },
+    {
+      "field": "attributes.trial",
+      "op": "eq",
+      "value": "FALSE"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "hours"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 4
+  },
+  "notes": "Paid Just-in-time node access managed-node hours. The zero-price trial product is deliberately excluded; the generic tier policy selects the first normal paid tier."
+}
