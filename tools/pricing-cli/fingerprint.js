@@ -13,6 +13,7 @@ export const PRICING_CONTRACT_FILES = [
   'tools/pricing-cli/build.js',
   'tools/pricing-cli/cli.js',
   'tools/pricing-cli/normalize.js',
+  'tools/pricing-cli/product-chunks.js',
   'tools/pricing-cli/semantics.js'
 ];
 
