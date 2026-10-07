@@ -11,9 +11,27 @@ async function writeJson(file, value) {
 
 export async function mergeDriftBatches(planFile, directory) {
   const plan = await readJson(planFile);
+  const expected = new Map((plan.matrix?.include ?? []).map(batch => [batch.batch_id, batch]));
+  if (!expected.size) {
+    if (plan.summary?.scope !== 'reuse') throw new Error('Drift plan contains no batches.');
+    return report('classify-change', [], {
+      classification: 'PRICE_ONLY',
+      publishable: true,
+      rateDiff: [],
+      workers: 0,
+      batches: 0,
+      plannedCases: 0,
+      casesPerBatch: 0,
+      processedCases: 0,
+      reusedCases: 0,
+      reusedRegions: 0,
+      skippedTasks: [],
+      taskTimings: [],
+      reusedBaseline: true
+    });
+  }
   const names = (await readdir(directory)).filter(name => name.endsWith('.json')).sort();
   const batches = await Promise.all(names.map(name => readJson(path.join(directory, name))));
-  const expected = new Map(plan.matrix.include.map(batch => [batch.batch_id, batch]));
   const seen = new Set();
   const representedTasks = new Set();
 

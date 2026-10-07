@@ -93,6 +93,30 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
   const candidate = await loadCandidateMetadata(candidateDirectory);
   const sourceCodes = effectiveValidationSourceCodes(state, candidate);
   const scopedPackages = filterPackagesBySourceCodes(packages, sourceCodes);
+  if (sourceCodes !== null && sourceCodes.size === 0 && state.reuseSemanticBaseline === true) {
+    console.log('drift-plan reuse: no source or semantic contract changed; reusing the active drift baseline');
+    return {
+      schemaVersion: 2,
+      previousDirectory,
+      candidateDirectory,
+      missingService: false,
+      tasks: [],
+      matrix: { include: [] },
+      skippedTasks: [],
+      summary: {
+        tasks: 0,
+        skippedTasks: 0,
+        totalCases: 0,
+        batches: 0,
+        casesPerBatch: 0,
+        maxBatches: positiveInt(options.maxBatches ?? process.env.PRICE_DRIFT_MAX_WORKFLOW_BATCHES, 240),
+        plannerConcurrency: 0,
+        scope: validationScopeMode(state, sourceCodes),
+        scopeServiceIds: [],
+        scopeServiceCodes: []
+      }
+    };
+  }
   if (!scopedPackages.length) throw new Error('Drift validation scope resolved to no service packages.');
   if (sourceCodes !== null) {
     console.log(`drift-plan scoped: services=${scopedPackages.map(pkg => pkg.service.id).join(',')} price_sources=${[...sourceCodes].sort().join(',')}`);

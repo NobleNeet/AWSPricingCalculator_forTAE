@@ -66,6 +66,25 @@ test('unrequested runs validate only AWS/Definition-changed sources', () => {
   );
 });
 
+
+test('publication-only rebuilds reuse the validated semantic baseline without matrix work', () => {
+  const codes = effectiveValidationSourceCodes(
+    {
+      requestedScopeServiceIds: [],
+      definitionRefreshServiceCodes: [],
+      reuseSemanticBaseline: true
+    },
+    {
+      sources: {
+        'AWSLambda/ap-northeast-1': { serviceCode: 'AWSLambda', awsChanged: false }
+      }
+    }
+  );
+  assert.equal(codes.size, 0);
+  assert.equal(validationScopeMode({ reuseSemanticBaseline: true }, codes), 'reuse');
+  assert.deepEqual(filterPackagesBySourceCodes(packages, codes), []);
+});
+
 test('global semantic contract changes still fail safe to full validation', () => {
   const codes = effectiveValidationSourceCodes(
     {

@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
     inputs:
       validation_scope_service_ids:
-        description: 'Comma-separated internal service ids for onboarding-scoped heavy validation. Empty means full validation.'
+        description: 'Comma-separated internal service ids for onboarding-scoped heavy validation. Empty uses normal incremental validation.'
         required: false
         type: string
 permissions:
@@ -112,7 +112,7 @@ jobs:
 
   semantic:
     needs: [prepare, semantic-plan]
-    if: needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success'
+    if: needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success' && needs.semantic-plan.outputs.batch_count != '0'
     strategy:
       fail-fast: false
       max-parallel: 8
@@ -155,7 +155,7 @@ jobs:
 
   semantic-merge:
     needs: [prepare, semantic-plan, semantic]
-    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success' && needs.semantic.result == 'success'
+    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success' && (needs.semantic.result == 'success' || (needs.semantic-plan.outputs.batch_count == '0' && needs.semantic.result == 'skipped'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -165,6 +165,7 @@ jobs:
           name: semantic-plan
           path: .work/update
       - uses: actions/download-artifact@v4
+        if: needs.semantic-plan.outputs.batch_count != '0'
         with:
           pattern: semantic-batch-*
           path: .work/update/batches
@@ -258,7 +259,7 @@ jobs:
 
   drift:
     needs: [prepare, drift-plan]
-    if: needs.prepare.outputs.needs_update == 'true' && needs.drift-plan.result == 'success'
+    if: needs.prepare.outputs.needs_update == 'true' && needs.drift-plan.result == 'success' && needs.drift-plan.outputs.batch_count != '0'
     strategy:
       fail-fast: false
       max-parallel: 8
@@ -296,7 +297,7 @@ jobs:
 
   drift-merge:
     needs: [prepare, drift-plan, drift]
-    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.drift-plan.result == 'success' && needs.drift.result == 'success'
+    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.drift-plan.result == 'success' && (needs.drift.result == 'success' || (needs.drift-plan.outputs.batch_count == '0' && needs.drift.result == 'skipped'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -306,6 +307,7 @@ jobs:
           name: drift-plan
           path: .work/update
       - uses: actions/download-artifact@v4
+        if: needs.drift-plan.outputs.batch_count != '0'
         with:
           pattern: drift-batch-*
           path: .work/update/drift-batches

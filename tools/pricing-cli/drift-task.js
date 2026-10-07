@@ -1,10 +1,10 @@
 import path from 'node:path';
 import { readJson } from './package-loader.js';
 import { classifyChange, semanticProduct } from './drift.js';
-import { loadProductsForSkus } from './product-chunks.js';
+import { loadProductsForSkus } from './publication-candidate.js';
 import { priceSourceForComponent } from '../../src/pricing/mapping.js';
-import { checksum } from './build.js';
-import { encode } from './normalize.js';
+import { checksum } from './hash.js';
+import { semanticEncode } from './semantic-json.js';
 
 export function sourceScopedPackage(pkg, serviceCode) {
   const profiles = Object.fromEntries(Object.entries(pkg.profiles).map(([profileId, profile]) => [
@@ -23,7 +23,7 @@ function packagesForServiceCode(packages, serviceCode) {
 }
 
 function productDigest(products) {
-  return checksum(encode(products));
+  return checksum(semanticEncode(products));
 }
 
 export function priceOnlyChangedSkus(before, after) {
@@ -36,8 +36,8 @@ export function priceOnlyChangedSkus(before, after) {
   const changed = new Set();
   for (const [sku, oldProduct] of beforeBySku) {
     const nextProduct = afterBySku.get(sku);
-    if (checksum(encode(semanticProduct(oldProduct))) !== checksum(encode(semanticProduct(nextProduct)))) return null;
-    if (checksum(encode(oldProduct)) !== checksum(encode(nextProduct))) changed.add(sku);
+    if (checksum(semanticEncode(semanticProduct(oldProduct))) !== checksum(semanticEncode(semanticProduct(nextProduct)))) return null;
+    if (checksum(semanticEncode(oldProduct)) !== checksum(semanticEncode(nextProduct))) changed.add(sku);
   }
   return changed;
 }

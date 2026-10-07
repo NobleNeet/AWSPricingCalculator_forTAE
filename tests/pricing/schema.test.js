@@ -43,7 +43,7 @@ test('build manifest schema accepts persisted contract fingerprints and rejects 
     definitionSha256: 'a'.repeat(64),
     publicationSha256: 'f'.repeat(64),
     contractFingerprints: {
-      schemaVersion: 1,
+      schemaVersion: 2,
       global: 'b'.repeat(64),
       services: {
         lambda: 'c'.repeat(64)

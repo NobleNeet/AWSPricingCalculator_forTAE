@@ -171,3 +171,26 @@ test('price-only SKU detection isolates changed rates and rejects semantic chang
   const afterAdded = { products: [...afterPrice.products, pricedProduct('c', '3.0')] };
   assert.equal(priceOnlyChangedSkus(before, afterAdded), null);
 });
+
+test('drift merge accepts an explicit zero-batch reuse plan', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'drift-reuse-'));
+  try {
+    const planFile = path.join(root, 'plan.json');
+    await writeJson(planFile, {
+      missingService: false,
+      tasks: [],
+      matrix: { include: [] },
+      skippedTasks: [],
+      summary: { scope: 'reuse', totalCases: 0, batches: 0, casesPerBatch: 0 }
+    });
+    const merged = await mergeDriftBatches(planFile, path.join(root, 'missing-batches'));
+    assert.equal(merged.status, 'passed');
+    assert.equal(merged.classification, 'PRICE_ONLY');
+    assert.equal(merged.publishable, true);
+    assert.equal(merged.batches, 0);
+    assert.equal(merged.reusedBaseline, true);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+

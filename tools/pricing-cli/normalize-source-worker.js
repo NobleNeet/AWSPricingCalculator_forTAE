@@ -1,8 +1,9 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { readJson } from './package-loader.js';
-import { normalize, encode } from './normalize.js';
-import { writeProductChunks } from './product-chunks.js';
+import { normalize } from './normalize.js';
+import { encode } from './encoding.js';
+import { writeProductChunks } from './product-chunk-writer.js';
 
 async function writeJson(file, data) {
   await mkdir(path.dirname(file), { recursive: true });

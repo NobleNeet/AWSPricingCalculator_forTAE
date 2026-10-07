@@ -4,12 +4,12 @@ import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { encode } from '../../tools/pricing-cli/normalize.js';
+import { chunkManifestRelativePath } from '../../tools/pricing-cli/product-chunks.js';
+import { writeProductChunks } from '../../tools/pricing-cli/product-chunk-writer.js';
 import {
-  chunkManifestRelativePath,
-  loadProductsForSkus,
-  writeProductChunks
-} from '../../tools/pricing-cli/product-chunks.js';
-import { loadCandidateForPublish } from '../../tools/pricing-cli/publication-candidate.js';
+  loadCandidateForPublish,
+  loadProductsForSkus
+} from '../../tools/pricing-cli/publication-candidate.js';
 
 function source(productCount = 12, serviceCode = 'Example', region = 'ap-northeast-1') {
   return {
