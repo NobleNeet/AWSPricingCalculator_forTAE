@@ -1,0 +1,47 @@
+{
+  "buildId": "20261007T060011Z-16f8dd57",
+  "products": [
+    {
+      "attributes": {
+        "databaseEngineType": "Aurora-PostgreSQL",
+        "group": "CW-DatabaseInsights",
+        "groupDescription": "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases",
+        "instanceConfigurationType": "Limitless",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "Aurora-PostgreSQL:Limitless",
+        "regionCode": "us-east-1",
+        "servicecode": "AmazonCloudWatch",
+        "servicename": "AmazonCloudWatch",
+        "usagetype": "USE1-CW:DatabaseInsights-ACU-Hours"
+      },
+      "operation": "Aurora-PostgreSQL:Limitless",
+      "productFamily": "CloudWatch Database Insights",
+      "sku": "STJ46A5868BGSDKW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.003125 per ACU-Hour monitored by Database Insights for Aurora-PostgreSQL limitless databases in US East (N. Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0031250000"
+                },
+                "rateCode": "STJ46A5868BGSDKW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "ACU-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-CW:DatabaseInsights-ACU-Hours"
+    }
+  ],
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}
