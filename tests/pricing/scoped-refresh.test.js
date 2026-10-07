@@ -52,8 +52,10 @@ test('publication-only candidate assembly does not invalidate semantic validatio
   assert.ok(PUBLICATION_CONTRACT_FILES.includes('tools/pricing-cli/publication-candidate.js'));
   assert.ok(PUBLICATION_CONTRACT_FILES.includes('tools/pricing-cli/build.js'));
   assert.equal(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/publication-candidate.js'), false);
-  assert.equal(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/build.js'), false);
-  // Shared chunk readers still affect semantic input and remain semantic-contract inputs.
+  // Existing shared build/chunk files remain in the semantic baseline for compatibility.
+  // Publication-only selection now lives in its own file, so future fixes there do not
+  // invalidate every service.
+  assert.ok(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/build.js'));
   assert.ok(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/product-chunks.js'));
 });
 
