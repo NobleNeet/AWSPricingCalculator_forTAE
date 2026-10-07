@@ -29,11 +29,28 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
     const state = await readJson(path.join(path.dirname(directory), 'prepare-state.json'));
     const sourceCodes = effectiveValidationSourceCodes(state, metadata);
     const scopedPackages = filterPackagesBySourceCodes(packages, sourceCodes);
-    if (!scopedPackages.length) throw new Error('Semantic validation scope resolved to no service packages.');
-    if (sourceCodes !== null) {
-      console.log(`semantic-plan scoped: services=${scopedPackages.map(pkg => pkg.service.id).join(',')} price_sources=${[...sourceCodes].sort().join(',')}`);
+    let plan;
+    if (sourceCodes !== null && sourceCodes.size === 0 && state.reuseSemanticBaseline === true) {
+      console.log('semantic-plan reuse: no semantic validation required; reusing the active validated baseline');
+      plan = {
+        matrix: { include: [] },
+        summary: {
+          sourceTasks: 0,
+          totalCases: 0,
+          batchCases: 0,
+          batches: 0,
+          maxBatches: Number.parseInt(process.env.PRICE_VALIDATE_MAX_WORKFLOW_BATCHES ?? '240', 10),
+          plannerConcurrency: 0
+        },
+        tasks: []
+      };
+    } else {
+      if (!scopedPackages.length) throw new Error('Semantic validation scope resolved to no service packages.');
+      if (sourceCodes !== null) {
+        console.log(`semantic-plan scoped: services=${scopedPackages.map(pkg => pkg.service.id).join(',')} price_sources=${[...sourceCodes].sort().join(',')}`);
+      }
+      plan = await planSemanticBatches(scopedPackages, directory, manifestFromMetadata(metadata));
     }
-    const plan = await planSemanticBatches(scopedPackages, directory, manifestFromMetadata(metadata));
     plan.summary.scope = validationScopeMode(state, sourceCodes);
     plan.summary.scopeServiceIds = scopedPackages.map(pkg => pkg.service.id).sort();
     plan.summary.scopeServiceCodes = sourceCodes === null ? [] : [...sourceCodes].sort();
