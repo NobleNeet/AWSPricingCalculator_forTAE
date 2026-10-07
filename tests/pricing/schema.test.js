@@ -41,6 +41,7 @@ test('build manifest schema accepts persisted contract fingerprints and rejects 
     publicationDate: '2026-10-06T00:00:00Z',
     currency: 'USD',
     definitionSha256: 'a'.repeat(64),
+    publicationSha256: 'f'.repeat(64),
     contractFingerprints: {
       schemaVersion: 1,
       global: 'b'.repeat(64),
