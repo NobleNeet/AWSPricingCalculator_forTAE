@@ -1,6 +1,7 @@
 name: Application and Definition CI
 on:
   push:
+    branches: [main]
   pull_request:
 permissions:
   contents: read
