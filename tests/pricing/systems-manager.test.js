@@ -16,9 +16,11 @@ test('Systems Manager drawer follows the supplied Calculator contract', async ()
   assert.equal(jit.priceQuery.productFilters.find(x => x.field === 'operation').value, 'JustInTimeAccessHour');
   assert.equal(jit.priceQuery.productFilters.find(x => x.field === 'attributes.trial').value, 'FALSE');
   assert.deepEqual(jit.limitations, ['tier-pricing', 'free-tier', 'account-specific-discount']);
+  assert.deepEqual(jit.enabledWhen.value, ['ap-northeast-1', 'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2']);
 
   const incident = pkg.components['incident-response-plans'];
   assert.equal(incident.priceQuery.productFilters.find(x => x.field === 'attributes.response').value, 'response-plan-months');
+  assert.deepEqual(incident.enabledWhen.value, ['ap-northeast-1', 'us-east-1', 'us-east-2', 'us-west-2']);
   assert.equal(
     incident.calculation.usage.sources[1].value.transforms[0].factor,
     '0.001369863013698630136986301369863'
