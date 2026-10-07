@@ -1,6 +1,7 @@
 import { decimal } from '../../src/pricing/decimal.js';
 import { fail } from '../../src/pricing/issues.js';
-import { stable, encode } from './encoding.js';
+import { encode } from './encoding.js';
+import { semanticStable } from './semantic-json.js';
 import { buildIndex } from './price-index.js';
 
 export { stable, encode } from './encoding.js';
@@ -26,7 +27,7 @@ export function normalize(raw, region, buildId = 'candidate') {
       }
       return result;
     });
-    products.push({ sku, productFamily: source.productFamily ?? '', operation: source.attributes.operation ?? '', usageType: source.attributes.usagetype ?? '', attributes: stable(source.attributes), terms: { onDemand: [{ offerTermCode: term.offerTermCode, effectiveDate: term.effectiveDate, priceDimensions: dimensions }] } });
+    products.push({ sku, productFamily: source.productFamily ?? '', operation: source.attributes.operation ?? '', usageType: source.attributes.usagetype ?? '', attributes: semanticStable(source.attributes), terms: { onDemand: [{ offerTermCode: term.offerTermCode, effectiveDate: term.effectiveDate, priceDimensions: dimensions }] } });
   }
   const data = { schemaVersion: 1, buildId, serviceCode: raw.offerCode, region, products };
   return { data, index: buildIndex(products, buildId, raw.offerCode, region), source: { serviceCode: raw.offerCode, region, version: raw.version, publicationDate: raw.publicationDate } };
