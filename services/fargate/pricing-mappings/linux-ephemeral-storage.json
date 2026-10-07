@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "linux-ephemeral-storage",
+  "componentId": "linux-ephemeral-storage",
+  "priceSource": {
+    "serviceCode": "AmazonECS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute"
+    },
+    {
+      "field": "attributes.storagetype",
+      "op": "eq",
+      "value": "default"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Hours"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Additional ephemeral storage meter; Linux minimum duration is applied in the component."
+}

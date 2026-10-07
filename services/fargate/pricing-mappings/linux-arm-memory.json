@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "linux-arm-memory",
+  "componentId": "linux-arm-memory",
+  "priceSource": {
+    "serviceCode": "AmazonECS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute"
+    },
+    {
+      "field": "attributes.cpuArchitecture",
+      "op": "eq",
+      "value": "ARM"
+    },
+    {
+      "field": "attributes.memorytype",
+      "op": "eq",
+      "value": "perGB"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "hours"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Linux ARM On-Demand memory meter."
+}

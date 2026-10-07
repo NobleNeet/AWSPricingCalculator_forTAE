@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "windows-vcpu",
+  "label": "Windows vCPU",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "field": "profile.operatingSystem",
+    "op": "eq",
+    "value": "Windows"
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Compute"
+      },
+      {
+        "field": "attributes.operatingSystem",
+        "op": "eq",
+        "value": "Windows"
+      },
+      {
+        "field": "attributes.cputype",
+        "op": "eq",
+        "value": "perCPU"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "hours"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.tasksPerDay"
+        },
+        {
+          "value": "30"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.averageDurationHours",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "0.0833333333333333"
+              }
+            ]
+          }
+        },
+        {
+          "valueFrom": "profile.windowsVcpuPerTask"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "hours"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

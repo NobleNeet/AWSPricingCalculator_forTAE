@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "id": "linux-x86-memory",
+  "label": "Linux x86 memory",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "all": [
+      {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Linux"
+      },
+      {
+        "field": "profile.cpuArchitecture",
+        "op": "eq",
+        "value": "x86"
+      }
+    ]
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Compute"
+      },
+      {
+        "field": "attributes.memorytype",
+        "op": "eq",
+        "value": "perGB"
+      },
+      {
+        "field": "attributes.cpuArchitecture",
+        "op": "notExists"
+      },
+      {
+        "field": "attributes.operatingSystem",
+        "op": "notExists"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "hours"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.tasksPerDay"
+        },
+        {
+          "value": "30"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.averageDurationHours",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "0.0166666666666667"
+              }
+            ]
+          }
+        },
+        {
+          "valueFrom": "profile.linuxMemoryGbPerTask"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "hours"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

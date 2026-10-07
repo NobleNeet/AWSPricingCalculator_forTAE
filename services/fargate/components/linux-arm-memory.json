@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "linux-arm-memory",
+  "label": "Linux ARM memory",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "all": [
+      {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Linux"
+      },
+      {
+        "field": "profile.cpuArchitecture",
+        "op": "eq",
+        "value": "ARM"
+      }
+    ]
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Compute"
+      },
+      {
+        "field": "attributes.cpuArchitecture",
+        "op": "eq",
+        "value": "ARM"
+      },
+      {
+        "field": "attributes.memorytype",
+        "op": "eq",
+        "value": "perGB"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "hours"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.tasksPerDay"
+        },
+        {
+          "value": "30"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.averageDurationHours",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "0.0166666666666667"
+              }
+            ]
+          }
+        },
+        {
+          "valueFrom": "profile.linuxMemoryGbPerTask"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "hours"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

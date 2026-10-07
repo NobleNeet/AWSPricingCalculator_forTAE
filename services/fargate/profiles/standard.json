@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Fargate On-Demand",
+  "selectors": [
+    {
+      "id": "operatingSystem",
+      "label": "Operating system",
+      "type": "select",
+      "default": "Linux",
+      "options": {
+        "values": [
+          "Linux",
+          "Windows"
+        ]
+      },
+      "ui": {
+        "help": "AWS Pricing Calculator の Operating system。購入方式はリポジトリ方針により On-Demand 固定です。"
+      }
+    },
+    {
+      "id": "cpuArchitecture",
+      "label": "CPU architecture",
+      "type": "select",
+      "default": "x86",
+      "options": {
+        "values": [
+          "x86",
+          "ARM"
+        ]
+      },
+      "enabledWhen": {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Linux"
+      },
+      "ui": {
+        "help": "Linux は x86 / ARM を選択できます。Windows Fargate は x86 のみです。"
+      }
+    },
+    {
+      "id": "tasksPerDay",
+      "label": "Tasks or pods",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "help": "1日あたりに実行する Amazon ECS task / Amazon EKS pod の数。添付 Calculator 画面で確認できる /日 入力を採用しています。"
+      }
+    },
+    {
+      "id": "averageDurationHours",
+      "label": "Average duration per task or pod (hours)",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "help": "1 task / pod あたりの平均実行時間。Linux は最低1分、Windows は最低5分の課金時間を計算時に適用します。"
+      }
+    },
+    {
+      "id": "linuxVcpuPerTask",
+      "label": "vCPU per task or pod",
+      "type": "select",
+      "default": "0.25",
+      "options": {
+        "values": [
+          "0.25",
+          "0.5",
+          "1",
+          "2",
+          "4",
+          "8",
+          "16",
+          "32"
+        ]
+      },
+      "enabledWhen": {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Linux"
+      },
+      "ui": {
+        "help": "Linux Fargate の task/pod あたり vCPU。memory との組み合わせは AWS Fargate の supported configurations に従ってください。"
+      }
+    },
+    {
+      "id": "linuxMemoryGbPerTask",
+      "label": "Memory per task or pod (GB)",
+      "type": "number",
+      "default": "0.5",
+      "minimum": "0.5",
+      "maximum": "244",
+      "enabledWhen": {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Linux"
+      },
+      "ui": {
+        "help": "Linux Fargate の task/pod あたり memory。vCPU ごとに AWS が許可する memory 値・刻み幅があります。"
+      }
+    },
+    {
+      "id": "windowsVcpuPerTask",
+      "label": "vCPU per task",
+      "type": "select",
+      "default": "1",
+      "options": {
+        "values": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "enabledWhen": {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Windows"
+      },
+      "ui": {
+        "help": "Windows Fargate は x86 の 1 / 2 / 4 vCPU 構成を対象にします。"
+      }
+    },
+    {
+      "id": "windowsMemoryGbPerTask",
+      "label": "Memory per task (GB)",
+      "type": "number",
+      "default": "2",
+      "minimum": "2",
+      "maximum": "30",
+      "enabledWhen": {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Windows"
+      },
+      "ui": {
+        "help": "Windows Fargate の task あたり memory。vCPU ごとに AWS が許可する範囲内で指定してください。"
+      }
+    },
+    {
+      "id": "ephemeralStorageGb",
+      "label": "Ephemeral storage per task or pod (GB)",
+      "type": "number",
+      "default": "20",
+      "minimum": "20",
+      "maximum": "200",
+      "ui": {
+        "help": "20 GB は基本料金に含まれ、20 GB を超える追加 ephemeral storage のみを課金します。"
+      }
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute"
+    }
+  ],
+  "components": [
+    "linux-x86-vcpu",
+    "linux-x86-memory",
+    "linux-arm-vcpu",
+    "linux-arm-memory",
+    "windows-vcpu",
+    "windows-memory",
+    "windows-os",
+    "linux-ephemeral-storage",
+    "windows-ephemeral-storage"
+  ]
+}

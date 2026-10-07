@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "fargate",
+  "label": "AWS Fargate",
+  "priceSource": {
+    "serviceCode": "AmazonECS"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "linux-x86-vcpu",
+    "linux-x86-memory",
+    "linux-arm-vcpu",
+    "linux-arm-memory",
+    "windows-vcpu",
+    "windows-memory",
+    "windows-os",
+    "linux-ephemeral-storage",
+    "windows-ephemeral-storage"
+  ]
+}

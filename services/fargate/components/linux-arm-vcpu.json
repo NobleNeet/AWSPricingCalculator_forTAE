@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "linux-arm-vcpu",
+  "label": "Linux ARM vCPU",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "all": [
+      {
+        "field": "profile.operatingSystem",
+        "op": "eq",
+        "value": "Linux"
+      },
+      {
+        "field": "profile.cpuArchitecture",
+        "op": "eq",
+        "value": "ARM"
+      }
+    ]
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Compute"
+      },
+      {
+        "field": "attributes.cpuArchitecture",
+        "op": "eq",
+        "value": "ARM"
+      },
+      {
+        "field": "attributes.cputype",
+        "op": "eq",
+        "value": "perCPU"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "hours"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.tasksPerDay"
+        },
+        {
+          "value": "30"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.averageDurationHours",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "0.0166666666666667"
+              }
+            ]
+          }
+        },
+        {
+          "valueFrom": "profile.linuxVcpuPerTask"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "hours"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
