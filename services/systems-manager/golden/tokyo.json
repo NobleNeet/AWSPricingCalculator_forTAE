@@ -35,7 +35,7 @@
         "response": "response-plan-months"
       },
       "unit": "Months",
-      "quantity": "1",
+      "quantity": "0.99999999999999999999999999999999",
       "limitations": [
         "unsupported-pricing-category",
         "account-specific-discount"
@@ -62,7 +62,7 @@
       },
       "productFamily": "AWS Systems Manager",
       "unit": "Months",
-      "quantity": "1"
+      "quantity": "0.99999999999999999999999999999999"
     }
   }
 }
