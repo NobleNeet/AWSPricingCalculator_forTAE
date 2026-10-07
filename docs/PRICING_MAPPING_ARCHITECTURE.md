@@ -1,6 +1,6 @@
 # Service-Specific Pricing Mapping Architecture
 
-最終更新: 2026-10-05
+最終更新: 2026-10-07
 
 本書は、AWS Public Price List上の料金項目を本アプリのPricing Componentへ対応付ける方法、およびPrice DB更新時の検証責務を定義する正本である。
 
@@ -318,6 +318,37 @@ pricing contract / service Definition fingerprint
 9. reuseは常にfail-closedとする。必要なfingerprint、baseline、SKU集合、semantic equalityのいずれかを確認できない場合はskipしてはならない。
 
 この最適化は検証意味論を変更しない。省略できるのは「前回成功済みで、入力契約と対象料金内容が同一であることを決定論的に証明できる処理」だけである。
+
+### 10.6 修復・再生成時のValidation Scope保全
+
+Price DB破損、publish不具合、builder/finalize不具合等を修復する場合も、既存のincremental / onboarding scope制御を無条件に解除してはならない。
+
+特に、**「Price DBを再生成する必要があること」と「全Serviceのsemantic validationを再実行する必要があること」は別の判定**として扱う。
+
+規則:
+
+1. 修復着手前に、現在のworkflowでvalidation scopeを決定している入力・fingerprint・`PRICE_UPDATE_SCOPE_SERVICE_IDS`・`effectiveValidationSourceCodes`等を確認する。
+2. 変更がmaterialization / chunking / publication / retention等の**格納・公開方法だけ**に関係し、Pricing Mapping、selector到達性、Product/Dimension解決意味論を変えない場合、その変更だけを理由にsemantic validationを全Serviceへ拡大してはならない。
+3. DB再生成を強制するためのfingerprintを追加・変更するときは、そのfingerprintがsemantic scope判定にも使われていないかを確認する。semantic意味論とbuild/publication意味論は必要に応じて別fingerprintへ分離する。
+4. onboarding / re-onboardingのscoped runでは、対象Service、当該Definition変更で影響を受けるprice source、および同時にAWS側変更が確認されたsourceだけを重いsemantic validation対象とする。対象外sourceは直前の検証済みbuildから保持し、空集合としてpublishしてはならない。
+5. 修復用変更をmergeする前に、semantic planのsummaryまたは同等のdry-planを確認し、`scope = all`、想定外Serviceの追加、case数・batch数の急増が発生していないか確認する。
+6. 想定外にEC2等の大規模Serviceがscopeへ入った場合は、その全件再検証が修復対象の意味論変更に本当に必要であることを説明できない限り、実行をそのまま正当化せずscope判定を修正する。
+7. active Price DB自体が破損しており全sourceのデータ再取得・再materializeが必要な場合でも、既存の検証済みsemantic結果を安全に再利用できるsourceまで全reachable caseを再評価する必要はない。再取得範囲、再生成範囲、semantic再検証範囲を分離する。
+8. scope制御またはpublish selectionを修正した場合は、少なくとも「対象sourceだけ再検証されること」と「対象外sourceが保持されること」の回帰testを追加する。
+9. fail-safeは「不明なら全semantic再検証」と短絡させず、まず何が不明なのかを分類する。semantic契約の安全性が不明な場合のみsemantic側を広げ、単なるpublication実装変更ではbuild側だけを広げる。
+
+修復時の原則は次とする。
+
+```text
+原因修正
+-> 既存scope制御への影響分析
+-> DB再取得 / 再生成 / semantic再検証の必要範囲を別々に決定
+-> planで対象Service・case数を確認
+-> narrow regression test
+-> 必要最小scopeでActions実行
+```
+
+「修復を確実に走らせるため」という理由だけでglobal semantic fingerprintを変更し、全Service validationへ退化させてはならない。
 
 ---
 
