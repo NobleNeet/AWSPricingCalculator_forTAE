@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
     inputs:
       validation_scope_service_ids:
-        description: 'Comma-separated internal service ids for onboarding-scoped heavy validation. Empty means full validation.'
+        description: 'Comma-separated internal service ids for onboarding-scoped heavy validation. Empty uses normal incremental validation.'
         required: false
         type: string
 permissions:
