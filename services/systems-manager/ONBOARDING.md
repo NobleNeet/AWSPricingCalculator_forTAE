@@ -15,3 +15,5 @@
 - Incident Manager is no longer open to new customers; existing customers can continue to use it. The input is retained because the authoritative Calculator screen still exposes it and existing customers can incur the charge.
 - Other Systems Manager paid categories (for example OpsCenter, Parameter Store advanced parameters, Automation, Change Manager, and related meters) are not exposed by the supplied authoritative Calculator screen. They are explicitly covered as unsupported instead of being inferred into this estimate.
 - No SKU or rateCode is pinned by the service Definition or Pricing Mapping. The concrete SKU/rateCode values in the AWS fixture are evidence only.
+
+- Region availability is fail-closed from live Public Price List validation. In the currently configured application regions, paid JIT meters resolve in Tokyo, N. Virginia, Ohio, N. California, and Oregon, but not Osaka. Incident Manager response-plan months resolve in Tokyo, N. Virginia, Ohio, and Oregon, but not Osaka or N. California. Inputs/components are disabled where their matching paid meter is absent instead of fabricating a fallback price.

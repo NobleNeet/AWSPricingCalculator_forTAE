@@ -11,6 +11,17 @@
       "minimum": "0",
       "ui": {
         "help": "Just-in-time node access の Systems Manager managed node hours。"
+      },
+      "enabledWhen": {
+        "field": "project.region",
+        "op": "in",
+        "value": [
+          "ap-northeast-1",
+          "us-east-1",
+          "us-east-2",
+          "us-west-1",
+          "us-west-2"
+        ]
       }
     },
     {
@@ -21,6 +32,16 @@
       "minimum": "0",
       "ui": {
         "help": "1か月のうちアクティブな Incident Manager 対応プラン数。"
+      },
+      "enabledWhen": {
+        "field": "project.region",
+        "op": "in",
+        "value": [
+          "ap-northeast-1",
+          "us-east-1",
+          "us-east-2",
+          "us-west-2"
+        ]
       }
     },
     {
@@ -32,6 +53,16 @@
       "maximum": "730",
       "ui": {
         "help": "対応プラン1件あたりの月内アクティブ時間。AWS Pricing Calculator の既定値 730 時間/月を使用します。"
+      },
+      "enabledWhen": {
+        "field": "project.region",
+        "op": "in",
+        "value": [
+          "ap-northeast-1",
+          "us-east-1",
+          "us-east-2",
+          "us-west-2"
+        ]
       }
     }
   ],
