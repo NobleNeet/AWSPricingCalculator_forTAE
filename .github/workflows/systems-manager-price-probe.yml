@@ -1,0 +1,55 @@
+name: Systems Manager Price Probe
+on:
+  push:
+    branches: [onboard/systems-manager]
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch current Systems Manager price lists and print relevant meters
+        shell: bash
+        run: |
+          set -euo pipefail
+          for region in ap-northeast-1 us-east-1; do
+            url="https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSSystemsManager/current/${region}/index.json"
+            out="/tmp/ssm-${region}.json"
+            echo "=== FETCH ${region} ==="
+            curl --fail --location --silent --show-error "$url" -o "$out"
+            jq -c '{formatVersion,version,publicationDate,offerCode}' "$out"
+            echo "=== RELEVANT PRODUCTS ${region} ==="
+            jq -r '
+              .products | to_entries[]
+              | select(
+                  ((.value.attributes.usagetype // "") | test("JIT|Just|ResponsePlan|Incident"; "i"))
+                  or ((.value.productFamily // "") | test("JIT|Just|Incident"; "i"))
+                  or ((.value.attributes.group // "") | test("JIT|Just|Incident"; "i"))
+                  or ((.value.attributes.groupDescription // "") | test("JIT|Just|Incident"; "i"))
+                )
+              | [.key, (.value.productFamily // ""), (.value.attributes | tojson)]
+              | @tsv
+            ' "$out" | sort
+            echo "=== RELEVANT DIMENSIONS ${region} ==="
+            jq -r '
+              .products | to_entries[]
+              | select(
+                  ((.value.attributes.usagetype // "") | test("JIT|Just|ResponsePlan|Incident"; "i"))
+                  or ((.value.productFamily // "") | test("JIT|Just|Incident"; "i"))
+                  or ((.value.attributes.group // "") | test("JIT|Just|Incident"; "i"))
+                  or ((.value.attributes.groupDescription // "") | test("JIT|Just|Incident"; "i"))
+                )
+              | .key
+            ' "$out" | sort -u | while read -r sku; do
+              jq -c --arg sku "$sku" '
+                (.terms.OnDemand[$sku] // {})
+                | to_entries[]
+                | .value.priceDimensions
+                | to_entries[]
+                | {sku:$sku,rateCode:.key,unit:.value.unit,description:.value.description,beginRange:.value.beginRange,endRange:.value.endRange,pricePerUnit:.value.pricePerUnit}
+              ' "$out"
+            done
+          done
