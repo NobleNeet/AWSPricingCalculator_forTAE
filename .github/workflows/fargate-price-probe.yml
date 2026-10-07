@@ -1,0 +1,54 @@
+name: Fargate Price Probe
+on:
+  push:
+    branches: [onboard/fargate]
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch Tokyo AmazonECS Price List and print Fargate meters
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/current/ap-northeast-1/index.json'
+          curl --fail --location --silent --show-error "$url" -o /tmp/ecs.json
+          echo '=== METADATA ==='
+          jq -c '{formatVersion,version,publicationDate,offerCode}' /tmp/ecs.json
+          echo '=== FARGATE PRODUCTS ==='
+          jq -r '
+            .products
+            | to_entries[]
+            | select((.value.attributes.usagetype // "") | contains("Fargate"))
+            | select(((.value.attributes.usagetype // "") | contains("SpotUsage")) | not)
+            | [.key, (.value.productFamily // ""), (.value.attributes | tojson)]
+            | @tsv
+          ' /tmp/ecs.json | sort
+          echo '=== ONDEMAND DIMENSIONS ==='
+          jq -r '
+            .products
+            | to_entries[]
+            | select((.value.attributes.usagetype // "") | contains("Fargate"))
+            | select(((.value.attributes.usagetype // "") | contains("SpotUsage")) | not)
+            | .key
+          ' /tmp/ecs.json | sort -u | while read -r sku; do
+            jq -c --arg sku "$sku" '
+              (.terms.OnDemand[$sku] // {})
+              | to_entries[]
+              | .value.priceDimensions
+              | to_entries[]
+              | {
+                  sku: $sku,
+                  rateCode: .key,
+                  unit: .value.unit,
+                  description: .value.description,
+                  beginRange: .value.beginRange,
+                  endRange: .value.endRange,
+                  pricePerUnit: .value.pricePerUnit
+                }
+            ' /tmp/ecs.json
+          done
