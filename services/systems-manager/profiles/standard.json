@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "AWS Systems Manager",
+  "selectors": [
+    {
+      "id": "managedNodeHours",
+      "label": "System Manager マネージドノードの時間数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "Just-in-time node access の Systems Manager managed node hours。"
+      }
+    },
+    {
+      "id": "responsePlanCount",
+      "label": "対応プラン",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "1か月のうちアクティブな Incident Manager 対応プラン数。"
+      }
+    },
+    {
+      "id": "responsePlanHoursPerPlan",
+      "label": "対応プランあたりの時間数",
+      "type": "number",
+      "default": "730",
+      "minimum": "0",
+      "maximum": "730",
+      "ui": {
+        "help": "対応プラン1件あたりの月内アクティブ時間。AWS Pricing Calculator の既定値 730 時間/月を使用します。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "jit-node-hours",
+    "incident-response-plans"
+  ]
+}
