@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "build-minutes",
+  "label": "AWS CodeBuild",
+  "selectors": [
+    {
+      "id": "computeType",
+      "label": "Compute type",
+      "type": "select",
+      "default": "arm1.2xlarge",
+      "options": {
+        "attribute": "computeType",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Compute"
+          },
+          {
+            "field": "attributes.computeFamily",
+            "op": "eq",
+            "value": "OnDemand-EC2"
+          },
+          {
+            "field": "attributes.operatingSystem",
+            "op": "eq",
+            "valueFrom": "profile.operatingSystem"
+          }
+        ]
+      },
+      "ui": {
+        "help": "AWS Pricing Calculator の Search instance type に対応します。現在の Region / OS で実際に料金が存在する CodeBuild compute type だけを表示します。"
+      }
+    },
+    {
+      "id": "durationUnit",
+      "label": "Unit",
+      "type": "select",
+      "default": "minutes",
+      "options": {
+        "values": [
+          "minutes"
+        ]
+      },
+      "ui": {
+        "help": "提供された AWS Pricing Calculator 画面で確認できた平均ビルド時間の単位は分です。未確認の単位は推測で追加しません。"
+      }
+    }
+  ],
+  "usageInputs": [
+    {
+      "id": "buildsPerMonth",
+      "label": "Number of builds per month",
+      "type": "number",
+      "default": "1",
+      "minimum": "0"
+    },
+    {
+      "id": "averageBuildMinutes",
+      "label": "Average build time",
+      "type": "number",
+      "default": "10",
+      "minimum": "0",
+      "ui": {
+        "help": "1ビルドあたりの平均実行時間（分）。CodeBuild On-Demand EC2 のビルド時間は分単位で課金されるため、各ビルド時間を切り上げて月間ビルド数を掛けます。"
+      }
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute"
+    },
+    {
+      "field": "attributes.computeFamily",
+      "op": "eq",
+      "value": "OnDemand-EC2"
+    }
+  ],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "attributes.computeType",
+        "op": "eq",
+        "valueFrom": "component.computeType"
+      },
+      {
+        "field": "attributes.operatingSystem",
+        "op": "eq",
+        "valueFrom": "profile.operatingSystem"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "minutes"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.buildsPerMonth"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.averageBuildMinutes",
+            "transforms": [
+              {
+                "type": "rounding",
+                "mode": "ceil"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "minutes"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

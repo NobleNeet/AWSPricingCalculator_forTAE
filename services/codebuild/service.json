@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "codebuild",
+  "label": "AWS CodeBuild",
+  "priceSource": {
+    "serviceCode": "CodeBuild"
+  },
+  "profiles": [
+    "on-demand-ec2"
+  ],
+  "defaultProfile": "on-demand-ec2",
+  "pricingMappings": [
+    "build-minutes"
+  ]
+}
