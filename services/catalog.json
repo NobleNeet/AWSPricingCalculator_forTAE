@@ -61,6 +61,15 @@
     },
     {
       "available": true,
+      "id": "amplify",
+      "label": "AWS Amplify",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSAmplify"
+    },
+    {
+      "available": true,
       "id": "fargate",
       "label": "AWS Fargate",
       "profiles": [
@@ -85,15 +94,6 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
-    },
-    {
-      "available": true,
-      "id": "amplify",
-      "label": "AWS Amplify",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AWSAmplify"
     }
   ]
 }
