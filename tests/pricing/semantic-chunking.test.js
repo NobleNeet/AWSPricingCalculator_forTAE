@@ -7,6 +7,7 @@ import { loadProductsMatching } from '../../tools/pricing-cli/product-chunks.js'
 import { writeProductChunks } from '../../tools/pricing-cli/product-chunk-writer.js';
 import { sourceTasks } from '../../tools/pricing-cli/semantic-parallel.js';
 import { buildSemanticBatches } from '../../tools/pricing-cli/semantic-plan.js';
+import { mergeSemanticBatches } from '../../tools/merge-semantic-batches.js';
 
 function product(sku, family = 'Compute Instance') {
   return {
@@ -98,3 +99,25 @@ test('semantic workflow planner expands batch size before exceeding matrix limit
   assert.equal(planned.batchCases, 100000);
   assert.equal(planned.batches.length, 10);
 });
+
+test('semantic merge accepts an explicit zero-batch reuse plan', async () => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), 'semantic-reuse-'));
+  try {
+    const planFile = path.join(directory, 'plan.json');
+    await import('node:fs/promises').then(({ writeFile }) =>
+      writeFile(planFile, JSON.stringify({
+        matrix: { include: [] },
+        summary: { scope: 'reuse', totalCases: 0, batches: 0 }
+      }))
+    );
+    const merged = await mergeSemanticBatches(planFile, path.join(directory, 'missing-batches'));
+    assert.equal(merged.status, 'passed');
+    assert.equal(merged.branches, 0);
+    assert.equal(merged.batches, 0);
+    assert.equal(merged.reusedBaseline, true);
+    assert.deepEqual(merged.publishSkus, {});
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
