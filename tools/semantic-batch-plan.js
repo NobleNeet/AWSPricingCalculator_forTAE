@@ -5,7 +5,8 @@ import { loadCandidateMetadata, writeJson } from './pricing-cli/cli.js';
 import { planSemanticBatches } from './pricing-cli/semantic-plan.js';
 import {
   effectiveValidationSourceCodes,
-  filterPackagesBySourceCodes
+  filterPackagesBySourceCodes,
+  validationScopeMode
 } from './pricing-cli/update-scope.js';
 
 function manifestFromMetadata(metadata) {
@@ -33,7 +34,7 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
       console.log(`semantic-plan scoped: services=${scopedPackages.map(pkg => pkg.service.id).join(',')} price_sources=${[...sourceCodes].sort().join(',')}`);
     }
     const plan = await planSemanticBatches(scopedPackages, directory, manifestFromMetadata(metadata));
-    plan.summary.scope = sourceCodes === null ? 'all' : 'onboarding';
+    plan.summary.scope = validationScopeMode(state, sourceCodes);
     plan.summary.scopeServiceIds = scopedPackages.map(pkg => pkg.service.id).sort();
     plan.summary.scopeServiceCodes = sourceCodes === null ? [] : [...sourceCodes].sort();
     await writeJson(output, plan);
