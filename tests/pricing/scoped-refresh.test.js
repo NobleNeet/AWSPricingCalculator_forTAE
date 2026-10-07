@@ -4,7 +4,11 @@ import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { definitionRefreshServiceCodes } from '../../tools/price-update.js';
-import { changedPriceSourceCodes, PRICING_CONTRACT_FILES } from '../../tools/pricing-cli/fingerprint.js';
+import {
+  changedPriceSourceCodes,
+  PRICING_CONTRACT_FILES,
+  PUBLICATION_CONTRACT_FILES
+} from '../../tools/pricing-cli/fingerprint.js';
 import { readGoldenRawSource } from '../../tools/golden-evidence.js';
 
 const packages = [
@@ -44,7 +48,12 @@ test('shared fingerprint inputs and pricing contract changes safely fall back to
   assert.equal(definitionRefreshServiceCodes(packages, undefined), null);
 });
 
-test('publication chunk-selection logic participates in the persisted pricing contract fingerprint', () => {
+test('publication-only candidate assembly does not invalidate semantic validation globally', () => {
+  assert.ok(PUBLICATION_CONTRACT_FILES.includes('tools/pricing-cli/publication-candidate.js'));
+  assert.ok(PUBLICATION_CONTRACT_FILES.includes('tools/pricing-cli/build.js'));
+  assert.equal(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/publication-candidate.js'), false);
+  assert.equal(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/build.js'), false);
+  // Shared chunk readers still affect semantic input and remain semantic-contract inputs.
   assert.ok(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/product-chunks.js'));
 });
 
