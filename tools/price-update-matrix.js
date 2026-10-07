@@ -90,8 +90,9 @@ async function prepare(work) {
     contracts
   );
   const definitionsChanged = globalContractChanged || definitionRefreshCodes.size > 0;
-  const publicationChanged = activeBuild.publicationSha256 != null
-    && activeBuild.publicationSha256 !== publicationSha256;
+  const semanticContractMigration = activeBuild.contractFingerprints?.schemaVersion !== contracts.schemaVersion
+    && !globalContractChanged;
+  const publicationChanged = activeBuild.publicationSha256 !== publicationSha256;
 
   const previousFile = path.join(work, 'previous-sources.json');
   await writeJson(previousFile, previousMetadata);
@@ -102,7 +103,13 @@ async function prepare(work) {
   const metadataFile = path.join(work, 'source-metadata.json');
   const source = await record(work, 'check-source', { input: configFile, previous: previousFile, output: metadataFile });
 
-  if (source.sourceStatus === 'NO_CHANGE' && !definitionsChanged) {
+  if (
+    source.sourceStatus === 'NO_CHANGE'
+    && !definitionsChanged
+    && !publicationChanged
+    && !semanticContractMigration
+    && !requestedScope.serviceIds.length
+  ) {
     const summary = { schemaVersion: 1, status: 'NO_CHANGE', publishable: false, previousBuildId: active.activeBuildId };
     await writeJson(path.join(work, 'reports', 'summary.json'), summary);
     await writeOutput({ needs_update: 'false', publishable: 'false', build_id: '' });
@@ -118,9 +125,15 @@ async function prepare(work) {
     }
     await writeJson(metadataFile, metadata);
     const sourceReport = await readJson(path.join(work, 'reports', 'check-source.json'));
+    const reuseSemanticBaseline = source.sourceStatus === 'NO_CHANGE'
+      && !definitionsChanged
+      && !requestedScope.serviceIds.length
+      && (publicationChanged || semanticContractMigration);
     sourceReport.definitionsChanged = definitionsChanged;
     sourceReport.globalContractChanged = globalContractChanged;
+    sourceReport.semanticContractMigration = semanticContractMigration;
     sourceReport.publicationChanged = publicationChanged;
+    sourceReport.reuseSemanticBaseline = reuseSemanticBaseline;
     sourceReport.definitionRefreshServiceCodes = [...definitionRefreshCodes].sort();
     sourceReport.awsChangedSources = Object.entries(metadata.sources)
       .filter(([, item]) => item.awsChanged)
@@ -144,6 +157,11 @@ async function prepare(work) {
     contractFingerprints: contracts,
     publicationSha256,
     globalContractChanged,
+    semanticContractMigration,
+    reuseSemanticBaseline: source.sourceStatus === 'NO_CHANGE'
+      && !definitionsChanged
+      && !requestedScope.serviceIds.length
+      && (publicationChanged || semanticContractMigration),
     definitionRefreshServiceCodes: [...definitionRefreshCodes].sort(),
     requestedScopeServiceIds: requestedScope.serviceIds,
     requestedScopeServiceCodes: requestedScope.serviceCodes
