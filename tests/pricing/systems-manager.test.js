@@ -11,6 +11,7 @@ test('Systems Manager drawer follows the supplied Calculator contract', async ()
   assert.equal(profile.selectors.find(x => x.id === 'responsePlanCount').default, '0');
   assert.equal(profile.selectors.find(x => x.id === 'responsePlanHoursPerPlan').default, '730');
   assert.equal(profile.selectors.find(x => x.id === 'responsePlanHoursPerPlan').maximum, '730');
+  assert.equal(profile.selectors.some(x => x.enabledWhen), false);
 
   const jit = pkg.components['jit-node-hours'];
   assert.equal(jit.priceQuery.productFilters.find(x => x.field === 'operation').value, 'JustInTimeAccessHour');
