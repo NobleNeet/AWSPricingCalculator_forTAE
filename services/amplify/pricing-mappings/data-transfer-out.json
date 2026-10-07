@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "data-transfer-out",
+  "componentId": "data-transfer-out",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "attributes.dataTransferOut",
+      "op": "eq",
+      "value": "DataTransferOut"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GigaBytes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting data transfer out meter."
+}

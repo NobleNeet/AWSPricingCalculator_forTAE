@@ -85,6 +85,15 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
+    },
+    {
+      "available": true,
+      "id": "amplify",
+      "label": "AWS Amplify",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSAmplify"
     }
   ]
 }

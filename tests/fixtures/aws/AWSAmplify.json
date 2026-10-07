@@ -1,0 +1,302 @@
+{
+  "formatVersion": "v1.0",
+  "disclaimer": "Test fixture derived from AWS Amplify Public Price List observations published 2026-09-11; Tokyo SKU/rates cross-checked against current AWS pricing references.",
+  "offerCode": "AWSAmplify",
+  "version": "20260911124522",
+  "publicationDate": "2026-09-11T12:45:22Z",
+  "products": {
+    "QM3CHM37QSM2GNQS": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storage": "NoStorage",
+        "usagetype": "APN1-BuildDuration",
+        "operation": "",
+        "dataTransferOut": "NoDataTransferOut",
+        "instancetype": "Standard8GB",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "QM3CHM37QSM2GNQS"
+    },
+    "72KW6Q4G84NEHWKE": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storage": "NoStorage",
+        "usagetype": "APN1-BuildDuration-Large16GB",
+        "operation": "",
+        "dataTransferOut": "NoDataTransferOut",
+        "instancetype": "Large16GB",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "72KW6Q4G84NEHWKE"
+    },
+    "E4VMA2EU2B6BTABD": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storage": "NoStorage",
+        "usagetype": "APN1-BuildDuration-XLarge72GB",
+        "operation": "",
+        "dataTransferOut": "NoDataTransferOut",
+        "instancetype": "XLarge72GB",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "E4VMA2EU2B6BTABD"
+    },
+    "FCT6PGDGQS6MDECZ": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storage": "Storage",
+        "usagetype": "APN1-DataStorage",
+        "operation": "",
+        "dataTransferOut": "NoDataTransferOut",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "FCT6PGDGQS6MDECZ"
+    },
+    "YWGKVZ7GRB5GT325": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storage": "NoStorage",
+        "usagetype": "APN1-DataTransferOut",
+        "operation": "",
+        "dataTransferOut": "DataTransferOut",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "YWGKVZ7GRB5GT325"
+    },
+    "EES3GEZK6FZUQCZ5": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-HostingComputeRequestCount",
+        "operation": "HostingComputeRequestCount",
+        "regionCode": "ap-northeast-1",
+        "requestCount": "RequestCount",
+        "requestDuration": "NoRequestDuration",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "EES3GEZK6FZUQCZ5"
+    },
+    "XDM3AJ5B2MQ3YFY2": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-HostingComputeRequestDuration",
+        "operation": "HostingComputeRequestDuration",
+        "regionCode": "ap-northeast-1",
+        "requestCount": "NoRequestCount",
+        "requestDuration": "RequestDuration",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "XDM3AJ5B2MQ3YFY2"
+    },
+    "TKQR6HF4RC6FC2HD": {
+      "productFamily": "AWS Amplify",
+      "attributes": {
+        "servicecode": "AWSAmplify",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-AmplifyWAF",
+        "operation": "HOSTING_WAF",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Amplify"
+      },
+      "sku": "TKQR6HF4RC6FC2HD"
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "QM3CHM37QSM2GNQS": {
+        "QM3CHM37QSM2GNQS.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "QM3CHM37QSM2GNQS",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "QM3CHM37QSM2GNQS.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "QM3CHM37QSM2GNQS.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.01 per build minute (4 vCPU, 8 GB Memory)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "minutes",
+              "pricePerUnit": {
+                "USD": "0.0100000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "72KW6Q4G84NEHWKE": {
+        "72KW6Q4G84NEHWKE.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "72KW6Q4G84NEHWKE",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "72KW6Q4G84NEHWKE.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "72KW6Q4G84NEHWKE.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.025 per minute for BuildDuration-Large16GB in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "minutes",
+              "pricePerUnit": {
+                "USD": "0.0250000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "E4VMA2EU2B6BTABD": {
+        "E4VMA2EU2B6BTABD.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "E4VMA2EU2B6BTABD",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "E4VMA2EU2B6BTABD.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "E4VMA2EU2B6BTABD.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.10 per minute for BuildDuration-XLarge72GB in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "minutes",
+              "pricePerUnit": {
+                "USD": "0.1000000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "FCT6PGDGQS6MDECZ": {
+        "FCT6PGDGQS6MDECZ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "FCT6PGDGQS6MDECZ",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "FCT6PGDGQS6MDECZ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "FCT6PGDGQS6MDECZ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.023 per GB build artifacts stored",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GigaBytes",
+              "pricePerUnit": {
+                "USD": "0.0230000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "YWGKVZ7GRB5GT325": {
+        "YWGKVZ7GRB5GT325.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "YWGKVZ7GRB5GT325",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "YWGKVZ7GRB5GT325.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "YWGKVZ7GRB5GT325.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.15 per GB served (data transfer out)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GigaBytes",
+              "pricePerUnit": {
+                "USD": "0.1500000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "EES3GEZK6FZUQCZ5": {
+        "EES3GEZK6FZUQCZ5.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "EES3GEZK6FZUQCZ5",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "EES3GEZK6FZUQCZ5.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "EES3GEZK6FZUQCZ5.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.30 per 1 million requests for Amplify Hosting Compute",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Requests",
+              "pricePerUnit": {
+                "USD": "0.0000003000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "XDM3AJ5B2MQ3YFY2": {
+        "XDM3AJ5B2MQ3YFY2.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "XDM3AJ5B2MQ3YFY2",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "XDM3AJ5B2MQ3YFY2.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "XDM3AJ5B2MQ3YFY2.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.20 per GB-Hour for Amplify Hosting Compute",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB-Seconds",
+              "pricePerUnit": {
+                "USD": "0.0000555556"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "TKQR6HF4RC6FC2HD": {
+        "TKQR6HF4RC6FC2HD.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "TKQR6HF4RC6FC2HD",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "TKQR6HF4RC6FC2HD.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "TKQR6HF4RC6FC2HD.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$15.00 per Months for APN1-AmplifyWAF in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Months",
+              "pricePerUnit": {
+                "USD": "15.0000000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}
