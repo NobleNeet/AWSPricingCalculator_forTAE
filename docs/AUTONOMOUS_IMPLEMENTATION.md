@@ -1,6 +1,6 @@
 # Codex 自律実装運用仕様
 
-最終更新: 2026-10-04
+最終更新: 2026-10-07
 
 本書は `docs/IMPLEMENTATION_PLAN.md` に定義されたPhase実装、および新サービス追加・既存サービス拡充を、人間の追加指示なしで完了させるための運用仕様である。
 
@@ -80,6 +80,33 @@ build/test/validation/Actions/deployが失敗した場合、原則として以�
 ```
 
 1回の失敗を理由に作業を中断しない。
+
+### 2.2.1 修復時も既存のscope最適化を保全する
+
+失敗修正のためにworkflow、fingerprint、Price DB builder、publication処理、validation orchestrationを変更する場合、**「直すこと」を優先して既存のscope制御を見落としてはならない**。
+
+修正前に最低限次を確認する。
+
+- 現在どの条件でfull validation / scoped validationが選ばれるか
+- onboarding/re-onboarding時に対象Serviceを限定する入力がどこから渡るか
+- 変更するfingerprintがsemantic validation範囲、AWS source refresh範囲、build再生成範囲のどれに影響するか
+- 修正により`scope = all`へ退化しないか
+- EC2等のcase数が大きいServiceが新たに対象へ入らないか
+
+修復の目的がPrice DBの再生成、chunk/materialization、publish/retentionの訂正である場合、semantic意味論まで変わらない限り、全Service semantic validationを副作用として発生させない。
+
+実装担当は、修正後のActionsを起動する前または遅くとも重いmatrix job生成前に、plan summaryの対象Service、source数、case数、batch数を確認する。想定より大幅に広い場合は、そのまま処理を継続する前にscope判定の実装を再検討する。
+
+修復で一時的なfull rebuildが必要な場合も、次を別々に判断する。
+
+```text
+raw sourceを再取得する範囲
+Price DBを再materializeする範囲
+semantic validationを再実行する範囲
+drift validationを再実行する範囲
+```
+
+これらを単一のglobal fingerprint変更でまとめて全件化してはならない。既存のscope最適化を意図的に外す必要がある場合は、その必要性を仕様・PR・実行ログのいずれかへ明示する。
 
 ### 2.3 実装上の裁量
 
