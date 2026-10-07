@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "build-xlarge",
+  "componentId": "build-xlarge",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "attributes.instancetype",
+      "op": "eq",
+      "value": "XLarge72GB"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "minutes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting XLarge (72 GB / 36 vCPU) build minute meter."
+}
