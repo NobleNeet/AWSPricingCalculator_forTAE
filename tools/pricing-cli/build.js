@@ -1,11 +1,11 @@
 import { mkdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
 import { encode } from './encoding.js';
 import { buildIndex } from './price-index.js';
 import { writeProductChunks } from './product-chunk-writer.js';
+import { checksum } from './hash.js';
 
-export const checksum = text => createHash('sha256').update(text).digest('hex');
+export { checksum } from './hash.js';
 export async function buildPriceDb(candidate, directory, buildId, validation) {
   if (!/^[a-zA-Z0-9-]+$/.test(buildId)) throw Error('Invalid build ID');
   if (!validation || validation.issues.some(issue => issue.severity === 'error')) throw Error('Validated candidate required');
