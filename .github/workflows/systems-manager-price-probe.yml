@@ -2,6 +2,7 @@ name: Systems Manager Price Probe
 on:
   push:
     branches: [onboard/systems-manager]
+  pull_request:
 
 permissions:
   contents: read
