@@ -164,18 +164,3 @@ export async function loadProductsForSkus(directory, source, skus) {
   };
 }
 
-export async function loadCandidateForPublish(directory, metadata, publishSkus = {}) {
-  const data = {};
-  for (const [key, source] of Object.entries(metadata.sources ?? {})) {
-    if (Object.hasOwn(publishSkus, key)) {
-      data[key] = await loadProductsForSkus(directory, source, publishSkus[key]);
-      continue;
-    }
-    // A scoped onboarding run validates only the requested/changed price sources.
-    // Sources outside that scope were copied into the candidate from the active
-    // build and must be preserved verbatim rather than interpreted as an empty
-    // validated SKU set.
-    data[key] = (await loadProductsMatching(directory, source)).data;
-  }
-  return { metadata, data };
-}
