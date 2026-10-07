@@ -9,31 +9,36 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect current AWS Certificate Manager price list
+      - name: Inspect current AWS pricing offers for certificate products
         shell: bash
         run: |
           set -euo pipefail
+          curl -fsSL --retry 5 --retry-delay 2 \
+            https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json \
+            -o /tmp/offers.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('/tmp/offers.json').read_text())
+          for code, meta in sorted(data.get('offers',{}).items()):
+              hay=(code+' '+str(meta)).lower()
+              if 'cert' in hay or 'acm' in hay:
+                  print(code, json.dumps(meta, sort_keys=True))
+          PY
+
           curl -fsSL --retry 5 --retry-delay 2 \
             https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSCertificateManager/current/index.json \
             -o /tmp/acm.json
           python3 - <<'PY'
           import json
           from pathlib import Path
-
-          data = json.loads(Path('/tmp/acm.json').read_text())
-          print('offerCode=', data.get('offerCode'))
-          print('version=', data.get('version'))
-          print('publicationDate=', data.get('publicationDate'))
-
-          products = data.get('products', {})
-          terms = data.get('terms', {}).get('OnDemand', {})
-          print('totalProducts=', len(products))
-          for sku, product in products.items():
-              attrs = product.get('attributes', {})
-              print('\nPRODUCT', sku)
-              print(json.dumps(product, ensure_ascii=False, sort_keys=True))
-              for term_code, term in terms.get(sku, {}).items():
-                  print('TERM', term_code)
-                  for rate, dim in term.get('priceDimensions', {}).items():
-                      print(json.dumps(dim, ensure_ascii=False, sort_keys=True))
+          data=json.loads(Path('/tmp/acm.json').read_text())
+          print('offerCode=',data.get('offerCode'),'version=',data.get('version'),'publicationDate=',data.get('publicationDate'))
+          for sku,p in data.get('products',{}).items():
+              a=p.get('attributes',{})
+              if a.get('regionCode')=='ap-northeast-1':
+                  print('TOKYO',sku,json.dumps(p,sort_keys=True))
+                  for term in data.get('terms',{}).get('OnDemand',{}).get(sku,{}).values():
+                      for dim in term.get('priceDimensions',{}).values():
+                          print('DIM',json.dumps(dim,sort_keys=True))
           PY
