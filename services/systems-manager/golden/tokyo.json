@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "managedNodeHours": "1000",
+    "responsePlanCount": "2",
+    "responsePlanHoursPerPlan": "365"
+  },
+  "components": {},
+  "expected": {
+    "jit-node-hours": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-JustInTimeAccessHour",
+        "operation": "JustInTimeAccessHour",
+        "trial": "FALSE"
+      },
+      "unit": "hours",
+      "quantity": "1000",
+      "limitations": [
+        "tier-pricing",
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "incident-response-plans": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-IM-ResponsePlan-Months-Tier1",
+        "response": "response-plan-months"
+      },
+      "unit": "Months",
+      "quantity": "1",
+      "limitations": [
+        "unsupported-pricing-category",
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "jit-node-hours": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-JustInTimeAccessHour",
+        "operation": "JustInTimeAccessHour",
+        "trial": "FALSE"
+      },
+      "productFamily": "AWS Systems Manager",
+      "unit": "hours",
+      "quantity": "1000"
+    },
+    "incident-response-plans": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-IM-ResponsePlan-Months-Tier1",
+        "response": "response-plan-months"
+      },
+      "productFamily": "AWS Systems Manager",
+      "unit": "Months",
+      "quantity": "1"
+    }
+  }
+}
