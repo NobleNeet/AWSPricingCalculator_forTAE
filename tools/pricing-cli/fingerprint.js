@@ -1,9 +1,22 @@
 import { readFile } from 'node:fs/promises';
 import { readJson } from './package-loader.js';
-import { checksum } from './build.js';
-import { encode } from './normalize.js';
+import { checksum } from './hash.js';
 
 export const SEMANTIC_CONTRACT_VERSION = 2;
+
+function stableFingerprint(value) {
+  if (Array.isArray(value)) return value.map(stableFingerprint);
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.keys(value).sort().map(key => [key, stableFingerprint(value[key])])
+    );
+  }
+  return value;
+}
+
+function fingerprintEncode(value) {
+  return `${JSON.stringify(stableFingerprint(value), null, 2)}\n`;
+}
 
 // These files can change how a normalized AWS product is interpreted, matched,
 // validated, or evaluated. Build/publish/orchestration files intentionally do
@@ -74,7 +87,7 @@ export async function pricingContractFingerprint() {
   const pricingContract = Object.fromEntries(await Promise.all(
     PRICING_CONTRACT_FILES.map(async file => [file, await readFile(file, 'utf8')])
   ));
-  return checksum(encode({
+  return checksum(fingerprintEncode({
     common: await readJson('pricing/normalization/common.json'),
     limitations: await readJson('pricing/limitations.json'),
     pricingContract
@@ -85,7 +98,7 @@ export async function publicationContractFingerprint() {
   const publicationContract = Object.fromEntries(await Promise.all(
     PUBLICATION_CONTRACT_FILES.map(async file => [file, await readFile(file, 'utf8')])
   ));
-  return checksum(encode({ publicationContract }));
+  return checksum(fingerprintEncode({ publicationContract }));
 }
 
 export async function serviceDefinitionFingerprints(packages) {
@@ -103,7 +116,7 @@ export async function serviceDefinitionFingerprints(packages) {
       golden: pkg.golden,
       normalizers
     };
-    return [pkg.service.id, checksum(encode(value))];
+    return [pkg.service.id, checksum(fingerprintEncode(value))];
   }));
   return Object.fromEntries(entries.sort(([a], [b]) => a.localeCompare(b)));
 }
@@ -148,5 +161,5 @@ export function changedPriceSourceCodes(packages, previous, current) {
 
 export async function definitionFingerprint(packages) {
   const contracts = await contractFingerprints(packages);
-  return checksum(encode(contracts));
+  return checksum(fingerprintEncode(contracts));
 }
