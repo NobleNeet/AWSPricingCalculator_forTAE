@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "incident-response-plans",
+  "componentId": "incident-response-plans",
+  "priceSource": {
+    "serviceCode": "AWSSystemsManager"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Systems Manager"
+    },
+    {
+      "field": "attributes.response",
+      "op": "eq",
+      "value": "response-plan-months"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Months"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Incident Manager response-plan month meter. Additional SMS/voice message charges are outside the supplied Calculator controls."
+}
