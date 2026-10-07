@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "jit-node-hours",
+  "label": "Just-in-time node access",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "AWS Systems Manager"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "JustInTimeAccessHour"
+      },
+      {
+        "field": "attributes.trial",
+        "op": "eq",
+        "value": "FALSE"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "hours"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.managedNodeHours"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "hours"
+  },
+  "limitations": [
+    "tier-pricing",
+    "free-tier",
+    "account-specific-discount"
+  ]
+}
