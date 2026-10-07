@@ -3,26 +3,58 @@ import { readJson } from './package-loader.js';
 import { checksum } from './build.js';
 import { encode } from './normalize.js';
 
+export const SEMANTIC_CONTRACT_VERSION = 2;
+
+// These files can change how a normalized AWS product is interpreted, matched,
+// validated, or evaluated. Build/publish/orchestration files intentionally do
+// not belong here.
 export const PRICING_CONTRACT_FILES = [
   'src/pricing/calculation.js',
   'src/pricing/conditions.js',
   'src/pricing/core.js',
+  'src/pricing/decimal.js',
   'src/pricing/dimensions.js',
   'src/pricing/filter.js',
+  'src/pricing/issues.js',
+  'src/pricing/mapping.js',
   'src/pricing/price-query.js',
-  'tools/pricing-cli/build.js',
-  'tools/pricing-cli/cli.js',
+  'tools/pricing-cli/inventory.js',
   'tools/pricing-cli/normalize.js',
+  'tools/pricing-cli/package-loader.js',
   'tools/pricing-cli/product-chunks.js',
-  'tools/pricing-cli/semantics.js'
+  'tools/pricing-cli/semantic-validation-worker.js',
+  'tools/pricing-cli/semantics.js',
+  'schemas/pricing/products.schema.json'
 ];
 
 export const PUBLICATION_CONTRACT_FILES = [
   'tools/pricing-cli/build.js',
-  'tools/pricing-cli/product-chunks.js',
+  'tools/pricing-cli/encoding.js',
+  'tools/pricing-cli/price-index.js',
+  'tools/pricing-cli/product-chunk-writer.js',
   'tools/pricing-cli/publication-candidate.js',
-  'tools/publish-price-build.js'
+  'tools/publish-price-build.js',
+  'schemas/pricing/build-manifest.schema.json'
 ];
+
+// PR #43's final full validation published this exact v1 semantic baseline.
+// v2 narrows the fingerprint to semantic inputs only. Treating this known
+// baseline as compatible avoids one more EC2-scale full validation solely for
+// the fingerprint-boundary migration. Any other unknown v1 baseline fails safe.
+export const COMPATIBLE_V1_GLOBAL_FINGERPRINTS = new Set([
+  'b253ce3d9e872d068ac10c7aa44a45d34ebe5dfed4ffef42cba100fc42ba3385'
+]);
+
+export function semanticGlobalChanged(previous, current) {
+  if (!previous || typeof previous.global !== 'string') return true;
+  if (previous.schemaVersion === current.schemaVersion) return previous.global !== current.global;
+  if (
+    previous.schemaVersion === 1
+    && current.schemaVersion === SEMANTIC_CONTRACT_VERSION
+    && COMPATIBLE_V1_GLOBAL_FINGERPRINTS.has(previous.global)
+  ) return false;
+  return true;
+}
 
 async function serviceNormalizer(serviceCode) {
   return readJson(`pricing/normalization/services/${serviceCode}.json`).catch(error =>
@@ -78,17 +110,17 @@ export async function serviceDefinitionFingerprints(packages) {
 
 export async function contractFingerprints(packages) {
   return {
-    schemaVersion: 1,
+    schemaVersion: SEMANTIC_CONTRACT_VERSION,
     global: await pricingContractFingerprint(),
     services: await serviceDefinitionFingerprints(packages)
   };
 }
 
 export function changedPriceSourceCodes(packages, previous, current) {
-  if (!previous || previous.schemaVersion !== 1 || typeof previous.global !== 'string' || !previous.services) {
+  if (!previous || typeof previous.global !== 'string' || !previous.services) {
     return new Set(packages.flatMap(packagePriceSourceCodes));
   }
-  if (previous.global !== current.global) {
+  if (semanticGlobalChanged(previous, current)) {
     return new Set(packages.flatMap(packagePriceSourceCodes));
   }
 
