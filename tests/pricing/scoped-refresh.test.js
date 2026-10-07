@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { definitionRefreshServiceCodes } from '../../tools/price-update.js';
-import { changedPriceSourceCodes } from '../../tools/pricing-cli/fingerprint.js';
+import { changedPriceSourceCodes, PRICING_CONTRACT_FILES } from '../../tools/pricing-cli/fingerprint.js';
 import { readGoldenRawSource } from '../../tools/golden-evidence.js';
 
 const packages = [
@@ -44,6 +44,9 @@ test('shared fingerprint inputs and pricing contract changes safely fall back to
   assert.equal(definitionRefreshServiceCodes(packages, undefined), null);
 });
 
+test('publication chunk-selection logic participates in the persisted pricing contract fingerprint', () => {
+  assert.ok(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/product-chunks.js'));
+});
 
 test('persisted per-service fingerprints refresh only changed price sources', () => {
   const fingerprintPackages = [
@@ -107,7 +110,6 @@ test('missing or changed global fingerprint safely refreshes every price source'
     ['AmazonCloudWatch', 'AmazonRDS'].sort()
   );
 });
-
 
 test('Golden evidence fallback prefers the published region fixture over the legacy service fixture', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'tae-golden-fallback-'));
