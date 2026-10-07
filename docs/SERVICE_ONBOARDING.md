@@ -1,6 +1,6 @@
 # AWS Service Onboarding Specification
 
-最終更新: 2026-10-06
+最終更新: 2026-10-07
 
 本書は、新しいAWSサービスをAWSPricingCalculator_forTAEへ追加する場合、および既存サービスの見積入力項目や料金対応を拡充する場合の標準作業フローを定義する。
 
@@ -528,6 +528,22 @@ AWS Price List取得
 ```
 
 Mappingが成立しない場合はpublishを停止して現在のactive buildを維持する。
+
+### 12.1 Onboarding中の修復とscope保全
+
+onboarding / re-onboardingの途中でPrice DB、validation、workflow、publicationの不具合が見つかり修復する場合、対象Serviceだけに限定する既存のscope制御を維持する。
+
+原則:
+
+- 対象ServiceのDefinition変更で必要になったprice sourceと、同時にAWS側変更が確認されたsourceだけを重いsemantic validation対象とする。
+- 修復対象がbuilder / chunk / publish処理であるだけなら、それを理由に全Serviceのsemantic validationを再実行しない。
+- 対象外Serviceの検証済みPrice DBデータは保持する。scoped validationで`publishSkus`等が生成されなかったことを「SKU 0件」と解釈してはならない。
+- buildを再生成する必要性とsemantic validationを再実行する必要性を分離して判断する。
+- workflowまたはfingerprintを変更した場合は、実行前にsemantic planのscope、対象Service、case数、batch数を確認する。
+- 予定していないEC2等の大規模Serviceが入った場合は、対象拡大の理由を確認し、意味論上不要ならscope判定を修正してから継続する。
+- 修復PRには、scopeが維持されることと対象外sourceが保持されることを検証する回帰testを含める。
+
+「修復を確実に反映するため全件validationを走らせる」は標準手段としない。全件semantic validationが必要なのは、共通Pricing Core / Mapping semantics等のglobal semantic contractが実際に変わり、既存の検証結果を安全に再利用できない場合に限定する。
 
 代表例:
 
