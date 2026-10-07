@@ -108,10 +108,14 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
     activeBuild.contractFingerprints,
     contracts
   );
-  const definitionsChanged = globalContractChanged || persistedRefreshCodes.size > 0;
-  // Explicit changed-file scoping remains available for tests/debugging, but production
-  // uses persisted per-service fingerprints so unpublished changes cannot be stranded.
-  const changedFileRefreshCodes = definitionsChanged && previousDefinitionSha256 !== undefined
+  const explicitDefinitionChanged = previousDefinitionSha256 !== undefined
+    && fingerprint !== previousDefinitionSha256;
+  const definitionsChanged = explicitDefinitionChanged
+    || globalContractChanged
+    || persistedRefreshCodes.size > 0;
+  // Explicit changed-file scoping remains available for tests/debugging. Production
+  // relies on persisted per-service fingerprints so unpublished changes cannot be stranded.
+  const changedFileRefreshCodes = explicitDefinitionChanged
     ? definitionRefreshServiceCodes(packages, changedFiles)
     : undefined;
   const definitionRefreshCodes = changedFileRefreshCodes === undefined
