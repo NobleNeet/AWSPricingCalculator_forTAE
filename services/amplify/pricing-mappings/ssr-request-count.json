@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "ssr-request-count",
+  "componentId": "ssr-request-count",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "HostingComputeRequestCount"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Requests"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting SSR compute request-count meter."
+}
