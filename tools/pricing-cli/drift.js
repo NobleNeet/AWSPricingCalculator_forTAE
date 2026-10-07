@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { evaluateService } from '../../src/pricing/core.js';
 import { reachableCaseIterator } from './semantics.js';
-import { encode } from './normalize.js';
+import { semanticEncode } from './semantic-json.js';
 
 export function semanticProduct(product) {
   return {
@@ -23,7 +23,7 @@ function semanticDigest(data) {
   const hash = createHash('sha256');
   hash.update(`${data.products.length}\n`);
   for (const product of data.products) {
-    hash.update(encode(semanticProduct(product)));
+    hash.update(semanticEncode(semanticProduct(product)));
     hash.update('\n');
   }
   return hash.digest('hex');
