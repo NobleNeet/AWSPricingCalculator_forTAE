@@ -6,7 +6,8 @@ import { driftTasks } from './pricing-cli/drift-parallel.js';
 import { planSemanticBatches } from './pricing-cli/semantic-plan.js';
 import {
   effectiveValidationSourceCodes,
-  filterPackagesBySourceCodes
+  filterPackagesBySourceCodes,
+  validationScopeMode
 } from './pricing-cli/update-scope.js';
 
 function positiveInt(value, fallback) {
@@ -168,7 +169,7 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
       casesPerBatch: grouped.batchCases,
       maxBatches,
       plannerConcurrency,
-      scope: sourceCodes === null ? 'all' : 'onboarding',
+      scope: validationScopeMode(state, sourceCodes),
       scopeServiceIds: scopedPackages.map(pkg => pkg.service.id).sort(),
       scopeServiceCodes: sourceCodes === null ? [] : [...sourceCodes].sort()
     }

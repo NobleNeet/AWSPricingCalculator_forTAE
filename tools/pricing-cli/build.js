@@ -15,6 +15,7 @@ export async function buildPriceDb(candidate, directory, buildId, validation) {
   const manifest = { schemaVersion: 1, buildId, generatedAt, publicationDate, currency: 'USD', sources: {} };
   if (validation.definitionSha256) manifest.definitionSha256 = validation.definitionSha256;
   if (validation.contractFingerprints) manifest.contractFingerprints = validation.contractFingerprints;
+  if (validation.publicationSha256) manifest.publicationSha256 = validation.publicationSha256;
   const resources = [];
   const chunkData = [];
   for (const [key, original] of Object.entries(candidate.data).sort(([a], [b]) => a.localeCompare(b))) {

@@ -17,6 +17,13 @@ export const PRICING_CONTRACT_FILES = [
   'tools/pricing-cli/semantics.js'
 ];
 
+export const PUBLICATION_CONTRACT_FILES = [
+  'tools/pricing-cli/build.js',
+  'tools/pricing-cli/product-chunks.js',
+  'tools/pricing-cli/publication-candidate.js',
+  'tools/publish-price-build.js'
+];
+
 async function serviceNormalizer(serviceCode) {
   return readJson(`pricing/normalization/services/${serviceCode}.json`).catch(error =>
     error.code === 'ENOENT' ? { rules: [], discriminators: [] } : Promise.reject(error)
@@ -40,6 +47,13 @@ export async function pricingContractFingerprint() {
     limitations: await readJson('pricing/limitations.json'),
     pricingContract
   }));
+}
+
+export async function publicationContractFingerprint() {
+  const publicationContract = Object.fromEntries(await Promise.all(
+    PUBLICATION_CONTRACT_FILES.map(async file => [file, await readFile(file, 'utf8')])
+  ));
+  return checksum(encode({ publicationContract }));
 }
 
 export async function serviceDefinitionFingerprints(packages) {

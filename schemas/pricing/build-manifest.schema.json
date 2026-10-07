@@ -104,6 +104,10 @@
       "type": "string",
       "pattern": "^[0-9a-f]{64}$"
     },
+    "publicationSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
     "contractFingerprints": {
       "type": "object",
       "properties": {

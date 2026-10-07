@@ -6,10 +6,10 @@ import path from 'node:path';
 import { encode } from '../../tools/pricing-cli/normalize.js';
 import {
   chunkManifestRelativePath,
-  loadCandidateForPublish,
   loadProductsForSkus,
   writeProductChunks
 } from '../../tools/pricing-cli/product-chunks.js';
+import { loadCandidateForPublish } from '../../tools/pricing-cli/publication-candidate.js';
 
 function source(productCount = 12, serviceCode = 'Example', region = 'ap-northeast-1') {
   return {

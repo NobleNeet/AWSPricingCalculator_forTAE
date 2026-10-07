@@ -25,8 +25,9 @@ export function resolveRequestedValidationScope(packages, rawServiceIds = '') {
 }
 
 export function effectiveValidationSourceCodes(state, metadata) {
-  const requestedIds = state.requestedScopeServiceIds ?? [];
-  if (!requestedIds.length) return null;
+  // A real global semantic-contract change invalidates reuse for every service.
+  // Build/publication-only changes are deliberately excluded from this flag.
+  if (state.globalContractChanged === true) return null;
 
   const codes = new Set([
     ...(state.requestedScopeServiceCodes ?? []),
@@ -37,7 +38,19 @@ export function effectiveValidationSourceCodes(state, metadata) {
       || (source.awsChanged == null && source.changed === true);
     if (awsChanged && source.serviceCode) codes.add(source.serviceCode);
   }
-  return codes;
+
+  // Normal scheduled/push runs are incremental too: only sources whose AWS data
+  // or service Definition changed need expensive semantic revalidation.
+  if (codes.size) return codes;
+
+  // Compatibility/fail-safe for callers without prepared change metadata.
+  return null;
+}
+
+export function validationScopeMode(state, sourceCodes) {
+  if (sourceCodes === null) return 'all';
+  if ((state.requestedScopeServiceIds ?? []).length) return 'onboarding';
+  return 'incremental';
 }
 
 export function filterPackagesBySourceCodes(packages, sourceCodes) {
