@@ -1,8 +1,9 @@
 import { mkdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { encode, buildIndex } from './normalize.js';
-import { writeProductChunks } from './product-chunks.js';
+import { encode } from './encoding.js';
+import { buildIndex } from './price-index.js';
+import { writeProductChunks } from './product-chunk-writer.js';
 
 export const checksum = text => createHash('sha256').update(text).digest('hex');
 export async function buildPriceDb(candidate, directory, buildId, validation) {
