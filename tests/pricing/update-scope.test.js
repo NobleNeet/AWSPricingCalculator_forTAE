@@ -4,7 +4,8 @@ import {
   effectiveValidationSourceCodes,
   filterPackagesBySourceCodes,
   parseRequestedServiceIds,
-  resolveRequestedValidationScope
+  resolveRequestedValidationScope,
+  validationScopeMode
 } from '../../tools/pricing-cli/update-scope.js';
 
 const packages = [
@@ -44,14 +45,42 @@ test('unknown requested service ids fail closed', () => {
   );
 });
 
-test('unscoped runs keep full validation behavior', () => {
-  assert.equal(
-    effectiveValidationSourceCodes(
-      { requestedScopeServiceIds: [] },
-      { sources: { 'AWSLambda/ap-northeast-1': { serviceCode: 'AWSLambda', awsChanged: false } } }
-    ),
-    null
+test('unrequested runs validate only AWS/Definition-changed sources', () => {
+  const codes = effectiveValidationSourceCodes(
+    {
+      requestedScopeServiceIds: [],
+      definitionRefreshServiceCodes: []
+    },
+    {
+      sources: {
+        'AWSLambda/ap-northeast-1': { serviceCode: 'AWSLambda', awsChanged: true },
+        'AmazonRDS/ap-northeast-1': { serviceCode: 'AmazonRDS', awsChanged: false }
+      }
+    }
   );
+  assert.deepEqual([...codes], ['AWSLambda']);
+  assert.equal(validationScopeMode({ requestedScopeServiceIds: [] }, codes), 'incremental');
+  assert.deepEqual(
+    filterPackagesBySourceCodes(packages, codes).map(pkg => pkg.service.id),
+    ['lambda']
+  );
+});
+
+test('global semantic contract changes still fail safe to full validation', () => {
+  const codes = effectiveValidationSourceCodes(
+    {
+      requestedScopeServiceIds: [],
+      definitionRefreshServiceCodes: ['AWSLambda'],
+      globalContractChanged: true
+    },
+    {
+      sources: {
+        'AWSLambda/ap-northeast-1': { serviceCode: 'AWSLambda', awsChanged: true }
+      }
+    }
+  );
+  assert.equal(codes, null);
+  assert.equal(validationScopeMode({}, codes), 'all');
   assert.equal(filterPackagesBySourceCodes(packages, null), packages);
 });
 
@@ -71,6 +100,7 @@ test('scoped runs include requested, definition-refreshed, and concurrently AWS-
     }
   );
   assert.deepEqual([...codes].sort(), ['AWSLambda', 'awskms'].sort());
+  assert.equal(validationScopeMode({ requestedScopeServiceIds: ['kms'] }, codes), 'onboarding');
   assert.deepEqual(
     filterPackagesBySourceCodes(packages, codes).map(pkg => pkg.service.id).sort(),
     ['kms', 'lambda']
