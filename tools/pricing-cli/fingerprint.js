@@ -10,6 +10,7 @@ export const PRICING_CONTRACT_FILES = [
   'src/pricing/dimensions.js',
   'src/pricing/filter.js',
   'src/pricing/price-query.js',
+  'tools/pricing-cli/build.js',
   'tools/pricing-cli/cli.js',
   'tools/pricing-cli/normalize.js',
   'tools/pricing-cli/product-chunks.js',
