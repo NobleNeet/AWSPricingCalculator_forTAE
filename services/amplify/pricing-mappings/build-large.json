@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "build-large",
+  "componentId": "build-large",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "attributes.instancetype",
+      "op": "eq",
+      "value": "Large16GB"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "minutes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting Large (16 GB / 8 vCPU) build minute meter."
+}

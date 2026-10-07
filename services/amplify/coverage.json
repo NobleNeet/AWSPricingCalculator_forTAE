@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "BuildDuration"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "minutes"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "build-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "BuildDuration-Large16GB"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "minutes"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "build-large"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "BuildDuration-XLarge72GB"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "minutes"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "build-xlarge"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DataStorage"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GigaBytes"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "data-storage"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DataTransferOut"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GigaBytes"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "data-transfer-out"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "HostingComputeRequestCount"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "HostingComputeRequestCount"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "ssr-request-count"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "HostingComputeRequestDuration"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "HostingComputeRequestDuration"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Seconds"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "ssr-request-duration"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "AmplifyWAF"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "HOSTING_WAF"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Months"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Amplify WAF integration is a current Amplify price-list category, but the supplied authoritative Calculator screenshot does not expose a WAF input. It is kept outside this drawer until rendered Calculator evidence establishes the corresponding control.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}

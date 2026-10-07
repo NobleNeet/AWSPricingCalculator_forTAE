@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "ssr-request-count",
+  "label": "SSR request count",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "AWS Amplify"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "HostingComputeRequestCount"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Requests"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.ssrRequestsPerHour"
+        },
+        {
+          "valueFrom": "project.hoursPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Requests"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}
