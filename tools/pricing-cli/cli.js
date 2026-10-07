@@ -17,7 +17,11 @@ import { classifyChange } from './drift.js';
 import { classifyChangeParallel } from './drift-parallel.js';
 import { buildPriceDb } from './build.js';
 import { schemaValidator } from '../schema.js';
-import { definitionFingerprint } from './fingerprint.js';
+import {
+  contractFingerprints,
+  definitionFingerprint,
+  publicationContractFingerprint
+} from './fingerprint.js';
 
 const semanticCache = new Map();
 
@@ -230,7 +234,13 @@ export async function run(command, options = {}) {
           if (sku) (publishSkus[resolution.sourceKey] ??= new Set()).add(sku);
         }
       }
-      const manifest = await buildPriceDb(candidate, options.output ?? 'pricing/generated', options['build-id'], { issues, publishSkus, definitionSha256: await definitionFingerprint(packages) });
+      const manifest = await buildPriceDb(candidate, options.output ?? 'pricing/generated', options['build-id'], {
+        issues,
+        publishSkus,
+        definitionSha256: await definitionFingerprint(packages),
+        contractFingerprints: await contractFingerprints(packages),
+        publicationSha256: await publicationContractFingerprint()
+      });
       return report(command, [], { build: manifest });
     }
     if (options.output) await writeJson(options.output, result);
