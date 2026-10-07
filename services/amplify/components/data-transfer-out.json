@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "data-transfer-out",
+  "label": "Data transfer out",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "AWS Amplify"
+      },
+      {
+        "field": "attributes.dataTransferOut",
+        "op": "eq",
+        "value": "DataTransferOut"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GigaBytes"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.servedDataGbPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GigaBytes"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}
