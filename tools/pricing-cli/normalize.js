@@ -1,17 +1,10 @@
 import { decimal } from '../../src/pricing/decimal.js';
 import { fail } from '../../src/pricing/issues.js';
+import { stable, encode } from './encoding.js';
+import { buildIndex } from './price-index.js';
 
-export function stable(value) {
-  if (Array.isArray(value)) return value.map(stable);
-  if (value && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map(key => [key, stable(value[key])]));
-  return value;
-}
-export const encode = value => `${JSON.stringify(stable(value), null, 2)}\n`;
-export function buildIndex(products, buildId, serviceCode, region) {
-  const values = {};
-  for (const product of products) for (const [key, value] of Object.entries(product.attributes)) (values[key] ??= new Set()).add(value);
-  return { schemaVersion: 1, buildId, serviceCode, region, attributes: Object.fromEntries(Object.entries(values).sort().map(([key, values]) => [key, [...values].sort((a, b) => a.localeCompare(b, 'en', { numeric: true }))])) };
-}
+export { stable, encode } from './encoding.js';
+export { buildIndex } from './price-index.js';
 export function normalize(raw, region, buildId = 'candidate') {
   if (!raw.offerCode || !raw.publicationDate) fail('INVALID_SOURCE', 'AWS source metadata missing.');
   const products = [];
