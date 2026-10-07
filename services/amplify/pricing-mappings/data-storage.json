@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "data-storage",
+  "componentId": "data-storage",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "attributes.storage",
+      "op": "eq",
+      "value": "Storage"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GigaBytes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting build artifact/CDN storage meter."
+}

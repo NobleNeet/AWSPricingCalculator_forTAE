@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "build-standard",
+  "componentId": "build-standard",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "attributes.instancetype",
+      "op": "eq",
+      "value": "Standard8GB"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "minutes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting Standard (8 GB / 4 vCPU) build minute meter."
+}

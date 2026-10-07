@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "ssr-request-duration",
+  "componentId": "ssr-request-duration",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "HostingComputeRequestDuration"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Seconds"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting SSR compute duration meter."
+}

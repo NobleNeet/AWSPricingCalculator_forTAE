@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "build-standard",
+  "label": "Build minutes - Standard",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "field": "profile.buildInstanceSize",
+    "op": "eq",
+    "value": "Standard (8 GB メモリ、vCPU 4 個)"
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "AWS Amplify"
+      },
+      {
+        "field": "attributes.instancetype",
+        "op": "eq",
+        "value": "Standard8GB"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "minutes"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.buildMinutesPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "minutes"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

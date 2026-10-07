@@ -92,7 +92,7 @@ export async function refreshGoldenEvidence(packages, rawDirectory, output, cand
     await writeJson(path.join(output, code, `${region}.json`), sample);
   }
 }
-export async function priceUpdate({ work = '.work/update', execute = defaultExecute, previousDefinitionSha256, changedFiles } = {}) {
+export async function priceUpdate({ work = '.work/update', execute = defaultExecute, previousDefinitionSha256, previousContractFingerprints, changedFiles } = {}) {
   await mkdir(work, { recursive: true });
   const reports = {};
   const previousDirectory = await candidateDirectory();
@@ -102,10 +102,11 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
   const packages = await loadPackages();
   const fingerprint = await definitionFingerprint(packages);
   const contracts = await contractFingerprints(packages);
-  const globalContractChanged = semanticGlobalChanged(activeBuild.contractFingerprints, contracts);
+  const contractBaseline = previousContractFingerprints ?? activeBuild.contractFingerprints;
+  const globalContractChanged = semanticGlobalChanged(contractBaseline, contracts);
   const persistedRefreshCodes = changedPriceSourceCodes(
     packages,
-    activeBuild.contractFingerprints,
+    contractBaseline,
     contracts
   );
   const explicitDefinitionChanged = previousDefinitionSha256 !== undefined
