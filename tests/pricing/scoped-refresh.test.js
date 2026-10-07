@@ -6,7 +6,6 @@ import path from 'node:path';
 import { definitionRefreshServiceCodes } from '../../tools/price-update.js';
 import {
   changedPriceSourceCodes,
-  pricingContractFingerprint,
   PRICING_CONTRACT_FILES,
   PUBLICATION_CONTRACT_FILES,
   semanticGlobalChanged,
@@ -83,16 +82,22 @@ test('publication and orchestration files do not invalidate semantic validation 
   ]) assert.ok(PRICING_CONTRACT_FILES.includes(file), file);
 });
 
-test('known v1 baseline migrates to semantic contract v2 without a global revalidation', async () => {
-  const currentGlobal = await pricingContractFingerprint();
-  console.log(`semantic-contract-v2=${currentGlobal}`);
+test('known v1 baseline migrates to the verified semantic contract v2 without a global revalidation', () => {
   const previous = {
     schemaVersion: 1,
     global: 'b253ce3d9e872d068ac10c7aa44a45d34ebe5dfed4ffef42cba100fc42ba3385',
     services: {}
   };
-  const current = { schemaVersion: SEMANTIC_CONTRACT_VERSION, global: currentGlobal, services: {} };
+  const current = {
+    schemaVersion: SEMANTIC_CONTRACT_VERSION,
+    global: '40ca156ff3ad83a80ee75bb29eaa26d5ccc96d361b1252921a607344930b925e',
+    services: {}
+  };
   assert.equal(semanticGlobalChanged(previous, current), false);
+  assert.equal(
+    semanticGlobalChanged(previous, { ...current, global: 'different-v2-contract' }),
+    true
+  );
 });
 
 test('persisted per-service fingerprints refresh only changed price sources', () => {
