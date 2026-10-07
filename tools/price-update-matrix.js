@@ -9,7 +9,8 @@ import {
   changedPriceSourceCodes,
   contractFingerprints,
   definitionFingerprint,
-  packagePriceSourceCodes
+  packagePriceSourceCodes,
+  publicationContractFingerprint
 } from './pricing-cli/fingerprint.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
@@ -80,7 +81,11 @@ async function prepare(work) {
   }
   const fingerprint = await definitionFingerprint(packages);
   const contracts = await contractFingerprints(packages);
+  const publicationSha256 = await publicationContractFingerprint();
   const definitionsChanged = fingerprint !== activeBuild.definitionSha256;
+  const globalContractChanged = activeBuild.contractFingerprints?.global !== contracts.global;
+  const publicationChanged = activeBuild.publicationSha256 != null
+    && activeBuild.publicationSha256 !== publicationSha256;
   const definitionRefreshCodes = definitionsChanged
     ? changedPriceSourceCodes(packages, activeBuild.contractFingerprints, contracts)
     : new Set();
@@ -111,6 +116,8 @@ async function prepare(work) {
     await writeJson(metadataFile, metadata);
     const sourceReport = await readJson(path.join(work, 'reports', 'check-source.json'));
     sourceReport.definitionsChanged = definitionsChanged;
+    sourceReport.globalContractChanged = globalContractChanged;
+    sourceReport.publicationChanged = publicationChanged;
     sourceReport.definitionRefreshServiceCodes = [...definitionRefreshCodes].sort();
     sourceReport.awsChangedSources = Object.entries(metadata.sources)
       .filter(([, item]) => item.awsChanged)
@@ -132,6 +139,8 @@ async function prepare(work) {
     previousBuildId: active.activeBuildId,
     definitionSha256: fingerprint,
     contractFingerprints: contracts,
+    publicationSha256,
+    globalContractChanged,
     definitionRefreshServiceCodes: [...definitionRefreshCodes].sort(),
     requestedScopeServiceIds: requestedScope.serviceIds,
     requestedScopeServiceCodes: requestedScope.serviceCodes
@@ -224,7 +233,8 @@ async function finalize(work) {
       issues: [...definition.issues, ...semantic.issues, ...golden.issues],
       publishSkus,
       definitionSha256: state.definitionSha256,
-      contractFingerprints: state.contractFingerprints
+      contractFingerprints: state.contractFingerprints,
+      publicationSha256: state.publicationSha256
     });
     const built = { ...report('build', [], { build: buildManifest }), elapsedMs: Math.round(performance.now() - started) };
     await writeJson(path.join(work, 'reports', 'build.json'), built);
