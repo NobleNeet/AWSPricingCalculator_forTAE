@@ -4,7 +4,13 @@ import { run, writeJson, loadCandidate, candidateDirectory } from './pricing-cli
 import { readJson, loadPackages } from './pricing-cli/package-loader.js';
 import { checksum } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
-import { definitionFingerprint, PRICING_CONTRACT_FILES } from './pricing-cli/fingerprint.js';
+import {
+  changedPriceSourceCodes,
+  contractFingerprints,
+  definitionFingerprint,
+  PRICING_CONTRACT_FILES,
+  semanticGlobalChanged
+} from './pricing-cli/fingerprint.js';
 import { sourceKey } from './pricing-cli/source.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
@@ -95,14 +101,22 @@ export async function priceUpdate({ work = '.work/update', execute = defaultExec
   const activeBuild = await readJson(path.join(previousDirectory, 'build-manifest.json'));
   const packages = await loadPackages();
   const fingerprint = await definitionFingerprint(packages);
-  const definitionsChanged = fingerprint !== (previousDefinitionSha256 ?? activeBuild.definitionSha256);
-  // changedFiles only describes the immediately preceding commit. If the last published
-  // build is older because a previous Definition refresh was rejected, scoping from that
-  // list can strand unpublished services. Production therefore falls back to a full
-  // Definition refresh unless an explicit baseline fingerprint was supplied by a caller.
-  const definitionRefreshCodes = definitionsChanged && previousDefinitionSha256 !== undefined
+  const contracts = await contractFingerprints(packages);
+  const globalContractChanged = semanticGlobalChanged(activeBuild.contractFingerprints, contracts);
+  const persistedRefreshCodes = changedPriceSourceCodes(
+    packages,
+    activeBuild.contractFingerprints,
+    contracts
+  );
+  const definitionsChanged = globalContractChanged || persistedRefreshCodes.size > 0;
+  // Explicit changed-file scoping remains available for tests/debugging, but production
+  // uses persisted per-service fingerprints so unpublished changes cannot be stranded.
+  const changedFileRefreshCodes = definitionsChanged && previousDefinitionSha256 !== undefined
     ? definitionRefreshServiceCodes(packages, changedFiles)
-    : null;
+    : undefined;
+  const definitionRefreshCodes = changedFileRefreshCodes === undefined
+    ? persistedRefreshCodes
+    : changedFileRefreshCodes;
   const record = async (command, options) => {
     const started = performance.now();
     const rawResult = await execute(command, options);
