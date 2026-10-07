@@ -84,7 +84,11 @@ test('immutable build has content checksums, does not promote manifest, rejects 
   const { candidate } = fixture();
   const root = await mkdtemp(path.join(tmpdir(), 'tae-build-'));
   await assert.rejects(() => buildPriceDb(candidate, root, 'invalid', { issues: [{ severity: 'error' }] }), /Validated/);
-  const manifest = await buildPriceDb(candidate, root, 'test-build', { issues: [] });
+  const manifest = await buildPriceDb(candidate, root, 'test-build', {
+    issues: [],
+    publicationSha256: 'f'.repeat(64)
+  });
+  assert.equal(manifest.publicationSha256, 'f'.repeat(64));
   const source = manifest.sources.Example['ap-northeast-1'];
   const text = await readFile(path.join(root, 'builds/test-build', source.productsPath), 'utf8');
   assert.equal(checksum(text), source.productsSha256);
