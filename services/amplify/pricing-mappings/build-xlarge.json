@@ -13,8 +13,15 @@
     },
     {
       "field": "attributes.instancetype",
-      "op": "eq",
-      "value": "XLarge72GB"
+      "op": "exists"
+    },
+    {
+      "field": "attributes.instancetype",
+      "op": "notIn",
+      "value": [
+        "Standard8GB",
+        "Large16GB"
+      ]
     }
   ],
   "dimensionMatchers": [
@@ -28,5 +35,5 @@
     "products": 1,
     "billableDimensions": 1
   },
-  "notes": "Amplify Hosting XLarge (72 GB / 36 vCPU) build minute meter."
+  "notes": "Amplify Hosting XLarge build minute meter. Match the non-Standard/non-Large build instance so current AWS Price List naming changes do not strand the XLarge meter."
 }

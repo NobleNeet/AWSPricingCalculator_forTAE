@@ -12,9 +12,21 @@
       "value": "AWS Amplify"
     },
     {
-      "field": "attributes.dataTransferOut",
+      "field": "attributes.storage",
       "op": "eq",
-      "value": "DataTransferOut"
+      "value": "NoStorage"
+    },
+    {
+      "field": "attributes.instancetype",
+      "op": "notExists"
+    },
+    {
+      "field": "attributes.requestCount",
+      "op": "notExists"
+    },
+    {
+      "field": "attributes.requestDuration",
+      "op": "notExists"
     }
   ],
   "dimensionMatchers": [
@@ -28,5 +40,5 @@
     "products": 1,
     "billableDimensions": 1
   },
-  "notes": "Amplify Hosting data transfer out meter."
+  "notes": "Amplify Hosting data transfer out meter. Identify the non-storage, non-build, non-SSR product instead of relying on the unstable dataTransferOut attribute."
 }
