@@ -10,7 +10,8 @@ import {
   contractFingerprints,
   definitionFingerprint,
   packagePriceSourceCodes,
-  publicationContractFingerprint
+  publicationContractFingerprint,
+  semanticGlobalChanged
 } from './pricing-cli/fingerprint.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
@@ -82,13 +83,15 @@ async function prepare(work) {
   const fingerprint = await definitionFingerprint(packages);
   const contracts = await contractFingerprints(packages);
   const publicationSha256 = await publicationContractFingerprint();
-  const definitionsChanged = fingerprint !== activeBuild.definitionSha256;
-  const globalContractChanged = activeBuild.contractFingerprints?.global !== contracts.global;
+  const globalContractChanged = semanticGlobalChanged(activeBuild.contractFingerprints, contracts);
+  const definitionRefreshCodes = changedPriceSourceCodes(
+    packages,
+    activeBuild.contractFingerprints,
+    contracts
+  );
+  const definitionsChanged = globalContractChanged || definitionRefreshCodes.size > 0;
   const publicationChanged = activeBuild.publicationSha256 != null
     && activeBuild.publicationSha256 !== publicationSha256;
-  const definitionRefreshCodes = definitionsChanged
-    ? changedPriceSourceCodes(packages, activeBuild.contractFingerprints, contracts)
-    : new Set();
 
   const previousFile = path.join(work, 'previous-sources.json');
   await writeJson(previousFile, previousMetadata);
