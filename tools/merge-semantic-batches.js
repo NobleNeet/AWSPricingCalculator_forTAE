@@ -12,7 +12,20 @@ async function writeJson(file, value) {
 export async function mergeSemanticBatches(planFile, directory) {
   const plan = await readJson(planFile);
   const expected = new Map((plan.matrix?.include ?? []).map(batch => [batch.batch_id, batch]));
-  if (!expected.size) throw new Error('Semantic plan contains no batches.');
+  if (!expected.size) {
+    if (plan.summary?.scope !== 'reuse') throw new Error('Semantic plan contains no batches.');
+    return report('validate-price-data', [], {
+      coverage: {},
+      branches: 0,
+      workers: 0,
+      batches: 0,
+      plannedCases: 0,
+      batchCases: 0,
+      taskTimings: [],
+      publishSkus: {},
+      reusedBaseline: true
+    });
+  }
 
   const names = (await readdir(directory)).filter(name => /^batch-.*\.json$/.test(name)).sort();
   const results = new Map();
