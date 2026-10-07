@@ -27,42 +27,13 @@ jobs:
 
           products = data.get('products', {})
           terms = data.get('terms', {}).get('OnDemand', {})
-
-          selected = []
+          print('totalProducts=', len(products))
           for sku, product in products.items():
               attrs = product.get('attributes', {})
-              hay = ' '.join(str(v) for v in [product.get('productFamily',''), *attrs.values()]).lower()
-              is_tokyo = attrs.get('regionCode') == 'ap-northeast-1' or attrs.get('location') == 'Asia Pacific (Tokyo)'
-              is_relevant = any(k in hay for k in [
-                  'export', 'certificate domain', 'fqdn', 'wildcard', 'acme', 'api call', 'api request'
-              ])
-              if is_tokyo and is_relevant:
-                  selected.append((sku, product))
-
-          print('selectedProducts=', len(selected))
-          for sku, product in selected:
               print('\nPRODUCT', sku)
               print(json.dumps(product, ensure_ascii=False, sort_keys=True))
               for term_code, term in terms.get(sku, {}).items():
                   print('TERM', term_code)
-                  for rate, dim in term.get('priceDimensions', {}).items():
-                      print(json.dumps(dim, ensure_ascii=False, sort_keys=True))
-
-          # Also print globally relevant/non-Tokyo products in case the new public-certificate meters are locationless.
-          extras = []
-          selected_skus = {sku for sku, _ in selected}
-          for sku, product in products.items():
-              if sku in selected_skus:
-                  continue
-              attrs = product.get('attributes', {})
-              hay = ' '.join(str(v) for v in [product.get('productFamily',''), *attrs.values()]).lower()
-              if any(k in hay for k in ['exportable', 'certificate domain', 'fqdn', 'wildcard', 'acme']):
-                  extras.append((sku, product))
-          print('\nextraRelevantProducts=', len(extras))
-          for sku, product in extras[:80]:
-              print('\nEXTRA', sku)
-              print(json.dumps(product, ensure_ascii=False, sort_keys=True))
-              for term_code, term in terms.get(sku, {}).items():
                   for rate, dim in term.get('priceDimensions', {}).items():
                       print(json.dumps(dim, ensure_ascii=False, sort_keys=True))
           PY
