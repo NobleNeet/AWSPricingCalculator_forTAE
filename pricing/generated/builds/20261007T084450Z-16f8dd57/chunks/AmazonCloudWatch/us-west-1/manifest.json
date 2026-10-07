@@ -1,0 +1,17 @@
+{
+  "buildId": "20261007T084450Z-16f8dd57",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 1,
+      "firstSku": "F2G8YCQ2DS9MRUU2",
+      "lastSku": "F2G8YCQ2DS9MRUU2",
+      "path": "chunks/AmazonCloudWatch/us-west-1/00000.json",
+      "sha256": "89acd70f8ff57678a9258e96455ed04db196352ce2aec023ddf2fbf14b4e23ca"
+    }
+  ],
+  "productCount": 1,
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}
