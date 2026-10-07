@@ -1,0 +1,139 @@
+{
+  "formatVersion": "v1.0",
+  "disclaimer": "Test fixture derived from AWS Systems Manager Public Price List publication 2026-10-04; Tokyo products/rates were captured by the onboarding price probe.",
+  "offerCode": "AWSSystemsManager",
+  "version": "20261004202730",
+  "publicationDate": "2026-10-04T20:27:30Z",
+  "products": {
+    "86S69R9UJZ8GSRWR": {
+      "productFamily": "AWS Systems Manager",
+      "attributes": {
+        "servicecode": "AWSSystemsManager",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-JustInTimeAccessHour-Trial",
+        "operation": "JustInTimeAccessHour",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Systems Manager",
+        "trial": "TRUE"
+      },
+      "sku": "86S69R9UJZ8GSRWR"
+    },
+    "V6JVHFNM9G6T5RMV": {
+      "productFamily": "AWS Systems Manager",
+      "attributes": {
+        "servicecode": "AWSSystemsManager",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-IM-ResponsePlan-Months-Tier1",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "response": "response-plan-months",
+        "servicename": "AWS Systems Manager"
+      },
+      "sku": "V6JVHFNM9G6T5RMV"
+    },
+    "YF7EUXB8ARRTSWJX": {
+      "productFamily": "AWS Systems Manager",
+      "attributes": {
+        "servicecode": "AWSSystemsManager",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-JustInTimeAccessHour",
+        "operation": "JustInTimeAccessHour",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AWS Systems Manager",
+        "trial": "FALSE"
+      },
+      "sku": "YF7EUXB8ARRTSWJX"
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "86S69R9UJZ8GSRWR": {
+        "86S69R9UJZ8GSRWR.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "86S69R9UJZ8GSRWR",
+          "effectiveDate": "2026-10-04T00:00:00Z",
+          "priceDimensions": {
+            "86S69R9UJZ8GSRWR.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "86S69R9UJZ8GSRWR.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.00 per hours for APN1-JustInTimeAccessHour-Trial in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {"USD": "0.0000000000"},
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "V6JVHFNM9G6T5RMV": {
+        "V6JVHFNM9G6T5RMV.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "V6JVHFNM9G6T5RMV",
+          "effectiveDate": "2026-10-04T00:00:00Z",
+          "priceDimensions": {
+            "V6JVHFNM9G6T5RMV.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "V6JVHFNM9G6T5RMV.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$7.00 per Response Plan Month",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Months",
+              "pricePerUnit": {"USD": "7.0000000000"},
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "YF7EUXB8ARRTSWJX": {
+        "YF7EUXB8ARRTSWJX.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "YF7EUXB8ARRTSWJX",
+          "effectiveDate": "2026-10-04T00:00:00Z",
+          "priceDimensions": {
+            "YF7EUXB8ARRTSWJX.JRTCKXETXF.7UZZKUX94N": {
+              "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.7UZZKUX94N",
+              "description": "$0.0137 per hours from 0 to 72,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "72000",
+              "unit": "hours",
+              "pricePerUnit": {"USD": "0.0137000000"},
+              "appliesTo": []
+            },
+            "YF7EUXB8ARRTSWJX.JRTCKXETXF.MR2VG8R56J": {
+              "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.MR2VG8R56J",
+              "description": "$0.0103 per hours from 72,000 to 720,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+              "beginRange": "72000",
+              "endRange": "720000",
+              "unit": "hours",
+              "pricePerUnit": {"USD": "0.0103000000"},
+              "appliesTo": []
+            },
+            "YF7EUXB8ARRTSWJX.JRTCKXETXF.M9YCZK9D2S": {
+              "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.M9YCZK9D2S",
+              "description": "$0.0034 per hours from 720,000 to 7,200,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+              "beginRange": "720000",
+              "endRange": "7200000",
+              "unit": "hours",
+              "pricePerUnit": {"USD": "0.0034000000"},
+              "appliesTo": []
+            },
+            "YF7EUXB8ARRTSWJX.JRTCKXETXF.4AXZNUSGXN": {
+              "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.4AXZNUSGXN",
+              "description": "$0.0014 per hours from 7,200,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+              "beginRange": "7200000",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {"USD": "0.0014000000"},
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}

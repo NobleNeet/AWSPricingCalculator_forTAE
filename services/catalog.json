@@ -103,6 +103,15 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
+    },
+    {
+      "available": true,
+      "id": "systems-manager",
+      "label": "AWS Systems Manager",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSSystemsManager"
     }
   ]
 }

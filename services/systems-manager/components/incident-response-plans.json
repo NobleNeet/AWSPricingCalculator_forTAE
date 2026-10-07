@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "incident-response-plans",
+  "label": "Incident Manager response plans",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "AWS Systems Manager"
+      },
+      {
+        "field": "attributes.response",
+        "op": "eq",
+        "value": "response-plan-months"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Months"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.responsePlanCount"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.responsePlanHoursPerPlan",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "0.001369863013698630136986301369863"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Months"
+  },
+  "limitations": [
+    "unsupported-pricing-category",
+    "account-specific-discount"
+  ]
+}
