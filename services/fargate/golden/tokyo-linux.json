@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo-linux",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "operatingSystem": "Linux",
+    "cpuArchitecture": "x86",
+    "tasksPerDay": "1",
+    "averageDurationHours": "1",
+    "linuxVcpuPerTask": "0.25",
+    "linuxMemoryGbPerTask": "0.5",
+    "ephemeralStorageGb": "20"
+  },
+  "components": {},
+  "expected": {
+    "linux-x86-vcpu": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-vCPU-Hours:perCPU",
+        "cputype": "perCPU"
+      },
+      "unit": "hours",
+      "quantity": "7.5",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "linux-x86-memory": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-GB-Hours",
+        "memorytype": "perGB"
+      },
+      "unit": "hours",
+      "quantity": "15",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "linux-x86-vcpu": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-vCPU-Hours:perCPU",
+        "cputype": "perCPU"
+      },
+      "productFamily": "Compute",
+      "unit": "hours",
+      "quantity": "7.5"
+    },
+    "linux-x86-memory": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-GB-Hours",
+        "memorytype": "perGB"
+      },
+      "productFamily": "Compute",
+      "unit": "hours",
+      "quantity": "15"
+    }
+  }
+}

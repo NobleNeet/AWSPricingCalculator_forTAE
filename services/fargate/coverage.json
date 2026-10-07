@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-vCPU-Hours:perCPU"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "linux-x86-vcpu"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-GB-Hours"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "linux-x86-memory"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-ARM-vCPU-Hours:perCPU"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "linux-arm-vcpu"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-ARM-GB-Hours"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "linux-arm-memory"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-Windows-vCPU-Hours:perCPU"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "windows-vcpu"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-Windows-GB-Hours"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "windows-memory"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-Windows-OS-Hours:perCPU"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "windows-os"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Fargate-EphemeralStorage-GB-Hours"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB-Hours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "linux-ephemeral-storage"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "notIn",
+          "value": [
+            "Fargate-vCPU-Hours:perCPU",
+            "Fargate-GB-Hours",
+            "Fargate-ARM-vCPU-Hours:perCPU",
+            "Fargate-ARM-GB-Hours",
+            "Fargate-Windows-vCPU-Hours:perCPU",
+            "Fargate-Windows-GB-Hours",
+            "Fargate-Windows-OS-Hours:perCPU",
+            "Fargate-EphemeralStorage-GB-Hours"
+          ]
+        }
+      ],
+      "status": "ignored",
+      "reason": "Spot, ECS Anywhere, managed-instance and other AmazonECS meters are outside the supplied Fargate On-Demand Calculator screen and are not inferred into this estimate.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}

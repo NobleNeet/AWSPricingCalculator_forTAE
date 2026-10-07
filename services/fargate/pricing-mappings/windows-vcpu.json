@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "windows-vcpu",
+  "componentId": "windows-vcpu",
+  "priceSource": {
+    "serviceCode": "AmazonECS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute"
+    },
+    {
+      "field": "attributes.operatingSystem",
+      "op": "eq",
+      "value": "Windows"
+    },
+    {
+      "field": "attributes.cputype",
+      "op": "eq",
+      "value": "perCPU"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "hours"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Windows x86 On-Demand vCPU meter."
+}

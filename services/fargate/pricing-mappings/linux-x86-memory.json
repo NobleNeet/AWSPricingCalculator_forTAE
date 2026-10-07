@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "linux-x86-memory",
+  "componentId": "linux-x86-memory",
+  "priceSource": {
+    "serviceCode": "AmazonECS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute"
+    },
+    {
+      "field": "attributes.memorytype",
+      "op": "eq",
+      "value": "perGB"
+    },
+    {
+      "field": "attributes.cpuArchitecture",
+      "op": "notExists"
+    },
+    {
+      "field": "attributes.operatingSystem",
+      "op": "notExists"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "hours"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Linux x86 On-Demand memory meter."
+}

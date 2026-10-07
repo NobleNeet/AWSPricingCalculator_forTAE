@@ -76,6 +76,15 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
+    },
+    {
+      "available": true,
+      "id": "fargate",
+      "label": "AWS Fargate",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AmazonECS"
     }
   ]
 }

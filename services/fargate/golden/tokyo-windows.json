@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo-windows",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "operatingSystem": "Windows",
+    "tasksPerDay": "1",
+    "averageDurationHours": "1",
+    "windowsVcpuPerTask": "1",
+    "windowsMemoryGbPerTask": "2",
+    "ephemeralStorageGb": "21"
+  },
+  "components": {},
+  "expected": {
+    "windows-vcpu": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-Windows-vCPU-Hours:perCPU",
+        "operatingSystem": "Windows",
+        "cputype": "perCPU"
+      },
+      "unit": "hours",
+      "quantity": "30",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "windows-memory": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-Windows-GB-Hours",
+        "operatingSystem": "Windows",
+        "memorytype": "perGB"
+      },
+      "unit": "hours",
+      "quantity": "60",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "windows-os": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-Windows-OS-Hours:perCPU",
+        "operatingSystem": "Windows",
+        "cputype": "perCPU OS License Fee"
+      },
+      "unit": "hours",
+      "quantity": "30",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "windows-ephemeral-storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-EphemeralStorage-GB-Hours",
+        "storagetype": "default"
+      },
+      "unit": "GB-Hours",
+      "quantity": "30",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "windows-vcpu": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-Windows-vCPU-Hours:perCPU",
+        "operatingSystem": "Windows",
+        "cputype": "perCPU"
+      },
+      "productFamily": "Compute",
+      "unit": "hours",
+      "quantity": "30"
+    },
+    "windows-memory": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-Windows-GB-Hours",
+        "operatingSystem": "Windows",
+        "memorytype": "perGB"
+      },
+      "productFamily": "Compute",
+      "unit": "hours",
+      "quantity": "60"
+    },
+    "windows-os": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-Windows-OS-Hours:perCPU",
+        "operatingSystem": "Windows",
+        "cputype": "perCPU OS License Fee"
+      },
+      "productFamily": "Compute",
+      "unit": "hours",
+      "quantity": "30"
+    },
+    "windows-ephemeral-storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-Fargate-EphemeralStorage-GB-Hours",
+        "storagetype": "default"
+      },
+      "productFamily": "Compute",
+      "unit": "GB-Hours",
+      "quantity": "30"
+    }
+  }
+}

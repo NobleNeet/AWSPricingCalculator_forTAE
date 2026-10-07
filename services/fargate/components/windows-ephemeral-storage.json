@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "windows-ephemeral-storage",
+  "label": "Additional ephemeral storage (Windows)",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "field": "profile.operatingSystem",
+    "op": "eq",
+    "value": "Windows"
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Compute"
+      },
+      {
+        "field": "attributes.storagetype",
+        "op": "eq",
+        "value": "default"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Hours"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.tasksPerDay"
+        },
+        {
+          "value": "30"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.averageDurationHours",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "0.0833333333333333"
+              }
+            ]
+          }
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.ephemeralStorageGb",
+            "transforms": [
+              {
+                "type": "subtract",
+                "value": "20"
+              },
+              {
+                "type": "minimum",
+                "value": "0"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Hours"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

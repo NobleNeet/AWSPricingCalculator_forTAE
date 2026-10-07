@@ -1,0 +1,310 @@
+{
+  "formatVersion": "v1.0",
+  "disclaimer": "Test fixture derived from AWS Public Price List probe on 2026-10-07.",
+  "offerCode": "AmazonECS",
+  "version": "20260911124425",
+  "publicationDate": "2026-09-11T12:44:25Z",
+  "products": {
+    "7KKPR3R7N63ZMK5F": {
+      "sku": "7KKPR3R7N63ZMK5F",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "usagetype": "APN1-Fargate-EphemeralStorage-GB-Hours",
+        "storagetype": "default"
+      }
+    },
+    "JQEE6EF5FAF2AESH": {
+      "sku": "JQEE6EF5FAF2AESH",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN1-Fargate-GB-Hours",
+        "memorytype": "perGB"
+      }
+    },
+    "K39DVQ2NAUX899HH": {
+      "sku": "K39DVQ2NAUX899HH",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "operatingSystem": "Windows",
+        "usagetype": "APN1-Fargate-Windows-GB-Hours",
+        "memorytype": "perGB",
+        "resource": "per GB per hour"
+      }
+    },
+    "KBQ3Q6DY9J327G8N": {
+      "sku": "KBQ3Q6DY9J327G8N",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN1-Fargate-vCPU-Hours:perCPU",
+        "cputype": "perCPU"
+      }
+    },
+    "KG5682BEDEHZYEHK": {
+      "sku": "KG5682BEDEHZYEHK",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "operatingSystem": "Windows",
+        "usagetype": "APN1-Fargate-Windows-OS-Hours:perCPU",
+        "cputype": "perCPU OS License Fee",
+        "resource": "OS License Fee per vCPU per hour"
+      }
+    },
+    "WMBFZMDY4BAP8WVS": {
+      "sku": "WMBFZMDY4BAP8WVS",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "operatingSystem": "Windows",
+        "usagetype": "APN1-Fargate-Windows-vCPU-Hours:perCPU",
+        "cputype": "perCPU",
+        "resource": "per vCPU per hour"
+      }
+    },
+    "WXXGZM434J9JXCU5": {
+      "sku": "WXXGZM434J9JXCU5",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN1-Fargate-ARM-GB-Hours",
+        "cpuArchitecture": "ARM",
+        "memorytype": "perGB",
+        "resource": "per GB per hour"
+      }
+    },
+    "ZNX9M5D8R95VT2QQ": {
+      "sku": "ZNX9M5D8R95VT2QQ",
+      "productFamily": "Compute",
+      "attributes": {
+        "servicecode": "AmazonECS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN1-Fargate-ARM-vCPU-Hours:perCPU",
+        "cpuArchitecture": "ARM",
+        "cputype": "perCPU",
+        "resource": "per vCPU per hour"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "7KKPR3R7N63ZMK5F": {
+        "7KKPR3R7N63ZMK5F.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "7KKPR3R7N63ZMK5F",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "7KKPR3R7N63ZMK5F.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "7KKPR3R7N63ZMK5F.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - Ephemeral Storage - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB-Hours",
+              "pricePerUnit": {
+                "USD": "0.0001330000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "JQEE6EF5FAF2AESH": {
+        "JQEE6EF5FAF2AESH.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "JQEE6EF5FAF2AESH",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "JQEE6EF5FAF2AESH.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "JQEE6EF5FAF2AESH.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - Memory  - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0055300000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "K39DVQ2NAUX899HH": {
+        "K39DVQ2NAUX899HH.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "K39DVQ2NAUX899HH",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "K39DVQ2NAUX899HH.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "K39DVQ2NAUX899HH.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - Windows - Memory  - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0063595000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "KBQ3Q6DY9J327G8N": {
+        "KBQ3Q6DY9J327G8N.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "KBQ3Q6DY9J327G8N",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "KBQ3Q6DY9J327G8N.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "KBQ3Q6DY9J327G8N.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - vCPU  - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0505600000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "KG5682BEDEHZYEHK": {
+        "KG5682BEDEHZYEHK.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "KG5682BEDEHZYEHK",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "KG5682BEDEHZYEHK.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "KG5682BEDEHZYEHK.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - Windows - OS  - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0460000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "WMBFZMDY4BAP8WVS": {
+        "WMBFZMDY4BAP8WVS.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "WMBFZMDY4BAP8WVS",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "WMBFZMDY4BAP8WVS.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "WMBFZMDY4BAP8WVS.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - Windows - vCPU  - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0581440000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "WXXGZM434J9JXCU5": {
+        "WXXGZM434J9JXCU5.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "WXXGZM434J9JXCU5",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "WXXGZM434J9JXCU5.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "WXXGZM434J9JXCU5.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - ARM - Memory - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0044200000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ZNX9M5D8R95VT2QQ": {
+        "ZNX9M5D8R95VT2QQ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ZNX9M5D8R95VT2QQ",
+          "effectiveDate": "2026-09-11T00:00:00Z",
+          "priceDimensions": {
+            "ZNX9M5D8R95VT2QQ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ZNX9M5D8R95VT2QQ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "AWS Fargate - ARM - vCPU - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "hours",
+              "pricePerUnit": {
+                "USD": "0.0404500000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}
