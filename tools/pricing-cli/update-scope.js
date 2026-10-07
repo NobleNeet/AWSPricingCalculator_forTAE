@@ -28,6 +28,7 @@ export function effectiveValidationSourceCodes(state, metadata) {
   // A real global semantic-contract change invalidates reuse for every service.
   // Build/publication-only changes are deliberately excluded from this flag.
   if (state.globalContractChanged === true) return null;
+  if (state.reuseSemanticBaseline === true) return new Set();
 
   const codes = new Set([
     ...(state.requestedScopeServiceCodes ?? []),
@@ -49,6 +50,7 @@ export function effectiveValidationSourceCodes(state, metadata) {
 
 export function validationScopeMode(state, sourceCodes) {
   if (sourceCodes === null) return 'all';
+  if (sourceCodes.size === 0 && state.reuseSemanticBaseline === true) return 'reuse';
   if ((state.requestedScopeServiceIds ?? []).length) return 'onboarding';
   return 'incremental';
 }
