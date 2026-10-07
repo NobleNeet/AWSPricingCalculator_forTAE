@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { writeProductChunks, loadProductsMatching } from '../../tools/pricing-cli/product-chunks.js';
+import { loadProductsMatching } from '../../tools/pricing-cli/product-chunks.js';
+import { writeProductChunks } from '../../tools/pricing-cli/product-chunk-writer.js';
 import { sourceTasks } from '../../tools/pricing-cli/semantic-parallel.js';
 import { buildSemanticBatches } from '../../tools/pricing-cli/semantic-plan.js';
 
