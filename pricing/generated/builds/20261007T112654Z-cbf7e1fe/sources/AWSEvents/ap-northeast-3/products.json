@@ -1,0 +1,415 @@
+{
+  "buildId": "20261007T112654Z-cbf7e1fe",
+  "products": [
+    {
+      "attributes": {
+        "eventType": "Custom Event",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "PutEvents",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Event-64K-Chunks"
+      },
+      "operation": "PutEvents",
+      "productFamily": "EventBridge",
+      "sku": "52B3D76RJJXE7J2P",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million EventBridge custom events received in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "52B3D76RJJXE7J2P.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Event-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "APIDestination",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "InvokeApiDestination",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Invocation-64K-Chunks"
+      },
+      "operation": "InvokeApiDestination",
+      "productFamily": "CloudWatch Events",
+      "sku": "8TSQH56X9M4AZX29",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.52 per million invocations of API Destinations in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000005200"
+                },
+                "rateCode": "8TSQH56X9M4AZX29.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account AWS Event",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-AWSEvent",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-AWSEvent",
+      "productFamily": "EventBridge",
+      "sku": "DRQJ95AA6ZHJUXKM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million cross-account invocations with AWS management events in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "DRQJ95AA6ZHJUXKM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Archive Event",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "ArchiveEvents",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-ArchivedEvents-Bytes"
+      },
+      "operation": "ArchiveEvents",
+      "productFamily": "CloudWatch Events",
+      "sku": "GE69DGN2ZNJ2CFW9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.13 per GB for ArchivedEvents-Bytes:ArchiveEvents in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1300000000"
+                },
+                "rateCode": "GE69DGN2ZNJ2CFW9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-ArchivedEvents-Bytes"
+    },
+    {
+      "attributes": {
+        "eventType": "Discovery Event",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "DiscoveryEvent",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Event-8K-Chunks"
+      },
+      "operation": "DiscoveryEvent",
+      "productFamily": "EventBridge",
+      "sku": "H2CD2QUFH97C5HRU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.15 per million ingested events for schema discovery in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000001500"
+                },
+                "rateCode": "H2CD2QUFH97C5HRU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "8K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Event-8K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Event Storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "StandardStorage",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-TimedStorage-ByteHrs"
+      },
+      "operation": "StandardStorage",
+      "productFamily": "CloudWatch Events",
+      "sku": "KYC4UUFGB56NNKD8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.025 per GB-Mo for TimedStorage-ByteHrs:StandardStorage in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0250000000"
+                },
+                "rateCode": "KYC4UUFGB56NNKD8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Mo"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-TimedStorage-ByteHrs"
+    },
+    {
+      "attributes": {
+        "eventType": "Partner Event",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "ReceivedPartnerEvents",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Event-64K-Chunks"
+      },
+      "operation": "ReceivedPartnerEvents",
+      "productFamily": "EventBridge",
+      "sku": "MBC3AZVGHGB9VEJM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million EventBridge partner events received in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "MBC3AZVGHGB9VEJM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Event-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account Custom Event",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-CustomEvent",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-CustomEvent",
+      "productFamily": "EventBridge",
+      "sku": "Q9J6C6R7FJYMYRBG",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per million cross-account invocations with custom events in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000500"
+                },
+                "rateCode": "Q9J6C6R7FJYMYRBG.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account Partner Event",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-PartnerEvent",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-PartnerEvent",
+      "productFamily": "EventBridge",
+      "sku": "QU4FDYWT3DNRF8JZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per million cross-account invocations with partner events in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000500"
+                },
+                "rateCode": "QU4FDYWT3DNRF8JZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "invocation": "Scheduled Invocation",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "Invocation",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "timeWindow": "N/A",
+        "usagetype": "APN3-ScheduledInvocation"
+      },
+      "operation": "Invocation",
+      "productFamily": "EventBridge",
+      "sku": "WY2CWDQB7G9BDZD3",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "14000000",
+                "description": "$1.25 per million scheduled invocations in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000012500"
+                },
+                "rateCode": "WY2CWDQB7G9BDZD3.JRTCKXETXF.AGTZK4FFDN",
+                "unit": "Invocations"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0 for the first 14 million scheduled invocations",
+                "endRange": "14000000",
+                "pricePerUnit": {
+                  "USD": "0.0000000000"
+                },
+                "rateCode": "WY2CWDQB7G9BDZD3.JRTCKXETXF.W2M3TYBKHH",
+                "unit": "Invocations"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-ScheduledInvocation"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "PipeRequest",
+        "regionCode": "ap-northeast-3",
+        "request": "Pipe Request",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "APN3-Request-64K-Chunks"
+      },
+      "operation": "PipeRequest",
+      "productFamily": "EventBridge",
+      "sku": "XAAJJ4EVXHCM8K2H",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.50 per million Pipes requests in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000005000"
+                },
+                "rateCode": "XAAJJ4EVXHCM8K2H.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Request-64K-Chunks"
+    }
+  ],
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSEvents"
+}

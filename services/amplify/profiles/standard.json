@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Web app hosting",
+  "selectors": [
+    {
+      "id": "buildInstanceSize",
+      "label": "ビルドインスタンスのサイズを選択",
+      "type": "select",
+      "default": "Standard (8 GB メモリ、vCPU 4 個)",
+      "options": {
+        "values": [
+          "Standard (8 GB メモリ、vCPU 4 個)",
+          "Large (16 GB メモリ、vCPU 8 個)",
+          "XLarge (72 GB メモリ、vCPU 36 個)"
+        ]
+      },
+      "ui": {
+        "help": "AWS Pricing Calculator の Amplify Web app hosting と同じ build instance size。Standard が既定値です。"
+      }
+    },
+    {
+      "id": "buildMinutesPerMonth",
+      "label": "ビルドの分数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "月あたりの build minutes。Calculator の単位 /月 を採用しています。"
+      }
+    },
+    {
+      "id": "storedDataGbPerMonth",
+      "label": "保存されたデータ/月",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "Amplify Hosting の CDN に保存するデータ量 (GB-month)。"
+      }
+    },
+    {
+      "id": "servedDataGbPerMonth",
+      "label": "提供されたデータ/月",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "Amplify Hosting から配信する data transfer out (GB/月)。"
+      }
+    },
+    {
+      "id": "ssrRequestsPerHour",
+      "label": "SSR リクエストの数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "Calculator 画面の 1時間 あたり SSR request 数。月間 request 数は project の hours/month を掛けて算出します。"
+      }
+    },
+    {
+      "id": "ssrDurationMs",
+      "label": "各リクエストの実行時間（ミリ秒単位）",
+      "type": "number",
+      "default": "500",
+      "minimum": "0",
+      "ui": {
+        "help": "SSR request 1件あたりの平均実行時間。Amplify Hosting WEB_COMPUTE の固定 1024 MB (1 GB) runtime として GB-seconds に換算します。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "build-standard",
+    "build-large",
+    "build-xlarge",
+    "data-storage",
+    "data-transfer-out",
+    "ssr-request-count",
+    "ssr-request-duration"
+  ]
+}

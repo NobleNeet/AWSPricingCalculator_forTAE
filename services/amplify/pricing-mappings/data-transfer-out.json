@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "data-transfer-out",
+  "componentId": "data-transfer-out",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Amplify"
+    },
+    {
+      "field": "attributes.storage",
+      "op": "eq",
+      "value": "NoStorage"
+    },
+    {
+      "field": "attributes.instancetype",
+      "op": "notExists"
+    },
+    {
+      "field": "attributes.requestCount",
+      "op": "notExists"
+    },
+    {
+      "field": "attributes.requestDuration",
+      "op": "notExists"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GigaBytes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Amplify Hosting data transfer out meter. Identify the non-storage, non-build, non-SSR product instead of relying on the unstable dataTransferOut attribute."
+}

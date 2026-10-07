@@ -1,0 +1,264 @@
+{
+  "buildId": "20261007T112654Z-cbf7e1fe",
+  "products": [
+    {
+      "attributes": {
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "HostingComputeRequestCount",
+        "regionCode": "us-east-1",
+        "requestCount": "RequestCount",
+        "requestDuration": "NoRequestDuration",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USE1-HostingComputeRequestCount"
+      },
+      "operation": "HostingComputeRequestCount",
+      "productFamily": "AWS Amplify",
+      "sku": "99UJP53WAKZSEFEW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.30 per 1 million requests for Amplify Hosting Compute",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000003000"
+                },
+                "rateCode": "99UJP53WAKZSEFEW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-HostingComputeRequestCount"
+    },
+    {
+      "attributes": {
+        "instancetype": "Standard8GB",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USE1-BuildDuration"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "B23WRTJMK3Q2YX5G",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.01 per build minute (4 vCPU, 7 GB Memory)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "B23WRTJMK3Q2YX5G.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-BuildDuration"
+    },
+    {
+      "attributes": {
+        "instancetype": "Xlarge72GB",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USE1-BuildDuration-XLarge72GB"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "GE9YU54RG6AH96ZZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.10 per minute for BuildDuration-XLarge72GB in US East (N. Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1000000000"
+                },
+                "rateCode": "GE9YU54RG6AH96ZZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-BuildDuration-XLarge72GB"
+    },
+    {
+      "attributes": {
+        "datatransferout": "DataTransferOut",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "storage": "NoStorage",
+        "usagetype": "USE1-DataTransferOut"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "QPQD3RGPJYEKWHWU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.15 per GB served (data transfer out)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1500000000"
+                },
+                "rateCode": "QPQD3RGPJYEKWHWU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-DataTransferOut"
+    },
+    {
+      "attributes": {
+        "datatransferout": "NoDataTransferOut",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "storage": "Storage",
+        "usagetype": "USE1-DataStorage"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "QRT9FFDUCFJTWSS6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.023 per GB build artifacts stored",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0230000000"
+                },
+                "rateCode": "QRT9FFDUCFJTWSS6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-DataStorage"
+    },
+    {
+      "attributes": {
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "HostingComputeRequestDuration",
+        "regionCode": "us-east-1",
+        "requestCount": "NoRequestCount",
+        "requestDuration": "RequestDuration",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USE1-HostingComputeRequestDuration"
+      },
+      "operation": "HostingComputeRequestDuration",
+      "productFamily": "AWS Amplify",
+      "sku": "R782FWVAKEGNQS8S",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.20 per GB-Hour for Amplify Hosting Compute",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000555556"
+                },
+                "rateCode": "R782FWVAKEGNQS8S.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-HostingComputeRequestDuration"
+    },
+    {
+      "attributes": {
+        "instancetype": "Large16GB",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USE1-BuildDuration-Large16GB"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "Z5WJKEG3PQCVNXQ3",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.025 per minute for BuildDuration-Large16GB in US East (N. Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0250000000"
+                },
+                "rateCode": "Z5WJKEG3PQCVNXQ3.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-BuildDuration-Large16GB"
+    }
+  ],
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSAmplify"
+}

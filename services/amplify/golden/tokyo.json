@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "buildInstanceSize": "Standard (8 GB メモリ、vCPU 4 個)",
+    "buildMinutesPerMonth": "100",
+    "storedDataGbPerMonth": "10",
+    "servedDataGbPerMonth": "20",
+    "ssrRequestsPerHour": "1000",
+    "ssrDurationMs": "500"
+  },
+  "components": {},
+  "expected": {
+    "build-standard": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-BuildDuration",
+        "instancetype": "Standard8GB"
+      },
+      "unit": "minutes",
+      "quantity": "100",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "data-storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DataStorage",
+        "storage": "Storage"
+      },
+      "unit": "GigaBytes",
+      "quantity": "10",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "data-transfer-out": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DataTransferOut",
+        "storage": "NoStorage"
+      },
+      "unit": "GigaBytes",
+      "quantity": "20",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "ssr-request-count": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-HostingComputeRequestCount",
+        "operation": "HostingComputeRequestCount"
+      },
+      "unit": "Requests",
+      "quantity": "730000",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    },
+    "ssr-request-duration": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-HostingComputeRequestDuration",
+        "operation": "HostingComputeRequestDuration"
+      },
+      "unit": "GB-Seconds",
+      "quantity": "365000",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "build-standard": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-BuildDuration",
+        "instancetype": "Standard8GB"
+      },
+      "productFamily": "AWS Amplify",
+      "unit": "minutes",
+      "quantity": "100"
+    },
+    "data-storage": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DataStorage",
+        "storage": "Storage"
+      },
+      "productFamily": "AWS Amplify",
+      "unit": "GigaBytes",
+      "quantity": "10"
+    },
+    "data-transfer-out": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DataTransferOut",
+        "storage": "NoStorage"
+      },
+      "productFamily": "AWS Amplify",
+      "unit": "GigaBytes",
+      "quantity": "20"
+    },
+    "ssr-request-count": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-HostingComputeRequestCount",
+        "operation": "HostingComputeRequestCount"
+      },
+      "productFamily": "AWS Amplify",
+      "unit": "Requests",
+      "quantity": "730000"
+    },
+    "ssr-request-duration": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-HostingComputeRequestDuration",
+        "operation": "HostingComputeRequestDuration"
+      },
+      "productFamily": "AWS Amplify",
+      "unit": "GB-Seconds",
+      "quantity": "365000"
+    }
+  }
+}

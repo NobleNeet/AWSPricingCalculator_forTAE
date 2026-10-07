@@ -11,18 +11,10 @@ import { buildPriceDb, checksum } from '../../tools/pricing-cli/build.js';
 import { normalize } from '../../tools/pricing-cli/normalize.js';
 import { rawFixture } from '../fixtures/raw.js';
 import { fixturePackage } from '../fixtures/definitions.js';
-import { changedPriceSourceCodes, contractFingerprints, definitionFingerprint } from '../../tools/pricing-cli/fingerprint.js';
+import { contractFingerprints, definitionFingerprint } from '../../tools/pricing-cli/fingerprint.js';
 import { loadPackages } from '../../tools/pricing-cli/package-loader.js';
 
-test('NO_CHANGE pipeline never downloads; breaking and ERROR never build', async t => {
-  const packages = await loadPackages();
-  const manifest = JSON.parse(await readFile('pricing/generated/manifest.json', 'utf8'));
-  const activeBuild = JSON.parse(await readFile(path.join('pricing/generated/builds', manifest.activeBuildId, 'build-manifest.json'), 'utf8'));
-  const pendingDefinitionSources = changedPriceSourceCodes(packages, activeBuild.contractFingerprints, await contractFingerprints(packages));
-  if (pendingDefinitionSources.size > 0) {
-    t.skip('Source-only pipeline assertions require the published semantic baseline to match the working Definitions.');
-    return;
-  }
+test('NO_CHANGE pipeline never downloads; breaking and ERROR never build', async () => {
   for (const scenario of ['NO_CHANGE', 'STRUCTURE_BREAKING', 'VALIDATION_ERROR']) {
     const work = await mkdtemp(path.join(tmpdir(), 'tae-update-')), commands = [];
     const execute = async command => {
@@ -32,7 +24,13 @@ test('NO_CHANGE pipeline never downloads; breaking and ERROR never build', async
       if (command === 'validate-price-data' && scenario === 'VALIDATION_ERROR') return report(command, [{ severity: 'error', code: 'AMBIGUOUS_SKU', message: 'ambiguous' }]);
       return report(command);
     };
-    const result = await priceUpdate({ work, execute, previousDefinitionSha256: await definitionFingerprint(await loadPackages()) });
+    const packages = await loadPackages();
+    const result = await priceUpdate({
+      work,
+      execute,
+      previousDefinitionSha256: await definitionFingerprint(packages),
+      previousContractFingerprints: await contractFingerprints(packages)
+    });
     assert.equal(result.publishable, false); assert.equal(commands.includes('build'), false);
     if (scenario === 'NO_CHANGE') assert.deepEqual(commands, ['check-source']);
     else if (scenario === 'VALIDATION_ERROR') assert.deepEqual(commands, ['check-source', 'download', 'normalize', 'inventory', 'validate-definitions', 'validate-price-data', 'run-golden']);

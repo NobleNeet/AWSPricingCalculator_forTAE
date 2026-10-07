@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "amplify",
+  "label": "AWS Amplify",
+  "priceSource": {
+    "serviceCode": "AWSAmplify"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "build-standard",
+    "build-large",
+    "build-xlarge",
+    "data-storage",
+    "data-transfer-out",
+    "ssr-request-count",
+    "ssr-request-duration"
+  ]
+}
