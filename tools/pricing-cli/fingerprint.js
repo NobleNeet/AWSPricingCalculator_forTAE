@@ -59,8 +59,11 @@ export const PUBLICATION_CONTRACT_FILES = [
 // v2 narrows the fingerprint to semantic inputs only. Treating this known
 // baseline as compatible avoids one more EC2-scale full validation solely for
 // the fingerprint-boundary migration. Any other unknown v1 baseline fails safe.
-export const COMPATIBLE_V1_GLOBAL_FINGERPRINTS = new Set([
-  'b253ce3d9e872d068ac10c7aa44a45d34ebe5dfed4ffef42cba100fc42ba3385'
+export const COMPATIBLE_SEMANTIC_MIGRATIONS = new Map([
+  [
+    'b253ce3d9e872d068ac10c7aa44a45d34ebe5dfed4ffef42cba100fc42ba3385',
+    '40ca156ff3ad83a80ee75bb29eaa26d5ccc96d361b1252921a607344930b925e'
+  ]
 ]);
 
 export function semanticGlobalChanged(previous, current) {
@@ -69,7 +72,7 @@ export function semanticGlobalChanged(previous, current) {
   if (
     previous.schemaVersion === 1
     && current.schemaVersion === SEMANTIC_CONTRACT_VERSION
-    && COMPATIBLE_V1_GLOBAL_FINGERPRINTS.has(previous.global)
+    && COMPATIBLE_SEMANTIC_MIGRATIONS.get(previous.global) === current.global
   ) return false;
   return true;
 }
