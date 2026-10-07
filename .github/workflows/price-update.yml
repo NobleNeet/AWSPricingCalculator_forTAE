@@ -2,21 +2,15 @@ name: Scheduled Price Update
 on:
   push:
     branches: [main]
+    # Automatic publication on push is limited to source-of-truth pricing
+    # inputs. Implementation/workflow changes are validated by PR CI and will
+    # be exercised by the daily schedule or an explicit workflow_dispatch,
+    # without immediately rebuilding the production Price DB on merge.
     paths:
       - 'services/**'
       - 'pricing/normalization/**'
       - 'pricing/limitations.json'
       - 'pricing/sources.json'
-      - 'src/pricing/**'
-      - 'tools/pricing-cli/**'
-      - 'tools/price-update.js'
-      - 'tools/price-update-matrix.js'
-      - 'tools/semantic-batch-plan.js'
-      - 'tools/merge-semantic-batches.js'
-      - 'tools/drift-batch-plan.js'
-      - 'tools/drift-batch-run.js'
-      - 'tools/merge-drift-batches.js'
-      - '.github/workflows/price-update.yml'
   schedule:
     - cron: '23 2 * * *'
   # Also dispatched explicitly by onboarding-promotion because GITHUB_TOKEN pushes do not chain workflows.
