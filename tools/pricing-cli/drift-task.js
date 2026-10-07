@@ -1,9 +1,9 @@
 import path from 'node:path';
 import { readJson } from './package-loader.js';
 import { classifyChange, semanticProduct } from './drift.js';
-import { loadProductsForSkus } from './product-chunks.js';
+import { loadProductsForSkus } from './publication-candidate.js';
 import { priceSourceForComponent } from '../../src/pricing/mapping.js';
-import { checksum } from './build.js';
+import { checksum } from './hash.js';
 import { encode } from './normalize.js';
 
 export function sourceScopedPackage(pkg, serviceCode) {
