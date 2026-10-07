@@ -6,8 +6,11 @@ import path from 'node:path';
 import { definitionRefreshServiceCodes } from '../../tools/price-update.js';
 import {
   changedPriceSourceCodes,
+  pricingContractFingerprint,
   PRICING_CONTRACT_FILES,
-  PUBLICATION_CONTRACT_FILES
+  PUBLICATION_CONTRACT_FILES,
+  semanticGlobalChanged,
+  SEMANTIC_CONTRACT_VERSION
 } from '../../tools/pricing-cli/fingerprint.js';
 import { readGoldenRawSource } from '../../tools/golden-evidence.js';
 
@@ -48,15 +51,48 @@ test('shared fingerprint inputs and pricing contract changes safely fall back to
   assert.equal(definitionRefreshServiceCodes(packages, undefined), null);
 });
 
-test('publication-only candidate assembly does not invalidate semantic validation globally', () => {
-  assert.ok(PUBLICATION_CONTRACT_FILES.includes('tools/pricing-cli/publication-candidate.js'));
-  assert.ok(PUBLICATION_CONTRACT_FILES.includes('tools/pricing-cli/build.js'));
-  assert.equal(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/publication-candidate.js'), false);
-  // Existing shared build/chunk files remain in the semantic baseline for compatibility.
-  // Publication-only selection now lives in its own file, so future fixes there do not
-  // invalidate every service.
-  assert.ok(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/build.js'));
-  assert.ok(PRICING_CONTRACT_FILES.includes('tools/pricing-cli/product-chunks.js'));
+test('publication and orchestration files do not invalidate semantic validation globally', () => {
+  for (const file of [
+    'tools/pricing-cli/build.js',
+    'tools/pricing-cli/cli.js',
+    'tools/pricing-cli/encoding.js',
+    'tools/pricing-cli/price-index.js',
+    'tools/pricing-cli/product-chunk-writer.js',
+    'tools/pricing-cli/publication-candidate.js',
+    'tools/publish-price-build.js'
+  ]) assert.equal(PRICING_CONTRACT_FILES.includes(file), false, file);
+
+  for (const file of [
+    'tools/pricing-cli/build.js',
+    'tools/pricing-cli/encoding.js',
+    'tools/pricing-cli/price-index.js',
+    'tools/pricing-cli/product-chunk-writer.js',
+    'tools/pricing-cli/publication-candidate.js',
+    'tools/publish-price-build.js'
+  ]) assert.ok(PUBLICATION_CONTRACT_FILES.includes(file), file);
+
+  for (const file of [
+    'src/pricing/mapping.js',
+    'src/pricing/decimal.js',
+    'src/pricing/issues.js',
+    'tools/pricing-cli/inventory.js',
+    'tools/pricing-cli/normalize.js',
+    'tools/pricing-cli/product-chunks.js',
+    'tools/pricing-cli/semantic-validation-worker.js',
+    'tools/pricing-cli/semantics.js'
+  ]) assert.ok(PRICING_CONTRACT_FILES.includes(file), file);
+});
+
+test('known v1 baseline migrates to semantic contract v2 without a global revalidation', async () => {
+  const currentGlobal = await pricingContractFingerprint();
+  console.log(`semantic-contract-v2=${currentGlobal}`);
+  const previous = {
+    schemaVersion: 1,
+    global: 'b253ce3d9e872d068ac10c7aa44a45d34ebe5dfed4ffef42cba100fc42ba3385',
+    services: {}
+  };
+  const current = { schemaVersion: SEMANTIC_CONTRACT_VERSION, global: currentGlobal, services: {} };
+  assert.equal(semanticGlobalChanged(previous, current), false);
 });
 
 test('persisted per-service fingerprints refresh only changed price sources', () => {
