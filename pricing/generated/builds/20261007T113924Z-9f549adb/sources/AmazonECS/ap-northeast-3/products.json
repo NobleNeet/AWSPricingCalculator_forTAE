@@ -1,0 +1,313 @@
+{
+  "buildId": "20261007T113924Z-9f549adb",
+  "products": [
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN3-Fargate-Windows-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "78ZSA6M5BSXR8SZY",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - Memory  - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0063595000"
+                },
+                "rateCode": "78ZSA6M5BSXR8SZY.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-Windows-GB-Hours"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN3-Fargate-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "9D5QRX28SVQKUJVW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Memory  - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0055300000"
+                },
+                "rateCode": "9D5QRX28SVQKUJVW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "cputype": "perCPU",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN3-Fargate-ARM-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "9N79BEJADPWSFSVF",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - vCPU - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0404500000"
+                },
+                "rateCode": "9N79BEJADPWSFSVF.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-ARM-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN3-Fargate-Windows-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "A9SY5JCPM77JZUGE",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - vCPU  - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0581440000"
+                },
+                "rateCode": "A9SY5JCPM77JZUGE.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-Windows-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN3-Fargate-ARM-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "E89A39AKE3BC9ZH4",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - Memory - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0044200000"
+                },
+                "rateCode": "E89A39AKE3BC9ZH4.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-ARM-GB-Hours"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "storagetype": "default",
+        "usagetype": "APN3-Fargate-EphemeralStorage-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "JR93328X4EZACNU6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Ephemeral Storage - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0001330000"
+                },
+                "rateCode": "JR93328X4EZACNU6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-EphemeralStorage-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN3-Fargate-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "QDHWZRWNV3GG62U5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - vCPU  - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0505600000"
+                },
+                "rateCode": "QDHWZRWNV3GG62U5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU OS License Fee",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "resource": "OS License Fee per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "APN3-Fargate-Windows-OS-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "XA2JZ85ZRJCPUMNR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - OS  - Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0460000000"
+                },
+                "rateCode": "XA2JZ85ZRJCPUMNR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Fargate-Windows-OS-Hours:perCPU"
+    }
+  ],
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonECS"
+}

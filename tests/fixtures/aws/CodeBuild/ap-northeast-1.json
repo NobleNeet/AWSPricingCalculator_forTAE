@@ -1,0 +1,51 @@
+{
+  "offerCode": "CodeBuild",
+  "products": {
+    "6Q5BZ5WQT9QPDGZ7": {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.2xlarge",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "96 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN1-Build-Min:ARM:g1.2xlarge",
+        "vcpu": "48"
+      },
+      "productFamily": "Compute",
+      "sku": "6Q5BZ5WQT9QPDGZ7"
+    }
+  },
+  "publicationDate": "2026-09-11T12:46:25Z",
+  "terms": {
+    "OnDemand": {
+      "6Q5BZ5WQT9QPDGZ7": {
+        "6Q5BZ5WQT9QPDGZ7.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "6Q5BZ5WQT9QPDGZ7.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "AWS CodeBuild - Build minutes on  arm1.2xlarge in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.1200000000"
+              },
+              "rateCode": "6Q5BZ5WQT9QPDGZ7.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "minutes"
+            }
+          },
+          "sku": "6Q5BZ5WQT9QPDGZ7",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260911124625"
+}

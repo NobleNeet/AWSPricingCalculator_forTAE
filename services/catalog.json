@@ -70,6 +70,15 @@
     },
     {
       "available": true,
+      "id": "codebuild",
+      "label": "AWS CodeBuild",
+      "profiles": [
+        "on-demand-ec2"
+      ],
+      "serviceCode": "CodeBuild"
+    },
+    {
+      "available": true,
       "id": "fargate",
       "label": "AWS Fargate",
       "profiles": [
@@ -94,15 +103,6 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
-    },
-    {
-      "available": true,
-      "id": "codebuild",
-      "label": "AWS CodeBuild",
-      "profiles": [
-        "on-demand-ec2"
-      ],
-      "serviceCode": "CodeBuild"
     }
   ]
 }

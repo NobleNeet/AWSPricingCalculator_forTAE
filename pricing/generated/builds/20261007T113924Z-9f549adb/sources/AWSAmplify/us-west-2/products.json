@@ -1,0 +1,264 @@
+{
+  "buildId": "20261007T113924Z-9f549adb",
+  "products": [
+    {
+      "attributes": {
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "HostingComputeRequestCount",
+        "regionCode": "us-west-2",
+        "requestCount": "RequestCount",
+        "requestDuration": "NoRequestDuration",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USW2-HostingComputeRequestCount"
+      },
+      "operation": "HostingComputeRequestCount",
+      "productFamily": "AWS Amplify",
+      "sku": "5MK2ESGXHQFYUTS8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.30 per 1 million requests for Amplify Hosting Compute",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000003000"
+                },
+                "rateCode": "5MK2ESGXHQFYUTS8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-HostingComputeRequestCount"
+    },
+    {
+      "attributes": {
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "HostingComputeRequestDuration",
+        "regionCode": "us-west-2",
+        "requestCount": "NoRequestCount",
+        "requestDuration": "RequestDuration",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USW2-HostingComputeRequestDuration"
+      },
+      "operation": "HostingComputeRequestDuration",
+      "productFamily": "AWS Amplify",
+      "sku": "8CNQ58M6SG2B3Q3F",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.20 per GB-Hour for Amplify Hosting Compute",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000555556"
+                },
+                "rateCode": "8CNQ58M6SG2B3Q3F.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-HostingComputeRequestDuration"
+    },
+    {
+      "attributes": {
+        "instancetype": "Large16GB",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USW2-BuildDuration-Large16GB"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "HYP9KCGXR6RBRA4S",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.025 per minute for BuildDuration-Large16GB in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0250000000"
+                },
+                "rateCode": "HYP9KCGXR6RBRA4S.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-BuildDuration-Large16GB"
+    },
+    {
+      "attributes": {
+        "instancetype": "Xlarge72GB",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USW2-BuildDuration-XLarge72GB"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "QKXJNCWZ5SYSCWDQ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.10 per minute for BuildDuration-XLarge72GB in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1000000000"
+                },
+                "rateCode": "QKXJNCWZ5SYSCWDQ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-BuildDuration-XLarge72GB"
+    },
+    {
+      "attributes": {
+        "datatransferout": "DataTransferOut",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "storage": "NoStorage",
+        "usagetype": "USW2-DataTransferOut"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "RTWDKAA75HVSTA79",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.15 per GB served (data transfer out)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1500000000"
+                },
+                "rateCode": "RTWDKAA75HVSTA79.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-DataTransferOut"
+    },
+    {
+      "attributes": {
+        "datatransferout": "NoDataTransferOut",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "storage": "Storage",
+        "usagetype": "USW2-DataStorage"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "WV2TPSX9C6S7FFNM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.023 per GB build artifacts stored",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0230000000"
+                },
+                "rateCode": "WV2TPSX9C6S7FFNM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-DataStorage"
+    },
+    {
+      "attributes": {
+        "instancetype": "Standard8GB",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "USW2-BuildDuration"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "YYXX9HNM2QY9BXHU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.01 per build minute (4 vCPU, 7 GB Memory)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "YYXX9HNM2QY9BXHU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-BuildDuration"
+    }
+  ],
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSAmplify"
+}
