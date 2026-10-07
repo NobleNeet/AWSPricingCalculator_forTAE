@@ -61,6 +61,15 @@
     },
     {
       "available": true,
+      "id": "fargate",
+      "label": "AWS Fargate",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AmazonECS"
+    },
+    {
+      "available": true,
       "id": "kms",
       "label": "AWS Key Management Service (KMS)",
       "profiles": [
@@ -76,15 +85,6 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
-    },
-    {
-      "available": true,
-      "id": "fargate",
-      "label": "AWS Fargate",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonECS"
     }
   ]
 }

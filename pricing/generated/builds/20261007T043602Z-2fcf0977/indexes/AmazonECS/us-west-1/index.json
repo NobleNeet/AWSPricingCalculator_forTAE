@@ -1,0 +1,60 @@
+{
+  "attributes": {
+    "cpuArchitecture": [
+      "ARM"
+    ],
+    "cputype": [
+      "perCPU",
+      "perCPU OS License Fee"
+    ],
+    "location": [
+      "US West (N. California)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "memorytype": [
+      "perGB"
+    ],
+    "operatingSystem": [
+      "Windows"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "us-west-1"
+    ],
+    "resource": [
+      "OS License Fee per vCPU per hour",
+      "per GB per hour",
+      "per vCPU per hour"
+    ],
+    "servicecode": [
+      "AmazonECS"
+    ],
+    "servicename": [
+      "Amazon Elastic Container Service"
+    ],
+    "storagetype": [
+      "default"
+    ],
+    "tenancy": [
+      "Shared"
+    ],
+    "usagetype": [
+      "USW1-Fargate-ARM-GB-Hours",
+      "USW1-Fargate-ARM-vCPU-Hours:perCPU",
+      "USW1-Fargate-EphemeralStorage-GB-Hours",
+      "USW1-Fargate-GB-Hours",
+      "USW1-Fargate-vCPU-Hours:perCPU",
+      "USW1-Fargate-Windows-GB-Hours",
+      "USW1-Fargate-Windows-OS-Hours:perCPU",
+      "USW1-Fargate-Windows-vCPU-Hours:perCPU"
+    ]
+  },
+  "buildId": "20261007T043602Z-2fcf0977",
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonECS"
+}
