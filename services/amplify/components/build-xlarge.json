@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "build-xlarge",
+  "label": "Build minutes - XLarge",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "enabledWhen": {
+    "field": "profile.buildInstanceSize",
+    "op": "eq",
+    "value": "XLarge (72 GB メモリ、vCPU 36 個)"
+  },
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "AWS Amplify"
+      },
+      {
+        "field": "attributes.instancetype",
+        "op": "eq",
+        "value": "XLarge72GB"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "minutes"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.buildMinutesPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "minutes"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
