@@ -1,0 +1,54 @@
+name: CodeBuild Price Probe
+on:
+  push:
+    branches: [onboard/codebuild]
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch Tokyo CodeBuild Price List and print On-Demand EC2 meters
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/CodeBuild/current/ap-northeast-1/index.json'
+          curl --fail --location --silent --show-error "$url" -o /tmp/codebuild.json
+          echo '=== METADATA ==='
+          jq -c '{formatVersion,version,publicationDate,offerCode}' /tmp/codebuild.json
+          echo '=== ONDEMAND EC2 PRODUCTS ==='
+          jq -r '
+            .products
+            | to_entries[]
+            | select((.value.attributes.computeFamily // "") == "OnDemand-EC2")
+            | [.key, (.value.productFamily // ""), (.value.attributes | tojson)]
+            | @tsv
+          ' /tmp/codebuild.json | sort
+          echo '=== ONDEMAND EC2 DIMENSIONS ==='
+          jq -r '
+            .products
+            | to_entries[]
+            | select((.value.attributes.computeFamily // "") == "OnDemand-EC2")
+            | .key
+          ' /tmp/codebuild.json | sort -u | while read -r sku; do
+            jq -c --arg sku "$sku" '
+              (.terms.OnDemand[$sku] // {})
+              | to_entries[]
+              | .value.priceDimensions
+              | to_entries[]
+              | {
+                  sku: $sku,
+                  rateCode: .key,
+                  unit: .value.unit,
+                  description: .value.description,
+                  beginRange: .value.beginRange,
+                  endRange: .value.endRange,
+                  pricePerUnit: .value.pricePerUnit
+                }
+            ' /tmp/codebuild.json
+          done
+          echo '=== OTHER COMPUTE FAMILIES ==='
+          jq -r '.products | to_entries[] | [(.value.attributes.computeFamily // ""), (.value.attributes.computeType // ""), (.value.attributes.operatingSystem // ""), (.value.attributes.usagetype // "")] | @tsv' /tmp/codebuild.json | sort -u
