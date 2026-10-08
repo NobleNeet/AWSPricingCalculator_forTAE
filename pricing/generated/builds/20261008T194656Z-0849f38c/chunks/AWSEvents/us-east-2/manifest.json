@@ -1,0 +1,17 @@
+{
+  "buildId": "20261008T194656Z-0849f38c",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 11,
+      "firstSku": "534HQFPF6VT4G9Y5",
+      "lastSku": "YWPD6KF787Y6KD8P",
+      "path": "chunks/AWSEvents/us-east-2/00000.json",
+      "sha256": "e2e5288959dc436dc9cf77414ecd3b63b7661ec793dc5ed9160f6631c7803ff4"
+    }
+  ],
+  "productCount": 11,
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSEvents"
+}

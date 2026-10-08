@@ -38,6 +38,49 @@
       "productFamily": "System Operation",
       "sku": "7TFGMV47Q2PEQ9W7"
     },
+    "A2BCGCXTPWSWTYA5": {
+      "attributes": {
+        "availabilityzone": "NA",
+        "capacitystatus": "Used",
+        "classicnetworkingsupport": "false",
+        "clockSpeed": "3.1 GHz",
+        "currentGeneration": "Yes",
+        "dedicatedEbsThroughput": "Up to 2085 Mbps",
+        "dedicatedEbsThroughputDescription": "87 Mbps",
+        "ecu": "NA",
+        "enhancedNetworkingSupported": "No",
+        "gpuMemory": "NA",
+        "instanceFamily": "General purpose",
+        "instanceFamilyCategory": "General Purpose",
+        "instanceType": "t3.micro",
+        "intelAvx2Available": "Yes",
+        "intelAvxAvailable": "Yes",
+        "intelTurboAvailable": "Yes",
+        "licenseModel": "No License required",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "marketoption": "OnDemand",
+        "memory": "1 GiB",
+        "networkPerformance": "Up to 5 Gigabit",
+        "normalizationSizeFactor": "0.5",
+        "operatingSystem": "Linux",
+        "operation": "RunInstances",
+        "physicalProcessor": "Intel Skylake E5 2686 v5",
+        "preInstalledSw": "NA",
+        "processorArchitecture": "64-bit",
+        "processorFeatures": "AVX; AVX2; Intel AVX; Intel AVX2; Intel AVX512; Intel Turbo",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "storage": "EBS only",
+        "tenancy": "Dedicated",
+        "usagetype": "APN1-DedicatedUsage:t3.micro",
+        "vcpu": "2",
+        "vpcnetworkingsupport": "true"
+      },
+      "productFamily": "Compute Instance",
+      "sku": "A2BCGCXTPWSWTYA5"
+    },
     "C8Y3GJZBQTH8T5JV": {
       "attributes": {
         "location": "Asia Pacific (Tokyo)",
@@ -100,6 +143,21 @@
       "productFamily": "Compute Instance",
       "sku": "DAPC5MD4ZQN9K67N"
     },
+    "G7K2HMN3E2YE2YE2": {
+      "attributes": {
+        "group": "EC2-Dedicated Usage",
+        "groupDescription": "Fee for running at least one Dedicated Instance or a Dedicated Instance Capacity Reservation in the region",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "Surcharge",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonEC2",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "usagetype": "APN1-DedicatedUsage"
+      },
+      "productFamily": "Fee",
+      "sku": "G7K2HMN3E2YE2YE2"
+    },
     "PCKHHBTPD7TEQ3K4": {
       "attributes": {
         "group": "EBS Throughput",
@@ -161,7 +219,7 @@
       "sku": "XPV6RFWY6M7R7MEF"
     }
   },
-  "publicationDate": "2026-10-06T17:24:54Z",
+  "publicationDate": "2026-10-07T16:54:08Z",
   "terms": {
     "OnDemand": {
       "2KRSTFABXH77P2FQ": {
@@ -206,6 +264,27 @@
           "termAttributes": {}
         }
       },
+      "A2BCGCXTPWSWTYA5": {
+        "A2BCGCXTPWSWTYA5.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "A2BCGCXTPWSWTYA5.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0145 per Dedicated Linux t3.micro Instance Hour",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0145000000"
+              },
+              "rateCode": "A2BCGCXTPWSWTYA5.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "A2BCGCXTPWSWTYA5",
+          "termAttributes": {}
+        }
+      },
       "C8Y3GJZBQTH8T5JV": {
         "C8Y3GJZBQTH8T5JV.JRTCKXETXF": {
           "effectiveDate": "2026-10-01T00:00:00Z",
@@ -245,6 +324,27 @@
             }
           },
           "sku": "DAPC5MD4ZQN9K67N",
+          "termAttributes": {}
+        }
+      },
+      "G7K2HMN3E2YE2YE2": {
+        "G7K2HMN3E2YE2YE2.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$2.00 once per hour when using dedicated tenancy (instance or Capacity Reservation) in the Asia Pacific Tokyo Region",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "2.0000000000"
+              },
+              "rateCode": "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "G7K2HMN3E2YE2YE2",
           "termAttributes": {}
         }
       },
@@ -292,5 +392,5 @@
       }
     }
   },
-  "version": "20261006172454"
+  "version": "20261007165408"
 }
