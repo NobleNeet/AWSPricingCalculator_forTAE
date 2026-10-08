@@ -37,6 +37,40 @@ test('numeric profile conditions are probed so conditional meters remain semanti
   assert.ok(resolution);
   assert.notEqual(resolution.instance.selectors.requestCount, '0');
 });
+test('semantic validation allows a region where all pricing components are intentionally disabled', () => {
+  const { pkg, candidate } = fixture();
+  pkg.components.meter.enabledWhen = { field: 'project.region', op: 'in', value: ['us-east-1'] };
+  const result = validatePriceData(
+    [pkg],
+    candidate.data,
+    { regionPrefixes: ['APN1-'], rules: [] },
+    { Example: { rules: [] } },
+    { includeCoverage: false }
+  );
+  assert.equal(result.resolutions.length, 0);
+  assert.equal(result.issues.some(item => item.code === 'NO_REACHABLE_SELECTOR'), false);
+});
+test('semantic validation still rejects missing selector branches for an otherwise enabled component', () => {
+  const { pkg, candidate } = fixture();
+  pkg.profiles.standard.selectors = [{
+    id: 'size',
+    label: 'Size',
+    type: 'select',
+    options: {
+      attribute: 'instanceType',
+      filters: [{ field: 'productFamily', op: 'eq', value: 'No such family' }]
+    },
+    default: 'missing'
+  }];
+  const result = validatePriceData(
+    [pkg],
+    candidate.data,
+    { regionPrefixes: ['APN1-'], rules: [] },
+    { Example: { rules: [] } },
+    { includeCoverage: false, includeDefaultChecks: false }
+  );
+  assert.equal(result.issues.some(item => item.code === 'NO_REACHABLE_SELECTOR'), true);
+});
 test('coverage inventory is canonical while supported pricing resolves in every region', () => {
   const { pkg, candidate } = fixture();
   pkg.components.meter.priceQuery.productFilters = [{ field: 'productFamily', op: 'eq', value: 'Compute' }];

@@ -296,7 +296,26 @@ export function validatePriceData(packages, data, common, normalizers, options =
         }
       }
       if (batchCases > 0) onCaseBatch?.({ serviceId: pkg.service.id, region: source.region, processedCases, batchCases });
-      if (reachable === 0 && includeStructuralChecks) issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id, region: source.region }));
+      if (reachable === 0 && includeStructuralChecks) {
+        let hasProfileBranch = false;
+        let hasEnabledComponentContext = false;
+        for (const profileId of pkg.service.profiles) {
+          const profile = pkg.profiles[profileId];
+          const instance = defaults(pkg, profileId);
+          const base = { project: { region: source.region, defaultRegion: source.region, hoursPerMonth: '730' }, profile: instance.selectors, component: {} };
+          for (const context of branches(profile.selectors, 'profile', base, productsByServiceCode[defaultCode] ?? [], profile.fixedFilters)) {
+            hasProfileBranch = true;
+            if (profile.components.some(componentId => componentContexts(profile, pkg.components[componentId], context).length > 0)) {
+              hasEnabledComponentContext = true;
+              break;
+            }
+          }
+          if (hasEnabledComponentContext) break;
+        }
+        if (!hasProfileBranch || hasEnabledComponentContext) {
+          issues.push(issue('NO_REACHABLE_SELECTOR', 'No reachable selector branch.', { serviceId: pkg.service.id, region: source.region }));
+        }
+      }
       if (exhausted) break packageLoop;
     }
   }
