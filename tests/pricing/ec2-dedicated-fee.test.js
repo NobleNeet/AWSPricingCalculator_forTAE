@@ -40,3 +40,18 @@ test('existing saved Dedicated rows gain the regional component without changing
   assert.deepEqual(instance.components['dedicated-region-fee'], { enabled: true, inputs: { hours: '730' } });
   assert.equal(instance.components.instance.inputs.hours, '100');
 });
+
+test('new T8i CPU-credit categories are explicitly excluded while unexpected future categories still fail coverage', async () => {
+  const { validateCoverage } = await import('../../tools/pricing-cli/inventory.js');
+  const categories = [['T8ICPUCredits', 'Linux'], ['WindowsT8ICPUCredits', 'Windows']].map(([operation, operatingSystem]) => ({ productFamily: 'CPU Credits', operation, usageTypeClass: 'CPUCredits', unit: 'vCPU-Hours', discriminators: { operatingSystem } }));
+  for (const serviceId of ['ec2', 'ebs']) {
+    const service = await loadPackage(`services/${serviceId}`);
+    const result = validateCoverage(categories, service.coverage);
+    assert.deepEqual(result.issues, []);
+    assert.equal(result.summary.ignored, 2);
+    assert.equal(validateCoverage([{ ...categories[0], operation: 'UnrecognizedFutureCPUCredits' }], service.coverage).issues[0].code, 'UNMAPPED_PRICING_CATEGORY');
+  }
+  const surcharge = validateCoverage([{ productFamily: 'Fee', operation: 'Surcharge', usageTypeClass: 'DedicatedUsage', unit: 'Hrs', discriminators: {} }], pkg.coverage);
+  assert.deepEqual(surcharge.issues, []);
+  assert.equal(surcharge.summary.mapped, 1);
+});

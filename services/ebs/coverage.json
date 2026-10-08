@@ -14857,6 +14857,70 @@
       "status": "ignored",
       "reason": "Outside Amazon EBS initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "CPU Credits"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "T8ICPUCredits"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CPUCredits"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "vCPU-Hours"
+        },
+        {
+          "field": "discriminators.operatingSystem",
+          "op": "eq",
+          "value": "Linux"
+        }
+      ],
+      "status": "ignored",
+      "reason": "T8i CPU credits are outside supported EC2/EBS meters, consistent with the existing CPU-credit exclusion. Observed in AWS Public Price List 2026-10-07.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "CPU Credits"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "WindowsT8ICPUCredits"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CPUCredits"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "vCPU-Hours"
+        },
+        {
+          "field": "discriminators.operatingSystem",
+          "op": "eq",
+          "value": "Windows"
+        }
+      ],
+      "status": "ignored",
+      "reason": "T8i CPU credits are outside supported EC2/EBS meters, consistent with the existing CPU-credit exclusion. Observed in AWS Public Price List 2026-10-07.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
