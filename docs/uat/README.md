@@ -42,3 +42,11 @@
 - correction/reselection: J003/J004
 
 `cases/` の各ケースは安定ID `UAT-Jnnn-nn` を持つ。
+## AWS Pricing Calculator parity test（明示指示時のみ）
+
+AWS公式Calculatorと公開Pagesの全サービス・全料金関連入力項目をGUIで比較する独立した最上位検証は、[AWS_CALCULATOR_PARITY.md](AWS_CALCULATOR_PARITY.md) を正本とする。
+
+- ユーザーが明示的に実行を指示したときのみ実施する。通常のUAT、CI、オンボーディング、価格更新、デプロイから自動起動しない。
+- 差額だけで不具合と断定せず、仕様差と実装不具合を区別する。
+- FAILごとにCodexへそのまま渡せる修正指示書を保存し、修正担当は最新版の`AGENTS.md`等を参照する。
+- テスト担当は修正・再テストを自動開始しない。
