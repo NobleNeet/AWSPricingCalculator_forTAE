@@ -102,6 +102,7 @@ tests/aws-calculator-parity/
       summary.json
       summary.csv
       fix-all.md
+      cases/<service-id>/<case-id>.json
       failures/<case-id>/
         comparison.json
         fix-instructions.md
@@ -112,6 +113,16 @@ tests/aws-calculator-parity/
       investigations/<case-id>/
         instructions.md
 ```
+
+### 全ケースの個別実測記録（PASS含む必須）
+
+- `cases.json` はケース計画・入力定義の一覧であり、`cases/<service-id>/<case-id>.json` は**各ケースの実行結果**とする。両者は安定したcase IDで対応させる。
+- PASS、FAIL、BLOCKED、NOT_COMPARABLE、INCOMPLETEの**全ケース**で個別JSONを作る。未実施の場合も理由、最後の進捗、再開に必要な情報を保持し、未測定金額を推測で埋めない。
+- 各JSONには少なくとも、case ID、service ID、Profile、Region、検証パラメータ、全入力値・単位・条件付き項目、対象URL、実行日時、公開ビルド識別子、テスト状態・判定理由、変更前/後の双方のGUI実測総額と取得可能な内訳、双方の変化量、金額差・許容差、警告・制約、証跡相対パスを記録する。測定不能な欄はnullと理由で表す。
+- FAILの`failures/<case-id>/comparison.json` は、この個別記録を参照または矛盾なく派生させる。二重に記録した値が食い違わないことを検証する。個別修正指示書から個別ケースJSONへ相対リンクを付ける。
+- `summary.json`/`summary.csv`/`summary.md`、`coverage-matrix.json`は個別ケース実測記録から再生成可能にする。途中再開や再集計によって以前のPASS記録を誤って今回の実測に混在させない。
+- 前回実行との差分を追跡できるよう、同じcase IDと等価な入力条件を維持し、公開ビルド・料金前提が異なる比較には注記する。過去のPASS値で今回のGUI計測を省略しない。
+- 大容量の画像はJSONに埋め込まず、相対ファイルパスで参照する。
 
 サービス別に全項目数、試験済み項目数、未試験項目、Profile・Region範囲、ケース総数、PASS/FAIL/BLOCKED/NOT_COMPARABLE/INCOMPLETE、最大金額差、証跡リンクを報告する。
 
