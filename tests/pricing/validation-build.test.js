@@ -56,10 +56,12 @@ test('semantic validation still rejects missing selector branches for an otherwi
     id: 'size',
     label: 'Size',
     type: 'select',
-    source: { field: 'attributes.instanceType' },
+    options: {
+      attribute: 'instanceType',
+      filters: [{ field: 'productFamily', op: 'eq', value: 'No such family' }]
+    },
     default: 'missing'
   }];
-  pkg.profiles.standard.fixedFilters = [{ field: 'productFamily', op: 'eq', value: 'No such family' }];
   const result = validatePriceData(
     [pkg],
     candidate.data,
