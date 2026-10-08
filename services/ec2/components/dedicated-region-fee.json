@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "dedicated-region-fee",
+  "label": "Dedicated per-region fee (count once per region)",
+  "optional": true,
+  "defaultEnabled": true,
+  "enabledWhen": {
+    "field": "profile.tenancy",
+    "op": "eq",
+    "value": "Dedicated"
+  },
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "hours",
+      "label": "Dedicated regional usage hours / month",
+      "type": "number",
+      "default": "730",
+      "minimum": "0",
+      "maximum": "744",
+      "ui": {
+        "help": "同じRegionでDedicated Instanceが少なくとも1台稼働する、またはDedicated Instance Capacity Reservationを保有する時間を入力します。台数は掛けません。既定は730時間です。Computeの稼働時間とは独立して設定します。同じ構成案・Regionの別行でこの料金を計上する場合は、このComponentを無効にして重複を避けてください。稼働時間の重なりは自動集計しません。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Fee"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "Surcharge"
+      },
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "EC2-Dedicated Usage"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.hours"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Hrs"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "aggregate-billing"
+  ]
+}

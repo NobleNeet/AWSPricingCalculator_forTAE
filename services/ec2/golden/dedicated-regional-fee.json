@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "dedicated-regional-fee",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "tenancy": "Dedicated",
+    "os": "Linux",
+    "software": "NA",
+    "ebsVolumeType": "none"
+  },
+  "components": {
+    "instance": {
+      "enabled": true,
+      "inputs": {
+        "instanceType": "t3.micro",
+        "hours": "730",
+        "quantity": "2"
+      }
+    },
+    "dedicated-region-fee": {
+      "enabled": true,
+      "inputs": {
+        "hours": "730"
+      }
+    }
+  },
+  "expected": {
+    "instance": {
+      "attributes": {
+        "tenancy": "Dedicated",
+        "capacitystatus": "Used",
+        "preInstalledSw": "NA",
+        "marketoption": "OnDemand",
+        "licenseModel": "No License required",
+        "operatingSystem": "Linux",
+        "instanceType": "t3.micro",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DedicatedUsage:t3.micro",
+        "operation": "RunInstances"
+      },
+      "unit": "Hrs",
+      "quantity": "1460",
+      "limitations": [
+        "free-tier",
+        "account-specific-discount",
+        "cpu-credits",
+        "network-transfer",
+        "aggregate-billing"
+      ]
+    },
+    "dedicated-region-fee": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DedicatedUsage",
+        "operation": "Surcharge",
+        "group": "EC2-Dedicated Usage"
+      },
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "account-specific-discount",
+        "aggregate-billing"
+      ]
+    }
+  },
+  "verification": {
+    "instance": {
+      "attributes": {
+        "tenancy": "Dedicated",
+        "capacitystatus": "Used",
+        "preInstalledSw": "NA",
+        "marketoption": "OnDemand",
+        "licenseModel": "No License required",
+        "operatingSystem": "Linux",
+        "instanceType": "t3.micro",
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DedicatedUsage:t3.micro",
+        "operation": "RunInstances"
+      },
+      "productFamily": "Compute Instance",
+      "unit": "Hrs",
+      "quantity": "1460"
+    },
+    "dedicated-region-fee": {
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DedicatedUsage",
+        "operation": "Surcharge",
+        "group": "EC2-Dedicated Usage"
+      },
+      "productFamily": "Fee",
+      "unit": "Hrs",
+      "quantity": "730"
+    }
+  }
+}

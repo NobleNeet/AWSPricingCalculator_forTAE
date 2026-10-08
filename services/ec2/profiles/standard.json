@@ -135,6 +135,7 @@
   "fixedFilters": [],
   "components": [
     "instance",
+    "dedicated-region-fee",
     "ebs",
     "ebs-gp3-iops",
     "ebs-gp3-throughput",

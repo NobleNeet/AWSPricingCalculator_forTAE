@@ -1,0 +1,80 @@
+{
+  "products": {
+    "G7K2HMN3E2YE2YE2": {
+      "sku": "G7K2HMN3E2YE2YE2",
+      "productFamily": "Fee",
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "usagetype": "APN1-DedicatedUsage",
+        "operation": "Surcharge",
+        "group": "EC2-Dedicated Usage",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "servicecode": "AmazonEC2"
+      }
+    },
+    "A2BCGCXTPWSWTYA5": {
+      "sku": "A2BCGCXTPWSWTYA5",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "regionCode": "ap-northeast-1",
+        "tenancy": "Dedicated",
+        "operatingSystem": "Linux",
+        "instanceType": "t3.micro",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used",
+        "marketoption": "OnDemand",
+        "licenseModel": "No License required",
+        "usagetype": "APN1-DedicatedUsage:t3.micro",
+        "operation": "RunInstances",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "servicecode": "AmazonEC2"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "G7K2HMN3E2YE2YE2": {
+        "G7K2HMN3E2YE2YE2.JRTCKXETXF": {
+          "sku": "G7K2HMN3E2YE2YE2",
+          "offerTermCode": "JRTCKXETXF",
+          "effectiveDate": "2026-10-01",
+          "priceDimensions": {
+            "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$2.00 once per hour when using dedicated tenancy (instance or Capacity Reservation) in the Asia Pacific Tokyo Region",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "2.0000000000"
+              },
+              "appliesTo": []
+            }
+          }
+        }
+      },
+      "A2BCGCXTPWSWTYA5": {
+        "A2BCGCXTPWSWTYA5.JRTCKXETXF": {
+          "sku": "A2BCGCXTPWSWTYA5",
+          "offerTermCode": "JRTCKXETXF",
+          "effectiveDate": "2026-10-01",
+          "priceDimensions": {
+            "A2BCGCXTPWSWTYA5.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "A2BCGCXTPWSWTYA5.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.0145 per Dedicated Linux t3.micro Instance Hour",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "0.0145000000"
+              },
+              "appliesTo": []
+            }
+          }
+        }
+      }
+    }
+  }
+}

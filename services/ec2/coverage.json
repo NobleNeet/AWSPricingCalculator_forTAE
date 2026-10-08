@@ -14856,9 +14856,8 @@
           "value": "Hrs"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside Amazon EC2 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "dedicated-region-fee"
     }
   ]
 }

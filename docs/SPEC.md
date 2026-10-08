@@ -207,6 +207,14 @@ AWS Pricing CalculatorにあるWorkload（一定使用量、日次・週次・�
 
 EC2 Drawerのcompute入力はAWS Pricing Calculatorの主要操作順に寄せ、Tenancy、Operating systemの後に `Number of EC2 instances`、EC2 instance type比較表、`Expected utilization of EC2 instances` の順で表示する。Workloadは上記方針により表示しない。EBS等の別課金Componentはcompute入力の後に続ける。
 
+### 6.1.1 Dedicated Instancesのリージョン追加料金
+
+Tenancyが `Dedicated` の場合、compute単価に加えてAWS Public Price Listの `Fee` / `Surcharge` / `EC2-Dedicated Usage` を独立したComponentで計算する。インスタンス台数は地域料金に掛けない。
+
+`Dedicated regional usage hours / month` は既定730時間、0〜744時間とする。同じRegionで少なくとも1台が稼働する、またはDedicated Instance Capacity Reservationを保有する時間を入力する。複数インスタンスの稼働時間の重なりは月間集計値から再構成できないため、computeの1台あたりの稼働時間とは独立して設定する。
+
+同じ構成案・Region内の複数Service Instanceに地域料金を重複計上しないよう、代表する1行で地域全体の時間を入力し、他行ではこのComponentを無効にできる。自動での行間集計は行わず、この操作をDrawerの説明で明示する。SharedではこのComponentを無効とする。既存Projectにも地域料金Componentの既定値を補完し、既存compute入力は変更しない。
+
 ### 6.2 EC2組み込みEBS
 
 EC2 DrawerのAmazon EBS欄では、EBS volume type、Storage amount、およびボリューム種別に応じたProvisioned performanceを指定できる。

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "dedicated-region-fee",
+  "componentId": "dedicated-region-fee",
+  "priceSource": {
+    "serviceCode": "AmazonEC2"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Fee"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "Surcharge"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "EC2-Dedicated Usage"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Hrs"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS Public Price List Fee / Surcharge / group EC2-Dedicated Usage. Once per hour per region, independent of instance count and OS; also applies to Dedicated Instance Capacity Reservations. Tokyo SKU G7K2HMN3E2YE2YE2, APN1-DedicatedUsage, observed 2026-10-08. Regional usage hours are explicit because overlapping runtimes across rows cannot be reconstructed from monthly aggregates."
+}
