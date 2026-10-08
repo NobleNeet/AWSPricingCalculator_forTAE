@@ -55,3 +55,21 @@ test('new T8i CPU-credit categories are explicitly excluded while unexpected fut
   assert.deepEqual(surcharge.issues, []);
   assert.equal(surcharge.summary.mapped, 1);
 });
+
+
+test('EC2 monthly compute and regional hours accept 730 and reject values above it without clamping', () => {
+  for (const hours of ['0', '729', '730']) {
+    const result = estimate({ computeHours: hours, feeHours: hours });
+    assert.equal(result.issues.length, 0);
+    assert.equal(result.components.instance.billingQuantity, hours);
+    assert.equal(result.components['dedicated-region-fee'].billingQuantity, hours);
+  }
+  for (const hours of ['730.01', '731', '744']) {
+    for (const [input, component] of [['computeHours', 'instance'], ['feeHours', 'dedicated-region-fee']]) {
+      const result = estimate({ [input]: hours });
+      assert.equal(result.amountUsd, null);
+      assert.equal(result.components[component].state, 'invalid');
+      assert.ok(result.issues.some(issue => issue.componentId === component && issue.code === 'INVALID_INPUT'));
+    }
+  }
+});

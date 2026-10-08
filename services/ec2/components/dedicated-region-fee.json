@@ -17,9 +17,9 @@
       "type": "number",
       "default": "730",
       "minimum": "0",
-      "maximum": "744",
+      "maximum": "730",
       "ui": {
-        "help": "同じRegionでDedicated Instanceが少なくとも1台稼働する、またはDedicated Instance Capacity Reservationを保有する時間を入力します。台数は掛けません。既定は730時間です。Computeの稼働時間とは独立して設定します。同じ構成案・Regionの別行でこの料金を計上する場合は、このComponentを無効にして重複を避けてください。稼働時間の重なりは自動集計しません。"
+        "help": "同じRegionでDedicated Instanceが少なくとも1台稼働する、またはDedicated Instance Capacity Reservationを保有する時間を入力します。台数は掛けません。既定・上限は730時間です。Computeの稼働時間とは独立して設定します。同じ構成案・Regionの別行でこの料金を計上する場合は、このComponentを無効にして重複を避けてください。稼働時間の重なりは自動集計しません。"
       }
     }
   ],

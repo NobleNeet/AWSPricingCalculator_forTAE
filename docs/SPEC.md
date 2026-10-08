@@ -196,8 +196,8 @@ DrawerはService Definitionから動的生成する。
 
 EC2は本アプリのOn-Demand固定方針に従い、AWS Pricing Calculatorの `Expected utilization of EC2 instances` に相当する月間稼働時間を直接入力する。
 
-- 入力値は1インスタンスあたりの月間稼働時間とし、`0`〜`744` 時間を許容する。
-- 既定値は `730` 時間/月とする。
+- 入力値は1インスタンスあたりの月間稼働時間とし、`0`〜`730` 時間を許容する。
+- 既定値は `730` 時間/月とし、AWS公式CalculatorのHours / Month入力上限に合わせる。730時間超の既存保存値も入力エラーとし、自動で730へ補正しない。
 - インスタンス数は別入力とし、EC2 compute料金の課金数量は `Expected utilization × Number of EC2 instances` で求める。
 - Service Definition上の入力ID `hours` は既存Project JSONとの互換性のため維持する。
 
@@ -211,7 +211,7 @@ EC2 Drawerのcompute入力はAWS Pricing Calculatorの主要操作順に寄せ�
 
 Tenancyが `Dedicated` の場合、compute単価に加えてAWS Public Price Listの `Fee` / `Surcharge` / `EC2-Dedicated Usage` を独立したComponentで計算する。インスタンス台数は地域料金に掛けない。
 
-`Dedicated regional usage hours / month` は既定730時間、0〜744時間とする。同じRegionで少なくとも1台が稼働する、またはDedicated Instance Capacity Reservationを保有する時間を入力する。複数インスタンスの稼働時間の重なりは月間集計値から再構成できないため、computeの1台あたりの稼働時間とは独立して設定する。
+`Dedicated regional usage hours / month` は既定730時間、0〜730時間とする。同じRegionで少なくとも1台が稼働する、またはDedicated Instance Capacity Reservationを保有する時間を入力する。複数インスタンスの稼働時間の重なりは月間集計値から再構成できないため、computeの1台あたりの稼働時間とは独立して設定する。
 
 同じ構成案・Region内の複数Service Instanceに地域料金を重複計上しないよう、代表する1行で地域全体の時間を入力し、他行ではこのComponentを無効にできる。自動での行間集計は行わず、この操作をDrawerの説明で明示する。SharedではこのComponentを無効とする。既存Projectにも地域料金Componentの既定値を補完し、既存compute入力は変更しない。
 
