@@ -32,5 +32,8 @@ test('zero duration is rejected while fractional usage and zero-volume disabled 
     ['services/rds/components/storage.json','gbMonths','1']
   ]){const i=input(await load(path),id);assert.ok(numberInputError(i,'0'));assert.equal(numberInputError(i,positive),null);}
   const c=await load('services/aurora-postgresql/components/limitless-compute.json');assert.equal(input(c,'acuHours').default,'11680');assert.equal(numberInputError(input(c,'acuHours'),'1'),null);
+  const monitoring=await load('services/aurora-postgresql/components/database-insights-limitless.json');
+  assert.equal(numberInputError(input(monitoring,'monitoredAcus'),'1'),null);
+  assert.equal(numberInputError(input(monitoring,'monitoredAcus'),'0'),null);
   const io=await load('services/aurora-postgresql/components/io-requests.json');assert.equal(numberInputError(input(io,'requests'),'1'),null);
 });
