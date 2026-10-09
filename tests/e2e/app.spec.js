@@ -194,3 +194,26 @@ test('KMS drawer follows AWS Pricing Calculator service-setting inputs', async (
   });
   expect(calculatorOrder).toBe(true);
 });
+
+
+test('EC2 monthly hours enforce the official 730-hour limit and recover after correction', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('#price-meta')).toContainText(activeBuildId);
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
+  await page.locator('[data-service="ec2"]').click();
+  await page.locator('#input-profile--tenancy').selectOption('Dedicated');
+  for (const id of ['input-component-instance-hours', 'input-component-dedicated-region-fee-hours']) {
+    const input = page.locator('#' + id);
+    await expect(input).toHaveAttribute('max', '730');
+    await expect(input).toHaveValue('730');
+    await input.fill('744');
+    await input.press('Tab');
+    await expect(page.locator('fieldset').filter({ has: input }).locator('.invalid')).toContainText('Invalid usage');
+    await expect(page.locator('tbody td[data-instance]')).toContainText('Invalid usage');
+    await input.fill('730');
+    await input.press('Tab');
+    await expect(page.locator('#service-drawer .invalid')).toHaveCount(0);
+    await expect(page.locator('tbody td[data-instance]')).toContainText('$');
+  }
+});
