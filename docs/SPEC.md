@@ -231,6 +231,16 @@ EC2 DrawerのAmazon EBS欄では、EBS volume type、Storage amount、および�
 
 ---
 
+### 6.3 Fargateの月間使用量
+
+FargateのTasks or podsは1日あたりの実行件数とする。月間件数はProjectの共通月間時間を24時間で割った日数へ換算して求める。既定730時間では730/24日となり、AWS Pricing Calculatorのper day入力と同じ前提を使う。30日で見積もる場合は共通月間時間を720時間に設定する。
+
+この換算はLinux x86、Linux ARM、WindowsのvCPU・メモリ・OSライセンス・追加ephemeral storageのすべてへ同じように適用する。各task/podの最低課金時間を適用してから月間件数とリソース量を掛ける。表示のために月間件数を30.42件へ丸めて計算しない。
+
+既存Projectの入力値は変更しない。復元後は現在のDefinitionで再計算するため、従来の30日固定からこの共通月間時間の前提へ変更される。共通月間時間が730の場合、同じ日次入力の月間使用量は従来より約1.389%増える。保存・出力には共通月間時間を保持し、Drawerにも換算前提を明示する。
+
+---
+
 ## 7. 比較表示
 
 複数Planを列として横並び表示する。

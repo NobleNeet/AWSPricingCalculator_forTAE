@@ -1,6 +1,57 @@
 import { test, expect } from '@playwright/test';
 import { activeBuildId, expected } from './expected-prices.js';
 
+test('Fargate common monthly hours change every active resource meter', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('#price-meta')).toContainText(activeBuildId);
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
+  await page.locator('[data-service="fargate"]').click();
+  const set = async (id, value) => {
+    const common = id === 'project-hours';
+    if (common) await page.getByLabel('編集を閉じる').click();
+    const input = page.locator('#' + id);
+    if (await input.evaluate(e => e.tagName === 'SELECT')) await input.selectOption(value);
+    else { await input.click(); await input.fill(value); await input.press('Tab'); }
+    if (common) {
+      await expect(input).toHaveValue(value);
+      await expect(page.locator('td[data-instance] .amount')).toHaveText(/^\$/);
+      await page.getByRole('button', { name: '編集', exact: true }).click();
+    }
+  };
+  const prices = async () => {
+    for (const summary of await page.locator('#service-drawer details:not([open]) > summary').all()) await summary.click();
+    await expect(page.locator('td[data-instance] .amount')).toHaveText(/^\$/);
+    let current;
+    await expect.poll(async () => {
+      current = await page.locator('#service-drawer fieldset').evaluateAll(es => Object.fromEntries(es
+        .filter(e => !e.textContent.includes('無効中'))
+        .map(e => [e.querySelector('legend').textContent, Number(e.querySelector('.component-price').textContent.match(/\$([\d,]+\.\d+)/)?.[1]?.replaceAll(',', ''))])));
+      const total = Number((await page.locator('td[data-instance] .amount').innerText()).replace(/[$,]/g, ''));
+      return Math.abs(Object.values(current).reduce((a, b) => a + b, 0) - total);
+    }).toBeLessThanOrEqual(0.025);
+    return current;
+  };
+  for (const [os, architecture, meters] of [['Linux', 'x86', 3], ['Linux', 'ARM', 3], ['Windows', null, 4]]) {
+    await set('input-profile--operatingSystem', os);
+    if (architecture) await set('input-profile--cpuArchitecture', architecture);
+    await set('input-profile--tasksPerDay', '100');
+    await set('input-profile--averageDurationHours', '1');
+    await set('input-profile--ephemeralStorageGb', '200');
+    await expect(page.locator('#service-drawer')).toContainText('共通月間時間 ÷ 24');
+    await set('project-hours', '720');
+    const month30 = await prices();
+    expect(Object.keys(month30)).toHaveLength(meters);
+    await set('project-hours', '730');
+    const month730 = await prices();
+    expect(Object.keys(month730)).toEqual(Object.keys(month30));
+    for (const [name, price] of Object.entries(month30)) {
+      expect(price).toBeGreaterThan(1);
+      expect(Math.abs(month730[name] - price * 730 / 720), name).toBeLessThanOrEqual(0.011);
+    }
+  }
+});
+
 test('create, real EC2, multiple services, duplicate, replace, usage, row add and delete, resume', async ({ page }) => {
   await page.goto('./');
   await expect(page.getByText('構成案はまだありません')).toBeVisible();
