@@ -1,0 +1,418 @@
+{
+  "buildId": "20261009T060303Z-d55a540c",
+  "products": [
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.medium",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "7 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:Linux:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "37RNEJZYNFJBBKV6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.01 per minutes for Build-Min:Linux:g1.medium in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "37RNEJZYNFJBBKV6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:Linux:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.small",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:ARM:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "3JNFCS2WRWM9JK7M",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.00425 per minutes for Build-Min:ARM:g1.small in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0042500000"
+                },
+                "rateCode": "3JNFCS2WRWM9JK7M.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:ARM:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.xlarge",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "72 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:Linux:g1.xlarge",
+        "vcpu": "36"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "5WG8KPP98BF8YVGC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.xlarge in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1002000000"
+                },
+                "rateCode": "5WG8KPP98BF8YVGC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:Linux:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.2xlarge",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "96 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:ARM:g1.2xlarge",
+        "vcpu": "48"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "6DTS84NY87CRS47K",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.2xlarge in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1200000000"
+                },
+                "rateCode": "6DTS84NY87CRS47K.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:ARM:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.2xlarge",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "144 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:Linux:g1.2xlarge",
+        "vcpu": "72"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "98DAYVJ8NC32XBUP",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.25 per minutes for Build-Min:Linux:g1.2xlarge in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.2500000000"
+                },
+                "rateCode": "98DAYVJ8NC32XBUP.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:Linux:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.large",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "16 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:ARM:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "BQRGZVPA9Y3AQC7X",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.02 per minutes for Build-Min:ARM:g1.large in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "BQRGZVPA9Y3AQC7X.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:ARM:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.medium",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "8 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:ARM:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "DXYNAUATPSN5NZP2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on arm1.medium in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0090000000"
+                },
+                "rateCode": "DXYNAUATPSN5NZP2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:ARM:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.large",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "15 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:Linux:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "Q9BEFYJE6HVW68BS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.02 per minutes for Build-Min:Linux:g1.large in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "Q9BEFYJE6HVW68BS.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:Linux:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.small",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:Linux:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "QT5P5H9N662T44XY",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.005 per minutes for Build-Min:Linux:g1.small in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0050000000"
+                },
+                "rateCode": "QT5P5H9N662T44XY.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:Linux:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.xlarge",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "memory": "64 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "APN3-Build-Min:ARM:g1.xlarge",
+        "vcpu": "32"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "RP9KBRTCPPAKE6B5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.xlarge in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0800000000"
+                },
+                "rateCode": "RP9KBRTCPPAKE6B5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Build-Min:ARM:g1.xlarge"
+    }
+  ],
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "CodeBuild"
+}

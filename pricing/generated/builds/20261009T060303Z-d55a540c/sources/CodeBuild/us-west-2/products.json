@@ -1,0 +1,664 @@
+{
+  "buildId": "20261009T060303Z-d55a540c",
+  "products": [
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.medium",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "7 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Linux:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "5JDAZG67MJH4AP4V",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.medium - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "5JDAZG67MJH4AP4V.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Linux:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.2xlarge",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "144 GiB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Windows:g1.2xlarge",
+        "vcpu": "72"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "95KWQSNGRTNXDERK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.32 per minute for Build-Min:Windows:g1.2xlarge in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3200000000"
+                },
+                "rateCode": "95KWQSNGRTNXDERK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Windows:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "gpu1.large",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "192 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:LinuxGPU:g1.large",
+        "vcpu": "48"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "AGNGBFA8UD32UPVK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.30 per minute for Build-Min:LinuxGPU:g1.large in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3000000000"
+                },
+                "rateCode": "AGNGBFA8UD32UPVK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:LinuxGPU:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.2xlarge",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "144 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Linux:g1.2xlarge",
+        "vcpu": "72"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "BEWAMMWA5ZU86VHU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.2xlarge in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.2000000000"
+                },
+                "rateCode": "BEWAMMWA5ZU86VHU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Linux:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.medium",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "8 GB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Windows:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "BQYXCY3GKTBD4YKG",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.medium - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0180000000"
+                },
+                "rateCode": "BQYXCY3GKTBD4YKG.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Windows:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.xlarge",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "64 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:ARM:g1.xlarge",
+        "vcpu": "32"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "EU4CR3FXZ96HYRWW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.xlarge in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0600000000"
+                },
+                "rateCode": "EU4CR3FXZ96HYRWW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:ARM:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.xlarge",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "72 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Linux:g1.xlarge",
+        "vcpu": "36"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "GTR83U3JD94Z4XTG",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.xlarge in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0798000000"
+                },
+                "rateCode": "GTR83U3JD94Z4XTG.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Linux:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.small",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Linux:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "HYXRD8W36BM4QUJH",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.small - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0050000000"
+                },
+                "rateCode": "HYXRD8W36BM4QUJH.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Linux:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.small",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:ARM:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "JNRKGAN4HS2AWXU5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0034 per minutes for Build-Min:ARM:g1.small in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0034000000"
+                },
+                "rateCode": "JNRKGAN4HS2AWXU5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:ARM:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.large",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "15 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Linux:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "MV3MADSDQQYU6839",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.large - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "MV3MADSDQQYU6839.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Linux:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.large",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "16 GiB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Windows:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "MY29XKCTZNGG3W9C",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.large - US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0360000000"
+                },
+                "rateCode": "MY29XKCTZNGG3W9C.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Windows:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.2xlarge",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "96 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:ARM:g1.2xlarge",
+        "vcpu": "48"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "NGFMVM956KR6RJZ8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.2xlarge in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0900000000"
+                },
+                "rateCode": "NGFMVM956KR6RJZ8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:ARM:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.medium",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "8 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:ARM:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "S7C233YX6Y6YB4PN",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on arm1.medium in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0070000000"
+                },
+                "rateCode": "S7C233YX6Y6YB4PN.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:ARM:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "gpu1.small",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "15 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:LinuxGPU:g1.small",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "UDJZPHNFUBYRQV4N",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on gpu1.small  in  US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0500000000"
+                },
+                "rateCode": "UDJZPHNFUBYRQV4N.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:LinuxGPU:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.large",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "16 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:ARM:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "V24NXQGP3TYBWTWU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.arm1.large in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0150000000"
+                },
+                "rateCode": "V24NXQGP3TYBWTWU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:ARM:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.xlarge",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "memory": "72 GiB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW2-Build-Min:Windows:g1.xlarge",
+        "vcpu": "36"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "Y32D6NH3FCMM2CQM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.16 per minute for Build-Min:Windows:g1.xlarge in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1600000000"
+                },
+                "rateCode": "Y32D6NH3FCMM2CQM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Build-Min:Windows:g1.xlarge"
+    }
+  ],
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "CodeBuild"
+}
