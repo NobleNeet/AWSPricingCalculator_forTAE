@@ -1,0 +1,623 @@
+{
+  "buildId": "20261009T123907Z-24a90833",
+  "products": [
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.medium",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "7 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Linux:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "3PDGM6QMG5QC5DN7",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.medium - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "3PDGM6QMG5QC5DN7.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Linux:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.medium",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "8 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:ARM:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "7TKUPTYN5ZZ88KZS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on arm1.medium in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0070000000"
+                },
+                "rateCode": "7TKUPTYN5ZZ88KZS.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:ARM:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.2xlarge",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "144 GiB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Windows:g1.2xlarge",
+        "vcpu": "72"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "8HVXS684VHRPPHBS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.32 per minute for Build-Min:Windows:g1.2xlarge in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3200000000"
+                },
+                "rateCode": "8HVXS684VHRPPHBS.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Windows:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.small",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Linux:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "9343EGWDZJRG5FR6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.small - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0050000000"
+                },
+                "rateCode": "9343EGWDZJRG5FR6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Linux:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.large",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "16 GiB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Windows:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "BYKXSY93939VJWM2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.large - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0360000000"
+                },
+                "rateCode": "BYKXSY93939VJWM2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Windows:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "gpu1.large",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "192 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:LinuxGPU:g1.large",
+        "vcpu": "48"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "DGA5B3VAR9Y9XACH",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.30 per minute for Build-Min:LinuxGPU:g1.large in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3000000000"
+                },
+                "rateCode": "DGA5B3VAR9Y9XACH.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:LinuxGPU:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.xlarge",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "64 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:ARM:g1.xlarge",
+        "vcpu": "32"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "E5BNTX5FX8EVSTGZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.xlarge in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0600000000"
+                },
+                "rateCode": "E5BNTX5FX8EVSTGZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:ARM:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.2xlarge",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "144 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Linux:g1.2xlarge",
+        "vcpu": "72"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "EJUUHT8BBNY4GT5X",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.2xlarge in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.2000000000"
+                },
+                "rateCode": "EJUUHT8BBNY4GT5X.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Linux:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.large",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "15 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Linux:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "NEJTSDJSX7VYXN77",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.large - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "NEJTSDJSX7VYXN77.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Linux:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.medium",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "8 GB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Windows:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "QZDUDDPGWZREHH4M",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.medium - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0180000000"
+                },
+                "rateCode": "QZDUDDPGWZREHH4M.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Windows:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.small",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:ARM:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "RM3Y4YG3ZFHAR32F",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0034 per minutes for Build-Min:ARM:g1.small in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0034000000"
+                },
+                "rateCode": "RM3Y4YG3ZFHAR32F.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:ARM:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.xlarge",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "72 GiB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Windows:g1.xlarge",
+        "vcpu": "36"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "U7JFZ4AG63VRKEX8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.16 per minute for Build-Min:Windows:g1.xlarge in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1600000000"
+                },
+                "rateCode": "U7JFZ4AG63VRKEX8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Windows:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.2xlarge",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "96 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:ARM:g1.2xlarge",
+        "vcpu": "48"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "UB8Y5XEZW2M4GZ8Y",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.2xlarge in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0900000000"
+                },
+                "rateCode": "UB8Y5XEZW2M4GZ8Y.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:ARM:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.xlarge",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "72 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:Linux:g1.xlarge",
+        "vcpu": "36"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "VNWWQ9EE25CWNNWM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.xlarge in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0798000000"
+                },
+                "rateCode": "VNWWQ9EE25CWNNWM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:Linux:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.large",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memory": "16 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USE2-Build-Min:ARM:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "XYZG7QQCE69B3A99",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.arm1.large in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0150000000"
+                },
+                "rateCode": "XYZG7QQCE69B3A99.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Build-Min:ARM:g1.large"
+    }
+  ],
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "CodeBuild"
+}

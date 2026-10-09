@@ -1,0 +1,415 @@
+{
+  "buildId": "20261009T123907Z-24a90833",
+  "products": [
+    {
+      "attributes": {
+        "eventType": "Discovery Event",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "DiscoveryEvent",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Event-8K-Chunks"
+      },
+      "operation": "DiscoveryEvent",
+      "productFamily": "EventBridge",
+      "sku": "B29DMYD56PEX5KHV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.10 per million ingested events for schema discovery in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000001000"
+                },
+                "rateCode": "B29DMYD56PEX5KHV.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "8K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Event-8K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Event Storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "StandardStorage",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-TimedStorage-ByteHrs"
+      },
+      "operation": "StandardStorage",
+      "productFamily": "CloudWatch Events",
+      "sku": "JTK33VM72A6CBCNS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.023 per GB-Mo for TimedStorage-ByteHrs:StandardStorage in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0230000000"
+                },
+                "rateCode": "JTK33VM72A6CBCNS.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Mo"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-TimedStorage-ByteHrs"
+    },
+    {
+      "attributes": {
+        "eventType": "Archive Event",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "ArchiveEvents",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-ArchivedEvents-Bytes"
+      },
+      "operation": "ArchiveEvents",
+      "productFamily": "CloudWatch Events",
+      "sku": "JVT4TAXQAQNJ8TEB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.10 per GB for ArchivedEvents-Bytes:ArchiveEvents in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1000000000"
+                },
+                "rateCode": "JVT4TAXQAQNJ8TEB.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-ArchivedEvents-Bytes"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account Custom Event",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-CustomEvent",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-CustomEvent",
+      "productFamily": "EventBridge",
+      "sku": "MFQPSRDUWRSK6V48",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per million cross-account invocations with custom events in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000500"
+                },
+                "rateCode": "MFQPSRDUWRSK6V48.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "invocation": "Scheduled Invocation",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "Invocation",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "timeWindow": "N/A",
+        "usagetype": "USW2-ScheduledInvocation"
+      },
+      "operation": "Invocation",
+      "productFamily": "EventBridge",
+      "sku": "QNGCFAB5SW8AUQEB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "14000000",
+                "description": "$1.00 per million scheduled invocations in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "QNGCFAB5SW8AUQEB.JRTCKXETXF.AGTZK4FFDN",
+                "unit": "Invocations"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0 for the first 14 million scheduled invocations",
+                "endRange": "14000000",
+                "pricePerUnit": {
+                  "USD": "0.0000000000"
+                },
+                "rateCode": "QNGCFAB5SW8AUQEB.JRTCKXETXF.W2M3TYBKHH",
+                "unit": "Invocations"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-ScheduledInvocation"
+    },
+    {
+      "attributes": {
+        "eventType": "APIDestination",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "InvokeApiDestination",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Invocation-64K-Chunks"
+      },
+      "operation": "InvokeApiDestination",
+      "productFamily": "CloudWatch Events",
+      "sku": "T59BEV736H64WVAS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.20 per million invocations of API Destinations in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "T59BEV736H64WVAS.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Custom Event",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "PutEvents",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Event-64K-Chunks"
+      },
+      "operation": "PutEvents",
+      "productFamily": "EventBridge",
+      "sku": "U8RE4E3YZBFWE22W",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million EventBridge custom events received in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "U8RE4E3YZBFWE22W.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Event-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account AWS Event",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-AWSEvent",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-AWSEvent",
+      "productFamily": "EventBridge",
+      "sku": "UJMRB6G42BN3NFPQ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million cross-account invocations with AWS management events in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "UJMRB6G42BN3NFPQ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "PipeRequest",
+        "regionCode": "us-west-2",
+        "request": "Pipe Request",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Request-64K-Chunks"
+      },
+      "operation": "PipeRequest",
+      "productFamily": "EventBridge",
+      "sku": "WNP9ZGV7NQ8BBQ4G",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.40 per million Pipes requests in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000004000"
+                },
+                "rateCode": "WNP9ZGV7NQ8BBQ4G.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Request-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account Partner Event",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-PartnerEvent",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-PartnerEvent",
+      "productFamily": "EventBridge",
+      "sku": "YZ66TMX5X6T5VRAJ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per million cross-account invocations with partner events in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000500"
+                },
+                "rateCode": "YZ66TMX5X6T5VRAJ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Partner Event",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "ReceivedPartnerEvents",
+        "regionCode": "us-west-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USW2-Event-64K-Chunks"
+      },
+      "operation": "ReceivedPartnerEvents",
+      "productFamily": "EventBridge",
+      "sku": "Z66WPWK22URZVSUP",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million EventBridge partner events received in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "Z66WPWK22URZVSUP.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-Event-64K-Chunks"
+    }
+  ],
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSEvents"
+}

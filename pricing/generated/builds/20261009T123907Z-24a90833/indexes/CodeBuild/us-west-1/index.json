@@ -1,0 +1,80 @@
+{
+  "attributes": {
+    "architecture": [
+      "Arm64",
+      "x86-64"
+    ],
+    "computeFamily": [
+      "OnDemand-EC2"
+    ],
+    "computeType": [
+      "arm1.2xlarge",
+      "arm1.large",
+      "arm1.medium",
+      "arm1.small",
+      "arm1.xlarge",
+      "general1.2xlarge",
+      "general1.large",
+      "general1.medium",
+      "general1.small",
+      "general1.xlarge"
+    ],
+    "location": [
+      "US West (N. California)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "memory": [
+      "3 GB",
+      "7 GB",
+      "8 GiB",
+      "15 GB",
+      "16 GiB",
+      "64 GiB",
+      "72 GiB",
+      "96 GiB",
+      "144 GiB"
+    ],
+    "operatingSystem": [
+      "Linux"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "us-west-1"
+    ],
+    "servicecode": [
+      "CodeBuild"
+    ],
+    "servicename": [
+      "CodeBuild"
+    ],
+    "usagetype": [
+      "USW1-Build-Min:ARM:g1.2xlarge",
+      "USW1-Build-Min:ARM:g1.large",
+      "USW1-Build-Min:ARM:g1.medium",
+      "USW1-Build-Min:ARM:g1.small",
+      "USW1-Build-Min:ARM:g1.xlarge",
+      "USW1-Build-Min:Linux:g1.2xlarge",
+      "USW1-Build-Min:Linux:g1.large",
+      "USW1-Build-Min:Linux:g1.medium",
+      "USW1-Build-Min:Linux:g1.small",
+      "USW1-Build-Min:Linux:g1.xlarge"
+    ],
+    "vcpu": [
+      "2",
+      "4",
+      "8",
+      "32",
+      "36",
+      "48",
+      "72"
+    ]
+  },
+  "buildId": "20261009T123907Z-24a90833",
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "CodeBuild"
+}

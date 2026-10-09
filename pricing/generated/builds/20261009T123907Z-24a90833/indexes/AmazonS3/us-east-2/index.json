@@ -1,0 +1,51 @@
+{
+  "attributes": {
+    "availability": [
+      "99.99%"
+    ],
+    "durability": [
+      "99.999999999%"
+    ],
+    "group": [
+      "S3-API-Tier1",
+      "S3-API-Tier2"
+    ],
+    "groupDescription": [
+      "GET and all other requests",
+      "PUT/COPY/POST or LIST requests"
+    ],
+    "location": [
+      "US East (Ohio)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "us-east-2"
+    ],
+    "servicecode": [
+      "AmazonS3"
+    ],
+    "servicename": [
+      "Amazon Simple Storage Service"
+    ],
+    "storageClass": [
+      "General Purpose"
+    ],
+    "usagetype": [
+      "USE2-Requests-Tier1",
+      "USE2-Requests-Tier2",
+      "USE2-TimedStorage-ByteHrs"
+    ],
+    "volumeType": [
+      "Standard"
+    ]
+  },
+  "buildId": "20261009T123907Z-24a90833",
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonS3"
+}

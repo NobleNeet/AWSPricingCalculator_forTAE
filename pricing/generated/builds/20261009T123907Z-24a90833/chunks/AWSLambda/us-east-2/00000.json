@@ -1,0 +1,455 @@
+{
+  "buildId": "20261009T123907Z-24a90833",
+  "products": [
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Streaming-Response-Processed-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "2NNTB8CK4A9UKUZC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for of Lambda-Streaming-Response-Processed-Bytes usage in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "2NNTB8CK4A9UKUZC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Streaming-Response-Processed-Bytes"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "3BYZH4NKJN8TJUQ6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute - US East (Ohio)-Tier-1",
+                "endRange": "6000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000166667"
+                },
+                "rateCode": "3BYZH4NKJN8TJUQ6.JRTCKXETXF.CUKFZ388N3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "6000000000",
+                "description": "AWS Lambda - Total Compute - US East (Ohio)-Tier-2",
+                "endRange": "15000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000150000"
+                },
+                "rateCode": "3BYZH4NKJN8TJUQ6.JRTCKXETXF.QZE2SB4KVB",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "15000000000",
+                "description": "AWS Lambda - Total Compute - US East (Ohio)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "3BYZH4NKJN8TJUQ6.JRTCKXETXF.V7R92EXG27",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Provisioned-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "8RKHZ54QB9XA3Y9F",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000097222"
+                },
+                "rateCode": "8RKHZ54QB9XA3Y9F.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Provisioned-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Storage-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "B3C4NH7C3BXVK5KQ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage for ARM - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000309"
+                },
+                "rateCode": "B3C4NH7C3BXVK5KQ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Storage-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "CHGDQQ3YSPF93CBA",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "7500000000",
+                "description": "AWS Lambda - Total Compute for ARM - US East (Ohio)-Tier-2",
+                "endRange": "18750000000",
+                "pricePerUnit": {
+                  "USD": "0.0000120001"
+                },
+                "rateCode": "CHGDQQ3YSPF93CBA.JRTCKXETXF.6JGAYSJBNY",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute for ARM - US East (Ohio)-Tier-1",
+                "endRange": "7500000000",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "CHGDQQ3YSPF93CBA.JRTCKXETXF.6NBUNBXSC3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "18750000000",
+                "description": "AWS Lambda - Total Compute for ARM - US East (Ohio)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000106667"
+                },
+                "rateCode": "CHGDQQ3YSPF93CBA.JRTCKXETXF.AVR3V96UTF",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Storage-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "NTZU6AKMUBV2U895",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000309"
+                },
+                "rateCode": "NTZU6AKMUBV2U895.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Storage-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned-ARM",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Provisioned-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "RWTT4NS5TKSEZKXJ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) for ARM - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000077778"
+                },
+                "rateCode": "RWTT4NS5TKSEZKXJ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Provisioned-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency-ARM",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Provisioned-Concurrency-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "U6QUQCGH788KUY5N",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency for ARM - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000033334"
+                },
+                "rateCode": "U6QUQCGH788KUY5N.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Provisioned-Concurrency-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes-ARM",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation for ARM",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Streaming-Response-Processed-Bytes-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "Z627MMN3RBSYY8NR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for Lambda-Streaming-Response-Processed-Bytes-ARM in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "Z627MMN3RBSYY8NR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Streaming-Response-Processed-Bytes-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Lambda-Provisioned-Concurrency"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZA4ZDREWFS9UEMSC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000041667"
+                },
+                "rateCode": "ZA4ZDREWFS9UEMSC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Lambda-Provisioned-Concurrency"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "groupDescription": "Invocation call for a Lambda function",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "USE2-Request"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZEA64MMVK5QRB5TC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Requests - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "ZEA64MMVK5QRB5TC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Request"
+    }
+  ],
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}
