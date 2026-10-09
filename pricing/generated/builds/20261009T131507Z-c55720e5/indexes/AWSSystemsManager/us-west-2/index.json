@@ -1,0 +1,37 @@
+{
+  "attributes": {
+    "location": [
+      "US West (Oregon)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "",
+      "JustInTimeAccessHour"
+    ],
+    "regionCode": [
+      "us-west-2"
+    ],
+    "response": [
+      "response-plan-months"
+    ],
+    "servicecode": [
+      "AWSSystemsManager"
+    ],
+    "servicename": [
+      "AWS Systems Manager"
+    ],
+    "trial": [
+      "FALSE"
+    ],
+    "usagetype": [
+      "USW2-IM-ResponsePlan-Months-Tier1",
+      "USW2-JustInTimeAccessHour"
+    ]
+  },
+  "buildId": "20261009T131507Z-c55720e5",
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}

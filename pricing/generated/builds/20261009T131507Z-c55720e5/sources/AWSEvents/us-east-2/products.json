@@ -1,0 +1,415 @@
+{
+  "buildId": "20261009T131507Z-c55720e5",
+  "products": [
+    {
+      "attributes": {
+        "invocation": "Scheduled Invocation",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "Invocation",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "timeWindow": "N/A",
+        "usagetype": "USE2-ScheduledInvocation"
+      },
+      "operation": "Invocation",
+      "productFamily": "EventBridge",
+      "sku": "534HQFPF6VT4G9Y5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "14000000",
+                "description": "$1.00 per million scheduled invocations in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "534HQFPF6VT4G9Y5.JRTCKXETXF.AGTZK4FFDN",
+                "unit": "Invocations"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0 for the first 14 million scheduled invocations",
+                "endRange": "14000000",
+                "pricePerUnit": {
+                  "USD": "0.0000000000"
+                },
+                "rateCode": "534HQFPF6VT4G9Y5.JRTCKXETXF.W2M3TYBKHH",
+                "unit": "Invocations"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-ScheduledInvocation"
+    },
+    {
+      "attributes": {
+        "eventType": "APIDestination",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "InvokeApiDestination",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Invocation-64K-Chunks"
+      },
+      "operation": "InvokeApiDestination",
+      "productFamily": "CloudWatch Events",
+      "sku": "5FG34CFG9NR6FXYP",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.20 per million invocations of API Destinations in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "5FG34CFG9NR6FXYP.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account AWS Event",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-AWSEvent",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-AWSEvent",
+      "productFamily": "EventBridge",
+      "sku": "97YHGHJTW9ZUDSDT",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million cross-account invocations with AWS management events in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "97YHGHJTW9ZUDSDT.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account Custom Event",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-CustomEvent",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-CustomEvent",
+      "productFamily": "EventBridge",
+      "sku": "9QM455D53VCEJ7HX",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per million cross-account invocations with custom events in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000500"
+                },
+                "rateCode": "9QM455D53VCEJ7HX.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Cross-Account Partner Event",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "CrossAccountInvoke-PartnerEvent",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Invocation-64K-Chunks"
+      },
+      "operation": "CrossAccountInvoke-PartnerEvent",
+      "productFamily": "EventBridge",
+      "sku": "AHDE7ZFHQEM4B4TK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per million cross-account invocations with partner events in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000500"
+                },
+                "rateCode": "AHDE7ZFHQEM4B4TK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Invocation-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Discovery Event",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "DiscoveryEvent",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Event-8K-Chunks"
+      },
+      "operation": "DiscoveryEvent",
+      "productFamily": "EventBridge",
+      "sku": "D6CG9AZ38GDB93GB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.10 per million ingested events for schema discovery in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000001000"
+                },
+                "rateCode": "D6CG9AZ38GDB93GB.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "8K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Event-8K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Archive Event",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "ArchiveEvents",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-ArchivedEvents-Bytes"
+      },
+      "operation": "ArchiveEvents",
+      "productFamily": "CloudWatch Events",
+      "sku": "GQ9F68RYD9XJH3D8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.10 per GB for ArchivedEvents-Bytes:ArchiveEvents in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1000000000"
+                },
+                "rateCode": "GQ9F68RYD9XJH3D8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-ArchivedEvents-Bytes"
+    },
+    {
+      "attributes": {
+        "eventType": "Event Storage",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "StandardStorage",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-TimedStorage-ByteHrs"
+      },
+      "operation": "StandardStorage",
+      "productFamily": "CloudWatch Events",
+      "sku": "H2EW8EMDK3SZQ935",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.023 per GB-Mo for TimedStorage-ByteHrs:StandardStorage in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0230000000"
+                },
+                "rateCode": "H2EW8EMDK3SZQ935.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Mo"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-TimedStorage-ByteHrs"
+    },
+    {
+      "attributes": {
+        "eventType": "Custom Event",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "PutEvents",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Event-64K-Chunks"
+      },
+      "operation": "PutEvents",
+      "productFamily": "EventBridge",
+      "sku": "PYVWTDMRVZCDCY4Z",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million EventBridge custom events received in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "PYVWTDMRVZCDCY4Z.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Event-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "PipeRequest",
+        "regionCode": "us-east-2",
+        "request": "Pipe Request",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Request-64K-Chunks"
+      },
+      "operation": "PipeRequest",
+      "productFamily": "EventBridge",
+      "sku": "VDVZA76U2K38R24T",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.40 per million Pipes requests in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000004000"
+                },
+                "rateCode": "VDVZA76U2K38R24T.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Request-64K-Chunks"
+    },
+    {
+      "attributes": {
+        "eventType": "Partner Event",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "ReceivedPartnerEvents",
+        "regionCode": "us-east-2",
+        "servicecode": "AWSEvents",
+        "servicename": "CloudWatch Events",
+        "usagetype": "USE2-Event-64K-Chunks"
+      },
+      "operation": "ReceivedPartnerEvents",
+      "productFamily": "EventBridge",
+      "sku": "YWPD6KF787Y6KD8P",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1.00 per million EventBridge partner events received in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "YWPD6KF787Y6KD8P.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "64K-Chunks"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Event-64K-Chunks"
+    }
+  ],
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSEvents"
+}

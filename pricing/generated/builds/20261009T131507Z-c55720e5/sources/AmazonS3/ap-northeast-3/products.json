@@ -1,0 +1,141 @@
+{
+  "buildId": "20261009T131507Z-c55720e5",
+  "products": [
+    {
+      "attributes": {
+        "group": "S3-API-Tier1",
+        "groupDescription": "PUT/COPY/POST or LIST requests",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AmazonS3",
+        "servicename": "Amazon Simple Storage Service",
+        "usagetype": "APN3-Requests-Tier1"
+      },
+      "operation": "",
+      "productFamily": "API Request",
+      "sku": "3VFP3QBE5N8CKEHH",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0047 per 1,000 PUT, COPY, POST, or LIST requests",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000047000"
+                },
+                "rateCode": "3VFP3QBE5N8CKEHH.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Requests-Tier1"
+    },
+    {
+      "attributes": {
+        "availability": "99.99%",
+        "durability": "99.999999999%",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AmazonS3",
+        "servicename": "Amazon Simple Storage Service",
+        "storageClass": "General Purpose",
+        "usagetype": "APN3-TimedStorage-ByteHrs",
+        "volumeType": "Standard"
+      },
+      "operation": "",
+      "productFamily": "Storage",
+      "sku": "FZJPRKCZ5H2HPU55",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "51200",
+                "description": "$0.024 per GB - next 450 TB / month of storage used",
+                "endRange": "512000",
+                "pricePerUnit": {
+                  "USD": "0.0240000000"
+                },
+                "rateCode": "FZJPRKCZ5H2HPU55.JRTCKXETXF.D42MF2PVJS",
+                "unit": "GB-Mo"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0.025 per GB - first 50 TB / month of storage used",
+                "endRange": "51200",
+                "pricePerUnit": {
+                  "USD": "0.0250000000"
+                },
+                "rateCode": "FZJPRKCZ5H2HPU55.JRTCKXETXF.PGHJ3S3EYE",
+                "unit": "GB-Mo"
+              },
+              {
+                "beginRange": "512000",
+                "description": "$0.023 per GB - storage used / month over 500 TB",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0230000000"
+                },
+                "rateCode": "FZJPRKCZ5H2HPU55.JRTCKXETXF.PXJDJ3YRG3",
+                "unit": "GB-Mo"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-TimedStorage-ByteHrs"
+    },
+    {
+      "attributes": {
+        "group": "S3-API-Tier2",
+        "groupDescription": "GET and all other requests",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AmazonS3",
+        "servicename": "Amazon Simple Storage Service",
+        "usagetype": "APN3-Requests-Tier2"
+      },
+      "operation": "",
+      "productFamily": "API Request",
+      "sku": "Z32ZAMGY3C9XT7UD",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0037 per 10,000 GET and all other requests",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000003700"
+                },
+                "rateCode": "Z32ZAMGY3C9XT7UD.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Requests-Tier2"
+    }
+  ],
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonS3"
+}

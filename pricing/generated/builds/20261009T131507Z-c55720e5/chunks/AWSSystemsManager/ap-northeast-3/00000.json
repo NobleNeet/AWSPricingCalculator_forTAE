@@ -1,0 +1,1368 @@
+{
+  "buildId": "20261009T131507Z-c55720e5",
+  "products": [
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "parameterType": "True",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "throughput": "40",
+        "usagetype": "APN3-PS-Advanced-Param-Tier1"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "3QZAEB8NTXPRV52S",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per Advanced Parameter per Month in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000700000"
+                },
+                "rateCode": "3QZAEB8NTXPRV52S.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-PS-Advanced-Param-Tier1"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "APN2-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-APN2-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "4X648WSSFZPXVC4K",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "4X648WSSFZPXVC4K.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-APN2-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "EUW2-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-EUW2-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "59Y43S4Z7UVEEQGC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "59Y43S4Z7UVEEQGC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-EUW2-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "updates": "True",
+        "usagetype": "APN3-AppConfig-Deployments"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "5HSSXQJY8NMDQQ3P",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0008 per Configuration Received for AppConfig-Deployments in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0008000000"
+                },
+                "rateCode": "5HSSXQJY8NMDQQ3P.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Configuration Received"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-AppConfig-Deployments"
+    },
+    {
+      "attributes": {
+        "gets": "True",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "updates": "Not Applicable",
+        "usagetype": "APN3-AppConfig-Requests"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "6BKP6RG7TF627GYE",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0000002 per Request for AppConfig-Requests in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "6BKP6RG7TF627GYE.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Configuration Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-AppConfig-Requests"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "DataTransfer-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-DataTransfer-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "6VUEGP67S4P3VH7P",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "6VUEGP67S4P3VH7P.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-DataTransfer-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "APS2-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-APS2-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "6XH3SHUUWEKBN8DF",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "6XH3SHUUWEKBN8DF.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-APS2-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "api-requests-free": "Not Applicable",
+        "api-requests-paid": "True",
+        "change-requests-free": "Not Applicable",
+        "change-requests-paid": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN3-Change-API-Requests-Tier1"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "7DTNR6AUSJZGK8E6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.000039 per Change Manager API Request in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000390000"
+                },
+                "rateCode": "7DTNR6AUSJZGK8E6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "API Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Change-API-Requests-Tier1"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "USW1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-USW1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "82F3UVHYH9X5YPF8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "82F3UVHYH9X5YPF8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-USW1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "parameterType": "True",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "throughput": "40",
+        "usagetype": "APN3-PS-Param-Processed-Tier1"
+      },
+      "operation": "",
+      "productFamily": "API Request",
+      "sku": "86DQ4UM2AN2XUPY8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per 10,000 Advanced Parameter API interaction_Standard throughput in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000050000"
+                },
+                "rateCode": "86DQ4UM2AN2XUPY8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "API Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-PS-Param-Processed-Tier1"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "UGE1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-UGE1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "8AN64SK88Z8H3NR6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "8AN64SK88Z8H3NR6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-UGE1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "UGW1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-UGW1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "8MYVB5D3J3TYYXUX",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "8MYVB5D3J3TYYXUX.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-UGW1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "APN1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-APN1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "924HJYSSH7C9NVSG",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "924HJYSSH7C9NVSG.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-APN1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "api-requests-free": "Not Applicable",
+        "api-requests-paid": "Not Applicable",
+        "change-requests-free": "Not Applicable",
+        "change-requests-paid": "True",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN3-Change-ChangeRequest-Tier1"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "9PHWND65R7HWKQZN",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.296 per Change Request in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.2960000000"
+                },
+                "rateCode": "9PHWND65R7HWKQZN.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Change-ChangeRequest-Tier1"
+    },
+    {
+      "attributes": {
+        "describes": "Not Applicable",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "opsItems": "True",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "updates": "Not Applicable",
+        "usagetype": "APN3-OC-OpsItems-Tier1"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "9Z3QGKHZXB3UYWKH",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.00297 per OpsItem in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0029700000"
+                },
+                "rateCode": "9Z3QGKHZXB3UYWKH.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "OpsItems"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-OC-OpsItems-Tier1"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "SAE1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-SAE1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "B8GKJFUB3N73NVZZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "B8GKJFUB3N73NVZZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-SAE1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "Not Applicable",
+        "gets": "True",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-Doc-API-Requests-Tier1"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "BAKEZF6USK2T5WN8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.025 per 1000 Get/Describe requests for Package Documents",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000250000"
+                },
+                "rateCode": "BAKEZF6USK2T5WN8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "API Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Doc-API-Requests-Tier1"
+    },
+    {
+      "attributes": {
+        "instances": "advanced",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN3-MI-AdvInstances-Hrs"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "CCRD83K62JESXYMK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.00 per Advanced Instance UnitHr in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000000"
+                },
+                "rateCode": "CCRD83K62JESXYMK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "UnitHrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-MI-AdvInstances-Hrs"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "USW2-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-USW2-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "CRY5FZJQGX6WRDGK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "CRY5FZJQGX6WRDGK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-USW2-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "USE1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-USE1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "EJHF8HB2D8ABST8R",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "EJHF8HB2D8ABST8R.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-USE1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "EUC1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-EUC1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "HGJ3A22DUD69UDVB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "HGJ3A22DUD69UDVB.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-EUC1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "describes": "Not Applicable",
+        "gets": "True",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "opsItems": "Not Applicable",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "updates": "Not Applicable",
+        "usagetype": "APN3-OC-API-Requests-Tier1"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "J379YUBHC77HHT9Y",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.000039 per OpsCenter API Request in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000390000"
+                },
+                "rateCode": "J379YUBHC77HHT9Y.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "API Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-OC-API-Requests-Tier1"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "USE2-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-USE2-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "N732E4UTUCA9S5S2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "N732E4UTUCA9S5S2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-USE2-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN3-HybridSession"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "P37WEHRDRYUBQY7U",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per session for HybridSession in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0500000000"
+                },
+                "rateCode": "P37WEHRDRYUBQY7U.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "session"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-HybridSession"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "CAN1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-CAN1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "PWPNXA3YGXXBQY5E",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "PWPNXA3YGXXBQY5E.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-CAN1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "parameterType": "False",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "throughput": "1000",
+        "usagetype": "APN3-PS-Param-Processed-Tier2"
+      },
+      "operation": "",
+      "productFamily": "API Request",
+      "sku": "QA2HNMGMF9S3F7EU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.05 per 10,000 Parameter API Interaction_Higher throughput in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000050000"
+                },
+                "rateCode": "QA2HNMGMF9S3F7EU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "API Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-PS-Param-Processed-Tier2"
+    },
+    {
+      "attributes": {
+        "api-requests-free": "Not Applicable",
+        "api-requests-paid": "Not Applicable",
+        "change-requests-free": "True",
+        "change-requests-paid": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN3-Change-ChangeRequest-Free"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "QJAG4WMHTNH9RKKV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "Free trial Change Requests in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000000"
+                },
+                "rateCode": "QJAG4WMHTNH9RKKV.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Change-ChangeRequest-Free"
+    },
+    {
+      "attributes": {
+        "api-requests-free": "True",
+        "api-requests-paid": "Not Applicable",
+        "change-requests-free": "Not Applicable",
+        "change-requests-paid": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN3-Change-API-Requests-Free"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "SBB99FHSHA424RSM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "Free trial Change Manager API Requests in Asia Pacific (Osaka-Local)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000000"
+                },
+                "rateCode": "SBB99FHSHA424RSM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "API Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Change-API-Requests-Free"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "APS1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-APS1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "TFS35CKHU98VV3FW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "TFS35CKHU98VV3FW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-APS1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "APS3",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-APS3-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "V8ATJJEA2C4QUM4K",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "V8ATJJEA2C4QUM4K.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-APS3-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "EUN1-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-EUN1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "V8W7GV7WP5TC9BY4",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "V8W7GV7WP5TC9BY4.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-EUN1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "gets": "ExperimentHours",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "updates": "Not Applicable",
+        "usagetype": "APN3-AppConfig-ExperimentHours"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "VBPJ2Q5HWXDW7QTF",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.90 per Hour for AppConfig-ExperimentHours in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "VBPJ2Q5HWXDW7QTF.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-AppConfig-ExperimentHours"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN3-HybridInvocation"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "VDAMPQ5VKWTDCGWQ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.002 per Invocation for HybridInvocation in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0020000000"
+                },
+                "rateCode": "VDAMPQ5VKWTDCGWQ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Invocation"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-HybridInvocation"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "Not Applicable",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "True",
+        "usagetype": "APN3-TimedStorage-ByteHrs"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "W577YDTKX86TE4K2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.046 per GB per month of storage used in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0460000000"
+                },
+                "rateCode": "W577YDTKX86TE4K2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Mo"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-TimedStorage-ByteHrs"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "EUW3-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-EUW3-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "XZZYHMKS2Q565KD3",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "XZZYHMKS2Q565KD3.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-EUW3-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "dataTransfer": "EU-",
+        "gets": "Not Applicable",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "storage": "Not Applicable",
+        "usagetype": "APN3-EU-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "Y6JXRHJGVJ9QRUDC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.9 per GB - Data Retrieval",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.9000000000"
+                },
+                "rateCode": "Y6JXRHJGVJ9QRUDC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-EU-AWS-Out-Bytes"
+    }
+  ],
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}
