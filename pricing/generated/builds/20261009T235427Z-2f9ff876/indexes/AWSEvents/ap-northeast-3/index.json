@@ -1,0 +1,65 @@
+{
+  "attributes": {
+    "eventType": [
+      "APIDestination",
+      "Archive Event",
+      "Cross-Account AWS Event",
+      "Cross-Account Custom Event",
+      "Cross-Account Partner Event",
+      "Custom Event",
+      "Discovery Event",
+      "Event Storage",
+      "Partner Event"
+    ],
+    "invocation": [
+      "Scheduled Invocation"
+    ],
+    "location": [
+      "Asia Pacific (Osaka)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "ArchiveEvents",
+      "CrossAccountInvoke-AWSEvent",
+      "CrossAccountInvoke-CustomEvent",
+      "CrossAccountInvoke-PartnerEvent",
+      "DiscoveryEvent",
+      "Invocation",
+      "InvokeApiDestination",
+      "PipeRequest",
+      "PutEvents",
+      "ReceivedPartnerEvents",
+      "StandardStorage"
+    ],
+    "regionCode": [
+      "ap-northeast-3"
+    ],
+    "request": [
+      "Pipe Request"
+    ],
+    "servicecode": [
+      "AWSEvents"
+    ],
+    "servicename": [
+      "CloudWatch Events"
+    ],
+    "timeWindow": [
+      "N/A"
+    ],
+    "usagetype": [
+      "APN3-ArchivedEvents-Bytes",
+      "APN3-Event-8K-Chunks",
+      "APN3-Event-64K-Chunks",
+      "APN3-Invocation-64K-Chunks",
+      "APN3-Request-64K-Chunks",
+      "APN3-ScheduledInvocation",
+      "APN3-TimedStorage-ByteHrs"
+    ]
+  },
+  "buildId": "20261009T235427Z-2f9ff876",
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSEvents"
+}

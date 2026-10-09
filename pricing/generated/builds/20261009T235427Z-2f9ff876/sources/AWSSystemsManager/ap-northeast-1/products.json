@@ -1,0 +1,110 @@
+{
+  "buildId": "20261009T235427Z-2f9ff876",
+  "products": [
+    {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "response": "response-plan-months",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "usagetype": "APN1-IM-ResponsePlan-Months-Tier1"
+      },
+      "operation": "",
+      "productFamily": "AWS Systems Manager",
+      "sku": "V6JVHFNM9G6T5RMV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$7.00 per Response Plan Month",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "7.0000000000"
+                },
+                "rateCode": "V6JVHFNM9G6T5RMV.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Months"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-IM-ResponsePlan-Months-Tier1"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "JustInTimeAccessHour",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSSystemsManager",
+        "servicename": "AWS Systems Manager",
+        "trial": "FALSE",
+        "usagetype": "APN1-JustInTimeAccessHour"
+      },
+      "operation": "JustInTimeAccessHour",
+      "productFamily": "AWS Systems Manager",
+      "sku": "YF7EUXB8ARRTSWJX",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "7200000",
+                "description": "$0.0014 per hours from 7,200,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0014000000"
+                },
+                "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.4AXZNUSGXN",
+                "unit": "hours"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0.0137 per hours from 0 to 72,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+                "endRange": "72000",
+                "pricePerUnit": {
+                  "USD": "0.0137000000"
+                },
+                "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.7UZZKUX94N",
+                "unit": "hours"
+              },
+              {
+                "beginRange": "720000",
+                "description": "$0.0034 per hours from 720,000 to 7,200,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+                "endRange": "7200000",
+                "pricePerUnit": {
+                  "USD": "0.0034000000"
+                },
+                "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.M9YCZK9D2S",
+                "unit": "hours"
+              },
+              {
+                "beginRange": "72000",
+                "description": "$0.0103 per hours from 72,000 to 720,000 for APN1-JustInTimeAccessHour in Asia Pacific (Tokyo)",
+                "endRange": "720000",
+                "pricePerUnit": {
+                  "USD": "0.0103000000"
+                },
+                "rateCode": "YF7EUXB8ARRTSWJX.JRTCKXETXF.MR2VG8R56J",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-JustInTimeAccessHour"
+    }
+  ],
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}

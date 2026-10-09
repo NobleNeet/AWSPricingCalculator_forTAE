@@ -1,0 +1,65 @@
+{
+  "attributes": {
+    "eventType": [
+      "APIDestination",
+      "Archive Event",
+      "Cross-Account AWS Event",
+      "Cross-Account Custom Event",
+      "Cross-Account Partner Event",
+      "Custom Event",
+      "Discovery Event",
+      "Event Storage",
+      "Partner Event"
+    ],
+    "invocation": [
+      "Scheduled Invocation"
+    ],
+    "location": [
+      "US East (Ohio)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "ArchiveEvents",
+      "CrossAccountInvoke-AWSEvent",
+      "CrossAccountInvoke-CustomEvent",
+      "CrossAccountInvoke-PartnerEvent",
+      "DiscoveryEvent",
+      "Invocation",
+      "InvokeApiDestination",
+      "PipeRequest",
+      "PutEvents",
+      "ReceivedPartnerEvents",
+      "StandardStorage"
+    ],
+    "regionCode": [
+      "us-east-2"
+    ],
+    "request": [
+      "Pipe Request"
+    ],
+    "servicecode": [
+      "AWSEvents"
+    ],
+    "servicename": [
+      "CloudWatch Events"
+    ],
+    "timeWindow": [
+      "N/A"
+    ],
+    "usagetype": [
+      "USE2-ArchivedEvents-Bytes",
+      "USE2-Event-8K-Chunks",
+      "USE2-Event-64K-Chunks",
+      "USE2-Invocation-64K-Chunks",
+      "USE2-Request-64K-Chunks",
+      "USE2-ScheduledInvocation",
+      "USE2-TimedStorage-ByteHrs"
+    ]
+  },
+  "buildId": "20261009T235427Z-2f9ff876",
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSEvents"
+}
