@@ -211,6 +211,20 @@
             },
             "required": [],
             "additionalProperties": false
+          },
+          "exclusiveMinimum": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9]+(\\.[0-9]+)?$"
+              }
+            ]
+          },
+          "integer": {
+            "type": "boolean"
           }
         },
         "required": [

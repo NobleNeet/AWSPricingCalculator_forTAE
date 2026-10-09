@@ -8,8 +8,15 @@
       "label": "Architecture",
       "type": "select",
       "default": "AWS-Lambda-Duration",
-      "options": { "values": ["AWS-Lambda-Duration", "AWS-Lambda-Duration-ARM"] },
-      "ui": { "help": "Processor architecture for the Lambda Functions section. Pricing is resolved from the corresponding x86 or Arm Public Price List meter." }
+      "options": {
+        "values": [
+          "AWS-Lambda-Duration",
+          "AWS-Lambda-Duration-ARM"
+        ]
+      },
+      "ui": {
+        "help": "Processor architecture for the Lambda Functions section. Pricing is resolved from the corresponding x86 or Arm Public Price List meter."
+      }
     },
     {
       "id": "ephemeralStorageMb",
@@ -18,7 +25,9 @@
       "default": "512",
       "minimum": "512",
       "maximum": "10240",
-      "ui": { "help": "Configured /tmp storage. The first 512 MB is included; only storage above 512 MB is billed." }
+      "ui": {
+        "help": "Configured /tmp storage. The first 512 MB is included; only storage above 512 MB is billed."
+      }
     },
     {
       "id": "requestsPerMonth",
@@ -26,16 +35,20 @@
       "type": "number",
       "default": "0",
       "minimum": "0",
-      "ui": { "help": "Monthly Lambda function requests. Free Tier allowances are intentionally not subtracted by this calculator." }
+      "ui": {
+        "help": "Monthly Lambda function requests. Free Tier allowances are intentionally not subtracted by this calculator."
+      }
     },
     {
       "id": "averageDurationMs",
       "label": "Duration of each request (ms)",
       "type": "number",
       "default": "100",
-      "minimum": "0",
+      "minimum": "1",
       "maximum": "900000",
-      "ui": { "help": "Average billed execution duration in milliseconds." }
+      "ui": {
+        "help": "1リクエストあたりの平均課金時間（ms）。1ms以上900000ms以下。実行がない場合はリクエスト数を0にしてください。"
+      }
     },
     {
       "id": "memoryMb",
@@ -44,15 +57,25 @@
       "default": "128",
       "minimum": "128",
       "maximum": "10240",
-      "ui": { "help": "Configured function memory, from 128 MB through 10,240 MB." }
+      "ui": {
+        "help": "Configured function memory, from 128 MB through 10,240 MB."
+      }
     },
     {
       "id": "provisionedArchitecture",
       "label": "Provisioned Concurrency architecture",
       "type": "select",
       "default": "AWS-Lambda-Provisioned-Concurrency",
-      "options": { "values": ["AWS-Lambda-Provisioned-Concurrency", "AWS-Lambda-Provisioned-Concurrency-ARM"] },
-      "ui": { "advanced": true, "help": "Processor architecture for the Provisioned Concurrency section. This is independent from the Lambda Functions section in the AWS Pricing Calculator." }
+      "options": {
+        "values": [
+          "AWS-Lambda-Provisioned-Concurrency",
+          "AWS-Lambda-Provisioned-Concurrency-ARM"
+        ]
+      },
+      "ui": {
+        "advanced": true,
+        "help": "Processor architecture for the Provisioned Concurrency section. This is independent from the Lambda Functions section in the AWS Pricing Calculator."
+      }
     },
     {
       "id": "provisionedConcurrency",
@@ -60,7 +83,10 @@
       "type": "number",
       "default": "0",
       "minimum": "0",
-      "ui": { "advanced": true, "help": "Number of pre-initialized execution environments." }
+      "ui": {
+        "advanced": true,
+        "help": "Number of pre-initialized execution environments."
+      }
     },
     {
       "id": "provisionedHoursPerMonth",
@@ -69,8 +95,15 @@
       "default": "0",
       "minimum": "0",
       "maximum": "730",
-      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
-      "ui": { "advanced": true, "help": "Total time Provisioned Concurrency is enabled during the month. AWS bills the enabled period rounded up to the nearest five minutes." }
+      "enabledWhen": {
+        "field": "profile.provisionedConcurrency",
+        "op": "neq",
+        "value": "0"
+      },
+      "ui": {
+        "advanced": true,
+        "help": "Total time Provisioned Concurrency is enabled during the month. AWS bills the enabled period rounded up to the nearest five minutes."
+      }
     },
     {
       "id": "provisionedRequestsPerMonth",
@@ -78,8 +111,15 @@
       "type": "number",
       "default": "0",
       "minimum": "0",
-      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
-      "ui": { "advanced": true, "help": "Requests executed while Provisioned Concurrency is enabled. The Lambda Free Tier does not apply to these functions." }
+      "enabledWhen": {
+        "field": "profile.provisionedConcurrency",
+        "op": "neq",
+        "value": "0"
+      },
+      "ui": {
+        "advanced": true,
+        "help": "Requests executed while Provisioned Concurrency is enabled. The Lambda Free Tier does not apply to these functions."
+      }
     },
     {
       "id": "provisionedAverageDurationMs",
@@ -88,8 +128,15 @@
       "default": "100",
       "minimum": "0",
       "maximum": "900000",
-      "enabledWhen": { "field": "profile.provisionedRequestsPerMonth", "op": "neq", "value": "0" },
-      "ui": { "advanced": true, "help": "Average billed duration for requests executed with Provisioned Concurrency." }
+      "enabledWhen": {
+        "field": "profile.provisionedRequestsPerMonth",
+        "op": "neq",
+        "value": "0"
+      },
+      "ui": {
+        "advanced": true,
+        "help": "Average billed duration for requests executed with Provisioned Concurrency."
+      }
     },
     {
       "id": "provisionedMemoryMb",
@@ -98,16 +145,30 @@
       "default": "128",
       "minimum": "128",
       "maximum": "10240",
-      "enabledWhen": { "field": "profile.provisionedConcurrency", "op": "neq", "value": "0" },
-      "ui": { "advanced": true, "help": "Memory allocation used by the Provisioned Concurrency estimate." }
+      "enabledWhen": {
+        "field": "profile.provisionedConcurrency",
+        "op": "neq",
+        "value": "0"
+      },
+      "ui": {
+        "advanced": true,
+        "help": "Memory allocation used by the Provisioned Concurrency estimate."
+      }
     },
     {
       "id": "invokeMode",
       "label": "Invoke mode",
       "type": "select",
       "default": "buffered",
-      "options": { "values": ["buffered", "response-stream"] },
-      "ui": { "help": "Buffered responses have no additional response-streaming charge. Choose response-stream to estimate HTTP response streaming processed bytes." }
+      "options": {
+        "values": [
+          "buffered",
+          "response-stream"
+        ]
+      },
+      "ui": {
+        "help": "Buffered responses have no additional response-streaming charge. Choose response-stream to estimate HTTP response streaming processed bytes."
+      }
     },
     {
       "id": "averageStreamedResponseMb",
@@ -116,12 +177,22 @@
       "default": "6",
       "minimum": "0",
       "maximum": "200",
-      "enabledWhen": { "field": "profile.invokeMode", "op": "eq", "value": "response-stream" },
-      "ui": { "help": "For response streaming, the first 6 MB written per request is not charged by the processed-bytes meter." }
+      "enabledWhen": {
+        "field": "profile.invokeMode",
+        "op": "eq",
+        "value": "response-stream"
+      },
+      "ui": {
+        "help": "For response streaming, the first 6 MB written per request is not charged by the processed-bytes meter."
+      }
     }
   ],
   "fixedFilters": [
-    { "field": "productFamily", "op": "eq", "value": "Serverless" }
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Serverless"
+    }
   ],
   "components": [
     "requests",

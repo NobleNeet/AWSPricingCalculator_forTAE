@@ -192,6 +192,10 @@ DrawerはService Definitionから動的生成する。
 
 無効化された入力・Componentの保存値は保持してよいが、無効中は料金計算へ使用しない。
 
+### 入力検証
+
+数値入力はService Definitionの範囲・整数制約で検証する。不正値は保存値を保持してエラーを表示し、そのServiceの金額を未計算とする。自動的な補正・上限への丸めはしない。台数・利用時間・実行時間・月間集計量の意味を分け、リソース容量の下限をGB-monthやACU-hoursへ一律適用しない。今回のサービス別契約は `docs/input-validation/README.md` に記録する。
+
 ### 6.1 EC2のOn-Demand利用量
 
 EC2は本アプリのOn-Demand固定方針に従い、AWS Pricing Calculatorの `Expected utilization of EC2 instances` に相当する月間稼働時間を直接入力する。

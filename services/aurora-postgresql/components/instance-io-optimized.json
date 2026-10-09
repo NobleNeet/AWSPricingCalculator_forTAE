@@ -20,14 +20,23 @@
       "label": "Hours / month",
       "type": "number",
       "default": "730",
-      "minimum": "0"
+      "minimum": "0",
+      "exclusiveMinimum": "0",
+      "maximum": "730",
+      "ui": {
+        "help": "1台あたりの月間稼働時間。0より大きく730時間以下。複数台の合計時間ではなく、台数を別に入力してください。"
+      }
     },
     {
       "id": "quantity",
       "label": "DB instances (writer + readers)",
       "type": "number",
       "default": "1",
-      "minimum": "0"
+      "minimum": "1",
+      "integer": true,
+      "ui": {
+        "help": "稼働対象の台数を1以上の整数で入力してください。不要なサービスはPlanから外してください。"
+      }
     }
   ],
   "fixedFilters": [],

@@ -14,7 +14,7 @@
       "enabled": true,
       "inputs": {
         "instanceType": "db.t4g.micro",
-        "hours": "0",
+        "hours": "1",
         "quantity": "1"
       }
     },
@@ -35,7 +35,7 @@
         "operation": "CreateDBInstance:0014"
       },
       "unit": "Hrs",
-      "quantity": "0",
+      "quantity": "1",
       "limitations": [
         "free-tier",
         "account-specific-discount",
@@ -62,7 +62,7 @@
       },
       "productFamily": "Database Instance",
       "unit": "Hrs",
-      "quantity": "0"
+      "quantity": "1"
     }
   }
 }

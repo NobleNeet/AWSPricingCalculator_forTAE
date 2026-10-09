@@ -1,3 +1,4 @@
+import { numberInputError } from '../pricing/input-validation.js';
 import { PriceDataStore } from '../runtime/price-data-store.js';
 import { DefinitionStore } from '../runtime/definition-store.js';
 import { evaluateService, selectorCandidates } from '../pricing/core.js';
@@ -91,8 +92,8 @@ function field(input, scope, componentId, context, products, filters, inactive) 
     const candidates = selectorCandidates(input, products, context, filters);
     control = `<select ${attrs}>${value === undefined || !candidates.includes(value) ? `<option value="" selected>要再選択${value === undefined ? '' : ` (${escape(value)})`}</option>` : ''}${candidates.map(option => `<option value="${escape(option)}" ${option === value ? 'selected' : ''}>${escape(option)}</option>`).join('')}</select>`;
   } else if (input.type === 'boolean') control = `<input type="checkbox" ${attrs} ${value ? 'checked' : ''}>`;
-  else control = `<input type="number" min="${escape(input.minimum ?? '0')}" ${input.maximum !== undefined ? `max="${escape(input.maximum)}"` : ''} step="any" value="${escape(value)}" ${attrs}>`;
-  return `<label>${escape(input.label)}${control}</label>${input.ui?.help ? `<div class="input-help">${escape(input.ui.help)}</div>` : ''}`;
+  else control = `<input type="number" min="${escape(input.minimum ?? '0')}" ${input.maximum !== undefined ? `max="${escape(input.maximum)}"` : ''} step="${input.integer ? '1' : 'any'}" aria-invalid="${Boolean(numberInputError(input, value))}" value="${escape(value)}" ${attrs}>`;
+  return `<label>${escape(input.label)}${control}</label>${input.ui?.help ? `<div class="input-help">${escape(input.ui.help)}</div>` : ''}${active && input.type === 'number' && numberInputError(input, value) ? `<div class="invalid">${escape(numberInputError(input, value))}</div>` : ''}`;
 }
 async function renderDrawer() {
   const id = editing, instance = state.serviceInstances[id]; if (!instance) return;

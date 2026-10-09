@@ -32,7 +32,11 @@ test('Shared tenancy excludes surcharge and another Dedicated row may omit an al
   assert.equal(estimate({ tenancy: 'Shared' }).components['dedicated-region-fee'].state, 'disabled');
   assert.equal(estimate({ enabled: false }).components['dedicated-region-fee'].state, 'disabled');
   // Capacity Reservations incur the regional fee even when no instance is running.
-  assert.equal(estimate({ quantity: '0' }).components['dedicated-region-fee'].amountUsd, '1460');
+  const noInstances = estimate({ quantity: '0' });
+  assert.equal(noInstances.state, 'invalid');
+  assert.equal(noInstances.amountUsd, null);
+  assert.equal(noInstances.components['dedicated-region-fee'].amountUsd, '1460');
+  assert.equal(noInstances.components.instance.issues[0].code, 'INVALID_INPUT');
 });
 test('existing saved Dedicated rows gain the regional component without changing compute inputs', () => {
   const instance = { profileId: 'standard', selectors: { tenancy: 'Dedicated' }, components: { instance: { inputs: { hours: '100', quantity: '2' } } } };
