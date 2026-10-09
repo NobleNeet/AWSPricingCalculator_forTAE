@@ -1,3 +1,4 @@
+import { numberInputError } from '../../src/pricing/input-validation.js';
 import { activeInputs, evaluateService, selectorCandidates } from '../../src/pricing/core.js';
 import { enabled } from '../../src/pricing/conditions.js';
 import { issue } from '../../src/pricing/issues.js';
@@ -52,8 +53,7 @@ function numericCandidates(input, condition) {
     if (value === undefined || value === null || value === '') return;
     const number = Number(value);
     if (!Number.isFinite(number)) return;
-    if (input.minimum !== undefined && number < Number(input.minimum)) return;
-    if (input.maximum !== undefined && number > Number(input.maximum)) return;
+    if (numberInputError(input, value)) return;
     values.add(String(value));
   };
   add(input.default);

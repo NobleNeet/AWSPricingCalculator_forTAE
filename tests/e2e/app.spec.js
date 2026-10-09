@@ -264,8 +264,9 @@ test('EC2 monthly hours enforce the official 730-hour limit and recover after co
     await expect(input).toHaveValue('730');
     await input.fill('744');
     await input.press('Tab');
-    await expect(page.locator('fieldset').filter({ has: input }).locator('.invalid')).toContainText('Invalid usage');
-    await expect(page.locator('tbody td[data-instance]')).toContainText('Invalid usage');
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+    await expect(page.locator('fieldset').filter({ has: input })).toContainText('730以下の値');
+    await expect(page.locator('tbody td[data-instance]')).toContainText('730以下の値');
     await input.fill('730');
     await input.press('Tab');
     await expect(page.locator('#service-drawer .invalid')).toHaveCount(0);

@@ -175,6 +175,10 @@ Profile selector、fixed filter、Component一覧を持つ。
 - limitations
 - UI metadata
 
+### 数値入力の検証契約
+
+数値inputの`minimum`と`maximum`は包含境界、任意の`exclusiveMinimum`は除外下限、任意の`integer: true`は整数制約を表す。共通のDecimal検証をPricing Coreとブラウザ表示で使用し、保存復元された値も同じ契約で評価する。有効でない入力は`INVALID_INPUT`とし、サービス合計を算出しない。無効な条件分岐の入力は検証・計算から除外する。Semantic候補生成にも同じ契約を適用する。既存Definitionは任意metadataを省略した場合、従来の包含境界動作を維持する。
+
 ### 3.5 Package completeness
 
 CIで以下を検証する。

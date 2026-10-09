@@ -53,7 +53,8 @@
       "label": "Number of builds per month",
       "type": "number",
       "default": "1",
-      "minimum": "0"
+      "minimum": "1",
+      "integer": true
     },
     {
       "id": "averageBuildMinutes",
@@ -62,8 +63,9 @@
       "default": "10",
       "minimum": "0",
       "ui": {
-        "help": "1ビルドあたりの平均実行時間（分）。CodeBuild On-Demand EC2 のビルド時間は分単位で課金されるため、各ビルド時間を切り上げて月間ビルド数を掛けます。"
-      }
+        "help": "1ビルドあたりの平均課金分数は0より大きい値。小数の月間平均は保持し、ビルド毎の課金切上げ済みの数量を入力してください。"
+      },
+      "exclusiveMinimum": "0"
     }
   ],
   "fixedFilters": [

@@ -8,28 +8,67 @@
       "id": "acuHours",
       "label": "ACU-hours / month",
       "type": "number",
-      "default": "730",
+      "default": "11680",
       "minimum": "0",
-      "ui": {"help": "Enter aggregate Aurora Capacity Unit hours consumed by the DB shard group."}
+      "ui": {
+        "help": "DB shard groupの月間合計ACU-hours。初期値は最小容量16 ACU × 730時間 = 11680。短時間利用の合計値には11680の下限を適用しません。"
+      }
     }
   ],
   "fixedFilters": [],
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {"field": "productFamily", "op": "eq", "value": "Limitless"},
-      {"field": "attributes.databaseEngine", "op": "eq", "value": "Aurora PostgreSQL"},
-      {"field": "attributes.storage", "op": "eq", "value": "Aurora IO Optimization Mode"},
-      {"field": "operation", "op": "eq", "value": "CreateDBInstance:0021"},
-      {"field": "attributes.limitlesspreview", "op": "notExists"}
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Limitless"
+      },
+      {
+        "field": "attributes.databaseEngine",
+        "op": "eq",
+        "value": "Aurora PostgreSQL"
+      },
+      {
+        "field": "attributes.storage",
+        "op": "eq",
+        "value": "Aurora IO Optimization Mode"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "CreateDBInstance:0021"
+      },
+      {
+        "field": "attributes.limitlesspreview",
+        "op": "notExists"
+      }
     ],
-    "dimensionFilters": [{"field": "unit", "op": "eq", "value": "ACU-Hr"}]
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "ACU-Hr"
+      }
+    ]
   },
   "calculation": {
     "model": "unit",
-    "usage": {"sources": [{"valueFrom": "component.acuHours"}], "combine": "multiply"},
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.acuHours"
+        }
+      ],
+      "combine": "multiply"
+    },
     "transforms": [],
     "outputUnit": "ACU-Hr"
   },
-  "limitations": ["free-tier", "account-specific-discount", "aggregate-billing", "network-transfer"]
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "aggregate-billing",
+    "network-transfer"
+  ]
 }

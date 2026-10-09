@@ -9,7 +9,11 @@
       "label": "GB-month",
       "type": "number",
       "default": "100",
-      "minimum": "0"
+      "minimum": "0",
+      "exclusiveMinimum": "0",
+      "ui": {
+        "help": "0より大きい月間保存量（GB-month）。短期間利用の集計値には、実ボリューム容量の下限をそのまま適用しません。"
+      }
     }
   ],
   "fixedFilters": [],

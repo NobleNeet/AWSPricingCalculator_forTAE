@@ -47,7 +47,11 @@
       "label": "Number of EC2 instances",
       "type": "number",
       "default": "1",
-      "minimum": "0"
+      "minimum": "1",
+      "integer": true,
+      "ui": {
+        "help": "稼働対象の台数を1以上の整数で入力してください。不要なサービスはPlanから外してください。"
+      }
     }
   ],
   "fixedFilters": [

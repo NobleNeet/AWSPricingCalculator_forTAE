@@ -25,6 +25,7 @@ export const PRICING_CONTRACT_FILES = [
   'src/pricing/calculation.js',
   'src/pricing/conditions.js',
   'src/pricing/core.js',
+  'src/pricing/input-validation.js',
   'src/pricing/decimal.js',
   'src/pricing/dimensions.js',
   'src/pricing/filter.js',

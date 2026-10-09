@@ -9,7 +9,11 @@
       "label": "GB-month",
       "type": "number",
       "default": "20",
-      "minimum": "0"
+      "minimum": "0",
+      "exclusiveMinimum": "0",
+      "ui": {
+        "help": "DB全体の月間保存量（GB-month）。0より大きい値を入力するか、このComponentを無効にしてください。短期間利用の集計値へ実容量20GiBの下限を適用しません。"
+      }
     }
   ],
   "fixedFilters": [],

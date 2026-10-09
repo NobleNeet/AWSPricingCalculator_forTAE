@@ -10,10 +10,10 @@
       "id": "monitoredAcus",
       "label": "Database Insights monitored Aurora Capacity Units (ACUs)",
       "type": "number",
-      "default": "0",
-      "minimum": "0",
+      "default": "16",
+      "minimum": "16",
       "ui": {
-        "help": "Enter the Aurora Capacity Units monitored by Database Insights Advanced. Standard mode with the default 7-day history has no additional Database Insights charge."
+        "help": "有効時はDB shard groupの監視容量を16 ACU以上で入力。月間利用時間は別に設定。不要な場合はComponentを無効にしてください。"
       }
     },
     {
@@ -22,30 +22,48 @@
       "type": "number",
       "default": "730",
       "minimum": "0",
-      "ui": {"advanced": true}
+      "ui": {
+        "advanced": true
+      },
+      "exclusiveMinimum": "0",
+      "maximum": "730"
     }
   ],
   "fixedFilters": [],
   "priceQuery": {
     "expect": "singleSku",
     "productFilters": [
-      {"field": "operation", "op": "eq", "value": "Aurora-PostgreSQL:Limitless"}
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "Aurora-PostgreSQL:Limitless"
+      }
     ],
     "dimensionFilters": [
-      {"field": "unit", "op": "eq", "value": "ACU-Hours"}
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "ACU-Hours"
+      }
     ]
   },
   "calculation": {
     "model": "unit",
     "usage": {
       "sources": [
-        {"valueFrom": "component.monitoredAcus"},
-        {"valueFrom": "component.hours"}
+        {
+          "valueFrom": "component.monitoredAcus"
+        },
+        {
+          "valueFrom": "component.hours"
+        }
       ],
       "combine": "multiply"
     },
     "transforms": [],
     "outputUnit": "ACU-Hours"
   },
-  "limitations": ["account-specific-discount"]
+  "limitations": [
+    "account-specific-discount"
+  ]
 }

@@ -1,5 +1,6 @@
+import { numberInputError } from './input-validation.js';
 import { enabled } from './conditions.js';
-import { decimal, sum } from './decimal.js';
+import { sum } from './decimal.js';
 import { matches, fieldValue } from './filter.js';
 import { resolvePrice } from './price-query.js';
 import { mappingForComponent, priceSourceForComponent, resolvePricingMapping } from './mapping.js';
@@ -34,8 +35,8 @@ export function activeInputs(inputs, saved, context, products, filters, namespac
       if (!valid) fail('RESELECT_REQUIRED', `要再選択: ${input.label}`);
     }
     if (input.type === 'number') {
-      const amount = decimal(value);
-      if (amount.isNegative() || input.minimum !== undefined && amount.lt(input.minimum) || input.maximum !== undefined && amount.gt(input.maximum)) fail('INVALID_INPUT', `Invalid usage: ${input.label}`);
+      const error = numberInputError(input, value);
+      if (error) fail('INVALID_INPUT', error);
     }
     if (input.type === 'boolean' && typeof value !== 'boolean') fail('INVALID_INPUT', `Invalid boolean: ${input.label}`);
     active[input.id] = value;

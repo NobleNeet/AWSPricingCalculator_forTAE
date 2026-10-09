@@ -55,8 +55,9 @@
       "default": "1",
       "minimum": "0",
       "ui": {
-        "help": "1 task / pod あたりの平均実行時間。Linux は最低1分、Windows は最低5分の課金時間を計算時に適用します。"
-      }
+        "help": "1 task / podあたりの平均実行時間は0より大きい値。Linux最低1分・Windows最低5分の課金時間は計算時に適用します。"
+      },
+      "exclusiveMinimum": "0"
     },
     {
       "id": "linuxVcpuPerTask",
