@@ -54,7 +54,16 @@
           "valueFrom": "profile.tasksPerDay"
         },
         {
-          "value": "30"
+          "value": {
+            "type": "transformed",
+            "valueFrom": "project.hoursPerMonth",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "0.041666666666666666666666666666666666666666666666666666666666666666666666666666667"
+              }
+            ]
+          }
         },
         {
           "value": {

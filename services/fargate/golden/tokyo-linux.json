@@ -24,7 +24,7 @@
         "cputype": "perCPU"
       },
       "unit": "hours",
-      "quantity": "7.5",
+      "quantity": "7.6041666666666666666666666666666666666666666666666666666666666666666666666666668",
       "limitations": [
         "account-specific-discount"
       ]
@@ -36,7 +36,7 @@
         "memorytype": "perGB"
       },
       "unit": "hours",
-      "quantity": "15",
+      "quantity": "15.208333333333333333333333333333333333333333333333333333333333333333333333333334",
       "limitations": [
         "account-specific-discount"
       ]
@@ -51,7 +51,7 @@
       },
       "productFamily": "Compute",
       "unit": "hours",
-      "quantity": "7.5"
+      "quantity": "7.6041666666666666666666666666666666666666666666666666666666666666666666666666668"
     },
     "linux-x86-memory": {
       "attributes": {
@@ -61,7 +61,7 @@
       },
       "productFamily": "Compute",
       "unit": "hours",
-      "quantity": "15"
+      "quantity": "15.208333333333333333333333333333333333333333333333333333333333333333333333333334"
     }
   }
 }

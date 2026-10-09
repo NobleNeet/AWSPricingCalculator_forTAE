@@ -45,7 +45,7 @@
       "default": "1",
       "minimum": "0",
       "ui": {
-        "help": "1日あたりに実行する Amazon ECS task / Amazon EKS pod の数。添付 Calculator 画面で確認できる /日 入力を採用しています。"
+        "help": "1日あたりに実行する Amazon ECS task / Amazon EKS pod の数。月間件数は「共通月間時間 ÷ 24」日で換算します。既定730時間では730/24日、30日で見積もる場合は共通月間時間を720時間にしてください。"
       }
     },
     {
@@ -97,7 +97,7 @@
         "value": "Linux"
       },
       "ui": {
-        "help": "Linux Fargate の task/pod あたり memory。vCPU ごとに AWS が許可する memory 値・刻み幅があります。"
+        "help": "AWS対応構成を指定してください: 0.25 vCPUは0.5/1/2 GB、0.5 vCPUは1〜4 GB、1 vCPUは2〜8 GB、2 vCPUは4〜16 GB、4 vCPUは8〜30 GB（以上は整数）、8 vCPUは16〜60 GB・4 GB刻み、16 vCPUは32〜120 GB・8 GB刻み、32 vCPUは60/120/244 GBです。構成作成可否の完全な検証は行いません。"
       }
     },
     {
@@ -134,7 +134,7 @@
         "value": "Windows"
       },
       "ui": {
-        "help": "Windows Fargate の task あたり memory。vCPU ごとに AWS が許可する範囲内で指定してください。"
+        "help": "Windows Fargateはx86のみです。1 vCPUは2〜8 GB、2 vCPUは4〜16 GB、4 vCPUは8〜30 GBの整数メモリを指定してください。構成作成可否の完全な検証は行いません。"
       }
     },
     {

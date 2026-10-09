@@ -24,7 +24,7 @@
         "cputype": "perCPU"
       },
       "unit": "hours",
-      "quantity": "30",
+      "quantity": "30.416666666666666666666666666666666666666666666666666666666666666666666666666667",
       "limitations": [
         "account-specific-discount"
       ]
@@ -37,7 +37,7 @@
         "memorytype": "perGB"
       },
       "unit": "hours",
-      "quantity": "60",
+      "quantity": "60.833333333333333333333333333333333333333333333333333333333333333333333333333334",
       "limitations": [
         "account-specific-discount"
       ]
@@ -50,7 +50,7 @@
         "cputype": "perCPU OS License Fee"
       },
       "unit": "hours",
-      "quantity": "30",
+      "quantity": "30.416666666666666666666666666666666666666666666666666666666666666666666666666667",
       "limitations": [
         "account-specific-discount"
       ]
@@ -62,7 +62,7 @@
         "storagetype": "default"
       },
       "unit": "GB-Hours",
-      "quantity": "30",
+      "quantity": "30.416666666666666666666666666666666666666666666666666666666666666666666666666667",
       "limitations": [
         "account-specific-discount"
       ]
@@ -78,7 +78,7 @@
       },
       "productFamily": "Compute",
       "unit": "hours",
-      "quantity": "30"
+      "quantity": "30.416666666666666666666666666666666666666666666666666666666666666666666666666667"
     },
     "windows-memory": {
       "attributes": {
@@ -89,7 +89,7 @@
       },
       "productFamily": "Compute",
       "unit": "hours",
-      "quantity": "60"
+      "quantity": "60.833333333333333333333333333333333333333333333333333333333333333333333333333334"
     },
     "windows-os": {
       "attributes": {
@@ -100,7 +100,7 @@
       },
       "productFamily": "Compute",
       "unit": "hours",
-      "quantity": "30"
+      "quantity": "30.416666666666666666666666666666666666666666666666666666666666666666666666666667"
     },
     "windows-ephemeral-storage": {
       "attributes": {
@@ -110,7 +110,7 @@
       },
       "productFamily": "Compute",
       "unit": "GB-Hours",
-      "quantity": "30"
+      "quantity": "30.416666666666666666666666666666666666666666666666666666666666666666666666666667"
     }
   }
 }
