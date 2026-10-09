@@ -132,7 +132,7 @@
       "minimum": "0",
       "ui": {
         "advanced": true,
-        "help": "The 5 million-event free allowance is intentionally not subtracted by this calculator."
+        "help": "Schema Discoveryの追加料金だけを計算します。通常のイベントバス取込料は含みません。取込料もこの行で見積もる場合は、発生源に応じてCustom events、Partner events、AWS opt-in data events、またはAWS management eventsにも件数を入力してください。取込料を別の行などへ計上済みの場合は重複入力しないでください。500万イベントの無料枠は控除しません。"
       }
     },
     {

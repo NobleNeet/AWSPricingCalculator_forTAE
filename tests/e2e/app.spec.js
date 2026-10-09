@@ -164,14 +164,17 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await expect(provisionedArchitecture.locator('option').nth(0)).toHaveAttribute('value', 'AWS-Lambda-Provisioned-Concurrency');
   await expect(provisionedArchitecture.locator('option').nth(1)).toHaveAttribute('value', 'AWS-Lambda-Provisioned-Concurrency-ARM');
   const provisioned = page.locator('#input-profile--provisionedConcurrency');
+  await ensureAdvancedOpen();
   await provisioned.fill('2');
   await provisioned.press('Tab');
   await ensureAdvancedOpen();
   await expect(page.locator('#input-profile--provisionedHoursPerMonth')).toBeEnabled();
   await expect(page.locator('#input-profile--provisionedRequestsPerMonth')).toBeEnabled();
   await expect(page.locator('#input-profile--provisionedMemoryMb')).toBeEnabled();
+  await ensureAdvancedOpen();
   await page.locator('#input-profile--provisionedHoursPerMonth').fill('10');
   await page.locator('#input-profile--provisionedHoursPerMonth').press('Tab');
+  await ensureAdvancedOpen();
   await page.locator('#input-profile--provisionedRequestsPerMonth').fill('1000');
   await page.locator('#input-profile--provisionedRequestsPerMonth').press('Tab');
   await ensureAdvancedOpen();
@@ -179,6 +182,7 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await expect(page.locator('fieldset:has-text("Provisioned concurrency capacity"):visible')).toHaveCount(1);
   await expect(page.locator('fieldset:has-text("Provisioned concurrency requests"):visible')).toHaveCount(1);
 
+  await ensureAdvancedOpen();
   await provisioned.fill('0');
   await provisioned.press('Tab');
   await expect(page.locator('#input-profile--provisionedHoursPerMonth')).toBeDisabled();
