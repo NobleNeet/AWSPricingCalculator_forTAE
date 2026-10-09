@@ -1,0 +1,455 @@
+{
+  "buildId": "20261009T234443Z-57ec318d",
+  "products": [
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Requests",
+        "groupDescription": "Invocation call for a Lambda function",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Request"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "3BE8DYKG4FYSZGDW",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Requests - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000002000"
+                },
+                "rateCode": "3BE8DYKG4FYSZGDW.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Request"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s for ARM",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Storage-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "8DSSBVMYVUE4A85P",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage for ARM - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000370"
+                },
+                "rateCode": "8DSSBVMYVUE4A85P.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Storage-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Provisioned-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "CQ446M27PP4V4UVB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000125615"
+                },
+                "rateCode": "CQ446M27PP4V4UVB.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Provisioned-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Storage-Duration",
+        "groupDescription": "Invocation duration weighted by ephemeral storage assigned to function, measured in GB-s",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Storage-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "E7BUD4C7BEJ3ED26",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Ephemeral Storage - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000000370"
+                },
+                "rateCode": "E7BUD4C7BEJ3ED26.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Storage-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-GB-Second"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "FSYUV9NMNDEXRJ5H",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute - Asia Pacific (Tokyo)-Tier-1",
+                "endRange": "6000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000166667"
+                },
+                "rateCode": "FSYUV9NMNDEXRJ5H.JRTCKXETXF.CUKFZ388N3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "6000000000",
+                "description": "AWS Lambda - Total Compute - Asia Pacific (Tokyo)-Tier-2",
+                "endRange": "15000000000",
+                "pricePerUnit": {
+                  "USD": "0.0000150000"
+                },
+                "rateCode": "FSYUV9NMNDEXRJ5H.JRTCKXETXF.QZE2SB4KVB",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "15000000000",
+                "description": "AWS Lambda - Total Compute - Asia Pacific (Tokyo)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "FSYUV9NMNDEXRJ5H.JRTCKXETXF.V7R92EXG27",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-GB-Second"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "J2PCAT8GTKGHMPPE",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for of Lambda-Streaming-Response-Processed-Bytes usage in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "J2PCAT8GTKGHMPPE.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Streaming-Response-Processed-Bytes"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-Provisioned-ARM",
+        "groupDescription": "Invocation duration, during provisioned period, weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Provisioned-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "RH4PFTVX4T4KZF9J",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute (Provisioned) for ARM - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000100492"
+                },
+                "rateCode": "RH4PFTVX4T4KZF9J.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Provisioned-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Processed-Bytes-ARM",
+        "groupDescription": "Processed bytes for a streamed response from a Lambda function invocation for ARM",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "SU5948MRY5A8GWNM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GiB for Lambda-Streaming-Response-Processed-Bytes-ARM in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "SU5948MRY5A8GWNM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Processed-Gigabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Streaming-Response-Processed-Bytes-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency-ARM",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s for ARM",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Provisioned-Concurrency-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "VZ2BZJB73ZRZTDTK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency for ARM - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000043068"
+                },
+                "rateCode": "VZ2BZJB73ZRZTDTK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Provisioned-Concurrency-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Duration-ARM",
+        "groupDescription": "Invocation duration weighted by memory assigned to function, measured in GB-s for ARM",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-GB-Second-ARM"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZSE7CMBEBTMPH8ET",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "7500000000",
+                "description": "AWS Lambda - Total Compute for ARM - Asia Pacific (Tokyo)-Tier-2",
+                "endRange": "18750000000",
+                "pricePerUnit": {
+                  "USD": "0.0000120001"
+                },
+                "rateCode": "ZSE7CMBEBTMPH8ET.JRTCKXETXF.6JGAYSJBNY",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Total Compute for ARM - Asia Pacific (Tokyo)-Tier-1",
+                "endRange": "7500000000",
+                "pricePerUnit": {
+                  "USD": "0.0000133334"
+                },
+                "rateCode": "ZSE7CMBEBTMPH8ET.JRTCKXETXF.6NBUNBXSC3",
+                "unit": "Lambda-GB-Second"
+              },
+              {
+                "beginRange": "18750000000",
+                "description": "AWS Lambda - Total Compute for ARM - Asia Pacific (Tokyo)-Tier-3",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000106667"
+                },
+                "rateCode": "ZSE7CMBEBTMPH8ET.JRTCKXETXF.AVR3V96UTF",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-GB-Second-ARM"
+    },
+    {
+      "attributes": {
+        "group": "AWS-Lambda-Provisioned-Concurrency",
+        "groupDescription": "Concurrency weighted by memory assigned to function over the period for which it is provisioned, measured in GB-s",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSLambda",
+        "servicename": "AWS Lambda",
+        "usagetype": "APN1-Lambda-Provisioned-Concurrency"
+      },
+      "operation": "",
+      "productFamily": "Serverless",
+      "sku": "ZVA2Z6TTQNFCXFSU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Lambda - Provisioned Concurrency - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000053835"
+                },
+                "rateCode": "ZVA2Z6TTQNFCXFSU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Lambda-GB-Second"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-Lambda-Provisioned-Concurrency"
+    }
+  ],
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}

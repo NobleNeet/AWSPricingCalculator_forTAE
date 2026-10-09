@@ -1,0 +1,32 @@
+{
+  "attributes": {
+    "location": [
+      "US West (N. California)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "JustInTimeAccessHour"
+    ],
+    "regionCode": [
+      "us-west-1"
+    ],
+    "servicecode": [
+      "AWSSystemsManager"
+    ],
+    "servicename": [
+      "AWS Systems Manager"
+    ],
+    "trial": [
+      "FALSE"
+    ],
+    "usagetype": [
+      "USW1-JustInTimeAccessHour"
+    ]
+  },
+  "buildId": "20261009T234443Z-57ec318d",
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}

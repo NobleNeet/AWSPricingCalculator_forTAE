@@ -1,0 +1,313 @@
+{
+  "buildId": "20261009T234443Z-57ec318d",
+  "products": [
+    {
+      "attributes": {
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE2-Fargate-Windows-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "4SWDCYDZ23FHHFFQ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - Memory  - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0051117500"
+                },
+                "rateCode": "4SWDCYDZ23FHHFFQ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-Windows-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU OS License Fee",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "resource": "OS License Fee per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE2-Fargate-Windows-OS-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "6X4BVHWRW7JXPE2Q",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - OS  - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0460000000"
+                },
+                "rateCode": "6X4BVHWRW7JXPE2Q.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-Windows-OS-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE2-Fargate-ARM-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "B7ZYF6FKX8ECBKSF",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - Memory - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0035600000"
+                },
+                "rateCode": "B7ZYF6FKX8ECBKSF.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-ARM-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "cputype": "perCPU",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE2-Fargate-ARM-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "FH39MKJC497ESWU9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - vCPU - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0323800000"
+                },
+                "rateCode": "FH39MKJC497ESWU9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-ARM-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE2-Fargate-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "HH5EE3ZFWSFKGKWM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Memory  - US East 2 (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0044450000"
+                },
+                "rateCode": "HH5EE3ZFWSFKGKWM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE2-Fargate-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "UGSJ89BUWB7SMJ6A",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - vCPU  - US East 2 (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0404800000"
+                },
+                "rateCode": "UGSJ89BUWB7SMJ6A.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE2-Fargate-Windows-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "VQSA888UJYJQGZJR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - vCPU  - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0465520000"
+                },
+                "rateCode": "VQSA888UJYJQGZJR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-Windows-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "storagetype": "default",
+        "usagetype": "USE2-Fargate-EphemeralStorage-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "WMTNJTQ9TGJXSFMD",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Ephemeral Storage - US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0001110000"
+                },
+                "rateCode": "WMTNJTQ9TGJXSFMD.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-Fargate-EphemeralStorage-GB-Hours"
+    }
+  ],
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonECS"
+}
