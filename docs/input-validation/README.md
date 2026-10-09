@@ -10,7 +10,7 @@ Scope: improve the inputs identified by the public GUI price audit. AWS Public P
 - CodeBuild: positive integer builds and positive average billed minutes. Fractional billed averages remain valid.
 - Fargate: positive average task duration. Existing minimum billing-duration transforms remain unchanged.
 - Lambda: average billed duration at least 1 ms; no execution is represented by zero requests. Existing 900000 ms upper bound remains.
-- Limitless: default compute usage becomes 16 ACU × 730 hours = 11680 ACU-hours. Aggregate short-use quantities remain valid; no 11680 ACU-hours minimum is imposed. Enabled Database Insights capacity is at least 16 ACU, with positive hours at most 730.
+- Limitless: default compute usage becomes 16 ACU × 730 hours = 11680 ACU-hours. Aggregate short-use quantities remain valid; no 11680 ACU-hours minimum is imposed. Database Insights monitored ACUs remain independent and nonnegative (the Calculator accepts 1 monitored ACU with a 16-ACU DB shard group); the DB capacity minimum must not be applied to this monitoring meter. Enabled monitoring hours are positive and at most 730.
 
 Authoritative evidence for the Limitless minimum capacity: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/limitless-cluster.html
 
