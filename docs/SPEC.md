@@ -241,6 +241,14 @@ FargateのTasks or podsは1日あたりの実行件数とする。月間件数�
 
 ---
 
+### 6.4 EventBridge Schema Discoveryの料金範囲
+
+Schema Discoveryのイベント件数は、Discoveryの追加料金だけを計算する。通常のイベントバス取込料は発生源別の入力で独立に見積もる。同じ行で総額を見積もる場合は、Discovery対象件数に加えて該当するCustom / Partner / AWS opt-in data / AWS management eventsの件数も入力する。AWS management eventsの取込料は無料であり、Discovery件数からCustom取込料を自動加算しない。
+
+取込料を別の行などに計上済みの場合は重複入力しない。Drawerでこの範囲と入力手順を明示する。AWS公式CalculatorのSchema Discovery欄が通常取込料も含めて表示する場合、Discovery追加料単独の金額とは比較せず、同じイベント群の取込料とDiscovery料を合わせた等価な範囲で比較する。無料枠を控除しない方針は維持する。
+
+---
+
 ## 7. 比較表示
 
 複数Planを列として横並び表示する。

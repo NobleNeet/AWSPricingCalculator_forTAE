@@ -13,3 +13,13 @@
 - AWS launched an enhanced Custom event bus in September 2026 with EventsV2 ingress/egress/storage/evaluation meters. Those meters are present in the current Public Price List, but the supplied Calculator evidence is the classic EventBridge calculator. EventsV2 categories are therefore explicitly classified as unsupported rather than silently mixed into the classic estimate.
 - Hidden alternatives in the Calculator payload-unit dropdown were not inferred; the supplied authoritative screenshot visibly shows KB.
 - Data transfer, PrivateLink, and VPC Lattice charges are outside the EventBridge service meters and are not folded into this estimate.
+
+## Schema Discovery scope clarification (2026-10-09)
+
+A fresh AWS Calculator GUI measurement in Tokyo with a 1 KB payload and 1 million Schema Discovery events displayed both 1.00 USD event ingestion and 0.10 USD discovery, totaling 1.10 USD. These are distinct pricing components. The application retains the existing independent ingestion and discovery inputs rather than assuming every discovered event is a new custom event.
+
+The Schema Discovery field now explains that it estimates the additional discovery meter only. For a complete estimate in this row, enter the event count in the appropriate source ingestion field as well. AWS management-event ingestion remains free. If ingestion is already counted in another row or estimate, do not add it a second time. This prevents an incorrect automatic custom-ingestion charge for AWS management events and avoids double counting already-budgeted ingestion. Free allowances remain excluded under repository policy.
+
+Official GUI comparison must compare equal scope: for custom events, use application Custom events + Schema Discovery against the official Schema Discovery combined calculation, keeping the separate official Custom events field at zero for that same event population. Original discovery-only comparisons remain NOT_COMPARABLE; corrected combined-scope cases are separately identified. Pricing components, Price List mappings, quantities, save format, and rates are unchanged.
+
+Sources: https://calculator.aws/#/createCalculator/eventbridge ; https://aws.amazon.com/eventbridge/faqs/ ; https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema.html
