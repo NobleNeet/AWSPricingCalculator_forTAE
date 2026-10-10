@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "storage-gp3",
+  "label": "gp3 database storage",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "gbMonths",
+      "label": "Storage (GB-month)",
+      "type": "number",
+      "default": "20",
+      "minimum": "0",
+      "exclusiveMinimum": "0",
+      "ui": {
+        "help": "RDS for Oracleのgp3データベースストレージ。月間GB-monthを入力します。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Database Storage"
+      },
+      {
+        "field": "attributes.databaseEngine",
+        "op": "eq",
+        "value": "Oracle"
+      },
+      {
+        "field": "attributes.deploymentOption",
+        "op": "eq",
+        "valueFrom": "profile.deployment"
+      },
+      {
+        "field": "attributes.volumeType",
+        "op": "eq",
+        "value": "General Purpose-GP3"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbMonths"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "rds-extra-storage-performance",
+    "backup-storage",
+    "unsupported-pricing-category"
+  ],
+  "optional": true,
+  "defaultEnabled": true
+}

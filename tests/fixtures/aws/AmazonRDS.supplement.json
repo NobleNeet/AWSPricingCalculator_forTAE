@@ -14,6 +14,50 @@
       },
       "productFamily": "Limitless",
       "sku": "AURORAPGLIMITLESS"
+    },
+    "RDSORACLEBYOLM3_2XL": {
+      "attributes": {
+        "currentGeneration": "No",
+        "databaseEngine": "Oracle",
+        "databaseEdition": "Enterprise",
+        "deploymentOption": "Multi-AZ",
+        "engineCode": "5",
+        "instanceFamily": "General purpose",
+        "instanceType": "db.m3.2xlarge",
+        "instanceTypeFamily": "M3",
+        "licenseModel": "Bring your own license",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "30 GiB",
+        "operation": "CreateDBInstance:0005",
+        "processorArchitecture": "64-bit",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "EBS Only",
+        "usagetype": "APN1-Multi-AZUsage:db.m3.2xlarge",
+        "vcpu": "8"
+      },
+      "productFamily": "Database Instance",
+      "sku": "RDSORACLEBYOLM3_2XL"
+    },
+    "RDSORACLEGP3MULTIAZ": {
+      "attributes": {
+        "databaseEngine": "Oracle",
+        "deploymentOption": "Multi-AZ",
+        "engineCode": "5",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0005",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "SSD",
+        "usagetype": "APN1-RDS:Multi-AZ-GP3-Storage",
+        "volumeType": "General Purpose-GP3"
+      },
+      "productFamily": "Database Storage",
+      "sku": "RDSORACLEGP3MULTIAZ"
     }
   },
   "terms": {
@@ -28,12 +72,56 @@
               "beginRange": "0",
               "description": "Aurora PostgreSQL Limitless ACU hour fixture",
               "endRange": "Inf",
-              "pricePerUnit": {"USD": "0.2000000000"},
+              "pricePerUnit": {
+                "USD": "0.2000000000"
+              },
               "rateCode": "AURORAPGLIMITLESS.JRTCKXETXF.6YS6EN2CT7",
               "unit": "ACU-Hr"
             }
           },
           "sku": "AURORAPGLIMITLESS",
+          "termAttributes": {}
+        }
+      },
+      "RDSORACLEBYOLM3_2XL": {
+        "RDSORACLEBYOLM3_2XL.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "RDSORACLEBYOLM3_2XL.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "RDS for Oracle Enterprise BYOL db.m3.2xlarge Multi-AZ instance hour fixture",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "2.0678082192"
+              },
+              "rateCode": "RDSORACLEBYOLM3_2XL.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "RDSORACLEBYOLM3_2XL",
+          "termAttributes": {}
+        }
+      },
+      "RDSORACLEGP3MULTIAZ": {
+        "RDSORACLEGP3MULTIAZ.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "RDSORACLEGP3MULTIAZ.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "RDS for Oracle Multi-AZ gp3 storage fixture",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2760000000"
+              },
+              "rateCode": "RDSORACLEGP3MULTIAZ.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "RDSORACLEGP3MULTIAZ",
           "termAttributes": {}
         }
       }

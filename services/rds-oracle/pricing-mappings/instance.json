@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "instance",
+  "componentId": "instance",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Database Instance"
+    },
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Oracle"
+    },
+    {
+      "field": "attributes.deploymentOption",
+      "op": "eq",
+      "valueFrom": "profile.deployment"
+    },
+    {
+      "field": "attributes.licenseModel",
+      "op": "eq",
+      "valueFrom": "profile.licenseModel"
+    },
+    {
+      "field": "attributes.databaseEdition",
+      "op": "eq",
+      "valueFrom": "profile.databaseEdition"
+    },
+    {
+      "field": "attributes.instanceType",
+      "op": "eq",
+      "valueFrom": "component.instanceType"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Hrs"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "RDS for Oracle On-Demand DB-instance hour selected by deployment, license model, database edition and instance type."
+}

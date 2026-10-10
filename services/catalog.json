@@ -112,6 +112,15 @@
         "standard"
       ],
       "serviceCode": "AWSSystemsManager"
+    },
+    {
+      "available": true,
+      "id": "rds-oracle",
+      "label": "Amazon RDS for Oracle",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AmazonRDS"
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "rds-oracle",
+  "label": "Amazon RDS for Oracle",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "instance",
+    "storage-gp3"
+  ]
+}

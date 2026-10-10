@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "id": "instance",
+  "label": "RDS for Oracle instance",
+  "selectors": [
+    {
+      "id": "instanceType",
+      "label": "DB instance type",
+      "type": "select",
+      "default": "db.m3.2xlarge",
+      "options": {
+        "attribute": "instanceType",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Database Instance"
+          },
+          {
+            "field": "attributes.databaseEngine",
+            "op": "eq",
+            "value": "Oracle"
+          },
+          {
+            "field": "attributes.deploymentOption",
+            "op": "eq",
+            "valueFrom": "profile.deployment"
+          },
+          {
+            "field": "attributes.licenseModel",
+            "op": "eq",
+            "valueFrom": "profile.licenseModel"
+          },
+          {
+            "field": "attributes.databaseEdition",
+            "op": "eq",
+            "valueFrom": "profile.databaseEdition"
+          }
+        ]
+      }
+    }
+  ],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Database Instance"
+      },
+      {
+        "field": "attributes.databaseEngine",
+        "op": "eq",
+        "value": "Oracle"
+      },
+      {
+        "field": "attributes.deploymentOption",
+        "op": "eq",
+        "valueFrom": "profile.deployment"
+      },
+      {
+        "field": "attributes.licenseModel",
+        "op": "eq",
+        "valueFrom": "profile.licenseModel"
+      },
+      {
+        "field": "attributes.databaseEdition",
+        "op": "eq",
+        "valueFrom": "profile.databaseEdition"
+      },
+      {
+        "field": "attributes.instanceType",
+        "op": "eq",
+        "valueFrom": "component.instanceType"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.utilizationPct",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "7.3"
+              }
+            ]
+          }
+        },
+        {
+          "valueFrom": "profile.nodes"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Hrs"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "cpu-credits",
+    "network-transfer",
+    "aggregate-billing",
+    "extended-support"
+  ]
+}

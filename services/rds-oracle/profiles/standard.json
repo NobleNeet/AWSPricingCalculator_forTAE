@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Amazon RDS for Oracle",
+  "selectors": [
+    {
+      "id": "nodes",
+      "label": "Nodes",
+      "type": "number",
+      "default": "1",
+      "minimum": "1",
+      "integer": true,
+      "ui": {
+        "help": "必要なDBインスタンス数。AWS Pricing CalculatorのNodes入力に対応します。"
+      }
+    },
+    {
+      "id": "utilizationPct",
+      "label": "Utilization (%Utilized/Month)",
+      "type": "number",
+      "default": "100",
+      "minimum": "0",
+      "maximum": "100",
+      "ui": {
+        "help": "On-Demand DBインスタンスの月間稼働率。100%を730時間/月として換算します。"
+      }
+    },
+    {
+      "id": "deployment",
+      "label": "Deployment option",
+      "type": "select",
+      "default": "Multi-AZ",
+      "options": {
+        "values": [
+          "Single-AZ",
+          "Multi-AZ"
+        ]
+      }
+    },
+    {
+      "id": "licenseModel",
+      "label": "License",
+      "type": "select",
+      "default": "Bring your own license",
+      "options": {
+        "values": [
+          "Bring your own license",
+          "License included"
+        ]
+      }
+    },
+    {
+      "id": "databaseEdition",
+      "label": "Database edition",
+      "type": "select",
+      "default": "Enterprise",
+      "options": {
+        "attribute": "databaseEdition",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Database Instance"
+          },
+          {
+            "field": "attributes.databaseEngine",
+            "op": "eq",
+            "value": "Oracle"
+          },
+          {
+            "field": "attributes.licenseModel",
+            "op": "eq",
+            "valueFrom": "profile.licenseModel"
+          },
+          {
+            "field": "attributes.deploymentOption",
+            "op": "eq",
+            "valueFrom": "profile.deployment"
+          }
+        ]
+      },
+      "ui": {
+        "help": "License IncludedではAWSが提供する有効なOracle editionのみを料金データから表示します。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "instance",
+    "storage-gp3"
+  ]
+}
