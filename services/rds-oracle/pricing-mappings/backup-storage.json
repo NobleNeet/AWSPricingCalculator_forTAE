@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "backup-storage",
+  "componentId": "backup-storage",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Storage Snapshot"
+    },
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Oracle"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "CreateDBInstance:0005"
+    },
+    {
+      "field": "attributes.deploymentOption",
+      "op": "eq",
+      "value": "Single-AZ"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Normal RDS Oracle Storage Snapshot ChargedBackupUsage: CreateDBInstance:0005 (Oracle Enterprise), GB-Mo. AWS 2026-10-06 Tokyo full Price List verified 0.095 USD/GB-month. RDS Custom 0410/0411 excluded; additional capacity is input directly, no second free-allowance subtraction."
+}
