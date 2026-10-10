@@ -28,6 +28,10 @@ test('RDS for Oracle drawer follows the supplied Calculator contract', async () 
     'Oracle'
   );
   assert.equal(
+    instance.priceQuery.productFilters.find(x => x.field === 'attributes.deploymentModel').op,
+    'notExists'
+  );
+  assert.equal(
     instance.calculation.usage.sources[0].value.transforms[0].factor,
     '7.3'
   );
@@ -37,6 +41,10 @@ test('RDS for Oracle drawer follows the supplied Calculator contract', async () 
   assert.equal(
     storage.priceQuery.productFilters.find(x => x.field === 'attributes.volumeType').value,
     'General Purpose-GP3'
+  );
+  assert.equal(
+    storage.priceQuery.productFilters.find(x => x.field === 'operation').value,
+    'CreateDBInstance:0005'
   );
 
   assert.deepEqual(pkg.service.pricingMappings, ['instance', 'storage-gp3']);
