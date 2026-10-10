@@ -24,14 +24,16 @@ const hourlyFrom = product => {
   return values.length === 1 ? values[0] : null;
 };
 
-export function rdsInstanceRows(products, { deployment = 'Single-AZ', databaseEngine = 'PostgreSQL' } = {}) {
+export function rdsInstanceRows(products, { deployment = 'Single-AZ', databaseEngine = 'PostgreSQL', licenseModel = 'No license required', databaseEdition } = {}) {
   const grouped = new Map();
   for (const product of products) {
     const a = product.attributes ?? {};
     if (product.productFamily !== 'Database Instance') continue;
     if (a.databaseEngine !== databaseEngine) continue;
     if (a.deploymentOption !== deployment) continue;
-    if (a.licenseModel && a.licenseModel !== 'No license required') continue;
+    if (a.licenseModel !== licenseModel) continue;
+    if (databaseEdition && a.databaseEdition !== databaseEdition) continue;
+    if (databaseEngine === 'Oracle' && a.deploymentModel !== undefined) continue;
     if (!a.instanceType?.startsWith('db.')) continue;
 
     const row = {

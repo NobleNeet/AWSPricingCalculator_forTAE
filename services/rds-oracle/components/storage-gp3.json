@@ -1,18 +1,34 @@
 {
   "schemaVersion": 1,
   "id": "storage-gp3",
-  "label": "gp3 database storage",
-  "selectors": [],
+  "label": "RDS for Oracle database storage",
+  "selectors": [
+    {
+      "id": "volumeType",
+      "label": "Storage type",
+      "type": "select",
+      "default": "General Purpose",
+      "options": {
+        "values": [
+          "General Purpose",
+          "General Purpose-GP3"
+        ]
+      },
+      "ui": {
+        "help": "汎用SSD (gp2) または gp3。選択した種類のAWS料金表を参照します。"
+      }
+    }
+  ],
   "usageInputs": [
     {
       "id": "gbMonths",
-      "label": "Storage (GB-month)",
+      "label": "Storage amount (GB per DB instance)",
       "type": "number",
-      "default": "20",
+      "default": "100",
       "minimum": "0",
       "exclusiveMinimum": "0",
       "ui": {
-        "help": "RDS for Oracleのgp3データベースストレージ。月間GB-monthを入力します。"
+        "help": "DBインスタンス1台あたりのgp3ストレージ量（GB-month）。Nodes数を掛けた容量を課金対象とします。"
       }
     }
   ],
@@ -38,7 +54,7 @@
       {
         "field": "attributes.volumeType",
         "op": "eq",
-        "value": "General Purpose-GP3"
+        "valueFrom": "component.volumeType"
       },
       {
         "field": "operation",
@@ -60,6 +76,9 @@
       "sources": [
         {
           "valueFrom": "component.gbMonths"
+        },
+        {
+          "valueFrom": "profile.nodes"
         }
       ],
       "combine": "multiply"
@@ -70,7 +89,6 @@
   "limitations": [
     "account-specific-discount",
     "rds-extra-storage-performance",
-    "backup-storage",
     "unsupported-pricing-category"
   ],
   "optional": true,

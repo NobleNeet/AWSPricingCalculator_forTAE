@@ -91,6 +91,8 @@
   "fixedFilters": [],
   "components": [
     "instance",
-    "storage-gp3"
+    "storage-gp3",
+    "database-insights",
+    "backup-storage"
   ]
 }

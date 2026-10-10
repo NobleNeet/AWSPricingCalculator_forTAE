@@ -22,7 +22,7 @@ test('all initial real service schemas and independently verified AWS Golden sam
   assert.ok(['ebs', 'ec2', 'eventbridge', 'kms', 'lambda', 'rds', 's3'].every(id => packages.some(pkg => pkg.service.id === id)));
   assert.deepEqual(await validateDefinitions(packages), []);
   const raw = {}, data = {};
-  for (const code of new Set(packages.map(p => p.service.priceSource.serviceCode))) {
+  for (const code of new Set(packages.flatMap(p => [p.service.priceSource.serviceCode, ...Object.values(p.service.priceSource.componentOverrides ?? {}), ...Object.values(p.pricingMappings ?? {}).map(m => m.priceSource.serviceCode)]))) {
     raw[code] = await readJson(`tests/fixtures/aws/${code}.json`);
     const supplementPath = `tests/fixtures/aws/${code}.supplement.json`;
     if (existsSync(supplementPath)) raw[code] = mergeFixtureSupplement(raw[code], await readJson(supplementPath));

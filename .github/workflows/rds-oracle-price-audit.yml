@@ -1,0 +1,21 @@
+name: RDS Oracle Pricing Source Audit
+on:
+  push:
+    branches: [reonboard/rds-oracle]
+    paths:
+      - tools/pricing-cli/oracle-price-audit.mjs
+      - .github/workflows/rds-oracle-price-audit.yml
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit AWS Price List Oracle and CloudWatch candidates
+        run: node --max-old-space-size=8192 tools/pricing-cli/oracle-price-audit.mjs

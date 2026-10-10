@@ -16,3 +16,53 @@
 
 - Live Price List validation found RDS Custom products sharing Oracle instance attributes; standard RDS for Oracle therefore requires `deploymentModel` to be absent for instance/edition resolution.
 - AWS publishes multiple Oracle gp3 storage SKUs for legacy/current Oracle edition operations, but their regional GB-month rate is identical within each configured region. To keep `singleSku` deterministic, gp3 storage uses canonical non-Custom operation `CreateDBInstance:0005`; equivalence was verified in ap-northeast-1, ap-northeast-3, us-east-1, us-east-2, us-west-1, and us-west-2 against the 2026-10 Price List candidate.
+
+## Additional rendered Calculator evidence (2026-10-10)
+
+The second user-supplied screenshot covers the section below instance configuration:
+
+- **Storage**: storage type dropdown, shown as `General Purpose SSD (gp2)`; storage amount numeric, shown as `100`, unit selector shown as `GB`. The Calculator multiplies storage GB by number of DB instances; sample shows 100 GB × 0.276 USD × 1 instance = 27.60 USD per month.
+- **CloudWatch Database Insights for RDS provisioned instances**: enable/disable question, shown as `Yes`, billed on vCPU-month basis. The screenshot shows 1 instance × 8 vCPU × 730 hours × 0.0125 USD per vCPU-hour = 73.00 USD.
+- Above this section, purchase plan is OnDemand, license is Bring your own license and database edition is Enterprise.
+- **Discrepancy**: the current service only prices gp3 database storage (20 GB-month default) and does not model the storage-type selector, gp2 storage or Database Insights. These must be included in re-onboarding after resolving AWS Public Price List product and dimension semantics.
+- This screenshot does **not** show the page content below the CloudWatch Database Insights section; backup storage details were subsequently verified in the third screenshot (see below).
+- Do not copy sample display rates into Definitions or Pricing Mappings. Instance count must apply to per-instance storage and Insights. Avoid charging Insights when disabled.
+- Official RDS Oracle pricing: https://aws.amazon.com/rds/oracle/pricing/
+- AWS RDS storage documentation: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html
+- AWS Database Insights documentation: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DatabaseInsights.TurningOnAdvanced.html
+
+## Third rendered Calculator screenshot: Additional backup storage (2026-10-10)
+
+- The section immediately following CloudWatch Database Insights is labeled **バックアップストレージ** (Backup storage).
+- The input label is **追加のバックアップストレージ** (Additional backup storage), an initially empty numeric field with placeholder `量を入力`.
+- There is a **ユニット** (Unit) selector, currently `GB`. The current screenshot confirms `GB` as the selected option; it does not prove any other unit choices.
+- With that field empty, the pricing breakdown reads **追加のバックアップストレージコスト (monthly): 0.00 USD**.
+- This is *additional billable backup storage*, not total snapshots or total provisioned DB storage. RDS backup allowance behavior must be accounted for conceptually rather than deducting the allowance again from the already-additional input. Official AWS reference: https://docs.aws.amazon.com/aws-backup/latest/devguide/rds-backup.html
+- The screenshot shows this section at the end of the visible configuration form above the fixed bottom toolbar; no further estimate input section is visible below it.
+- Required Definition: add a separate optional backup-storage pricing component, with GB/month quantity defaulting to zero (no charge). Apply only a verified AmazonRDS backup GB-month price dimension. Do not invent an operation, SKU, or unit, and do not conflate RDS Custom or other engines' backup prices.
+- Required tests: zero backup usage, positive backup usage, region switching, no double deduction of free allocation, integration with instance/storage/Database Insights, and validation of a unique AWS Public Price List match.
+- The user requests coverage parity across all confirmed On-Demand inputs, including gp2 storage, Database Insights, and additional backup storage. This screenshot completes the known lower-form evidence; option lists not opened (storage types and units) remain unverified.
+
+## Price DB blocker investigation (2026-10-10, current published build)
+
+Inspected published active build `20261010T041918Z-1ac730a0`, in `pricing/generated/builds/<buildId>/indexes/` for Tokyo:
+
+- `AmazonRDS/ap-northeast-1/index.json` includes Oracle and `General Purpose-GP3`, but `volumeType` options omit GP2; searchable `usagetype` values contain only Aurora backup, not a standard Oracle additional-backup meter.
+- `AmazonCloudWatch/ap-northeast-1/index.json` includes `DatabaseInsights-ACU-Hours` but no `DatabaseInsights-vCPU-Hours`.
+- `pricing/sources.json` already includes both `AmazonRDS` and `AmazonCloudWatch`. Thus changing serviceCodes alone will not supply the missing products.
+- `tools/pricing-cli/build.js` publishes filtered product subsets selected by mapping validation. These published indexes are **not** the full AWS bulk Price List and their absence does not establish that AWS lacks the SKU. Need inspect the unfiltered AWS bulk candidates on the onboarding runner and persist verified per-service mappings.
+- Do not add a guessed Product matcher or fixed displayed rate. Resolve source productFamily, operation, usageType, attributes, unit, cardinality, and Tokyo/Osaka/US region differences before promotion.
+- The existing `storage-gp3` component now multiplies per-instance storage GB-month by `profile.nodes`; this is a separate verified billing-quantity correction, not a substitute for GP2/backup/Insights.
+
+Superseded: the GP2/GP3 selector, provisioned Oracle Insights, additional backup GB-month and scoped mapping logic are implemented in the current re-onboarding branch. Publication and final deployment remain contingent on CI/promotion success.
+
+## Verified re-onboarding (2026-10-10, current branch)
+
+- User-supplied Calculator screenshots confirm all requested On-Demand inputs, including gp2 default 100 GB per instance, Database Insights enabled, and additional backup storage (initially blank and priced at zero). The application's numeric additional-backup default is 0 rather than an empty field to make the no-charge meaning explicit.
+- An AWS bulk Price List audit inspected the live 2026-10-06 AmazonRDS and AmazonCloudWatch offers in **six configured regions**. Each standard Oracle Enterprise BYOL gp2/gp3 Single-AZ/Multi-AZ canonical operation `CreateDBInstance:0005`, normal-RDS Oracle `Storage Snapshot` / `ChargedBackupUsage`, and `CloudWatch Database Insights` / `RDS-Oracle:Provisioned` vCPU-hours resolved to **exactly one paid SKU per region**. The audit explicitly excludes RDS Custom backup operations `0410` and `0411`.
+- The full scoped semantic validation across those regions reported **4,786 successful resolution cases, 0 errors, 0 unresolved Tokyo coverage categories**. Independent Golden verification against unfiltered AWS raw offers passed for Tokyo BYOL Enterprise, all four meters (instance, gp2 storage, Database Insights, additional backup storage).
+- CloudWatch Database Insights usage is derived deterministically from the **resolved selected instance's vCPU** × 730 hours × monthly utilization % × nodes; no manually entered vCPU count or copied rate is required. The `resolvedComponentAttribute` calculation-source construct is generic (component ID + numeric product attribute) and fail-closed when the attribute is missing/non-numeric.
+- Per-instance gp2/gp3 provisioned storage also scales with Nodes; additional backup is already the *excess* GB-month quantity and is **not multiplied by Nodes** or reduced by a free storage allowance again.
+- Compatibility: previously saved Oracle gp3 estimates without a `volumeType` selector migrate to gp3, rather than changing price by silently adopting the new gp2 default.
+- Unit/Golden and browser E2E were updated; branch CI, serialized promotion, Price DB publication and Pages deployment must all pass before completion is reported.
+- Source audit runs: https://github.com/NobleNeet/AWSPricingCalculator_forTAE/actions/runs/38033997805 and https://github.com/NobleNeet/AWSPricingCalculator_forTAE/actions/runs/38033780760

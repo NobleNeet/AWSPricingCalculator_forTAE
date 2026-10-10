@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "id": "database-insights",
+  "label": "CloudWatch Database Insights (provisioned Oracle)",
+  "optional": true,
+  "defaultEnabled": true,
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "CloudWatch Database Insights"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "RDS-Oracle:Provisioned"
+      },
+      {
+        "field": "attributes.databaseEngineType",
+        "op": "eq",
+        "value": "RDS Oracle"
+      },
+      {
+        "field": "attributes.instanceConfigurationType",
+        "op": "eq",
+        "value": "Provisioned"
+      },
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "CW-DatabaseInsights"
+      },
+      {
+        "field": "attributes.retention",
+        "op": "notExists"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "vCPU-Hours"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "value": {
+            "type": "resolvedComponentAttribute",
+            "componentId": "instance",
+            "attribute": "vcpu"
+          }
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "profile.utilizationPct",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "7.3"
+              }
+            ]
+          }
+        },
+        {
+          "valueFrom": "profile.nodes"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "vCPU-Hours"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ],
+  "ui": {
+    "help": "選択したDBインスタンスタイプのvCPU、月間稼働率、Nodesを自動反映します。不要な場合はこのコンポーネントを無効にしてください。"
+  }
+}

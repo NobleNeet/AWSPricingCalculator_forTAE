@@ -83,3 +83,19 @@ test('detailStateKey distinguishes profile and component details deterministical
   assert.equal(detailStateKey('Advanced', undefined, 0), 'profile:Advanced:0');
   assert.equal(detailStateKey('Advanced', 'Compute duration', 3), 'component:Compute duration:Advanced:3');
 });
+
+test('RDS Oracle legacy gp3 projects retain storage type during default hydration', () => {
+  const pkg = {
+    service: { id: 'rds-oracle' },
+    profiles: { standard: { selectors: [], components: ['storage-gp3'] } },
+    components: { 'storage-gp3': { defaultEnabled: true, selectors: [{ id: 'volumeType', default: 'General Purpose', type: 'select' }], usageInputs: [{ id: 'gbMonths', default: '100', type: 'number' }] } }
+  };
+  const legacy = { serviceId: 'rds-oracle', profileId: 'standard', selectors: {}, components: { 'storage-gp3': { enabled: true, inputs: { gbMonths: '20' } } } };
+  assert.equal(fillDefinitionDefaults(pkg, legacy), true);
+  assert.equal(legacy.components['storage-gp3'].inputs.volumeType, 'General Purpose-GP3');
+  assert.equal(legacy.components['storage-gp3'].inputs.gbMonths, '20');
+  const fresh = { serviceId: 'rds-oracle', profileId: 'standard', selectors: {}, components: {} };
+  assert.equal(fillDefinitionDefaults(pkg, fresh), true);
+  assert.equal(fresh.components['storage-gp3'].inputs.volumeType, 'General Purpose');
+  assert.equal(fresh.components['storage-gp3'].inputs.gbMonths, '100');
+});
