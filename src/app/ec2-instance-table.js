@@ -10,6 +10,7 @@ function drawerKind() {
   const title = drawerTitle?.textContent?.trim();
   if (title === 'Amazon EC2') return 'ec2';
   if (title === 'Amazon RDS for PostgreSQL') return 'rds';
+  if (title === 'Amazon RDS for Oracle') return 'rds-oracle';
   return null;
 }
 
@@ -72,7 +73,7 @@ function ensureResizableDrawer(kind) {
   if (!drawer.querySelector('.ec2-drawer-width-controls')) {
     const controls = document.createElement('div');
     controls.className = 'ec2-drawer-width-controls';
-    controls.innerHTML = `<label>パネル幅 <input type="range" data-instance-drawer-width aria-label="${kind === 'rds' ? 'RDS' : 'EC2'}編集パネルの幅"><span class="ec2-drawer-width-value"></span></label><button type="button" data-instance-drawer-default>標準</button><button type="button" data-instance-drawer-max>最大</button>`;
+    controls.innerHTML = `<label>パネル幅 <input type="range" data-instance-drawer-width aria-label="${kind.startsWith('rds') ? 'RDS' : 'EC2'}編集パネルの幅"><span class="ec2-drawer-width-value"></span></label><button type="button" data-instance-drawer-default>標準</button><button type="button" data-instance-drawer-max>最大</button>`;
     const heading = drawer.querySelector('.dialog-heading');
     heading?.after(controls);
     const slider = controls.querySelector('[data-instance-drawer-width]');
@@ -107,7 +108,7 @@ function tableHtml({ rows, selected, filters, sortKey, sortDirection, columns, f
 }
 
 function tableConfig(kind) {
-  if (kind === 'rds') {
+  if (kind === 'rds' || kind === 'rds-oracle') {
     return {
       columns: RDS_INSTANCE_COLUMNS,
       filterRowsFn: filterRdsRows,
@@ -116,7 +117,9 @@ function tableConfig(kind) {
       prefix: 'DB',
       makeRows: data => rdsInstanceRows(data.products, {
         deployment: document.querySelector('[data-scope="profile"][data-field="deployment"]')?.value ?? 'Single-AZ',
-        databaseEngine: 'PostgreSQL'
+        databaseEngine: kind === 'rds-oracle' ? 'Oracle' : 'PostgreSQL',
+        licenseModel: kind === 'rds-oracle' ? document.querySelector('[data-scope="profile"][data-field="licenseModel"]')?.value : 'No license required',
+        databaseEdition: kind === 'rds-oracle' ? document.querySelector('[data-scope="profile"][data-field="databaseEdition"]')?.value : undefined
       })
     };
   }
