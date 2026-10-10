@@ -47,5 +47,8 @@ test('RDS for Oracle drawer follows the supplied Calculator contract', async () 
     'CreateDBInstance:0005'
   );
 
+  assert.equal(storage.calculation.usage.sources[0].valueFrom, 'component.gbMonths');
+  assert.equal(storage.calculation.usage.sources[1].valueFrom, 'profile.nodes');
+
   assert.deepEqual(pkg.service.pricingMappings, ['instance', 'storage-gp3']);
 });
