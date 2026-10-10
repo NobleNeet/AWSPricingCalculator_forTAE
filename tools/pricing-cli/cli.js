@@ -13,6 +13,7 @@ import path from 'node:path';
 import { validatePriceData } from './semantics.js';
 import { validatePublishedPriceDataParallel } from './semantic-parallel.js';
 import { runGolden } from './golden.js';
+import { priceSourceForComponent } from '../../src/pricing/mapping.js';
 import { classifyChange } from './drift.js';
 import { classifyChangeParallel } from './drift-parallel.js';
 import { buildPriceDb } from './build.js';
@@ -97,10 +98,12 @@ async function semanticValidationParallel(packages, metadata, directory) {
 export async function goldenValidation(packages, candidate, rawDirectory) {
   const required = new Map();
   for (const pkg of packages) for (const golden of pkg.golden) {
-    const serviceCode = pkg.service.priceSource.serviceCode;
     const region = golden.project?.region ?? golden.project?.defaultRegion ?? 'ap-northeast-1';
-    const key = sourceKey(serviceCode, region);
-    if (candidate.data[key]) required.set(key, candidate.data[key]);
+    const codes = new Set([pkg.service.priceSource.serviceCode, ...Object.keys(golden.expected ?? {}).map(id => priceSourceForComponent(pkg, id))]);
+    for (const serviceCode of codes) {
+      const key = sourceKey(serviceCode, region);
+      if (candidate.data[key]) required.set(key, candidate.data[key]);
+    }
   }
   const raw = {};
   for (const [key, source] of required) {
