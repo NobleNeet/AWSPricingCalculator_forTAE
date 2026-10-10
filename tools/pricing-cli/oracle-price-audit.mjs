@@ -1,11 +1,16 @@
 import { checkSources } from './source.js';
+import { normalize } from './normalize.js';
+import { validatePriceData } from './semantics.js';
+import { loadPackages, readJson } from './package-loader.js';
 
 const metadata = await checkSources({ serviceCodes: ['AmazonRDS', 'AmazonCloudWatch'], regions: ['ap-northeast-1', 'ap-northeast-3', 'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'] });
+const candidateData = {};
 for (const item of Object.values(metadata.sources)) {
   console.log('SOURCE', item.serviceCode, item.region, item.sourceUrl);
   const response = await fetch(item.sourceUrl, { signal: AbortSignal.timeout(360000) });
   if (!response.ok) throw new Error(`HTTP ${response.status}: ${item.sourceUrl}`);
   const raw = await response.json();
+  candidateData[`${item.serviceCode}/${item.region}`] = normalize(raw, item.region, 'audit').data;
   const rows = [];
   for (const [sku, product] of Object.entries(raw.products)) {
     const a = product.attributes || {};
@@ -55,3 +60,13 @@ for (const item of Object.values(metadata.sources)) {
   if (item.region !== 'ap-northeast-1') continue;
   for(const entry of [...summary.values()].sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))) console.log('CANDIDATE', JSON.stringify(entry));
 }
+
+const pkg = (await loadPackages()).find(x => x.service.id === 'rds-oracle');
+const common = await readJson('pricing/normalization/common.json');
+const normalizers = {
+  AmazonRDS: await readJson('pricing/normalization/services/AmazonRDS.json'),
+  AmazonCloudWatch: await readJson('pricing/normalization/services/AmazonCloudWatch.json')
+};
+const semantic = validatePriceData([pkg], candidateData, common, normalizers);
+console.log('SEMANTIC_RESULT', JSON.stringify({issues:semantic.issues.slice(0,25),issueCount:semantic.issues.length,coverage:semantic.coverage,branches:semantic.branches,resolutionCount:semantic.resolutions?.length}));
+if (semantic.issues.length) throw new Error(`Oracle source semantic validation failed: ${semantic.issues.length} issues`);
