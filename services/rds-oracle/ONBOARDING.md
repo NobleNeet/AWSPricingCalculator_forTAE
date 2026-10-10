@@ -16,3 +16,17 @@
 
 - Live Price List validation found RDS Custom products sharing Oracle instance attributes; standard RDS for Oracle therefore requires `deploymentModel` to be absent for instance/edition resolution.
 - AWS publishes multiple Oracle gp3 storage SKUs for legacy/current Oracle edition operations, but their regional GB-month rate is identical within each configured region. To keep `singleSku` deterministic, gp3 storage uses canonical non-Custom operation `CreateDBInstance:0005`; equivalence was verified in ap-northeast-1, ap-northeast-3, us-east-1, us-east-2, us-west-1, and us-west-2 against the 2026-10 Price List candidate.
+
+## Additional rendered Calculator evidence (2026-10-10)
+
+The second user-supplied screenshot covers the section below instance configuration:
+
+- **Storage**: storage type dropdown, shown as `General Purpose SSD (gp2)`; storage amount numeric, shown as `100`, unit selector shown as `GB`. The Calculator multiplies storage GB by number of DB instances; sample shows 100 GB × 0.276 USD × 1 instance = 27.60 USD per month.
+- **CloudWatch Database Insights for RDS provisioned instances**: enable/disable question, shown as `Yes`, billed on vCPU-month basis. The screenshot shows 1 instance × 8 vCPU × 730 hours × 0.0125 USD per vCPU-hour = 73.00 USD.
+- Above this section, purchase plan is OnDemand, license is Bring your own license and database edition is Enterprise.
+- **Discrepancy**: the current service only prices gp3 database storage (20 GB-month default) and does not model the storage-type selector, gp2 storage or Database Insights. These must be included in re-onboarding after resolving AWS Public Price List product and dimension semantics.
+- This screenshot does **not** show the page content below the CloudWatch Database Insights section; backup storage input details remain visually unverified.
+- Do not copy sample display rates into Definitions or Pricing Mappings. Instance count must apply to per-instance storage and Insights. Avoid charging Insights when disabled.
+- Official RDS Oracle pricing: https://aws.amazon.com/rds/oracle/pricing/
+- AWS RDS storage documentation: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html
+- AWS Database Insights documentation: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DatabaseInsights.TurningOnAdvanced.html
