@@ -35,6 +35,10 @@
       "field": "attributes.instanceType",
       "op": "eq",
       "valueFrom": "component.instanceType"
+    },
+    {
+      "field": "attributes.deploymentModel",
+      "op": "notExists"
     }
   ],
   "dimensionMatchers": [
@@ -48,5 +52,5 @@
     "products": 1,
     "billableDimensions": 1
   },
-  "notes": "RDS for Oracle On-Demand DB-instance hour selected by deployment, license model, database edition and instance type."
+  "notes": "RDS for Oracle On-Demand DB-instance hour selected by deployment, license model, database edition and instance type. RDS Custom products are excluded with deploymentModel notExists."
 }
