@@ -13,3 +13,6 @@
 - No SKU or rateCode is pinned. Instance and storage resolution use semantic AmazonRDS product attributes and On-Demand dimensions.
 - Official licensing reference: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html
 - Official AWS Price List Bulk API reference: https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/using-the-aws-price-list-bulk-api-fetching-price-list-files-manually.html
+
+- Live Price List validation found RDS Custom products sharing Oracle instance attributes; standard RDS for Oracle therefore requires `deploymentModel` to be absent for instance/edition resolution.
+- AWS publishes multiple Oracle gp3 storage SKUs for legacy/current Oracle edition operations, but their regional GB-month rate is identical within each configured region. To keep `singleSku` deterministic, gp3 storage uses canonical non-Custom operation `CreateDBInstance:0005`; equivalence was verified in ap-northeast-1, ap-northeast-3, us-east-1, us-east-2, us-west-1, and us-west-2 against the 2026-10 Price List candidate.
