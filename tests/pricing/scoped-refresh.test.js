@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { definitionRefreshServiceCodes } from '../../tools/price-update.js';
@@ -11,7 +11,10 @@ import {
   semanticGlobalChanged,
   SEMANTIC_CONTRACT_VERSION
 } from '../../tools/pricing-cli/fingerprint.js';
-import { readGoldenRawSource } from '../../tools/golden-evidence.js';
+import { readGoldenRawSource, refreshGoldenEvidenceTolerant } from '../../tools/golden-evidence.js';
+import { refreshGoldenEvidence } from '../../tools/price-update.js';
+import { normalize } from '../../tools/pricing-cli/normalize.js';
+import { loadPackages, readJson } from '../../tools/pricing-cli/package-loader.js';
 
 const packages = [
   { directory: 'services/lambda', service: { priceSource: { serviceCode: 'AWSLambda' } } },
@@ -174,4 +177,40 @@ test('Golden evidence fallback prefers the published region fixture over the leg
 
   const source = await readGoldenRawSource(rawDirectory, 'Example', 'ap-northeast-1', fixtureDirectory);
   assert.equal(source.marker, 'regional');
+});
+
+test('Golden evidence for Oracle Database Insights is grouped under AmazonCloudWatch, not AmazonRDS', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'tae-cross-source-golden-'));
+  const candidate = path.join(root, 'candidate');
+  const rawDirectory = path.join(root, 'raw');
+  const pkg = (await loadPackages()).find(item => item.service.id === 'rds-oracle');
+  const rawRds = await readJson('tests/fixtures/aws/AmazonRDS.json');
+  const rdsExtra = await readJson('tests/fixtures/aws/AmazonRDS.supplement.json');
+  rawRds.products = { ...rawRds.products, ...rdsExtra.products };
+  rawRds.terms.OnDemand = { ...rawRds.terms.OnDemand, ...rdsExtra.terms.OnDemand };
+  const rawCloudWatch = await readJson('tests/fixtures/aws/AmazonCloudWatch.json');
+  for (const [code, raw] of [['AmazonRDS', rawRds], ['AmazonCloudWatch', rawCloudWatch]]) {
+    const region = 'ap-northeast-1';
+    await mkdir(path.join(candidate, 'sources', code, region), { recursive: true });
+    await mkdir(path.join(rawDirectory, code), { recursive: true });
+    await writeFile(path.join(candidate, 'sources', code, region, 'products.json'), JSON.stringify(normalize(raw, region).data));
+    await writeFile(path.join(rawDirectory, code, `${region}.json`), JSON.stringify(raw));
+  }
+  await writeFile(path.join(candidate, 'source-metadata.json'), JSON.stringify({
+    sources: Object.fromEntries(['AmazonRDS', 'AmazonCloudWatch'].map(code => [
+      `${code}/ap-northeast-1`, { serviceCode: code, region: 'ap-northeast-1' }
+    ]))
+  }));
+  for (const [name, collect] of [
+    ['strict', refreshGoldenEvidence],
+    ['tolerant', refreshGoldenEvidenceTolerant]
+  ]) {
+    const output = path.join(root, name);
+    await collect([pkg], rawDirectory, output, candidate);
+    const rds = JSON.parse(await readFile(path.join(output, 'AmazonRDS', 'ap-northeast-1.json'), 'utf8'));
+    const cloud = JSON.parse(await readFile(path.join(output, 'AmazonCloudWatch', 'ap-northeast-1.json'), 'utf8'));
+    assert.ok(Object.keys(rds.products).length >= 3);
+    assert.ok(cloud.products.Z4WEW63942JWGQ63, `${name}: Insights SKU must be collected from CloudWatch`);
+    assert.equal(rds.products.Z4WEW63942JWGQ63, undefined);
+  }
 });
