@@ -25,8 +25,20 @@ The second user-supplied screenshot covers the section below instance configurat
 - **CloudWatch Database Insights for RDS provisioned instances**: enable/disable question, shown as `Yes`, billed on vCPU-month basis. The screenshot shows 1 instance × 8 vCPU × 730 hours × 0.0125 USD per vCPU-hour = 73.00 USD.
 - Above this section, purchase plan is OnDemand, license is Bring your own license and database edition is Enterprise.
 - **Discrepancy**: the current service only prices gp3 database storage (20 GB-month default) and does not model the storage-type selector, gp2 storage or Database Insights. These must be included in re-onboarding after resolving AWS Public Price List product and dimension semantics.
-- This screenshot does **not** show the page content below the CloudWatch Database Insights section; backup storage input details remain visually unverified.
+- This screenshot does **not** show the page content below the CloudWatch Database Insights section; backup storage details were subsequently verified in the third screenshot (see below).
 - Do not copy sample display rates into Definitions or Pricing Mappings. Instance count must apply to per-instance storage and Insights. Avoid charging Insights when disabled.
 - Official RDS Oracle pricing: https://aws.amazon.com/rds/oracle/pricing/
 - AWS RDS storage documentation: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html
 - AWS Database Insights documentation: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DatabaseInsights.TurningOnAdvanced.html
+
+## Third rendered Calculator screenshot: Additional backup storage (2026-10-10)
+
+- The section immediately following CloudWatch Database Insights is labeled **バックアップストレージ** (Backup storage).
+- The input label is **追加のバックアップストレージ** (Additional backup storage), an initially empty numeric field with placeholder `量を入力`.
+- There is a **ユニット** (Unit) selector, currently `GB`. The current screenshot confirms `GB` as the selected option; it does not prove any other unit choices.
+- With that field empty, the pricing breakdown reads **追加のバックアップストレージコスト (monthly): 0.00 USD**.
+- This is *additional billable backup storage*, not total snapshots or total provisioned DB storage. RDS backup allowance behavior must be accounted for conceptually rather than deducting the allowance again from the already-additional input. Official AWS reference: https://docs.aws.amazon.com/aws-backup/latest/devguide/rds-backup.html
+- The screenshot shows this section at the end of the visible configuration form above the fixed bottom toolbar; no further estimate input section is visible below it.
+- Required Definition: add a separate optional backup-storage pricing component, with GB/month quantity defaulting to zero (no charge). Apply only a verified AmazonRDS backup GB-month price dimension. Do not invent an operation, SKU, or unit, and do not conflate RDS Custom or other engines' backup prices.
+- Required tests: zero backup usage, positive backup usage, region switching, no double deduction of free allocation, integration with instance/storage/Database Insights, and validation of a unique AWS Public Price List match.
+- The user requests coverage parity across all confirmed On-Demand inputs, including gp2 storage, Database Insights, and additional backup storage. This screenshot completes the known lower-form evidence; option lists not opened (storage types and units) remain unverified.
