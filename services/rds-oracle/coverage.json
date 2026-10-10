@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Database Instance"
+        },
+        {
+          "field": "databaseEngine",
+          "op": "eq",
+          "value": "Oracle"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "instance"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Database Storage"
+        },
+        {
+          "field": "databaseEngine",
+          "op": "eq",
+          "value": "Oracle"
+        },
+        {
+          "field": "volumeType",
+          "op": "eq",
+          "value": "General Purpose-GP3"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "storage-gp3"
+    },
+    {
+      "filters": [
+        {
+          "field": "databaseEngine",
+          "op": "eq",
+          "value": "Oracle"
+        },
+        {
+          "field": "productFamily",
+          "op": "notIn",
+          "value": [
+            "Database Instance",
+            "Database Storage"
+          ]
+        }
+      ],
+      "status": "ignored",
+      "reason": "Oracle backup, additional storage performance, monitoring and other meters are outside the supplied visible Calculator section or require additional inputs not present in the supplied evidence.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "databaseEngine",
+          "op": "eq",
+          "value": "Oracle"
+        },
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Database Storage"
+        },
+        {
+          "field": "volumeType",
+          "op": "neq",
+          "value": "General Purpose-GP3"
+        }
+      ],
+      "status": "ignored",
+      "reason": "The initial Oracle drawer supports gp3 database storage only. Other RDS for Oracle storage classes are not silently approximated.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}
