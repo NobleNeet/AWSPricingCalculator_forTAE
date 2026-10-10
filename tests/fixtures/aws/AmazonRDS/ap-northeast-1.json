@@ -50,6 +50,23 @@
       "productFamily": "Database Storage",
       "sku": "E7NHVJRED3R3PUY7"
     },
+    "FH3Z49QRAVFWJQ4H": {
+      "attributes": {
+        "databaseEngine": "Oracle",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "5",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0005",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "AmazonS3",
+        "usagetype": "APN1-RDS:ChargedBackupUsage"
+      },
+      "productFamily": "Storage Snapshot",
+      "sku": "FH3Z49QRAVFWJQ4H"
+    },
     "HSMQ9C43F35T8QMX": {
       "attributes": {
         "databaseEngine": "Aurora PostgreSQL",
@@ -97,6 +114,27 @@
       },
       "productFamily": "Limitless",
       "sku": "PHCZW4PHVBVNVGGJ"
+    },
+    "PNEHP3YZ9EDZKFGT": {
+      "attributes": {
+        "databaseEdition": "Enterprise",
+        "databaseEngine": "Oracle",
+        "deploymentOption": "Multi-AZ",
+        "engineCode": "5",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxVolumeSize": "16 TB",
+        "minVolumeSize": "5 GB",
+        "operation": "CreateDBInstance:0005",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "SSD",
+        "usagetype": "APN1-RDS:Multi-AZ-GP2-Storage",
+        "volumeType": "General Purpose"
+      },
+      "productFamily": "Database Storage",
+      "sku": "PNEHP3YZ9EDZKFGT"
     },
     "QSZ96MWJHP7X7JWV": {
       "attributes": {
@@ -154,27 +192,6 @@
       },
       "productFamily": "Database Instance",
       "sku": "QXQBYDD8C8FPKXAK"
-    },
-    "RYG8FRXDSVK348N7": {
-      "attributes": {
-        "databaseEdition": "Enterprise",
-        "databaseEngine": "Oracle",
-        "deploymentOption": "Multi-AZ",
-        "engineCode": "5",
-        "location": "Asia Pacific (Tokyo)",
-        "locationType": "AWS Region",
-        "maxVolumeSize": "16 TB",
-        "minVolumeSize": "5 GB",
-        "operation": "CreateDBInstance:0005",
-        "regionCode": "ap-northeast-1",
-        "servicecode": "AmazonRDS",
-        "servicename": "Amazon Relational Database Service",
-        "storageMedia": "SSD",
-        "usagetype": "APN1-RDS:Multi-AZ-GP3-Storage",
-        "volumeType": "General Purpose-GP3"
-      },
-      "productFamily": "Database Storage",
-      "sku": "RYG8FRXDSVK348N7"
     },
     "S36HEJFJTVGM4KTA": {
       "attributes": {
@@ -360,6 +377,27 @@
           "termAttributes": {}
         }
       },
+      "FH3Z49QRAVFWJQ4H": {
+        "FH3Z49QRAVFWJQ4H.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "FH3Z49QRAVFWJQ4H.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.095 per additional GB-month of backup storage exceeding free allocation running Oracle",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0950000000"
+              },
+              "rateCode": "FH3Z49QRAVFWJQ4H.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "FH3Z49QRAVFWJQ4H",
+          "termAttributes": {}
+        }
+      },
       "HSMQ9C43F35T8QMX": {
         "HSMQ9C43F35T8QMX.JRTCKXETXF": {
           "effectiveDate": "2026-10-01T00:00:00Z",
@@ -423,6 +461,27 @@
           "termAttributes": {}
         }
       },
+      "PNEHP3YZ9EDZKFGT": {
+        "PNEHP3YZ9EDZKFGT.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "PNEHP3YZ9EDZKFGT.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.276 per GB-month of provisioned gp2 storage for Multi-AZ deployments running Oracle",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2760000000"
+              },
+              "rateCode": "PNEHP3YZ9EDZKFGT.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "PNEHP3YZ9EDZKFGT",
+          "termAttributes": {}
+        }
+      },
       "QSZ96MWJHP7X7JWV": {
         "QSZ96MWJHP7X7JWV.JRTCKXETXF": {
           "effectiveDate": "2026-10-01T00:00:00Z",
@@ -462,27 +521,6 @@
             }
           },
           "sku": "QXQBYDD8C8FPKXAK",
-          "termAttributes": {}
-        }
-      },
-      "RYG8FRXDSVK348N7": {
-        "RYG8FRXDSVK348N7.JRTCKXETXF": {
-          "effectiveDate": "2026-10-01T00:00:00Z",
-          "offerTermCode": "JRTCKXETXF",
-          "priceDimensions": {
-            "RYG8FRXDSVK348N7.JRTCKXETXF.6YS6EN2CT7": {
-              "appliesTo": [],
-              "beginRange": "0",
-              "description": "$0.276 per GB-month of provisioned GP3 storage for Multi-AZ deployments running Oracle",
-              "endRange": "Inf",
-              "pricePerUnit": {
-                "USD": "0.2760000000"
-              },
-              "rateCode": "RYG8FRXDSVK348N7.JRTCKXETXF.6YS6EN2CT7",
-              "unit": "GB-Mo"
-            }
-          },
-          "sku": "RYG8FRXDSVK348N7",
           "termAttributes": {}
         }
       },

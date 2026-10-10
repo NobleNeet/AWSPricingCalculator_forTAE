@@ -1,0 +1,228 @@
+{
+  "buildId": "20261010T090802Z-eb75cf3e",
+  "products": [
+    {
+      "attributes": {
+        "group": "aws-kms-Requests-Asymmetric-RSA_2048",
+        "groupDescription": "AWS KMS Asymmetric Requests RSA_2048",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-3-KMS-Requests-Asymmetric-RSA_2048"
+      },
+      "operation": "",
+      "productFamily": "",
+      "sku": "5KTAXCA3CGS4ZJ6N",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.03 per 10000 KMS RSA 2048 requests in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000030000"
+                },
+                "rateCode": "5KTAXCA3CGS4ZJ6N.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "ap-northeast-3-KMS-Requests-Asymmetric-RSA_2048"
+    },
+    {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-RSA",
+        "groupDescription": "AWS KMS API Requests GenerateDatakeyPair RSA",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-RSA"
+      },
+      "operation": "",
+      "productFamily": "",
+      "sku": "A29G58SBVSWCWTVD",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$12 per 10000 RSA Generate Data Key Pair Requests in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0012000000"
+                },
+                "rateCode": "A29G58SBVSWCWTVD.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-RSA"
+    },
+    {
+      "attributes": {
+        "group": "awskms-Requests-Asymmetric",
+        "groupDescription": "AWS KMS Asymmetric Requests except RSA_2048API",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-3-KMS-Requests-Asymmetric"
+      },
+      "operation": "",
+      "productFamily": "",
+      "sku": "KWZ8BB2XEU92WS5F",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.15 per 10000 KMS Asymmetric Requests excluding RSA 2048 in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000150000"
+                },
+                "rateCode": "KWZ8BB2XEU92WS5F.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "ap-northeast-3-KMS-Requests-Asymmetric"
+    },
+    {
+      "attributes": {
+        "group": "awskms-Requests-GenerateDatakeyPair-ECC",
+        "groupDescription": "AWS KMS API Requests GenerateDatakeyPair ECC",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-ECC"
+      },
+      "operation": "",
+      "productFamily": "",
+      "sku": "TRKSKTVVQ6ZB77RF",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.1 per 10000 ECC Generate Data Key Pair Requests in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000100000"
+                },
+                "rateCode": "TRKSKTVVQ6ZB77RF.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-ECC"
+    },
+    {
+      "attributes": {
+        "group": "awskms-APIRequest-All",
+        "groupDescription": "All AWS KMS API requests",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-3-KMS-Requests"
+      },
+      "operation": "",
+      "productFamily": "API Request",
+      "sku": "WCDV7H2SEWSQDPHE",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.03 per 10000 KMS requests in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000030000"
+                },
+                "rateCode": "WCDV7H2SEWSQDPHE.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "ap-northeast-3-KMS-Requests"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "awskms",
+        "servicename": "AWS Key Management Service",
+        "usagetype": "ap-northeast-3-KMS-Keys"
+      },
+      "operation": "",
+      "productFamily": "Encryption Key",
+      "sku": "Z6ZQ2YST5YY3RFRX",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1 per customer managed KMS key version in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "1.0000000000"
+                },
+                "rateCode": "Z6ZQ2YST5YY3RFRX.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Keys"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "ap-northeast-3-KMS-Keys"
+    }
+  ],
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "awskms"
+}

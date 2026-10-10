@@ -1,0 +1,37 @@
+{
+  "attributes": {
+    "location": [
+      "US East (Ohio)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "",
+      "JustInTimeAccessHour"
+    ],
+    "regionCode": [
+      "us-east-2"
+    ],
+    "response": [
+      "response-plan-months"
+    ],
+    "servicecode": [
+      "AWSSystemsManager"
+    ],
+    "servicename": [
+      "AWS Systems Manager"
+    ],
+    "trial": [
+      "FALSE"
+    ],
+    "usagetype": [
+      "USE2-IM-ResponsePlan-Months-Tier1",
+      "USE2-JustInTimeAccessHour"
+    ]
+  },
+  "buildId": "20261010T090802Z-eb75cf3e",
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}
