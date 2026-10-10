@@ -11,7 +11,7 @@ test('RDS for Oracle exposes all supported Calculator inputs and the PostgreSQL-
   await expect(page.locator('#service-drawer')).toBeVisible();
   console.log('ORACLE_DRAWER_DEBUG', (await page.locator('#drawer-content').innerText()).slice(0,2000));
   try { await expect(page.locator('[data-instance-picker="rds-oracle"]')).toBeVisible(); }
-  catch (error) { console.log('ORACLE_DRAWER_FINAL', (await page.locator('#drawer-content').innerText()).slice(0,2200)); throw error; }
+  catch (error) { console.log('ORACLE_DRAWER_FINAL', (await page.locator('#drawer-content').innerHTML()).slice(0,6500)); console.log('ORACLE_ELEMENTS', await page.locator('#input-component-instance-instanceType').count()); throw error; }
   await expect(page.locator('[data-instance-filter="memory"]')).toBeVisible();
   await expect(page.locator('.ec2-drawer-resizer')).toBeAttached();
   await expect(page.locator('[data-instance-drawer-width]')).toBeVisible();
