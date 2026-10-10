@@ -24,7 +24,7 @@
     {
       "field": "attributes.volumeType",
       "op": "eq",
-      "value": "General Purpose-GP3"
+      "valueFrom": "component.volumeType"
     },
     {
       "field": "operation",
@@ -43,5 +43,5 @@
     "products": 1,
     "billableDimensions": 1
   },
-  "notes": "RDS for Oracle gp3 database storage. AWS publishes duplicate gp3 storage SKUs per Oracle edition/license operation at the same regional rate; CreateDBInstance:0005 (standard RDS Oracle Enterprise BYOL) is the canonical non-Custom meter used to resolve a single SKU. Equivalence was verified across all configured regions during onboarding. Additional gp3 IOPS/throughput are not included."
+  "notes": "Canonical CreateDBInstance:0005 normal RDS Oracle per-instance gp2/gp3 storage, storage amount times Nodes. Verified on full 2026-10-06 Tokyo Price List: Oracle Enterprise BYOL Single/Multi-AZ gp2 and gp3 each resolve exactly one GB-Mo meter. Operation excludes RDS Custom."
 }
