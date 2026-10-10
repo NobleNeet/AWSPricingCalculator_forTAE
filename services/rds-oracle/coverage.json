@@ -31,12 +31,58 @@
         },
         {
           "field": "discriminators.volumeType",
-          "op": "eq",
-          "value": "General Purpose-GP3"
+          "op": "in",
+          "value": [
+            "General Purpose-GP3",
+            "General Purpose"
+          ]
         }
       ],
       "status": "mapped",
       "componentId": "storage-gp3"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage Snapshot"
+        },
+        {
+          "field": "discriminators.databaseEngine",
+          "op": "eq",
+          "value": "Oracle"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "CreateDBInstance:0005"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "backup-storage"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage Snapshot"
+        },
+        {
+          "field": "discriminators.databaseEngine",
+          "op": "eq",
+          "value": "Oracle"
+        },
+        {
+          "field": "operation",
+          "op": "neq",
+          "value": "CreateDBInstance:0005"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Standard RDS Oracle uses canonical backup operation CreateDBInstance:0005; noncanonical legacy and RDS Custom snapshot meters must not be mapped to normal Oracle.",
+      "limitationId": "unsupported-pricing-category"
     },
     {
       "filters": [
@@ -50,12 +96,13 @@
           "op": "notIn",
           "value": [
             "Database Instance",
-            "Database Storage"
+            "Database Storage",
+            "Storage Snapshot"
           ]
         }
       ],
       "status": "ignored",
-      "reason": "Oracle backup, additional storage performance, monitoring and other meters are outside the supplied visible Calculator section or require additional inputs not present in the supplied evidence.",
+      "reason": "Other Oracle-related RDS meters remain intentionally unsupported; see onboarding evidence.",
       "limitationId": "unsupported-pricing-category"
     },
     {
@@ -72,8 +119,11 @@
         },
         {
           "field": "discriminators.volumeType",
-          "op": "neq",
-          "value": "General Purpose-GP3"
+          "op": "notIn",
+          "value": [
+            "General Purpose-GP3",
+            "General Purpose"
+          ]
         }
       ],
       "status": "ignored",
