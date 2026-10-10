@@ -1,0 +1,17 @@
+{
+  "buildId": "20261010T041918Z-1ac730a0",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 7,
+      "firstSku": "72KW6Q4G84NEHWKE",
+      "lastSku": "YWGKVZ7GRB5GT325",
+      "path": "chunks/AWSAmplify/ap-northeast-1/00000.json",
+      "sha256": "0d99422164c3a29f4869163c6035f1005df1eec2da45a099c2f3ec81c1ea94e8"
+    }
+  ],
+  "productCount": 7,
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSAmplify"
+}

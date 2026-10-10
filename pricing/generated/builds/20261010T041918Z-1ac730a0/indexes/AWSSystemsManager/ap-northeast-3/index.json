@@ -1,0 +1,133 @@
+{
+  "attributes": {
+    "api-requests-free": [
+      "Not Applicable",
+      "True"
+    ],
+    "api-requests-paid": [
+      "Not Applicable",
+      "True"
+    ],
+    "change-requests-free": [
+      "Not Applicable",
+      "True"
+    ],
+    "change-requests-paid": [
+      "Not Applicable",
+      "True"
+    ],
+    "dataTransfer": [
+      "APN1-",
+      "APN2-",
+      "APS1-",
+      "APS2-",
+      "APS3",
+      "CAN1-",
+      "DataTransfer-",
+      "EU-",
+      "EUC1-",
+      "EUN1-",
+      "EUW2-",
+      "EUW3-",
+      "Not Applicable",
+      "SAE1-",
+      "UGE1-",
+      "UGW1-",
+      "USE1-",
+      "USE2-",
+      "USW1-",
+      "USW2-"
+    ],
+    "describes": [
+      "Not Applicable"
+    ],
+    "gets": [
+      "ExperimentHours",
+      "Not Applicable",
+      "True"
+    ],
+    "instances": [
+      "advanced"
+    ],
+    "location": [
+      "Asia Pacific (Osaka)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "opsItems": [
+      "Not Applicable",
+      "True"
+    ],
+    "parameterType": [
+      "False",
+      "True"
+    ],
+    "regionCode": [
+      "ap-northeast-3"
+    ],
+    "servicecode": [
+      "AWSSystemsManager"
+    ],
+    "servicename": [
+      "AWS Systems Manager"
+    ],
+    "storage": [
+      "Not Applicable",
+      "True"
+    ],
+    "throughput": [
+      "40",
+      "1000"
+    ],
+    "updates": [
+      "Not Applicable",
+      "True"
+    ],
+    "usagetype": [
+      "APN3-APN1-AWS-Out-Bytes",
+      "APN3-APN2-AWS-Out-Bytes",
+      "APN3-AppConfig-Deployments",
+      "APN3-AppConfig-ExperimentHours",
+      "APN3-AppConfig-Requests",
+      "APN3-APS1-AWS-Out-Bytes",
+      "APN3-APS2-AWS-Out-Bytes",
+      "APN3-APS3-AWS-Out-Bytes",
+      "APN3-CAN1-AWS-Out-Bytes",
+      "APN3-Change-API-Requests-Free",
+      "APN3-Change-API-Requests-Tier1",
+      "APN3-Change-ChangeRequest-Free",
+      "APN3-Change-ChangeRequest-Tier1",
+      "APN3-DataTransfer-Out-Bytes",
+      "APN3-Doc-API-Requests-Tier1",
+      "APN3-EU-AWS-Out-Bytes",
+      "APN3-EUC1-AWS-Out-Bytes",
+      "APN3-EUN1-AWS-Out-Bytes",
+      "APN3-EUW2-AWS-Out-Bytes",
+      "APN3-EUW3-AWS-Out-Bytes",
+      "APN3-HybridInvocation",
+      "APN3-HybridSession",
+      "APN3-MI-AdvInstances-Hrs",
+      "APN3-OC-API-Requests-Tier1",
+      "APN3-OC-OpsItems-Tier1",
+      "APN3-PS-Advanced-Param-Tier1",
+      "APN3-PS-Param-Processed-Tier1",
+      "APN3-PS-Param-Processed-Tier2",
+      "APN3-SAE1-AWS-Out-Bytes",
+      "APN3-TimedStorage-ByteHrs",
+      "APN3-UGE1-AWS-Out-Bytes",
+      "APN3-UGW1-AWS-Out-Bytes",
+      "APN3-USE1-AWS-Out-Bytes",
+      "APN3-USE2-AWS-Out-Bytes",
+      "APN3-USW1-AWS-Out-Bytes",
+      "APN3-USW2-AWS-Out-Bytes"
+    ]
+  },
+  "buildId": "20261010T041918Z-1ac730a0",
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}

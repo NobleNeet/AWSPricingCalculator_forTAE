@@ -1,0 +1,418 @@
+{
+  "buildId": "20261010T041918Z-1ac730a0",
+  "products": [
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.large",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "16 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:ARM:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "6VGG56JTZRUU2APE",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.arm1.large in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0175000000"
+                },
+                "rateCode": "6VGG56JTZRUU2APE.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:ARM:g1.large"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.medium",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "8 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:ARM:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "8TFDHN4R3AUVKJS9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on arm1.medium in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0090000000"
+                },
+                "rateCode": "8TFDHN4R3AUVKJS9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:ARM:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.small",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:ARM:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "ASWZ4KSHHS5JPVY5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.00425 per minutes for Build-Min:ARM:g1.small in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0042500000"
+                },
+                "rateCode": "ASWZ4KSHHS5JPVY5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:ARM:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.2xlarge",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "144 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:Linux:g1.2xlarge",
+        "vcpu": "72"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "EVDHYFC3WR6RGPTR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.2xlarge in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.2500000000"
+                },
+                "rateCode": "EVDHYFC3WR6RGPTR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:Linux:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.medium",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "7 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:Linux:g1.medium",
+        "vcpu": "4"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "FSGGXE6P8VJGBS94",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.medium - US West (Northern California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "FSGGXE6P8VJGBS94.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:Linux:g1.medium"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.xlarge",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "64 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:ARM:g1.xlarge",
+        "vcpu": "32"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "HZC8N55EQ9AX6VCU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.xlarge in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0700000000"
+                },
+                "rateCode": "HZC8N55EQ9AX6VCU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:ARM:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.xlarge",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "72 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:Linux:g1.xlarge",
+        "vcpu": "36"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "JVXHBAP2HGTPUF6J",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.xlarge in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0993000000"
+                },
+                "rateCode": "JVXHBAP2HGTPUF6J.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:Linux:g1.xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.small",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "3 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:Linux:g1.small",
+        "vcpu": "2"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "Q6H2BR483REJRWAY",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.small - US West (Northern California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0050000000"
+                },
+                "rateCode": "Q6H2BR483REJRWAY.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:Linux:g1.small"
+    },
+    {
+      "attributes": {
+        "architecture": "Arm64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "arm1.2xlarge",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "96 GiB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:ARM:g1.2xlarge",
+        "vcpu": "48"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "QVRJZP94NAYXVGNC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on  arm1.2xlarge in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1050000000"
+                },
+                "rateCode": "QVRJZP94NAYXVGNC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:ARM:g1.2xlarge"
+    },
+    {
+      "attributes": {
+        "architecture": "x86-64",
+        "computeFamily": "OnDemand-EC2",
+        "computeType": "general1.large",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memory": "15 GB",
+        "operatingSystem": "Linux",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "CodeBuild",
+        "servicename": "CodeBuild",
+        "usagetype": "USW1-Build-Min:Linux:g1.large",
+        "vcpu": "8"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "WPG4HPG9CW669QC8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS CodeBuild - Build minutes on build.general1.large - US West (Northern California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "WPG4HPG9CW669QC8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Build-Min:Linux:g1.large"
+    }
+  ],
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "CodeBuild"
+}

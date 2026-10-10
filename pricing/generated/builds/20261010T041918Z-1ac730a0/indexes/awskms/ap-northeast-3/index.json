@@ -1,0 +1,48 @@
+{
+  "attributes": {
+    "group": [
+      "aws-kms-Requests-Asymmetric-RSA_2048",
+      "awskms-APIRequest-All",
+      "awskms-Requests-Asymmetric",
+      "awskms-Requests-GenerateDatakeyPair-ECC",
+      "awskms-Requests-GenerateDatakeyPair-RSA"
+    ],
+    "groupDescription": [
+      "All AWS KMS API requests",
+      "AWS KMS API Requests GenerateDatakeyPair ECC",
+      "AWS KMS API Requests GenerateDatakeyPair RSA",
+      "AWS KMS Asymmetric Requests except RSA_2048API",
+      "AWS KMS Asymmetric Requests RSA_2048"
+    ],
+    "location": [
+      "Asia Pacific (Osaka)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "ap-northeast-3"
+    ],
+    "servicecode": [
+      "awskms"
+    ],
+    "servicename": [
+      "AWS Key Management Service"
+    ],
+    "usagetype": [
+      "ap-northeast-3-KMS-Keys",
+      "ap-northeast-3-KMS-Requests",
+      "ap-northeast-3-KMS-Requests-Asymmetric",
+      "ap-northeast-3-KMS-Requests-Asymmetric-RSA_2048",
+      "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-ECC",
+      "ap-northeast-3-KMS-Requests-GenerateDatakeyPair-RSA"
+    ]
+  },
+  "buildId": "20261010T041918Z-1ac730a0",
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "awskms"
+}

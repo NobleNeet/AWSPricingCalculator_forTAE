@@ -43,6 +43,15 @@
     },
     {
       "available": true,
+      "id": "rds-oracle",
+      "label": "Amazon RDS for Oracle",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AmazonRDS"
+    },
+    {
+      "available": true,
       "id": "rds",
       "label": "Amazon RDS for PostgreSQL",
       "profiles": [
@@ -112,15 +121,6 @@
         "standard"
       ],
       "serviceCode": "AWSSystemsManager"
-    },
-    {
-      "available": true,
-      "id": "rds-oracle",
-      "label": "Amazon RDS for Oracle",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonRDS"
     }
   ]
 }

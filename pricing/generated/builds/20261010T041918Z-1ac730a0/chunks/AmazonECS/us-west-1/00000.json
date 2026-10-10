@@ -1,0 +1,313 @@
+{
+  "buildId": "20261010T041918Z-1ac730a0",
+  "products": [
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USW1-Fargate-ARM-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "2CRXYAMMXE9R5BNQ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - Memory - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0040900000"
+                },
+                "rateCode": "2CRXYAMMXE9R5BNQ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-ARM-GB-Hours"
+    },
+    {
+      "attributes": {
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "storagetype": "default",
+        "usagetype": "USW1-Fargate-EphemeralStorage-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "8E7NQEA5FKHKT2GD",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Ephemeral Storage - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0001330000"
+                },
+                "rateCode": "8E7NQEA5FKHKT2GD.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-EphemeralStorage-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU OS License Fee",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "resource": "OS License Fee per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USW1-Fargate-Windows-OS-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "ANRJT5DHDW78UV3Y",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - OS  - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0460000000"
+                },
+                "rateCode": "ANRJT5DHDW78UV3Y.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-Windows-OS-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USW1-Fargate-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "EUG8KFZKSTBVD57V",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Memory  - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0051100000"
+                },
+                "rateCode": "EUG8KFZKSTBVD57V.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-GB-Hours"
+    },
+    {
+      "attributes": {
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USW1-Fargate-Windows-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "MX6RCNASARTWGERC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - Memory  - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0058765000"
+                },
+                "rateCode": "MX6RCNASARTWGERC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-Windows-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "cputype": "perCPU",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USW1-Fargate-ARM-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "NUCG3P8GGSCK4QJC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - vCPU - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0372500000"
+                },
+                "rateCode": "NUCG3P8GGSCK4QJC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-ARM-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USW1-Fargate-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "Y3K6WQP3EGM8CYZH",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - vCPU  - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0465600000"
+                },
+                "rateCode": "Y3K6WQP3EGM8CYZH.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-west-1",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USW1-Fargate-Windows-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "YXS8VTB8FSDEKAY8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - vCPU  - US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0535440000"
+                },
+                "rateCode": "YXS8VTB8FSDEKAY8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-Fargate-Windows-vCPU-Hours:perCPU"
+    }
+  ],
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonECS"
+}
