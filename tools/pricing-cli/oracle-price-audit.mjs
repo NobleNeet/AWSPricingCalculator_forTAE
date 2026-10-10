@@ -19,6 +19,17 @@ for (const item of Object.values(metadata.sources)) {
     const dims = terms.flatMap(t => Object.values(t.priceDimensions || {}).map(d => ({unit:d.unit,usd:d.pricePerUnit?.USD,description:d.description?.slice(0,110)})));
     rows.push({sku,pf,operation,kind,engine:a.databaseEngine,edition:a.databaseEdition,volume:a.volumeType,deploy:a.deploymentOption,license:a.licenseModel,group:a.group,config:a.instanceConfigurationType,engineType:a.databaseEngineType,retention:a.retention,dims});
   }
+  const samples = rows.filter(x =>
+    (item.serviceCode === 'AmazonRDS' && x.operation === 'CreateDBInstance:0005' &&
+      ((x.pf === 'Database Storage' && x.volume === 'General Purpose' && x.deploy === 'Multi-AZ')
+        || (x.pf === 'Storage Snapshot' && x.engine === 'Oracle')))
+    || (item.serviceCode === 'AmazonCloudWatch' && x.operation === 'RDS-Oracle:Provisioned')
+  );
+  for (const sample of samples) console.log('RAW_SAMPLE', JSON.stringify({
+    code:item.serviceCode,
+    product:raw.products[sample.sku],
+    terms:raw.terms?.OnDemand?.[sample.sku] ?? {}
+  }));
   console.log('MATCHED', item.serviceCode, rows.length);
   const summary = new Map();
   for (const x of rows) {
