@@ -35,6 +35,10 @@
             "field": "attributes.databaseEdition",
             "op": "eq",
             "valueFrom": "profile.databaseEdition"
+          },
+          {
+            "field": "attributes.deploymentModel",
+            "op": "notExists"
           }
         ]
       }
@@ -74,6 +78,10 @@
         "field": "attributes.instanceType",
         "op": "eq",
         "valueFrom": "component.instanceType"
+      },
+      {
+        "field": "attributes.deploymentModel",
+        "op": "notExists"
       }
     ],
     "dimensionFilters": [
