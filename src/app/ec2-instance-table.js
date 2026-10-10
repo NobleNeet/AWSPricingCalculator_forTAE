@@ -145,7 +145,8 @@ function alignEc2CalculatorFieldOrder(instanceTypeLabel, kind) {
 }
 
 async function enhance(select, kind) {
-  const marker = `${kind}Enhanced`;
+  const marker = `${kind.replaceAll('-', '')}Enhanced`;
+  // dataset keys cannot contain a hyphen followed by a lowercase character.
   if (select.dataset[marker] === 'true') return;
   select.dataset[marker] = 'true';
   ensureResizableDrawer(kind);
