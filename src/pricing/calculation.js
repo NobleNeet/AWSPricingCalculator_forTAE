@@ -11,6 +11,13 @@ function canonicalUnit(unit) {
 function resolveUsageSource(source, context) {
   if (source.value && typeof source.value === 'object' && !Array.isArray(source.value)) {
     const expression = source.value;
+    if (expression.type === 'resolvedComponentAttribute') {
+      const component = context.resolvedComponents?.[expression.componentId];
+      const raw = component?.attributes?.[expression.attribute];
+      if (typeof raw !== 'string' && typeof raw !== 'number') fail('MISSING_USAGE', `Missing resolved ${expression.componentId}.${expression.attribute}.`);
+      if (!/^[0-9]+(?:\\.[0-9]+)?$/.test(String(raw).trim())) fail('INVALID_USAGE', `Invalid numeric resolved attribute ${expression.componentId}.${expression.attribute}.`);
+      return decimal(raw);
+    }
     if (expression.type !== 'transformed' || typeof expression.valueFrom !== 'string' || !Array.isArray(expression.transforms)) {
       fail('INVALID_CALCULATION', 'Invalid transformed usage source.');
     }
