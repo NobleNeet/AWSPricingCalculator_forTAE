@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "database-insights",
+  "componentId": "database-insights",
+  "priceSource": {
+    "serviceCode": "AmazonCloudWatch"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "CloudWatch Database Insights"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "RDS-Oracle:Provisioned"
+    },
+    {
+      "field": "attributes.databaseEngineType",
+      "op": "eq",
+      "value": "RDS Oracle"
+    },
+    {
+      "field": "attributes.instanceConfigurationType",
+      "op": "eq",
+      "value": "Provisioned"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "CW-DatabaseInsights"
+    },
+    {
+      "field": "attributes.retention",
+      "op": "notExists"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "vCPU-Hours"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS 2026-10-06 Tokyo bulk Price List contains CloudWatch Database Insights RDS-Oracle:Provisioned at 0.0125 USD/vCPU-hour; dynamically derived instance vCPU attribute, 730*utilizationPct/100 instance hours, and node count."
+}
