@@ -1,0 +1,123 @@
+{
+  "offerCode": "AmazonCloudWatch",
+  "version": "20261001060230",
+  "publicationDate": "2026-10-01T06:02:30Z",
+  "products": {
+    "Z4WEW63942JWGQ63": {
+      "sku": "Z4WEW63942JWGQ63",
+      "productFamily": "CloudWatch Database Insights",
+      "attributes": {
+        "servicecode": "AmazonCloudWatch",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "group": "CW-DatabaseInsights",
+        "groupDescription": "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases",
+        "usagetype": "APN1-CW:DatabaseInsights-vCPU-Hours",
+        "operation": "RDS-Oracle:Provisioned",
+        "databaseEngineType": "RDS Oracle",
+        "instanceConfigurationType": "Provisioned",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AmazonCloudWatch"
+      }
+    },
+    "MFA39AYRHN5TNQDU": {
+      "sku": "MFA39AYRHN5TNQDU",
+      "productFamily": "CloudWatch Database Insights",
+      "attributes": {
+        "servicecode": "AmazonCloudWatch",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-CW:DatabaseInsights-Standard-AMR-vCPU-Hours",
+        "operation": "RDS-Oracle:Provisioned",
+        "databaseEngineType": "RDS Oracle",
+        "instanceConfigurationType": "Provisioned",
+        "regionCode": "ap-northeast-1",
+        "retention": "AMR",
+        "servicename": "AmazonCloudWatch"
+      }
+    },
+    "B3NCEN5ZK499NYZS": {
+      "sku": "B3NCEN5ZK499NYZS",
+      "productFamily": "CloudWatch Database Insights",
+      "attributes": {
+        "servicecode": "AmazonCloudWatch",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "usagetype": "APN1-CW:DatabaseInsights-Standard-FMR-vCPU-Hours",
+        "operation": "RDS-Oracle:Provisioned",
+        "databaseEngineType": "RDS Oracle",
+        "instanceConfigurationType": "Provisioned",
+        "regionCode": "ap-northeast-1",
+        "retention": "FMR",
+        "servicename": "AmazonCloudWatch"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "Z4WEW63942JWGQ63": {
+        "Z4WEW63942JWGQ63.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "Z4WEW63942JWGQ63",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "Z4WEW63942JWGQ63.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "Z4WEW63942JWGQ63.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.0125 per vCPU-Hour monitored by Database Insights for RDS Oracle provisioned databases in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "vCPU-Hours",
+              "pricePerUnit": {
+                "USD": "0.0125000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "MFA39AYRHN5TNQDU": {
+        "MFA39AYRHN5TNQDU.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "MFA39AYRHN5TNQDU",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "MFA39AYRHN5TNQDU.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "MFA39AYRHN5TNQDU.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.000101 per vCPU-Hour for each additional month retention monitored by Database Insights (Standard Mode) for RDS Oracle Provisioned in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "vCPU-Hours",
+              "pricePerUnit": {
+                "USD": "0.0001010000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "B3NCEN5ZK499NYZS": {
+        "B3NCEN5ZK499NYZS.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "B3NCEN5ZK499NYZS",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "B3NCEN5ZK499NYZS.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "B3NCEN5ZK499NYZS.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.002405 per vCPU-Hour for first month retention monitored by Database Insights (Standard Mode) for RDS Oracle Provisioned in Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "vCPU-Hours",
+              "pricePerUnit": {
+                "USD": "0.0024050000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}
