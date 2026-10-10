@@ -76,6 +76,10 @@
             "field": "attributes.deploymentOption",
             "op": "eq",
             "valueFrom": "profile.deployment"
+          },
+          {
+            "field": "attributes.deploymentModel",
+            "op": "notExists"
           }
         ]
       },
