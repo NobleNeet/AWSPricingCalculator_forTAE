@@ -23,7 +23,18 @@
     "storage-gp3": {
       "enabled": true,
       "inputs": {
-        "gbMonths": "20"
+        "gbMonths": "100",
+        "volumeType": "General Purpose"
+      }
+    },
+    "database-insights": {
+      "enabled": true,
+      "inputs": {}
+    },
+    "backup-storage": {
+      "enabled": true,
+      "inputs": {
+        "additionalGbMonths": "0"
       }
     }
   },
@@ -51,16 +62,40 @@
       "attributes": {
         "databaseEngine": "Oracle",
         "deploymentOption": "Multi-AZ",
-        "volumeType": "General Purpose-GP3",
+        "volumeType": "General Purpose",
         "regionCode": "ap-northeast-1"
       },
       "unit": "GB-Mo",
-      "quantity": "20",
+      "quantity": "100",
       "limitations": [
         "account-specific-discount",
         "rds-extra-storage-performance",
-        "backup-storage",
         "unsupported-pricing-category"
+      ]
+    },
+    "database-insights": {
+      "attributes": {
+        "databaseEngineType": "RDS Oracle",
+        "instanceConfigurationType": "Provisioned",
+        "group": "CW-DatabaseInsights",
+        "regionCode": "ap-northeast-1"
+      },
+      "unit": "vCPU-Hours",
+      "quantity": "5840",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    },
+    "backup-storage": {
+      "attributes": {
+        "databaseEngine": "Oracle",
+        "deploymentOption": "Single-AZ",
+        "regionCode": "ap-northeast-1"
+      },
+      "unit": "GB-Mo",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
       ]
     }
   },
@@ -82,12 +117,35 @@
       "attributes": {
         "databaseEngine": "Oracle",
         "deploymentOption": "Multi-AZ",
-        "volumeType": "General Purpose-GP3",
+        "volumeType": "General Purpose",
         "regionCode": "ap-northeast-1"
       },
       "productFamily": "Database Storage",
       "unit": "GB-Mo",
-      "quantity": "20"
+      "quantity": "100"
+    },
+    "database-insights": {
+      "attributes": {
+        "databaseEngineType": "RDS Oracle",
+        "instanceConfigurationType": "Provisioned",
+        "group": "CW-DatabaseInsights",
+        "regionCode": "ap-northeast-1"
+      },
+      "operation": "RDS-Oracle:Provisioned",
+      "productFamily": "CloudWatch Database Insights",
+      "unit": "vCPU-Hours",
+      "quantity": "5840"
+    },
+    "backup-storage": {
+      "attributes": {
+        "databaseEngine": "Oracle",
+        "deploymentOption": "Single-AZ",
+        "regionCode": "ap-northeast-1"
+      },
+      "operation": "CreateDBInstance:0005",
+      "productFamily": "Storage Snapshot",
+      "unit": "GB-Mo",
+      "quantity": "0"
     }
   }
 }
