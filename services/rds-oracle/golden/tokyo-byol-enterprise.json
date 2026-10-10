@@ -122,7 +122,8 @@
       },
       "productFamily": "Database Storage",
       "unit": "GB-Mo",
-      "quantity": "100"
+      "quantity": "100",
+      "operation": "CreateDBInstance:0005"
     },
     "database-insights": {
       "attributes": {
