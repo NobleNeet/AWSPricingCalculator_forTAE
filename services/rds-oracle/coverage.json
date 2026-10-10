@@ -9,7 +9,7 @@
           "value": "Database Instance"
         },
         {
-          "field": "databaseEngine",
+          "field": "discriminators.databaseEngine",
           "op": "eq",
           "value": "Oracle"
         }
@@ -25,12 +25,12 @@
           "value": "Database Storage"
         },
         {
-          "field": "databaseEngine",
+          "field": "discriminators.databaseEngine",
           "op": "eq",
           "value": "Oracle"
         },
         {
-          "field": "volumeType",
+          "field": "discriminators.volumeType",
           "op": "eq",
           "value": "General Purpose-GP3"
         }
@@ -41,7 +41,7 @@
     {
       "filters": [
         {
-          "field": "databaseEngine",
+          "field": "discriminators.databaseEngine",
           "op": "eq",
           "value": "Oracle"
         },
@@ -61,7 +61,7 @@
     {
       "filters": [
         {
-          "field": "databaseEngine",
+          "field": "discriminators.databaseEngine",
           "op": "eq",
           "value": "Oracle"
         },
@@ -71,7 +71,7 @@
           "value": "Database Storage"
         },
         {
-          "field": "volumeType",
+          "field": "discriminators.volumeType",
           "op": "neq",
           "value": "General Purpose-GP3"
         }
