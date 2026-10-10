@@ -25,6 +25,11 @@
       "field": "attributes.volumeType",
       "op": "eq",
       "value": "General Purpose-GP3"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "CreateDBInstance:0005"
     }
   ],
   "dimensionMatchers": [
@@ -38,5 +43,5 @@
     "products": 1,
     "billableDimensions": 1
   },
-  "notes": "RDS for Oracle gp3 database storage meter. Additional gp3 IOPS/throughput are intentionally not included in the initial drawer."
+  "notes": "RDS for Oracle gp3 database storage. AWS publishes duplicate gp3 storage SKUs per Oracle edition/license operation at the same regional rate; CreateDBInstance:0005 (standard RDS Oracle Enterprise BYOL) is the canonical non-Custom meter used to resolve a single SKU. Equivalence was verified across all configured regions during onboarding. Additional gp3 IOPS/throughput are not included."
 }
