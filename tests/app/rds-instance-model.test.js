@@ -52,3 +52,28 @@ test('RDS filters combine with AND semantics and text partial match', () => {
   const filtered = filterRdsRows(rows, { instanceType: 'r7g', memory: '>=16' });
   assert.deepEqual(filtered.map(row => row.instanceType), ['db.r7g.large']);
 });
+
+test('Oracle instance comparison excludes PostgreSQL, RDS Custom and mismatched licensing or editions', () => {
+  const oracle = (type, cost, extra = {}) => product(type, cost, {
+    databaseEngine: 'Oracle',
+    deploymentOption: 'Multi-AZ',
+    licenseModel: 'Bring your own license',
+    databaseEdition: 'Enterprise',
+    ...extra
+  });
+  const rows = rdsInstanceRows([
+    oracle('db.m6i.2xlarge', 1.2),
+    oracle('db.r6i.2xlarge', 1.8, { memory: '64 GiB', vcpu: '8' }),
+    oracle('db.m6i.2xlarge', 2.2, { deploymentModel: 'RDS Custom' }),
+    oracle('db.m6i.large', 0.5, { licenseModel: 'License included' }),
+    oracle('db.m6i.xlarge', 0.8, { databaseEdition: 'Standard Edition 2' }),
+    product('db.t4g.micro', 0.03)
+  ], {
+    databaseEngine: 'Oracle',
+    deployment: 'Multi-AZ',
+    licenseModel: 'Bring your own license',
+    databaseEdition: 'Enterprise'
+  });
+  assert.deepEqual(rows.map(row => row.instanceType), ['db.m6i.2xlarge', 'db.r6i.2xlarge']);
+  assert.deepEqual(filterRdsRows(rows, { memory: '>=64', vcpu: '>=8' }).map(row => row.instanceType), ['db.r6i.2xlarge']);
+});
