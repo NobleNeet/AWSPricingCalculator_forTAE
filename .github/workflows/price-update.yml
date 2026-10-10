@@ -403,8 +403,12 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add pricing/generated services/catalog.json tests/fixtures/aws
-          git commit -m 'Publish validated AWS Price DB build'
-          git push origin HEAD:main
+          if git diff --cached --quiet; then
+            echo 'Price DB already published: no changes to commit'
+          else
+            git commit -m 'Publish validated AWS Price DB build'
+            git push origin HEAD:main
+          fi
           echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
   deploy:
