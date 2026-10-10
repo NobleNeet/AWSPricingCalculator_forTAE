@@ -39,8 +39,8 @@ test('RDS for Oracle drawer follows the supplied Calculator contract', async () 
 
   const storage = pkg.components['storage-gp3'];
   assert.equal(
-    storage.priceQuery.productFilters.find(x => x.field === 'attributes.volumeType').value,
-    'General Purpose-GP3'
+    storage.priceQuery.productFilters.find(x => x.field === 'attributes.volumeType').valueFrom,
+    'component.volumeType'
   );
   assert.equal(
     storage.priceQuery.productFilters.find(x => x.field === 'operation').value,
@@ -50,5 +50,12 @@ test('RDS for Oracle drawer follows the supplied Calculator contract', async () 
   assert.equal(storage.calculation.usage.sources[0].valueFrom, 'component.gbMonths');
   assert.equal(storage.calculation.usage.sources[1].valueFrom, 'profile.nodes');
 
-  assert.deepEqual(pkg.service.pricingMappings, ['instance', 'storage-gp3']);
+  assert.equal(storage.selectors.find(x => x.id === 'volumeType').default, 'General Purpose');
+  assert.deepEqual(storage.selectors.find(x => x.id === 'volumeType').options.values, ['General Purpose', 'General Purpose-GP3']);
+  assert.equal(storage.usageInputs.find(x => x.id === 'gbMonths').default, '100');
+  assert.equal(pkg.components['backup-storage'].usageInputs[0].default, '0');
+  assert.equal(pkg.components['database-insights'].calculation.usage.sources[0].value.type, 'resolvedComponentAttribute');
+  assert.equal(pkg.components['database-insights'].calculation.usage.sources[0].value.attribute, 'vcpu');
+  assert.equal(pkg.service.priceSource.componentOverrides['database-insights'], 'AmazonCloudWatch');
+  assert.deepEqual(pkg.service.pricingMappings, ['instance', 'storage-gp3', 'database-insights', 'backup-storage']);
 });
