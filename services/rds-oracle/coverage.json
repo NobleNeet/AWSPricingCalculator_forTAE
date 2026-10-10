@@ -79,6 +79,20 @@
       "status": "ignored",
       "reason": "The initial Oracle drawer supports gp3 database storage only. Other RDS for Oracle storage classes are not silently approximated.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "discriminators.databaseEngine",
+          "op": "notIn",
+          "value": [
+            "Oracle"
+          ]
+        }
+      ],
+      "status": "ignored",
+      "reason": "The AmazonRDS price source is shared by multiple database engines and RDS features. Non-Oracle categories are outside the RDS for Oracle service package.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
