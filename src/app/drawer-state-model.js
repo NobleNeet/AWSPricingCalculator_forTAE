@@ -33,6 +33,16 @@ export function migrateDefinitionInputs(pkg, instance) {
       changed = true;
     }
   }
+  // Preserve legacy RDS for Oracle projects created when this component was gp3-only.
+  // New projects explicitly include the current storage-type default (gp2).
+  if (pkg.service?.id === 'rds-oracle') {
+    const legacyStorage = instance.components?.['storage-gp3'];
+    if (legacyStorage && Object.prototype.hasOwnProperty.call(legacyStorage.inputs ?? {}, 'gbMonths') &&
+        !Object.prototype.hasOwnProperty.call(legacyStorage.inputs ?? {}, 'volumeType')) {
+      legacyStorage.inputs.volumeType = 'General Purpose-GP3';
+      changed = true;
+    }
+  }
   return changed;
 }
 
