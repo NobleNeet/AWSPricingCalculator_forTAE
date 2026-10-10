@@ -39,6 +39,11 @@
         "field": "attributes.volumeType",
         "op": "eq",
         "value": "General Purpose-GP3"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "CreateDBInstance:0005"
       }
     ],
     "dimensionFilters": [
