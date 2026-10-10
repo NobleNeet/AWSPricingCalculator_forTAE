@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "storage-gp3",
+  "componentId": "storage-gp3",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Database Storage"
+    },
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Oracle"
+    },
+    {
+      "field": "attributes.deploymentOption",
+      "op": "eq",
+      "valueFrom": "profile.deployment"
+    },
+    {
+      "field": "attributes.volumeType",
+      "op": "eq",
+      "value": "General Purpose-GP3"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "RDS for Oracle gp3 database storage meter. Additional gp3 IOPS/throughput are intentionally not included in the initial drawer."
+}
