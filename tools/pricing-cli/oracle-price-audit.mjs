@@ -1,15 +1,18 @@
 import { checkSources } from './source.js';
 import { normalize } from './normalize.js';
 import { validatePriceData } from './semantics.js';
+import { runGolden } from './golden.js';
 import { loadPackages, readJson } from './package-loader.js';
 
 const metadata = await checkSources({ serviceCodes: ['AmazonRDS', 'AmazonCloudWatch'], regions: ['ap-northeast-1', 'ap-northeast-3', 'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'] });
 const candidateData = {};
+const rawGoldenSources = {};
 for (const item of Object.values(metadata.sources)) {
   console.log('SOURCE', item.serviceCode, item.region, item.sourceUrl);
   const response = await fetch(item.sourceUrl, { signal: AbortSignal.timeout(360000) });
   if (!response.ok) throw new Error(`HTTP ${response.status}: ${item.sourceUrl}`);
   const raw = await response.json();
+  if (item.region === 'ap-northeast-1') rawGoldenSources[`${item.serviceCode}/${item.region}`] = raw;
   candidateData[`${item.serviceCode}/${item.region}`] = normalize(raw, item.region, 'audit').data;
   const rows = [];
   for (const [sku, product] of Object.entries(raw.products)) {
@@ -70,3 +73,7 @@ const normalizers = {
 const semantic = validatePriceData([pkg], candidateData, common, normalizers);
 console.log('SEMANTIC_RESULT', JSON.stringify({issues:semantic.issues.slice(0,25),issueCount:semantic.issues.length,coverage:semantic.coverage,branches:semantic.branches,resolutionCount:semantic.resolutions?.length}));
 if (semantic.issues.length) throw new Error(`Oracle source semantic validation failed: ${semantic.issues.length} issues`);
+
+const golden = runGolden([pkg], candidateData, rawGoldenSources);
+console.log('GOLDEN_RESULT', JSON.stringify({issues: golden.issues, cases: golden.cases}));
+if (golden.issues.length) throw new Error(`Oracle real AWS Golden failed: ${golden.issues.length} issue(s)`);
