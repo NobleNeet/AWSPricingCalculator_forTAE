@@ -12,7 +12,7 @@
       "minimum": "0",
       "exclusiveMinimum": "0",
       "ui": {
-        "help": "RDS for Oracleのgp3データベースストレージ。月間GB-monthを入力します。"
+        "help": "DBインスタンス1台あたりのgp3ストレージ量（GB-month）。Nodes数を掛けた容量を課金対象とします。"
       }
     }
   ],
@@ -60,6 +60,9 @@
       "sources": [
         {
           "valueFrom": "component.gbMonths"
+        },
+        {
+          "valueFrom": "profile.nodes"
         }
       ],
       "combine": "multiply"
