@@ -42,3 +42,16 @@ The second user-supplied screenshot covers the section below instance configurat
 - Required Definition: add a separate optional backup-storage pricing component, with GB/month quantity defaulting to zero (no charge). Apply only a verified AmazonRDS backup GB-month price dimension. Do not invent an operation, SKU, or unit, and do not conflate RDS Custom or other engines' backup prices.
 - Required tests: zero backup usage, positive backup usage, region switching, no double deduction of free allocation, integration with instance/storage/Database Insights, and validation of a unique AWS Public Price List match.
 - The user requests coverage parity across all confirmed On-Demand inputs, including gp2 storage, Database Insights, and additional backup storage. This screenshot completes the known lower-form evidence; option lists not opened (storage types and units) remain unverified.
+
+## Price DB blocker investigation (2026-10-10, current published build)
+
+Inspected published active build `20261010T041918Z-1ac730a0`, in `pricing/generated/builds/<buildId>/indexes/` for Tokyo:
+
+- `AmazonRDS/ap-northeast-1/index.json` includes Oracle and `General Purpose-GP3`, but `volumeType` options omit GP2; searchable `usagetype` values contain only Aurora backup, not a standard Oracle additional-backup meter.
+- `AmazonCloudWatch/ap-northeast-1/index.json` includes `DatabaseInsights-ACU-Hours` but no `DatabaseInsights-vCPU-Hours`.
+- `pricing/sources.json` already includes both `AmazonRDS` and `AmazonCloudWatch`. Thus changing serviceCodes alone will not supply the missing products.
+- `tools/pricing-cli/build.js` publishes filtered product subsets selected by mapping validation. These published indexes are **not** the full AWS bulk Price List and their absence does not establish that AWS lacks the SKU. Need inspect the unfiltered AWS bulk candidates on the onboarding runner and persist verified per-service mappings.
+- Do not add a guessed Product matcher or fixed displayed rate. Resolve source productFamily, operation, usageType, attributes, unit, cardinality, and Tokyo/Osaka/US region differences before promotion.
+- The existing `storage-gp3` component now multiplies per-instance storage GB-month by `profile.nodes`; this is a separate verified billing-quantity correction, not a substitute for GP2/backup/Insights.
+
+Pending implementation: GP2 storage selector and valid storage coverage/mapping; provisioned Oracle Database Insights with computed instance vCPU×hours×nodes; additional backup GB-month using verified RDS backup meter; tests/Golden/E2E; scoped price publication; release verification.
