@@ -1,6 +1,6 @@
 {
   "runId": "20261011-quality",
-  "updatedAt": "2026-10-11T14:52:19.389Z",
+  "updatedAt": "2026-10-11T15:44:48.146Z",
   "status": "SCOPED_PUBLIC_RETEST_COMPLETE",
   "implementationPr": 64,
   "publicationRepairPr": 65,
@@ -39,7 +39,7 @@
     "reason": "Superseded by equivalent indexed-predicate cache to avoid repeated large candidate scans. Not a failed price comparison."
   },
   "publicUiRepairPr": 67,
-  "latestUiCommit": "646c256e0bf2d5f64cca336e0e6ee77e7b6f0936",
+  "latestUiCommit": "1bdab9af91fa9909516a72c045d568fbfdf52780",
   "result": {
     "guiPass": 21,
     "guiNotComparable": 31,
@@ -49,5 +49,8 @@
     "blocked": 0,
     "incomplete": 0
   },
-  "additionalUiRepairPr": 68
+  "additionalUiRepairPr": 68,
+  "finalReportCommit": "59305bcf61970d2962a0603840b0394357a59a2d",
+  "finalMainCiRunId": 38150848201,
+  "finalMainCiConclusion": "success"
 }
