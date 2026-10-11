@@ -812,6 +812,8 @@ RDS または Aurora
 
 `unresolved = 0` を完成条件とする。
 
+新サービス追加・既存サービス拡充のドロワー項目名は、[SERVICE_ONBOARDING.md §3.1.1](SERVICE_ONBOARDING.md#311-ドロワー項目名の日本語表記必須)に従い、公式Calculatorの日本語表示に合わせる。全Profile・詳細設定・条件付き入力の表示カタログと、項目棚卸し・browser E2Eも同時に更新する。
+
 ## 完了条件
 
 - 全Definition schema PASS。
@@ -819,6 +821,7 @@ RDS または Aurora
 - Golden PASS。
 - coverage unresolved = 0。
 - adapterなしで表現できるものはadapterを使わない。
+- ドロワー項目名が公式日本語表記ルールに適合し、参照根拠・例外の記録と表示テストが揃っている。
 
 ## Codex `/goal`
 

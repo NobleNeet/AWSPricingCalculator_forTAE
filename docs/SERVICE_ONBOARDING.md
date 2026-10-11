@@ -106,6 +106,16 @@ AWS Pricing Calculator (`https://calculator.aws/`) の該当サービス作成�
 
 Calculator UIは料金値の正本ではない。
 
+### 3.1.1 ドロワー項目名の日本語表記（必須）
+
+新サービス追加・既存サービスの拡充・再オンボーディングでは、AWS Pricing Calculatorの言語を「日本語」に切り替え、同じサービスの入力項目名を確認する。ドロワーのselector / usageInputの項目名、および対応するProfile / Componentの見出しは、公式日本語表示に合わせて設定する。primaryだけでなく、advanced・全Profile・条件変更で現れる入力も対象とする。英語の項目名をそのまま採用したり、公式日本語表記を確認せず独自翻訳で置き換えたりしない。
+
+- レンダリング済み画面を主要参照先とし、必要に応じてその画面が読み込む公式言語データの`ja_JP` / `en_US`の同一キーを照合する。参照URL、確認日、採用表記と例外の理由を記録する。
+- 同じ入力意味の項目には公式の日本語項目名を使う。固定単位や対象の区別が必要な場合は括弧で補足する。
+- 公式に同一入力がない集計項目や、公式の日本語表示でも英語が残る項目は、公式説明・共通UIの日本語表記を参考に、入力意味と単位を保って日本語化し、例外として記録する。例えばACU時間をACU数、有料追加IOPS/月をボリュームあたりのIOPSと呼ばない。
+- 表示文言は`src/app/drawer-labels-ja.js`へ安定IDをキーとして登録する。既存Definitionの日本語labelをそのまま利用する場合も、公式表記との一致を確認する。翻訳のためにID、選択肢の内部値、単位、初期値、依存関係、条件付き表示、料金計算・保存の意味を変更しない。
+- 共通見出し、公式言語データの参照方法、既存サービスの例外は[ドロワー項目名の日本語表記](DRAWER_LABELS_JA.md)に従う。画面確認ができない範囲は公式言語データ等の根拠と未確認範囲を明示し、推測表記を確認済みとして扱わない。
+
 ### 3.2 料金値 / SKU / Dimension
 
 AWS Public Price Listを正本とする。
@@ -371,7 +381,7 @@ ID固定が不可避な場合は理由を記録し、AWS側変更時はfail-clos
 新サービスごとに最低限次を調査する。
 
 1. Calculator URLを特定
-2. レンダリング済み画面を確認
+2. 日本語に切り替えてレンダリング済み画面を確認し、3.1.1に従って項目名の根拠を記録
 3. 全primary入力を列挙
 4. Advanced入力を列挙
 5. 条件変更で現れる入力を確認
@@ -431,7 +441,7 @@ ID固定が不可避な場合は理由を記録し、AWS側変更時はfail-clos
 [10] Mappingを実データへ適用して一意解決検証
         |
         v
-[11] Service Definition / UI実装
+[11] Service Definition / UI実装・公式日本語項目名を表示カタログへ登録
         |
         v
 [12] coverage / limitation整理
@@ -618,9 +628,12 @@ UIまたはDefinitionが変更された場合は、変更影響を受ける既�
 - defaults / options / selector values
 - primary / advanced grouping
 - conditional visibility
+- 全Profile / Component / primary / advanced / conditional入力の公式日本語表記（3.1.1）
 - dependency / rerender behavior
 - locator validity
 - DOM property / attribute / selected stateなどassert対象の意味
+
+`tests/app/drawer-labels-ja.test.js`の全項目棚卸しと、`tests/e2e/drawer-labels-ja.spec.js`の対象サービス・Profile・条件付き入力の表示確認を更新する。日本語labelの追加・変更によって、表示以外のDefinition内容やキャッシュが変わらないことも確認する。
 
 新ServiceはERROR 0件を完成条件とする。
 
@@ -714,6 +727,8 @@ Lambdaの見積項目を公式Calculator相当にして
 - Calculator主要On-Demand入力を棚卸し済み
 - Calculator URL特定済み、または不能理由記録済み
 - rendered UI確認済み、または未確認範囲明示済み
+- 全Profile・詳細設定・条件付き入力の項目名が3.1.1の公式日本語表記ルールに適合し、参照根拠・例外が記録済み
+- 日本語表示カタログと項目棚卸し・browser E2Eを更新し、未翻訳項目がなく、表示以外の意味が保持されることを確認済み
 - 各課金Componentが定義済み
 - 各Componentのprice sourceが確定済み
 - Public Price List実データを調査済み

@@ -6,6 +6,7 @@
 表示文言は `src/app/drawer-labels-ja.js` にサービス・Profile・Component・入力の安定 ID をキーとして管理する。
 `renderDrawer` だけが表示用の Definition view を使い、Pricing Core、DefinitionStore のキャッシュ、保存値、検証条件、Price DB fingerprint は元の Definition を使う。
 新サービス追加・入力追加時は表示カタログも更新する。全サービスの棚卸しテストは未翻訳入力を検出する。
+オンボーディング時の必須ルールと完成条件は [SERVICE_ONBOARDING.md §3.1.1](SERVICE_ONBOARDING.md#311-ドロワー項目名の日本語表記必須) を参照する。本書の参照先・例外は、調査と表記設定の実例として使用する。
 
 ## 参照先
 
