@@ -1,0 +1,355 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/home/ubnadmin/AWSPricingCalculator_forTAE/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/estimate-quality.spec.js",
+      "tests/e2e/estimate-quality-regions.spec.js",
+      "tests/e2e/input-validation.spec.js",
+      "tests/e2e/catalog-loading.spec.js",
+      "--workers=1",
+      "--trace",
+      "on",
+      "--output",
+      "docs/estimate-quality/runs/20261011-quality/public-e2e-final",
+      "--reporter=list,json"
+    ],
+    "configFile": "/home/ubnadmin/AWSPricingCalculator_forTAE/playwright.config.js",
+    "rootDir": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-final",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "catalog-loading.spec.js",
+      "file": "catalog-loading.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a catalog opened during loading updates when the original response arrives",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4697,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T14:51:06.104Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-final/catalog-loading-a-catalog--918ac-e-original-response-arrives/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "59fdae9a29937d0d88cd-6aabecd61f02e1a37057",
+          "file": "catalog-loading.spec.js",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "estimate-quality-regions.spec.js",
+      "file": "estimate-quality-regions.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Scheduler refuses an ambiguous cross-region free allocation and recovers with zero allowance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2604,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T14:51:10.968Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-final/estimate-quality-regions-S-38952-ecovers-with-zero-allowance/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "85a49dbcb4746158560f-2a1a6af5fd0c9441b604",
+          "file": "estimate-quality-regions.spec.js",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "estimate-quality.spec.js",
+      "file": "estimate-quality.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "S3 Plan tiers recompute both rows when a row is removed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1694,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T14:51:13.677Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-final/estimate-quality-S3-Plan-t-89e71--rows-when-a-row-is-removed/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6f058a5965462871b832-3b911888ebc711e374d9",
+          "file": "estimate-quality.spec.js",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "Dedicated regional fees fail closed on duplicates and recover after disabling one fee",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6372,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T14:51:15.435Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-final/estimate-quality-Dedicated-b8186-ver-after-disabling-one-fee/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6f058a5965462871b832-24988b98f2a210e765a3",
+          "file": "estimate-quality.spec.js",
+          "line": 23,
+          "column": 1
+        },
+        {
+          "title": "Scheduler shares one allowance across rows and shows the gross quote",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1321,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T14:51:21.911Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-final/estimate-quality-Scheduler-746c6-s-and-shows-the-gross-quote/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6f058a5965462871b832-fee603ecf29440dc9976",
+          "file": "estimate-quality.spec.js",
+          "line": 36,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "input-validation.spec.js",
+      "file": "input-validation.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "invalid inputs suppress the estimate and recover without silently changing saved usage",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2972,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T14:51:23.306Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-final/input-validation-invalid-i-ca407-lently-changing-saved-usage/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "422d1075064d36794e83-80e5208f973acac22bef",
+          "file": "input-validation.spec.js",
+          "line": 2,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-11T14:51:05.284Z",
+    "duration": 21158.835,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

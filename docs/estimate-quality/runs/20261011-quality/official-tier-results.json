@@ -2,7 +2,7 @@
   {
     "id": "io2-31999",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:49.106Z",
+    "observedAt": "2026-10-11T10:01:45.381Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "31999",
@@ -18,7 +18,7 @@
   {
     "id": "io2-32000",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:49.977Z",
+    "observedAt": "2026-10-11T10:01:46.351Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "32000",
@@ -34,7 +34,7 @@
   {
     "id": "io2-32001",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:50.865Z",
+    "observedAt": "2026-10-11T10:01:47.249Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "32001",
@@ -50,7 +50,7 @@
   {
     "id": "io2-63999",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:51.770Z",
+    "observedAt": "2026-10-11T10:01:48.147Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "63999",
@@ -66,7 +66,7 @@
   {
     "id": "io2-64000",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:52.626Z",
+    "observedAt": "2026-10-11T10:01:49.038Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "64000",
@@ -82,7 +82,7 @@
   {
     "id": "io2-64001",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:53.491Z",
+    "observedAt": "2026-10-11T10:01:49.929Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "64001",
@@ -98,7 +98,7 @@
   {
     "id": "io2-80000",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:54.418Z",
+    "observedAt": "2026-10-11T10:01:50.808Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "80000",
@@ -114,7 +114,7 @@
   {
     "id": "io2-256000",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:55.291Z",
+    "observedAt": "2026-10-11T10:01:51.660Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "256000",
@@ -130,7 +130,7 @@
   {
     "id": "io2-80000-2vol-365h",
     "url": "https://calculator.aws/#/createCalculator/EBS",
-    "observedAt": "2026-10-11T09:27:56.574Z",
+    "observedAt": "2026-10-11T10:01:52.912Z",
     "inputs": {
       "region": "ap-northeast-1",
       "iops": "80000",
@@ -144,9 +144,41 @@
     "status": "MEASURED"
   },
   {
+    "id": "io2-80000-1vol-365h",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T10:01:53.816Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "80000",
+      "volumeCount": "1",
+      "volumeHours": "365",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "2373.88",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 2,373.88 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-80000-2vol-730h",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T10:01:54.895Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "80000",
+      "volumeCount": "2",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "9495.52",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 9,495.52 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
     "id": "s3-51199",
     "url": "https://calculator.aws/#/createCalculator/S3",
-    "observedAt": "2026-10-11T09:28:18.426Z",
+    "observedAt": "2026-10-11T10:02:17.063Z",
     "inputs": {
       "region": "ap-northeast-1",
       "storageGb": "51199",
@@ -159,7 +191,7 @@
   {
     "id": "s3-51200",
     "url": "https://calculator.aws/#/createCalculator/S3",
-    "observedAt": "2026-10-11T09:28:19.567Z",
+    "observedAt": "2026-10-11T10:02:18.240Z",
     "inputs": {
       "region": "ap-northeast-1",
       "storageGb": "51200",
@@ -172,7 +204,7 @@
   {
     "id": "s3-51201",
     "url": "https://calculator.aws/#/createCalculator/S3",
-    "observedAt": "2026-10-11T09:28:20.744Z",
+    "observedAt": "2026-10-11T10:02:19.429Z",
     "inputs": {
       "region": "ap-northeast-1",
       "storageGb": "51201",
@@ -185,7 +217,7 @@
   {
     "id": "s3-512000",
     "url": "https://calculator.aws/#/createCalculator/S3",
-    "observedAt": "2026-10-11T09:28:21.967Z",
+    "observedAt": "2026-10-11T10:02:20.768Z",
     "inputs": {
       "region": "ap-northeast-1",
       "storageGb": "512000",
@@ -198,7 +230,7 @@
   {
     "id": "s3-512001",
     "url": "https://calculator.aws/#/createCalculator/S3",
-    "observedAt": "2026-10-11T09:28:23.205Z",
+    "observedAt": "2026-10-11T10:02:21.967Z",
     "inputs": {
       "region": "ap-northeast-1",
       "storageGb": "512001",
@@ -211,7 +243,7 @@
   {
     "id": "s3-60000",
     "url": "https://calculator.aws/#/createCalculator/S3",
-    "observedAt": "2026-10-11T09:28:24.365Z",
+    "observedAt": "2026-10-11T10:02:23.125Z",
     "inputs": {
       "region": "ap-northeast-1",
       "storageGb": "60000",

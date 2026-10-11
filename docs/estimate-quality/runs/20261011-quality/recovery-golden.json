@@ -1,0 +1,199 @@
+{
+  "cases": [
+    {
+      "goldenId": "tokyo",
+      "region": "ap-northeast-1",
+      "serviceId": "amplify",
+      "status": "passed"
+    },
+    {
+      "goldenId": "limitless-io-optimized",
+      "region": "ap-northeast-1",
+      "serviceId": "aurora-postgresql",
+      "status": "passed"
+    },
+    {
+      "goldenId": "provisioned-io-optimized",
+      "region": "ap-northeast-1",
+      "serviceId": "aurora-postgresql",
+      "status": "passed"
+    },
+    {
+      "goldenId": "provisioned-standard",
+      "region": "ap-northeast-1",
+      "serviceId": "aurora-postgresql",
+      "status": "passed"
+    },
+    {
+      "goldenId": "serverless-io-optimized",
+      "region": "ap-northeast-1",
+      "serviceId": "aurora-postgresql",
+      "status": "passed"
+    },
+    {
+      "goldenId": "serverless-standard",
+      "region": "ap-northeast-1",
+      "serviceId": "aurora-postgresql",
+      "status": "passed"
+    },
+    {
+      "goldenId": "tokyo-arm",
+      "region": "ap-northeast-1",
+      "serviceId": "codebuild",
+      "status": "passed"
+    },
+    {
+      "goldenId": "gp2",
+      "region": "ap-northeast-1",
+      "serviceId": "ebs",
+      "status": "passed"
+    },
+    {
+      "goldenId": "gp3-extra",
+      "region": "ap-northeast-1",
+      "serviceId": "ebs",
+      "status": "passed"
+    },
+    {
+      "goldenId": "dedicated-regional-fee",
+      "region": "ap-northeast-1",
+      "serviceId": "ec2",
+      "status": "passed"
+    },
+    {
+      "goldenId": "gp3-extra-performance",
+      "region": "ap-northeast-1",
+      "serviceId": "ec2",
+      "status": "passed"
+    },
+    {
+      "goldenId": "linux-small",
+      "region": "ap-northeast-1",
+      "serviceId": "ec2",
+      "status": "passed"
+    },
+    {
+      "goldenId": "windows-large",
+      "region": "ap-northeast-1",
+      "serviceId": "ec2",
+      "status": "passed"
+    },
+    {
+      "goldenId": "tokyo",
+      "region": "ap-northeast-1",
+      "serviceId": "eventbridge",
+      "status": "passed"
+    },
+    {
+      "goldenId": "tokyo-linux",
+      "region": "ap-northeast-1",
+      "serviceId": "fargate",
+      "status": "passed"
+    },
+    {
+      "goldenId": "tokyo-windows",
+      "region": "ap-northeast-1",
+      "serviceId": "fargate",
+      "status": "passed"
+    },
+    {
+      "goldenId": "tokyo",
+      "region": "ap-northeast-1",
+      "serviceId": "kms",
+      "status": "passed"
+    },
+    {
+      "goldenId": "arm-advanced",
+      "region": "ap-northeast-1",
+      "serviceId": "lambda",
+      "status": "passed"
+    },
+    {
+      "goldenId": "arm",
+      "region": "ap-northeast-1",
+      "serviceId": "lambda",
+      "status": "passed"
+    },
+    {
+      "goldenId": "provisioned-mixed",
+      "region": "ap-northeast-1",
+      "serviceId": "lambda",
+      "status": "passed"
+    },
+    {
+      "goldenId": "streaming-arm",
+      "region": "ap-northeast-1",
+      "serviceId": "lambda",
+      "status": "passed"
+    },
+    {
+      "goldenId": "streaming-x86",
+      "region": "ap-northeast-1",
+      "serviceId": "lambda",
+      "status": "passed"
+    },
+    {
+      "goldenId": "x86-advanced",
+      "region": "ap-northeast-1",
+      "serviceId": "lambda",
+      "status": "passed"
+    },
+    {
+      "goldenId": "x86",
+      "region": "ap-northeast-1",
+      "serviceId": "lambda",
+      "status": "passed"
+    },
+    {
+      "goldenId": "multi-az",
+      "region": "ap-northeast-1",
+      "serviceId": "rds",
+      "status": "passed"
+    },
+    {
+      "goldenId": "single-az",
+      "region": "ap-northeast-1",
+      "serviceId": "rds",
+      "status": "passed"
+    },
+    {
+      "goldenId": "storage-disabled",
+      "region": "ap-northeast-1",
+      "serviceId": "rds",
+      "status": "passed"
+    },
+    {
+      "goldenId": "tokyo-byol-enterprise",
+      "region": "ap-northeast-1",
+      "serviceId": "rds-oracle",
+      "status": "passed"
+    },
+    {
+      "goldenId": "above-first-tier",
+      "region": "ap-northeast-1",
+      "serviceId": "s3",
+      "status": "passed"
+    },
+    {
+      "goldenId": "standard",
+      "region": "ap-northeast-1",
+      "serviceId": "s3",
+      "status": "passed"
+    },
+    {
+      "goldenId": "tokyo",
+      "region": "ap-northeast-1",
+      "serviceId": "systems-manager",
+      "status": "passed"
+    }
+  ],
+  "command": "run-golden",
+  "issues": [],
+  "schemaVersion": 1,
+  "status": "passed",
+  "summary": {
+    "error": 0,
+    "info": 0,
+    "warning": 0
+  }
+}

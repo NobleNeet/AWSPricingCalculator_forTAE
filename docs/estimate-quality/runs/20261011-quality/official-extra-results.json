@@ -1,54 +1,642 @@
 [
   {
     "id": "scheduler-13.999999",
+    "kind": "MEASUREMENT",
     "inputs": {
       "schedulerInvocationsMillions": "13.999999",
+      "schedulerInputValue": "13999999",
+      "schedulerUnit": "per month",
       "otherUsage": "blank",
       "region": "ap-northeast-1"
     },
     "url": "https://calculator.aws/#/createCalculator/eventbridge",
-    "observedAt": "2026-10-11T09:31:11.994Z",
+    "observedAt": "2026-10-11T11:08:31.671Z",
     "monthlyUsd": "0.00",
-    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nNumber of invocations cannot be in decimal.\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+    "renderedInputs": [
+      {
+        "label": "Allow essential category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow performance category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow functional category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow advertising category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": null,
+        "value": "allowed",
+        "type": "radio"
+      },
+      {
+        "label": null,
+        "value": "not allowed",
+        "type": "radio"
+      },
+      {
+        "label": "Description - optional",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": null,
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": "Size of the payload Value",
+        "value": "1",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS management events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS opt-in data events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of custom events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of partner events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to another event bus Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in the same account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in a different account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of replayed events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of requests Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "13999999",
+        "type": "number"
+      }
+    ],
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nper month\nShow calculations\n13,999,999 invocations - 14000000 Free Tier = -1 billable invocations\nMax (-1 billable invocations, 0 ) = 0 billable invocations\nTotal EventBridge scheduler cost (monthly): 0.00 USD\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
   },
   {
     "id": "scheduler-14",
+    "kind": "MEASUREMENT",
     "inputs": {
       "schedulerInvocationsMillions": "14",
+      "schedulerInputValue": "14000000",
+      "schedulerUnit": "per month",
       "otherUsage": "blank",
       "region": "ap-northeast-1"
     },
     "url": "https://calculator.aws/#/createCalculator/eventbridge",
-    "observedAt": "2026-10-11T09:31:12.785Z",
+    "observedAt": "2026-10-11T11:08:32.427Z",
     "monthlyUsd": "0.00",
-    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+    "renderedInputs": [
+      {
+        "label": "Allow essential category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow performance category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow functional category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow advertising category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": null,
+        "value": "allowed",
+        "type": "radio"
+      },
+      {
+        "label": null,
+        "value": "not allowed",
+        "type": "radio"
+      },
+      {
+        "label": "Description - optional",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": null,
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": "Size of the payload Value",
+        "value": "1",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS management events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS opt-in data events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of custom events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of partner events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to another event bus Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in the same account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in a different account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of replayed events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of requests Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "14000000",
+        "type": "number"
+      }
+    ],
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nper month\nShow calculations\n14,000,000 invocations - 14000000 Free Tier = 0 billable invocations\nMax (0 billable invocations, 0 ) = 0 billable invocations\nTotal EventBridge scheduler cost (monthly): 0.00 USD\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
   },
   {
     "id": "scheduler-14.000001",
+    "kind": "MEASUREMENT",
     "inputs": {
       "schedulerInvocationsMillions": "14.000001",
+      "schedulerInputValue": "14000001",
+      "schedulerUnit": "per month",
       "otherUsage": "blank",
       "region": "ap-northeast-1"
     },
     "url": "https://calculator.aws/#/createCalculator/eventbridge",
-    "observedAt": "2026-10-11T09:31:13.570Z",
+    "observedAt": "2026-10-11T11:08:33.235Z",
     "monthlyUsd": "0.00",
-    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nNumber of invocations cannot be in decimal.\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+    "renderedInputs": [
+      {
+        "label": "Allow essential category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow performance category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow functional category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow advertising category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": null,
+        "value": "allowed",
+        "type": "radio"
+      },
+      {
+        "label": null,
+        "value": "not allowed",
+        "type": "radio"
+      },
+      {
+        "label": "Description - optional",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": null,
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": "Size of the payload Value",
+        "value": "1",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS management events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS opt-in data events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of custom events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of partner events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to another event bus Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in the same account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in a different account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of replayed events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of requests Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "14000001",
+        "type": "number"
+      }
+    ],
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nper month\nShow calculations\n14,000,001 invocations - 14000000 Free Tier = 1 billable invocations\nMax (1 billable invocations, 0 ) = 1 billable invocations\n1 x 0.00000125 USD = 0.00 cost for EventBridge Scheduler\nTotal EventBridge scheduler cost (monthly): 0.00 USD\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
   },
   {
     "id": "scheduler-20",
+    "kind": "MEASUREMENT",
     "inputs": {
       "schedulerInvocationsMillions": "20",
+      "schedulerInputValue": "20000000",
+      "schedulerUnit": "per month",
       "otherUsage": "blank",
       "region": "ap-northeast-1"
     },
     "url": "https://calculator.aws/#/createCalculator/eventbridge",
-    "observedAt": "2026-10-11T09:31:14.428Z",
+    "observedAt": "2026-10-11T11:08:34.074Z",
     "monthlyUsd": "7.50",
-    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 7.50 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+    "renderedInputs": [
+      {
+        "label": "Allow essential category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow performance category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow functional category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow advertising category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": null,
+        "value": "allowed",
+        "type": "radio"
+      },
+      {
+        "label": null,
+        "value": "not allowed",
+        "type": "radio"
+      },
+      {
+        "label": "Description - optional",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": null,
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": "Size of the payload Value",
+        "value": "1",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS management events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS opt-in data events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of custom events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of partner events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to another event bus Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in the same account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in a different account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of replayed events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of requests Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "20000000",
+        "type": "number"
+      }
+    ],
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nper month\nShow calculations\n20,000,000 invocations - 14000000 Free Tier = 6,000,000 billable invocations\nMax (6000000 billable invocations, 0 ) = 6,000,000 billable invocations\n6,000,000 x 0.00000125 USD = 7.50 cost for EventBridge Scheduler\nTotal EventBridge scheduler cost (monthly): 7.50 USD\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 7.50 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+  },
+  {
+    "id": "archive-zero",
+    "kind": "BASELINE",
+    "inputs": {
+      "archivedEventsMillions": "0",
+      "payloadKb": "1",
+      "replayEventsMillions": "0",
+      "otherUsage": "blank",
+      "region": "ap-northeast-1"
+    },
+    "url": "https://calculator.aws/#/createCalculator/eventbridge",
+    "observedAt": "2026-10-11T11:08:34.971Z",
+    "monthlyUsd": "0.00",
+    "renderedInputs": [
+      {
+        "label": "Allow essential category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow performance category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow functional category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow advertising category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": null,
+        "value": "allowed",
+        "type": "radio"
+      },
+      {
+        "label": null,
+        "value": "not allowed",
+        "type": "radio"
+      },
+      {
+        "label": "Description - optional",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": null,
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": "Size of the payload Value",
+        "value": "1",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS management events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS opt-in data events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of custom events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of partner events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to another event bus Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in the same account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in a different account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "0",
+        "type": "number"
+      },
+      {
+        "label": "Number of replayed events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of requests Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "0",
+        "type": "number"
+      }
+    ],
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nper month\nShow calculations\n0 invocations - 14000000 Free Tier = -14,000,000 billable invocations\nMax (-14000000 billable invocations, 0 ) = 0 billable invocations\nTotal EventBridge scheduler cost (monthly): 0.00 USD\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
   },
   {
     "id": "archive-100m-1kb",
+    "kind": "MEASUREMENT",
     "inputs": {
       "archivedEventsMillions": "100",
       "payloadKb": "1",
@@ -57,12 +645,125 @@
       "region": "ap-northeast-1"
     },
     "url": "https://calculator.aws/#/createCalculator/eventbridge",
-    "observedAt": "2026-10-11T09:31:15.496Z",
+    "observedAt": "2026-10-11T11:08:35.829Z",
     "monthlyUsd": "15.50",
-    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 15.50 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+    "renderedInputs": [
+      {
+        "label": "Allow essential category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow performance category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow functional category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow advertising category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": null,
+        "value": "allowed",
+        "type": "radio"
+      },
+      {
+        "label": null,
+        "value": "not allowed",
+        "type": "radio"
+      },
+      {
+        "label": "Description - optional",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": null,
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": "Size of the payload Value",
+        "value": "1",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS management events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS opt-in data events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of custom events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of partner events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to another event bus Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in the same account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in a different account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "100",
+        "type": "number"
+      },
+      {
+        "label": "Number of replayed events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of requests Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "0",
+        "type": "number"
+      }
+    ],
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nUnit conversions\nNumber of events: 100 million per month * 1000000 multiplier = 100000000 per month\nPricing calculations\n1 kb x 9.5367431640625e-7 GB in a KB = 0.000001 billable data for archive processing and storage (GB per month)\n100,000,000 events x 0.000001 GB per month x 0.13 USD = 13.00 cost for archive processing (monthly)\n100,000,000 events x 0.000001 GB per month x 0.025 USD = 2.50 cost for storage (monthly)\n13.00 USD + 2.50 USD = 15.50 archiving processing and storage (monthly)\n1 kb / 64 kb = 0.02 payload units\nRound up by 1 (0.02) = 1 billable event payload units\nTotal event archive and replay cost (monthly): 15.50 USD\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nper month\nShow calculations\n0 invocations - 14000000 Free Tier = -14,000,000 billable invocations\nMax (-14000000 billable invocations, 0 ) = 0 billable invocations\nTotal EventBridge scheduler cost (monthly): 0.00 USD\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 15.50 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
   },
   {
     "id": "archive-1000m-1kb",
+    "kind": "MEASUREMENT",
     "inputs": {
       "archivedEventsMillions": "1000",
       "payloadKb": "1",
@@ -71,8 +772,120 @@
       "region": "ap-northeast-1"
     },
     "url": "https://calculator.aws/#/createCalculator/eventbridge",
-    "observedAt": "2026-10-11T09:31:16.356Z",
+    "observedAt": "2026-10-11T11:08:36.710Z",
     "monthlyUsd": "155.00",
-    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 155.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+    "renderedInputs": [
+      {
+        "label": "Allow essential category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow performance category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow functional category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": "Allow advertising category Allowed",
+        "value": "on",
+        "type": "checkbox"
+      },
+      {
+        "label": null,
+        "value": "allowed",
+        "type": "radio"
+      },
+      {
+        "label": null,
+        "value": "not allowed",
+        "type": "radio"
+      },
+      {
+        "label": "Description - optional",
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": null,
+        "value": "",
+        "type": "text"
+      },
+      {
+        "label": "Size of the payload Value",
+        "value": "1",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS management events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of AWS opt-in data events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of custom events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of partner events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to another event bus Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in the same account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events delivered to a service in a different account Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "1000",
+        "type": "number"
+      },
+      {
+        "label": "Number of replayed events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of requests Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of events Value",
+        "value": "",
+        "type": "number"
+      },
+      {
+        "label": "Number of invocations Value",
+        "value": "0",
+        "type": "number"
+      }
+    ],
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nUnit conversions\nNumber of events: 1000 million per month * 1000000 multiplier = 1000000000 per month\nPricing calculations\n1 kb x 9.5367431640625e-7 GB in a KB = 0.000001 billable data for archive processing and storage (GB per month)\n1,000,000,000 events x 0.000001 GB per month x 0.13 USD = 130.00 cost for archive processing (monthly)\n1,000,000,000 events x 0.000001 GB per month x 0.025 USD = 25.00 cost for storage (monthly)\n130.00 USD + 25.00 USD = 155.00 archiving processing and storage (monthly)\n1 kb / 64 kb = 0.02 payload units\nRound up by 1 (0.02) = 1 billable event payload units\nTotal event archive and replay cost (monthly): 155.00 USD\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nper month\nShow calculations\n0 invocations - 14000000 Free Tier = -14,000,000 billable invocations\nMax (-14000000 billable invocations, 0 ) = 0 billable invocations\nTotal EventBridge scheduler cost (monthly): 0.00 USD\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 155.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
   }
 ]

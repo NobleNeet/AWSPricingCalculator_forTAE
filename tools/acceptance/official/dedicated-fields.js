@@ -1,0 +1,18 @@
+import { chromium } from 'playwright';
+import { writeFile } from 'node:fs/promises';
+const root=process.argv[2]??'docs/estimate-quality/runs/20261011-quality';
+const browser=await chromium.launch();
+const page=await browser.newPage({viewport:{width:1440,height:1100}});
+await page.goto('https://calculator.aws/#/createCalculator/ec2-enhancement');
+await page.getByText('Shared Instances',{exact:true}).last().click();
+await page.getByRole('option',{name:'Dedicated Instances',exact:true}).click();
+await page.getByLabel('On-Demand',{exact:true}).check();
+await page.waitForTimeout(3500);
+await page.getByLabel('Usage',{exact:true}).fill('50');
+await page.getByLabel('Usage',{exact:true}).press('Tab');
+await page.waitForTimeout(1000);
+const text=await page.locator('body').innerText();
+const fields=await page.locator('input:visible,button:visible').evaluateAll(xs=>xs.map(x=>({label:x.getAttribute('aria-label'),value:x.value,text:x.innerText})));
+await page.screenshot({path:`${root}/screenshots/aws-ec2-dedicated-visible.png`});
+await writeFile(`${root}/aws-ec2-dedicated-visible.json`,JSON.stringify({url:page.url(),observedAt:new Date().toISOString(),text,fields,note:'GUI-field discovery only. Region Ohio, utilization 50%; no separate regional fee duration input. Not a same-condition Tokyo price comparison.'},null,2)+'\n');
+await browser.close();

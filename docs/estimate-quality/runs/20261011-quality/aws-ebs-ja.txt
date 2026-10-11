@@ -9,26 +9,26 @@ Create estimate: Configure Amazon Elastic Block Store (EBS)
 ロケーションタイプを選択情報
 リージョン
 リージョンを選択
-アジアパシフィック (東京)
+Asia Pacific (Tokyo)
 サービスの設定
 情報
 EBS スナップショットの計算
 EBS スナップショットの料金の計算方法の詳細をご覧ください。
 ボリュームの数
 ボリュームの平均時間
-ユニット
+Unit
 時間/月
 各 EC2 インスタンスのストレージ
 EBS ボリュームのストレージタイプを選択します。
 汎用 SSD (gp2)
 選択したボリュームタイプは 1 GB ～ 16 TB のストレージ容量をサポートします
 ボリュームあたりのストレージ量
-ユニット
+Unit
 GB
 スナップショットの頻度
 2 x 毎日
 スナップショットごとの変更量
-ユニット
+Unit
 GB
 計算を表示
 EBS 高速スナップショットの復元
@@ -39,18 +39,18 @@ EBS 高速スナップショットの復元
 情報
 GetSnapshotBlock API リクエストの数
 各 GetSnapshotBlock API リクエストは、SnapshotAPIUnit ごとに課金されます。1 つの GetSnapshotBlock API リクエストは 512KiB のブロックサイズを使用し、1 つの SnapshotAPIUnit を消費します。
-バリュー
-ユニット
+Value
+Unit
 1 か月あたり 1,000 個のスナップショット API ユニット
 LIST API リクエストの数
 ListChangedBlocks および ListSnapshotBlocks API は、リクエストごとに課金されます。
-バリュー
-ユニット
+Value
+Unit
 1 か月あたり 1,000 件のリクエスト
 PutSnapshotBlock API リクエストの数
 各 PutSnapshotBlock API リクエストは、SnapshotAPIUnit ごとに課金されます。1 つの PutSnapshotBlock API リクエストは 512KiB のブロックサイズを使用し、1 つの SnapshotAPIUnit を消費します。
-バリュー
-ユニット
+Value
+Unit
 1 か月あたり 1,000 個のスナップショット API ユニット
 計算を表示
 承認
@@ -58,9 +58,9 @@ AWS 料金見積りツールでは、AWS の料金見積もりのみが提示さ
 
 
 
-合計前払いコスト: 0.00 USD
-合計月額コスト: 9.59 USD
-詳細を表示
+Total Upfront cost: 0.00 USD
+Total Monthly cost: 9.59 USD
+Show Details
 キャンセル
 概要を保存して表示
 サービスを保存して追加

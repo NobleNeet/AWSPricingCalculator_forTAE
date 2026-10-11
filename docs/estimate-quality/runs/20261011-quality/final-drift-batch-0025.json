@@ -1,0 +1,95 @@
+{
+  "batchId": "0025",
+  "caseLimit": 10000,
+  "caseOffset": 10000,
+  "classification": "PRICE_ONLY",
+  "command": "classify-change-batch",
+  "includeStructural": false,
+  "issues": [],
+  "plannedCases": 10000,
+  "processedCases": 10000,
+  "publishable": true,
+  "rateDiff": [
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    }
+  ],
+  "reuseMode": "none",
+  "reusedCases": 0,
+  "schemaVersion": 1,
+  "seenCases": 20001,
+  "status": "passed",
+  "summary": {
+    "error": 0,
+    "info": 0,
+    "warning": 0
+  },
+  "taskId": 24,
+  "taskIds": [
+    24
+  ],
+  "taskTimings": [
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 20091,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    }
+  ],
+  "warning": false
+}

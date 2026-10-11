@@ -1,0 +1,53 @@
+{
+  "runId": "20261011-quality",
+  "updatedAt": "2026-10-11T14:52:19.389Z",
+  "status": "SCOPED_PUBLIC_RETEST_COMPLETE",
+  "implementationPr": 64,
+  "publicationRepairPr": 65,
+  "sourceCommit": "8c8e3c5f780cc9d87d887a7a07a1048c203881ce",
+  "priceUpdateRunId": 38135662931,
+  "invalidPreviousRun": {
+    "id": 38129557639,
+    "status": "cancelled",
+    "reason": "Drift omitted required resolved-component parents; report contained MISSING_USAGE."
+  },
+  "completedEvidence": {
+    "localUnitTests": 147,
+    "localTargetedE2e": 5,
+    "goldenCases": 31,
+    "nativePricingMeasurements": 23,
+    "nativeZeroBaselines": 1,
+    "preDeploymentRegressionMeasurements": 2,
+    "localFullE2e": 32,
+    "semanticCases": 965701,
+    "semanticServiceCount": 13,
+    "semanticErrors": 0,
+    "publicPricingCases": 52,
+    "publicInputValidation": 15,
+    "publicAdditionalE2e": 6
+  },
+  "plannedPublicMeasurements": {
+    "pricing": 52,
+    "inputValidation": 15,
+    "additionalE2e": 6
+  },
+  "note": "All 67 selected measurements and 6 additional public E2E completed. Historical 1592-case audit has not been recounted; previous gp3 throughput 5, EventBridge tiny payload 2 and Fargate tolerance 7 remain outside this scope.",
+  "publicationPerformancePr": 66,
+  "supersededPreviousRun": {
+    "id": 38134317362,
+    "status": "cancelled",
+    "reason": "Superseded by equivalent indexed-predicate cache to avoid repeated large candidate scans. Not a failed price comparison."
+  },
+  "publicUiRepairPr": 67,
+  "latestUiCommit": "646c256e0bf2d5f64cca336e0e6ee77e7b6f0936",
+  "result": {
+    "guiPass": 21,
+    "guiNotComparable": 31,
+    "alternativeVerified": 31,
+    "functionalPass": 15,
+    "fail": 0,
+    "blocked": 0,
+    "incomplete": 0
+  },
+  "additionalUiRepairPr": 68
+}
