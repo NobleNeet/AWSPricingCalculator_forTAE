@@ -131,9 +131,9 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await expect(page.locator('#input-profile--invokeMode')).toHaveValue('buffered');
   await expect(page.locator('#input-profile--averageStreamedResponseMb')).toBeDisabled();
   await expect(page.locator('#service-drawer [data-toggle]')).toHaveCount(0);
-  await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(0);
+  await expect(page.locator('fieldset:has-text("Lambda HTTP レスポンスストリーミング"):visible')).toHaveCount(0);
 
-  const advanced = page.locator('#drawer-content > details').filter({ hasText: 'Advanced' }).first();
+  const advanced = page.locator('#drawer-content > details').filter({ hasText: '詳細設定' }).first();
   const ensureAdvancedOpen = async () => {
     if ((await advanced.getAttribute('open')) === null) await advanced.locator('summary').click();
     await expect(advanced).toHaveAttribute('open', '');
@@ -144,7 +144,7 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await storage.fill('1024');
   await storage.press('Tab');
   await ensureAdvancedOpen();
-  await expect(page.locator('fieldset:has-text("On-demand ephemeral storage"):visible')).toHaveCount(1);
+  await expect(page.locator('fieldset:has-text("オンデマンドのエフェメラルストレージ"):visible')).toHaveCount(1);
 
   const requests = page.locator('#input-profile--requestsPerMonth');
   await requests.fill('1000');
@@ -155,10 +155,10 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await page.locator('#input-profile--averageStreamedResponseMb').fill('7');
   await page.locator('#input-profile--averageStreamedResponseMb').press('Tab');
   await ensureAdvancedOpen();
-  await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(1);
+  await expect(page.locator('fieldset:has-text("Lambda HTTP レスポンスストリーミング"):visible')).toHaveCount(1);
   await invokeMode.selectOption('buffered');
   await expect(page.locator('#input-profile--averageStreamedResponseMb')).toBeDisabled();
-  await expect(page.locator('fieldset:has-text("HTTP response streaming"):visible')).toHaveCount(0);
+  await expect(page.locator('fieldset:has-text("Lambda HTTP レスポンスストリーミング"):visible')).toHaveCount(0);
 
   const provisionedArchitecture = page.locator('#input-profile--provisionedArchitecture');
   await expect(provisionedArchitecture.locator('option').nth(0)).toHaveAttribute('value', 'AWS-Lambda-Provisioned-Concurrency');
@@ -179,8 +179,8 @@ test('Lambda drawer follows current Calculator inputs and automatic pricing depe
   await page.locator('#input-profile--provisionedRequestsPerMonth').press('Tab');
   await ensureAdvancedOpen();
   await expect(page.locator('#input-profile--provisionedAverageDurationMs')).toBeEnabled();
-  await expect(page.locator('fieldset:has-text("Provisioned concurrency capacity"):visible')).toHaveCount(1);
-  await expect(page.locator('fieldset:has-text("Provisioned concurrency requests"):visible')).toHaveCount(1);
+  await expect(page.locator('fieldset:has-text("プロビジョニングされた同時実行性の容量"):visible')).toHaveCount(1);
+  await expect(page.locator('fieldset:has-text("プロビジョニングされた同時実行のリクエスト"):visible')).toHaveCount(1);
 
   await ensureAdvancedOpen();
   await provisioned.fill('0');
@@ -226,12 +226,12 @@ test('KMS drawer follows AWS Pricing Calculator service-setting inputs', async (
   await expect(eccPair).toHaveValue('0');
   await expect(rsaPair).toHaveValue('0');
 
-  await expect(page.getByText('Number of customer managed customer master keys (CMK)', { exact: true })).toBeVisible();
-  await expect(page.getByText('Number of symmetric requests', { exact: true })).toBeVisible();
-  await expect(page.getByText('Number of asymmetric requests other than RSA 2048', { exact: true })).toBeVisible();
-  await expect(page.getByText('Number of asymmetric requests related to RSA 2048', { exact: true })).toBeVisible();
-  await expect(page.getByText('Number of ECC GenerateDataKeyPair requests', { exact: true })).toBeVisible();
-  await expect(page.getByText('Number of RSA GenerateDataKeyPair requests', { exact: true })).toBeVisible();
+  await expect(page.getByText('カスタマー管理型のカスタマーマスターキー (CMK) の数', { exact: true })).toBeVisible();
+  await expect(page.getByText('対称リクエストの数', { exact: true })).toBeVisible();
+  await expect(page.getByText('RSA 2048 以外の非対称リクエストの数', { exact: true })).toBeVisible();
+  await expect(page.getByText('RSA 2048 に関連する非対称リクエストの数', { exact: true })).toBeVisible();
+  await expect(page.getByText('ECC GenerateDataKeyPair リクエストの数', { exact: true })).toBeVisible();
+  await expect(page.getByText('RSA GenerateDataKeyPair リクエストの数', { exact: true })).toBeVisible();
 
   const calculatorOrder = await page.evaluate(() => {
     const ids = [

@@ -6,6 +6,7 @@ import { enabled } from '../pricing/conditions.js';
 import { money } from '../pricing/decimal.js';
 import { newProject, addPlan, duplicatePlan, deletePlan, placeService, removeService, planSummary, planDelta, createInstance, serializeProject } from './project-store.js';
 import { restoreProject } from './restore.js';
+import { japaneseDrawerPackage } from './drawer-labels-ja.js';
 
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
@@ -100,7 +101,7 @@ async function renderDrawer() {
   $('drawer-title').textContent = catalog.find(s => s.id === instance.serviceId)?.label ?? instance.serviceId;
   const focus = document.activeElement?.id;
   try {
-    const pkg = await definitions.package(instance.serviceId), profile = pkg.profiles[instance.profileId];
+    const pkg = japaneseDrawerPackage(await definitions.package(instance.serviceId)), profile = pkg.profiles[instance.profileId];
     if (!profile) throw Error('未知Profile: 要再選択');
     const regionValid = ['inherit', 'override'].includes(instance.region?.mode);
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
@@ -109,7 +110,7 @@ async function renderDrawer() {
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
     const renderProfileFields = advanced => profile.selectors.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
-    $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>Profile<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>Region<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なRegion設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>Project Regionを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>Tokyo override</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" selected>${escape(region)} override</option>` : ''}</select></label>${renderProfileFields(false)}${profile.selectors.some(input => input.ui?.advanced) ? `<details><summary>Advanced</summary>${renderProfileFields(true)}</details>` : ''}${profile.components.map(componentId => {
+    $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>利用方式<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>リージョン<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なリージョン設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>プロジェクトのリージョンを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>アジアパシフィック (東京) に変更</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" selected>${escape(region)} に変更</option>` : ''}</select></label>${renderProfileFields(false)}${profile.selectors.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderProfileFields(true)}</details>` : ''}${profile.components.map(componentId => {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
       context.component = saved.inputs;
       const inactive = !enabled(definition.enabledWhen, context) || definition.optional && !saved.enabled;
@@ -119,8 +120,8 @@ async function renderDrawer() {
       const componentProducts = data.byServiceCode[sourceCode] ?? data.defaultProducts;
       const renderFields = advanced => inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'component', componentId, context, componentProducts, filters, inactive)).join('');
       const component = result?.components?.[componentId];
-      return `<fieldset><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>Componentを有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>Advanced</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
-    }).join('')}<h3>Pricing Limitation</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
+      return `<fieldset><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
+    }).join('')}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
       const limitation = limitations.get(id); return `<p class="${limitation?.severity === 'warning' ? 'warning-text' : 'notice-text'}">${escape(limitation?.message ?? id)}</p>`;
     }).join('')}`;
     if (focus?.startsWith('input-')) $(focus)?.focus();
