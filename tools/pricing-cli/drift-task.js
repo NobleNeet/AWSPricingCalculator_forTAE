@@ -47,16 +47,23 @@ export async function runDriftTask(packages, task, { previousDirectory, candidat
   const { serviceCode, region, hasBefore, hasAfter, publishSkus } = task;
   const key = `${serviceCode}/${region}`;
   const servicePackages = packagesForServiceCode(packages, serviceCode);
-  const before = hasBefore
-    ? await readJson(path.join(previousDirectory, 'sources', serviceCode, region, 'products.json'))
-    : undefined;
-  const after = hasAfter
-    ? await loadProductsForSkus(
-      candidateDirectory,
-      { serviceCode, region },
-      new Set(publishSkus)
-    )
-    : undefined;
+  const dataCache = options.dataCache;
+  let cached = dataCache?.get(task.taskId);
+  if (!cached) {
+    const before = hasBefore
+      ? await readJson(path.join(previousDirectory, 'sources', serviceCode, region, 'products.json'))
+      : undefined;
+    const after = hasAfter
+      ? await loadProductsForSkus(
+        candidateDirectory,
+        { serviceCode, region },
+        new Set(publishSkus)
+      )
+      : undefined;
+    cached = { before, after };
+    dataCache?.set(task.taskId, cached);
+  }
+  const { before, after } = cached;
 
   const defaultSourcePackages = servicePackages.filter(pkg => pkg.service.priceSource.serviceCode === serviceCode);
   let checked = {
