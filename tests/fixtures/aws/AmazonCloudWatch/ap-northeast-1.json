@@ -1,0 +1,49 @@
+{
+  "offerCode": "AmazonCloudWatch",
+  "products": {
+    "Z4WEW63942JWGQ63": {
+      "attributes": {
+        "databaseEngineType": "RDS Oracle",
+        "group": "CW-DatabaseInsights",
+        "groupDescription": "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases",
+        "instanceConfigurationType": "Provisioned",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "RDS-Oracle:Provisioned",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonCloudWatch",
+        "servicename": "AmazonCloudWatch",
+        "usagetype": "APN1-CW:DatabaseInsights-vCPU-Hours"
+      },
+      "productFamily": "CloudWatch Database Insights",
+      "sku": "Z4WEW63942JWGQ63"
+    }
+  },
+  "publicationDate": "2026-10-07T11:55:40Z",
+  "terms": {
+    "OnDemand": {
+      "Z4WEW63942JWGQ63": {
+        "Z4WEW63942JWGQ63.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "Z4WEW63942JWGQ63.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0125 per vCPU-Hour monitored by Database Insights for RDS Oracle provisioned databases in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0125000000"
+              },
+              "rateCode": "Z4WEW63942JWGQ63.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "vCPU-Hours"
+            }
+          },
+          "sku": "Z4WEW63942JWGQ63",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20261007115540"
+}

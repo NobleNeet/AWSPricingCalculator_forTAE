@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": "backup-storage",
+  "label": "Additional backup storage",
+  "optional": true,
+  "defaultEnabled": true,
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "additionalGbMonths",
+      "label": "Additional backup storage (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "無料バックアップ枠を超える追加容量（GB-month）を入力します。既に追加分なので無料枠は再控除しません。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Storage Snapshot"
+      },
+      {
+        "field": "attributes.databaseEngine",
+        "op": "eq",
+        "value": "Oracle"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "CreateDBInstance:0005"
+      },
+      {
+        "field": "attributes.deploymentOption",
+        "op": "eq",
+        "value": "Single-AZ"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.additionalGbMonths"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

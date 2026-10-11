@@ -15,6 +15,7 @@ import { sourceKey } from './pricing-cli/source.js';
 import { normalizeIsolated } from './pricing-cli/normalize-isolated.js';
 import { report } from './pricing-cli/report.js';
 import { evaluateService } from '../src/pricing/core.js';
+import { priceSourceForComponent } from '../src/pricing/mapping.js';
 import { readGoldenRawSource } from './golden-evidence.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
@@ -58,36 +59,50 @@ export async function refreshGoldenEvidence(packages, rawDirectory, output, cand
   if (!candidateDirectoryPath) throw new Error('Golden evidence requires a normalized candidate directory');
   const candidate = await loadCandidate(candidateDirectoryPath);
   const groups = new Map();
+  const sourceProducts = (code, region) => candidate.data[sourceKey(code, region)]
+    ?? (candidate.data[code]?.region === region || !candidate.data[code]?.region ? candidate.data[code] : undefined);
+
   for (const pkg of packages) for (const golden of pkg.golden) {
-    const code = pkg.service.priceSource.serviceCode;
+    const defaultCode = pkg.service.priceSource.serviceCode;
     const region = golden.project?.region ?? golden.project?.defaultRegion ?? 'ap-northeast-1';
-    const key = sourceKey(code, region);
-    const group = groups.get(key) ?? { code, region, entries: [] };
-    group.entries.push({ pkg, golden });
-    groups.set(key, group);
+    const source = sourceProducts(defaultCode, region);
+    if (!source) throw new Error(`Golden evidence ${defaultCode}/${region}: normalized source missing`);
+    const codes = [...new Set([
+      defaultCode,
+      ...Object.keys(golden.verification).map(componentId => priceSourceForComponent(pkg, componentId))
+    ])];
+    const byCode = Object.fromEntries(codes.map(code => {
+      const data = sourceProducts(code, region);
+      if (!data) throw new Error(`Golden evidence ${code}/${region}: normalized source missing`);
+      return [code, data.products ?? []];
+    }));
+    const result = evaluateService(
+      pkg,
+      golden,
+      { ...golden.project, region, defaultRegion: golden.project?.defaultRegion ?? region },
+      source.products ?? [],
+      source.products ?? [],
+      byCode
+    );
+    for (const componentId of Object.keys(golden.verification)) {
+      const code = priceSourceForComponent(pkg, componentId);
+      const key = sourceKey(code, region);
+      const sku = result.components[componentId]?.resolution?.product?.sku;
+      if (!sku) throw new Error(`Golden evidence ${code}/${region}/${golden.id}/${componentId}: resolved SKU missing`);
+      const group = groups.get(key) ?? { code, region, skus: new Set() };
+      group.skus.add(sku);
+      groups.set(key, group);
+    }
   }
-  for (const { code, region, entries } of groups.values()) {
+  for (const { code, region, skus } of groups.values()) {
     const raw = await readGoldenRawSource(rawDirectory, code, region);
-    const key = sourceKey(code, region);
-    const source = candidate.data[key] ?? (candidate.data[code]?.region === region || !candidate.data[code]?.region ? candidate.data[code] : undefined);
-    if (!source) throw new Error(`Golden evidence ${code}/${region}: normalized source missing`);
     const sample = { offerCode: raw.offerCode, version: raw.version, publicationDate: raw.publicationDate, products: {}, terms: { OnDemand: {} } };
-    for (const { pkg, golden } of entries) {
-      const result = evaluateService(
-        pkg,
-        golden,
-        { ...golden.project, region, defaultRegion: golden.project?.defaultRegion ?? region },
-        source.products ?? []
-      );
-      for (const componentId of Object.keys(golden.verification)) {
-        const sku = result.components[componentId]?.resolution?.product?.sku;
-        if (!sku) throw new Error(`Golden evidence ${code}/${region}/${golden.id}/${componentId}: resolved SKU missing`);
-        const product = raw.products[sku];
-        const terms = raw.terms.OnDemand[sku];
-        if (!product || !terms) throw new Error(`Golden evidence ${code}/${region}/${golden.id}/${componentId}: raw SKU ${sku} missing`);
-        sample.products[sku] = product;
-        sample.terms.OnDemand[sku] = terms;
-      }
+    for (const sku of skus) {
+      const product = raw.products[sku];
+      const terms = raw.terms.OnDemand[sku];
+      if (!product || !terms) throw new Error(`Golden evidence ${code}/${region}: raw SKU ${sku} missing`);
+      sample.products[sku] = product;
+      sample.terms.OnDemand[sku] = terms;
     }
     await writeJson(path.join(output, code, `${region}.json`), sample);
   }

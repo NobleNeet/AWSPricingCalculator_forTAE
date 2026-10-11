@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "rds-oracle",
+  "label": "Amazon RDS for Oracle",
+  "priceSource": {
+    "serviceCode": "AmazonRDS",
+    "componentOverrides": {
+      "database-insights": "AmazonCloudWatch"
+    }
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "instance",
+    "storage-gp3",
+    "database-insights",
+    "backup-storage"
+  ]
+}

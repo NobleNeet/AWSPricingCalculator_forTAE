@@ -1,0 +1,58 @@
+{
+  "attributes": {
+    "datatransferout": [
+      "DataTransferOut",
+      "NoDataTransferOut"
+    ],
+    "instancetype": [
+      "Large16GB",
+      "Standard8GB",
+      "Xlarge72GB"
+    ],
+    "location": [
+      "US East (N. Virginia)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "",
+      "HostingComputeRequestCount",
+      "HostingComputeRequestDuration"
+    ],
+    "regionCode": [
+      "us-east-1"
+    ],
+    "requestCount": [
+      "NoRequestCount",
+      "RequestCount"
+    ],
+    "requestDuration": [
+      "NoRequestDuration",
+      "RequestDuration"
+    ],
+    "servicecode": [
+      "AWSAmplify"
+    ],
+    "servicename": [
+      "AWS Amplify"
+    ],
+    "storage": [
+      "NoStorage",
+      "Storage"
+    ],
+    "usagetype": [
+      "USE1-BuildDuration",
+      "USE1-BuildDuration-Large16GB",
+      "USE1-BuildDuration-XLarge72GB",
+      "USE1-DataStorage",
+      "USE1-DataTransferOut",
+      "USE1-HostingComputeRequestCount",
+      "USE1-HostingComputeRequestDuration"
+    ]
+  },
+  "buildId": "20261010T041918Z-1ac730a0",
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSAmplify"
+}

@@ -1,0 +1,86 @@
+{
+  "buildId": "20261010T090802Z-eb75cf3e",
+  "products": [
+    {
+      "attributes": {
+        "databaseEngineType": "RDS Oracle",
+        "group": "CW-DatabaseInsights",
+        "groupDescription": "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases",
+        "instanceConfigurationType": "Provisioned",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "RDS-Oracle:Provisioned",
+        "regionCode": "us-west-2",
+        "servicecode": "AmazonCloudWatch",
+        "servicename": "AmazonCloudWatch",
+        "usagetype": "USW2-CW:DatabaseInsights-vCPU-Hours"
+      },
+      "operation": "RDS-Oracle:Provisioned",
+      "productFamily": "CloudWatch Database Insights",
+      "sku": "FPDU86TMBD6UR53K",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0125 per vCPU-Hour monitored by Database Insights for RDS Oracle provisioned databases in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0125000000"
+                },
+                "rateCode": "FPDU86TMBD6UR53K.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "vCPU-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-CW:DatabaseInsights-vCPU-Hours"
+    },
+    {
+      "attributes": {
+        "databaseEngineType": "Aurora-PostgreSQL",
+        "group": "CW-DatabaseInsights",
+        "groupDescription": "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases",
+        "instanceConfigurationType": "Limitless",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "operation": "Aurora-PostgreSQL:Limitless",
+        "regionCode": "us-west-2",
+        "servicecode": "AmazonCloudWatch",
+        "servicename": "AmazonCloudWatch",
+        "usagetype": "USW2-CW:DatabaseInsights-ACU-Hours"
+      },
+      "operation": "Aurora-PostgreSQL:Limitless",
+      "productFamily": "CloudWatch Database Insights",
+      "sku": "G6JF7WRMQVCEFXEE",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.003125 per ACU-Hour monitored by Database Insights for Aurora-PostgreSQL limitless databases in US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0031250000"
+                },
+                "rateCode": "G6JF7WRMQVCEFXEE.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "ACU-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW2-CW:DatabaseInsights-ACU-Hours"
+    }
+  ],
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}

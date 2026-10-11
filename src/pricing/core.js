@@ -50,7 +50,7 @@ export function evaluateService(pkg, instance, project, products, profileProduct
     const profile = pkg.profiles[instance.profileId];
     if (!profile) fail('UNKNOWN_PROFILE', 'Unknown profile.');
     const defaultServiceCode = pkg.service?.priceSource?.serviceCode;
-    const context = { project, profile: instance.selectors ?? {}, component: {} };
+    const context = { project, profile: instance.selectors ?? {}, component: {}, resolvedComponents: {} };
     context.profile = activeInputs(profile.selectors, context.profile, context, profileProducts, profile.fixedFilters, 'profile');
     for (const id of profile.components) {
       const definition = pkg.components[id];
@@ -75,6 +75,7 @@ export function evaluateService(pkg, instance, project, products, profileProduct
           : resolvePrice(scopedProducts, definition.priceQuery, context, legacyFilters);
         const limitations = [...new Set([...definition.limitations, ...resolution.limitations])];
         const result = calculate(definition.calculation, context, resolution.dimension);
+        context.resolvedComponents[id] = resolution.product;
         components[id] = { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution };
       } catch (error) {
         const diagnostic = error.issue ?? issue('INVALID_DATA', error.message);

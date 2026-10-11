@@ -1,0 +1,264 @@
+{
+  "buildId": "20261010T090802Z-eb75cf3e",
+  "products": [
+    {
+      "attributes": {
+        "instancetype": "Large16GB",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "APN1-BuildDuration-Large16GB"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "72KW6Q4G84NEHWKE",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.025 per minute for BuildDuration-Large16GB in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0250000000"
+                },
+                "rateCode": "72KW6Q4G84NEHWKE.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-BuildDuration-Large16GB"
+    },
+    {
+      "attributes": {
+        "instancetype": "Xlarge72GB",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "APN1-BuildDuration-XLarge72GB"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "E4VMA2EU2B6BTABD",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.10 per minute for BuildDuration-XLarge72GB in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1000000000"
+                },
+                "rateCode": "E4VMA2EU2B6BTABD.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-BuildDuration-XLarge72GB"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "HostingComputeRequestCount",
+        "regionCode": "ap-northeast-1",
+        "requestCount": "RequestCount",
+        "requestDuration": "NoRequestDuration",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "APN1-HostingComputeRequestCount"
+      },
+      "operation": "HostingComputeRequestCount",
+      "productFamily": "AWS Amplify",
+      "sku": "EES3GEZK6FZUQCZ5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.30 per 1 million requests for Amplify Hosting Compute",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000003000"
+                },
+                "rateCode": "EES3GEZK6FZUQCZ5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Requests"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-HostingComputeRequestCount"
+    },
+    {
+      "attributes": {
+        "datatransferout": "NoDataTransferOut",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "storage": "Storage",
+        "usagetype": "APN1-DataStorage"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "FCT6PGDGQS6MDECZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.023 per GigaBytes for DataStorage in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0230000000"
+                },
+                "rateCode": "FCT6PGDGQS6MDECZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-DataStorage"
+    },
+    {
+      "attributes": {
+        "instancetype": "Standard8GB",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "APN1-BuildDuration"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "QM3CHM37QSM2GNQS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.01 per minutes for BuildDuration in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "QM3CHM37QSM2GNQS.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "minutes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-BuildDuration"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "HostingComputeRequestDuration",
+        "regionCode": "ap-northeast-1",
+        "requestCount": "NoRequestCount",
+        "requestDuration": "RequestDuration",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "usagetype": "APN1-HostingComputeRequestDuration"
+      },
+      "operation": "HostingComputeRequestDuration",
+      "productFamily": "AWS Amplify",
+      "sku": "XDM3AJ5B2MQ3YFY2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD 0.20 per GB-Hour for Amplify Hosting Compute",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000555556"
+                },
+                "rateCode": "XDM3AJ5B2MQ3YFY2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Seconds"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-HostingComputeRequestDuration"
+    },
+    {
+      "attributes": {
+        "datatransferout": "DataTransferOut",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSAmplify",
+        "servicename": "AWS Amplify",
+        "storage": "NoStorage",
+        "usagetype": "APN1-DataTransferOut"
+      },
+      "operation": "",
+      "productFamily": "AWS Amplify",
+      "sku": "YWGKVZ7GRB5GT325",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2025-05-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "USD0.15 per GigaBytes for DataTransferOut in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.1500000000"
+                },
+                "rateCode": "YWGKVZ7GRB5GT325.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GigaBytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-DataTransferOut"
+    }
+  ],
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSAmplify"
+}

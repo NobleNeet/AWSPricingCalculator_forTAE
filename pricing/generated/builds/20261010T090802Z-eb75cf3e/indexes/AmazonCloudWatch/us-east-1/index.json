@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "databaseEngineType": [
+      "Aurora-PostgreSQL",
+      "RDS Oracle"
+    ],
+    "group": [
+      "CW-DatabaseInsights"
+    ],
+    "groupDescription": [
+      "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases"
+    ],
+    "instanceConfigurationType": [
+      "Limitless",
+      "Provisioned"
+    ],
+    "location": [
+      "US East (N. Virginia)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "Aurora-PostgreSQL:Limitless",
+      "RDS-Oracle:Provisioned"
+    ],
+    "regionCode": [
+      "us-east-1"
+    ],
+    "servicecode": [
+      "AmazonCloudWatch"
+    ],
+    "servicename": [
+      "AmazonCloudWatch"
+    ],
+    "usagetype": [
+      "USE1-CW:DatabaseInsights-ACU-Hours",
+      "USE1-CW:DatabaseInsights-vCPU-Hours"
+    ]
+  },
+  "buildId": "20261010T090802Z-eb75cf3e",
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}

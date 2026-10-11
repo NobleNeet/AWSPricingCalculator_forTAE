@@ -88,3 +88,12 @@ test('breaking, failed validation, corrupted build and concurrent active change 
     assert.deepEqual((await readdir(path.join(options.generated, 'builds'))).sort(), ['current', 'old-old']);
   }
 });
+
+test('Price DB publish job treats already-published build as successful no-op and retains deploy ref', async () => {
+  const workflow = await readFile('.github/workflows/price-update.yml', 'utf8');
+  const publish = workflow.slice(workflow.indexOf('\n  publish:'), workflow.indexOf('\n  deploy:'));
+  assert.match(publish, /if git diff --cached --quiet; then/);
+  assert.match(publish, /else\s+git commit -m 'Publish validated AWS Price DB build'\s+git push origin HEAD:main\s+fi/);
+  assert.match(publish, /echo "commit=\$\(git rev-parse HEAD\)" >> "\$GITHUB_OUTPUT"/);
+  assert.match(workflow, /ref: \$\{\{ needs\.publish\.outputs\.commit \}\}/);
+});

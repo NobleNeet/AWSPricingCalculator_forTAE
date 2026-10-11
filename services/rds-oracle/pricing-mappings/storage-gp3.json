@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "storage-gp3",
+  "componentId": "storage-gp3",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Database Storage"
+    },
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Oracle"
+    },
+    {
+      "field": "attributes.deploymentOption",
+      "op": "eq",
+      "valueFrom": "profile.deployment"
+    },
+    {
+      "field": "attributes.volumeType",
+      "op": "eq",
+      "valueFrom": "component.volumeType"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "CreateDBInstance:0005"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Canonical CreateDBInstance:0005 normal RDS Oracle per-instance gp2/gp3 storage, storage amount times Nodes. Verified on full 2026-10-06 Tokyo Price List: Oracle Enterprise BYOL Single/Multi-AZ gp2 and gp3 each resolve exactly one GB-Mo meter. Operation excludes RDS Custom."
+}

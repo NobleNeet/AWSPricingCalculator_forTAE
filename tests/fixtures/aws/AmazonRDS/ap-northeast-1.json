@@ -50,6 +50,23 @@
       "productFamily": "Database Storage",
       "sku": "E7NHVJRED3R3PUY7"
     },
+    "FH3Z49QRAVFWJQ4H": {
+      "attributes": {
+        "databaseEngine": "Oracle",
+        "deploymentOption": "Single-AZ",
+        "engineCode": "5",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "CreateDBInstance:0005",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "AmazonS3",
+        "usagetype": "APN1-RDS:ChargedBackupUsage"
+      },
+      "productFamily": "Storage Snapshot",
+      "sku": "FH3Z49QRAVFWJQ4H"
+    },
     "HSMQ9C43F35T8QMX": {
       "attributes": {
         "databaseEngine": "Aurora PostgreSQL",
@@ -97,6 +114,27 @@
       },
       "productFamily": "Limitless",
       "sku": "PHCZW4PHVBVNVGGJ"
+    },
+    "PNEHP3YZ9EDZKFGT": {
+      "attributes": {
+        "databaseEdition": "Enterprise",
+        "databaseEngine": "Oracle",
+        "deploymentOption": "Multi-AZ",
+        "engineCode": "5",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "maxVolumeSize": "16 TB",
+        "minVolumeSize": "5 GB",
+        "operation": "CreateDBInstance:0005",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storageMedia": "SSD",
+        "usagetype": "APN1-RDS:Multi-AZ-GP2-Storage",
+        "volumeType": "General Purpose"
+      },
+      "productFamily": "Database Storage",
+      "sku": "PNEHP3YZ9EDZKFGT"
     },
     "QSZ96MWJHP7X7JWV": {
       "attributes": {
@@ -154,6 +192,39 @@
       },
       "productFamily": "Database Instance",
       "sku": "QXQBYDD8C8FPKXAK"
+    },
+    "S36HEJFJTVGM4KTA": {
+      "attributes": {
+        "clockSpeed": "2.5 GHz",
+        "currentGeneration": "No",
+        "databaseEdition": "Enterprise",
+        "databaseEngine": "Oracle",
+        "dedicatedEbsThroughput": "1000 Mbps",
+        "deploymentOption": "Multi-AZ",
+        "engineCode": "5",
+        "instanceFamily": "General purpose",
+        "instanceType": "db.m3.2xlarge",
+        "instanceTypeFamily": "M3",
+        "licenseModel": "Bring your own license",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "30 GiB",
+        "networkPerformance": "High",
+        "normalizationSizeFactor": "32",
+        "operation": "CreateDBInstance:0005",
+        "physicalProcessor": "Intel Xeon E5-2670 v2 (Ivy Bridge/Sandy Bridge)",
+        "processorArchitecture": "64-bit",
+        "processorFeatures": "Intel AVX; Intel Turbo",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRDS",
+        "servicename": "Amazon Relational Database Service",
+        "storage": "2 x 80 SSD",
+        "unbundledLicensing": "FALSE",
+        "usagetype": "APN1-Multi-AZUsage:db.m3.2xlarge",
+        "vcpu": "8"
+      },
+      "productFamily": "Database Instance",
+      "sku": "S36HEJFJTVGM4KTA"
     },
     "SPPB3CBHFB9RBKYQ": {
       "attributes": {
@@ -306,6 +377,27 @@
           "termAttributes": {}
         }
       },
+      "FH3Z49QRAVFWJQ4H": {
+        "FH3Z49QRAVFWJQ4H.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "FH3Z49QRAVFWJQ4H.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.095 per additional GB-month of backup storage exceeding free allocation running Oracle",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0950000000"
+              },
+              "rateCode": "FH3Z49QRAVFWJQ4H.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "FH3Z49QRAVFWJQ4H",
+          "termAttributes": {}
+        }
+      },
       "HSMQ9C43F35T8QMX": {
         "HSMQ9C43F35T8QMX.JRTCKXETXF": {
           "effectiveDate": "2026-10-01T00:00:00Z",
@@ -369,6 +461,27 @@
           "termAttributes": {}
         }
       },
+      "PNEHP3YZ9EDZKFGT": {
+        "PNEHP3YZ9EDZKFGT.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "PNEHP3YZ9EDZKFGT.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.276 per GB-month of provisioned gp2 storage for Multi-AZ deployments running Oracle",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2760000000"
+              },
+              "rateCode": "PNEHP3YZ9EDZKFGT.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "PNEHP3YZ9EDZKFGT",
+          "termAttributes": {}
+        }
+      },
       "QSZ96MWJHP7X7JWV": {
         "QSZ96MWJHP7X7JWV.JRTCKXETXF": {
           "effectiveDate": "2026-10-01T00:00:00Z",
@@ -408,6 +521,27 @@
             }
           },
           "sku": "QXQBYDD8C8FPKXAK",
+          "termAttributes": {}
+        }
+      },
+      "S36HEJFJTVGM4KTA": {
+        "S36HEJFJTVGM4KTA.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "S36HEJFJTVGM4KTA.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "USD 1.93 per db.m3.2xlarge Multi-AZ instance hour (or partial hour) running Oracle EE (BYOL)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "1.9300000000"
+              },
+              "rateCode": "S36HEJFJTVGM4KTA.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "S36HEJFJTVGM4KTA",
           "termAttributes": {}
         }
       },

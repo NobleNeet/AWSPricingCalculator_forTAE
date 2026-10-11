@@ -1,0 +1,313 @@
+{
+  "buildId": "20261010T041918Z-1ac730a0",
+  "products": [
+    {
+      "attributes": {
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "storagetype": "default",
+        "usagetype": "USE1-Fargate-EphemeralStorage-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "7KPDPTDSCT4J3Z64",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Ephemeral Storage - US East (N. Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0001110000"
+                },
+                "rateCode": "7KPDPTDSCT4J3Z64.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-EphemeralStorage-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE1-Fargate-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "8CESGAFWKAJ98PME",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - vCPU - US East (N.Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0404800000"
+                },
+                "rateCode": "8CESGAFWKAJ98PME.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE1-Fargate-Windows-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "8QDMJPGQCM368Z6X",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - Memory  - US East (N.Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0051117500"
+                },
+                "rateCode": "8QDMJPGQCM368Z6X.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-Windows-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU OS License Fee",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "resource": "OS License Fee per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE1-Fargate-Windows-OS-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "9D3ZWXRS2VXMZET6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - OS - US East (N.Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0460000000"
+                },
+                "rateCode": "9D3ZWXRS2VXMZET6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-Windows-OS-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE1-Fargate-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "PBZNQUSEXZUC34C9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Memory  - US East (N.Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0044450000"
+                },
+                "rateCode": "PBZNQUSEXZUC34C9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cputype": "perCPU",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operatingSystem": "Windows",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE1-Fargate-Windows-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "RF2BUTAD289DREDC",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - Windows - vCPU - US East (N.Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0465520000"
+                },
+                "rateCode": "RF2BUTAD289DREDC.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-Windows-vCPU-Hours:perCPU"
+    },
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "memorytype": "perGB",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "resource": "per GB per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE1-Fargate-ARM-GB-Hours"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "UNH9KPQP7W7C66C9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - Memory - US East (N. Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0035600000"
+                },
+                "rateCode": "UNH9KPQP7W7C66C9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-ARM-GB-Hours"
+    },
+    {
+      "attributes": {
+        "cpuArchitecture": "ARM",
+        "cputype": "perCPU",
+        "location": "US East (N. Virginia)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-1",
+        "resource": "per vCPU per hour",
+        "servicecode": "AmazonECS",
+        "servicename": "Amazon Elastic Container Service",
+        "tenancy": "Shared",
+        "usagetype": "USE1-Fargate-ARM-vCPU-Hours:perCPU"
+      },
+      "operation": "",
+      "productFamily": "Compute",
+      "sku": "XSZATS4VYMDC9CYN",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-07-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "AWS Fargate - ARM - vCPU - US East (N. Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0323800000"
+                },
+                "rateCode": "XSZATS4VYMDC9CYN.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE1-Fargate-ARM-vCPU-Hours:perCPU"
+    }
+  ],
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonECS"
+}

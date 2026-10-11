@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "storage-gp3",
+  "label": "RDS for Oracle database storage",
+  "selectors": [
+    {
+      "id": "volumeType",
+      "label": "Storage type",
+      "type": "select",
+      "default": "General Purpose",
+      "options": {
+        "values": [
+          "General Purpose",
+          "General Purpose-GP3"
+        ]
+      },
+      "ui": {
+        "help": "汎用SSD (gp2) または gp3。選択した種類のAWS料金表を参照します。"
+      }
+    }
+  ],
+  "usageInputs": [
+    {
+      "id": "gbMonths",
+      "label": "Storage amount (GB per DB instance)",
+      "type": "number",
+      "default": "100",
+      "minimum": "0",
+      "exclusiveMinimum": "0",
+      "ui": {
+        "help": "DBインスタンス1台あたりのgp3ストレージ量（GB-month）。Nodes数を掛けた容量を課金対象とします。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Database Storage"
+      },
+      {
+        "field": "attributes.databaseEngine",
+        "op": "eq",
+        "value": "Oracle"
+      },
+      {
+        "field": "attributes.deploymentOption",
+        "op": "eq",
+        "valueFrom": "profile.deployment"
+      },
+      {
+        "field": "attributes.volumeType",
+        "op": "eq",
+        "valueFrom": "component.volumeType"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "CreateDBInstance:0005"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbMonths"
+        },
+        {
+          "valueFrom": "profile.nodes"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "rds-extra-storage-performance",
+    "unsupported-pricing-category"
+  ],
+  "optional": true,
+  "defaultEnabled": true
+}

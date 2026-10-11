@@ -376,6 +376,18 @@ Tierでもfree allowanceでもない異種paid dimensionsが複数残る場合�
 
 ## 8. Calculation DSL
 
+### 8.x Resolved component numeric attributes (Oracle Database Insights)
+
+When a separately priced component consumes a numeric AWS product attribute from a previously resolved component, a calculation usage source may use:
+
+```json
+{"value":{"type":"resolvedComponentAttribute","componentId":"instance","attribute":"vcpu"}}
+```
+
+This is deterministic and **not** arbitrary JavaScript. The `componentId` must refer to an earlier successfully priced component in the same Profile's component order. The attribute is obtained from the matched, unique On-Demand AWS product; missing, non-numeric, or negative attribute values fail closed. This source is multiplied with ordinary `valueFrom` sources under the existing Decimal-based Calculation DSL. Example: RDS Oracle Database Insights = selected DB instance's vCPU × (utilization percentage × 7.3 hours) × Nodes. Do not expose a separately editable vCPU input or hard-code a rate in a Definition. Semantic mapping selection and independent Golden verification continue to require the correct Price List serviceCode and matching dimensions.
+
+
+
 ### 8.1 model
 
 初期版の正式modelは `unit` のみ。
