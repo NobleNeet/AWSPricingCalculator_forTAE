@@ -39,14 +39,28 @@ export function validateWorkerAssignments(plan) {
   const batches = logicalBatchesFromPlan(plan);
   const matrix = plan.matrix?.include ?? [];
   if (!matrix.some(item => Array.isArray(item.batches))) return;
+  if (matrix.length > 8) throw new Error('Worker count exceeds the 8-worker limit');
+  const workerIds = matrix.map(worker => worker.worker_id);
+  if (workerIds.some(id => typeof id !== 'string') || new Set(workerIds).size !== workerIds.length) {
+    throw new Error('Missing or duplicate worker id');
+  }
   const expected = new Set(batches.map(batch => batch.batch_id));
+  const canonical = new Map(batches.map(batch => [batch.batch_id, batch]));
   if (expected.size !== batches.length) throw new Error('Duplicate logical batch id in plan');
   const assigned = matrix.flatMap(worker => worker.batches ?? []);
   if (assigned.length !== batches.length) throw new Error('Worker assignment count does not match logical batch inventory');
   const seen = new Set();
+  for (const worker of matrix) {
+    if (!Array.isArray(worker.batches) || worker.batches.length === 0) throw new Error(`Empty worker assignment: ${worker.worker_id}`);
+    const total = worker.batches.reduce((sum, batch) => sum + (batch.planned_cases ?? 0), 0);
+    if (total !== worker.planned_cases) throw new Error(`Worker planned case count mismatch: ${worker.worker_id}`);
+  }
   for (const batch of assigned) {
     if (!expected.has(batch.batch_id)) throw new Error(`Worker assignment contains unknown batch ${batch.batch_id}`);
     if (seen.has(batch.batch_id)) throw new Error(`Logical batch assigned more than once: ${batch.batch_id}`);
+    if (JSON.stringify(batch) !== JSON.stringify(canonical.get(batch.batch_id))) {
+      throw new Error(`Worker assignment differs from planned logical batch: ${batch.batch_id}`);
+    }
     seen.add(batch.batch_id);
   }
   if (seen.size !== expected.size) throw new Error('Worker assignment is missing logical batches');
