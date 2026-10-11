@@ -77,7 +77,7 @@ jobs:
           repository: ${{ github.repository }}
           run-id: ${{ steps.replay.outputs.run_id }}
           github-token: ${{ github.token }}
-          pattern: drift-batch-*
+          pattern: drift-*-*
           path: .work/update/drift-batches
           merge-multiple: true
       - name: Re-run only affected drift batches
@@ -93,7 +93,8 @@ jobs:
           const config = JSON.parse(await readFile('.github/finalize-replay.json', 'utf8'));
           const plan = JSON.parse(await readFile('.work/update/drift-plan.json', 'utf8'));
           const packages = await loadPackages('services');
-          const selected = plan.matrix.include.filter(batch =>
+          const logicalBatches = plan.batches ?? plan.matrix.include.flatMap(item => item.batches ?? [item]);
+          const selected = logicalBatches.filter(batch =>
             batch.labels?.some(label => config.retryServiceCodes.some(code => label.startsWith(`${code}/`)))
           );
           if (!selected.length) throw new Error('No drift batches matched retryServiceCodes');
