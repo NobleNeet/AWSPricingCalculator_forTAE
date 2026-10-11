@@ -1,0 +1,43 @@
+{
+  "contractFingerprints": {
+    "global": "3226c35c64c46edfa4168a71117ffdb22c31d98a09f8beaeef1c08e614d180d1",
+    "schemaVersion": 2,
+    "services": {
+      "amplify": "8cc6905f12a6d2c3b11518aca82857c21938fba7099f51a4733a6e4b384e9136",
+      "aurora-postgresql": "c78af864e3a8bc9d4102610766ef87205cb36c2586a22b387b20bf3fcb478fab",
+      "codebuild": "048f3b0a4109bdccb563fdfcea64cfc6c7c85a3c2f271554a518b67bf81b54d6",
+      "ebs": "065d80dd1957dcc19ea181d90955ca03e7f1b11430913dd3a7d19c819857a943",
+      "ec2": "80467869ad284b5babd0b186fb6a99fadbb3b04868ae9a3f9923f236b1cbb097",
+      "eventbridge": "e91e3d326776c315f0baf515e87854922280204597bba7ad92aa5aeae70342a4",
+      "fargate": "fa06f41af906039a0204f80229ac6bfa5c23670be20ce98f69f7682f8701e4f3",
+      "kms": "32c6fada491afe5f92def102d8cbf61ee3066e3a775ba97ecdf4943f6fff5e06",
+      "lambda": "d73c94715bf1f2df87b25d49e80c76c6f9b0599827861bf8fb13ffb11d5c2519",
+      "rds": "1278e6ffa54741d86776973c3c6e5be40a0a2ff2c6336ed9067abd8fd5cc6eb6",
+      "rds-oracle": "79c967e8b23a1fdf81fb6866c6a230e6b0bf2a0cece2b900cbc8c9689d3361cb",
+      "s3": "6215c231d7eb72c199938340172a89d68cc6f61440206c9e2a4926a67b8490f7",
+      "systems-manager": "2cafabb7d55f0336fab39c024a5dc997b279eede541ce2c2f00498d4eb615aa9"
+    }
+  },
+  "definitionRefreshServiceCodes": [
+    "AWSAmplify",
+    "AWSEvents",
+    "AWSLambda",
+    "AWSSystemsManager",
+    "AmazonCloudWatch",
+    "AmazonEC2",
+    "AmazonECS",
+    "AmazonRDS",
+    "AmazonS3",
+    "CodeBuild",
+    "awskms"
+  ],
+  "definitionSha256": "b5d1c32dd7cde0904e5b9ecdd6068d7f10d0dfb31966f95e73ea8acf08f36a08",
+  "globalContractChanged": true,
+  "previousBuildId": "20261010T090802Z-eb75cf3e",
+  "publicationSha256": "4ae7e880764267ba4d37c84fa4d507a1fbeb232afd5d3aa6efaf9dbecec86e50",
+  "requestedScopeServiceCodes": [],
+  "requestedScopeServiceIds": [],
+  "reuseSemanticBaseline": false,
+  "schemaVersion": 2,
+  "semanticContractMigration": false
+}

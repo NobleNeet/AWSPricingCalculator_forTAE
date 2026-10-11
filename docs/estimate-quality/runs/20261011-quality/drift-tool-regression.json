@@ -1,0 +1,48 @@
+{
+  "purpose": "Tool regression against identical published-source pair; not GUI testing or candidate publication validation.",
+  "elapsedMs": 17677,
+  "classification": "STRUCTURE_BREAKING",
+  "publishable": false,
+  "issues": [
+    {
+      "severity": "error",
+      "code": "MAPPING_PRODUCT_CARDINALITY",
+      "message": "Pricing mapping ebs-io2-iops-tier2 expected 1 product(s), matched 0.",
+      "componentId": "ebs-io2-iops-tier2",
+      "region": "ap-northeast-1"
+    },
+    {
+      "severity": "error",
+      "code": "MAPPING_PRODUCT_CARDINALITY",
+      "message": "Pricing mapping ebs-io2-iops-tier3 expected 1 product(s), matched 0.",
+      "componentId": "ebs-io2-iops-tier3",
+      "region": "ap-northeast-1"
+    },
+    {
+      "severity": "error",
+      "code": "MAPPING_PRODUCT_CARDINALITY",
+      "message": "Pricing mapping ebs-io2-iops-tier2 expected 1 product(s), matched 0.",
+      "componentId": "ebs-io2-iops-tier2",
+      "region": "ap-northeast-1"
+    },
+    {
+      "severity": "error",
+      "code": "MAPPING_PRODUCT_CARDINALITY",
+      "message": "Pricing mapping ebs-io2-iops-tier3 expected 1 product(s), matched 0.",
+      "componentId": "ebs-io2-iops-tier3",
+      "region": "ap-northeast-1"
+    }
+  ],
+  "rateDiff": [],
+  "processedCases": 10000,
+  "seenCases": 20001,
+  "progressCases": 20001,
+  "reusedCases": 0,
+  "exhausted": true,
+  "dataset": "Legacy published Price DB 20261010T090802Z-eb75cf3e, both sides identical; new io2 tier2/3 SKUs absent.",
+  "expectedDiagnostics": {
+    "MAPPING_PRODUCT_CARDINALITY": 4
+  },
+  "observedMissingUsageCount": 0,
+  "note": "Expected missing-tier-SKU rejection preserved. This is not a successful candidate publication or GUI PASS."
+}

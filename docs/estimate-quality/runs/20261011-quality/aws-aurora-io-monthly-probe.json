@@ -1,0 +1,162 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/AuroraPostgreSQL",
+  "observedAt": "2026-10-11T10:18:09.747Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Aurora PostgreSQL-Compatible DB\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nAurora PostgreSQL-Compatible Edition\nProvides speed and availability of high-end commercial databases with the simplicity and cost-effectiveness of open source databases.\nAurora Serverless PostgreSQL-Compatible Edition\nDatabase capacity automatically scales up or down to meet your application needs.\nAmazon Aurora PostgreSQL Limitless Database\nScales write throughput and storage by distributing a database workload over multiple Aurora writer instances, while maintaining the ability to use it as a single database.\nCluster Configuration Option\nInfo\nAurora PostgreSQL Cluster Configuration Options\nAurora Standard\nAdditional backup storage\nUnit\nGB\nCost effective pricing for many applications with moderate I/O usage (I/O costs <25% of total database costs).\nPay-per-request I/O charges apply. DB instance and storage prices don't include I/O usage.\nSettings\nInfo\nAurora PostgreSQL Serverless Version\nServerlessV2\nPricing model\nOnDemand\nTerm\n1yr\nPurchase option\nNo Upfront\nDatabase Engine\nAurora PostgreSQL\nNumber of Aurora Capacity Units (ACUs)\nShow calculations\nRDS Proxy\nInfo\nWould you be creating an RDS Proxy with the database?\nYes\nShow calculations\nMax (1 ACU per hour, 8 ) = 8 ACUs\n8 ACU per hour x 730 hours in a month x 0.025 USD = 146.00 USD\nMonthly Cost for RDS Proxy (monthly): 146.00 USD\nDatabase Storage\nInfo\nStorage amount\nTotal Storage Size of the Aurora Cluster\nValue\nUnit\nGB\nBaseline IO rate\nEnter the number of IOs per second that your workload consumes during off-peak periods.\nValue\nUnit\nper month\nBaseline IO rate can't be less than 0.0166 per hour.\nPeak IO rate\nEnter the maximum number of IOs per second your workload consumes during peak periods.\nValue\nUnit\nper month\nPeak IO rate can't be less than 0.0166 per hour.\nDuration of peak IO activity\nEnter the number of hours per month when your cluster or instance workload operates at peak.\nValue\nUnit\nhours per month\nShow calculations\nDatabase Insights Pricing for Aurora Serverless v2 Instances\nInfo\nWould you be enabling Database Insights with the database?\nNo\nShow calculations\nBackup Storage\nInfo\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 256.25 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.\nerror Baseline IO rate can't be less than 0.0166 per hour.\nerror Peak IO rate can't be less than 0.0166 per hour.",
+  "fields": [
+    {
+      "label": "Language: English",
+      "value": "",
+      "text": "Language: English"
+    },
+    {
+      "label": "Description - optional",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Region"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Asia Pacific (Tokyo)"
+    },
+    {
+      "label": null,
+      "value": "AuroraPostgreSQLCompatibleDB",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "auroraServerlessPostgreSQLv2",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "auroralimitlessPostgres",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Aurora Standard"
+    },
+    {
+      "label": "Additional backup storage Value",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "GB"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "ServerlessV2"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "OnDemand"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "1yr"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "No Upfront"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Aurora PostgreSQL"
+    },
+    {
+      "label": "Number of Aurora Capacity Units (ACUs)",
+      "value": "1",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Yes"
+    },
+    {
+      "label": "Storage amount Value",
+      "value": "1",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "GB"
+    },
+    {
+      "label": "Baseline IO rate Value",
+      "value": "1",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "per month"
+    },
+    {
+      "label": "Peak IO rate Value",
+      "value": "1",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "per month"
+    },
+    {
+      "label": "Duration of peak IO activity Value",
+      "value": "1",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "hours per month"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "No"
+    },
+    {
+      "label": "Open help panel",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Show Details"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Cancel"
+    },
+    {
+      "label": "Save and view summary",
+      "value": "",
+      "text": "Save and view summary"
+    },
+    {
+      "label": "Save and add service",
+      "value": "",
+      "text": "Save and add service"
+    }
+  ]
+}

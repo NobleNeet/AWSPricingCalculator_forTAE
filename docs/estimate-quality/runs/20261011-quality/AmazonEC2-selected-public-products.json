@@ -1,0 +1,49 @@
+{
+  "formatVersion": "v1.0",
+  "offerCode": "AmazonEC2",
+  "version": "20261009203134",
+  "publicationDate": "2026-10-09T20:31:34Z",
+  "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20261009203134/ap-northeast-1/index.json",
+  "products": {
+    "G7K2HMN3E2YE2YE2": {
+      "sku": "G7K2HMN3E2YE2YE2",
+      "productFamily": "Fee",
+      "attributes": {
+        "servicecode": "AmazonEC2",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "group": "EC2-Dedicated Usage",
+        "groupDescription": "Fee for running at least one Dedicated Instance or a Dedicated Instance Capacity Reservation in the region",
+        "usagetype": "APN1-DedicatedUsage",
+        "operation": "Surcharge",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Compute Cloud"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "G7K2HMN3E2YE2YE2": {
+        "G7K2HMN3E2YE2YE2.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "G7K2HMN3E2YE2YE2",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$2.00 once per hour when using dedicated tenancy (instance or Capacity Reservation) in the Asia Pacific Tokyo Region",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "Hrs",
+              "pricePerUnit": {
+                "USD": "2.0000000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}

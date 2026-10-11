@@ -21,6 +21,70 @@
         "regionCode": "ap-northeast-1",
         "servicename": "Amazon Relational Database Service"
       }
+    },
+    "UD3CK3ZCN4ZBB6CX": {
+      "sku": "UD3CK3ZCN4ZBB6CX",
+      "productFamily": "ServerlessV2",
+      "attributes": {
+        "servicecode": "AmazonRDS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storage": "Aurora IO Optimization Mode",
+        "engineCode": "21",
+        "databaseEngine": "Aurora PostgreSQL",
+        "usagetype": "APN1-Aurora:ServerlessV2IOOptimizedUsage",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Relational Database Service"
+      }
+    },
+    "NTURMTB2PWMA53X6": {
+      "sku": "NTURMTB2PWMA53X6",
+      "productFamily": "ServerlessV2",
+      "attributes": {
+        "servicecode": "AmazonRDS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "engineCode": "21",
+        "databaseEngine": "Aurora PostgreSQL",
+        "usagetype": "APN1-Aurora:ServerlessV2Usage",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Relational Database Service"
+      }
+    },
+    "PHCZW4PHVBVNVGGJ": {
+      "sku": "PHCZW4PHVBVNVGGJ",
+      "productFamily": "Limitless",
+      "attributes": {
+        "servicecode": "AmazonRDS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storage": "Aurora IO Optimization Mode",
+        "engineCode": "21",
+        "databaseEngine": "Aurora PostgreSQL",
+        "usagetype": "APN1-Aurora:IO-OptimizedLimitlessACUUsage-Limitless",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Relational Database Service"
+      }
+    },
+    "HSMQ9C43F35T8QMX": {
+      "sku": "HSMQ9C43F35T8QMX",
+      "productFamily": "System Operation",
+      "attributes": {
+        "servicecode": "AmazonRDS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "engineCode": "21",
+        "databaseEngine": "Aurora PostgreSQL",
+        "group": "Aurora I/O Operation",
+        "groupDescription": "Input/Output Operation",
+        "usagetype": "APN1-Aurora:StorageIOUsage",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Relational Database Service"
+      }
     }
   },
   "terms": {
@@ -39,6 +103,90 @@
               "unit": "GB",
               "pricePerUnit": {
                 "USD": "0.0120000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "UD3CK3ZCN4ZBB6CX": {
+        "UD3CK3ZCN4ZBB6CX.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "UD3CK3ZCN4ZBB6CX",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "UD3CK3ZCN4ZBB6CX.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "UD3CK3ZCN4ZBB6CX.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.20 per Aurora Capacity Unit hour running Aurora PostgreSQL Serverless v2 IO-Optimized",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "ACU-Hr",
+              "pricePerUnit": {
+                "USD": "0.2000000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "NTURMTB2PWMA53X6": {
+        "NTURMTB2PWMA53X6.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "NTURMTB2PWMA53X6",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "NTURMTB2PWMA53X6.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "NTURMTB2PWMA53X6.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.15 per Aurora Capacity Unit hour running Aurora PostgreSQL Serverless v2",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "ACU-Hr",
+              "pricePerUnit": {
+                "USD": "0.1500000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "PHCZW4PHVBVNVGGJ": {
+        "PHCZW4PHVBVNVGGJ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "PHCZW4PHVBVNVGGJ",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "PHCZW4PHVBVNVGGJ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "PHCZW4PHVBVNVGGJ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.20 per Aurora Capacity Unit hour running Aurora PostgreSQL Limitless",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "ACU-Hr",
+              "pricePerUnit": {
+                "USD": "0.2000000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "HSMQ9C43F35T8QMX": {
+        "HSMQ9C43F35T8QMX.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "HSMQ9C43F35T8QMX",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "HSMQ9C43F35T8QMX.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "HSMQ9C43F35T8QMX.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.24 per 1 million I/O requests for Aurora PostgreSQL",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "IOs",
+              "pricePerUnit": {
+                "USD": "0.0000002400"
               },
               "appliesTo": []
             }

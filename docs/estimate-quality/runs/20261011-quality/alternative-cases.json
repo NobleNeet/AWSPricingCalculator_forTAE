@@ -1,8 +1,84 @@
 {
   "runId": "20261011-quality",
-  "generatedAt": "2026-10-11T09:37:05.970Z",
+  "generatedAt": "2026-10-11T10:19:42.249Z",
   "note": "Fresh representative cases; historical case IDs and old screenshots are unavailable in this checkout. Expected prices use independent raw AWS Price List extraction, never application Core or Price DB.",
   "cases": [
+    {
+      "id": "dedicated-independent-region-hours-1",
+      "serviceId": "ec2",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.tenancy": "Dedicated",
+        "dedicated-region-fee.hours": "0"
+      },
+      "fields": {
+        "profile.tenancy": "Dedicated",
+        "dedicated-region-fee.hours": "1"
+      },
+      "comparisonScope": [
+        "dedicated-region-fee"
+      ],
+      "formula": "One regional fee, no instance-count multiplier; regional fee hours are explicit and independent of row compute hours. Baseline zero represents regional charge carried elsewhere.",
+      "expectedAlternativeMonthlyUsd": "2",
+      "priceEvidence": [
+        {
+          "componentId": "dedicated-region-fee",
+          "quantity": "1",
+          "price": {
+            "sku": "G7K2HMN3E2YE2YE2",
+            "rateCode": "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "Hrs",
+            "priceUsd": "2.0000000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20261009203134/ap-northeast-1/index.json",
+            "version": "20261009203134",
+            "publicationDate": "2026-10-09T20:31:34Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "dedicated-independent-region-hours-100",
+      "serviceId": "ec2",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.tenancy": "Dedicated",
+        "dedicated-region-fee.hours": "0"
+      },
+      "fields": {
+        "profile.tenancy": "Dedicated",
+        "dedicated-region-fee.hours": "100"
+      },
+      "comparisonScope": [
+        "dedicated-region-fee"
+      ],
+      "formula": "One regional fee, no instance-count multiplier; regional fee hours are explicit and independent of row compute hours. Baseline zero represents regional charge carried elsewhere.",
+      "expectedAlternativeMonthlyUsd": "200",
+      "priceEvidence": [
+        {
+          "componentId": "dedicated-region-fee",
+          "quantity": "100",
+          "price": {
+            "sku": "G7K2HMN3E2YE2YE2",
+            "rateCode": "G7K2HMN3E2YE2YE2.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "Hrs",
+            "priceUsd": "2.0000000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20261009203134/ap-northeast-1/index.json",
+            "version": "20261009203134",
+            "publicationDate": "2026-10-09T20:31:34Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
     {
       "id": "fargate-32-x86-60",
       "serviceId": "fargate",
@@ -742,6 +818,199 @@
             "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
             "unit": "GB",
             "priceUsd": "0.0120000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-standard-short-capacity",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "serverless-standard.usageMode": "aggregate",
+        "serverless-standard.acuHours": "0"
+      },
+      "fields": {
+        "serverless-standard.usageMode": "capacity",
+        "serverless-standard.averageAcus": "1",
+        "serverless-standard.computeHours": "0.5"
+      },
+      "comparisonScope": [
+        "serverless-standard"
+      ],
+      "formula": "Valid physical capacity × half-hour duration; official GUI lacks independent monthly compute duration",
+      "expectedAlternativeMonthlyUsd": "0.075",
+      "priceEvidence": [
+        {
+          "componentId": "serverless-standard",
+          "quantity": "0.5",
+          "price": {
+            "sku": "NTURMTB2PWMA53X6",
+            "rateCode": "NTURMTB2PWMA53X6.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "ACU-Hr",
+            "priceUsd": "0.1500000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-io-optimized-short-capacity",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-io-optimized",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "serverless-io-optimized.usageMode": "aggregate",
+        "serverless-io-optimized.acuHours": "0"
+      },
+      "fields": {
+        "serverless-io-optimized.usageMode": "capacity",
+        "serverless-io-optimized.averageAcus": "1",
+        "serverless-io-optimized.computeHours": "0.5"
+      },
+      "comparisonScope": [
+        "serverless-io-optimized"
+      ],
+      "formula": "Valid physical capacity × half-hour duration; official GUI lacks independent monthly compute duration",
+      "expectedAlternativeMonthlyUsd": "0.1",
+      "priceEvidence": [
+        {
+          "componentId": "serverless-io-optimized",
+          "quantity": "0.5",
+          "price": {
+            "sku": "UD3CK3ZCN4ZBB6CX",
+            "rateCode": "UD3CK3ZCN4ZBB6CX.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "ACU-Hr",
+            "priceUsd": "0.2000000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-limitless-io-optimized-short-capacity",
+      "serviceId": "aurora-postgresql",
+      "profileId": "limitless-io-optimized",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "limitless-compute.usageMode": "aggregate",
+        "limitless-compute.acuHours": "0"
+      },
+      "fields": {
+        "limitless-compute.usageMode": "capacity",
+        "limitless-compute.averageAcus": "16",
+        "limitless-compute.computeHours": "0.5"
+      },
+      "comparisonScope": [
+        "limitless-compute"
+      ],
+      "formula": "Valid physical capacity × half-hour duration; official GUI lacks independent monthly compute duration",
+      "expectedAlternativeMonthlyUsd": "1.6",
+      "priceEvidence": [
+        {
+          "componentId": "limitless-compute",
+          "quantity": "8",
+          "price": {
+            "sku": "PHCZW4PHVBVNVGGJ",
+            "rateCode": "PHCZW4PHVBVNVGGJ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "ACU-Hr",
+            "priceUsd": "0.2000000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-limitless-short-aggregate",
+      "serviceId": "aurora-postgresql",
+      "profileId": "limitless-io-optimized",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "limitless-compute.usageMode": "aggregate",
+        "limitless-compute.acuHours": "0"
+      },
+      "fields": {
+        "limitless-compute.usageMode": "aggregate",
+        "limitless-compute.acuHours": "8"
+      },
+      "comparisonScope": [
+        "limitless-compute"
+      ],
+      "formula": "8 ACU-hours is valid for 16 ACU × half-hour; no universal full-month 11680 ACU-hour minimum",
+      "expectedAlternativeMonthlyUsd": "1.6",
+      "priceEvidence": [
+        {
+          "componentId": "limitless-compute",
+          "quantity": "8",
+          "price": {
+            "sku": "PHCZW4PHVBVNVGGJ",
+            "rateCode": "PHCZW4PHVBVNVGGJ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "ACU-Hr",
+            "priceUsd": "0.2000000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-one-io-with-storage",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "storage.gbMonths": "1",
+        "io-requests.requests": "0"
+      },
+      "fields": {
+        "storage.gbMonths": "1",
+        "io-requests.requests": "1"
+      },
+      "comparisonScope": [
+        "io-requests"
+      ],
+      "formula": "A valid single I/O with positive storage; official ServerlessV2 GUI offers per-month rate but rejects 1/month because of its 0.0166/hour minimum. Public display only establishes a below-one-cent bound.",
+      "expectedAlternativeMonthlyUsd": "2.4e-7",
+      "priceEvidence": [
+        {
+          "componentId": "io-requests",
+          "quantity": "1",
+          "price": {
+            "sku": "HSMQ9C43F35T8QMX",
+            "rateCode": "HSMQ9C43F35T8QMX.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "IOs",
+            "priceUsd": "0.0000002400",
             "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
             "version": "20261006224050",
             "publicationDate": "2026-10-06T22:40:50Z"

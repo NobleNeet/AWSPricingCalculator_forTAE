@@ -1,0 +1,28 @@
+{
+  "runId": "20261011-quality",
+  "updatedAt": "2026-10-11T11:17:12.565390+00:00",
+  "status": "WAITING_FOR_MATCHING_PRICE_DB_AND_PAGES",
+  "implementationPr": 64,
+  "publicationRepairPr": 65,
+  "sourceCommit": "358d307a953fa5db184d9dd9c0d09fba0e95eb89",
+  "priceUpdateRunId": 38134317362,
+  "invalidPreviousRun": {
+    "id": 38129557639,
+    "status": "cancelled",
+    "reason": "Drift omitted required resolved-component parents; report contained MISSING_USAGE."
+  },
+  "completedEvidence": {
+    "localUnitTests": 147,
+    "localTargetedE2e": 5,
+    "goldenCases": 31,
+    "nativePricingMeasurements": 23,
+    "nativeZeroBaselines": 1,
+    "preDeploymentRegressionMeasurements": 2
+  },
+  "plannedPublicMeasurements": {
+    "pricing": 52,
+    "inputValidation": 15,
+    "additionalE2e": 5
+  },
+  "note": "Planned public measurements are not PASS. Historical 1592-case audit has not been recounted."
+}

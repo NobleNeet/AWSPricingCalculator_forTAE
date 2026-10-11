@@ -1,7 +1,7 @@
 {
   "url": "https://calculator.aws/#/createCalculator/AuroraPostgreSQL",
-  "observedAt": "2026-10-11T09:33:04.902Z",
-  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Aurora PostgreSQL-Compatible DB\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nAurora PostgreSQL-Compatible Edition\nProvides speed and availability of high-end commercial databases with the simplicity and cost-effectiveness of open source databases.\nAurora Serverless PostgreSQL-Compatible Edition\nDatabase capacity automatically scales up or down to meet your application needs.\nAmazon Aurora PostgreSQL Limitless Database\nScales write throughput and storage by distributing a database workload over multiple Aurora writer instances, while maintaining the ability to use it as a single database.\nCluster Configuration Option\nInfo\nAurora PostgreSQL Cluster Configuration Options\nAurora Standard\nAdditional backup storage\nUnit\nGB\nCost effective pricing for many applications with moderate I/O usage (I/O costs <25% of total database costs).\nPay-per-request I/O charges apply. DB instance and storage prices don't include I/O usage.\nSettings\nInfo\nAurora PostgreSQL Serverless Version\nServerless\nPricing model\nOnDemand\nDatabase Engine\nAurora PostgreSQL\nNumber of Aurora Capacity Units (ACUs)\nShow calculations\nDatabase Storage\nInfo\nStorage amount\nTotal Storage Size of the Aurora Cluster\nValue\nUnit\nGB\nBaseline IO rate\nEnter the number of IOs per second that your workload consumes during off-peak periods.\nValue\nUnit\nper second\nPeak IO rate\nEnter the maximum number of IOs per second your workload consumes during peak periods.\nValue\nUnit\nper second\nDuration of peak IO activity\nEnter the number of hours per month when your cluster or instance workload operates at peak.\nValue\nUnit\nhours per month\nShow calculations\nDatabase Insights Pricing for Aurora Serverless v2 Instances\nInfo\nWould you be enabling Database Insights with the database?\nYes\nShow calculations\nBackup Storage\nInfo\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 46.08 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "observedAt": "2026-10-11T10:18:08.527Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Aurora PostgreSQL-Compatible DB\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nAurora PostgreSQL-Compatible Edition\nProvides speed and availability of high-end commercial databases with the simplicity and cost-effectiveness of open source databases.\nAurora Serverless PostgreSQL-Compatible Edition\nDatabase capacity automatically scales up or down to meet your application needs.\nAmazon Aurora PostgreSQL Limitless Database\nScales write throughput and storage by distributing a database workload over multiple Aurora writer instances, while maintaining the ability to use it as a single database.\nCluster Configuration Option\nInfo\nAurora PostgreSQL Cluster Configuration Options\nAurora Standard\nAdditional backup storage\nUnit\nGB\nCost effective pricing for many applications with moderate I/O usage (I/O costs <25% of total database costs).\nPay-per-request I/O charges apply. DB instance and storage prices don't include I/O usage.\nSettings\nInfo\nAurora PostgreSQL Serverless Version\nServerlessV2\nPricing model\nOnDemand\nTerm\n1yr\nPurchase option\nNo Upfront\nDatabase Engine\nAurora PostgreSQL\nNumber of Aurora Capacity Units (ACUs)\nShow calculations\nRDS Proxy\nInfo\nWould you be creating an RDS Proxy with the database?\nYes\nShow calculations\nDatabase Storage\nInfo\nStorage amount\nTotal Storage Size of the Aurora Cluster\nValue\nUnit\nGB\nBaseline IO rate\nEnter the number of IOs per second that your workload consumes during off-peak periods.\nValue\nUnit\nper second\nPeak IO rate\nEnter the maximum number of IOs per second your workload consumes during peak periods.\nValue\nUnit\nper second\nDuration of peak IO activity\nEnter the number of hours per month when your cluster or instance workload operates at peak.\nValue\nUnit\nhours per month\nShow calculations\nDatabase Insights Pricing for Aurora Serverless v2 Instances\nInfo\nWould you be enabling Database Insights with the database?\nYes\nShow calculations\nBackup Storage\nInfo\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 177.48 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
   "fields": [
     {
       "tag": "BUTTON",
@@ -77,7 +77,7 @@
       "tag": "BUTTON",
       "type": "button",
       "label": null,
-      "text": "Serverless",
+      "text": "ServerlessV2",
       "value": ""
     },
     {
@@ -85,6 +85,20 @@
       "type": "button",
       "label": null,
       "text": "OnDemand",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "1yr",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "No Upfront",
       "value": ""
     },
     {
@@ -100,6 +114,13 @@
       "label": "Number of Aurora Capacity Units (ACUs)",
       "text": "",
       "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "Yes",
+      "value": ""
     },
     {
       "tag": "INPUT",

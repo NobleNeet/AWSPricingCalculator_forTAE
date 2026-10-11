@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 test('invalid inputs suppress the estimate and recover without silently changing saved usage', async ({page}) => {
  await page.goto('./');
+ await expect(page.locator('#price-meta')).toContainText(/Price Data \d{4}-\d{2}-\d{2}/);
  await page.getByRole('button',{name:'最初の構成案を作る'}).click();
  await page.getByRole('button',{name:'サービスを追加',exact:true}).click();
  await page.locator('[data-service="rds"]').click();

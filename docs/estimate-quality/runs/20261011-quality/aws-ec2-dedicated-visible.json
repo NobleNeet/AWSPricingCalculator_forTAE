@@ -1,0 +1,333 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/ec2-enhancement",
+  "observedAt": "2026-10-11T09:56:04.607Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EC2 \n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nEC2 specifications\nInfo\nTenancy\nChoose the tenancy type to run your Amazon EC2 instances on.\nDedicated Instances\nOperating system\nChoose the operating system to run your Amazon EC2 instances on.\nLinux\nWorkloads\nChoose the graph that best represents your monthly workload\nConstant usage\nDaily spike traffic\nWeekly spike traffic\nMonthly spike traffic\nNumber of instances\nPlease specify the total number of Instances that you need each month.\nEC2 Instances (1107)\n\nBased on your inputs, this is the lowest-cost EC2 instance: t3.nano\n\nChosen instance: t3.nano | Family: t3 | 2vCPU | 0.5 GiB Memory\n\nSearch instance type\nInstance family Info\nAny Instance family\nvCPUs\nAny vCPUs\nMemory (GiB)\nAny Memory (GiB)\nNetwork performance\nAny Network Performance\nShow only current generation instances.\n1\n2\n3\n4\n5\n6\n7\n...\n111\n\t\nInstance name\n\t\nvCPUs\n\t\nMemory\n\t\nNetwork Performance\n\t\nStorage\n\t\nOn-Demand Hourly Cost\n\t\nCurrentGeneration\n\t\nPotential Effective Hourly Cost (Savings %)\n\n\n\t\nt3.nano\n\t\n2\n\t\n0.5 GiB\n\t\nUp to 5 Gigabit\n\t\nEBS only\n\t\n0.0052\n\t\nYes\n\t\n0.0019 (63%)\n\n\n\t\nt3.micro\n\t\n2\n\t\n1 GiB\n\t\nUp to 5 Gigabit\n\t\nEBS only\n\t\n0.011\n\t\nYes\n\t\n0.0045 (59%)\n\n\n\t\nt3.small\n\t\n2\n\t\n2 GiB\n\t\nUp to 5 Gigabit\n\t\nEBS only\n\t\n0.022\n\t\nYes\n\t\n0.0091 (59%)\n\n\n\t\nc6g.medium\n\t\n1\n\t\n2 GiB\n\t\nUp to 10 Gigabit\n\t\nEBS only\n\t\n0.036\n\t\nYes\n\t\n0.0148 (59%)\n\n\n\t\nc7g.medium\n\t\n1\n\t\n2 GiB\n\t\nUp to 12500 Megabit\n\t\nEBS only\n\t\n0.0384\n\t\nYes\n\t\n0.0161 (58%)\n\n\n\t\nc6gd.medium\n\t\n1\n\t\n2 GiB\n\t\nUp to 10 Gigabit\n\t\n1 x 59 NVMe SSD\n\t\n0.0407\n\t\nYes\n\t\n0.0167 (59%)\n\n\n\t\nm6g.medium\n\t\n1\n\t\n4 GiB\n\t\nUp to 10 Gigabit\n\t\nEBS only\n\t\n0.0408\n\t\nYes\n\t\n0.0169 (59%)\n\n\n\t\nm7g.medium\n\t\n1\n\t\n4 GiB\n\t\nUp to 12500 Megabit\n\t\nEBS only\n\t\n0.0434\n\t\nYes\n\t\n0.0187 (57%)\n\n\n\t\nc8g.medium\n\t\n1\n\t\n2 GiB\n\t\nUp to 12.5 Gigabit\n\t\nEBS only\n\t\n0.04371\n\t\nYes\n\t\n0.0167 (62%)\n\n\n\t\nt3.medium\n\t\n2\n\t\n4 GiB\n\t\nUp to 5 Gigabit\n\t\nEBS only\n\t\n0.0441\n\t\nYes\n\t\n0.0181 (59%)\nPayment options\nEstimated commitment price based on the following selections:\nInstance type: t3.nano\nOperating system: Linux\nSelect the container and options to find your best price\nOn-Demand\nMaximize flexibility. Learn more\nExpected utilization\nEnter the expected usage of Amazon EC2 instances\n\nUsage\n\nUsage type\n\nUtilization percent per month\nNote that for usage less than 100%, the calculator assumes that the attached EBS volume is deleted while the instance is not running. Keep in mind that volumes are billed as long as they are provisioned in your account, even while attached to a stopped instance.\nInstance: 0.0052/Hour\nMonthly: 1.90/Month\nSpot Instances\nMinimize cost by leveraging EC2's spare capacity. Recommended for fault tolerant and interruption tolerant applications. Learn more\nThe historical average discount for t3.nano is 73%\nAssume percentage discount for my estimate\nActual spot instance pricing varies\nWith spot instances, you pay the spot price that's in effect for the time period your instance is running\nInstance: 0.0052/Hour\nMonthly: 3.83/Month\nStandard Reserved Instances\nLearn about Standard Reserved Instances.\nReservation term\n1 year\n3 year\nPayment Options\nNo upfront\nPartial upfront\nAll upfront\nUpfront: 0.00\nMonthly: 1.61/Month\nConvertible Reserved Instances\nLearn more\nReservation term\n1 year\n3 year\nPayment Options\nNo upfront\nPartial upfront\nAll upfront\nUpfront: 0.00\nMonthly: 1.90/Month\nShow calculations\nAmazon Elastic Block Store (EBS) - optional\nInfo\nDetailed monitoring - optional\nInfo\nData transfer - optional\nAdditional costs - optional\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 731.90 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "label": "Language: English",
+      "value": "",
+      "text": "Language: English"
+    },
+    {
+      "label": "Description - optional",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Region"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "US East (Ohio)"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Dedicated Instances"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Linux"
+    },
+    {
+      "label": null,
+      "value": "consistent",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Constant usage"
+    },
+    {
+      "label": null,
+      "value": "daily",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Daily spike traffic"
+    },
+    {
+      "label": null,
+      "value": "weekly",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Weekly spike traffic"
+    },
+    {
+      "label": null,
+      "value": "monthly",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Monthly spike traffic"
+    },
+    {
+      "label": "Number of instances Enter amount",
+      "value": "1",
+      "text": ""
+    },
+    {
+      "label": "Search instance types Search by instance name or filter by keyword",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Any Instance family"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Any vCPUs"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Any Memory (GiB)"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Any Network Performance"
+    },
+    {
+      "label": null,
+      "value": "on",
+      "text": ""
+    },
+    {
+      "label": "Previous page",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": "Page 1 of all pages",
+      "value": "",
+      "text": "1"
+    },
+    {
+      "label": "Page 2 of all pages",
+      "value": "",
+      "text": "2"
+    },
+    {
+      "label": "Page 3 of all pages",
+      "value": "",
+      "text": "3"
+    },
+    {
+      "label": "Page 4 of all pages",
+      "value": "",
+      "text": "4"
+    },
+    {
+      "label": "Page 5 of all pages",
+      "value": "",
+      "text": "5"
+    },
+    {
+      "label": "Page 6 of all pages",
+      "value": "",
+      "text": "6"
+    },
+    {
+      "label": "Page 7 of all pages",
+      "value": "",
+      "text": "7"
+    },
+    {
+      "label": "Page 111 of all pages",
+      "value": "",
+      "text": "111"
+    },
+    {
+      "label": "Next page",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": "Preferences",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Potential Effective Hourly Cost (Savings %)"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": "On-Demand",
+      "value": "on-demand",
+      "text": ""
+    },
+    {
+      "label": "Usage",
+      "value": "50",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Utilization percent per month"
+    },
+    {
+      "label": "Spot Instances",
+      "value": "spot",
+      "text": ""
+    },
+    {
+      "label": "Assume percentage discount for my estimate",
+      "value": "-1",
+      "text": ""
+    },
+    {
+      "label": "Standard Reserved Instances",
+      "value": "standard",
+      "text": ""
+    },
+    {
+      "label": "1 year",
+      "value": "1 Year",
+      "text": ""
+    },
+    {
+      "label": "3 year",
+      "value": "3 Year",
+      "text": ""
+    },
+    {
+      "label": "No upfront",
+      "value": "None",
+      "text": ""
+    },
+    {
+      "label": "Partial upfront",
+      "value": "Partial",
+      "text": ""
+    },
+    {
+      "label": "All upfront",
+      "value": "All",
+      "text": ""
+    },
+    {
+      "label": "Convertible Reserved Instances",
+      "value": "convertible",
+      "text": ""
+    },
+    {
+      "label": "1 year",
+      "value": "1 Year",
+      "text": ""
+    },
+    {
+      "label": "3 year",
+      "value": "3 Year",
+      "text": ""
+    },
+    {
+      "label": "No upfront",
+      "value": "None",
+      "text": ""
+    },
+    {
+      "label": "Partial upfront",
+      "value": "Partial",
+      "text": ""
+    },
+    {
+      "label": "All upfront",
+      "value": "All",
+      "text": ""
+    },
+    {
+      "label": "Open help panel",
+      "value": "",
+      "text": ""
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Show Details"
+    },
+    {
+      "label": null,
+      "value": "",
+      "text": "Cancel"
+    },
+    {
+      "label": "Save and view summary",
+      "value": "",
+      "text": "Save and view summary"
+    },
+    {
+      "label": "Save and add service",
+      "value": "",
+      "text": "Save and add service"
+    }
+  ],
+  "note": "GUI-field discovery only. Region Ohio, utilization 50%; no separate regional fee duration input. Not a same-condition Tokyo price comparison."
+}

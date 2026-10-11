@@ -7,7 +7,7 @@ const schedulerGolden = await readJson('services/eventbridge/golden/tokyo.json')
 const eventPrices = await readJson('tests/fixtures/aws/AWSEvents.json');
 const schedulerAmount = quantity => money(verifyRawPrice(eventPrices, { ...schedulerGolden.verification.scheduler, quantity }).amountUsd);
 
-async function start(page) { await page.goto('./'); await page.getByRole('button', { name:'最初の構成案を作る' }).click(); }
+async function start(page) { await page.goto('./'); await expect(page.locator('#price-meta')).toContainText(/Price Data \d{4}-\d{2}-\d{2}/); await page.getByRole('button', { name:'最初の構成案を作る' }).click(); }
 async function add(page, service) { await page.getByRole('button', { name:'サービスを追加',exact:true }).click(); await page.locator(`[data-service="${service}"]`).click(); }
 async function set(page, selector, value) { const input=page.locator(selector); await input.waitFor({state:'attached'}); const details=input.locator('xpath=ancestor::details'); if(await details.count() && !await input.isVisible()) await details.locator('summary').click(); await input.fill(value); await input.press('Tab'); }
 async function close(page) { await page.getByLabel('編集を閉じる').click(); }

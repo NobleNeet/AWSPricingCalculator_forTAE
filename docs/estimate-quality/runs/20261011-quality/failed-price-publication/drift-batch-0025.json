@@ -1,0 +1,71 @@
+{
+  "batchId": "0025",
+  "caseLimit": 10000,
+  "caseOffset": 10000,
+  "classification": "STRUCTURE_BREAKING",
+  "command": "classify-change-batch",
+  "includeStructural": false,
+  "issues": [
+    {
+      "code": "MISSING_USAGE",
+      "componentId": "ebs-io2-iops-tier2",
+      "message": "Missing resolved input ebs-io2-iops.provisionedIops.",
+      "region": "ap-northeast-1",
+      "severity": "error"
+    },
+    {
+      "code": "MISSING_USAGE",
+      "componentId": "ebs-io2-iops-tier3",
+      "message": "Missing resolved input ebs-io2-iops.provisionedIops.",
+      "region": "ap-northeast-1",
+      "severity": "error"
+    },
+    {
+      "code": "MISSING_USAGE",
+      "componentId": "ebs-io2-iops-tier2",
+      "message": "Missing resolved input ebs-io2-iops.provisionedIops.",
+      "region": "ap-northeast-1",
+      "severity": "error"
+    },
+    {
+      "code": "MISSING_USAGE",
+      "componentId": "ebs-io2-iops-tier3",
+      "message": "Missing resolved input ebs-io2-iops.provisionedIops.",
+      "region": "ap-northeast-1",
+      "severity": "error"
+    }
+  ],
+  "plannedCases": 10000,
+  "processedCases": 10000,
+  "publishable": false,
+  "rateDiff": [],
+  "reuseMode": "none",
+  "reusedCases": 0,
+  "schemaVersion": 1,
+  "seenCases": 20001,
+  "status": "failed",
+  "summary": {
+    "error": 4,
+    "info": 0,
+    "warning": 0
+  },
+  "taskId": 24,
+  "taskIds": [
+    24
+  ],
+  "taskTimings": [
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 663558,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    }
+  ],
+  "warning": false
+}
