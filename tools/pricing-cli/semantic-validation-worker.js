@@ -79,7 +79,7 @@ async function runTask(task) {
   const coverage = {};
   const data = {};
   const normalizersByCode = {};
-  const coverageCategories = new Map();
+  let coverageCategories = null;
   let scannedProducts = 0;
   let selectedProducts = 0;
   let chunks = 0;
@@ -88,27 +88,27 @@ async function runTask(task) {
     const normalizer = await normalizerFor(code);
     normalizersByCode[code] = normalizer;
     const cacheKey = `${serviceCode}|${code}|${region}`;
-    let cached = sourceLoadCache.get(cacheKey);
+    let cached = task.planOnly ? null : sourceLoadCache.get(cacheKey);
     if (!cached) {
-      const chunkData = [];
-      const chunkDescriptors = [];
+      const schemaIssues = [];
+      const inventoryCategories = new Map();
       const loaded = await loadProductsMatching(workerData.directory, source, productPredicate(servicePackages, code), {
-        onChunk: async (value, descriptor) => {
-          chunkData.push(value);
-          chunkDescriptors.push(descriptor);
+        onChunk: async (chunkData, chunk) => {
+          if (!task.planOnly && !validateProducts(chunkData)) {
+            schemaIssues.push(issue('SCHEMA_ERROR', `${code}/${region}/${chunk.path}: ${JSON.stringify(validateProducts.errors)}`));
+          }
+          if (!task.planOnly && code === serviceCode) accumulateInventory(inventoryCategories, chunkData, common, normalizer);
         }
       });
-      cached = { loaded, chunkData, chunkDescriptors };
-      sourceLoadCache.set(cacheKey, cached);
+      cached = {
+        loaded,
+        schemaIssues,
+        coverageCategories: !task.planOnly && code === serviceCode ? finalizeInventory(inventoryCategories) : null
+      };
+      if (!task.planOnly) sourceLoadCache.set(cacheKey, cached);
     }
-    for (let index = 0; index < cached.chunkData.length; index++) {
-      const chunkData = cached.chunkData[index];
-      const chunk = cached.chunkDescriptors[index];
-      if (!task.planOnly && (task.includeDefaults ?? true) && !validateProducts(chunkData)) {
-        issues.push(issue('SCHEMA_ERROR', `${code}/${region}/${chunk.path}: ${JSON.stringify(validateProducts.errors)}`));
-      }
-      if (!task.planOnly && includeCoverage && code === serviceCode) accumulateInventory(coverageCategories, chunkData, common, normalizer);
-    }
+    if (!task.planOnly && (task.includeDefaults ?? true)) issues.push(...cached.schemaIssues);
+    if (!task.planOnly && includeCoverage && code === serviceCode) coverageCategories = cached.coverageCategories;
     data[`${code}/${region}`] = cached.loaded.data;
     scannedProducts += cached.loaded.stats.products;
     selectedProducts += cached.loaded.stats.selectedProducts;
@@ -129,9 +129,9 @@ async function runTask(task) {
   }
 
   if (includeCoverage) {
-    const categories = finalizeInventory(coverageCategories);
+    if (!coverageCategories) throw new Error(`Coverage inventory missing for ${serviceCode}/${region}`);
     for (const pkg of servicePackages) {
-      const checkedCoverage = validateCoverage(categories, pkg.coverage);
+      const checkedCoverage = validateCoverage(coverageCategories, pkg.coverage);
       coverage[`${pkg.service.id}/${region}`] = checkedCoverage.summary;
       issues.push(...checkedCoverage.issues.map(entry => ({ ...entry, serviceId: pkg.service.id, region })));
     }
