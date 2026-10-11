@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { evaluateService } from '../../src/pricing/core.js';
 import { reachableCaseIterator } from './semantics.js';
 import { semanticEncode } from './semantic-json.js';
+import { packageWithDependencies, productMatcher, productsForCase } from './drift-context.js';
 
 export function semanticProduct(product) {
   return {
@@ -85,7 +86,7 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
       if (includeStructural && semanticDigest(before) !== semanticDigest(after)) warning = true;
 
       const beforeByServiceCode = { [code]: before.products };
-      const afterByServiceCode = { [code]: after.products };
+      const beforeMatcher = productMatcher(before.products), afterMatcher = productMatcher(after.products);
       for (const sample of reachableCaseIterator(pkg, beforeByServiceCode, before.region)) {
         const caseIndex = seenCases++;
         progressCases += 1;
@@ -108,13 +109,16 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
           continue;
         }
 
+        const casePackage = packageWithDependencies(pkg, sample.instance.profileId, sample.componentId);
+        const oldProducts = productsForCase(casePackage, sample.instance, sample.project, beforeMatcher);
+        const newProducts = productsForCase(casePackage, sample.instance, sample.project, afterMatcher);
         const oldResult = evaluateService(
-          sample.pkg,
+          casePackage,
           sample.instance,
           sample.project,
-          sample.products,
-          sample.profileProducts,
-          sample.productsByServiceCode
+          oldProducts.products,
+          oldProducts.profileProducts,
+          { [code]: oldProducts.products }
         );
         const oldComponent = oldResult.components[sample.componentId];
         const oldSku = oldComponent?.resolution?.product?.sku;
@@ -125,16 +129,15 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
           continue;
         }
 
-        const newProducts = afterByServiceCode[code];
         const newResult = evaluateService(
-          sample.pkg,
+          casePackage,
           sample.instance,
           sample.project,
-          newProducts,
-          newProducts,
-          afterByServiceCode
+          newProducts.products,
+          newProducts.profileProducts,
+          { [code]: newProducts.products }
         );
-        breaks.push(...newResult.issues.map(issue => ({ ...issue, region: after.region })));
+        breaks.push(...newResult.issues.filter(issue => !issue.componentId || issue.componentId === sample.componentId).map(issue => ({ ...issue, region: after.region })));
         const next = newResult.components[sample.componentId];
         if (oldComponent?.unitPriceUsd !== next?.unitPriceUsd) {
           rateDiff.push({

@@ -1,0 +1,33 @@
+name: Recover invalid estimate-quality publication
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/price-update-recovery.yml']
+  workflow_dispatch:
+permissions:
+  actions: write
+  contents: read
+jobs:
+  cancel-known-invalid-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            // This run omitted resolved-component dependencies in drift checks.
+            // Stop that exact invalid candidate so corrected validation can run.
+            // Never cancel a different workflow, commit, or replacement run.
+            const run_id = 38129557639;
+            const { data: run } = await github.rest.actions.getWorkflowRun({
+              ...context.repo, run_id
+            });
+            if (run.head_sha !== '9764b6f08efb885e84e360f8bf5945e61d63ac01' ||
+                run.path !== '.github/workflows/price-update.yml') {
+              throw new Error('Recovery target does not match the recorded invalid candidate.');
+            }
+            if (run.status === 'completed') {
+              core.info(`Target already completed: ${run.conclusion}`);
+              return;
+            }
+            await github.rest.actions.cancelWorkflowRun({ ...context.repo, run_id });
+            core.info(`Cancelled invalid candidate ${run_id}; replacement must pass all publication gates.`);
