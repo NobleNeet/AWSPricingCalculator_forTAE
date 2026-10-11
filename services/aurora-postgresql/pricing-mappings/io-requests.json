@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "io-requests",
+  "componentId": "io-requests",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "productMatchers": [
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "Aurora PostgreSQL"
+    },
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "System Operation"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "Aurora I/O Operation"
+    },
+    {
+      "field": "usageType",
+      "op": "in",
+      "value": [
+        "APN1-Aurora:StorageIOUsage",
+        "APN3-Aurora:StorageIOUsage",
+        "Aurora:StorageIOUsage",
+        "USE2-Aurora:StorageIOUsage",
+        "USW1-Aurora:StorageIOUsage",
+        "USW2-Aurora:StorageIOUsage"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "IOs"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Aurora PostgreSQL Standard I/O exact SKU. Positive I/O requires positive storage; zero I/O remains valid."
+}

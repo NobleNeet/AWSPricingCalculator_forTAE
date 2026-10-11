@@ -35,10 +35,10 @@ AWS Pricing Calculator UIは、入力項目・依存関係・初期値・primary
 - Savings Plans対象外
 - Spot対象外
 - 為替換算対象外
-- Free Tier / free allowanceは計算へ反映しない
-- Tier pricingは段階計算しない
+- Schedulerの明示的残り無料枠以外のFree Tier / free allowanceは計算へ反映しない
+- 明示的に対応したS3 Standard / EC2 io2は段階計算する
 
-Tier pricingが存在する場合は、既知のfree allowance dimensionを除外したうえで、最小の `beginRange` を持つ通常有料dimensionの単価を全使用量へ適用する。
+unit modelでは、既知のfree allowance dimensionを除外し、最小の `beginRange` を持つ通常有料dimensionの単価を全使用量へ適用する。対応済みtiered modelは別途段階積算する。
 
 ### 1.4 保守的概算
 
@@ -362,9 +362,9 @@ Free Tier / free allowanceと信頼して識別できる0円dimensionは料金�
 
 ### 7.3 Tier
 
-Tier構造を検出しても段階積算しない。
+明示的な `tiered` modelは、同じSKUの連続する有料dimensionをDecimalで段階積算する。S3 Standardのみに適用し、Plan/Region単位で合算する。io2は別SKUの3 Componentに分割し、ボリューム単位で境界を適用する。その他のunit modelは段階積算しない。
 
-free allowanceを除いた通常有料tierのうち、最小 `beginRange` のdimensionを全usageへ適用し、`tier-pricing` Limitationを付与する。
+unit modelでは、free allowanceを除いた通常有料tierのうち、最小 `beginRange` のdimensionを全usageへ適用し、`tier-pricing` Limitationを付与する。
 
 ### 7.4 複数paid dimension
 
@@ -390,8 +390,7 @@ This is deterministic and **not** arbitrary JavaScript. The `componentId` must r
 
 ### 8.1 model
 
-初期版の正式modelは `unit` のみ。
-`tiered` modelは持たない。
+正式modelは `unit` と、明示的に対応した同一SKUの連続有料dimension用の `tiered`。詳細は [見積品質改善仕様](estimate-quality/SPEC.md)。
 
 ### 8.2 usage
 

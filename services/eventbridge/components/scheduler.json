@@ -51,7 +51,16 @@
     "outputUnit": "Invocations"
   },
   "limitations": [
-    "free-tier",
     "account-specific-discount"
-  ]
+  ],
+  "billingGroup": {
+    "id": "scheduler-free-invocations",
+    "scope": "plan",
+    "policy": "allowance",
+    "remainingFrom": "schedulerFreeInvocationsRemaining",
+    "maximumAllowance": "14000000"
+  },
+  "ui": {
+    "help": "Projectの残り無料呼び出し枠を同じPlanの全行・全Regionで共有します。見積もり外のアカウント使用量を差し引いた残り枠を設定してください。"
+  }
 }

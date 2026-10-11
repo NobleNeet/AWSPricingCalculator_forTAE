@@ -1,0 +1,363 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/Fargate",
+  "observedAt": "2026-10-11T09:09:47.044Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure AWS Fargate\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nOn Demand\nInfo\nFargate Spot and Compute Savings Plans are currently not supported on the AWS Pricing Calculator.\nWith AWS Fargate, there are no upfront payments and you only pay for the resources that you use. Pricing is based on requested vCPU, memory, and storage resources consumed by your Amazon ECS Task or Amazon EKS Pod.\nOperating system\nLinux\nCPU Architecture\nx86\nNumber of tasks or pods\nEnter the number of tasks or pods running for your application\nValue\nUnit\nper day\nAverage duration\nEnter the time period for which your tasks or pods are running. Pricing is per second with a 1-minute minimum (Linux) and a 5-minute minimum (Windows). Duration is calculated from the time you start to download your container image (docker pull) until the Task or Pod terminates, rounded up to the nearest second.\nValue\nUnit\nminutes\nAmount of vCPU allocated\nEnter the amount between 0.25 vCPU and 16 vCPU\n1\nvCPU selected supports memory values between 2 GB and 8 GB, in 1 GB increments\nAmount of memory allocated\nUnit\nGB\nAmount of ephemeral storage allocated for Amazon ECS\nEnter the amount between 20 GB and 200 GB. The first 20 GB are at no additional charge, you only pay for any additional storage that you configure for the Task.\nValue\nUnit\nGB\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Accept all cookies",
+      "text": "Accept",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Decline",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Customize cookie preferences",
+      "text": "Customize",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-essential",
+      "label": "Allow essential category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-performance",
+      "label": "Allow performance category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-functional",
+      "label": "Allow functional category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-advertising",
+      "label": "Allow advertising category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Cancel customizing cookie preferences",
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "allowed"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "not allowed"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Dismiss error message modal",
+      "text": "Dismiss",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": null,
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "Language: English",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField2569-1791709780419-7941",
+      "label": "Description - optional",
+      "placeholder": "Enter a description for your estimate",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2571-1791709780419-1191",
+      "label": null,
+      "text": "Region",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2584-1791709780420-1049",
+      "label": null,
+      "text": "US East (Ohio)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2630-1791709780442-7298",
+      "label": null,
+      "text": "Linux",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2640-1791709780443-1815",
+      "label": null,
+      "text": "x86",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2605-1791709780424-3812",
+      "label": "Number of tasks or pods Value",
+      "placeholder": "",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2607-1791709780424-2640",
+      "label": null,
+      "text": "per day",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2618-1791709780425-8940",
+      "label": "Average duration Value",
+      "placeholder": "Enter the average duration for each task",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2620-1791709780425-1489",
+      "label": null,
+      "text": "minutes",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2650-1791709780445-483",
+      "label": null,
+      "text": "1",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2662-1791709780446-4519",
+      "label": "Amount of memory allocated Value",
+      "placeholder": "Enter the amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2664-1791709780446-3662",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2676-1791709780798-3080",
+      "label": "Amount of ephemeral storage allocated for Amazon ECS Value",
+      "placeholder": "Enter the amount",
+      "text": "",
+      "value": "20"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2678-1791709780799-4079",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Open help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Close help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    }
+  ]
+}

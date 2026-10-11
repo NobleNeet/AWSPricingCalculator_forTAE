@@ -55,5 +55,8 @@
   },
   "limitations": [
     "account-specific-discount"
-  ]
+  ],
+  "ui": {
+    "help": "EventBridge Classicの公開料金式に従い、KBを1024²でGBへ換算します。中間値は丸めません。公式Calculatorの中間丸めと推定される差により、小さいpayloadで表示額が異なる場合があります。処理対象イベント数と保存対象イベント数は独立し、既存Archiveの保存だけを見積もることもできます。"
+  }
 }

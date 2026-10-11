@@ -1,0 +1,224 @@
+[
+  {
+    "id": "io2-31999",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:49.106Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "31999",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "2509.93",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 2,509.93 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-32000",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:49.977Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "32000",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "2510.00",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 2,510.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-32001",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:50.865Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "32001",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "2510.05",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 2,510.05 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-63999",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:51.770Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "63999",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "4167.55",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 4,167.55 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-64000",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:52.626Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "64000",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "4167.60",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 4,167.60 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-64001",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:53.491Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "64001",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "4167.64",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 4,167.64 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-80000",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:54.418Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "80000",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "4747.76",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 4,747.76 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-256000",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:55.291Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "256000",
+      "volumeCount": "1",
+      "volumeHours": "730",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "11129.52",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 11,129.52 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "io2-80000-2vol-365h",
+    "url": "https://calculator.aws/#/createCalculator/EBS",
+    "observedAt": "2026-10-11T09:27:56.574Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "iops": "80000",
+      "volumeCount": "2",
+      "volumeHours": "365",
+      "storageGb": "1000",
+      "snapshotFrequency": "No snapshot storage"
+    },
+    "monthlyUsd": "4747.76",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nProvisioned IOPS SSD (io2)\nVolume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.\nStorage amount per volume\nUnit\nGB\nProvisioning IOPS per volume (io2)\nio2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.\nSnapshot Frequency\nNo snapshot storage\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 4,747.76 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "s3-51199",
+    "url": "https://calculator.aws/#/createCalculator/S3",
+    "observedAt": "2026-10-11T09:28:18.426Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "storageGb": "51199",
+      "otherUsage": "blank"
+    },
+    "monthlyUsd": "1279.97",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Simple Storage Service (S3)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nSelect S3 Storage classes and other featuresInfo\n\nSelect AWS services that you want to estimate\n\nS3 Standard\nS3 Intelligent - Tiering\nS3 Standard - Infrequent Access\nS3 Glacier Flexible Retrieval\nS3 Glacier Deep Archive\nS3 Management and Insights\nS3 Annotations\nS3 One Zone - Infrequent Access\nS3 Vectors\nS3 Object Lambda\nS3 Glacier Instant Retrieval\nData Transfer\nS3 Express One Zone\nS3 Access Grants\nS3 Files\nS3 Tables\nS3 Standard feature\nS3 Standard\nInfo\nThe calculations below exclude Free Tier discounts.\nS3 Standard storage\nUnit\nGB per month\nHow will data be moved into S3 Standard?\nAutomatically calculates PUT, COPY, POST costs for moving data into S3 Standard initially. To compare the cost of current storage in S3 Standard to lifecycling this data to another storage class, you can specify that your storage is already stored in S3 Standard while selecting Lifecycle under the new storage class to capture the upfront cost of moving your data.\nThe specified amount of data is already stored in S3 Standard\nPUT, COPY, POST, LIST requests to S3 Standard\nOngoing monthly number of PUT, COPY, POST or LIST requests\nGET, SELECT, and all other requests from S3 Standard\nOngoing monthly number of GET, SELECT and all other requests\nData returned by S3 Select\nOngoing monthly volume of data returned by S3 Select requests\nValue\nUnit\nGB per month\nData scanned by S3 Select\nOngoing monthly volume of data scanned by S3 Select requests\nValue\nUnit\nGB per month\nShow calculations\nData Transfer feature\nData Transfer\nInfo\nInbound Data Transfer\nEnter the data you expect to transfer into Asia Pacific (Tokyo)\nData transfer from\nData transfer from\nEnter Amount\nData amount\nTB per month\nAdd inbound data transfer\n\n\n\n\nOutbound Data Transfer\nEnter the data you expect to transfer out of Asia Pacific (Tokyo)\nData transfer to\nData transfer to\nEnter Amount\nData amount\nTB per month\nAdd outbound data transfer\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 1,279.97 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "s3-51200",
+    "url": "https://calculator.aws/#/createCalculator/S3",
+    "observedAt": "2026-10-11T09:28:19.567Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "storageGb": "51200",
+      "otherUsage": "blank"
+    },
+    "monthlyUsd": "1280.00",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Simple Storage Service (S3)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nSelect S3 Storage classes and other featuresInfo\n\nSelect AWS services that you want to estimate\n\nS3 Standard\nS3 Intelligent - Tiering\nS3 Standard - Infrequent Access\nS3 Glacier Flexible Retrieval\nS3 Glacier Deep Archive\nS3 Management and Insights\nS3 Annotations\nS3 One Zone - Infrequent Access\nS3 Vectors\nS3 Object Lambda\nS3 Glacier Instant Retrieval\nData Transfer\nS3 Express One Zone\nS3 Access Grants\nS3 Files\nS3 Tables\nS3 Standard feature\nS3 Standard\nInfo\nThe calculations below exclude Free Tier discounts.\nS3 Standard storage\nUnit\nGB per month\nHow will data be moved into S3 Standard?\nAutomatically calculates PUT, COPY, POST costs for moving data into S3 Standard initially. To compare the cost of current storage in S3 Standard to lifecycling this data to another storage class, you can specify that your storage is already stored in S3 Standard while selecting Lifecycle under the new storage class to capture the upfront cost of moving your data.\nThe specified amount of data is already stored in S3 Standard\nPUT, COPY, POST, LIST requests to S3 Standard\nOngoing monthly number of PUT, COPY, POST or LIST requests\nGET, SELECT, and all other requests from S3 Standard\nOngoing monthly number of GET, SELECT and all other requests\nData returned by S3 Select\nOngoing monthly volume of data returned by S3 Select requests\nValue\nUnit\nGB per month\nData scanned by S3 Select\nOngoing monthly volume of data scanned by S3 Select requests\nValue\nUnit\nGB per month\nShow calculations\nData Transfer feature\nData Transfer\nInfo\nInbound Data Transfer\nEnter the data you expect to transfer into Asia Pacific (Tokyo)\nData transfer from\nData transfer from\nEnter Amount\nData amount\nTB per month\nAdd inbound data transfer\n\n\n\n\nOutbound Data Transfer\nEnter the data you expect to transfer out of Asia Pacific (Tokyo)\nData transfer to\nData transfer to\nEnter Amount\nData amount\nTB per month\nAdd outbound data transfer\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 1,280.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "s3-51201",
+    "url": "https://calculator.aws/#/createCalculator/S3",
+    "observedAt": "2026-10-11T09:28:20.744Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "storageGb": "51201",
+      "otherUsage": "blank"
+    },
+    "monthlyUsd": "1280.02",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Simple Storage Service (S3)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nSelect S3 Storage classes and other featuresInfo\n\nSelect AWS services that you want to estimate\n\nS3 Standard\nS3 Intelligent - Tiering\nS3 Standard - Infrequent Access\nS3 Glacier Flexible Retrieval\nS3 Glacier Deep Archive\nS3 Management and Insights\nS3 Annotations\nS3 One Zone - Infrequent Access\nS3 Vectors\nS3 Object Lambda\nS3 Glacier Instant Retrieval\nData Transfer\nS3 Express One Zone\nS3 Access Grants\nS3 Files\nS3 Tables\nS3 Standard feature\nS3 Standard\nInfo\nThe calculations below exclude Free Tier discounts.\nS3 Standard storage\nUnit\nGB per month\nHow will data be moved into S3 Standard?\nAutomatically calculates PUT, COPY, POST costs for moving data into S3 Standard initially. To compare the cost of current storage in S3 Standard to lifecycling this data to another storage class, you can specify that your storage is already stored in S3 Standard while selecting Lifecycle under the new storage class to capture the upfront cost of moving your data.\nThe specified amount of data is already stored in S3 Standard\nPUT, COPY, POST, LIST requests to S3 Standard\nOngoing monthly number of PUT, COPY, POST or LIST requests\nGET, SELECT, and all other requests from S3 Standard\nOngoing monthly number of GET, SELECT and all other requests\nData returned by S3 Select\nOngoing monthly volume of data returned by S3 Select requests\nValue\nUnit\nGB per month\nData scanned by S3 Select\nOngoing monthly volume of data scanned by S3 Select requests\nValue\nUnit\nGB per month\nShow calculations\nData Transfer feature\nData Transfer\nInfo\nInbound Data Transfer\nEnter the data you expect to transfer into Asia Pacific (Tokyo)\nData transfer from\nData transfer from\nEnter Amount\nData amount\nTB per month\nAdd inbound data transfer\n\n\n\n\nOutbound Data Transfer\nEnter the data you expect to transfer out of Asia Pacific (Tokyo)\nData transfer to\nData transfer to\nEnter Amount\nData amount\nTB per month\nAdd outbound data transfer\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 1,280.02 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "s3-512000",
+    "url": "https://calculator.aws/#/createCalculator/S3",
+    "observedAt": "2026-10-11T09:28:21.967Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "storageGb": "512000",
+      "otherUsage": "blank"
+    },
+    "monthlyUsd": "12339.20",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Simple Storage Service (S3)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nSelect S3 Storage classes and other featuresInfo\n\nSelect AWS services that you want to estimate\n\nS3 Standard\nS3 Intelligent - Tiering\nS3 Standard - Infrequent Access\nS3 Glacier Flexible Retrieval\nS3 Glacier Deep Archive\nS3 Management and Insights\nS3 Annotations\nS3 One Zone - Infrequent Access\nS3 Vectors\nS3 Object Lambda\nS3 Glacier Instant Retrieval\nData Transfer\nS3 Express One Zone\nS3 Access Grants\nS3 Files\nS3 Tables\nS3 Standard feature\nS3 Standard\nInfo\nThe calculations below exclude Free Tier discounts.\nS3 Standard storage\nUnit\nGB per month\nHow will data be moved into S3 Standard?\nAutomatically calculates PUT, COPY, POST costs for moving data into S3 Standard initially. To compare the cost of current storage in S3 Standard to lifecycling this data to another storage class, you can specify that your storage is already stored in S3 Standard while selecting Lifecycle under the new storage class to capture the upfront cost of moving your data.\nThe specified amount of data is already stored in S3 Standard\nPUT, COPY, POST, LIST requests to S3 Standard\nOngoing monthly number of PUT, COPY, POST or LIST requests\nGET, SELECT, and all other requests from S3 Standard\nOngoing monthly number of GET, SELECT and all other requests\nData returned by S3 Select\nOngoing monthly volume of data returned by S3 Select requests\nValue\nUnit\nGB per month\nData scanned by S3 Select\nOngoing monthly volume of data scanned by S3 Select requests\nValue\nUnit\nGB per month\nShow calculations\nData Transfer feature\nData Transfer\nInfo\nInbound Data Transfer\nEnter the data you expect to transfer into Asia Pacific (Tokyo)\nData transfer from\nData transfer from\nEnter Amount\nData amount\nTB per month\nAdd inbound data transfer\n\n\n\n\nOutbound Data Transfer\nEnter the data you expect to transfer out of Asia Pacific (Tokyo)\nData transfer to\nData transfer to\nEnter Amount\nData amount\nTB per month\nAdd outbound data transfer\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 12,339.20 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "s3-512001",
+    "url": "https://calculator.aws/#/createCalculator/S3",
+    "observedAt": "2026-10-11T09:28:23.205Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "storageGb": "512001",
+      "otherUsage": "blank"
+    },
+    "monthlyUsd": "12339.22",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Simple Storage Service (S3)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nSelect S3 Storage classes and other featuresInfo\n\nSelect AWS services that you want to estimate\n\nS3 Standard\nS3 Intelligent - Tiering\nS3 Standard - Infrequent Access\nS3 Glacier Flexible Retrieval\nS3 Glacier Deep Archive\nS3 Management and Insights\nS3 Annotations\nS3 One Zone - Infrequent Access\nS3 Vectors\nS3 Object Lambda\nS3 Glacier Instant Retrieval\nData Transfer\nS3 Express One Zone\nS3 Access Grants\nS3 Files\nS3 Tables\nS3 Standard feature\nS3 Standard\nInfo\nThe calculations below exclude Free Tier discounts.\nS3 Standard storage\nUnit\nGB per month\nHow will data be moved into S3 Standard?\nAutomatically calculates PUT, COPY, POST costs for moving data into S3 Standard initially. To compare the cost of current storage in S3 Standard to lifecycling this data to another storage class, you can specify that your storage is already stored in S3 Standard while selecting Lifecycle under the new storage class to capture the upfront cost of moving your data.\nThe specified amount of data is already stored in S3 Standard\nPUT, COPY, POST, LIST requests to S3 Standard\nOngoing monthly number of PUT, COPY, POST or LIST requests\nGET, SELECT, and all other requests from S3 Standard\nOngoing monthly number of GET, SELECT and all other requests\nData returned by S3 Select\nOngoing monthly volume of data returned by S3 Select requests\nValue\nUnit\nGB per month\nData scanned by S3 Select\nOngoing monthly volume of data scanned by S3 Select requests\nValue\nUnit\nGB per month\nShow calculations\nData Transfer feature\nData Transfer\nInfo\nInbound Data Transfer\nEnter the data you expect to transfer into Asia Pacific (Tokyo)\nData transfer from\nData transfer from\nEnter Amount\nData amount\nTB per month\nAdd inbound data transfer\n\n\n\n\nOutbound Data Transfer\nEnter the data you expect to transfer out of Asia Pacific (Tokyo)\nData transfer to\nData transfer to\nEnter Amount\nData amount\nTB per month\nAdd outbound data transfer\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 12,339.22 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  },
+  {
+    "id": "s3-60000",
+    "url": "https://calculator.aws/#/createCalculator/S3",
+    "observedAt": "2026-10-11T09:28:24.365Z",
+    "inputs": {
+      "region": "ap-northeast-1",
+      "storageGb": "60000",
+      "otherUsage": "blank"
+    },
+    "monthlyUsd": "1491.20",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Simple Storage Service (S3)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nSelect S3 Storage classes and other featuresInfo\n\nSelect AWS services that you want to estimate\n\nS3 Standard\nS3 Intelligent - Tiering\nS3 Standard - Infrequent Access\nS3 Glacier Flexible Retrieval\nS3 Glacier Deep Archive\nS3 Management and Insights\nS3 Annotations\nS3 One Zone - Infrequent Access\nS3 Vectors\nS3 Object Lambda\nS3 Glacier Instant Retrieval\nData Transfer\nS3 Express One Zone\nS3 Access Grants\nS3 Files\nS3 Tables\nS3 Standard feature\nS3 Standard\nInfo\nThe calculations below exclude Free Tier discounts.\nS3 Standard storage\nUnit\nGB per month\nHow will data be moved into S3 Standard?\nAutomatically calculates PUT, COPY, POST costs for moving data into S3 Standard initially. To compare the cost of current storage in S3 Standard to lifecycling this data to another storage class, you can specify that your storage is already stored in S3 Standard while selecting Lifecycle under the new storage class to capture the upfront cost of moving your data.\nThe specified amount of data is already stored in S3 Standard\nPUT, COPY, POST, LIST requests to S3 Standard\nOngoing monthly number of PUT, COPY, POST or LIST requests\nGET, SELECT, and all other requests from S3 Standard\nOngoing monthly number of GET, SELECT and all other requests\nData returned by S3 Select\nOngoing monthly volume of data returned by S3 Select requests\nValue\nUnit\nGB per month\nData scanned by S3 Select\nOngoing monthly volume of data scanned by S3 Select requests\nValue\nUnit\nGB per month\nShow calculations\nData Transfer feature\nData Transfer\nInfo\nInbound Data Transfer\nEnter the data you expect to transfer into Asia Pacific (Tokyo)\nData transfer from\nData transfer from\nEnter Amount\nData amount\nTB per month\nAdd inbound data transfer\n\n\n\n\nOutbound Data Transfer\nEnter the data you expect to transfer out of Asia Pacific (Tokyo)\nData transfer to\nData transfer to\nEnter Amount\nData amount\nTB per month\nAdd outbound data transfer\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 1,491.20 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+    "status": "MEASURED"
+  }
+]

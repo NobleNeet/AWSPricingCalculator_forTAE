@@ -40,8 +40,7 @@
         "free-tier",
         "account-specific-discount",
         "network-transfer",
-        "lifecycle-event-charge",
-        "tier-pricing"
+        "lifecycle-event-charge"
       ]
     },
     "write-requests": {
@@ -80,7 +79,8 @@
       },
       "productFamily": "Storage",
       "unit": "GB-Mo",
-      "quantity": "60000"
+      "quantity": "60000",
+      "tiered": true
     },
     "write-requests": {
       "attributes": {

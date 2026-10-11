@@ -1,0 +1,1074 @@
+{
+  "runId": "20261011-quality",
+  "generatedAt": "2026-10-11T09:37:05.970Z",
+  "note": "Fresh representative cases; historical case IDs and old screenshots are unavailable in this checkout. Expected prices use independent raw AWS Price List extraction, never application Core or Price DB.",
+  "cases": [
+    {
+      "id": "fargate-32-x86-60",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "x86",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "60",
+        "profile.tasksPerDay": "0"
+      },
+      "fields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "x86",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "60",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "linux-x86-vcpu",
+        "linux-x86-memory"
+      ],
+      "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "expectedAlternativeMonthlyUsd": "59.303983333333333333333333333333333333333333333333333333333333333333333333333334",
+      "priceEvidence": [
+        {
+          "componentId": "linux-x86-vcpu",
+          "quantity": "973.33333333333333333333333333333333333333333333333333333333333333333333333333334",
+          "price": {
+            "sku": "KBQ3Q6DY9J327G8N",
+            "rateCode": "KBQ3Q6DY9J327G8N.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0505600000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        },
+        {
+          "componentId": "linux-x86-memory",
+          "quantity": "1825",
+          "price": {
+            "sku": "JQEE6EF5FAF2AESH",
+            "rateCode": "JQEE6EF5FAF2AESH.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0055300000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-32-x86-120",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "x86",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "120",
+        "profile.tasksPerDay": "0"
+      },
+      "fields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "x86",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "120",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "linux-x86-vcpu",
+        "linux-x86-memory"
+      ],
+      "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "expectedAlternativeMonthlyUsd": "69.396233333333333333333333333333333333333333333333333333333333333333333333333334",
+      "priceEvidence": [
+        {
+          "componentId": "linux-x86-vcpu",
+          "quantity": "973.33333333333333333333333333333333333333333333333333333333333333333333333333334",
+          "price": {
+            "sku": "KBQ3Q6DY9J327G8N",
+            "rateCode": "KBQ3Q6DY9J327G8N.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0505600000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        },
+        {
+          "componentId": "linux-x86-memory",
+          "quantity": "3650",
+          "price": {
+            "sku": "JQEE6EF5FAF2AESH",
+            "rateCode": "JQEE6EF5FAF2AESH.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0055300000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-32-x86-244",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "x86",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "244",
+        "profile.tasksPerDay": "0"
+      },
+      "fields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "x86",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "244",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "linux-x86-vcpu",
+        "linux-x86-memory"
+      ],
+      "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "expectedAlternativeMonthlyUsd": "90.253550000000000000000000000000000000000000000000000000000000000000000000000001",
+      "priceEvidence": [
+        {
+          "componentId": "linux-x86-vcpu",
+          "quantity": "973.33333333333333333333333333333333333333333333333333333333333333333333333333334",
+          "price": {
+            "sku": "KBQ3Q6DY9J327G8N",
+            "rateCode": "KBQ3Q6DY9J327G8N.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0505600000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        },
+        {
+          "componentId": "linux-x86-memory",
+          "quantity": "7421.6666666666666666666666666666666666666666666666666666666666666666666666666667",
+          "price": {
+            "sku": "JQEE6EF5FAF2AESH",
+            "rateCode": "JQEE6EF5FAF2AESH.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0055300000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-32-ARM-60",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "ARM",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "60",
+        "profile.tasksPerDay": "0"
+      },
+      "fields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "ARM",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "60",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "linux-arm-vcpu",
+        "linux-arm-memory"
+      ],
+      "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "expectedAlternativeMonthlyUsd": "47.437833333333333333333333333333333333333333333333333333333333333333333333333334",
+      "priceEvidence": [
+        {
+          "componentId": "linux-arm-vcpu",
+          "quantity": "973.33333333333333333333333333333333333333333333333333333333333333333333333333334",
+          "price": {
+            "sku": "ZNX9M5D8R95VT2QQ",
+            "rateCode": "ZNX9M5D8R95VT2QQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0404500000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        },
+        {
+          "componentId": "linux-arm-memory",
+          "quantity": "1825",
+          "price": {
+            "sku": "WXXGZM434J9JXCU5",
+            "rateCode": "WXXGZM434J9JXCU5.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0044200000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-32-ARM-120",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "ARM",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "120",
+        "profile.tasksPerDay": "0"
+      },
+      "fields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "ARM",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "120",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "linux-arm-vcpu",
+        "linux-arm-memory"
+      ],
+      "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "expectedAlternativeMonthlyUsd": "55.504333333333333333333333333333333333333333333333333333333333333333333333333334",
+      "priceEvidence": [
+        {
+          "componentId": "linux-arm-vcpu",
+          "quantity": "973.33333333333333333333333333333333333333333333333333333333333333333333333333334",
+          "price": {
+            "sku": "ZNX9M5D8R95VT2QQ",
+            "rateCode": "ZNX9M5D8R95VT2QQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0404500000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        },
+        {
+          "componentId": "linux-arm-memory",
+          "quantity": "3650",
+          "price": {
+            "sku": "WXXGZM434J9JXCU5",
+            "rateCode": "WXXGZM434J9JXCU5.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0044200000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-32-ARM-244",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "ARM",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "244",
+        "profile.tasksPerDay": "0"
+      },
+      "fields": {
+        "profile.operatingSystem": "Linux",
+        "profile.cpuArchitecture": "ARM",
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "244",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "linux-arm-vcpu",
+        "linux-arm-memory"
+      ],
+      "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "expectedAlternativeMonthlyUsd": "72.175100000000000000000000000000000000000000000000000000000000000000000000000001",
+      "priceEvidence": [
+        {
+          "componentId": "linux-arm-vcpu",
+          "quantity": "973.33333333333333333333333333333333333333333333333333333333333333333333333333334",
+          "price": {
+            "sku": "ZNX9M5D8R95VT2QQ",
+            "rateCode": "ZNX9M5D8R95VT2QQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0404500000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        },
+        {
+          "componentId": "linux-arm-memory",
+          "quantity": "7421.6666666666666666666666666666666666666666666666666666666666666666666666666667",
+          "price": {
+            "sku": "WXXGZM434J9JXCU5",
+            "rateCode": "WXXGZM434J9JXCU5.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0044200000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-32-x86-short",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "60",
+        "profile.averageDurationHours": "0.5",
+        "profile.tasksPerDay": "0"
+      },
+      "fields": {
+        "profile.linuxVcpuPerTask": "32",
+        "profile.linuxMemoryGbPerTask": "60",
+        "profile.averageDurationHours": "0.5",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "linux-x86-vcpu",
+        "linux-x86-memory"
+      ],
+      "formula": "Valid Linux 32-vCPU configuration, half-hour duration",
+      "expectedAlternativeMonthlyUsd": "29.651991666666666666666666666666666666666666666666666666666666666666666666666668",
+      "priceEvidence": [
+        {
+          "componentId": "linux-x86-vcpu",
+          "quantity": "486.66666666666666666666666666666666666666666666666666666666666666666666666666669",
+          "price": {
+            "sku": "KBQ3Q6DY9J327G8N",
+            "rateCode": "KBQ3Q6DY9J327G8N.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0505600000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        },
+        {
+          "componentId": "linux-x86-memory",
+          "quantity": "912.50000000000000000000000000000000000000000000000000000000000000000000000000004",
+          "price": {
+            "sku": "JQEE6EF5FAF2AESH",
+            "rateCode": "JQEE6EF5FAF2AESH.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "hours",
+            "priceUsd": "0.0055300000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-windows-storage-20",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Windows",
+        "profile.ephemeralStorageGb": "20"
+      },
+      "fields": {
+        "profile.operatingSystem": "Windows",
+        "profile.ephemeralStorageGb": "20",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "windows-ephemeral-storage"
+      ],
+      "formula": "Windows platform ≥1.0.0; only excess above 20 GiB × task-hours",
+      "expectedAlternativeMonthlyUsd": "0",
+      "priceEvidence": [
+        {
+          "componentId": "windows-ephemeral-storage",
+          "quantity": "0",
+          "price": {
+            "sku": "7KKPR3R7N63ZMK5F",
+            "rateCode": "7KKPR3R7N63ZMK5F.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Hours",
+            "priceUsd": "0.0001330000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-windows-storage-21",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Windows",
+        "profile.ephemeralStorageGb": "20"
+      },
+      "fields": {
+        "profile.operatingSystem": "Windows",
+        "profile.ephemeralStorageGb": "21",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "windows-ephemeral-storage"
+      ],
+      "formula": "Windows platform ≥1.0.0; only excess above 20 GiB × task-hours",
+      "expectedAlternativeMonthlyUsd": "0.0040454166666666666666666666666666666666666666666666666666666666666666666666666667",
+      "priceEvidence": [
+        {
+          "componentId": "windows-ephemeral-storage",
+          "quantity": "30.416666666666666666666666666666666666666666666666666666666666666666666666666667",
+          "price": {
+            "sku": "7KKPR3R7N63ZMK5F",
+            "rateCode": "7KKPR3R7N63ZMK5F.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Hours",
+            "priceUsd": "0.0001330000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "fargate-windows-storage-200",
+      "serviceId": "fargate",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.operatingSystem": "Windows",
+        "profile.ephemeralStorageGb": "20"
+      },
+      "fields": {
+        "profile.operatingSystem": "Windows",
+        "profile.ephemeralStorageGb": "200",
+        "profile.tasksPerDay": "1"
+      },
+      "comparisonScope": [
+        "windows-ephemeral-storage"
+      ],
+      "formula": "Windows platform ≥1.0.0; only excess above 20 GiB × task-hours",
+      "expectedAlternativeMonthlyUsd": "0.728175",
+      "priceEvidence": [
+        {
+          "componentId": "windows-ephemeral-storage",
+          "quantity": "5475",
+          "price": {
+            "sku": "7KKPR3R7N63ZMK5F",
+            "rateCode": "7KKPR3R7N63ZMK5F.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Hours",
+            "priceUsd": "0.0001330000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonECS/20260911124425/ap-northeast-1/index.json",
+            "version": "20260911124425",
+            "publicationDate": "2026-09-11T12:44:25Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-standard-export-0",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "fields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "comparisonScope": [
+        "snapshot-export"
+      ],
+      "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "expectedAlternativeMonthlyUsd": "0",
+      "priceEvidence": [
+        {
+          "componentId": "snapshot-export",
+          "quantity": "0",
+          "price": {
+            "sku": "786QX49RFC288XUE",
+            "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB",
+            "priceUsd": "0.0120000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-standard-export-1",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "fields": {
+        "snapshot-export.processedGb": "1",
+        "toggle.snapshot-export": true
+      },
+      "comparisonScope": [
+        "snapshot-export"
+      ],
+      "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "expectedAlternativeMonthlyUsd": "0.012",
+      "priceEvidence": [
+        {
+          "componentId": "snapshot-export",
+          "quantity": "1",
+          "price": {
+            "sku": "786QX49RFC288XUE",
+            "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB",
+            "priceUsd": "0.0120000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-standard-export-100000",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "fields": {
+        "snapshot-export.processedGb": "100000",
+        "toggle.snapshot-export": true
+      },
+      "comparisonScope": [
+        "snapshot-export"
+      ],
+      "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "expectedAlternativeMonthlyUsd": "1200",
+      "priceEvidence": [
+        {
+          "componentId": "snapshot-export",
+          "quantity": "100000",
+          "price": {
+            "sku": "786QX49RFC288XUE",
+            "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB",
+            "priceUsd": "0.0120000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-io-optimized-export-0",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-io-optimized",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "fields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "comparisonScope": [
+        "snapshot-export"
+      ],
+      "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "expectedAlternativeMonthlyUsd": "0",
+      "priceEvidence": [
+        {
+          "componentId": "snapshot-export",
+          "quantity": "0",
+          "price": {
+            "sku": "786QX49RFC288XUE",
+            "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB",
+            "priceUsd": "0.0120000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-io-optimized-export-1",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-io-optimized",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "fields": {
+        "snapshot-export.processedGb": "1",
+        "toggle.snapshot-export": true
+      },
+      "comparisonScope": [
+        "snapshot-export"
+      ],
+      "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "expectedAlternativeMonthlyUsd": "0.012",
+      "priceEvidence": [
+        {
+          "componentId": "snapshot-export",
+          "quantity": "1",
+          "price": {
+            "sku": "786QX49RFC288XUE",
+            "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB",
+            "priceUsd": "0.0120000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "aurora-serverless-io-optimized-export-100000",
+      "serviceId": "aurora-postgresql",
+      "profileId": "serverless-io-optimized",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "snapshot-export.processedGb": "0",
+        "toggle.snapshot-export": true
+      },
+      "fields": {
+        "snapshot-export.processedGb": "100000",
+        "toggle.snapshot-export": true
+      },
+      "comparisonScope": [
+        "snapshot-export"
+      ],
+      "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "expectedAlternativeMonthlyUsd": "1200",
+      "priceEvidence": [
+        {
+          "componentId": "snapshot-export",
+          "quantity": "100000",
+          "price": {
+            "sku": "786QX49RFC288XUE",
+            "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB",
+            "priceUsd": "0.0120000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+            "version": "20261006224050",
+            "publicationDate": "2026-10-06T22:40:50Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "archive-processing-only-1m",
+      "serviceId": "eventbridge",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "0",
+        "profile.payloadSizeKb": "1"
+      },
+      "fields": {
+        "profile.archiveEventsMillions": "1",
+        "profile.archiveStorageGbMonth": "0",
+        "profile.payloadSizeKb": "1"
+      },
+      "comparisonScope": [
+        "archive-processing",
+        "archive-storage"
+      ],
+      "formula": "Processing only: events × KB/1024²; no stored GB-month",
+      "expectedAlternativeMonthlyUsd": "0.1239776611328125",
+      "priceEvidence": [
+        {
+          "componentId": "archive-processing",
+          "quantity": "0.95367431640625",
+          "price": {
+            "sku": "UA76NUFPSF2YA2BQ",
+            "rateCode": "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GigaBytes",
+            "priceUsd": "0.1300000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        },
+        {
+          "componentId": "archive-storage",
+          "quantity": "0",
+          "price": {
+            "sku": "KCK8Z988QU294FPN",
+            "rateCode": "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Mo",
+            "priceUsd": "0.0250000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "archive-processing-only-100m",
+      "serviceId": "eventbridge",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "0",
+        "profile.payloadSizeKb": "1"
+      },
+      "fields": {
+        "profile.archiveEventsMillions": "100",
+        "profile.archiveStorageGbMonth": "0",
+        "profile.payloadSizeKb": "1"
+      },
+      "comparisonScope": [
+        "archive-processing",
+        "archive-storage"
+      ],
+      "formula": "Processing only: events × KB/1024²; no stored GB-month",
+      "expectedAlternativeMonthlyUsd": "12.39776611328125",
+      "priceEvidence": [
+        {
+          "componentId": "archive-processing",
+          "quantity": "95.367431640625",
+          "price": {
+            "sku": "UA76NUFPSF2YA2BQ",
+            "rateCode": "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GigaBytes",
+            "priceUsd": "0.1300000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        },
+        {
+          "componentId": "archive-storage",
+          "quantity": "0",
+          "price": {
+            "sku": "KCK8Z988QU294FPN",
+            "rateCode": "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Mo",
+            "priceUsd": "0.0250000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "archive-processing-only-1000m",
+      "serviceId": "eventbridge",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "0",
+        "profile.payloadSizeKb": "1"
+      },
+      "fields": {
+        "profile.archiveEventsMillions": "1000",
+        "profile.archiveStorageGbMonth": "0",
+        "profile.payloadSizeKb": "1"
+      },
+      "comparisonScope": [
+        "archive-processing",
+        "archive-storage"
+      ],
+      "formula": "Processing only: events × KB/1024²; no stored GB-month",
+      "expectedAlternativeMonthlyUsd": "123.9776611328125",
+      "priceEvidence": [
+        {
+          "componentId": "archive-processing",
+          "quantity": "953.67431640625",
+          "price": {
+            "sku": "UA76NUFPSF2YA2BQ",
+            "rateCode": "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GigaBytes",
+            "priceUsd": "0.1300000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        },
+        {
+          "componentId": "archive-storage",
+          "quantity": "0",
+          "price": {
+            "sku": "KCK8Z988QU294FPN",
+            "rateCode": "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Mo",
+            "priceUsd": "0.0250000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "archive-existing-storage-only-1",
+      "serviceId": "eventbridge",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "0"
+      },
+      "fields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "1"
+      },
+      "comparisonScope": [
+        "archive-processing",
+        "archive-storage"
+      ],
+      "formula": "Existing archive storage only: no new processing; GB-month × storage SKU",
+      "expectedAlternativeMonthlyUsd": "0.025",
+      "priceEvidence": [
+        {
+          "componentId": "archive-processing",
+          "quantity": "0",
+          "price": {
+            "sku": "UA76NUFPSF2YA2BQ",
+            "rateCode": "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GigaBytes",
+            "priceUsd": "0.1300000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        },
+        {
+          "componentId": "archive-storage",
+          "quantity": "1",
+          "price": {
+            "sku": "KCK8Z988QU294FPN",
+            "rateCode": "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Mo",
+            "priceUsd": "0.0250000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "archive-existing-storage-only-100",
+      "serviceId": "eventbridge",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "0"
+      },
+      "fields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "100"
+      },
+      "comparisonScope": [
+        "archive-processing",
+        "archive-storage"
+      ],
+      "formula": "Existing archive storage only: no new processing; GB-month × storage SKU",
+      "expectedAlternativeMonthlyUsd": "2.5",
+      "priceEvidence": [
+        {
+          "componentId": "archive-processing",
+          "quantity": "0",
+          "price": {
+            "sku": "UA76NUFPSF2YA2BQ",
+            "rateCode": "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GigaBytes",
+            "priceUsd": "0.1300000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        },
+        {
+          "componentId": "archive-storage",
+          "quantity": "100",
+          "price": {
+            "sku": "KCK8Z988QU294FPN",
+            "rateCode": "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Mo",
+            "priceUsd": "0.0250000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    },
+    {
+      "id": "archive-existing-storage-only-1000",
+      "serviceId": "eventbridge",
+      "profileId": "standard",
+      "region": "ap-northeast-1",
+      "projectHours": "730",
+      "baselineFields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "0"
+      },
+      "fields": {
+        "profile.archiveEventsMillions": "0",
+        "profile.archiveStorageGbMonth": "1000"
+      },
+      "comparisonScope": [
+        "archive-processing",
+        "archive-storage"
+      ],
+      "formula": "Existing archive storage only: no new processing; GB-month × storage SKU",
+      "expectedAlternativeMonthlyUsd": "25",
+      "priceEvidence": [
+        {
+          "componentId": "archive-processing",
+          "quantity": "0",
+          "price": {
+            "sku": "UA76NUFPSF2YA2BQ",
+            "rateCode": "UA76NUFPSF2YA2BQ.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GigaBytes",
+            "priceUsd": "0.1300000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        },
+        {
+          "componentId": "archive-storage",
+          "quantity": "1000",
+          "price": {
+            "sku": "KCK8Z988QU294FPN",
+            "rateCode": "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7",
+            "unit": "GB-Mo",
+            "priceUsd": "0.0250000000",
+            "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSEvents/20260924163903/ap-northeast-1/index.json",
+            "version": "20260924163903",
+            "publicationDate": "2026-09-24T16:39:03Z"
+          }
+        }
+      ],
+      "guiVerdict": "NOT_COMPARABLE",
+      "alternativeVerdict": "INCOMPLETE",
+      "requiredAction": "ALTERNATIVE_VERIFICATION"
+    }
+  ]
+}

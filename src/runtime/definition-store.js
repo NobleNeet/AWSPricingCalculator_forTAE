@@ -17,7 +17,7 @@ export class DefinitionStore {
       }));
       const componentIds = [...new Set(Object.values(pkg.profiles).flatMap(p => p.components))];
       await Promise.all(componentIds.map(async id => {
-        pkg.components[id] = await this.cache.json(`${this.base}/${serviceId}/components/${id}.json`, data => data.schemaVersion === 1 && data.id === id && data.priceQuery?.expect === 'singleSku' && data.calculation?.model === 'unit' && Array.isArray(data.selectors) && Array.isArray(data.usageInputs) && Array.isArray(data.limitations));
+        pkg.components[id] = await this.cache.json(`${this.base}/${serviceId}/components/${id}.json`, data => data.schemaVersion === 1 && data.id === id && data.priceQuery?.expect === 'singleSku' && ['unit', 'tiered'].includes(data.calculation?.model) && Array.isArray(data.selectors) && Array.isArray(data.usageInputs) && Array.isArray(data.limitations));
       }));
       await Promise.all((service.pricingMappings ?? []).map(async id => {
         pkg.pricingMappings[id] = await this.cache.json(`${this.base}/${serviceId}/pricing-mappings/${id}.json`, data => data.schemaVersion === 1 && data.id === id && validId(data.componentId) && data.priceSource?.serviceCode && Array.isArray(data.productMatchers) && Array.isArray(data.dimensionMatchers) && data.expect?.products === 1 && Number.isInteger(data.expect?.billableDimensions) && data.expect.billableDimensions > 0);

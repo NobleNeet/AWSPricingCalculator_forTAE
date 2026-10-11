@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "storage",
+  "componentId": "storage",
+  "priceSource": {
+    "serviceCode": "AmazonRDS"
+  },
+  "productMatchers": [
+    {
+      "field": "attributes.databaseEngine",
+      "op": "eq",
+      "value": "PostgreSQL"
+    },
+    {
+      "field": "attributes.deploymentOption",
+      "op": "eq",
+      "valueFrom": "profile.deployment"
+    },
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Database Storage"
+    },
+    {
+      "field": "attributes.volumeType",
+      "op": "eq",
+      "value": "General Purpose-GP3"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "PostgreSQL gp3 storage, exact deployment SKU; quantity is physical per-instance capacity × instance count × storage duration/730 or validated aggregate GB-month."
+}

@@ -25,7 +25,7 @@ test('dependent selector remains invalid until explicit reselection; optional co
   await page.locator('#input-profile--os').selectOption('Windows');
   await expect(page.locator('#workspace')).toContainText('要再選択'); await expect(page.locator('#input-component-instance-instanceType')).toHaveValue('');
   await page.locator('#input-component-instance-instanceType').selectOption('t3.micro'); await page.getByLabel('編集を閉じる').click();
-  await add(page, 'rds'); await page.locator('#input-component-storage-gbMonths').fill('100'); await page.locator('#input-component-storage-gbMonths').press('Tab');
+  await add(page, 'rds'); await page.locator('#input-component-storage-usageMode').selectOption('aggregate'); await page.locator('#input-component-storage-gbMonths').locator('xpath=ancestor::details').getByText('詳細設定', { exact: true }).click(); await page.locator('#input-component-storage-gbMonths').fill('100'); await page.locator('#input-component-storage-gbMonths').press('Tab');
   await page.getByLabel('この項目を有効にする').uncheck(); await expect(page.locator('#input-component-storage-gbMonths')).toBeDisabled();
   await expect(page.locator('#input-component-storage-gbMonths')).toHaveValue('100');
   await page.getByLabel('この項目を有効にする').check(); await expect(page.locator('#input-component-storage-gbMonths')).toBeEnabled(); await expect(page.locator('#input-component-storage-gbMonths')).toHaveValue('100');

@@ -1,0 +1,210 @@
+{
+  "url": "https://nobleneet.github.io/AWSPricingCalculator_forTAE/",
+  "observedAt": "2026-10-11T09:09:05.707Z",
+  "text": "AWS ARCHITECTURE ESTIMATOR\nAWS構成・料金比較\n\n構成案を複製して、違いと月額をひとつの画面で比較。\n\n新規Project\nJSONを復元\nProject JSON\nCSV\nPDF + JSON\nProject名\nRegion\nTokyo · ap-northeast-1\nOsaka · ap-northeast-3\nN. Virginia · us-east-1\nOhio · us-east-2\nN. California · us-west-1\nOregon · us-west-2\n共通 月間時間\nUSD · On-Demand · 税別 · 無料枠・割引なし\nPrice Data 2026-10-09T22:31:22Z · 20261010T090802Z-eb75cf3e\n更新確認\n構成案はまだありません\n\n空の構成案を作って、必要なサービスを追加しましょう。\n\n最初の構成案を作る",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "new-project",
+      "label": null,
+      "text": "新規Project",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "restore-open",
+      "label": null,
+      "text": "JSONを復元",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "json-export",
+      "label": null,
+      "text": "Project JSON",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "csv-export",
+      "label": null,
+      "text": "CSV",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "pdf-export",
+      "label": null,
+      "text": "PDF + JSON",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "project-name",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "新しいAWS見積もり"
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "id": "project-region",
+      "label": null,
+      "text": "Tokyo · ap-northeast-1\nOsaka · ap-northeast-3\nN. Virginia · us-east-1\nOhio · us-east-2\nN. California · us-west-1\nOregon · us-west-2",
+      "value": "ap-northeast-1",
+      "options": [
+        {
+          "text": "Tokyo · ap-northeast-1",
+          "value": "ap-northeast-1"
+        },
+        {
+          "text": "Osaka · ap-northeast-3",
+          "value": "ap-northeast-3"
+        },
+        {
+          "text": "N. Virginia · us-east-1",
+          "value": "us-east-1"
+        },
+        {
+          "text": "Ohio · us-east-2",
+          "value": "us-east-2"
+        },
+        {
+          "text": "N. California · us-west-1",
+          "value": "us-west-1"
+        },
+        {
+          "text": "Oregon · us-west-2",
+          "value": "us-west-2"
+        }
+      ]
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "project-hours",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "730"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "check-price",
+      "label": null,
+      "text": "更新確認",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "最初の構成案を作る",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "サービス選択を閉じる",
+      "text": "×",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "search",
+      "id": "catalog-search",
+      "label": null,
+      "placeholder": "サービス名を検索",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "SELECT",
+      "type": "select-one",
+      "id": "catalog-filter",
+      "label": null,
+      "text": "すべてAmazonRDSAmazonEC2AWSEventsAmazonS3AWSAmplifyCodeBuildAmazonECSawskmsAWSLambdaAWSSystemsManager",
+      "value": "",
+      "options": [
+        {
+          "text": "すべて",
+          "value": ""
+        },
+        {
+          "text": "AmazonRDS",
+          "value": "AmazonRDS"
+        },
+        {
+          "text": "AmazonEC2",
+          "value": "AmazonEC2"
+        },
+        {
+          "text": "AWSEvents",
+          "value": "AWSEvents"
+        },
+        {
+          "text": "AmazonS3",
+          "value": "AmazonS3"
+        },
+        {
+          "text": "AWSAmplify",
+          "value": "AWSAmplify"
+        },
+        {
+          "text": "CodeBuild",
+          "value": "CodeBuild"
+        },
+        {
+          "text": "AmazonECS",
+          "value": "AmazonECS"
+        },
+        {
+          "text": "awskms",
+          "value": "awskms"
+        },
+        {
+          "text": "AWSLambda",
+          "value": "AWSLambda"
+        },
+        {
+          "text": "AWSSystemsManager",
+          "value": "AWSSystemsManager"
+        }
+      ]
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "編集を閉じる",
+      "text": "×",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "復元を閉じる",
+      "text": "×",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "restore-submit",
+      "label": null,
+      "text": "復元する",
+      "value": ""
+    }
+  ]
+}

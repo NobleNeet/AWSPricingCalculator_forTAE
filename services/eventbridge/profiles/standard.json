@@ -143,7 +143,7 @@
       "minimum": "0",
       "ui": {
         "advanced": true,
-        "help": "The 14 million-invocation free allowance is intentionally not subtracted by this calculator."
+        "help": "Scheduler呼び出し総数を入力します。Projectで指定した残り無料枠を同じPlanの全行・全Regionで共有し、控除前後の額を表示します。"
       }
     }
   ],

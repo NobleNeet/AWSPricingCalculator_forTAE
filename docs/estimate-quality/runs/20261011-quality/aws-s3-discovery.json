@@ -1,0 +1,1922 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/S3",
+  "observedAt": "2026-10-11T09:09:26.410Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Simple Storage Service (S3)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nSelect S3 Storage classes and other featuresInfo\n\nSelect AWS services that you want to estimate\n\nS3 Standard\nS3 Intelligent - Tiering\nS3 Standard - Infrequent Access\nS3 Glacier Flexible Retrieval\nS3 Glacier Deep Archive\nS3 Management and Insights\nS3 Annotations\nS3 One Zone - Infrequent Access\nS3 Vectors\nS3 Object Lambda\nS3 Glacier Instant Retrieval\nData Transfer\nS3 Express One Zone\nS3 Access Grants\nS3 Files\nS3 Tables\nS3 Standard feature\nS3 Standard\nInfo\nThe calculations below exclude Free Tier discounts.\nS3 Standard storage\nUnit\nGB per month\nHow will data be moved into S3 Standard?\nAutomatically calculates PUT, COPY, POST costs for moving data into S3 Standard initially. To compare the cost of current storage in S3 Standard to lifecycling this data to another storage class, you can specify that your storage is already stored in S3 Standard while selecting Lifecycle under the new storage class to capture the upfront cost of moving your data.\nThe specified amount of data is already stored in S3 Standard\nPUT, COPY, POST, LIST requests to S3 Standard\nOngoing monthly number of PUT, COPY, POST or LIST requests\nGET, SELECT, and all other requests from S3 Standard\nOngoing monthly number of GET, SELECT and all other requests\nData returned by S3 Select\nOngoing monthly volume of data returned by S3 Select requests\nValue\nUnit\nGB per month\nData scanned by S3 Select\nOngoing monthly volume of data scanned by S3 Select requests\nValue\nUnit\nGB per month\nShow calculations\nData Transfer feature\nData Transfer\nInfo\nInbound Data Transfer\nEnter the data you expect to transfer into US East (Ohio)\nData transfer from\nData transfer from\nEnter Amount\nData amount\nTB per month\nAdd inbound data transfer\n\n\n\n\nOutbound Data Transfer\nEnter the data you expect to transfer out of US East (Ohio)\nData transfer to\nData transfer to\nEnter Amount\nData amount\nTB per month\nAdd outbound data transfer\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Accept all cookies",
+      "text": "Accept",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Decline",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Customize cookie preferences",
+      "text": "Customize",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-essential",
+      "label": "Allow essential category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-performance",
+      "label": "Allow performance category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-functional",
+      "label": "Allow functional category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-advertising",
+      "label": "Allow advertising category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Cancel customizing cookie preferences",
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "allowed"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "not allowed"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Dismiss error message modal",
+      "text": "Dismiss",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": null,
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "Language: English",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField271-1791709756652-3245",
+      "label": "Description - optional",
+      "placeholder": "Enter a description for your estimate",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField273-1791709756653-885",
+      "label": null,
+      "text": "Region",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField286-1791709756654-8527",
+      "label": null,
+      "text": "US East (Ohio)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "304-1791709756657-4629",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "305-1791709756657-662",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "306-1791709756657-9645",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "307-1791709756658-6865",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "308-1791709756658-4496",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "309-1791709756658-4816",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "310-1791709756658-9323",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "311-1791709756658-1754",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "312-1791709756658-8086",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "313-1791709756658-9813",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "314-1791709756659-1517",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "315-1791709756659-9901",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "316-1791709756659-7686",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "317-1791709756659-3772",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "318-1791709756659-1450",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "319-1791709756659-254",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1267-1791709763514-8278",
+      "label": "S3 Standard storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1269-1791709763514-5787",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1309-1791709763564-9810",
+      "label": null,
+      "text": "The specified amount of data is already stored in S3 Standard",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1279-1791709763515-9843",
+      "label": "PUT, COPY, POST, LIST requests to S3 Standard Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1281-1791709763515-4290",
+      "label": "GET, SELECT, and all other requests from S3 Standard Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1284-1791709763515-8658",
+      "label": "Data returned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1286-1791709763516-8417",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1297-1791709763516-1933",
+      "label": "Data scanned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1299-1791709763517-8204",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1089-1791709761383-2362",
+      "label": "S3 INT storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1091-1791709761384-4228",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1102-1791709761385-7352",
+      "label": "S3 INT Average Object Size Value",
+      "placeholder": "Enter amount.",
+      "text": "",
+      "value": "16"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1104-1791709761386-2869",
+      "label": null,
+      "text": "MB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField657-1791709756767-3627",
+      "label": null,
+      "text": "The specified amount of data is already stored in S3 INT",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1114-1791709761387-585",
+      "label": "Percentage of Storage in INT-Frequent Access Tier",
+      "placeholder": "",
+      "text": "",
+      "value": "100"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1116-1791709761387-8510",
+      "label": "Percentage of Storage in INT-Infrequent Access Tier (% of storage that hasn't been accessed in the last 30 days)",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1118-1791709761388-5089",
+      "label": "Percentage of Storage in INT-Archive Instant Access Tier (% of storage that hasn't been accessed in the last 90 days)",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1120-1791709761388-3673",
+      "label": "Percentage of Storage in INT-Archive Access Tier (% of storage that hasn't been accessed for a minimum of 90 days)",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1122-1791709761388-6414",
+      "label": "Percentage of Storage in INT-Deep Archive Access Tier (% of storage that hasn't been accessed for a minimum of 180 days)",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1124-1791709761389-5830",
+      "label": "PUT, COPY, POST, LIST requests to S3 INT Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1126-1791709761389-4668",
+      "label": "GET, SELECT, and all other requests from S3 INT Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1128-1791709761389-117",
+      "label": "Lifecycle Transition requests Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1131-1791709761390-3608",
+      "label": "Data returned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1133-1791709761390-5486",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1144-1791709761391-8475",
+      "label": "Data scanned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1146-1791709761391-3061",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1391-1791709765007-7668",
+      "label": "S3 Standard-IA storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1393-1791709765007-8985",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField668-1791709756773-7417",
+      "label": null,
+      "text": "The specified amount of data is already stored in S3 Standard-IA",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1403-1791709765008-2041",
+      "label": "PUT, COPY, POST, LIST requests to S3 Standard-IA Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1405-1791709765008-6727",
+      "label": "GET, SELECT, and all other requests from S3 Standard-IA Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1407-1791709765009-1419",
+      "label": "Lifecycle Transition requests Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1410-1791709765009-4087",
+      "label": "Data retrievals Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1412-1791709765009-4235",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1423-1791709765010-215",
+      "label": "Data returned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1425-1791709765010-1677",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1436-1791709765011-2325",
+      "label": "Data scanned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1438-1791709765011-7162",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1320-1791709764433-8215",
+      "label": "S3 Glacier Flexible Retrieval storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1322-1791709764434-2992",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField350-1791709756670-8619",
+      "label": "S3 Glacier Flexible Retrieval Average Object Size Value",
+      "placeholder": "Enter amount.",
+      "text": "",
+      "value": "16"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField352-1791709756671-5364",
+      "label": null,
+      "text": "MB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField679-1791709756777-8917",
+      "label": null,
+      "text": "The specified amount of data is already stored in S3 Glacier Flexible Retrieval",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1332-1791709764435-5474",
+      "label": "PUT, COPY, POST, LIST requests to S3 Glacier Flexible Retrieval Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1334-1791709764436-1109",
+      "label": "Lifecycle Transitions into S3 Glacier Flexible Retrieval Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1336-1791709764436-9659",
+      "label": "Restore requests (Standard) Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1338-1791709764436-6489",
+      "label": "Restore requests (Expedited) Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1340-1791709764436-4325",
+      "label": "Restore requests (Bulk) Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1343-1791709764437-5538",
+      "label": "Data retrievals (Standard) Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1345-1791709764437-7170",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1356-1791709764438-6656",
+      "label": "Data retrievals (Expedited) Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1358-1791709764438-7724",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1369-1791709764439-4216",
+      "label": "Data retrievals (Bulk) Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1371-1791709764439-477",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1381-1791709764500-5741",
+      "label": null,
+      "text": "0",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1213-1791709762982-6474",
+      "label": "S3 Glacier Deep Archive storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1215-1791709762983-8383",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField372-1791709756675-8340",
+      "label": "S3 Glacier Deep Archive Average Object Size Value",
+      "placeholder": "Enter amount.",
+      "text": "",
+      "value": "16"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField374-1791709756675-9272",
+      "label": null,
+      "text": "MB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField690-1791709756782-1619",
+      "label": null,
+      "text": "The specified amount of data is already stored in S3 Glacier Deep Archive",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1225-1791709762985-8130",
+      "label": "PUT, COPY, POST, LIST requests to S3 Glacier Deep Archive Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1227-1791709762986-1828",
+      "label": "Lifecycle Transitions into S3 Glacier Deep Archive Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1229-1791709762986-4631",
+      "label": "Restore requests (Standard) Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1231-1791709762986-3306",
+      "label": "Restore requests (Bulk) Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1234-1791709762987-625",
+      "label": "Data retrievals (Standard) Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1236-1791709762987-7794",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1247-1791709762989-8926",
+      "label": "Data retrievals (Bulk) Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1249-1791709762989-4976",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1019-1791709760839-8508",
+      "label": "S3 Storage Lens Objects Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1021-1791709760840-3599",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField392-1791709756679-60",
+      "label": "S3 Batch Operations Jobs Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField394-1791709756679-4375",
+      "label": null,
+      "text": "per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField404-1791709756680-7639",
+      "label": "S3 Batch Operations Objects Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField406-1791709756682-6206",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField426-1791709756685-4352",
+      "label": "Size of encrypted data Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField428-1791709756686-3004",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1039-1791709760844-5021",
+      "label": "S3 General Purpose Buckets Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": "2"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1041-1791709760844-2529",
+      "label": null,
+      "text": "per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1051-1791709760845-6589",
+      "label": "S3 Inventory Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1053-1791709760845-4689",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1063-1791709760846-1394",
+      "label": "S3 Storage Class Analysis Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1065-1791709760846-2472",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1075-1791709760847-9101",
+      "label": "S3 Object Tagging Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1077-1791709760847-4293",
+      "label": null,
+      "text": "thousand per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField446-1791709756688-3419",
+      "label": "Existing Objects in Bucket Enter number of objects",
+      "placeholder": "Enter number of objects",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField448-1791709756688-5846",
+      "label": "Journal Updates (% of the objects) Enter percentage",
+      "placeholder": "Enter percentage",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField703-1791709756790-1361",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField458-1791709756690-8664",
+      "label": "Number of annotations stored per month Enter number of annotations",
+      "placeholder": "Enter number of annotations",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField461-1791709756690-7209",
+      "label": "Average annotation size Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField463-1791709756691-809",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField714-1791709756794-6707",
+      "label": null,
+      "text": "No",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField754-1791709757827-7911",
+      "label": "S3 One Zone-IA storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField756-1791709757829-2056",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField725-1791709756797-7726",
+      "label": null,
+      "text": "The specified amount of data is already stored in One Zone-IA",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField766-1791709757831-1357",
+      "label": "PUT, COPY, POST, LIST requests to S3 One Zone-IA Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField768-1791709757831-6442",
+      "label": "GET, SELECT, and all other requests from S3 One Zone-IA Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField770-1791709757831-868",
+      "label": "Lifecycle Transition requests Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField773-1791709757832-3723",
+      "label": "Data Retrievals Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField775-1791709757832-4639",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField786-1791709757833-9201",
+      "label": "Data returned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField788-1791709757833-7330",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField799-1791709757834-3043",
+      "label": "Data scanned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField801-1791709757834-1979",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField952-1791709759737-4691",
+      "label": "Number of indexes Enter number of indexes",
+      "placeholder": "Enter number of indexes",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField954-1791709759737-4874",
+      "label": "Number of vectors per index Enter Number of vectors per index",
+      "placeholder": "Enter Number of vectors per index",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField956-1791709759738-8229",
+      "label": "Vector Dimensions Enter number",
+      "placeholder": "Enter number",
+      "text": "",
+      "value": "1024"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField959-1791709759738-6422",
+      "label": "Filterable metadata (KB) per vector Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField961-1791709759738-8599",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField972-1791709759739-3282",
+      "label": "Non-filterable metadata (KB) per vector Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField974-1791709759739-127",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField985-1791709759740-5767",
+      "label": "Key size (KB) per vector Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": "0.2"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField987-1791709759740-1969",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField997-1791709759741-8771",
+      "label": "Percentage of vectors overwritten per month Field value",
+      "placeholder": "Field value",
+      "text": "",
+      "value": "16.7"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField999-1791709759741-1235",
+      "label": "Total number of queries per month (across all indexes) Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1001-1791709759741-2242",
+      "label": null,
+      "text": "per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1456-1791709765629-6648",
+      "label": "GET requests from S3 Enter number of requests",
+      "placeholder": "Enter number of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1458-1791709765630-3900",
+      "label": "Duration that the Lambda function is set to execute per request (in ms) Enter duration in ms",
+      "placeholder": "Enter duration in ms",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1461-1791709765630-6924",
+      "label": "Amount of memory allocated to the Lambda function Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1463-1791709765630-9556",
+      "label": null,
+      "text": "MB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1474-1791709765631-1267",
+      "label": "Size of data returned by S3 Object Lambda Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1476-1791709765631-8088",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1156-1791709762069-3469",
+      "label": "S3 Glacier Instant Retrieval storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1158-1791709762069-7370",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField737-1791709756803-5647",
+      "label": null,
+      "text": "The specified amount of data is already stored in S3 Glacier Instant Retrieval",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1168-1791709762070-5881",
+      "label": "PUT, COPY, POST, LIST requests to S3 Glacier Instant Retrieval Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1170-1791709762070-6380",
+      "label": "GET, SELECT, and all other requests from S3 Glacier Instant Retrieval Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1172-1791709762071-5686",
+      "label": "Lifecycle Transition requests Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1175-1791709762071-1128",
+      "label": "Data Retrievals Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1177-1791709762071-5058",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1188-1791709762072-280",
+      "label": "Data returned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1190-1791709762072-8564",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1201-1791709762073-27",
+      "label": "Data scanned by S3 Select Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1203-1791709762073-2009",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField510-1791709756702-6440",
+      "label": null,
+      "text": "Data transfer from",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField520-1791709756702-2854",
+      "label": "Enter Amount Enter amount",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField522-1791709756703-689",
+      "label": null,
+      "text": "TB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Add inbound data transfer",
+      "text": "Add inbound data transfer",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField537-1791709756704-1437",
+      "label": null,
+      "text": "Data transfer to",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField547-1791709756704-7579",
+      "label": "Enter Amount Enter amount",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField549-1791709756705-7695",
+      "label": null,
+      "text": "TB per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Add outbound data transfer",
+      "text": "Add outbound data transfer",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField571-1791709756707-172",
+      "label": "S3 Express One Zone storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField573-1791709756707-5831",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField583-1791709756708-4523",
+      "label": "PUT, COPY, POST, LIST, RENAME requests to S3 Express One Zone Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField950-1791709759369-1681",
+      "label": "GET and all other requests from S3 Express One Zone Enter amount of requests",
+      "placeholder": "Enter amount of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField585-1791709756708-5061",
+      "label": "PUT/ COPY request size Value",
+      "placeholder": "Enter average PUT/ COPY request size",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField587-1791709756708-7316",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField597-1791709756709-7570",
+      "label": "GET request size Value",
+      "placeholder": "Enter average GET request size.",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField599-1791709756709-2590",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField617-1791709756711-7135",
+      "label": "Number of AccessGrants Requests Enter number of requests",
+      "placeholder": "Enter number of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField628-1791709756713-5883",
+      "label": "Your S3 bucket (or prefix) size Value",
+      "placeholder": "e.g., 100",
+      "text": "",
+      "value": "100"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField630-1791709756713-337",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField640-1791709756714-8922",
+      "label": "% of bucket read (total read throughput) e.g., 5",
+      "placeholder": "e.g., 5",
+      "text": "",
+      "value": "5"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField642-1791709756714-6117",
+      "label": "% objects read smaller than 128 KiB e.g., 10",
+      "placeholder": "e.g., 10",
+      "text": "",
+      "value": "10"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField645-1791709756715-546",
+      "label": "Total Write Throughput in month Value",
+      "placeholder": "e.g., 1.1",
+      "text": "",
+      "value": "1.1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField647-1791709756715-9438",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField819-1791709758193-1923",
+      "label": "S3 Tables standard storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField821-1791709758194-3656",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField839-1791709758195-682",
+      "label": "S3 Tables INT total storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField841-1791709758196-5328",
+      "label": null,
+      "text": "GB per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField851-1791709758196-6516",
+      "label": "Percentage in Frequent Access tier",
+      "placeholder": "",
+      "text": "",
+      "value": "100"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField853-1791709758197-6697",
+      "label": "Percentage in Infrequent Access tier (not accessed in 30 days)",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField855-1791709758197-7707",
+      "label": "Percentage in Archive Instant Access tier (not accessed in 90 days)",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField869-1791709758199-480",
+      "label": "PUT, COPY, POST, LIST requests (Tier 1) Enter number of requests",
+      "placeholder": "Enter number of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField871-1791709758200-4008",
+      "label": "GET, SELECT, and all other requests (Tier 2) Enter number of requests",
+      "placeholder": "Enter number of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField881-1791709758203-6538",
+      "label": "PUT, COPY, POST, LIST requests (Tier 1) Enter number of requests",
+      "placeholder": "Enter number of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField883-1791709758203-8463",
+      "label": "GET, SELECT, and all other requests (Tier 2) Enter number of requests",
+      "placeholder": "Enter number of requests",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField893-1791709758204-2910",
+      "label": "Number of objects monitored per month Enter number of objects",
+      "placeholder": "Enter number of objects",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField903-1791709758206-9739",
+      "label": "Standard compacted objects per month Enter number of objects",
+      "placeholder": "Enter number of objects",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField906-1791709758206-966",
+      "label": "Standard compaction data processed Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField908-1791709758206-3752",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField918-1791709758207-3724",
+      "label": "Sort/Z-order compacted objects per month Enter number of objects",
+      "placeholder": "Enter number of objects",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField921-1791709758208-7992",
+      "label": "Sort/Z-order compaction data processed Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField923-1791709758208-4467",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField941-1791709758215-5806",
+      "label": "Table updates replicated per month Enter number of updates",
+      "placeholder": "Enter number of updates",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Open help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Close help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    }
+  ]
+}

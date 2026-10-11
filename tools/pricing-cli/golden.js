@@ -15,7 +15,21 @@ export function verifyRawPrice(raw, verification) {
   const paid = dimensions.filter(d => decimal(d.pricePerUnit.USD).gt('0')).sort((a, b) => decimal(a.beginRange).cmp(b.beginRange));
   if (!paid.length) throw Error('Independent verifier: paid dimension missing');
   if (paid.length > 1 && !paid.every((d, i) => i === 0 || paid[i - 1].endRange === d.beginRange)) throw Error('Independent verifier: heterogeneous dimensions');
-  return { unitPriceUsd: decimal(paid[0].pricePerUnit.USD).toString(), amountUsd: decimal(verification.quantity).times(paid[0].pricePerUnit.USD).toString() };
+  let amount = decimal(verification.quantity).times(paid[0].pricePerUnit.USD);
+  if (verification.tiered === true) {
+    // Independent raw-price oracle; do not reuse the runtime tier integrator.
+    let remaining = decimal(verification.quantity);
+    amount = decimal('0');
+    for (const dimension of paid) {
+      const width = dimension.endRange === 'Inf' ? remaining : decimal(dimension.endRange).minus(dimension.beginRange);
+      const used = remaining.lt(width) ? remaining : width;
+      amount = amount.plus(used.times(dimension.pricePerUnit.USD));
+      remaining = remaining.minus(used);
+      if (remaining.isZero()) break;
+    }
+    if (!remaining.isZero()) throw Error('Independent verifier: uncovered tier usage');
+  }
+  return { unitPriceUsd: decimal(paid[0].pricePerUnit.USD).toString(), amountUsd: amount.toString() };
 }
 function profileCodes(pkg) {
   return [pkg.service.priceSource.serviceCode, ...Object.keys(pkg.components).map(id => priceSourceForComponent(pkg, id))];

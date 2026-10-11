@@ -67,5 +67,10 @@
   "limitations": [
     "account-specific-discount",
     "aggregate-billing"
-  ]
+  ],
+  "billingGroup": {
+    "id": "dedicated-regional-fee",
+    "scope": "plan-region",
+    "policy": "unique"
+  }
 }

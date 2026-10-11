@@ -36,7 +36,6 @@
       "unit": "Invocations",
       "quantity": "1000000",
       "limitations": [
-        "free-tier",
         "account-specific-discount"
       ]
     },

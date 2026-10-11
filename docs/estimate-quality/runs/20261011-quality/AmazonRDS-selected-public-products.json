@@ -1,0 +1,51 @@
+{
+  "formatVersion": "v1.0",
+  "offerCode": "AmazonRDS",
+  "version": "20261006224050",
+  "publicationDate": "2026-10-06T22:40:50Z",
+  "sourceUrl": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonRDS/20261006224050/ap-northeast-1/index.json",
+  "products": {
+    "786QX49RFC288XUE": {
+      "sku": "786QX49RFC288XUE",
+      "productFamily": "System Operation",
+      "attributes": {
+        "servicecode": "AmazonRDS",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "engineCode": "21",
+        "databaseEngine": "Aurora PostgreSQL",
+        "group": "RDS Snapshot Export",
+        "groupDescription": "RDS Snapshot Size",
+        "usagetype": "APN1-Aurora:SnapshotExportToS3",
+        "operation": "CreateDBInstance:0021",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Relational Database Service"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "786QX49RFC288XUE": {
+        "786QX49RFC288XUE.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "786QX49RFC288XUE",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "786QX49RFC288XUE.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.012 per GB for RDS Snapshot Export to S3 for Aurora PostgreSQL ",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0120000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}

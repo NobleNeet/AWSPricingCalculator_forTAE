@@ -12,13 +12,13 @@ export function exportRows({ state, results, catalog, limitations, packages = ne
       const component = result?.components?.[componentId], definition = pkg?.components?.[componentId];
       const limitationIds = component?.limitations ?? (component?.state === 'disabled' ? [] : definition?.limitations ?? []);
       const amount = component?.amountUsd;
-      rows.push({ planId, plan: state.plans[planId].name, row: row.label ?? label, service: label, component: definition?.label ?? componentId, raw_monthly_usd: amount ?? '', display_monthly_usd: amount !== undefined && amount !== null ? money(amount) : '', service_monthly_usd: result?.amountUsd ?? '', state: component?.state ?? result?.state ?? 'loading', limitation_ids: limitationIds.join(';'), has_underestimate_risk: limitationIds.some(id => limitations.get(id)?.severity === 'warning'), selectors: JSON.stringify(instance.selectors ?? {}), usage: JSON.stringify(instance.components?.[componentId]?.inputs ?? {}), region: instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion, publication_date: prices.publicationDate ?? '', build_id: prices.buildId ?? '' });
+      rows.push({ planId, plan: state.plans[planId].name, row: row.label ?? label, service: label, component: definition?.label ?? componentId, raw_monthly_usd: amount ?? '', display_monthly_usd: amount !== undefined && amount !== null ? money(amount) : '', gross_monthly_usd: component?.grossAmountUsd ?? amount ?? '', allowance_applied: component?.allowanceApplied ?? '', tier_usage_offset: component?.tierUsageOffset ?? '', project_usage_assumptions: JSON.stringify(state.project.usageAssumptions), service_monthly_usd: result?.amountUsd ?? '', state: component?.state ?? result?.state ?? 'loading', limitation_ids: limitationIds.join(';'), has_underestimate_risk: limitationIds.some(id => limitations.get(id)?.severity === 'warning'), selectors: JSON.stringify(instance.selectors ?? {}), usage: JSON.stringify(instance.components?.[componentId]?.inputs ?? {}), region: instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion, publication_date: prices.publicationDate ?? '', build_id: prices.buildId ?? '' });
     }
   }
   return rows;
 }
 export function csv(rows) {
-  const columns = ['plan', 'row', 'service', 'component', 'raw_monthly_usd', 'display_monthly_usd', 'service_monthly_usd', 'state', 'limitation_ids', 'has_underestimate_risk', 'selectors', 'usage', 'region', 'publication_date', 'build_id'];
+  const columns = ['plan', 'row', 'service', 'component', 'raw_monthly_usd', 'display_monthly_usd', 'gross_monthly_usd', 'allowance_applied', 'tier_usage_offset', 'project_usage_assumptions', 'service_monthly_usd', 'state', 'limitation_ids', 'has_underestimate_risk', 'selectors', 'usage', 'region', 'publication_date', 'build_id'];
   const cell = value => {
     let text = String(value ?? '');
     if (/^[\s]*[=+@-]/.test(text)) text = `'${text}`;
@@ -28,7 +28,7 @@ export function csv(rows) {
 }
 export function pdfLines(context, rows) {
   const { state, results, prices, limitations } = context;
-  const lines = [state.project.name, 'AWS構成・料金比較 / 月額概算', `Price Data: ${prices.publicationDate ?? 'unavailable'} / build ${prices.buildId ?? 'unavailable'}`, `USD / On-Demand / 税別 / Region ${state.project.defaultRegion}`, 'Free Tier・無料枠・RI・Savings Plans・Spot・割引は対象外', `作成日時: ${new Date().toISOString()}`, ''];
+  const lines = [state.project.name, 'AWS構成・料金比較 / 月額概算', `Price Data: ${prices.publicationDate ?? 'unavailable'} / build ${prices.buildId ?? 'unavailable'}`, `USD / On-Demand / 税別 / Region ${state.project.defaultRegion}`, `Scheduler残り無料枠: ${state.project.usageAssumptions.schedulerFreeInvocationsRemaining ?? '0'}回/月（Plan全体で共有）`, 'その他のFree Tier・RI・Savings Plans・Spot・割引は対象外', `作成日時: ${new Date().toISOString()}`, ''];
   const baseline = planSummary(state, state.project.baselinePlanId, results);
   for (const planId of state.project.planOrder) {
     const plan = state.plans[planId], summary = planSummary(state, planId, results), delta = planDelta(summary, baseline);
@@ -38,6 +38,7 @@ export function pdfLines(context, rows) {
       const key = `${row.row}/${row.service}`;
       if (key !== previous) { lines.push(`  ${row.row} / ${row.service} / Region ${row.region}`, `  selector: ${row.selectors}`, `  Service月額: ${row.service_monthly_usd ? money(row.service_monthly_usd) : '未計算'}`); previous = key; }
       lines.push(`    ${row.component}: ${row.display_monthly_usd || '未計算/無効'} (${row.state})`, `    入力: ${row.usage}`);
+      if (row.allowance_applied !== '') lines.push(`    無料枠控除前: ${money(row.gross_monthly_usd)} / 適用無料回数: ${row.allowance_applied}`);
     }
     lines.push('');
   }

@@ -368,6 +368,100 @@
       },
       "minItems": 1,
       "uniqueItems": true
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "object",
+            "properties": {
+              "value": {},
+              "valueFrom": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "value"
+                ],
+                "not": {
+                  "required": [
+                    "valueFrom"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "valueFrom"
+                ],
+                "not": {
+                  "required": [
+                    "value"
+                  ]
+                }
+              }
+            ]
+          },
+          "right": {
+            "type": "object",
+            "properties": {
+              "value": {},
+              "valueFrom": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "value"
+                ],
+                "not": {
+                  "required": [
+                    "valueFrom"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "valueFrom"
+                ],
+                "not": {
+                  "required": [
+                    "value"
+                  ]
+                }
+              }
+            ]
+          },
+          "op": {
+            "enum": [
+              "gte",
+              "lte",
+              "zeroOrPositive",
+              "multipleOf"
+            ]
+          },
+          "when": {
+            "$ref": "#/$defs/condition"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "left",
+          "right",
+          "op",
+          "message"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "required": [

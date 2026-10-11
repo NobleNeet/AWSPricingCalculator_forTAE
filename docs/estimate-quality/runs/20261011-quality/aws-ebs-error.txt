@@ -1,0 +1,73 @@
+Feedback
+Language: English
+Contact Sales 
+Create an AWS Account
+Create estimate: Configure Amazon Elastic Block Store (EBS)
+ 
+Info
+Description
+Choose a location typeInfo
+Region
+Choose a Region
+Asia Pacific (Tokyo)
+Service Settings
+Info
+Calculating EBS snapshots
+Learn more on how EBS snapshot prices are calculated.
+Number of volumes
+Average duration of volume
+Unit
+hours per month
+Storage for each EC2 instance
+Choose EBS volume storage type.
+Provisioned IOPS SSD (io2)
+Volume type selected supports storage amounts 4 GB - 64 TB per volume and IOPS from 100 up to a maximum of 256,000 per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS.
+Storage amount per volume
+Unit
+GB
+Provisioning IOPS per volume (io2)
+io2 supports from 100 IOPS to 64,000 IOPS per volume. Only io2 block express supports volumes up to 64 TB and 256,000 IOPS. Available in limited regions.
+Snapshot Frequency
+2x Daily
+Amount changed per snapshot
+Amount changed per snapshot can't be less than 1 GB.
+Unit
+GB
+Show calculations
+EBS Fast Snapshot Restore
+Info
+Number of snapshots to restore
+Show calculations
+EBS direct APIs for Snapshots
+Info
+Number of GetSnapshotBlock API requests
+Each GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.
+Value
+Unit
+Thousand Snapshot API units per month
+Number of LIST API requests
+ListChangedBlocks and ListSnapshotBlocks APIs are charged per request.
+Value
+Unit
+thousand requests per month
+Number of PutSnapshotBlock API requests
+Each PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.
+Value
+Unit
+Thousand Snapshot API units per month
+Show calculations
+Acknowledgement
+AWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more 
+
+
+
+Total Upfront cost: 0.00 USD
+Total Monthly cost: 418.49 USD
+Show Details
+Cancel
+Save and view summary
+Save and add service
+Privacy
+Site terms
+Cookie preferences
+© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.

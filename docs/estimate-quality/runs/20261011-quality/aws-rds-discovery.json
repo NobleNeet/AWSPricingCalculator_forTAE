@@ -1,0 +1,438 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/RDSPostgreSQL",
+  "observedAt": "2026-10-11T09:09:31.054Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon RDS for PostgreSQL\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nPostgreSQL instance specifications\nInfo\nNodes\nEnter the number of DB instances that you need.\nSelected Instance:\ndb.m4.10xlarge\nvCPU: 40\nMemory: 160 GiB\nUtilization (On-Demand only)\nWith utilization, you still have to stop the instance to get the cost benefit. Utilization only affects OnDemand pricing for instances and not the storage, backups, etc.\nValue\nUnit\n%Utilized/Month\nDeployment Option\nMulti-AZ\nPricing Model\nOnDemand\nShow calculations\nRDS Proxy\nInfo\nWould you be creating an RDS Proxy with the database?\nYes\nShow calculations\nStorage\nInfo\nStorage volume\nGeneral Purpose SSD (gp2)\nStorage amount\nUnit\nGB\nShow calculations\nCloudWatch Database Insights Pricing for RDS Provisioned Instances\nInfo\nWould you be enabling Database Insights with the database?\nYes\nShow calculations\nRDS Extended Support\nInfo\nNote: You will not be charged for RDS Extended Support until the Extended Support pricing start date for your database major version. To check the pricing start date for your engine, please refer to the RDS for PostgreSQL user guide.\nDo you plan on running an Extended Support major version (PostgreSQL 11 or higher)?\nYes\nPlease choose the pricing year for RDS Extended Support (Pricing in year 3 is higher than the pricing in the first 2 years)\nYear 1 and Year 2 cost\nNumber of hours running on Amazon RDS Extended Support\nUnit\nper month\nShow calculations\nBackup Storage\nInfo\nSnapshot Export\nInfo\nTip\nYou can add up to 15 read replicas to each database instance for enhanced read performance and increased availability. Read replicas can be Single-AZ or Multi-AZ, and can have the same or a different instance size as the database instance.\n\nAdd each read replica to the Pricing Calculator as an additional Amazon RDS for PostgreSQL service.\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 6,160.84 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Accept all cookies",
+      "text": "Accept",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Decline",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Customize cookie preferences",
+      "text": "Customize",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-essential",
+      "label": "Allow essential category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-performance",
+      "label": "Allow performance category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-functional",
+      "label": "Allow functional category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-advertising",
+      "label": "Allow advertising category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Cancel customizing cookie preferences",
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "allowed"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "not allowed"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Dismiss error message modal",
+      "text": "Dismiss",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": null,
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "Language: English",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1492-1791709766904-6506",
+      "label": "Description - optional",
+      "placeholder": "Enter a description for your estimate",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1494-1791709766905-4848",
+      "label": null,
+      "text": "Region",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1507-1791709766906-3668",
+      "label": null,
+      "text": "US East (Ohio)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1705-1791709767717-4506",
+      "label": "Nodes",
+      "placeholder": "",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "input1707-1791709767721-471",
+      "label": null,
+      "placeholder": "Select an instance",
+      "text": "",
+      "value": "db.m4.10xlarge"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "clear input",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1717-1791709767723-7424",
+      "label": "Utilization (On-Demand only) Value",
+      "placeholder": "",
+      "text": "",
+      "value": "100"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1719-1791709767723-5361",
+      "label": null,
+      "text": "%Utilized/Month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1729-1791709767724-697",
+      "label": null,
+      "text": "Multi-AZ",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1739-1791709767725-7039",
+      "label": null,
+      "text": "OnDemand",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1598-1791709766939-9891",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1642-1791709767146-7704",
+      "label": null,
+      "text": "General Purpose SSD (gp2)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1541-1791709766916-6433",
+      "label": "Storage amount Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": "100"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1543-1791709766916-3329",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1652-1791709767147-5215",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1663-1791709767149-7034",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1673-1791709767149-2874",
+      "label": null,
+      "text": "Year 1 and Year 2 cost",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1630-1791709767128-8039",
+      "label": "Number of hours running on Amazon RDS Extended Support Value",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1632-1791709767128-709",
+      "label": null,
+      "text": "per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1561-1791709766918-8740",
+      "label": "Additional backup storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1563-1791709766918-8213",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1583-1791709766920-2617",
+      "label": "Total Size of Backup Processed for Export (GB) Value",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1585-1791709766921-9421",
+      "label": null,
+      "text": "per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Open help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Close help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    }
+  ]
+}

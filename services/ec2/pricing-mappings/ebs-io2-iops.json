@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs-io2-iops",
+  "componentId": "ebs-io2-iops",
+  "priceSource": {
+    "serviceCode": "AmazonEC2"
+  },
+  "productMatchers": [
+    {
+      "field": "usageType",
+      "op": "in",
+      "value": [
+        "APN1-EBS:VolumeP-IOPS.io2",
+        "APN3-EBS:VolumeP-IOPS.io2",
+        "EBS:VolumeP-IOPS.io2",
+        "USE2-EBS:VolumeP-IOPS.io2",
+        "USW1-EBS:VolumeP-IOPS.io2",
+        "USW2-EBS:VolumeP-IOPS.io2"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "IOPS-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS io2 per-volume IOPS tier 1. Boundaries applied before multiplying volume count and duration. Verified against AmazonEC2 20261009203134 ap-northeast-1 published products."
+}

@@ -4,6 +4,7 @@
 const instance = {
   instanceType: 'インスタンスタイプ', hours: '使用率 (時間/月)', quantity: 'ノード'
 };
+const capacityFields = { usageMode: '使用量の入力方法', averageAcus: '平均 Aurora 容量単位 (ACU)', computeHours: '計算利用時間 (時間/月)' };
 const auroraComponents = {
   'backup-storage': ['追加のバックアップストレージ', { gbMonths: '追加のバックアップストレージ (GB/月)' }],
   'database-insights-limitless': ['Aurora Limitless Database の Database Insights', {
@@ -12,9 +13,9 @@ const auroraComponents = {
   instance: ['Aurora PostgreSQL 互換 DB', instance],
   'instance-io-optimized': ['Aurora PostgreSQL I/O 最適化', instance],
   'io-requests': ['Aurora I/O リクエスト', { requests: 'I/O リクエスト数 (件/月)' }],
-  'limitless-compute': ['Aurora PostgreSQL Limitless Database', { acuHours: 'DB シャードグループの Aurora 容量単位 (ACU) の月間使用量 (ACU 時間/月)' }],
-  'serverless-standard': ['Aurora Serverless v2', { acuHours: 'Aurora 容量単位 (ACU) の月間使用量 (ACU 時間/月)' }],
-  'serverless-io-optimized': ['Aurora Serverless v2 / I/O 最適化', { acuHours: 'Aurora 容量単位 (ACU) の月間使用量 (ACU 時間/月)' }],
+  'limitless-compute': ['Aurora PostgreSQL Limitless Database', { ...capacityFields, acuHours: 'DB シャードグループの Aurora 容量単位 (ACU) の月間使用量 (ACU 時間/月)' }],
+  'serverless-standard': ['Aurora Serverless v2', { ...capacityFields, acuHours: 'Aurora 容量単位 (ACU) の月間使用量 (ACU 時間/月)' }],
+  'serverless-io-optimized': ['Aurora Serverless v2 / I/O 最適化', { ...capacityFields, acuHours: 'Aurora 容量単位 (ACU) の月間使用量 (ACU 時間/月)' }],
   'snapshot-export': ['Snapshot Export', { processedGb: 'エクスポート用に処理されたバックアップの合計サイズ (GB)' }],
   storage: ['Aurora ストレージ', { gbMonths: 'ストレージ量 (GB/月)' }],
   'storage-io-optimized': ['Aurora I/O 最適化ストレージ', { gbMonths: 'ストレージ量 (GB/月)' }]
@@ -31,7 +32,9 @@ export const DRAWER_LABELS_JA = {
       'ebs-gp3-iops': ['汎用 SSD (gp3) - IOPS', { provisionedIops: '汎用 SSD (gp3) - IOPS' }],
       'ebs-gp3-throughput': ['汎用 SSD (gp3) - スループット', { throughputMibps: '汎用 SSD (gp3) - スループット (MiB/s)' }],
       'ebs-io1-iops': ['プロビジョニング IOPS io1', { provisionedIops: 'プロビジョニング IOPS io1' }],
-      'ebs-io2-iops': ['プロビジョニング IOPS io2', { provisionedIops: 'プロビジョニング IOPS io2' }]
+      'ebs-io2-iops': ['プロビジョニング IOPS io2 (第1段階)', { provisionedIops: 'プロビジョニング IOPS io2 (ボリュームあたり)', volumeCount: 'io2 ボリュームの数', volumeHours: 'io2 ボリュームの平均時間 (時間/月)' }],
+      'ebs-io2-iops-tier2': ['プロビジョニング IOPS io2 (第2段階)'],
+      'ebs-io2-iops-tier3': ['プロビジョニング IOPS io2 (第3段階)']
     }
   },
   ebs: {
@@ -54,7 +57,7 @@ export const DRAWER_LABELS_JA = {
     profiles: { standard: '標準' }, fields: { deployment: 'デプロイオプション' },
     components: {
       instance: ['PostgreSQL インスタンスの仕様', { ...instance, hours: '使用状況 (オンデマンドのみ) (時間/月)' }],
-      storage: ['ストレージ (gp3)', { gbMonths: 'ストレージ量 (GB/月)' }]
+      storage: ['ストレージ (gp3)', { gbMonths: '合計ストレージ量 (GB/月)', usageMode: '使用量の入力方法', capacityGb: 'DB 1 台あたりのストレージ量 (GiB)', storageHours: 'ストレージ利用時間 (時間/月)' }]
     }
   },
   'rds-oracle': {
@@ -177,7 +180,9 @@ export const DRAWER_LABELS_JA = {
 export function japaneseDrawerPackage(pkg) {
   const labels = DRAWER_LABELS_JA[pkg.service.id];
   if (!labels) return pkg;
-  const fields = (inputs, names = {}) => inputs.map(input => ({ ...input, label: names[input.id] ?? input.label }));
+  const fields = (inputs, names = {}) => inputs.map(input => ({ ...input, label: names[input.id] ?? input.label,
+    ...(input.id === 'usageMode' ? { options: { ...input.options, label: { capacity: '容量・利用時間から計算', aggregate: '月間合計使用量を直接入力 (詳細)' } } } : {})
+  }));
   return {
     ...pkg,
     profiles: Object.fromEntries(Object.entries(pkg.profiles).map(([id, profile]) => [id, {

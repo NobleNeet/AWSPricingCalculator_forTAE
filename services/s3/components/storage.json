@@ -54,7 +54,7 @@
     ]
   },
   "calculation": {
-    "model": "unit",
+    "model": "tiered",
     "usage": {
       "sources": [
         {
@@ -71,5 +71,13 @@
     "account-specific-discount",
     "network-transfer",
     "lifecycle-event-charge"
-  ]
+  ],
+  "billingGroup": {
+    "id": "s3-standard-storage",
+    "scope": "plan-region",
+    "policy": "tiered"
+  },
+  "ui": {
+    "help": "同じPlan・RegionのS3 Standard使用量を合算して段階料金を計算します。見積もり外のアカウント使用量は含みません。行ごとの料金は行順に使用量を割り当てます。"
+  }
 }

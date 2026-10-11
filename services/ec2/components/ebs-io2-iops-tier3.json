@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "ebs-io2-iops-tier3",
+  "label": "EBS io2 provisioned IOPS (tier 3)",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-EBS:VolumeP-IOPS.io2.tier3",
+          "APN3-EBS:VolumeP-IOPS.io2.tier3",
+          "EBS:VolumeP-IOPS.io2.tier3",
+          "USE2-EBS:VolumeP-IOPS.io2.tier3",
+          "USW1-EBS:VolumeP-IOPS.io2.tier3",
+          "USW2-EBS:VolumeP-IOPS.io2.tier3"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "IOPS-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "value": {
+            "type": "transformed",
+            "source": {
+              "value": {
+                "type": "resolvedComponentInput",
+                "componentId": "ebs-io2-iops",
+                "inputId": "provisionedIops"
+              }
+            },
+            "transforms": [
+              {
+                "type": "subtract",
+                "value": "64000"
+              },
+              {
+                "type": "minimum",
+                "value": "0"
+              }
+            ]
+          }
+        },
+        {
+          "value": {
+            "type": "resolvedComponentInput",
+            "componentId": "ebs-io2-iops",
+            "inputId": "volumeCount"
+          }
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "source": {
+              "value": {
+                "type": "resolvedComponentInput",
+                "componentId": "ebs-io2-iops",
+                "inputId": "volumeHours"
+              }
+            },
+            "transforms": [
+              {
+                "type": "divide",
+                "divisor": "730"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "IOPS-Mo"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.ebsVolumeType",
+    "op": "eq",
+    "value": "io2"
+  },
+  "ui": {
+    "advanced": true,
+    "help": "先頭のio2 IOPS欄で指定したボリューム数・利用時間を使用します。"
+  }
+}

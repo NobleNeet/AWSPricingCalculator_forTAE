@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "ebs-io2-iops",
-  "label": "EBS io2 provisioned IOPS",
+  "label": "EBS io2 provisioned IOPS (tier 1)",
   "selectors": [],
   "usageInputs": [
     {
@@ -12,8 +12,24 @@
       "minimum": "100",
       "maximum": "256000",
       "ui": {
-        "help": "io2はプロビジョニングしたIOPS数が追加課金されます。本ツールのTier方針に従い、32,000 IOPSを超える場合も最初の有料単価を全量へ適用する保守的概算です。"
+        "help": "ボリューム1個あたりのIOPSです。32,000 / 64,000 IOPSの境界で段階料金を適用します。ストレージ容量の入力は全ボリュームの合計GB/月です。"
       }
+    },
+    {
+      "id": "volumeCount",
+      "label": "Number of io2 volumes",
+      "type": "number",
+      "default": "1",
+      "minimum": "1",
+      "integer": true
+    },
+    {
+      "id": "volumeHours",
+      "label": "io2 volume duration (hours/month)",
+      "type": "number",
+      "default": "730",
+      "exclusiveMinimum": "0",
+      "maximum": "730"
     }
   ],
   "fixedFilters": [],
@@ -46,7 +62,31 @@
     "usage": {
       "sources": [
         {
-          "valueFrom": "component.provisionedIops"
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.provisionedIops",
+            "transforms": [
+              {
+                "type": "maximum",
+                "value": "32000"
+              }
+            ]
+          }
+        },
+        {
+          "valueFrom": "component.volumeCount"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.volumeHours",
+            "transforms": [
+              {
+                "type": "divide",
+                "divisor": "730"
+              }
+            ]
+          }
         }
       ],
       "combine": "multiply"
@@ -55,7 +95,6 @@
     "outputUnit": "IOPS-Mo"
   },
   "limitations": [
-    "tier-pricing",
     "free-tier",
     "account-specific-discount"
   ],
