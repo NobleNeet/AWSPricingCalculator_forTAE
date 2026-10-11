@@ -23,7 +23,10 @@ function fingerprintEncode(value) {
 // not belong here.
 export const PRICING_CONTRACT_FILES = [
   'src/pricing/calculation.js',
+  'src/pricing/tiers.js',
+  'src/pricing/plan-billing.js',
   'src/pricing/conditions.js',
+  'src/pricing/constraints.js',
   'src/pricing/core.js',
   'src/pricing/input-validation.js',
   'src/pricing/decimal.js',

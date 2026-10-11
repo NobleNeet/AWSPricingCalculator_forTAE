@@ -140,6 +140,8 @@
     "ebs-gp3-iops",
     "ebs-gp3-throughput",
     "ebs-io1-iops",
-    "ebs-io2-iops"
+    "ebs-io2-iops",
+    "ebs-io2-iops-tier2",
+    "ebs-io2-iops-tier3"
   ]
 }

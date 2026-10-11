@@ -2,7 +2,23 @@
   "schemaVersion": 1,
   "id": "storage",
   "label": "gp3 database storage",
-  "selectors": [],
+  "selectors": [
+    {
+      "id": "usageMode",
+      "label": "Usage input mode",
+      "type": "select",
+      "default": "capacity",
+      "options": {
+        "values": [
+          "capacity",
+          "aggregate"
+        ]
+      },
+      "ui": {
+        "help": "capacity: 物理容量と利用時間から計算。aggregate: 既知の月間合計使用量を直接入力します。"
+      }
+    }
+  ],
   "usageInputs": [
     {
       "id": "gbMonths",
@@ -12,7 +28,40 @@
       "minimum": "0",
       "exclusiveMinimum": "0",
       "ui": {
-        "help": "DB全体の月間保存量（GB-month）。0より大きい値を入力するか、このComponentを無効にしてください。短期間利用の集計値へ実容量20GiBの下限を適用しません。"
+        "advanced": true,
+        "help": "全DBの月間合計GB/月。同じDB台数・稼働時間で最低20 GiB/台を満たす必要があります。"
+      },
+      "enabledWhen": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "aggregate"
+      }
+    },
+    {
+      "id": "capacityGb",
+      "label": "Storage capacity per DB (GiB)",
+      "type": "number",
+      "default": "20",
+      "minimum": "20",
+      "maximum": "65536",
+      "integer": true,
+      "enabledWhen": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "capacity"
+      }
+    },
+    {
+      "id": "storageHours",
+      "label": "Storage duration (hours/month)",
+      "type": "number",
+      "default": "730",
+      "exclusiveMinimum": "0",
+      "maximum": "730",
+      "enabledWhen": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "capacity"
       }
     }
   ],
@@ -44,7 +93,46 @@
     "usage": {
       "sources": [
         {
-          "valueFrom": "component.gbMonths"
+          "value": {
+            "type": "choice",
+            "field": "component.usageMode",
+            "cases": {
+              "aggregate": {
+                "valueFrom": "component.gbMonths"
+              },
+              "capacity": {
+                "value": {
+                  "type": "product",
+                  "sources": [
+                    {
+                      "valueFrom": "component.capacityGb"
+                    },
+                    {
+                      "value": {
+                        "type": "resolvedComponentInput",
+                        "componentId": "instance",
+                        "inputId": "quantity"
+                      }
+                    },
+                    {
+                      "value": {
+                        "type": "transformed",
+                        "source": {
+                          "valueFrom": "component.storageHours"
+                        },
+                        "transforms": [
+                          {
+                            "type": "divide",
+                            "divisor": "730"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
       ],
       "combine": "multiply"
@@ -59,5 +147,73 @@
     "backup-storage"
   ],
   "optional": true,
-  "defaultEnabled": true
+  "defaultEnabled": true,
+  "constraints": [
+    {
+      "when": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "capacity"
+      },
+      "left": {
+        "valueFrom": "component.storageHours"
+      },
+      "op": "gte",
+      "right": {
+        "value": {
+          "type": "resolvedComponentInput",
+          "componentId": "instance",
+          "inputId": "hours"
+        }
+      },
+      "message": "ストレージ利用時間はDB稼働時間以上にしてください。"
+    },
+    {
+      "when": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "aggregate"
+      },
+      "left": {
+        "valueFrom": "component.gbMonths"
+      },
+      "op": "gte",
+      "right": {
+        "value": {
+          "type": "product",
+          "sources": [
+            {
+              "value": "20"
+            },
+            {
+              "value": {
+                "type": "resolvedComponentInput",
+                "componentId": "instance",
+                "inputId": "quantity"
+              }
+            },
+            {
+              "value": {
+                "type": "transformed",
+                "source": {
+                  "value": {
+                    "type": "resolvedComponentInput",
+                    "componentId": "instance",
+                    "inputId": "hours"
+                  }
+                },
+                "transforms": [
+                  {
+                    "type": "divide",
+                    "divisor": "730"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "message": "月間合計ストレージがDB台数・稼働時間に対する最小20 GiB/台を満たしていません。容量・利用時間モードで設定を確認してください。"
+    }
+  ]
 }

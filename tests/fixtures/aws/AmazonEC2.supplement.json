@@ -31,6 +31,76 @@
         "locationType": "AWS Region",
         "servicecode": "AmazonEC2"
       }
+    },
+    "T45SQDJUGF4D77XT": {
+      "sku": "T45SQDJUGF4D77XT",
+      "productFamily": "System Operation",
+      "attributes": {
+        "servicecode": "AmazonEC2",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "provisioned": "Yes",
+        "group": "EBS IOPS Tier 3",
+        "groupDescription": "IOPS",
+        "usagetype": "APN1-EBS:VolumeP-IOPS.io2.tier3",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "volumeApiName": "io2"
+      }
+    },
+    "93STHNX46RXXQJAT": {
+      "sku": "93STHNX46RXXQJAT",
+      "productFamily": "System Operation",
+      "attributes": {
+        "servicecode": "AmazonEC2",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "provisioned": "Yes",
+        "group": "EBS IOPS",
+        "groupDescription": "IOPS",
+        "usagetype": "APN1-EBS:VolumeP-IOPS.io2",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "volumeApiName": "io2"
+      }
+    },
+    "R6R2MQNR2BKDVM3W": {
+      "sku": "R6R2MQNR2BKDVM3W",
+      "productFamily": "System Operation",
+      "attributes": {
+        "servicecode": "AmazonEC2",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "provisioned": "Yes",
+        "group": "EBS IOPS Tier 2",
+        "groupDescription": "IOPS",
+        "usagetype": "APN1-EBS:VolumeP-IOPS.io2.tier2",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "volumeApiName": "io2"
+      }
+    },
+    "X64MAFXTT3P6QD64": {
+      "sku": "X64MAFXTT3P6QD64",
+      "productFamily": "Storage",
+      "attributes": {
+        "servicecode": "AmazonEC2",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "storageMedia": "SSD-backed",
+        "volumeType": "Provisioned IOPS",
+        "maxVolumeSize": "64 TiB",
+        "maxIopsvolume": "256000",
+        "maxThroughputvolume": "4000 MiB/s",
+        "usagetype": "APN1-EBS:VolumeUsage.io2",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "Amazon Elastic Compute Cloud",
+        "volumeApiName": "io2"
+      }
     }
   },
   "terms": {
@@ -73,6 +143,90 @@
               "appliesTo": []
             }
           }
+        }
+      },
+      "T45SQDJUGF4D77XT": {
+        "T45SQDJUGF4D77XT.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "T45SQDJUGF4D77XT",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "T45SQDJUGF4D77XT.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "T45SQDJUGF4D77XT.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.0363 per IOPS-month provisioned (io2) for over 64000 IOPS for a volume that has provisioned greater an 64000 IOPS",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "IOPS-Mo",
+              "pricePerUnit": {
+                "USD": "0.0362600000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "93STHNX46RXXQJAT": {
+        "93STHNX46RXXQJAT.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "93STHNX46RXXQJAT",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "93STHNX46RXXQJAT.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "93STHNX46RXXQJAT.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.074 per IOPS-month provisioned (io2) - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "IOPS-Mo",
+              "pricePerUnit": {
+                "USD": "0.0740000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "R6R2MQNR2BKDVM3W": {
+        "R6R2MQNR2BKDVM3W.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "R6R2MQNR2BKDVM3W",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "R6R2MQNR2BKDVM3W.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "R6R2MQNR2BKDVM3W.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.0518 per IOPS-month provisioned (io2) for 32001-64000 IOPS for a volume that has provisioned greater an 32000 IOPS",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "IOPS-Mo",
+              "pricePerUnit": {
+                "USD": "0.0518000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "X64MAFXTT3P6QD64": {
+        "X64MAFXTT3P6QD64.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "X64MAFXTT3P6QD64",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "X64MAFXTT3P6QD64.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "X64MAFXTT3P6QD64.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.142 per GB-month of Provisioned IOPS SSD (io2) provisioned storage - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB-month",
+              "pricePerUnit": {
+                "USD": "0.1420000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
         }
       }
     }

@@ -7,16 +7,28 @@ import { money } from '../pricing/decimal.js';
 import { newProject, addPlan, duplicatePlan, deletePlan, placeService, removeService, planSummary, planDelta, createInstance, serializeProject } from './project-store.js';
 import { restoreProject } from './restore.js';
 import { japaneseDrawerPackage } from './drawer-labels-ja.js';
+import { applyPlanBilling } from '../pricing/plan-billing.js';
+import { fillDefinitionDefaults } from './drawer-state-model.js';
 
 const $ = id => document.getElementById(id);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 export const prices = new PriceDataStore();
 export const definitions = new DefinitionStore();
 export const results = new Map();
+const rawResults = new Map();
 let state = newProject(), catalog = [], limitations = new Map(), target = null, editing = null;
 let projectSchema;
 const revisions = new Map();
 const STORAGE_KEY = 'tae-project-v1';
+function updatePlanResults() {
+  const entries = state.project.planOrder.flatMap(planId => state.project.rowOrder.flatMap(rowId => {
+    const id = state.rows[rowId]?.cells[planId], instance = state.serviceInstances[id];
+    if (!instance || !rawResults.has(id)) return [];
+    return [{ id, planId, region: instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion, result: rawResults.get(id) }];
+  }));
+  results.clear();
+  for (const [id, result] of applyPlanBilling(entries, state.project.usageAssumptions)) results.set(id, result);
+}
 function message(text) { $('app-message').textContent = text; }
 function save() {
   try { localStorage.setItem(STORAGE_KEY, serializeProject(state, { buildId: prices.buildId, publicationDate: prices.publicationDate })); }
@@ -36,6 +48,7 @@ function render() {
   if (document.activeElement !== $('project-name')) $('project-name').value = state.project.name;
   if (document.activeElement !== $('project-region')) $('project-region').value = state.project.defaultRegion;
   if (document.activeElement !== $('project-hours')) $('project-hours').value = state.project.usageAssumptions.hoursPerMonth;
+  if (document.activeElement !== $('scheduler-free-remaining')) $('scheduler-free-remaining').value = state.project.usageAssumptions.schedulerFreeInvocationsRemaining ?? '0';
   const planIds = state.project.planOrder;
   if (!planIds.length) { $('workspace').innerHTML = '<div class="empty"><h2>構成案はまだありません</h2><p>空の構成案を作って、必要なサービスを追加しましょう。</p><button class="primary" data-action="add-plan">最初の構成案を作る</button></div>'; return; }
   const summaries = Object.fromEntries(planIds.map(id => [id, planSummary(state, id, results)]));
@@ -51,7 +64,7 @@ function render() {
       const result = results.get(instance.id), amount = result?.amountUsd;
       const label = catalog.find(s => s.id === instance.serviceId)?.label ?? instance.serviceId;
       const params = [...Object.entries(instance.selectors ?? {}), ...Object.values(instance.components ?? {}).flatMap(c => Object.entries(c?.inputs ?? {}))].map(([key, value]) => `${key}: ${value}`).join(' · ');
-      return `<td data-instance="${escape(instance.id)}"><div class="service-name">${escape(label)}</div><div class="service-parameters">${escape(params)}</div><div class="amount">${amount !== undefined && amount !== null ? escape(money(amount)) : '—'}</div><div class="state ${escape(result?.state)}">${escape(stateText(result))}</div>${result?.state === 'unavailable' ? `<button data-action="retry" data-instance="${escape(instance.id)}">再試行</button>` : ''}<div class="cell-actions"><button data-action="edit" data-instance="${escape(instance.id)}">編集</button><button data-action="add-service" data-plan="${escape(planId)}" data-row="${escape(rowId)}">別サービスへ置換</button><button class="danger" data-action="remove-service" data-plan="${escape(planId)}" data-row="${escape(rowId)}">Planから外す</button></div></td>`;
+      return `<td data-instance="${escape(instance.id)}"><div class="service-name">${escape(label)}</div><div class="service-parameters">${escape(params)}</div><div class="amount">${amount !== undefined && amount !== null ? escape(money(amount)) : '—'}</div>${result?.grossAmountUsd !== undefined ? `<div class="service-parameters">無料枠控除前: ${escape(money(result.grossAmountUsd))} / 控除後: ${escape(money(amount))}</div>` : ''}<div class="state ${escape(result?.state)}">${escape(stateText(result))}</div>${result?.state === 'unavailable' ? `<button data-action="retry" data-instance="${escape(instance.id)}">再試行</button>` : ''}<div class="cell-actions"><button data-action="edit" data-instance="${escape(instance.id)}">編集</button><button data-action="add-service" data-plan="${escape(planId)}" data-row="${escape(rowId)}">別サービスへ置換</button><button class="danger" data-action="remove-service" data-plan="${escape(planId)}" data-row="${escape(rowId)}">Planから外す</button></div></td>`;
     }).join('')}</tr>`;
   }).join('')}<tr class="total"><td>月額 / 差額</td>${planIds.map(id => {
     const summary = summaries[id], delta = planDelta(summary, baseline);
@@ -68,7 +81,7 @@ async function loadProfilePriceProducts(pkg, profile, region) {
 async function evaluate(id) {
   const instance = state.serviceInstances[id]; if (!instance) return;
   const revision = (revisions.get(id) ?? 0) + 1; revisions.set(id, revision);
-  results.set(id, { state: 'loading', amountUsd: null }); render();
+  rawResults.set(id, { state: 'loading', amountUsd: null }); updatePlanResults(); render();
   let result;
   try {
     if (!catalog.some(service => service.id === instance.serviceId)) throw Object.assign(Error(`未知Service: ${instance.serviceId}`), { code: 'INVALID_DATA' });
@@ -76,11 +89,12 @@ async function evaluate(id) {
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
     const pkg = await definitions.package(instance.serviceId), profile = pkg.profiles[instance.profileId];
     if (!profile) throw Object.assign(Error('未知Profile: 要再選択'), { code: 'INVALID_DATA' });
+    if (fillDefinitionDefaults(pkg, instance)) save();
     const data = await loadProfilePriceProducts(pkg, profile, region);
     result = evaluateService(pkg, instance, { ...state.project.usageAssumptions, defaultRegion: state.project.defaultRegion, region }, data.defaultProducts, data.defaultProducts, data.byServiceCode);
   } catch (error) { result = { state: error.code === 'INVALID_DATA' ? 'invalid' : 'unavailable', amountUsd: null, issues: [{ code: error.code ?? 'FETCH_FAILED', severity: 'error', message: error.message }] }; }
   if (!state.serviceInstances[id] || revisions.get(id) !== revision) return;
-  results.set(id, result); render();
+  rawResults.set(id, result); updatePlanResults(); render();
   if (editing === id && $('service-drawer').open) await renderDrawer();
 }
 async function evaluateAll() { await Promise.all(Object.keys(state.serviceInstances).map(evaluate)); }
@@ -91,7 +105,7 @@ function field(input, scope, componentId, context, products, filters, inactive) 
   let control;
   if (input.type === 'select') {
     const candidates = selectorCandidates(input, products, context, filters);
-    control = `<select ${attrs}>${value === undefined || !candidates.includes(value) ? `<option value="" selected>要再選択${value === undefined ? '' : ` (${escape(value)})`}</option>` : ''}${candidates.map(option => `<option value="${escape(option)}" ${option === value ? 'selected' : ''}>${escape(option)}</option>`).join('')}</select>`;
+    control = `<select ${attrs}>${value === undefined || !candidates.includes(value) ? `<option value="" selected>要再選択${value === undefined ? '' : ` (${escape(value)})`}</option>` : ''}${candidates.map(option => `<option value="${escape(option)}" ${option === value ? 'selected' : ''}>${escape(input.options.label?.[option] ?? option)}</option>`).join('')}</select>`;
   } else if (input.type === 'boolean') control = `<input type="checkbox" ${attrs} ${value ? 'checked' : ''}>`;
   else control = `<input type="number" min="${escape(input.minimum ?? '0')}" ${input.maximum !== undefined ? `max="${escape(input.maximum)}"` : ''} step="${input.integer ? '1' : 'any'}" aria-invalid="${Boolean(numberInputError(input, value))}" value="${escape(value)}" ${attrs}>`;
   return `<label>${escape(input.label)}${control}</label>${input.ui?.help ? `<div class="input-help">${escape(input.ui.help)}</div>` : ''}${active && input.type === 'number' && numberInputError(input, value) ? `<div class="invalid">${escape(numberInputError(input, value))}</div>` : ''}`;
@@ -120,7 +134,7 @@ async function renderDrawer() {
       const componentProducts = data.byServiceCode[sourceCode] ?? data.defaultProducts;
       const renderFields = advanced => inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'component', componentId, context, componentProducts, filters, inactive)).join('');
       const component = result?.components?.[componentId];
-      return `<fieldset><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
+      return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
     }).join('')}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
       const limitation = limitations.get(id); return `<p class="${limitation?.severity === 'warning' ? 'warning-text' : 'notice-text'}">${escape(limitation?.message ?? id)}</p>`;
     }).join('')}`;
@@ -151,7 +165,7 @@ $('workspace').addEventListener('click', async event => {
   if (action === 'remove-service') { if (editing === state.rows[row]?.cells[plan]) { $('service-drawer').close(); editing = null; } removeService(state, plan, row); }
   if (action === 'edit') { editing = instance; $('service-drawer').showModal(); await renderDrawer(); return; }
   if (action === 'retry') { await evaluate(instance); return; }
-  save(); render();
+  updatePlanResults(); save(); render();
 });
 $('catalog-search').addEventListener('input', renderCatalog); $('catalog-filter').addEventListener('change', renderCatalog);
 $('catalog-list').addEventListener('click', async event => {
@@ -182,8 +196,9 @@ $('drawer-content').addEventListener('change', async event => {
 $('drawer-content').addEventListener('click', event => { if (event.target.closest('[data-drawer-retry]')) evaluate(editing); });
 $('project-name').addEventListener('change', event => { state.project.name = event.target.value; save(); });
 $('project-hours').addEventListener('change', async event => { state.project.usageAssumptions.hoursPerMonth = event.target.value; save(); await evaluateAll(); });
+$('scheduler-free-remaining').addEventListener('change', async event => { state.project.usageAssumptions.schedulerFreeInvocationsRemaining = event.target.value; updatePlanResults(); save(); render(); if (editing) await renderDrawer(); });
 $('project-region').addEventListener('change', async event => { state.project.defaultRegion = event.target.value; save(); await evaluateAll(); renderCatalog(); });
-$('new-project').addEventListener('click', () => { if (!state.project.planOrder.length || confirm('現在のProjectを新規Projectに切り替えますか？')) { state = newProject(); results.clear(); editing = null; $('service-drawer').close(); save(); render(); } });
+$('new-project').addEventListener('click', () => { if (!state.project.planOrder.length || confirm('現在のProjectを新規Projectに切り替えますか？')) { state = newProject(); rawResults.clear(); results.clear(); editing = null; $('service-drawer').close(); save(); render(); } });
 export function downloadText(name, text, type = 'application/json') {
   const url = URL.createObjectURL(new Blob([text], { type })); const anchor = document.createElement('a'); anchor.href = url; anchor.download = name; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
@@ -205,7 +220,7 @@ for (const kind of ['csv', 'pdf']) $(`${kind}-export`).addEventListener('click',
   try { const exports = await import('./export.js'); await exports.exportProject(kind, { state, results, catalog, definitions, limitations, prices, json: projectJson(), download: downloadText }); }
   catch (error) { message(`出力エラー: ${error.message}`); }
 });
-export async function replaceProject(next) { state = next; results.clear(); editing = null; $('service-drawer').close(); save(); render(); await evaluateAll(); }
+export async function replaceProject(next) { state = next; rawResults.clear(); results.clear(); editing = null; $('service-drawer').close(); save(); render(); await evaluateAll(); }
 export const appState = () => state;
 function renderMetadata() { $('price-meta').textContent = prices.publicationDate ? `Price Data ${prices.publicationDate} · ${prices.buildId}${prices.stale ? ' · stale（新buildまたは最新確認失敗。使用中buildで計算）' : ''}` : 'Price Dataを取得できません（Project編集・保存は継続できます）'; }
 $('check-price').addEventListener('click', async () => { await prices.initialize().catch(() => {}); await prices.checkLatest(); renderMetadata(); await evaluateAll(); });

@@ -1,0 +1,203 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/AuroraPostgreSQL",
+  "observedAt": "2026-10-11T09:33:07.640Z",
+  "text": "フィードバック\n言語: 日本語\n営業へのお問い合わせ \nAWS アカウントを作成\nCreate estimate: Configure Amazon Aurora PostgreSQL-Compatible DB\n \n情報\n説明\nロケーションタイプを選択情報\nリージョン\nリージョンを選択\nUS East (Ohio)\nAurora PostgreSQL 互換エディション\nオープンソースデータベースのシンプルさとコスト効率性で、ハイエンドの商用データベースのスピードと可用性を提供します。\nAurora サーバーレス PostgreSQL 互換エディション\nデータベースの容量は、アプリケーションのニーズに合わせて自動的にスケールアップまたはスケールダウンされます。\nAmazon Aurora PostgreSQL Limitless Database\nデータベースワークロードを単一のデータベースとして使用する機能を維持しながら、複数の Aurora ライターインスタンスに分散することで、書き込みスループットとストレージをスケールします。\nクラスター設定オプション\n情報\nAurora PostgreSQL クラスター構成オプション\nAurora Standard\n追加のバックアップストレージ\nユニット\nGB\nI/O の使用量が中程度 (I/O コストがデータベース全体のコストの 25% 未満) である多くのアプリケーション向けのコスト効率に優れた料金。\npay-per-request の I/O 料金が適用されます。DB インスタンスとストレージの料金には I/O の使用は含まれません。\n設定\n情報\nAurora PostgreSQL サーバーレス版\nServerless\n価格モデル\nOnDemand\nデータベースエンジン\nAurora PostgreSQL\nAurora 容量単位 (ACU) の数\n計算を表示\nデータベースストレージ\n情報\nストレージ量\nAurora クラスターの合計ストレージサイズ\nバリュー\nユニット\nGB\nベースライン IO レート\nオフピーク期間中にワークロードが消費する 1 秒あたりの IO 数を入力します。\nバリュー\nユニット\n/秒\nピーク時の IO レート\nピーク期間中にワークロードが消費する 1 秒あたりの IO の最大数を入力します。\nバリュー\nユニット\n/秒\nピーク時の IO アクティビティの時間\nクラスターまたはインスタンスのワークロードがピーク時に動作する 1 か月あたりの時間数を入力します。\nバリュー\nユニット\n時間/月\n計算を表示\nAurora Serverless v2 インスタンスの Database Insights の料金\n情報\nデータベースで Database Insights を有効にしますか?\nはい\n計算を表示\nバックアップストレージ\n情報\n承認\nAWS 料金見積りツールでは、AWS の料金見積もりのみが提示され、適用される可能性がある税金は含まれていません。実際の料金は、AWS のサービスの実際の使用状況など、さまざまな要因によって異なります。詳細 \n\n\n\n合計前払いコスト: 0.00 USD\n合計月額コスト: 46.08 USD\n詳細を表示\nキャンセル\n概要を保存して表示\nサービスを保存して追加\nプライバシー\nサイトの利用規約\nCookie の設定\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": "言語: 日本語",
+      "text": "言語: 日本語",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Description - optional",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "リージョン",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "US East (Ohio)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "label": null,
+      "text": "",
+      "value": "AuroraPostgreSQLCompatibleDB"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "label": null,
+      "text": "",
+      "value": "auroraServerlessPostgreSQLv2"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "label": null,
+      "text": "",
+      "value": "auroralimitlessPostgres"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "Aurora Standard",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "label": "追加のバックアップストレージ バリュー",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "Serverless",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "OnDemand",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "Aurora PostgreSQL",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "label": "Aurora 容量単位 (ACU) の数",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "label": "ストレージ量 バリュー",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "label": "ベースライン IO レート バリュー",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "/秒",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "label": "ピーク時の IO レート バリュー",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "/秒",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "label": "ピーク時の IO アクティビティの時間 バリュー",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "時間/月",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": null,
+      "text": "はい",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "label": "ヘルプパネルを開く",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "label": null,
+      "text": "詳細を表示",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "label": null,
+      "text": "キャンセル",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "label": "概要を保存して表示",
+      "text": "概要を保存して表示",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "label": "サービスを保存して追加",
+      "text": "サービスを保存して追加",
+      "value": ""
+    }
+  ]
+}

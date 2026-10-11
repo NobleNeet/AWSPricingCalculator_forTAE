@@ -6,6 +6,7 @@ import { resolvePrice } from './price-query.js';
 import { mappingForComponent, priceSourceForComponent, resolvePricingMapping } from './mapping.js';
 import { calculate } from './calculation.js';
 import { fail, issue } from './issues.js';
+import { validateConstraints } from './constraints.js';
 
 export function selectorCandidates(selector, products, context, fixedFilters = []) {
   if (selector.options.values) return [...selector.options.values];
@@ -50,8 +51,9 @@ export function evaluateService(pkg, instance, project, products, profileProduct
     const profile = pkg.profiles[instance.profileId];
     if (!profile) fail('UNKNOWN_PROFILE', 'Unknown profile.');
     const defaultServiceCode = pkg.service?.priceSource?.serviceCode;
-    const context = { project, profile: instance.selectors ?? {}, component: {}, resolvedComponents: {} };
+    const context = { project, profile: instance.selectors ?? {}, component: {}, resolvedComponents: {}, resolvedInputs: {} };
     context.profile = activeInputs(profile.selectors, context.profile, context, profileProducts, profile.fixedFilters, 'profile');
+    validateConstraints(profile.constraints, context);
     for (const id of profile.components) {
       const definition = pkg.components[id];
       const saved = instance.components?.[id] ?? {};
@@ -70,13 +72,15 @@ export function evaluateService(pkg, instance, project, products, profileProduct
         const broadFilters = [...fixedFilters, ...resolutionFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
         const scopedProducts = sourceProducts.filter(product => matches(product, broadFilters, context));
         context.component = activeInputs([...definition.selectors, ...definition.usageInputs], context.component, context, scopedProducts, broadFilters);
+        validateConstraints(definition.constraints, context);
         const resolution = mapping
           ? resolvePricingMapping(scopedProducts, mapping, context)
           : resolvePrice(scopedProducts, definition.priceQuery, context, legacyFilters);
-        const limitations = [...new Set([...definition.limitations, ...resolution.limitations])];
-        const result = calculate(definition.calculation, context, resolution.dimension);
+        const limitations = [...new Set([...definition.limitations, ...resolution.limitations])].filter(id => id !== 'tier-pricing' || definition.calculation.model !== 'tiered');
+        const result = calculate(definition.calculation, context, resolution.dimension, resolution.dimensions);
         context.resolvedComponents[id] = resolution.product;
-        components[id] = { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution };
+        context.resolvedInputs[id] = { ...context.component };
+        components[id] = { ...result, state: limitations.length ? 'warning' : 'ready', limitations, resolution, ...(definition.billingGroup ? { billingGroup: definition.billingGroup } : {}) };
       } catch (error) {
         const diagnostic = error.issue ?? issue('INVALID_DATA', error.message);
         components[id] = { state: 'invalid', issues: [diagnostic] };

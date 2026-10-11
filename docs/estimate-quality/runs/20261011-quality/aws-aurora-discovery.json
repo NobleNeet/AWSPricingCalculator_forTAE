@@ -1,0 +1,727 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/AuroraPostgreSQL",
+  "observedAt": "2026-10-11T09:09:35.736Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Aurora PostgreSQL-Compatible DB\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nAurora PostgreSQL-Compatible Edition\nProvides speed and availability of high-end commercial databases with the simplicity and cost-effectiveness of open source databases.\nAurora Serverless PostgreSQL-Compatible Edition\nDatabase capacity automatically scales up or down to meet your application needs.\nAmazon Aurora PostgreSQL Limitless Database\nScales write throughput and storage by distributing a database workload over multiple Aurora writer instances, while maintaining the ability to use it as a single database.\nCluster Configuration Option\nInfo\nAurora PostgreSQL Cluster Configuration Option\nAurora Standard\nCost effective pricing for many applications with moderate I/O usage (I/O costs <25% of total database costs).\nPay-per-request I/O charges apply. DB instance and storage prices don't include I/O usage.\nAurora PostgreSQL Compatible DB instance specifications\nInfo\nQuantity\nEnter the number of DB instances that you need including read replicas.\nSelected Instance:\ndb.r6g.large\nvCPU: 2\nMemory: 16 GiB\nNetwork Performance: Up to 10 Gigabit\nUtilization\nWith utilization, you still have to stop the instance to get the cost benefit. Utilization only affects OnDemand pricing for instances and not the storage, backups, etc.\nValue\nUnit\n%Utilized/Month\nPricing model\nOnDemand\nShow calculations\nRDS Proxy\nInfo\nWould you be creating an RDS Proxy with the database?\nYes\nShow calculations\nDatabase Storage\nInfo\nStorage amount\nTotal Storage Size of the Aurora Cluster\nValue\nUnit\nGB\nBaseline IO rate\nEnter the number of IOs per second that your workload consumes during off-peak periods.\nValue\nUnit\nper second\nPeak IO rate\nEnter the maximum number of IOs per second your workload consumes during peak periods.\nValue\nUnit\nper second\nDuration of peak IO activity\nEnter the number of hours per month when your cluster or instance workload operates at peak.\nValue\nUnit\nhours per month\nShow calculations\nCloudWatch Database Insights Pricing for RDS Provisioned Instances\nInfo\nWould you be enabling Database Insights with the database?\nYes\nShow calculations\nRDS Extended Support\nInfo\nNote: You will not be charged for RDS Extended Support until the Extended Support pricing start date for your database major version. To check the pricing start date for your engine, please refer to the Aurora PostgreSQL user guide.\nDo you plan on running an Extended Support major version (PostgreSQL 11 or higher)?\nYes\nPlease choose the pricing year for RDS Extended Support (Pricing in year 3 is higher than the pricing in the first 2 years)\nYear 1 and Year 2 cost\nNumber of hours running on Amazon RDS Extended Support\nUnit\nper month\nShow calculations\nBackup Storage\nInfo\nSnapshot Export\nInfo\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 229.95 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Accept all cookies",
+      "text": "Accept",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Decline",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Customize cookie preferences",
+      "text": "Customize",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-essential",
+      "label": "Allow essential category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-performance",
+      "label": "Allow performance category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-functional",
+      "label": "Allow functional category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-advertising",
+      "label": "Allow advertising category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Cancel customizing cookie preferences",
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "allowed"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "not allowed"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Dismiss error message modal",
+      "text": "Dismiss",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": null,
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "Language: English",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField1754-1791709771759-1869",
+      "label": "Description - optional",
+      "placeholder": "Enter a description for your estimate",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1756-1791709771759-7700",
+      "label": null,
+      "text": "Region",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1769-1791709771760-5995",
+      "label": null,
+      "text": "US East (Ohio)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "1781-1791709771764-9242",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "AuroraPostgreSQLCompatibleDB"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "1782-1791709771765-359",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "auroraServerlessPostgreSQLv2"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "1783-1791709771765-3054",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "auroralimitlessPostgres"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1901-1791709771792-4218",
+      "label": null,
+      "text": "Aurora Standard",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField2258-1791709773208-2238",
+      "label": "Quantity",
+      "placeholder": "",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "input2260-1791709773208-3106",
+      "label": null,
+      "placeholder": "Select an instance",
+      "text": "",
+      "value": "db.r6g.large"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "clear input",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2270-1791709773209-7204",
+      "label": "Utilization Value",
+      "placeholder": "",
+      "text": "",
+      "value": "100"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2272-1791709773210-9189",
+      "label": null,
+      "text": "%Utilized/Month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2282-1791709773210-7583",
+      "label": null,
+      "text": "OnDemand",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1920-1791709771795-730",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1939-1791709771799-1157",
+      "label": "Storage amount Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1941-1791709771800-3507",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1952-1791709771801-1366",
+      "label": "Baseline IO rate Value",
+      "placeholder": "Enter the number of IOs",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1954-1791709771801-615",
+      "label": null,
+      "text": "per second",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1965-1791709771802-9226",
+      "label": "Peak IO rate Value",
+      "placeholder": "Enter the number of IOs",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1967-1791709771802-8066",
+      "label": null,
+      "text": "per second",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1978-1791709771803-8059",
+      "label": "Duration of peak IO activity Value",
+      "placeholder": "Enter the number of hours",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1980-1791709771803-7776",
+      "label": null,
+      "text": "hours per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2099-1791709772193-6329",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2110-1791709772195-6830",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2120-1791709772196-4866",
+      "label": null,
+      "text": "Year 1 and Year 2 cost",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2021-1791709772162-6733",
+      "label": "Number of hours running on Amazon RDS Extended Support Value",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2023-1791709772162-6658",
+      "label": null,
+      "text": "per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1807-1791709771767-8099",
+      "label": "Additional backup storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1809-1791709771768-8318",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1829-1791709771769-1474",
+      "label": "Total Size of Backup Processed for Export (GB) Value",
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1831-1791709771770-6120",
+      "label": null,
+      "text": "per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2131-1791709772198-7701",
+      "label": null,
+      "text": "Aurora Standard",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2040-1791709772165-452",
+      "label": "Additional backup storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2042-1791709772165-7547",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2226-1791709772986-9029",
+      "label": null,
+      "text": "Serverless",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2236-1791709772988-7727",
+      "label": null,
+      "text": "OnDemand",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2246-1791709772988-3626",
+      "label": null,
+      "text": "Aurora PostgreSQL",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField2256-1791709772989-6508",
+      "label": "Number of Aurora Capacity Units (ACUs)",
+      "placeholder": "",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2173-1791709772239-802",
+      "label": "Storage amount Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2175-1791709772239-7788",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2186-1791709772240-2259",
+      "label": "Baseline IO rate Value",
+      "placeholder": "Enter the number of IOs",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2188-1791709772240-5108",
+      "label": null,
+      "text": "per second",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2199-1791709772241-7184",
+      "label": "Peak IO rate Value",
+      "placeholder": "Enter the number of IOs",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2201-1791709772241-6337",
+      "label": null,
+      "text": "per second",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2212-1791709772241-7032",
+      "label": "Duration of peak IO activity Value",
+      "placeholder": "Enter the number of hours",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2214-1791709772242-6310",
+      "label": null,
+      "text": "hours per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2143-1791709772200-1063",
+      "label": null,
+      "text": "Yes",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2068-1791709772167-5295",
+      "label": "Additional backup storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2070-1791709772167-6594",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1846-1791709771771-653",
+      "label": "Number of Aurora Capacity Units (ACUs) for the DB shard group Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1848-1791709771771-7845",
+      "label": null,
+      "text": "per hour",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1867-1791709771772-604",
+      "label": "Storage amount Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1869-1791709771772-4746",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2087-1791709772169-9292",
+      "label": "Number of Aurora Capacity Units (ACUs) monitored by Database Insights Value",
+      "placeholder": "Enter a number",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2089-1791709772170-4817",
+      "label": null,
+      "text": "per hour",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField1889-1791709771773-3857",
+      "label": "Additional backup storage Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField1891-1791709771774-9166",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Open help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Close help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    }
+  ]
+}

@@ -63,3 +63,14 @@ test('Definition cache deduplicates package fetches and validates safe reference
   assert.equal(Object.values(counts).every(n => n === 1), true);
   await assert.rejects(() => store.package('../outside'), /Invalid service ID/);
 });
+
+test('browser loader accepts declared tiered meters and rejects unknown models', async () => {
+  for (const model of ['tiered', 'execute-js']) {
+    const store = new DefinitionStore({ fetcher: async url => ({ ok: true, text: async () => JSON.stringify(url.endsWith('service.json')
+      ? { schemaVersion:1,id:'example',profiles:['standard'],defaultProfile:'standard',priceSource:{serviceCode:'Example'} }
+      : url.includes('/profiles/') ? {schemaVersion:1,id:'standard',components:['meter'],selectors:[],fixedFilters:[]}
+      : {schemaVersion:1,id:'meter',priceQuery:{expect:'singleSku'},calculation:{model},selectors:[],usageInputs:[],limitations:[]}) }) });
+    if (model === 'tiered') assert.equal((await store.package('example')).components.meter.calculation.model, 'tiered');
+    else await assert.rejects(() => store.package('example'), /Invalid resource/);
+  }
+});

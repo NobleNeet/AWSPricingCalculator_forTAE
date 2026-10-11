@@ -16,10 +16,10 @@ export function resolveDimension(dimensions) {
     return true;
   });
   if (!billable.length) fail('PRICE_DIMENSION_NOT_FOUND', 'No normal billable dimension.');
-  if (billable.length === 1) return { dimension: billable[0], limitations: [...new Set(limitations)] };
+  if (billable.length === 1) return { dimension: billable[0], dimensions: billable, limitations: [...new Set(limitations)] };
   const sorted = [...billable].sort((a, b) => decimal(a.beginRange).cmp(b.beginRange));
   const unit = sorted[0].unit;
   const contiguous = sorted.every((d, i) => d.unit === unit && !decimal(d.pricePerUnit.USD).isZero() && (d.endRange === 'Inf' || decimal(d.endRange).gt(d.beginRange)) && (i === 0 || sorted[i - 1].endRange !== 'Inf' && decimal(sorted[i - 1].endRange).eq(d.beginRange)));
   if (!contiguous || sorted.at(-1).endRange !== 'Inf') fail('AMBIGUOUS_PRICE_DIMENSION', 'Multiple heterogeneous or unproven tier dimensions.');
-  return { dimension: sorted[0], limitations: [...new Set([...limitations, 'tier-pricing'])] };
+  return { dimension: sorted[0], dimensions: sorted, limitations: [...new Set([...limitations, 'tier-pricing'])] };
 }

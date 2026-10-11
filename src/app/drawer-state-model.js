@@ -6,6 +6,14 @@ export function migrateDefinitionInputs(pkg, instance) {
   const profile = pkg.profiles[instance.profileId];
   if (!profile) return false;
   let changed = false;
+  // A new capacity mode must not reinterpret a restored aggregate quantity.
+  for (const componentId of profile.components) {
+    const definition = pkg.components[componentId], saved = instance.components?.[componentId];
+    if (definition?.selectors.some(input => input.id === 'usageMode') && saved?.inputs && !Object.prototype.hasOwnProperty.call(saved.inputs, 'usageMode')) {
+      saved.inputs.usageMode = 'aggregate';
+      changed = true;
+    }
+  }
   instance.selectors ??= {};
   const hasEphemeralStorage = profile.selectors.some(input => input.id === 'ephemeralStorageMb');
   if (pkg.service?.id === 'lambda' && hasEphemeralStorage && Object.prototype.hasOwnProperty.call(instance.selectors, 'additionalStorageMb') && !Object.prototype.hasOwnProperty.call(instance.selectors, 'ephemeralStorageMb')) {

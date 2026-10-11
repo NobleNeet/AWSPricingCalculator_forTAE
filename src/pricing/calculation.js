@@ -1,6 +1,7 @@
 import { decimal } from './decimal.js';
 import { resolveValue } from './filter.js';
 import { fail } from './issues.js';
+import { tierAmount } from './tiers.js';
 
 function canonicalUnit(unit) {
   if (unit === 'Requests') return 'Request';
@@ -8,9 +9,26 @@ function canonicalUnit(unit) {
   return unit;
 }
 
-function resolveUsageSource(source, context) {
+export function resolveUsageSource(source, context, depth = 0) {
+  if (depth > 16) fail('INVALID_CALCULATION', 'Usage expression nesting limit exceeded.');
   if (source.value && typeof source.value === 'object' && !Array.isArray(source.value)) {
     const expression = source.value;
+    if (expression.type === 'product') {
+      if (!Array.isArray(expression.sources) || !expression.sources.length) fail('INVALID_CALCULATION', 'Invalid usage product.');
+      return expression.sources.reduce((value, factor) => value.times(resolveUsageSource(factor, context, depth + 1)), decimal('1'));
+    }
+    if (expression.type === 'choice') {
+      const selection = resolveValue({ valueFrom: expression.field }, context);
+      if (!selection.exists || !Object.prototype.hasOwnProperty.call(expression.cases ?? {}, selection.value)) fail('MISSING_USAGE', `Missing usage choice ${expression.field}.`);
+      return resolveUsageSource(expression.cases[selection.value], context, depth + 1);
+    }
+    if (expression.type === 'resolvedComponentInput') {
+      const raw = context.resolvedInputs?.[expression.componentId]?.[expression.inputId];
+      if (raw === undefined) fail('MISSING_USAGE', `Missing resolved input ${expression.componentId}.${expression.inputId}.`);
+      const value = decimal(raw);
+      if (value.isNegative()) fail('INVALID_USAGE', 'Usage must be nonnegative.');
+      return value;
+    }
     if (expression.type === 'resolvedComponentAttribute') {
       const component = context.resolvedComponents?.[expression.componentId];
       const raw = component?.attributes?.[expression.attribute];
@@ -18,12 +36,10 @@ function resolveUsageSource(source, context) {
       if (!/^[0-9]+(?:\\.[0-9]+)?$/.test(String(raw).trim())) fail('INVALID_USAGE', `Invalid numeric resolved attribute ${expression.componentId}.${expression.attribute}.`);
       return decimal(raw);
     }
-    if (expression.type !== 'transformed' || typeof expression.valueFrom !== 'string' || !Array.isArray(expression.transforms)) {
+    if (expression.type !== 'transformed' || (typeof expression.valueFrom !== 'string' && !expression.source) || !Array.isArray(expression.transforms)) {
       fail('INVALID_CALCULATION', 'Invalid transformed usage source.');
     }
-    const resolved = resolveValue({ valueFrom: expression.valueFrom }, context);
-    if (!resolved.exists) fail('MISSING_USAGE', `Missing ${expression.valueFrom}.`);
-    let value = decimal(resolved.value);
+    let value = expression.source ? resolveUsageSource(expression.source, context, depth + 1) : resolveUsageSource({ valueFrom: expression.valueFrom }, context, depth + 1);
     if (value.isNegative()) fail('INVALID_USAGE', 'Usage must be nonnegative.');
     for (const transform of expression.transforms) {
       switch (transform.type) {
@@ -34,6 +50,18 @@ function resolveUsageSource(source, context) {
           const minimum = decimal(transform.value);
           if (minimum.isNegative()) fail('INVALID_TRANSFORM', 'Negative minimum.');
           value = value.lt(minimum) ? minimum : value;
+          break;
+        }
+        case 'maximum': {
+          const maximum = decimal(transform.value);
+          if (maximum.isNegative()) fail('INVALID_TRANSFORM', 'Negative maximum.');
+          value = value.gt(maximum) ? maximum : value;
+          break;
+        }
+        case 'divide': {
+          const divisor = decimal(transform.divisor);
+          if (!divisor.gt('0')) fail('INVALID_TRANSFORM', 'Divisor must be positive.');
+          value = value.div(divisor);
           break;
         }
         case 'scale': {
@@ -60,8 +88,8 @@ function resolveUsageSource(source, context) {
   return value;
 }
 
-export function calculate(calculation, context, dimension) {
-  if (calculation.model !== 'unit' || calculation.usage.combine !== 'multiply' || !calculation.usage.sources.length) fail('INVALID_CALCULATION', 'Unsupported calculation model or usage.');
+export function calculate(calculation, context, dimension, dimensions = [dimension]) {
+  if (!['unit', 'tiered'].includes(calculation.model) || calculation.usage.combine !== 'multiply' || !calculation.usage.sources.length) fail('INVALID_CALCULATION', 'Unsupported calculation model or usage.');
   let rawUsage = decimal('1');
   for (const source of calculation.usage.sources) {
     rawUsage = rawUsage.times(resolveUsageSource(source, context));
@@ -103,5 +131,6 @@ export function calculate(calculation, context, dimension) {
   if (convertedUnit && convertedUnit !== calculation.outputUnit) fail('UNIT_MISMATCH', 'Final conversion unit differs from outputUnit.');
   if (canonicalUnit(calculation.outputUnit) !== canonicalUnit(dimension.unit)) fail('UNIT_MISMATCH', `Expected ${calculation.outputUnit}, received ${dimension.unit}.`);
   const price = decimal(dimension.pricePerUnit.USD);
-  return { rawUsage: rawUsage.toString(), billingQuantity: quantity.toString(), billingUnit: dimension.unit, unitPriceUsd: price.toString(), amountUsd: quantity.times(price).toString(), issues: [] };
+  const amount = calculation.model === 'tiered' ? tierAmount(quantity, dimensions) : quantity.times(price);
+  return { rawUsage: rawUsage.toString(), billingQuantity: quantity.toString(), billingUnit: dimension.unit, unitPriceUsd: price.toString(), amountUsd: amount.toString(), issues: [] };
 }

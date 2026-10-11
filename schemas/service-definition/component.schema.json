@@ -855,7 +855,10 @@
       "type": "object",
       "properties": {
         "model": {
-          "const": "unit"
+          "enum": [
+            "unit",
+            "tiered"
+          ]
         },
         "usage": {
           "type": "object",
@@ -1079,6 +1082,152 @@
       },
       "required": [],
       "additionalProperties": false
+    },
+    "billingGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "scope": {
+          "enum": [
+            "plan-region",
+            "plan"
+          ]
+        },
+        "policy": {
+          "enum": [
+            "tiered",
+            "unique",
+            "allowance"
+          ]
+        },
+        "remainingFrom": {
+          "type": "string"
+        },
+        "maximumAllowance": {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "policy"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "policy": {
+                "const": "allowance"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "remainingFrom",
+              "maximumAllowance"
+            ]
+          }
+        }
+      ]
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "object",
+            "properties": {
+              "value": {},
+              "valueFrom": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "value"
+                ],
+                "not": {
+                  "required": [
+                    "valueFrom"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "valueFrom"
+                ],
+                "not": {
+                  "required": [
+                    "value"
+                  ]
+                }
+              }
+            ]
+          },
+          "right": {
+            "type": "object",
+            "properties": {
+              "value": {},
+              "valueFrom": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "value"
+                ],
+                "not": {
+                  "required": [
+                    "valueFrom"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "valueFrom"
+                ],
+                "not": {
+                  "required": [
+                    "value"
+                  ]
+                }
+              }
+            ]
+          },
+          "op": {
+            "enum": [
+              "gte",
+              "lte",
+              "zeroOrPositive",
+              "multipleOf"
+            ]
+          },
+          "when": {
+            "$ref": "#/$defs/condition"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "left",
+          "right",
+          "op",
+          "message"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "required": [

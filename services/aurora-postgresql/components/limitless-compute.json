@@ -2,7 +2,23 @@
   "schemaVersion": 1,
   "id": "limitless-compute",
   "label": "Aurora PostgreSQL Limitless compute",
-  "selectors": [],
+  "selectors": [
+    {
+      "id": "usageMode",
+      "label": "Usage input mode",
+      "type": "select",
+      "default": "capacity",
+      "options": {
+        "values": [
+          "capacity",
+          "aggregate"
+        ]
+      },
+      "ui": {
+        "help": "capacity: 物理容量と利用時間から計算。aggregate: 既知の月間合計使用量を直接入力します。"
+      }
+    }
+  ],
   "usageInputs": [
     {
       "id": "acuHours",
@@ -11,7 +27,41 @@
       "default": "11680",
       "minimum": "0",
       "ui": {
-        "help": "DB shard groupの月間合計ACU-hours。初期値は最小容量16 ACU × 730時間 = 11680。短時間利用の合計値には11680の下限を適用しません。"
+        "advanced": true,
+        "help": "月間合計ACU時間です。短時間利用に通月容量の下限を適用しません。"
+      },
+      "enabledWhen": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "aggregate"
+      }
+    },
+    {
+      "id": "averageAcus",
+      "label": "Average DB shard group capacity (ACUs)",
+      "type": "number",
+      "default": "16",
+      "minimum": "16",
+      "enabledWhen": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "capacity"
+      },
+      "ui": {
+        "help": "基本構成の最小16 ACU。構成によって最小容量が増える場合はその容量を入力してください。監視ACUとは独立です。"
+      }
+    },
+    {
+      "id": "computeHours",
+      "label": "Compute duration (hours/month)",
+      "type": "number",
+      "default": "730",
+      "exclusiveMinimum": "0",
+      "maximum": "730",
+      "enabledWhen": {
+        "field": "component.usageMode",
+        "op": "eq",
+        "value": "capacity"
       }
     }
   ],
@@ -57,7 +107,28 @@
     "usage": {
       "sources": [
         {
-          "valueFrom": "component.acuHours"
+          "value": {
+            "type": "choice",
+            "field": "component.usageMode",
+            "cases": {
+              "aggregate": {
+                "valueFrom": "component.acuHours"
+              },
+              "capacity": {
+                "value": {
+                  "type": "product",
+                  "sources": [
+                    {
+                      "valueFrom": "component.averageAcus"
+                    },
+                    {
+                      "valueFrom": "component.computeHours"
+                    }
+                  ]
+                }
+              }
+            }
+          }
         }
       ],
       "combine": "multiply"

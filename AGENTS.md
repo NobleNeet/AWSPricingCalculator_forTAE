@@ -53,7 +53,7 @@ For ordinary implementation choices, choose a reasonable solution and continue.
 - Browser-only loading/state code and Node-only CLI/filesystem/network code stay outside the shared Pricing Core.
 - Arbitrary JavaScript expressions in Service Definitions are prohibited. `adapter.js` is exceptional and requires explicit justification.
 - Initial normal pricing resolution is `singleSku`; do not silently select a first/cheapest/similar SKU.
-- Tier pricing and Free Tier/free allowances follow `docs/PRICING_ARCHITECTURE.md`; do not reintroduce tier integration or allowance subtraction.
+- Tier pricing and Free Tier/free allowances follow `docs/PRICING_ARCHITECTURE.md` and `docs/estimate-quality/SPEC.md`; only explicitly supported meters may integrate tiers or subtract declared allowances.
 - Monetary/usage calculation must use decimal-safe arithmetic and avoid intermediate display rounding.
 - Price DB generation/validation must be deterministic where specified.
 

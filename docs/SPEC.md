@@ -35,9 +35,9 @@ AWS上のシステム構成について、複数の構成案を同一画面で�
 - Spot: 対象外
 - 為替換算: 対象外
 
-Free Tierおよび無料利用枠は計算へ反映しない。
-Tier pricingは段階計算せず、通常の最初の有料単価を全使用量へ適用する。
-このため本アプリは、割引なし・無料枠なしの概算として、実請求額より高めになる場合がある。
+2026-10-11のユーザー指示による仕様変更: S3 StandardとEC2組み込みio2は段階料金を計算する。その他のメーターは従来の最初の有料単価方式を維持する。Schedulerに限り、明示した残り無料呼び出し枠をPlan全体で適用する。その他のFree Tier・割引は計算しない。
+
+合算範囲・保存データの互換性・入力方法は [見積品質改善仕様](estimate-quality/SPEC.md) を参照する。
 
 Minimum storage duration、early deletion、利用履歴・イベント回数・組織全体利用量等に依存する料金で、月間集計値だけから決定できないものは原則計算しない。過小見積の可能性がある場合はPricing Limitationとして警告する。
 
@@ -228,7 +228,7 @@ EC2 DrawerのAmazon EBS欄では、EBS volume type、Storage amount、および�
 - Storage料金はvolume typeとStorage amountからGB-month課金として計算する。
 - `gp3` は3,000 IOPS / 125 MiB/sまでStorage料金に含め、これを超えるProvisioned IOPS / throughputだけを独立した料金メーターとして加算する。
 - `io1` はStorage料金とProvisioned IOPS料金を独立した料金メーターとして計算し、合算する。
-- `io2` もStorage料金とProvisioned IOPS料金を合算する。ただしio2のProvisioned IOPSはAWS側で段階料金を持つため、本アプリのTier pricing方針に従い、最初の通常有料単価を全IOPSへ適用して `tier-pricing` Limitationを表示する。高IOPSでは実請求より高めになる場合がある。
+- `io2` もStorage料金とProvisioned IOPS料金を合算する。io2のProvisioned IOPSは、1ボリュームあたり32,000 / 64,000 IOPSを境界に各段階のSKUを適用し、ボリューム数・利用時間で換算する。
 - IOPS/容量比、Nitro世代等による実リソース作成可否は料金計算とは別の運用制約であり、現段階では完全な構成バリデーションを行わない。
 
 旧Project JSONでEC2 EBSのvolume typeがComponent入力に保存されている場合は、意味を変えずProfile selectorへ移行する。旧EBS Componentが無効だった場合は `none` へ移行し、EBS料金を引き続き除外する。

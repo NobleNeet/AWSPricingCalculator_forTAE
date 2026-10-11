@@ -17,6 +17,7 @@
   ],
   "defaultProfile": "provisioned-standard",
   "pricingMappings": [
-    "database-insights-limitless"
+    "database-insights-limitless",
+    "io-requests"
   ]
 }

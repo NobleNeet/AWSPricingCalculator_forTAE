@@ -1,0 +1,517 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/eventbridge",
+  "observedAt": "2026-10-11T09:09:40.326Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Accept all cookies",
+      "text": "Accept",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Decline",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Customize cookie preferences",
+      "text": "Customize",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-essential",
+      "label": "Allow essential category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-performance",
+      "label": "Allow performance category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-functional",
+      "label": "Allow functional category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-advertising",
+      "label": "Allow advertising category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Cancel customizing cookie preferences",
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "allowed"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "not allowed"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Dismiss error message modal",
+      "text": "Dismiss",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": null,
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "Language: English",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField2297-1791709776569-2867",
+      "label": "Description - optional",
+      "placeholder": "Enter a description for your estimate",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2299-1791709776570-1219",
+      "label": null,
+      "text": "Region",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2312-1791709776570-4098",
+      "label": null,
+      "text": "US East (Ohio)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2330-1791709776573-8576",
+      "label": "Size of the payload Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2332-1791709776573-9214",
+      "label": null,
+      "text": "KB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2389-1791709776661-8253",
+      "label": "Number of AWS management events Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2391-1791709776661-2928",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2401-1791709776662-1337",
+      "label": "Number of AWS opt-in data events Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2403-1791709776662-8693",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2413-1791709776662-6637",
+      "label": "Number of custom events Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2415-1791709776663-1158",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2425-1791709776663-1389",
+      "label": "Number of partner events Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2427-1791709776663-4751",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2550-1791709776700-7769",
+      "label": null,
+      "text": "AWS management events",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2444-1791709776668-545",
+      "label": "Number of events delivered to another event bus Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2446-1791709776669-4447",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2456-1791709776669-7483",
+      "label": "Number of events delivered to a service in the same account Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2458-1791709776670-64",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2468-1791709776670-8826",
+      "label": "Number of events delivered to a service in a different account Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2470-1791709776671-7234",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2349-1791709776574-7788",
+      "label": "Number of invocations Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2351-1791709776574-7852",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2487-1791709776676-6642",
+      "label": "Number of events Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2489-1791709776676-9444",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2499-1791709776676-4080",
+      "label": "Number of replayed events Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2501-1791709776677-9107",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2368-1791709776575-7930",
+      "label": "Number of requests Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2370-1791709776576-3684",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2518-1791709776679-4495",
+      "label": "Number of events Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2520-1791709776679-2311",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField2537-1791709776680-7219",
+      "label": "Number of invocations Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField2539-1791709776680-8329",
+      "label": null,
+      "text": "million per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Open help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Close help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    }
+  ]
+}

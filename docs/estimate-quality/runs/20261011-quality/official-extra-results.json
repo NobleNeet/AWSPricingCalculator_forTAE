@@ -1,0 +1,78 @@
+[
+  {
+    "id": "scheduler-13.999999",
+    "inputs": {
+      "schedulerInvocationsMillions": "13.999999",
+      "otherUsage": "blank",
+      "region": "ap-northeast-1"
+    },
+    "url": "https://calculator.aws/#/createCalculator/eventbridge",
+    "observedAt": "2026-10-11T09:31:11.994Z",
+    "monthlyUsd": "0.00",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nNumber of invocations cannot be in decimal.\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+  },
+  {
+    "id": "scheduler-14",
+    "inputs": {
+      "schedulerInvocationsMillions": "14",
+      "otherUsage": "blank",
+      "region": "ap-northeast-1"
+    },
+    "url": "https://calculator.aws/#/createCalculator/eventbridge",
+    "observedAt": "2026-10-11T09:31:12.785Z",
+    "monthlyUsd": "0.00",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+  },
+  {
+    "id": "scheduler-14.000001",
+    "inputs": {
+      "schedulerInvocationsMillions": "14.000001",
+      "otherUsage": "blank",
+      "region": "ap-northeast-1"
+    },
+    "url": "https://calculator.aws/#/createCalculator/eventbridge",
+    "observedAt": "2026-10-11T09:31:13.570Z",
+    "monthlyUsd": "0.00",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nNumber of invocations cannot be in decimal.\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 0.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+  },
+  {
+    "id": "scheduler-20",
+    "inputs": {
+      "schedulerInvocationsMillions": "20",
+      "otherUsage": "blank",
+      "region": "ap-northeast-1"
+    },
+    "url": "https://calculator.aws/#/createCalculator/eventbridge",
+    "observedAt": "2026-10-11T09:31:14.428Z",
+    "monthlyUsd": "7.50",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 7.50 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+  },
+  {
+    "id": "archive-100m-1kb",
+    "inputs": {
+      "archivedEventsMillions": "100",
+      "payloadKb": "1",
+      "replayEventsMillions": "0",
+      "otherUsage": "blank",
+      "region": "ap-northeast-1"
+    },
+    "url": "https://calculator.aws/#/createCalculator/eventbridge",
+    "observedAt": "2026-10-11T09:31:15.496Z",
+    "monthlyUsd": "15.50",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 15.50 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+  },
+  {
+    "id": "archive-1000m-1kb",
+    "inputs": {
+      "archivedEventsMillions": "1000",
+      "payloadKb": "1",
+      "replayEventsMillions": "0",
+      "otherUsage": "blank",
+      "region": "ap-northeast-1"
+    },
+    "url": "https://calculator.aws/#/createCalculator/eventbridge",
+    "observedAt": "2026-10-11T09:31:16.356Z",
+    "monthlyUsd": "155.00",
+    "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon EventBridge\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nAsia Pacific (Tokyo)\nPayload size\nInfo\nSize of the payload\nUnit\nKB\nEventBridge Event Bus - Ingestion\nInfo\nNumber of AWS management events\nUnit\nmillion per month\nNumber of AWS opt-in data events\nUnit\nmillion per month\nNumber of custom events\nUnit\nmillion per month\nNumber of partner events\nUnit\nmillion per month\nShow calculations\nEventBridge Event Bus - Delivery\nInfo\nWhat type of events were ingested?\nAWS management events\nNumber of events delivered to another event bus\nUnit\nmillion per month\nNumber of events delivered to a service in the same account\nUnit\nmillion per month\nNumber of events delivered to a service in a different account\nUnit\nmillion per month\nShow calculations\nAPI destinations\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nEvent Replay\nInfo\nNumber of events\nUnit\nmillion per month\nNumber of replayed events\nUnit\nmillion per month\nShow calculations\nEventBridge Pipes\nInfo\nNumber of requests\nUnit\nmillion per month\nShow calculations\nSchema Discovery\nInfo\nNumber of events\nUnit\nmillion per month\nShow calculations\nEventBridge Scheduler\nInfo\nNumber of invocations\nUnit\nmillion per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 155.00 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved."
+  }
+]

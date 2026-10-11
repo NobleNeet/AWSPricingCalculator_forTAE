@@ -2,7 +2,7 @@ import { sum, decimal } from '../pricing/decimal.js';
 
 export const newId = prefix => `${prefix}-${globalThis.crypto.randomUUID()}`;
 export function newProject() {
-  return { schemaVersion: 1, project: { id: newId('project'), name: '新しいAWS見積もり', defaultRegion: 'ap-northeast-1', usageAssumptions: { hoursPerMonth: '730' }, baselinePlanId: null, planOrder: [], rowOrder: [] }, plans: {}, rows: {}, serviceInstances: {} };
+  return { schemaVersion: 1, project: { id: newId('project'), name: '新しいAWS見積もり', defaultRegion: 'ap-northeast-1', usageAssumptions: { hoursPerMonth: '730', schedulerFreeInvocationsRemaining: '14000000' }, baselinePlanId: null, planOrder: [], rowOrder: [] }, plans: {}, rows: {}, serviceInstances: {} };
 }
 export function addPlan(state, name) {
   const id = newId('plan'); state.plans[id] = { id, name: name ?? `案 ${state.project.planOrder.length + 1}`, memo: '' }; state.project.planOrder.push(id);

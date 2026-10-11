@@ -10,6 +10,9 @@
   ],
   "defaultProfile": "standard",
   "pricingMappings": [
-    "dedicated-region-fee"
+    "dedicated-region-fee",
+    "ebs-io2-iops",
+    "ebs-io2-iops-tier2",
+    "ebs-io2-iops-tier3"
   ]
 }

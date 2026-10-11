@@ -21,7 +21,8 @@
     "storage": {
       "enabled": true,
       "inputs": {
-        "gbMonths": "20"
+        "gbMonths": "20",
+        "usageMode": "aggregate"
       }
     }
   },

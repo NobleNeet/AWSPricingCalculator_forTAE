@@ -12,6 +12,13 @@ function references(object, result = []) {
   return result;
 }
 
+function resolvedInputReferences(object, result = []) {
+  if (!object || typeof object !== 'object') return result;
+  if (object.type === 'resolvedComponentInput') result.push(object);
+  for (const value of Object.values(object)) resolvedInputReferences(value, result);
+  return result;
+}
+
 const PROJECT_KEYS = new Set(['region', 'hoursPerMonth', 'defaultRegion']);
 
 function referenceExists(valueFrom, profileIds, componentIds = new Set()) {
@@ -101,6 +108,11 @@ export async function validateDefinitions(packages) {
       for (const componentId of profile.components ?? []) {
         const component = pkg.components[componentId];
         if (!component) continue;
+        for (const reference of resolvedInputReferences(component)) {
+          const parent = pkg.components[reference.componentId];
+          const input = [...(parent?.selectors ?? []), ...(parent?.usageInputs ?? [])].find(input => input.id === reference.inputId);
+          if (!input || input.type !== 'number' || profile.components.indexOf(reference.componentId) >= profile.components.indexOf(componentId) || !profile.components.includes(reference.componentId)) add('INVALID_REFERENCE', `Resolved input ${reference.componentId}.${reference.inputId} must be an earlier numeric input.`, { profileId: id, componentId });
+        }
         const componentIds = checkScope([...(component.selectors ?? []), ...(component.usageInputs ?? [])], component, componentId);
         for (const mappingId of mappingsByComponent.get(componentId) ?? []) {
           const mapping = pkg.pricingMappings[mappingId];

@@ -20,7 +20,9 @@
     },
     "storage": {
       "enabled": false,
-      "inputs": {}
+      "inputs": {
+        "usageMode": "aggregate"
+      }
     }
   },
   "expected": {

@@ -63,5 +63,21 @@
   "limitations": [
     "free-tier",
     "account-specific-discount"
+  ],
+  "constraints": [
+    {
+      "left": {
+        "valueFrom": "component.requests"
+      },
+      "op": "zeroOrPositive",
+      "right": {
+        "value": {
+          "type": "resolvedComponentInput",
+          "componentId": "storage",
+          "inputId": "gbMonths"
+        }
+      },
+      "message": "I/Oリクエストを計上する場合はストレージ使用量を0より大きくしてください。"
+    }
   ]
 }

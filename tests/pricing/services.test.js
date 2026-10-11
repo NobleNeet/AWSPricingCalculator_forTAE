@@ -53,5 +53,7 @@ test('EC2 embedded EBS models storage and provisioned performance as independent
   assert.deepEqual(io2Iops.enabledWhen, { field: 'profile.ebsVolumeType', op: 'eq', value: 'io2' });
   assert.equal(gp3Iops.usageInputs[0].default, '3000');
   assert.equal(gp3Throughput.usageInputs[0].default, '125');
-  assert.ok(io2Iops.limitations.includes('tier-pricing'));
+  assert.ok(!io2Iops.limitations.includes('tier-pricing'));
+  assert.ok(profile.components.includes('ebs-io2-iops-tier2'));
+  assert.ok(profile.components.includes('ebs-io2-iops-tier3'));
 });

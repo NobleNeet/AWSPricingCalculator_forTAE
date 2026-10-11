@@ -1,0 +1,407 @@
+{
+  "url": "https://calculator.aws/#/createCalculator/EBS",
+  "observedAt": "2026-10-11T09:09:16.030Z",
+  "text": "Feedback\nLanguage: English\nContact Sales \nCreate an AWS Account\nCreate estimate: Configure Amazon Elastic Block Store (EBS)\n \nInfo\nDescription\nChoose a location typeInfo\nRegion\nChoose a Region\nUS East (Ohio)\nService Settings\nInfo\nCalculating EBS snapshots\nLearn more on how EBS snapshot prices are calculated.\nNumber of volumes\nAverage duration of volume\nUnit\nhours per month\nStorage for each EC2 instance\nChoose EBS volume storage type.\nGeneral Purpose SSD (gp2)\nVolume type selected supports storage amounts 1 GB - 16 TB\nStorage amount per volume\nUnit\nGB\nSnapshot Frequency\n2x Daily\nAmount changed per snapshot\nUnit\nGB\nShow calculations\nEBS Fast Snapshot Restore\nInfo\nNumber of snapshots to restore\nShow calculations\nEBS direct APIs for Snapshots\nInfo\nNumber of GetSnapshotBlock API requests\nEach GetSnapshotBlock API request is charged per SnapshotAPIUnit. One GetSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nNumber of LIST API requests\nListChangedBlocks and ListSnapshotBlocks APIs are charged per request.\nValue\nUnit\nthousand requests per month\nNumber of PutSnapshotBlock API requests\nEach PutSnapshotBlock API request is charged per SnapshotAPIUnit. One PutSnapshotBlock API request uses a block size of 512KiB and consumes one SnapshotAPIUnit.\nValue\nUnit\nThousand Snapshot API units per month\nShow calculations\nAcknowledgement\nAWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services.Learn more \n\n\n\nTotal Upfront cost: 0.00 USD\nTotal Monthly cost: 8.99 USD\nShow Details\nCancel\nSave and view summary\nSave and add service\nPrivacy\nSite terms\nCookie preferences\n© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.",
+  "fields": [
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Accept all cookies",
+      "text": "Accept",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Decline",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Customize cookie preferences",
+      "text": "Customize",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-essential",
+      "label": "Allow essential category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-performance",
+      "label": "Allow performance category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-functional",
+      "label": "Allow functional category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "INPUT",
+      "type": "checkbox",
+      "id": "awsccc-u-cb-advertising",
+      "label": "Allow advertising category Allowed",
+      "placeholder": "",
+      "text": "",
+      "value": "on"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Cancel customizing cookie preferences",
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "allowed"
+    },
+    {
+      "tag": "INPUT",
+      "type": "radio",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": "not allowed"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Save preferences",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Dismiss error message modal",
+      "text": "Dismiss",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": null,
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Language: English",
+      "text": "Language: English",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField92-1791709752603-9751",
+      "label": "Description - optional",
+      "placeholder": "Enter a description for your estimate",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField94-1791709752606-8461",
+      "label": null,
+      "text": "Region",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField107-1791709752610-2004",
+      "label": null,
+      "text": "US East (Ohio)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "",
+      "label": null,
+      "placeholder": "",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField148-1791709752711-2353",
+      "label": "Number of volumes Enter amount",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": "1"
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField150-1791709752712-9415",
+      "label": "Average duration of volume Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": "730"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField152-1791709752713-6027",
+      "label": null,
+      "text": "hours per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField229-1791709752748-7832",
+      "label": null,
+      "text": "General Purpose SSD (gp2)",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField162-1791709752715-4198",
+      "label": "Storage amount per volume Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": "30"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField164-1791709752715-5971",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField241-1791709752751-6",
+      "label": null,
+      "text": "2x Daily",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField251-1791709752752-1914",
+      "label": "Amount changed per snapshot Value",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": "3"
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField253-1791709752752-3076",
+      "label": null,
+      "text": "GB",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "text",
+      "id": "formField181-1791709752719-6796",
+      "label": "Number of snapshots to restore Enter amount",
+      "placeholder": "Enter amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField191-1791709752720-3617",
+      "label": "Number of GetSnapshotBlock API requests Value",
+      "placeholder": "Enter the amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField193-1791709752721-4958",
+      "label": null,
+      "text": "Thousand Snapshot API units per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField204-1791709752722-2188",
+      "label": "Number of LIST API requests Value",
+      "placeholder": "Enter the amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField206-1791709752722-1471",
+      "label": null,
+      "text": "thousand requests per month",
+      "value": ""
+    },
+    {
+      "tag": "INPUT",
+      "type": "number",
+      "id": "formField217-1791709752723-4378",
+      "label": "Number of PutSnapshotBlock API requests Value",
+      "placeholder": "Enter the amount",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "formField219-1791709752723-8982",
+      "label": null,
+      "text": "Thousand Snapshot API units per month",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Open help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "button",
+      "id": "",
+      "label": "Close help panel",
+      "text": "",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Show Details",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": null,
+      "text": "Cancel",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and view summary",
+      "text": "Save and view summary",
+      "value": ""
+    },
+    {
+      "tag": "BUTTON",
+      "type": "submit",
+      "id": "",
+      "label": "Save and add service",
+      "text": "Save and add service",
+      "value": ""
+    }
+  ]
+}
