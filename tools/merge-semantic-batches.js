@@ -3,6 +3,7 @@ import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { readJson } from './pricing-cli/package-loader.js';
 import { report } from './pricing-cli/report.js';
+import { logicalBatchesFromPlan, validateWorkerAssignments } from './pricing-cli/work-pool.js';
 
 async function writeJson(file, value) {
   await mkdir(path.dirname(file), { recursive: true });
@@ -10,7 +11,8 @@ async function writeJson(file, value) {
 }
 
 export function validateSemanticPlan(plan) {
-  const batches = plan.matrix?.include ?? [];
+  const batches = logicalBatchesFromPlan(plan);
+  validateWorkerAssignments(plan);
   if (!batches.length && plan.summary?.scope === 'reuse' && plan.summary.totalCases === 0 && plan.summary.batches === 0) return;
   if (!batches.length || new Set(batches.map(b => b.batch_id)).size !== batches.length || plan.summary?.batches !== batches.length) throw Error('Invalid semantic batch inventory');
   let total = 0;
@@ -37,7 +39,7 @@ export function validateSemanticPlan(plan) {
 export async function mergeSemanticBatches(planFile, directory) {
   const plan = await readJson(planFile);
   validateSemanticPlan(plan);
-  const expected = new Map((plan.matrix?.include ?? []).map(batch => [batch.batch_id, batch]));
+  const expected = new Map(logicalBatchesFromPlan(plan).map(batch => [batch.batch_id, batch]));
   if (!expected.size) {
     if (plan.summary?.scope !== 'reuse') throw new Error('Semantic plan contains no batches.');
     return report('validate-price-data', [], {
@@ -53,23 +55,52 @@ export async function mergeSemanticBatches(planFile, directory) {
     });
   }
 
-  const names = (await readdir(directory)).filter(name => /^batch-.*\.json$/.test(name)).sort();
+  const names = (await readdir(directory)).filter(name => /^(?:batch|worker)-.*\.json$/.test(name)).sort();
   const results = new Map();
+  let workerArtifacts = 0;
   for (const name of names) {
-    const batchId = name.slice('batch-'.length, -'.json'.length);
-    if (!expected.has(batchId)) throw new Error(`Unexpected semantic batch: ${batchId}`);
-    if (results.has(batchId)) throw new Error(`Duplicate semantic batch: ${batchId}`);
-    const result = await readJson(path.join(directory, name));
-    const batch = expected.get(batchId);
-    const timing = result.taskTimings?.[0];
-    if (result.command !== 'validate-price-data' || !['passed', 'failed'].includes(result.status)
-      || !Number.isInteger(result.summary?.error) || !Array.isArray(result.issues)
-      || result.summary.error !== result.issues.filter(issue => issue.severity === 'error').length
-      || result.taskTimings?.length !== 1 || timing?.batchId !== batchId
-      || timing.serviceCode !== batch.service_code || timing.region !== batch.region
-      || timing.caseOffset !== batch.case_offset || timing.caseLimit !== batch.case_limit
-      || result.branches !== batch.planned_cases || timing.branches !== batch.planned_cases) throw Error(`Invalid semantic batch result: ${batchId}`);
-    results.set(batchId, result);
+    const artifact = await readJson(path.join(directory, name));
+    const entries = Array.isArray(artifact.batchResults)
+      ? artifact.batchResults.map(entry => ({
+        command: 'validate-price-data',
+        status: entry.issues?.some(issue => issue.severity === 'error') ? 'failed' : 'passed',
+        summary: { error: entry.issues?.filter(issue => issue.severity === 'error').length ?? 0 },
+        issues: entry.issues ?? [],
+        coverage: entry.coverage ?? {},
+        branches: entry.branches ?? 0,
+        workers: 1,
+        publishSkus: entry.publishSkus ?? {},
+        taskTimings: [{
+          batchId: entry.batchId,
+          serviceCode: entry.serviceCode,
+          region: entry.region,
+          caseOffset: entry.caseOffset,
+          caseLimit: entry.caseLimit,
+          branches: entry.branches,
+          scannedProducts: entry.scannedProducts,
+          selectedProducts: entry.selectedProducts,
+          chunks: entry.chunks,
+          iteratorSkippedCases: entry.iteratorSkippedCases ?? 0,
+          elapsedMs: entry.elapsedMs
+        }]
+      }))
+      : [artifact];
+    if (Array.isArray(artifact.batchResults)) workerArtifacts += 1;
+    for (const result of entries) {
+      const timing = result.taskTimings?.[0];
+      const batchId = timing?.batchId ?? result.batchId;
+      if (!expected.has(batchId)) throw new Error(`Unexpected semantic batch: ${batchId}`);
+      if (results.has(batchId)) throw new Error(`Duplicate semantic batch: ${batchId}`);
+      const batch = expected.get(batchId);
+      if (result.command !== 'validate-price-data' || !['passed', 'failed'].includes(result.status)
+        || !Number.isInteger(result.summary?.error) || !Array.isArray(result.issues)
+        || result.summary.error !== result.issues.filter(issue => issue.severity === 'error').length
+        || result.taskTimings?.length !== 1 || timing?.batchId !== batchId
+        || timing.serviceCode !== batch.service_code || timing.region !== batch.region
+        || timing.caseOffset !== batch.case_offset || timing.caseLimit !== batch.case_limit
+        || result.branches !== batch.planned_cases || timing.branches !== batch.planned_cases) throw Error(`Invalid semantic batch result: ${batchId}`);
+      results.set(batchId, result);
+    }
   }
 
   const missing = [...expected.keys()].filter(batchId => !results.has(batchId));
@@ -89,7 +120,7 @@ export async function mergeSemanticBatches(planFile, directory) {
   return report('validate-price-data', issues, {
     coverage,
     branches: ordered.reduce((sum, batch) => sum + (batch.branches ?? 0), 0),
-    workers: ordered.reduce((sum, batch) => sum + (batch.workers ?? 0), 0),
+    workers: workerArtifacts || ordered.reduce((sum, batch) => sum + (batch.workers ?? 0), 0),
     batches: ordered.length,
     plannedCases: plan.summary?.totalCases ?? null,
     batchCases: plan.summary?.batchCases ?? null,
