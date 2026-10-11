@@ -1,0 +1,17 @@
+{
+  "buildId": "20261011T164342Z-eb75cf3e",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 3,
+      "firstSku": "9C7873KU3ZQBD6BJ",
+      "lastSku": "XAKHUSC46NWC9PPM",
+      "path": "chunks/AmazonS3/ap-northeast-1/00000.json",
+      "sha256": "d4b59839bd5197a165b3afb238881dfa6bd0dec8779c50c1c20f2dcaa375b4bb"
+    }
+  ],
+  "productCount": 3,
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonS3"
+}
