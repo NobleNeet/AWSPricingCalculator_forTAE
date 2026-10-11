@@ -219,6 +219,7 @@ jobs:
       PRICE_DRIFT_PLAN_CONCURRENCY: '2'
       PRICE_DRIFT_WORKFLOW_BATCH_CASES: '10000'
       PRICE_DRIFT_MAX_WORKFLOW_BATCHES: '240'
+      PRICE_DRIFT_WORKFLOW_WORKERS: '8'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -265,7 +266,7 @@ jobs:
     timeout-minutes: 360
     env:
       PRICE_DRIFT_CASE_BATCH_SIZE: '250'
-      PRICE_DRIFT_BATCH_JSON: ${{ toJSON(matrix) }}
+      PRICE_DRIFT_WORKER_JSON: ${{ toJSON(matrix) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -281,12 +282,12 @@ jobs:
         with:
           name: drift-plan
           path: .work/update
-      - name: Classify drift batch ${{ matrix.batch_id }}
-        run: node tools/drift-batch-run.js .work/update .work/update/drift-batches/batch-${{ matrix.batch_id }}.json
+      - name: Classify drift worker ${{ matrix.worker_id }}
+        run: node tools/drift-batch-run.js .work/update .work/update/drift-workers/worker-${{ matrix.worker_id }}.json
       - uses: actions/upload-artifact@v4
         with:
-          name: drift-batch-${{ matrix.batch_id }}
-          path: .work/update/drift-batches/batch-${{ matrix.batch_id }}.json
+          name: drift-worker-${{ matrix.worker_id }}
+          path: .work/update/drift-workers/worker-${{ matrix.worker_id }}.json
           if-no-files-found: error
 
   drift-merge:
@@ -303,7 +304,7 @@ jobs:
       - uses: actions/download-artifact@v4
         if: needs.drift-plan.outputs.batch_count != '0'
         with:
-          pattern: drift-batch-*
+          pattern: drift-worker-*
           path: .work/update/drift-batches
           merge-multiple: true
       - name: Merge drift classification batches
