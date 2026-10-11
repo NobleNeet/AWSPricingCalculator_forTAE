@@ -3,6 +3,7 @@ import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { readJson } from './pricing-cli/package-loader.js';
 import { report } from './pricing-cli/report.js';
+import { logicalBatchesFromPlan, validateWorkerAssignments } from './pricing-cli/work-pool.js';
 
 async function writeJson(file, value) {
   await mkdir(path.dirname(file), { recursive: true });
@@ -11,7 +12,8 @@ async function writeJson(file, value) {
 
 export async function mergeDriftBatches(planFile, directory) {
   const plan = await readJson(planFile);
-  const expected = new Map((plan.matrix?.include ?? []).map(batch => [batch.batch_id, batch]));
+  validateWorkerAssignments(plan);
+  const expected = new Map(logicalBatchesFromPlan(plan).map(batch => [batch.batch_id, batch]));
   if (!expected.size) {
     if (plan.summary?.scope !== 'reuse') throw new Error('Drift plan contains no batches.');
     return report('classify-change', [], {
@@ -31,7 +33,9 @@ export async function mergeDriftBatches(planFile, directory) {
     });
   }
   const names = (await readdir(directory)).filter(name => name.endsWith('.json')).sort();
-  const batches = await Promise.all(names.map(name => readJson(path.join(directory, name))));
+  const artifacts = await Promise.all(names.map(name => readJson(path.join(directory, name))));
+  const batches = artifacts.flatMap(artifact => Array.isArray(artifact.batchResults) ? artifact.batchResults : [artifact]);
+  const workerArtifacts = artifacts.filter(artifact => Array.isArray(artifact.batchResults)).length;
   const seen = new Set();
   const representedTasks = new Set();
 
@@ -65,7 +69,7 @@ export async function mergeDriftBatches(planFile, directory) {
     classification: issues.length ? 'STRUCTURE_BREAKING' : warning ? 'STRUCTURE_WARNING' : 'PRICE_ONLY',
     publishable: !issues.length,
     rateDiff: batches.flatMap(batch => batch.rateDiff ?? []),
-    workers: batches.length,
+    workers: workerArtifacts || batches.length,
     batches: batches.length,
     plannedCases: plan.summary?.totalCases ?? null,
     casesPerBatch: plan.summary?.casesPerBatch ?? null,
