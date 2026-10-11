@@ -18,9 +18,10 @@ fingerprint は既存の共通 Pricing Core / semantic contract とサービス 
 
 `.github/workflows/price-validation.yml` は公開を伴わない再利用可能 workflow で、通常 CI と Scheduled Price Update から呼ぶ。
 
-1. 同一 checkout / 同一候補データを対象に case 数を数え、25,000 case を目安に分割する。
-2. 最大8ジョブで検証する。runner 内は1 workerとし、過剰な CPU / メモリー競合を避ける。
-3. 全ジョブの report を統合する。予定 source task、連続した case range、case 数、source / region / batch の同一性、構造・default・coverage チェックの割り当てを確認する。欠落・重複・余分な結果・検証エラーは失敗とする。
+1. 同一 checkout / 同一候補データを対象に case 数を数え、25,000 case を目安に**論理バッチ**へ分割する。
+2. 論理バッチを予定 case 数で決定的に平準化し、最大8個の長寿命 Actions worker に割り当てる。各workerは checkout / Node setup / npm ci / workspace artifact download を1回だけ行い、担当する複数論理バッチを順次処理する。runner 内の semantic worker thread は原則1とし、過剰な CPU / メモリー競合を避ける。
+3. 同一workerでは読み込んだ source/chunk データを再利用する。case range は先頭から不要caseをsample化して捨てず、component branch blockの件数を使ってoffsetを飛ばして必要sliceだけを生成する。
+4. 全workerの report を論理バッチ単位へ展開して統合する。予定 source task、連続した case range、case 数、source / region / batch の同一性、構造・default・coverage チェックの割り当てを確認する。欠落・重複・余分な結果・検証エラーは失敗とする。
 
 価格更新時の incremental / onboarding scope、および publication-only 修復時の zero-batch baseline reuse は既存の `update-scope.js` を使い、そのまま保持する。workflow 間の artifact は prefix で区別する。
 
@@ -55,3 +56,12 @@ Golden evidence は該当 source / region の全サービスの verification 条
 手動検証には `validation_only=true` を指定すると、候補を検証・buildしても publish / Pages を実行しない。`refresh_requested_sources=true` はこのモードと明示的な `validation_scope_service_ids` の組み合わせでのみ許可し、指定サービスの固定版を再取得して取得ジョブを検証する。通常の定期更新では未変更 source を再取得しない。
 
 実データ確認では、KMS の6リージョンを固定 URL / versionから別々に取得・正規化し、統合時の source identity / SHA-256、Golden、36 case / 6 batch の semantic 検証を確認した。active manifest は変更していない。
+
+
+## Drift worker pool
+
+Scheduled Price Update の Drift も Semantic と同じく論理バッチを維持したまま最大8 workerへ平準化して割り当てる。各workerは `price-update-workspace` と drift plan を1回だけ取得し、同じ source task の previous/candidate データをworker内で再利用して複数rangeを処理する。
+
+`drift-plan.json` は論理バッチ一覧 `batches` と Actions worker matrix を分離して保持する。merge と Finalize Replay は論理バッチを品質ゲートの単位とし、worker境界は検証結果の意味に影響させない。Finalize Replayでは pooled worker artifact を論理バッチへ正規化してから、対象batchだけを置換・再mergeする。
+
+Semantic / Drift とも最大並列数を増やすこと自体を主な高速化手段とはせず、runner起動・依存導入・artifact転送の重複削減、worker内データ再利用、不要case生成削減を優先する。
