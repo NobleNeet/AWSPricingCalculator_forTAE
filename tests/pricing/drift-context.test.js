@@ -52,6 +52,10 @@ test('indexed products preserve strict filter semantics and duplicate SKU candid
     [{ field: 'attributes.x', op: 'exists' }], [{ field: 'attributes.x', op: 'notExists' }]
   ]) assert.deepEqual(select(filters, context), products.filter(product => matches(product, filters, context)));
   assert.equal(select([{ field: 'attributes.x', op: 'eq', valueFrom: 'component.missingDefault' }], context).length, 4);
+  const dynamic = [{ field: 'attributes.x', op: 'eq', valueFrom: 'profile.x' }];
+  assert.deepEqual(select(dynamic, { profile: { x: '1' } }), [products[0]]);
+  assert.deepEqual(select(dynamic, context), products.slice(1, 3));
+  assert.deepEqual(select(dynamic, { profile: { x: 'absent' } }), []);
 });
 
 test('drift capacity cases keep compute parents; missing and ambiguous parent SKUs still fail', async () => {
