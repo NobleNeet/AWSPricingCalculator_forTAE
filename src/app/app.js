@@ -17,6 +17,7 @@ export const definitions = new DefinitionStore();
 export const results = new Map();
 const rawResults = new Map();
 let state = newProject(), catalog = [], limitations = new Map(), target = null, editing = null;
+let catalogState = 'loading';
 let projectSchema;
 const revisions = new Map();
 const STORAGE_KEY = 'tae-project-v1';
@@ -144,6 +145,12 @@ async function renderDrawer() {
   }
 }
 function renderCatalog() {
+  if (catalogState !== 'ready') {
+    $('catalog-list').textContent = catalogState === 'loading'
+      ? 'サービス一覧を読み込み中…'
+      : 'Service Catalogを読み込めません。画面を再読み込みして再試行してください。';
+    return;
+  }
   const search = $('catalog-search').value.toLowerCase(), filter = $('catalog-filter').value;
   $('catalog-list').innerHTML = catalog.filter(s => s.label.toLowerCase().includes(search) && (!filter || s.serviceCode === filter)).map(service => `<button data-service="${service.id}" ${service.available ? '' : 'disabled'}>${escape(service.label)}<small>${service.available ? `${escape(state.project.defaultRegion)} · AWS Public Price List` : 'DefinitionまたはPrice Dataが利用できません'}</small></button>`).join('') || '<p>該当するサービスはありません。</p>';
 }
@@ -237,11 +244,13 @@ async function initialize() {
   } catch { message('保存Projectを読み込めません。新規Projectを表示します。'); }
   render();
   const tasks = await Promise.allSettled([definitions.catalog(), prices.initialize(), fetch('./pricing/limitations.json').then(response => response.json())]);
+  catalogState = tasks[0].status === 'fulfilled' ? 'ready' : 'unavailable';
   if (tasks[0].status === 'fulfilled') catalog = tasks[0].value.services;
   else message('Service Catalogを読み込めません。再読込で再試行してください。');
   if (tasks[2].status === 'fulfilled') limitations = new Map(tasks[2].value.limitations.map(item => [item.id, item]));
   if (tasks[1].status === 'fulfilled') catalog = catalog.map(service => ({ ...service, available: service.available && !!tasks[1].value.sources[service.serviceCode]?.[state.project.defaultRegion] }));
   $('catalog-filter').innerHTML = '<option value="">すべて</option>' + [...new Set(catalog.map(service => service.serviceCode))].map(code => `<option>${escape(code)}</option>`).join('');
+  if ($('catalog-modal').open) renderCatalog();
   renderMetadata(); render(); await evaluateAll();
 }
 await initialize();
