@@ -1,0 +1,42 @@
+{
+  "runId": "20261011-quality",
+  "services": {
+    "ec2": {
+      "url": "https://calculator.aws/#/createCalculator/EBS",
+      "verifiedAt": "2026-10-11T09:09:16.030Z",
+      "status": "VERIFIED_GUI",
+      "screen": "screenshots/aws-ebs-discovery.png",
+      "comparisonScope": "EBS components embedded in EC2; official EBS form removes compute and default snapshot charges"
+    },
+    "s3": {
+      "url": "https://calculator.aws/#/createCalculator/S3",
+      "verifiedAt": "2026-10-11T09:09:26.410Z",
+      "status": "VERIFIED_GUI",
+      "screen": "screenshots/aws-s3-discovery.png"
+    },
+    "rds": {
+      "url": "https://calculator.aws/#/createCalculator/RDSPostgreSQL",
+      "verifiedAt": "2026-10-11T09:09:31.054Z",
+      "status": "VERIFIED_GUI",
+      "screen": "screenshots/aws-rds-discovery.png"
+    },
+    "aurora-postgresql": {
+      "url": "https://calculator.aws/#/createCalculator/AuroraPostgreSQL",
+      "verifiedAt": "2026-10-11T09:09:35.736Z",
+      "status": "VERIFIED_GUI",
+      "screen": "screenshots/aws-aurora-discovery.png"
+    },
+    "eventbridge": {
+      "url": "https://calculator.aws/#/createCalculator/eventbridge",
+      "verifiedAt": "2026-10-11T09:09:40.326Z",
+      "status": "VERIFIED_GUI",
+      "screen": "screenshots/aws-eventbridge-discovery.png"
+    },
+    "fargate": {
+      "url": "https://calculator.aws/#/createCalculator/Fargate",
+      "verifiedAt": "2026-10-11T09:09:47.044Z",
+      "status": "VERIFIED_GUI",
+      "screen": "screenshots/aws-fargate-discovery.png"
+    }
+  }
+}

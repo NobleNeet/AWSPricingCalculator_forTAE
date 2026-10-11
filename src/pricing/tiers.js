@@ -11,7 +11,7 @@ export function tierAmount(quantity, dimensions, offset = '0') {
   if (start.isNegative() || end.lt(start)) fail('INVALID_USAGE', 'Negative tier usage.');
   let amount = decimal('0');
   for (const [index, tier] of sorted.entries()) {
-    if (tier.unit !== sorted[0].unit || index && sorted[index - 1].endRange !== tier.beginRange || tier.endRange === 'Inf' && index !== sorted.length - 1) fail('AMBIGUOUS_PRICE_DIMENSION', 'Invalid paid tier ranges.');
+    if (tier.unit !== sorted[0].unit || index && (sorted[index - 1].endRange === 'Inf' || !decimal(sorted[index - 1].endRange).eq(tier.beginRange)) || tier.endRange === 'Inf' && index !== sorted.length - 1) fail('AMBIGUOUS_PRICE_DIMENSION', 'Invalid paid tier ranges.');
     const lower = decimal(tier.beginRange).minus(origin);
     const upper = tier.endRange === 'Inf' ? end : decimal(tier.endRange).minus(origin);
     const from = start.gt(lower) ? start : lower, to = end.lt(upper) ? end : upper;
