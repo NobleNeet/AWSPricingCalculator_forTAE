@@ -1,12 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { DRAWER_LABELS_JA } from '../../src/app/drawer-labels-ja.js';
+import { activeBuildId } from './expected-prices.js';
 
 // Exercise every drawer, including non-default Aurora profiles and fields in
 // collapsed/conditional sections. Other app E2Es exercise calculation changes.
 for (const [serviceId, labels] of Object.entries(DRAWER_LABELS_JA)) {
   test(`${serviceId} drawer uses Japanese field names for every profile`, async ({ page }) => {
     await page.goto('./');
+    await expect(page.locator('#price-meta')).toContainText(activeBuildId);
     await page.getByRole('button', { name: '最初の構成案を作る' }).click();
     await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
     await page.locator(`[data-service="${serviceId}"]`).click();
