@@ -27,6 +27,8 @@ test('Dedicated regional fees fail closed on duplicates and recover after disabl
   await expect(page.locator('#workspace')).toContainText('地域料金が重複');
   await page.locator('[data-toggle="dedicated-region-fee"]').uncheck(); await close(page);
   await expect(page.locator('td[data-instance] .amount').first()).toHaveText(/^\$/);
+  await expect(page.locator('td[data-instance] .amount').last()).toHaveText(/^\$/);
+  await expect(page.locator('[data-total] .amount')).toHaveText(/^\$/);
   await expect(page.locator('[data-total]')).toContainText('月額合計');
   await expect(page.locator('#workspace')).not.toContainText('地域料金が重複');
 });

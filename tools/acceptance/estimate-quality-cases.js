@@ -13,12 +13,22 @@ function price(code,usageType){
  const dimension=dimensions[0];return {sku:product.sku,rateCode:dimension.rateCode,unit:dimension.unit,priceUsd:dimension.pricePerUnit.USD,sourceUrl:data.sourceUrl,version:data.version,publicationDate:data.publicationDate};
 }
 const cases=[];
+function comparisonLimit(id){
+ if(id.startsWith('dedicated-'))return '公式GUIでは地域追加料金の時間がCompute利用率に連動し、独立した地域課金時間を指定できない。';
+ if(id.startsWith('fargate-32-'))return '調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。';
+ if(id.startsWith('fargate-windows-'))return '公式GUIのWindows画面に追加Storageの同等設定・独立料金内訳が表示されない。';
+ if(id.includes('-export-'))return 'ServerlessV2を明示した公式Aurora画面にもSnapshot Exportの同等入力が表示されない。';
+ if(id==='aurora-one-io-with-storage')return '公式ServerlessV2のI/O単位を回/月にして1を指定しても、0.0166回/時間未満として拒否される。';
+ if(id.startsWith('aurora-'))return '公式Aurora画面には短時間のACU稼働時間を独立に指定する入力がない。';
+ if(id.startsWith('archive-'))return '公式GUIは同じイベント数から処理GBと保存GB/月を作り、処理のみ・既存Archiveの保存のみを独立指定できない。';
+ throw Error(`Missing comparison limitation for ${id}`);
+}
 function alternative(id,serviceId,profileId,fields,components,formula,baselineFields={}){
  const baselineOverrides=Object.keys(baselineFields).length?baselineFields:serviceId==='fargate'?{'profile.tasksPerDay':'0'}:{'profile.archiveEventsMillions':'0','profile.archiveStorageGbMonth':'0'};
  baselineFields={...fields,...baselineOverrides};
  if(serviceId==='fargate'&&!fields['profile.tasksPerDay'])fields={...fields,'profile.tasksPerDay':'1'};
  const expected=components.reduce((total,item)=>total.plus(new D(item.quantity).times(item.price.priceUsd)),new D(0));
- cases.push({id,serviceId,profileId,region:'ap-northeast-1',projectHours:'730',baselineFields,fields,comparisonScope:components.map(c=>c.componentId),formula,expectedAlternativeMonthlyUsd:expected.toString(),priceEvidence:components,guiVerdict:'NOT_COMPARABLE',alternativeVerdict:'INCOMPLETE',requiredAction:'ALTERNATIVE_VERIFICATION'});
+ cases.push({id,serviceId,profileId,region:'ap-northeast-1',projectHours:'730',baselineFields,fields,comparisonScope:components.map(c=>c.componentId),formula,reason:comparisonLimit(id),expectedAlternativeMonthlyUsd:expected.toString(),priceEvidence:components,guiVerdict:'NOT_COMPARABLE',alternativeVerdict:'INCOMPLETE',requiredAction:'ALTERNATIVE_VERIFICATION'});
 }
 for(const hours of ['1','100'])alternative(`dedicated-independent-region-hours-${hours}`,'ec2','standard',{'profile.tenancy':'Dedicated','dedicated-region-fee.hours':hours},[{componentId:'dedicated-region-fee',quantity:hours,price:price('AmazonEC2','APN1-DedicatedUsage')}],'One regional fee, no instance-count multiplier; regional fee hours are explicit and independent of row compute hours. Baseline zero represents regional charge carried elsewhere.',{'profile.tenancy':'Dedicated','dedicated-region-fee.hours':'0'});
 const linux=(architecture,memory,duration='1')=>{

@@ -10,9 +10,9 @@ const services=[...new Set(records.map(service))].map(serviceId=>{
  const rows=records.filter(r=>service(r)===serviceId),fields=new Set(rows.flatMap(r=>Object.keys(r.inputs??r.fields??{}))),diffs=rows.filter(r=>['PASS','FAIL'].includes(r.guiVerdict)).map(r=>r.amountDifferenceUsd).filter(x=>x!==null&&x!==undefined),notComparableDiffs=rows.filter(r=>r.guiVerdict==='NOT_COMPARABLE').map(r=>r.amountDifferenceUsd).filter(x=>x!==null&&x!==undefined);
  return {serviceId,caseCount:rows.length,testedFields:[...fields].sort(),gui:counts(rows,'guiVerdict'),alternative:counts(rows,'alternativeVerdict'),functional:counts(rows,'functionalVerdict'),actions:counts(rows,'requiredAction'),maxComparableGuiAmountDifferenceUsd:diffs.length?Decimal.max(...diffs.map(x=>new Decimal(x).abs())).toString():null,maxNotComparableGuiAmountDifferenceUsd:notComparableDiffs.length?Decimal.max(...notComparableDiffs.map(x=>new Decimal(x).abs())).toString():null};
 });
-const summary={runId:result.runId,generatedAt:new Date().toISOString(),scope:'Six estimate-quality phases; fresh representative cases. Historical 1592-case audit not recounted.',publicUrl:result.publicUrl,deployment,recordCount:records.length,gui:counts(records,'guiVerdict'),alternative:counts(records,'alternativeVerdict'),functional:counts(records,'functionalVerdict'),actions:counts(records,'requiredAction'),services};
+const summary={runId:result.runId,generatedAt:new Date().toISOString(),scope:'Six estimate-quality phases; fresh representative cases. Historical 1592-case audit not recounted.',publicUrl:result.publicUrl,deployment,recordCount:records.length,gui:counts(records,'guiVerdict'),guiPassAccuracy:counts(records.filter(r=>r.guiVerdict==='PASS'),'comparisonAccuracy'),initialToleranceUsd:'0.01',alternative:counts(records,'alternativeVerdict'),functional:counts(records,'functionalVerdict'),actions:counts(records,'requiredAction'),services};
 await writeFile(`${root}/summary.json`,JSON.stringify(summary,null,2)+'\n');
-const columns=['id','serviceId','kind','guiVerdict','alternativeVerdict','displayVerification','functionalVerdict','requiredAction','inputs','ownScopeMonthlyUsd','ownServiceMonthlyDisplay','officialMonthlyUsd','ownBaselineScopeMonthlyUsd','officialBaselineMonthlyUsd','ownDeltaUsd','officialDeltaUsd','amountDifferenceUsd','deltaDifferenceUsd','expectedAlternativeMonthlyUsd','alternativeAmountDifferenceUsd','reason','screenshot'];
+const columns=['id','serviceId','kind','guiVerdict','comparisonAccuracy','alternativeVerdict','displayVerification','functionalVerdict','requiredAction','inputs','ownScopeMonthlyUsd','ownServiceMonthlyDisplay','officialMonthlyUsd','ownBaselineScopeMonthlyUsd','officialBaselineMonthlyUsd','ownDeltaUsd','officialDeltaUsd','amountDifferenceUsd','deltaDifferenceUsd','expectedAlternativeMonthlyUsd','alternativeAmountDifferenceUsd','reason','screenshot'];
 const escapeCsv=value=>'"'+String(value??'').replaceAll('"','""')+'"';
 const csvValue=(r,key)=>({serviceId:service(r),inputs:JSON.stringify(r.inputs??r.fields??{}),ownScopeMonthlyUsd:r.own?.scopeMonthlyUsd,ownServiceMonthlyDisplay:r.own?.serviceMonthly,officialMonthlyUsd:r.official?.monthlyUsd,ownBaselineScopeMonthlyUsd:r.baseline?.scopeMonthlyUsd,officialBaselineMonthlyUsd:r.officialBaseline?.monthlyUsd,screenshot:r.own?.screen})[key]??r[key];
 await writeFile(`${root}/results.csv`,[columns.join(','),...records.map(r=>columns.map(key=>escapeCsv(csvValue(r,key))).join(','))].join('\n')+'\n');
@@ -24,6 +24,7 @@ const lines=[
  '## 試験の判定', '',
  '| 試験 | 判定内訳 |', '|---|---|',
  `| 公式GUIとの料金比較 | ${JSON.stringify(summary.gui)} |`,
+ `| GUI PASSの精度内訳 | ${JSON.stringify(summary.guiPassAccuracy)} |`,
  `| GUI比較できない構成の独立Price List検証 | ${JSON.stringify(summary.alternative)} |`,
  `| 公開GUIの入力制約 | ${JSON.stringify(summary.functional)} |`, '',
  'NOT_COMPARABLEはGUI比較条件が等価でないという判定。ALTERNATIVE_VERIFIEDは別の検証結果であり、GUI PASSへ読み替えない。微小な表示額はUPPER_BOUND_ONLYとし、1セント未満という範囲だけを確認する。', '',

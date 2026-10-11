@@ -1,11 +1,11 @@
 {
   "runId": "20261011-quality",
-  "updatedAt": "2026-10-11T11:17:12.565390+00:00",
+  "updatedAt": "2026-10-11T12:09:07.667380+00:00",
   "status": "WAITING_FOR_MATCHING_PRICE_DB_AND_PAGES",
   "implementationPr": 64,
   "publicationRepairPr": 65,
-  "sourceCommit": "358d307a953fa5db184d9dd9c0d09fba0e95eb89",
-  "priceUpdateRunId": 38134317362,
+  "sourceCommit": "8c8e3c5f780cc9d87d887a7a07a1048c203881ce",
+  "priceUpdateRunId": 38135662931,
   "invalidPreviousRun": {
     "id": 38129557639,
     "status": "cancelled",
@@ -17,12 +17,24 @@
     "goldenCases": 31,
     "nativePricingMeasurements": 23,
     "nativeZeroBaselines": 1,
-    "preDeploymentRegressionMeasurements": 2
+    "preDeploymentRegressionMeasurements": 2,
+    "localFullE2e": 32,
+    "semanticCases": 965701,
+    "semanticServiceCount": 13,
+    "semanticErrors": 0
   },
   "plannedPublicMeasurements": {
     "pricing": 52,
     "inputValidation": 15,
-    "additionalE2e": 5
+    "additionalE2e": 6
   },
-  "note": "Planned public measurements are not PASS. Historical 1592-case audit has not been recounted."
+  "note": "Planned public measurements are not PASS. Historical 1592-case audit has not been recounted.",
+  "publicationPerformancePr": 66,
+  "supersededPreviousRun": {
+    "id": 38134317362,
+    "status": "cancelled",
+    "reason": "Superseded by equivalent indexed-predicate cache to avoid repeated large candidate scans. Not a failed price comparison."
+  },
+  "publicUiRepairPr": 67,
+  "latestUiCommit": "646c256e0bf2d5f64cca336e0e6ee77e7b6f0936"
 }

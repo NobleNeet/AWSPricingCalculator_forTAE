@@ -1,6 +1,6 @@
 {
   "runId": "20261011-quality",
-  "generatedAt": "2026-10-11T10:19:42.249Z",
+  "generatedAt": "2026-10-11T11:32:13.472Z",
   "note": "Fresh representative cases; historical case IDs and old screenshots are unavailable in this checkout. Expected prices use independent raw AWS Price List extraction, never application Core or Price DB.",
   "cases": [
     {
@@ -21,6 +21,7 @@
         "dedicated-region-fee"
       ],
       "formula": "One regional fee, no instance-count multiplier; regional fee hours are explicit and independent of row compute hours. Baseline zero represents regional charge carried elsewhere.",
+      "reason": "公式GUIでは地域追加料金の時間がCompute利用率に連動し、独立した地域課金時間を指定できない。",
       "expectedAlternativeMonthlyUsd": "2",
       "priceEvidence": [
         {
@@ -59,6 +60,7 @@
         "dedicated-region-fee"
       ],
       "formula": "One regional fee, no instance-count multiplier; regional fee hours are explicit and independent of row compute hours. Baseline zero represents regional charge carried elsewhere.",
+      "reason": "公式GUIでは地域追加料金の時間がCompute利用率に連動し、独立した地域課金時間を指定できない。",
       "expectedAlternativeMonthlyUsd": "200",
       "priceEvidence": [
         {
@@ -104,6 +106,7 @@
         "linux-x86-memory"
       ],
       "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "reason": "調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。",
       "expectedAlternativeMonthlyUsd": "59.303983333333333333333333333333333333333333333333333333333333333333333333333334",
       "priceEvidence": [
         {
@@ -162,6 +165,7 @@
         "linux-x86-memory"
       ],
       "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "reason": "調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。",
       "expectedAlternativeMonthlyUsd": "69.396233333333333333333333333333333333333333333333333333333333333333333333333334",
       "priceEvidence": [
         {
@@ -220,6 +224,7 @@
         "linux-x86-memory"
       ],
       "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "reason": "調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。",
       "expectedAlternativeMonthlyUsd": "90.253550000000000000000000000000000000000000000000000000000000000000000000000001",
       "priceEvidence": [
         {
@@ -278,6 +283,7 @@
         "linux-arm-memory"
       ],
       "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "reason": "調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。",
       "expectedAlternativeMonthlyUsd": "47.437833333333333333333333333333333333333333333333333333333333333333333333333334",
       "priceEvidence": [
         {
@@ -336,6 +342,7 @@
         "linux-arm-memory"
       ],
       "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "reason": "調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。",
       "expectedAlternativeMonthlyUsd": "55.504333333333333333333333333333333333333333333333333333333333333333333333333334",
       "priceEvidence": [
         {
@@ -394,6 +401,7 @@
         "linux-arm-memory"
       ],
       "formula": "32 vCPU and 60/120/244 GiB; resources × hours/task × tasks/day × 730/24 days",
+      "reason": "調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。",
       "expectedAlternativeMonthlyUsd": "72.175100000000000000000000000000000000000000000000000000000000000000000000000001",
       "priceEvidence": [
         {
@@ -450,6 +458,7 @@
         "linux-x86-memory"
       ],
       "formula": "Valid Linux 32-vCPU configuration, half-hour duration",
+      "reason": "調査した公式GUIのLinux CPU selectorに32 vCPUがない。公式構成仕様と単価による検証を別に実施する。",
       "expectedAlternativeMonthlyUsd": "29.651991666666666666666666666666666666666666666666666666666666666666666666666668",
       "priceEvidence": [
         {
@@ -502,6 +511,7 @@
         "windows-ephemeral-storage"
       ],
       "formula": "Windows platform ≥1.0.0; only excess above 20 GiB × task-hours",
+      "reason": "公式GUIのWindows画面に追加Storageの同等設定・独立料金内訳が表示されない。",
       "expectedAlternativeMonthlyUsd": "0",
       "priceEvidence": [
         {
@@ -541,6 +551,7 @@
         "windows-ephemeral-storage"
       ],
       "formula": "Windows platform ≥1.0.0; only excess above 20 GiB × task-hours",
+      "reason": "公式GUIのWindows画面に追加Storageの同等設定・独立料金内訳が表示されない。",
       "expectedAlternativeMonthlyUsd": "0.0040454166666666666666666666666666666666666666666666666666666666666666666666666667",
       "priceEvidence": [
         {
@@ -580,6 +591,7 @@
         "windows-ephemeral-storage"
       ],
       "formula": "Windows platform ≥1.0.0; only excess above 20 GiB × task-hours",
+      "reason": "公式GUIのWindows画面に追加Storageの同等設定・独立料金内訳が表示されない。",
       "expectedAlternativeMonthlyUsd": "0.728175",
       "priceEvidence": [
         {
@@ -618,6 +630,7 @@
         "snapshot-export"
       ],
       "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "reason": "ServerlessV2を明示した公式Aurora画面にもSnapshot Exportの同等入力が表示されない。",
       "expectedAlternativeMonthlyUsd": "0",
       "priceEvidence": [
         {
@@ -656,6 +669,7 @@
         "snapshot-export"
       ],
       "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "reason": "ServerlessV2を明示した公式Aurora画面にもSnapshot Exportの同等入力が表示されない。",
       "expectedAlternativeMonthlyUsd": "0.012",
       "priceEvidence": [
         {
@@ -694,6 +708,7 @@
         "snapshot-export"
       ],
       "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "reason": "ServerlessV2を明示した公式Aurora画面にもSnapshot Exportの同等入力が表示されない。",
       "expectedAlternativeMonthlyUsd": "1200",
       "priceEvidence": [
         {
@@ -732,6 +747,7 @@
         "snapshot-export"
       ],
       "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "reason": "ServerlessV2を明示した公式Aurora画面にもSnapshot Exportの同等入力が表示されない。",
       "expectedAlternativeMonthlyUsd": "0",
       "priceEvidence": [
         {
@@ -770,6 +786,7 @@
         "snapshot-export"
       ],
       "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "reason": "ServerlessV2を明示した公式Aurora画面にもSnapshot Exportの同等入力が表示されない。",
       "expectedAlternativeMonthlyUsd": "0.012",
       "priceEvidence": [
         {
@@ -808,6 +825,7 @@
         "snapshot-export"
       ],
       "formula": "Full snapshot size processed per export × exact PostgreSQL SnapshotExport SKU; S3 and KMS separate",
+      "reason": "ServerlessV2を明示した公式Aurora画面にもSnapshot Exportの同等入力が表示されない。",
       "expectedAlternativeMonthlyUsd": "1200",
       "priceEvidence": [
         {
@@ -847,6 +865,7 @@
         "serverless-standard"
       ],
       "formula": "Valid physical capacity × half-hour duration; official GUI lacks independent monthly compute duration",
+      "reason": "公式Aurora画面には短時間のACU稼働時間を独立に指定する入力がない。",
       "expectedAlternativeMonthlyUsd": "0.075",
       "priceEvidence": [
         {
@@ -886,6 +905,7 @@
         "serverless-io-optimized"
       ],
       "formula": "Valid physical capacity × half-hour duration; official GUI lacks independent monthly compute duration",
+      "reason": "公式Aurora画面には短時間のACU稼働時間を独立に指定する入力がない。",
       "expectedAlternativeMonthlyUsd": "0.1",
       "priceEvidence": [
         {
@@ -925,6 +945,7 @@
         "limitless-compute"
       ],
       "formula": "Valid physical capacity × half-hour duration; official GUI lacks independent monthly compute duration",
+      "reason": "公式Aurora画面には短時間のACU稼働時間を独立に指定する入力がない。",
       "expectedAlternativeMonthlyUsd": "1.6",
       "priceEvidence": [
         {
@@ -963,6 +984,7 @@
         "limitless-compute"
       ],
       "formula": "8 ACU-hours is valid for 16 ACU × half-hour; no universal full-month 11680 ACU-hour minimum",
+      "reason": "公式Aurora画面には短時間のACU稼働時間を独立に指定する入力がない。",
       "expectedAlternativeMonthlyUsd": "1.6",
       "priceEvidence": [
         {
@@ -1001,6 +1023,7 @@
         "io-requests"
       ],
       "formula": "A valid single I/O with positive storage; official ServerlessV2 GUI offers per-month rate but rejects 1/month because of its 0.0166/hour minimum. Public display only establishes a below-one-cent bound.",
+      "reason": "公式ServerlessV2のI/O単位を回/月にして1を指定しても、0.0166回/時間未満として拒否される。",
       "expectedAlternativeMonthlyUsd": "2.4e-7",
       "priceEvidence": [
         {
@@ -1042,6 +1065,7 @@
         "archive-storage"
       ],
       "formula": "Processing only: events × KB/1024²; no stored GB-month",
+      "reason": "公式GUIは同じイベント数から処理GBと保存GB/月を作り、処理のみ・既存Archiveの保存のみを独立指定できない。",
       "expectedAlternativeMonthlyUsd": "0.1239776611328125",
       "priceEvidence": [
         {
@@ -1096,6 +1120,7 @@
         "archive-storage"
       ],
       "formula": "Processing only: events × KB/1024²; no stored GB-month",
+      "reason": "公式GUIは同じイベント数から処理GBと保存GB/月を作り、処理のみ・既存Archiveの保存のみを独立指定できない。",
       "expectedAlternativeMonthlyUsd": "12.39776611328125",
       "priceEvidence": [
         {
@@ -1150,6 +1175,7 @@
         "archive-storage"
       ],
       "formula": "Processing only: events × KB/1024²; no stored GB-month",
+      "reason": "公式GUIは同じイベント数から処理GBと保存GB/月を作り、処理のみ・既存Archiveの保存のみを独立指定できない。",
       "expectedAlternativeMonthlyUsd": "123.9776611328125",
       "priceEvidence": [
         {
@@ -1202,6 +1228,7 @@
         "archive-storage"
       ],
       "formula": "Existing archive storage only: no new processing; GB-month × storage SKU",
+      "reason": "公式GUIは同じイベント数から処理GBと保存GB/月を作り、処理のみ・既存Archiveの保存のみを独立指定できない。",
       "expectedAlternativeMonthlyUsd": "0.025",
       "priceEvidence": [
         {
@@ -1254,6 +1281,7 @@
         "archive-storage"
       ],
       "formula": "Existing archive storage only: no new processing; GB-month × storage SKU",
+      "reason": "公式GUIは同じイベント数から処理GBと保存GB/月を作り、処理のみ・既存Archiveの保存のみを独立指定できない。",
       "expectedAlternativeMonthlyUsd": "2.5",
       "priceEvidence": [
         {
@@ -1306,6 +1334,7 @@
         "archive-storage"
       ],
       "formula": "Existing archive storage only: no new processing; GB-month × storage SKU",
+      "reason": "公式GUIは同じイベント数から処理GBと保存GB/月を作り、処理のみ・既存Archiveの保存のみを独立指定できない。",
       "expectedAlternativeMonthlyUsd": "25",
       "priceEvidence": [
         {

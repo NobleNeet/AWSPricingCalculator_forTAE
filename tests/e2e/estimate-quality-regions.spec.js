@@ -24,5 +24,6 @@ test('Scheduler refuses an ambiguous cross-region free allocation and recovers w
  await page.locator('#scheduler-free-remaining').press('Tab');
  await expect(page.locator('td[data-instance] .amount').first()).toHaveText(/^\$/);
  await expect(page.locator('td[data-instance] .amount').last()).toHaveText(/^\$/);
+ await expect(page.locator('[data-total] .amount')).toHaveText(/^\$/);
  await expect(page.locator('#workspace')).not.toContainText('無料枠の配分を確定できません');
 });
