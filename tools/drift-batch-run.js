@@ -18,7 +18,7 @@ function parseBatch(value) {
   return { ...parsed, task_id: taskId };
 }
 
-export async function runDriftBatch(plan, batch, packages) {
+export async function runDriftBatch(plan, batch, packages, executionOptions = {}) {
   const byId = new Map(plan.tasks.map(task => [task.taskId, task]));
   const task = byId.get(batch.task_id);
   if (!task) throw new Error(`Unknown drift task ${batch.task_id}`);
@@ -43,6 +43,7 @@ export async function runDriftBatch(plan, batch, packages) {
       caseLimit,
       includeStructural,
       caseBatchSize,
+      dataCache: executionOptions.dataCache,
       onCaseBatch: progress => {
         console.log(
           `drift batch=${batch.batch_id} progress: service=${task.serviceCode}, region=${task.region}, seen_cases=${progress.seenCases}, processed_cases=${progress.processedCases}, batch_cases=${progress.batchCases}, offset=${caseOffset}, limit=${caseLimit}`
@@ -89,18 +90,36 @@ export async function runDriftBatch(plan, batch, packages) {
 if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
   try {
     const work = process.argv[2] ?? '.work/update';
-    const output = process.argv[3] ?? path.join(work, 'drift-batches', 'batch.json');
+    const output = process.argv[3] ?? path.join(work, 'drift-workers', 'worker.json');
     const plan = await readJson(path.join(work, 'drift-plan.json'));
-    const batch = parseBatch(process.env.PRICE_DRIFT_BATCH_JSON);
-    const result = await runDriftBatch(plan, batch, await loadPackages('services'));
-    await writeJson(output, result);
-    process.stdout.write(`${JSON.stringify({
-      batchId: result.batchId,
-      taskId: result.taskId,
-      cases: result.processedCases,
-      classification: result.classification,
-      summary: result.summary
-    }, null, 2)}\n`);
+    const packages = await loadPackages('services');
+    const workerRaw = process.env.PRICE_DRIFT_WORKER_JSON;
+    if (workerRaw) {
+      const worker = JSON.parse(workerRaw);
+      if (!Array.isArray(worker.batches) || !worker.batches.length) throw new Error('Drift worker has no batches');
+      const dataCache = new Map();
+      const batchResults = [];
+      for (const batch of worker.batches) batchResults.push(await runDriftBatch(plan, batch, packages, { dataCache }));
+      const issues = batchResults.flatMap(batch => batch.issues ?? []);
+      const result = report('classify-change-worker', issues, {
+        workerId: worker.worker_id,
+        plannedCases: worker.planned_cases ?? null,
+        batchResults
+      });
+      await writeJson(output, result);
+      process.stdout.write(`${JSON.stringify({ workerId: worker.worker_id, batches: batchResults.length, summary: result.summary }, null, 2)}\n`);
+    } else {
+      const batch = parseBatch(process.env.PRICE_DRIFT_BATCH_JSON);
+      const result = await runDriftBatch(plan, batch, packages);
+      await writeJson(output, result);
+      process.stdout.write(`${JSON.stringify({
+        batchId: result.batchId,
+        taskId: result.taskId,
+        cases: result.processedCases,
+        classification: result.classification,
+        summary: result.summary
+      }, null, 2)}\n`);
+    }
   } catch (error) {
     process.stderr.write(`${error.stack ?? error.message}\n`);
     process.exitCode = 2;

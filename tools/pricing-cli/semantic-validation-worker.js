@@ -13,6 +13,7 @@ const common = await readJson('pricing/normalization/common.json');
 const validateProducts = await schemaValidator('pricing/products');
 const packageGroups = new Map();
 const normalizers = new Map();
+const sourceLoadCache = new Map();
 
 for (const pkg of packages) {
   const serviceCode = pkg.service.priceSource.serviceCode;
@@ -86,18 +87,32 @@ async function runTask(task) {
   for (const [code, source] of Object.entries(sourceDescriptors ?? {})) {
     const normalizer = await normalizerFor(code);
     normalizersByCode[code] = normalizer;
-    const loaded = await loadProductsMatching(workerData.directory, source, productPredicate(servicePackages, code), {
-      onChunk: async (chunkData, chunk) => {
-        if (!task.planOnly && (task.includeDefaults ?? true) && !validateProducts(chunkData)) {
-          issues.push(issue('SCHEMA_ERROR', `${code}/${region}/${chunk.path}: ${JSON.stringify(validateProducts.errors)}`));
+    const cacheKey = `${serviceCode}|${code}|${region}`;
+    let cached = sourceLoadCache.get(cacheKey);
+    if (!cached) {
+      const chunkData = [];
+      const chunkDescriptors = [];
+      const loaded = await loadProductsMatching(workerData.directory, source, productPredicate(servicePackages, code), {
+        onChunk: async (value, descriptor) => {
+          chunkData.push(value);
+          chunkDescriptors.push(descriptor);
         }
-        if (!task.planOnly && includeCoverage && code === serviceCode) accumulateInventory(coverageCategories, chunkData, common, normalizer);
+      });
+      cached = { loaded, chunkData, chunkDescriptors };
+      sourceLoadCache.set(cacheKey, cached);
+    }
+    for (let index = 0; index < cached.chunkData.length; index++) {
+      const chunkData = cached.chunkData[index];
+      const chunk = cached.chunkDescriptors[index];
+      if (!task.planOnly && (task.includeDefaults ?? true) && !validateProducts(chunkData)) {
+        issues.push(issue('SCHEMA_ERROR', `${code}/${region}/${chunk.path}: ${JSON.stringify(validateProducts.errors)}`));
       }
-    });
-    data[`${code}/${region}`] = loaded.data;
-    scannedProducts += loaded.stats.products;
-    selectedProducts += loaded.stats.selectedProducts;
-    chunks += loaded.stats.chunks;
+      if (!task.planOnly && includeCoverage && code === serviceCode) accumulateInventory(coverageCategories, chunkData, common, normalizer);
+    }
+    data[`${code}/${region}`] = cached.loaded.data;
+    scannedProducts += cached.loaded.stats.products;
+    selectedProducts += cached.loaded.stats.selectedProducts;
+    chunks += cached.loaded.stats.chunks;
   }
 
   if (task.planOnly) {
@@ -174,6 +189,7 @@ async function runTask(task) {
     scannedProducts,
     selectedProducts,
     chunks,
+    iteratorSkippedCases: checked.iteratorSkippedCases ?? 0,
     elapsedMs: Math.round(performance.now() - started)
   };
 }

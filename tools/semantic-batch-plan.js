@@ -33,12 +33,14 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
     if (sourceCodes !== null && sourceCodes.size === 0 && state.reuseSemanticBaseline === true) {
       console.log('semantic-plan reuse: no semantic validation required; reusing the active validated baseline');
       plan = {
+        batches: [],
         matrix: { include: [] },
         summary: {
           sourceTasks: 0,
           totalCases: 0,
           batchCases: 0,
           batches: 0,
+          workers: 0,
           maxBatches: Number.parseInt(process.env.PRICE_VALIDATE_MAX_WORKFLOW_BATCHES ?? '240', 10),
           plannerConcurrency: 0
         },

@@ -77,14 +77,14 @@ jobs:
           repository: ${{ github.repository }}
           run-id: ${{ steps.replay.outputs.run_id }}
           github-token: ${{ github.token }}
-          pattern: drift-batch-*
+          pattern: drift-*-*
           path: .work/update/drift-batches
           merge-multiple: true
       - name: Re-run only affected drift batches
         shell: bash
         run: |
           node --input-type=module - <<'NODE'
-          import { readFile } from 'node:fs/promises';
+          import { readFile, readdir, unlink } from 'node:fs/promises';
           import path from 'node:path';
           import { loadPackages } from './tools/pricing-cli/package-loader.js';
           import { runDriftBatch } from './tools/drift-batch-run.js';
@@ -93,7 +93,24 @@ jobs:
           const config = JSON.parse(await readFile('.github/finalize-replay.json', 'utf8'));
           const plan = JSON.parse(await readFile('.work/update/drift-plan.json', 'utf8'));
           const packages = await loadPackages('services');
-          const selected = plan.matrix.include.filter(batch =>
+
+          // New drift runs preserve multiple logical batch reports in one worker artifact.
+          // Normalize those worker artifacts back to individual batch files before replay so
+          // selected batches can safely overwrite the preserved result without creating a duplicate.
+          const driftDirectory = '.work/update/drift-batches';
+          for (const name of await readdir(driftDirectory)) {
+            if (!/^worker-.*\.json$/.test(name)) continue;
+            const worker = JSON.parse(await readFile(path.join(driftDirectory, name), 'utf8'));
+            if (!Array.isArray(worker.batchResults)) throw new Error(`Invalid pooled drift artifact: ${name}`);
+            for (const result of worker.batchResults) {
+              if (!result.batchId) throw new Error(`Pooled drift artifact has a batch without batchId: ${name}`);
+              await writeJson(path.join(driftDirectory, `batch-${result.batchId}.json`), result);
+            }
+            await unlink(path.join(driftDirectory, name));
+          }
+
+          const logicalBatches = plan.batches ?? plan.matrix.include.flatMap(item => item.batches ?? [item]);
+          const selected = logicalBatches.filter(batch =>
             batch.labels?.some(label => config.retryServiceCodes.some(code => label.startsWith(`${code}/`)))
           );
           if (!selected.length) throw new Error('No drift batches matched retryServiceCodes');

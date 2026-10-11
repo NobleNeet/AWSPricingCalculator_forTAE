@@ -6,7 +6,7 @@ import path from 'node:path';
 import { fixturePackage } from '../fixtures/definitions.js';
 import { rawFixture } from '../fixtures/raw.js';
 import { normalize } from '../../tools/pricing-cli/normalize.js';
-import { validatePriceData } from '../../tools/pricing-cli/semantics.js';
+import { reachableCaseIterator, validatePriceData } from '../../tools/pricing-cli/semantics.js';
 import { runGolden } from '../../tools/pricing-cli/golden.js';
 import { classifyChange } from '../../tools/pricing-cli/drift.js';
 import { driftTasks } from '../../tools/pricing-cli/drift-parallel.js';
@@ -129,4 +129,28 @@ test('immutable build has content checksums, does not promote manifest, rejects 
   assert.equal(JSON.parse(text).buildId, 'test-build');
   await assert.rejects(() => readFile(path.join(root, 'manifest.json')), /ENOENT/);
   await assert.rejects(() => buildPriceDb(candidate, root, 'test-build', { issues: [] }), /Immutable/);
+});
+
+
+test('reachable case range skips prior case samples and yields only the requested slice', () => {
+  const pkg = fixturePackage();
+  pkg.profiles.standard.selectors = [{
+    id: 'profileSize', label: 'Profile size', type: 'select', default: 'a', options: { values: ['a', 'b', 'c', 'd'] }
+  }];
+  pkg.components.meter.selectors = [{
+    id: 'tier', label: 'Tier', type: 'select', default: 'x', options: { values: ['x', 'y', 'z'] }
+  }];
+  const stats = {};
+  const slice = [...reachableCaseIterator(pkg, { Example: [{ sku: 'fixture' }] }, 'ap-northeast-1', {
+    caseOffset: 9,
+    caseLimit: 2,
+    stats
+  })];
+  assert.equal(slice.length, 2);
+  assert.equal(stats.skipped, 9);
+  assert.equal(stats.yielded, 2);
+  assert.deepEqual(slice.map(item => [item.instance.selectors.profileSize, item.instance.components.meter.inputs.tier]), [
+    ['d', 'x'],
+    ['d', 'y']
+  ]);
 });

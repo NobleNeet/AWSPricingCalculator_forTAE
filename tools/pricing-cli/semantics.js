@@ -146,9 +146,17 @@ function resolveMappedCase(pkg, sample) {
     issues: []
   };
 }
-export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-northeast-1') {
+export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-northeast-1', options = {}) {
   const defaultCode = pkg.service.priceSource.serviceCode;
   const profileProducts = productsByServiceCode[defaultCode] ?? [];
+  let skip = Math.max(0, Number.parseInt(options.caseOffset ?? 0, 10) || 0);
+  let remaining = Number.isFinite(options.caseLimit) ? Math.max(0, options.caseLimit) : Number.POSITIVE_INFINITY;
+  const stats = options.stats;
+  if (stats) {
+    stats.skipped = 0;
+    stats.yielded = 0;
+    stats.branchBlocks = 0;
+  }
   for (const profileId of pkg.service.profiles) {
     const profile = pkg.profiles[profileId];
     const instance = defaults(pkg, profileId);
@@ -162,7 +170,19 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
           const start = { ...componentContext, component: instance.components[componentId].inputs };
           const filters = componentResolutionFilters(pkg, profile, componentId, componentCode).filter(f => !f.valueFrom?.startsWith('component.'));
           const scopedProducts = componentProducts.filter(product => matches(product, filters, componentContext));
-          for (const branch of branches(component.selectors, 'component', start, scopedProducts, filters)) {
+          const componentBranches = branches(component.selectors, 'component', start, scopedProducts, filters);
+          if (stats) stats.branchBlocks += 1;
+          let startIndex = 0;
+          if (skip > 0) {
+            const skipped = Math.min(skip, componentBranches.length);
+            skip -= skipped;
+            startIndex = skipped;
+            if (stats) stats.skipped += skipped;
+            if (startIndex >= componentBranches.length) continue;
+          }
+          for (let branchIndex = startIndex; branchIndex < componentBranches.length; branchIndex++) {
+            if (remaining <= 0) return;
+            const branch = componentBranches[branchIndex];
             const sample = structuredClone(instance);
             sample.selectors = branch.profile;
             sample.components[componentId].inputs = branch.component;
@@ -178,6 +198,8 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
               profileProducts,
               productsByServiceCode: scopedByCode
             };
+            remaining -= 1;
+            if (stats) stats.yielded += 1;
           }
         }
       }
@@ -225,6 +247,7 @@ export function validatePriceData(packages, data, common, normalizers, options =
   let seenCases = 0;
   let evaluatedCases = 0;
   let exhausted = false;
+  let remainingOffset = Math.max(0, caseOffset);
 
   packageLoop:
   for (const pkg of packages) {
@@ -260,14 +283,13 @@ export function validatePriceData(packages, data, common, normalizers, options =
 
       let reachable = 0;
       let batchCases = 0;
-      for (const sample of reachableCaseIterator(pkg, productsByServiceCode, source.region)) {
+      const rangeStats = {};
+      for (const sample of reachableCaseIterator(pkg, productsByServiceCode, source.region, {
+        caseOffset: remainingOffset,
+        caseLimit: Number.isFinite(caseLimit) ? Math.max(0, caseLimit - evaluatedCases) : Number.POSITIVE_INFINITY,
+        stats: rangeStats
+      })) {
         reachable += 1;
-        const caseIndex = seenCases++;
-        if (caseIndex < caseOffset) continue;
-        if (evaluatedCases >= caseLimit) {
-          exhausted = true;
-          break;
-        }
         const mapping = mappingForComponent(pkg, sample.componentId);
         let result;
         if (mapping) {
@@ -295,7 +317,10 @@ export function validatePriceData(packages, data, common, normalizers, options =
           batchCases = 0;
         }
       }
+      remainingOffset = Math.max(0, remainingOffset - (rangeStats.skipped ?? 0));
+      seenCases = caseOffset - remainingOffset + evaluatedCases;
       if (batchCases > 0) onCaseBatch?.({ serviceId: pkg.service.id, region: source.region, processedCases, batchCases });
+      if (evaluatedCases >= caseLimit) exhausted = true;
       if (reachable === 0 && includeStructuralChecks) {
         let hasProfileBranch = false;
         let hasEnabledComponentContext = false;
@@ -319,5 +344,5 @@ export function validatePriceData(packages, data, common, normalizers, options =
       if (exhausted) break packageLoop;
     }
   }
-  return { issues, coverage, resolutions, processedCases, seenCases };
+  return { issues, coverage, resolutions, processedCases, seenCases, iteratorSkippedCases: caseOffset - remainingOffset };
 }

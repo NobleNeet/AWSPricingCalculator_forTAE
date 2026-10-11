@@ -27,6 +27,7 @@ jobs:
       PRICE_VALIDATE_PLAN_CONCURRENCY: '2'
       PRICE_VALIDATE_WORKFLOW_BATCH_CASES: '25000'
       PRICE_VALIDATE_MAX_WORKFLOW_BATCHES: '240'
+      PRICE_VALIDATE_WORKFLOW_WORKERS: '8'
       CANDIDATE_DIRECTORY: ${{ inputs.directory }}
       PREPARED_UPDATE: ${{ inputs.prepared_update }}
     steps:
@@ -69,14 +70,14 @@ jobs:
       max-parallel: 8
       matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 360
     env:
       PRICE_VALIDATE_CONCURRENCY: '1'
       PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
       PRICE_VALIDATE_HEARTBEAT_MS: '30000'
       PRICE_VALIDATE_BATCH_JSON: ${{ toJSON(matrix) }}
       CANDIDATE_DIRECTORY: ${{ inputs.directory }}
-      BATCH_ID: ${{ matrix.batch_id }}
+      WORKER_ID: ${{ matrix.worker_id }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -89,19 +90,19 @@ jobs:
         with:
           name: ${{ inputs.workspace_artifact }}
           path: .work/update
-      - name: Validate semantic batch
+      - name: Validate semantic worker ${{ matrix.worker_id }}
         shell: bash
         run: |
           set +e
-          node tools/pricing-cli/cli.js validate-price-data --input "$CANDIDATE_DIRECTORY" --output ".work/validation/batches/batch-$BATCH_ID.json"
+          node tools/pricing-cli/cli.js validate-price-data --input "$CANDIDATE_DIRECTORY" --output ".work/validation/workers/worker-$WORKER_ID.json"
           rc=$?
           if [[ $rc -eq 2 ]]; then exit 2; fi
           # Validation failures are represented in the report and rejected by merge.
           exit 0
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.artifact_prefix }}-batch-${{ matrix.batch_id }}
-          path: .work/validation/batches/batch-${{ matrix.batch_id }}.json
+          name: ${{ inputs.artifact_prefix }}-worker-${{ matrix.worker_id }}
+          path: .work/validation/workers/worker-${{ matrix.worker_id }}.json
           if-no-files-found: error
   merge:
     needs: [plan, batches]
@@ -120,7 +121,7 @@ jobs:
       - uses: actions/download-artifact@v4
         if: needs.plan.outputs.batch_count != '0'
         with:
-          pattern: ${{ inputs.artifact_prefix }}-batch-*
+          pattern: ${{ inputs.artifact_prefix }}-worker-*
           path: .work/validation/batches
           merge-multiple: true
       - name: Check completeness and merge semantic reports

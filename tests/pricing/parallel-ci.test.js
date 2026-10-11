@@ -86,8 +86,9 @@ test('download shards pin source versions, retain raw Golden evidence and reject
     // Exercise the real planner, worker/CLI, and merge, not just report fixtures.
     const semanticPlan = await planSemanticBatches(packages, candidateDirectory, { sources: { awskms: { 'ap-northeast-1': source } } }, { batchCases: 2 });
     await writeJson(path.join(work, 'semantic-plan.json'), semanticPlan);
-    for (const batch of semanticPlan.matrix.include) {
-      await promisify(execFile)(process.execPath, ['tools/pricing-cli/cli.js', 'validate-price-data', '--input', candidateDirectory, '--output', path.join(work, 'batches', `batch-${batch.batch_id}.json`)], { env: { ...process.env, PRICE_VALIDATE_BATCH_JSON: JSON.stringify(batch), PRICE_VALIDATE_CONCURRENCY: '1' } });
+    assert.ok(semanticPlan.matrix.include.length <= 8);
+    for (const worker of semanticPlan.matrix.include) {
+      await promisify(execFile)(process.execPath, ['tools/pricing-cli/cli.js', 'validate-price-data', '--input', candidateDirectory, '--output', path.join(work, 'batches', `worker-${worker.worker_id}.json`)], { env: { ...process.env, PRICE_VALIDATE_BATCH_JSON: JSON.stringify(worker), PRICE_VALIDATE_CONCURRENCY: '1' } });
     }
     const merged = await mergeSemanticBatches(path.join(work, 'semantic-plan.json'), path.join(work, 'batches'));
     assert.equal(merged.status, 'passed');

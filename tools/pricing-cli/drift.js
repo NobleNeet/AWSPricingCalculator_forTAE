@@ -47,6 +47,7 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
   const rateDiff = [];
   let seenCases = 0;
   let processedCases = 0;
+  let remainingOffset = Math.max(0, caseOffset);
   let progressCases = 0;
   let batchCases = 0;
   let exhausted = false;
@@ -87,20 +88,14 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
 
       const beforeByServiceCode = { [code]: before.products };
       const beforeMatcher = productMatcher(before.products), afterMatcher = productMatcher(after.products);
-      for (const sample of reachableCaseIterator(pkg, beforeByServiceCode, before.region)) {
-        const caseIndex = seenCases++;
+      const rangeStats = {};
+      for (const sample of reachableCaseIterator(pkg, beforeByServiceCode, before.region, {
+        caseOffset: remainingOffset,
+        caseLimit: Number.isFinite(caseLimit) ? Math.max(0, caseLimit - processedCases) : Number.POSITIVE_INFINITY,
+        stats: rangeStats
+      })) {
         progressCases += 1;
         batchCases += 1;
-
-        if (caseIndex < caseOffset) {
-          emitProgress(false);
-          continue;
-        }
-        if (processedCases >= caseLimit) {
-          exhausted = true;
-          emitProgress(true);
-          break packageLoop;
-        }
 
         if (changedSkuSet && !sample.products.some(product => changedSkuSet.has(product.sku))) {
           processedCases += 1;
@@ -152,6 +147,13 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
         }
         processedCases += 1;
         emitProgress(false);
+      }
+      remainingOffset = Math.max(0, remainingOffset - (rangeStats.skipped ?? 0));
+      seenCases = caseOffset - remainingOffset + processedCases;
+      if (processedCases >= caseLimit) {
+        exhausted = true;
+        emitProgress(true);
+        break packageLoop;
       }
     }
   }

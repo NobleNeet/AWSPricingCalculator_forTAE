@@ -73,24 +73,22 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
   let tasks;
 
   if (batch) {
-    const sourceTask = allTasks.find(task =>
-      task.serviceCode === batch.serviceCode || task.serviceCode === batch.service_code
-        ? task.region === batch.region
-        : false
-    );
-    if (!sourceTask) throw new Error(`Unknown semantic batch source: ${batch.serviceCode ?? batch.service_code}/${batch.region}`);
-    const serviceCode = batch.serviceCode ?? batch.service_code;
-    if (sourceTask.serviceCode !== serviceCode) throw new Error(`Semantic batch service mismatch: ${serviceCode}`);
-    tasks = [{
-      ...sourceTask,
-      taskId: 0,
-      globalTaskId: sourceTask.taskId,
-      batchId: batch.batchId ?? batch.batch_id,
-      caseOffset: nonNegativeInt(batch.caseOffset ?? batch.case_offset, 0),
-      caseLimit: positiveInt(batch.caseLimit ?? batch.case_limit, 25000),
-      includeCoverage: Boolean(batch.includeCoverage ?? batch.include_coverage),
-      includeDefaults: Boolean(batch.includeDefaults ?? batch.include_defaults)
-    }];
+    const logicalBatches = Array.isArray(batch.batches) ? batch.batches : [batch];
+    tasks = logicalBatches.map((logicalBatch, taskId) => {
+      const serviceCode = logicalBatch.serviceCode ?? logicalBatch.service_code;
+      const sourceTask = allTasks.find(task => task.serviceCode === serviceCode && task.region === logicalBatch.region);
+      if (!sourceTask) throw new Error(`Unknown semantic batch source: ${serviceCode}/${logicalBatch.region}`);
+      return {
+        ...sourceTask,
+        taskId,
+        globalTaskId: sourceTask.taskId,
+        batchId: logicalBatch.batchId ?? logicalBatch.batch_id,
+        caseOffset: nonNegativeInt(logicalBatch.caseOffset ?? logicalBatch.case_offset, 0),
+        caseLimit: positiveInt(logicalBatch.caseLimit ?? logicalBatch.case_limit, 25000),
+        includeCoverage: Boolean(logicalBatch.includeCoverage ?? logicalBatch.include_coverage),
+        includeDefaults: Boolean(logicalBatch.includeDefaults ?? logicalBatch.include_defaults)
+      };
+    });
   } else {
     shardCount = positiveInt(options.shardCount ?? process.env.PRICE_VALIDATE_SHARD_COUNT, 1);
     shardIndex = nonNegativeInt(options.shardIndex ?? process.env.PRICE_VALIDATE_SHARD_INDEX, 0);
@@ -104,7 +102,11 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
   const concurrency = Math.min(tasks.length || 1, positiveInt(options.concurrency ?? process.env.PRICE_VALIDATE_CONCURRENCY, cpuLimit));
   const taskTimeoutMs = positiveInt(options.taskTimeoutMs ?? process.env.PRICE_VALIDATE_TASK_TIMEOUT_MS, 600000);
   const heartbeatMs = positiveInt(options.heartbeatMs ?? process.env.PRICE_VALIDATE_HEARTBEAT_MS, 30000);
-  if (!tasks.length) return { issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [], shardIndex, shardCount, batchId: batch?.batchId ?? batch?.batch_id };
+  if (!tasks.length) return {
+    issues: [], coverage: {}, branches: 0, publishSkus: {}, concurrency, taskTimings: [],
+    shardIndex, shardCount, batchId: batch?.batchId ?? batch?.batch_id,
+    workerId: batch?.worker_id, batchResults: batch ? [] : undefined
+  };
 
   const results = new Array(tasks.length);
   const workers = [];
@@ -244,7 +246,9 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
     shardIndex,
     shardCount,
     batchId: batch?.batchId ?? batch?.batch_id,
-    caseOffset: batch ? nonNegativeInt(batch.caseOffset ?? batch.case_offset, 0) : undefined,
-    caseLimit: batch ? positiveInt(batch.caseLimit ?? batch.case_limit, 25000) : undefined
+    workerId: batch?.worker_id,
+    batchResults: batch ? results : undefined,
+    caseOffset: batch && !Array.isArray(batch.batches) ? nonNegativeInt(batch.caseOffset ?? batch.case_offset, 0) : undefined,
+    caseLimit: batch && !Array.isArray(batch.batches) ? positiveInt(batch.caseLimit ?? batch.case_limit, 25000) : undefined
   };
 }

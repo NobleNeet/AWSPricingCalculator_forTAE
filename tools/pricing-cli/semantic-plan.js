@@ -1,6 +1,7 @@
 import os from 'node:os';
 import { Worker } from 'node:worker_threads';
 import { sourceTasks } from './semantic-parallel.js';
+import { assignBatchesToWorkers } from './work-pool.js';
 
 function positiveInt(value, fallback) {
   const parsed = Number.parseInt(value ?? '', 10);
@@ -127,13 +128,19 @@ export async function planSemanticBatches(packages, directory, manifest, options
     options.batchCases ?? process.env.PRICE_VALIDATE_WORKFLOW_BATCH_CASES ?? 25000,
     positiveInt(options.maxBatches ?? process.env.PRICE_VALIDATE_MAX_WORKFLOW_BATCHES, 240)
   );
+  const workers = assignBatchesToWorkers(
+    built.batches,
+    options.maxWorkers ?? process.env.PRICE_VALIDATE_WORKFLOW_WORKERS ?? 8
+  );
   return {
-    matrix: { include: built.batches },
+    batches: built.batches,
+    matrix: { include: workers },
     summary: {
       sourceTasks: tasks.length,
       totalCases: built.totalCases,
       batchCases: built.batchCases,
       batches: built.batches.length,
+      workers: workers.length,
       maxBatches: built.maxBatches,
       plannerConcurrency: concurrency
     },

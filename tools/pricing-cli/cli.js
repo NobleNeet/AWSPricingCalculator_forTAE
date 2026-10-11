@@ -170,6 +170,8 @@ export async function run(command, options = {}) {
       branches: checked.branches,
       workers: checked.concurrency,
       taskTimings: checked.taskTimings,
+      workerId: checked.workerId,
+      batchResults: checked.batchResults,
       shardIndex: checked.shardIndex ?? 0,
       shardCount: checked.shardCount ?? 1,
       publishSkus: Object.fromEntries(Object.entries(checked.publishSkus ?? {}).map(([key, values]) => [key, [...values].sort()]))
@@ -192,6 +194,8 @@ export async function run(command, options = {}) {
         branches: checked.branches ?? checked.resolutions.length,
         workers: checked.concurrency,
         taskTimings: checked.taskTimings,
+        workerId: checked.workerId,
+        batchResults: checked.batchResults,
         shardIndex: checked.shardIndex ?? 0,
         shardCount: checked.shardCount ?? 1,
         publishSkus: Object.fromEntries(Object.entries(checked.publishSkus ?? {}).map(([key, values]) => [key, [...values].sort()]))
