@@ -21,7 +21,8 @@ async function configure(serviceId,profileId,fields){
  if(await page.getByRole('button',{name:'最初の構成案を作る'}).count()===0)await page.getByRole('button',{name:'新規Project',exact:true}).click();
  await page.getByRole('button',{name:'最初の構成案を作る'}).click();await page.getByRole('button',{name:'サービスを追加',exact:true}).click();await page.locator(`[data-service="${serviceId}"]`).click();
  await page.locator('#drawer-profile').waitFor();if(profileId)await page.locator('#drawer-profile').selectOption(profileId);await settle();await page.locator('#drawer-region').selectOption('ap-northeast-1');await settle();
- for(const [key,value]of Object.entries(fields))await field(key,value);
+ // Optional components must be enabled before their numeric inputs can be filled.
+ for(const [key,value]of Object.entries(fields).sort(([a],[b])=>Number(b.startsWith('toggle.'))-Number(a.startsWith('toggle.'))))await field(key,value);
 }
 function displayedNumber(text){const m=text.match(/\$([\d,.]+)/);return m?new D(m[1].replaceAll(',','')):null;}
 async function observe(id,scope){
@@ -43,6 +44,11 @@ async function observe(id,scope){
 function sumDisplay(observation){let total=new D(0);for(const text of Object.values(observation.components)){if(text.startsWith('<'))return null;const amount=displayedNumber(text);if(!amount)return null;total=total.plus(amount);}return total;}
 async function save(){await writeFile(`${root}/public-results.json`,JSON.stringify({runId:'20261011-quality',publicUrl:PUBLIC,records},null,2)+'\n');}
 const mode=process.argv[3]??'all';
+const retryIds=new Set();
+if(mode==='retry-alternative'){
+ const previous=JSON.parse(await readFile(`${root}/public-results.json`,'utf8'));
+ for(const record of previous.records){if(record.kind==='ALTERNATIVE_PRICE_LIST'&&['BLOCKED','FAIL'].includes(record.alternativeVerdict))retryIds.add(record.id);else records.push(record);}
+}
 const baselines=new Map();
 if(mode==='all'||mode==='tier'){
  const official=JSON.parse(await readFile(`${root}/official-tier-results.json`,'utf8'));
@@ -59,9 +65,9 @@ if(mode==='all'||mode==='tier'){
   records.push(record);await save();console.log(record.id,record.guiVerdict,record.amountDifferenceUsd);
  }
 }
-if(mode==='all'||mode==='alternative'){
+if(mode==='all'||mode==='alternative'||mode==='retry-alternative'){
  const list=JSON.parse(await readFile(`${root}/alternative-cases.json`,'utf8')).cases;
- for(const test of list){const record={...test,kind:'ALTERNATIVE_PRICE_LIST'};
+ for(const test of list){if(mode==='retry-alternative'&&!retryIds.has(test.id))continue;const record={...test,kind:'ALTERNATIVE_PRICE_LIST'};
   try{await configure(test.serviceId,test.profileId,test.baselineFields);record.baseline=await observe(`public-${test.id}-baseline`,test.comparisonScope);for(const [key,value]of Object.entries(test.fields))await field(key,value);record.own=await observe(`public-${test.id}`,test.comparisonScope);
    let valid=true;for(const evidence of test.priceEvidence){const expected=new D(evidence.quantity).times(evidence.price.priceUsd),text=record.own.components[evidence.componentId],observed=displayedNumber(text),baseline=displayedNumber(record.baseline.components[evidence.componentId]);valid&&=Boolean(baseline&&baseline.isZero());if(text.startsWith('<'))valid&&=expected.gt(0)&&expected.lt('.01');else valid&&=Boolean(observed&&observed.minus(expected).abs().lte('.01'));}
    const before=sumDisplay(record.baseline),after=sumDisplay(record.own);record.displayedDeltaUsd=before&&after?after.minus(before).toString():null;record.alternativeAmountDifferenceUsd=after?.minus(test.expectedAlternativeMonthlyUsd).toString()??null;record.alternativeDeltaDifferenceUsd=record.displayedDeltaUsd===null?null:new D(record.displayedDeltaUsd).minus(test.expectedAlternativeMonthlyUsd).toString();if(after)valid&&=new D(record.alternativeAmountDifferenceUsd).abs().lte('.01')&&new D(record.alternativeDeltaDifferenceUsd).abs().lte('.01');record.displayVerification=after?'WITHIN_ONE_CENT':'UPPER_BOUND_ONLY';record.alternativeVerdict=valid?'ALTERNATIVE_VERIFIED':'FAIL';record.requiredAction=valid?'COMPARISON_LIMIT_DOCUMENTED':'INVESTIGATE_PRICE_MISMATCH';

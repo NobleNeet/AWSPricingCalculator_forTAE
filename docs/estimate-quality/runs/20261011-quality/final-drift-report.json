@@ -1,0 +1,7213 @@
+{
+  "schemaVersion": 1,
+  "command": "classify-change",
+  "status": "passed",
+  "summary": {
+    "info": 0,
+    "warning": 0,
+    "error": 0
+  },
+  "issues": [],
+  "classification": "STRUCTURE_WARNING",
+  "publishable": true,
+  "rateDiff": [
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03626",
+      "inputs": {},
+      "region": "ap-northeast-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0518",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.0362",
+      "inputs": {},
+      "region": "ap-northeast-3",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-east-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0504",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03528",
+      "inputs": {},
+      "region": "us-west-1",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Shared"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Linux",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Red Hat Enterprise Linux with HA",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "RHEL",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "SUSE",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Ubuntu Pro",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "NA",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Ent",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Std",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier2",
+      "current": "0.0455",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    },
+    {
+      "componentId": "ebs-io2-iops-tier3",
+      "current": "0.03185",
+      "inputs": {},
+      "region": "us-west-2",
+      "selectors": {
+        "ebsVolumeType": "io2",
+        "os": "Windows",
+        "software": "SQL Web",
+        "tenancy": "Dedicated"
+      },
+      "serviceId": "ec2"
+    }
+  ],
+  "workers": 157,
+  "batches": 157,
+  "plannedCases": 965701,
+  "casesPerBatch": 10000,
+  "processedCases": 955879,
+  "reusedCases": 0,
+  "reusedRegions": 53,
+  "skippedTasks": [],
+  "taskTimings": [
+    {
+      "candidateProductsLoaded": 7,
+      "caseLimit": 15,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSAmplify",
+      "taskId": 0
+    },
+    {
+      "candidateProductsLoaded": 7,
+      "caseLimit": 15,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSAmplify",
+      "taskId": 1
+    },
+    {
+      "candidateProductsLoaded": 7,
+      "caseLimit": 15,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSAmplify",
+      "taskId": 2
+    },
+    {
+      "candidateProductsLoaded": 7,
+      "caseLimit": 15,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSAmplify",
+      "taskId": 3
+    },
+    {
+      "candidateProductsLoaded": 7,
+      "caseLimit": 15,
+      "caseOffset": 0,
+      "elapsedMs": 1,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSAmplify",
+      "taskId": 4
+    },
+    {
+      "candidateProductsLoaded": 7,
+      "caseLimit": 15,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSAmplify",
+      "taskId": 5
+    },
+    {
+      "candidateProductsLoaded": 1629,
+      "caseLimit": 1666,
+      "caseOffset": 0,
+      "elapsedMs": 139,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonRDS",
+      "taskId": 6
+    },
+    {
+      "candidateProductsLoaded": 773,
+      "caseLimit": 810,
+      "caseOffset": 0,
+      "elapsedMs": 44,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonRDS",
+      "taskId": 7
+    },
+    {
+      "candidateProductsLoaded": 1693,
+      "caseLimit": 1730,
+      "caseOffset": 0,
+      "elapsedMs": 115,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonRDS",
+      "taskId": 8
+    },
+    {
+      "candidateProductsLoaded": 1613,
+      "caseLimit": 1650,
+      "caseOffset": 0,
+      "elapsedMs": 98,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonRDS",
+      "taskId": 9
+    },
+    {
+      "candidateProductsLoaded": 1167,
+      "caseLimit": 1204,
+      "caseOffset": 0,
+      "elapsedMs": 97,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonRDS",
+      "taskId": 10
+    },
+    {
+      "candidateProductsLoaded": 1691,
+      "caseLimit": 1728,
+      "caseOffset": 0,
+      "elapsedMs": 136,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonRDS",
+      "taskId": 11
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonCloudWatch",
+      "taskId": 12
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 1,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonCloudWatch",
+      "taskId": 13
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 1,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonCloudWatch",
+      "taskId": 14
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonCloudWatch",
+      "taskId": 15
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonCloudWatch",
+      "taskId": 16
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonCloudWatch",
+      "taskId": 17
+    },
+    {
+      "candidateProductsLoaded": 16,
+      "caseLimit": 16,
+      "caseOffset": 0,
+      "elapsedMs": 6,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "CodeBuild",
+      "taskId": 18
+    },
+    {
+      "candidateProductsLoaded": 10,
+      "caseLimit": 10,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "CodeBuild",
+      "taskId": 19
+    },
+    {
+      "candidateProductsLoaded": 16,
+      "caseLimit": 16,
+      "caseOffset": 0,
+      "elapsedMs": 11,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "CodeBuild",
+      "taskId": 20
+    },
+    {
+      "candidateProductsLoaded": 15,
+      "caseLimit": 15,
+      "caseOffset": 0,
+      "elapsedMs": 14,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "CodeBuild",
+      "taskId": 21
+    },
+    {
+      "candidateProductsLoaded": 10,
+      "caseLimit": 10,
+      "caseOffset": 0,
+      "elapsedMs": 7,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "CodeBuild",
+      "taskId": 22
+    },
+    {
+      "candidateProductsLoaded": 16,
+      "caseLimit": 16,
+      "caseOffset": 0,
+      "elapsedMs": 8,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "CodeBuild",
+      "taskId": 23
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 0,
+      "elapsedMs": 11979,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 20091,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 20000,
+      "elapsedMs": 14919,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 30000,
+      "elapsedMs": 21663,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 40000,
+      "elapsedMs": 9866,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 50000,
+      "elapsedMs": 13630,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 60000,
+      "elapsedMs": 18974,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 70000,
+      "elapsedMs": 18836,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 80000,
+      "elapsedMs": 24529,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 90000,
+      "elapsedMs": 28624,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 100000,
+      "elapsedMs": 26077,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 110000,
+      "elapsedMs": 33792,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 120000,
+      "elapsedMs": 28973,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 130000,
+      "elapsedMs": 33101,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 140000,
+      "elapsedMs": 35755,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 150000,
+      "elapsedMs": 21187,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 160000,
+      "elapsedMs": 31725,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 10000,
+      "caseOffset": 170000,
+      "elapsedMs": 33851,
+      "processedCases": 10000,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 26979,
+      "caseLimit": 9293,
+      "caseOffset": 180000,
+      "elapsedMs": 41439,
+      "processedCases": 9293,
+      "region": "ap-northeast-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 24
+    },
+    {
+      "candidateProductsLoaded": 8111,
+      "caseLimit": 10000,
+      "caseOffset": 0,
+      "elapsedMs": 5382,
+      "processedCases": 10000,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 25
+    },
+    {
+      "candidateProductsLoaded": 8111,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 8614,
+      "processedCases": 10000,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 25
+    },
+    {
+      "candidateProductsLoaded": 8111,
+      "caseLimit": 10000,
+      "caseOffset": 20000,
+      "elapsedMs": 8807,
+      "processedCases": 10000,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 25
+    },
+    {
+      "candidateProductsLoaded": 8111,
+      "caseLimit": 10000,
+      "caseOffset": 30000,
+      "elapsedMs": 11184,
+      "processedCases": 10000,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 25
+    },
+    {
+      "candidateProductsLoaded": 8111,
+      "caseLimit": 10000,
+      "caseOffset": 40000,
+      "elapsedMs": 12236,
+      "processedCases": 10000,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 25
+    },
+    {
+      "candidateProductsLoaded": 8111,
+      "caseLimit": 7217,
+      "caseOffset": 50000,
+      "elapsedMs": 10755,
+      "processedCases": 7217,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 25
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 0,
+      "elapsedMs": 12793,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 20783,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 20000,
+      "elapsedMs": 12907,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 30000,
+      "elapsedMs": 18540,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 40000,
+      "elapsedMs": 19052,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 50000,
+      "elapsedMs": 18588,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 60000,
+      "elapsedMs": 27560,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 70000,
+      "elapsedMs": 14126,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 80000,
+      "elapsedMs": 13144,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 90000,
+      "elapsedMs": 28729,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 100000,
+      "elapsedMs": 21791,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 110000,
+      "elapsedMs": 29978,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 120000,
+      "elapsedMs": 37042,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 130000,
+      "elapsedMs": 30455,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 140000,
+      "elapsedMs": 38359,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 150000,
+      "elapsedMs": 25155,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 160000,
+      "elapsedMs": 43048,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 170000,
+      "elapsedMs": 26837,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 180000,
+      "elapsedMs": 28568,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 10000,
+      "caseOffset": 190000,
+      "elapsedMs": 41416,
+      "processedCases": 10000,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 29617,
+      "caseLimit": 7759,
+      "caseOffset": 200000,
+      "elapsedMs": 32061,
+      "processedCases": 7759,
+      "region": "us-east-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 26
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 0,
+      "elapsedMs": 7224,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 15368,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 20000,
+      "elapsedMs": 15154,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 30000,
+      "elapsedMs": 22128,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 40000,
+      "elapsedMs": 8609,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 50000,
+      "elapsedMs": 13113,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 60000,
+      "elapsedMs": 20621,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 70000,
+      "elapsedMs": 19193,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 80000,
+      "elapsedMs": 19446,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 90000,
+      "elapsedMs": 28233,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 100000,
+      "elapsedMs": 18797,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 110000,
+      "elapsedMs": 18018,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 120000,
+      "elapsedMs": 28660,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 130000,
+      "elapsedMs": 32506,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 140000,
+      "elapsedMs": 25426,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 150000,
+      "elapsedMs": 19294,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 160000,
+      "elapsedMs": 32436,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 10000,
+      "caseOffset": 170000,
+      "elapsedMs": 26880,
+      "processedCases": 10000,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 26855,
+      "caseLimit": 8425,
+      "caseOffset": 180000,
+      "elapsedMs": 27697,
+      "processedCases": 8425,
+      "region": "us-east-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 27
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 0,
+      "elapsedMs": 10766,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 10340,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 20000,
+      "elapsedMs": 12383,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 30000,
+      "elapsedMs": 13816,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 40000,
+      "elapsedMs": 13259,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 50000,
+      "elapsedMs": 15840,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 60000,
+      "elapsedMs": 18550,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 70000,
+      "elapsedMs": 18822,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 80000,
+      "elapsedMs": 16152,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 10000,
+      "caseOffset": 90000,
+      "elapsedMs": 20156,
+      "processedCases": 10000,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 14947,
+      "caseLimit": 5069,
+      "caseOffset": 100000,
+      "elapsedMs": 18749,
+      "processedCases": 5069,
+      "region": "us-west-1",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 28
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 0,
+      "elapsedMs": 9295,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 10000,
+      "elapsedMs": 21627,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 20000,
+      "elapsedMs": 18186,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 30000,
+      "elapsedMs": 20941,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 40000,
+      "elapsedMs": 11167,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 50000,
+      "elapsedMs": 25531,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 60000,
+      "elapsedMs": 28002,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 70000,
+      "elapsedMs": 19344,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 80000,
+      "elapsedMs": 20718,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 90000,
+      "elapsedMs": 28117,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 100000,
+      "elapsedMs": 25802,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 110000,
+      "elapsedMs": 28767,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 120000,
+      "elapsedMs": 26865,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 130000,
+      "elapsedMs": 16150,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 140000,
+      "elapsedMs": 28334,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 150000,
+      "elapsedMs": 34221,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 160000,
+      "elapsedMs": 43332,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 170000,
+      "elapsedMs": 35227,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 180000,
+      "elapsedMs": 35322,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 10000,
+      "caseOffset": 190000,
+      "elapsedMs": 41872,
+      "processedCases": 10000,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 29668,
+      "caseLimit": 8116,
+      "caseOffset": 200000,
+      "elapsedMs": 26707,
+      "processedCases": 8116,
+      "region": "us-west-2",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AmazonEC2",
+      "taskId": 29
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 13,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSEvents",
+      "taskId": 30
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 13,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSEvents",
+      "taskId": 31
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 13,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSEvents",
+      "taskId": 32
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 13,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSEvents",
+      "taskId": 33
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 13,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSEvents",
+      "taskId": 34
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 13,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSEvents",
+      "taskId": 35
+    },
+    {
+      "candidateProductsLoaded": 8,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 4,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonECS",
+      "taskId": 36
+    },
+    {
+      "candidateProductsLoaded": 8,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 4,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonECS",
+      "taskId": 37
+    },
+    {
+      "candidateProductsLoaded": 8,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 7,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonECS",
+      "taskId": 38
+    },
+    {
+      "candidateProductsLoaded": 8,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 7,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonECS",
+      "taskId": 39
+    },
+    {
+      "candidateProductsLoaded": 8,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 6,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonECS",
+      "taskId": 40
+    },
+    {
+      "candidateProductsLoaded": 8,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 8,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonECS",
+      "taskId": 41
+    },
+    {
+      "candidateProductsLoaded": 6,
+      "caseLimit": 6,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "awskms",
+      "taskId": 42
+    },
+    {
+      "candidateProductsLoaded": 6,
+      "caseLimit": 6,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "awskms",
+      "taskId": 43
+    },
+    {
+      "candidateProductsLoaded": 6,
+      "caseLimit": 6,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "awskms",
+      "taskId": 44
+    },
+    {
+      "candidateProductsLoaded": 6,
+      "caseLimit": 6,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "awskms",
+      "taskId": 45
+    },
+    {
+      "candidateProductsLoaded": 6,
+      "caseLimit": 6,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "awskms",
+      "taskId": 46
+    },
+    {
+      "candidateProductsLoaded": 6,
+      "caseLimit": 6,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "awskms",
+      "taskId": 47
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 5,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSLambda",
+      "taskId": 48
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 4,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSLambda",
+      "taskId": 49
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 6,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSLambda",
+      "taskId": 50
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSLambda",
+      "taskId": 51
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 5,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSLambda",
+      "taskId": 52
+    },
+    {
+      "candidateProductsLoaded": 11,
+      "caseLimit": 60,
+      "caseOffset": 0,
+      "elapsedMs": 9,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSLambda",
+      "taskId": 53
+    },
+    {
+      "candidateProductsLoaded": 3,
+      "caseLimit": 3,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonS3",
+      "taskId": 54
+    },
+    {
+      "candidateProductsLoaded": 3,
+      "caseLimit": 3,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonS3",
+      "taskId": 55
+    },
+    {
+      "candidateProductsLoaded": 3,
+      "caseLimit": 3,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonS3",
+      "taskId": 56
+    },
+    {
+      "candidateProductsLoaded": 3,
+      "caseLimit": 3,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonS3",
+      "taskId": 57
+    },
+    {
+      "candidateProductsLoaded": 3,
+      "caseLimit": 3,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonS3",
+      "taskId": 58
+    },
+    {
+      "candidateProductsLoaded": 3,
+      "caseLimit": 3,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AmazonS3",
+      "taskId": 59
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 2,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "ap-northeast-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSSystemsManager",
+      "taskId": 60
+    },
+    {
+      "candidateProductsLoaded": 0,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 5,
+      "processedCases": 0,
+      "region": "ap-northeast-3",
+      "reuseMode": "none",
+      "reusedCases": 0,
+      "serviceCode": "AWSSystemsManager",
+      "taskId": 61
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 2,
+      "caseOffset": 0,
+      "elapsedMs": 1,
+      "processedCases": 0,
+      "region": "us-east-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSSystemsManager",
+      "taskId": 62
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 2,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-east-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSSystemsManager",
+      "taskId": 63
+    },
+    {
+      "candidateProductsLoaded": 1,
+      "caseLimit": 1,
+      "caseOffset": 0,
+      "elapsedMs": 2,
+      "processedCases": 0,
+      "region": "us-west-1",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSSystemsManager",
+      "taskId": 64
+    },
+    {
+      "candidateProductsLoaded": 2,
+      "caseLimit": 2,
+      "caseOffset": 0,
+      "elapsedMs": 3,
+      "processedCases": 0,
+      "region": "us-west-2",
+      "reuseMode": "region-identical",
+      "reusedCases": 0,
+      "serviceCode": "AWSSystemsManager",
+      "taskId": 65
+    }
+  ]
+}

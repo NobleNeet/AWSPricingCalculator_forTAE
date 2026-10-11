@@ -1,0 +1,296 @@
+{
+  "runId": "20261011-quality",
+  "generatedAt": "2026-10-11T14:52:38.131Z",
+  "scope": "Six estimate-quality phases; fresh representative cases. Historical 1592-case audit not recounted.",
+  "publicUrl": "https://nobleneet.github.io/AWSPricingCalculator_forTAE/",
+  "deployment": {
+    "verifiedAt": "2026-10-11T14:52:19.388Z",
+    "publicUrl": "https://nobleneet.github.io/AWSPricingCalculator_forTAE/",
+    "publishedCommit": "b19784757feaf08601886ce95cb20c1df2dfa5ab",
+    "applicationSourceCommit": "646c256e0bf2d5f64cca336e0e6ee77e7b6f0936",
+    "pricingValidationSourceCommit": "8c8e3c5f780cc9d87d887a7a07a1048c203881ce",
+    "priceUpdate": {
+      "runId": 38135662931,
+      "url": "https://github.com/NobleNeet/AWSPricingCalculator_forTAE/actions/runs/38135662931",
+      "conclusion": "success",
+      "golden": {
+        "cases": 31,
+        "errors": 0
+      },
+      "semantic": {
+        "cases": 965701,
+        "services": 13,
+        "errors": 0,
+        "warnings": 0
+      },
+      "drift": {
+        "status": "passed",
+        "classification": "STRUCTURE_WARNING",
+        "publishable": true,
+        "plannedCases": 965701,
+        "processedCases": 955879,
+        "batches": 157,
+        "summary": {
+          "info": 0,
+          "warning": 0,
+          "error": 0
+        },
+        "reusedCases": 0,
+        "reusedRegions": 53,
+        "skippedTasks": []
+      }
+    },
+    "pages": {
+      "deploymentId": 6995461324,
+      "workflowSourceSha": "8c8e3c5f780cc9d87d887a7a07a1048c203881ce",
+      "checkedOutRef": "b19784757feaf08601886ce95cb20c1df2dfa5ab",
+      "state": "success",
+      "completedAt": "2026-10-11T12:24:44Z"
+    },
+    "publicPriceBuild": {
+      "buildId": "20261011T122134Z-eb75cf3e",
+      "generatedAt": "2026-10-11T12:21:38.731Z",
+      "awsPublicationDate": "2026-10-09T22:31:22Z",
+      "globalContractFingerprint": "3226c35c64c46edfa4168a71117ffdb22c31d98a09f8beaeef1c08e614d180d1",
+      "definitionSha256": "b5d1c32dd7cde0904e5b9ecdd6068d7f10d0dfb31966f95e73ea8acf08f36a08"
+    },
+    "publicAssets": {
+      "ec2InstanceTableCss": "HTTP 200 at /ec2-instance-table.css",
+      "catalogLoadingRepair": "catalogState present in public /src/app/app.js"
+    },
+    "localTests": {
+      "unit": 147,
+      "e2e": 32,
+      "e2eAfterRegionDisplayFix": 32
+    },
+    "ciRuns": [
+      38134175399,
+      38134183709,
+      38135536004,
+      38135546410,
+      38137755708,
+      38137764950,
+      38148580808,
+      38148598134
+    ],
+    "previousPublicationAttempts": [
+      {
+        "runId": 38129557639,
+        "conclusion": "cancelled",
+        "reason": "Invalid drift report: missing required parent usage; repaired in PR65."
+      },
+      {
+        "runId": 38134317362,
+        "conclusion": "cancelled",
+        "reason": "Superseded by equivalent immutable predicate cache performance repair in PR66."
+      }
+    ],
+    "implementationPullRequests": [
+      64,
+      65,
+      66,
+      67
+    ],
+    "additionalUiRepair": {
+      "pullRequest": 68,
+      "sourceCommit": "1bdab9af91fa9909516a72c045d568fbfdf52780",
+      "pagesRunId": 38148762325,
+      "conclusion": "success",
+      "pricingContractChanged": false,
+      "pagesDeploymentId": 6997195555
+    },
+    "initialPublicE2e": {
+      "passed": 5,
+      "failed": 1,
+      "reason": "Test edited stale drawer contents during new Region product loading; extra investigation found inherited Region display incorrectly selected explicit option."
+    },
+    "initialAlternativeOperations": {
+      "blocked": 6,
+      "reason": "Snapshot Export input was filled before optional component activation; corrected GUI operation ordering, preserved identical values and expected amounts."
+    },
+    "publicE2e": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "total": 6,
+      "sourceCommit": "1bdab9af91fa9909516a72c045d568fbfdf52780",
+      "evidence": "public-e2e-results.json",
+      "traceDirectory": "public-e2e-final"
+    }
+  },
+  "recordCount": 67,
+  "gui": {
+    "PASS": 21,
+    "NOT_COMPARABLE": 31
+  },
+  "guiPassAccuracy": {
+    "EXACT_DISPLAY_AND_DELTA": 14,
+    "WITHIN_ONE_CENT": 6,
+    "UPPER_BOUND_ONLY": 1
+  },
+  "initialToleranceUsd": "0.01",
+  "alternative": {
+    "ALTERNATIVE_VERIFIED": 31
+  },
+  "functional": {
+    "FUNCTIONAL_PASS": 15
+  },
+  "actions": {
+    "RESOLVED": 36,
+    "COMPARISON_LIMIT_DOCUMENTED": 31
+  },
+  "services": [
+    {
+      "serviceId": "ec2",
+      "caseCount": 13,
+      "testedFields": [
+        "dedicated-region-fee.hours",
+        "ebs-io2-iops.provisionedIops",
+        "ebs-io2-iops.volumeCount",
+        "ebs-io2-iops.volumeHours",
+        "ebs.storageGb",
+        "profile.ebsVolumeType",
+        "profile.tenancy"
+      ],
+      "gui": {
+        "PASS": 11,
+        "NOT_COMPARABLE": 2
+      },
+      "alternative": {
+        "ALTERNATIVE_VERIFIED": 2
+      },
+      "functional": {},
+      "actions": {
+        "RESOLVED": 11,
+        "COMPARISON_LIMIT_DOCUMENTED": 2
+      },
+      "maxComparableGuiAmountDifferenceUsd": "0",
+      "maxNotComparableGuiAmountDifferenceUsd": null
+    },
+    {
+      "serviceId": "s3",
+      "caseCount": 6,
+      "testedFields": [
+        "read-requests.requests",
+        "storage.gbMonths",
+        "write-requests.requests"
+      ],
+      "gui": {
+        "PASS": 6
+      },
+      "alternative": {},
+      "functional": {},
+      "actions": {
+        "RESOLVED": 6
+      },
+      "maxComparableGuiAmountDifferenceUsd": "0.01",
+      "maxNotComparableGuiAmountDifferenceUsd": null
+    },
+    {
+      "serviceId": "fargate",
+      "caseCount": 10,
+      "testedFields": [
+        "profile.averageDurationHours",
+        "profile.cpuArchitecture",
+        "profile.ephemeralStorageGb",
+        "profile.linuxMemoryGbPerTask",
+        "profile.linuxVcpuPerTask",
+        "profile.operatingSystem",
+        "profile.tasksPerDay"
+      ],
+      "gui": {
+        "NOT_COMPARABLE": 10
+      },
+      "alternative": {
+        "ALTERNATIVE_VERIFIED": 10
+      },
+      "functional": {},
+      "actions": {
+        "COMPARISON_LIMIT_DOCUMENTED": 10
+      },
+      "maxComparableGuiAmountDifferenceUsd": null,
+      "maxNotComparableGuiAmountDifferenceUsd": null
+    },
+    {
+      "serviceId": "aurora-postgresql",
+      "caseCount": 17,
+      "testedFields": [
+        "io-requests.requests",
+        "limitless-compute.acuHours",
+        "limitless-compute.averageAcus",
+        "limitless-compute.computeHours",
+        "limitless-compute.usageMode",
+        "serverless-io-optimized.averageAcus",
+        "serverless-io-optimized.computeHours",
+        "serverless-io-optimized.usageMode",
+        "serverless-standard.averageAcus",
+        "serverless-standard.computeHours",
+        "serverless-standard.usageMode",
+        "snapshot-export.processedGb",
+        "storage.gbMonths",
+        "toggle.snapshot-export"
+      ],
+      "gui": {
+        "NOT_COMPARABLE": 11
+      },
+      "alternative": {
+        "ALTERNATIVE_VERIFIED": 11
+      },
+      "functional": {
+        "FUNCTIONAL_PASS": 6
+      },
+      "actions": {
+        "COMPARISON_LIMIT_DOCUMENTED": 11,
+        "RESOLVED": 6
+      },
+      "maxComparableGuiAmountDifferenceUsd": null,
+      "maxNotComparableGuiAmountDifferenceUsd": null
+    },
+    {
+      "serviceId": "eventbridge",
+      "caseCount": 12,
+      "testedFields": [
+        "profile.archiveEventsMillions",
+        "profile.archiveStorageGbMonth",
+        "profile.payloadSizeKb",
+        "profile.schedulerInvocationsMillions"
+      ],
+      "gui": {
+        "NOT_COMPARABLE": 8,
+        "PASS": 4
+      },
+      "alternative": {
+        "ALTERNATIVE_VERIFIED": 8
+      },
+      "functional": {},
+      "actions": {
+        "COMPARISON_LIMIT_DOCUMENTED": 8,
+        "RESOLVED": 4
+      },
+      "maxComparableGuiAmountDifferenceUsd": "0",
+      "maxNotComparableGuiAmountDifferenceUsd": "7.18"
+    },
+    {
+      "serviceId": "rds",
+      "caseCount": 9,
+      "testedFields": [
+        "instance.hours",
+        "instance.quantity",
+        "storage.capacityGb",
+        "storage.gbMonths",
+        "storage.storageHours",
+        "storage.usageMode"
+      ],
+      "gui": {},
+      "alternative": {},
+      "functional": {
+        "FUNCTIONAL_PASS": 9
+      },
+      "actions": {
+        "RESOLVED": 9
+      },
+      "maxComparableGuiAmountDifferenceUsd": null,
+      "maxNotComparableGuiAmountDifferenceUsd": null
+    }
+  ]
+}

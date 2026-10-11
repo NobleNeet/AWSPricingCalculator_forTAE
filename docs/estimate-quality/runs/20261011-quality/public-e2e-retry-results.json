@@ -1,0 +1,157 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/home/ubnadmin/AWSPricingCalculator_forTAE/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/estimate-quality-regions.spec.js",
+      "--workers=1",
+      "--trace",
+      "on",
+      "--output",
+      "docs/estimate-quality/runs/20261011-quality/public-e2e-retry",
+      "--reporter=list,json"
+    ],
+    "configFile": "/home/ubnadmin/AWSPricingCalculator_forTAE/playwright.config.js",
+    "rootDir": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-retry",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "estimate-quality-regions.spec.js",
+      "file": "estimate-quality-regions.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Scheduler refuses an ambiguous cross-region free allocation and recovers with zero allowance",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 18399,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#drawer-region')\nExpected: \u001b[32m\"inherit\"\u001b[39m\nReceived: \u001b[31m\"us-east-1\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" locator('#drawer-region') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('#drawer-region')\u001b[22m\n\u001b[2m    33 × locator resolved to <select id=\"drawer-region\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"us-east-1\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#drawer-region')\nExpected: \u001b[32m\"inherit\"\u001b[39m\nReceived: \u001b[31m\"us-east-1\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" locator('#drawer-region') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('#drawer-region')\u001b[22m\n\u001b[2m    33 × locator resolved to <select id=\"drawer-region\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"us-east-1\"\u001b[22m\n\n    at add (/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e/estimate-quality-regions.spec.js:13:48)\n    at /home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e/estimate-quality-regions.spec.js:25:2",
+                    "location": {
+                      "file": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e/estimate-quality-regions.spec.js",
+                      "column": 48,
+                      "line": 13
+                    },
+                    "snippet": "  11 |   // region's price products load. Wait for the new row before editing it.\n  12 |   await expect(page.locator('td[data-instance] .amount').last()).toHaveText(/^\\$/);\n> 13 |   await expect(page.locator('#drawer-region')).toHaveValue('inherit');\n     |                                                ^\n  14 |   if(region)await page.locator('#drawer-region').selectOption(region);\n  15 |   const input=page.locator('#input-profile--schedulerInvocationsMillions');\n  16 |   await input.waitFor({state:'attached'});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e/estimate-quality-regions.spec.js",
+                        "column": 48,
+                        "line": 13
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#drawer-region')\nExpected: \u001b[32m\"inherit\"\u001b[39m\nReceived: \u001b[31m\"us-east-1\"\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" locator('#drawer-region') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('#drawer-region')\u001b[22m\n\u001b[2m    33 × locator resolved to <select id=\"drawer-region\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"us-east-1\"\u001b[22m\n\n\n  11 |   // region's price products load. Wait for the new row before editing it.\n  12 |   await expect(page.locator('td[data-instance] .amount').last()).toHaveText(/^\\$/);\n> 13 |   await expect(page.locator('#drawer-region')).toHaveValue('inherit');\n     |                                                ^\n  14 |   if(region)await page.locator('#drawer-region').selectOption(region);\n  15 |   const input=page.locator('#input-profile--schedulerInvocationsMillions');\n  16 |   await input.waitFor({state:'attached'});\n    at add (/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e/estimate-quality-regions.spec.js:13:48)\n    at /home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e/estimate-quality-regions.spec.js:25:2"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T14:45:32.461Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-retry/estimate-quality-regions-S-38952-ecovers-with-zero-allowance/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/ubnadmin/AWSPricingCalculator_forTAE/docs/estimate-quality/runs/20261011-quality/public-e2e-retry/estimate-quality-regions-S-38952-ecovers-with-zero-allowance/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/e2e/estimate-quality-regions.spec.js",
+                    "column": 48,
+                    "line": 13
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "85a49dbcb4746158560f-2a1a6af5fd0c9441b604",
+          "file": "estimate-quality-regions.spec.js",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-11T14:45:31.625Z",
+    "duration": 19966.666,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
