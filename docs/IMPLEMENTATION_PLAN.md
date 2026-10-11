@@ -1013,6 +1013,8 @@ Definition PR検証とscheduled Price Updateを自動化する。
 
 ## Workflow A: Definition / Application CI
 
+検証範囲の判定と並列実行の運用は `docs/CI_VALIDATION.md` を参照する。表示のみの変更で全件価格検証を重複実行せず、必要な重い検証は共通 workflow で分割する。
+
 trigger:
 
 ```text

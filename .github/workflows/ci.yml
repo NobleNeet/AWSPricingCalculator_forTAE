@@ -2,6 +2,7 @@ name: Application and Definition CI
 on:
   push:
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
@@ -10,16 +11,25 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    outputs:
+      heavy: ${{ steps.scope.outputs.heavy }}
+      directory: ${{ steps.scope.outputs.directory }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
       - run: npm ci
       - run: npm test
-      - name: Validate active build or temporary Definition candidate
-        run: node tools/ci-validate.js
+      - name: Validate application and plan pricing scope
+        id: scope
+        env:
+          CI_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || '' }}
+          CI_EVENT_NAME: ${{ github.event_name }}
+        run: node tools/ci-validate.js --plan
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - run: npm run build:site
@@ -28,3 +38,11 @@ jobs:
         with:
           name: browser-e2e-report
           path: playwright-report
+
+  pricing:
+    needs: validate
+    if: needs.validate.outputs.heavy == 'true'
+    uses: ./.github/workflows/price-validation.yml
+    with:
+      directory: ${{ needs.validate.outputs.directory }}
+      artifact_prefix: ci-semantic

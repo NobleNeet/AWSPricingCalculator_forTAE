@@ -9,8 +9,34 @@ async function writeJson(file, value) {
   await writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
 }
 
+export function validateSemanticPlan(plan) {
+  const batches = plan.matrix?.include ?? [];
+  if (!batches.length && plan.summary?.scope === 'reuse' && plan.summary.totalCases === 0 && plan.summary.batches === 0) return;
+  if (!batches.length || new Set(batches.map(b => b.batch_id)).size !== batches.length || plan.summary?.batches !== batches.length) throw Error('Invalid semantic batch inventory');
+  let total = 0;
+  const tasks = new Map((plan.tasks ?? []).map(task => [task.taskId, task]));
+  if (!tasks.size) throw Error('Semantic source task inventory missing');
+  for (const [taskId, task] of tasks) {
+    const shards = batches.filter(batch => batch.source_task_id === taskId).sort((a, b) => a.case_offset - b.case_offset);
+    let offset = 0;
+    if (!shards.length) throw Error(`Missing semantic source task: ${taskId}`);
+    for (const [index, batch] of shards.entries()) {
+      if (batch.service_code !== task.serviceCode || batch.region !== task.region
+        || batch.case_offset !== offset || !Number.isInteger(batch.planned_cases) || batch.planned_cases < 0
+        || batch.case_limit !== Math.max(1, batch.planned_cases)
+        || batch.include_defaults !== (index === 0)
+        || batch.include_coverage !== Boolean(task.includeCoverage && index === 0)) throw Error(`Invalid semantic range: ${batch.batch_id}`);
+      offset += batch.planned_cases;
+    }
+    if (offset !== task.caseCount) throw Error(`Incomplete semantic ranges: ${taskId}`);
+    total += offset;
+  }
+  if (batches.some(batch => !tasks.has(batch.source_task_id)) || total !== plan.summary.totalCases) throw Error('Invalid semantic planned case total');
+}
+
 export async function mergeSemanticBatches(planFile, directory) {
   const plan = await readJson(planFile);
+  validateSemanticPlan(plan);
   const expected = new Map((plan.matrix?.include ?? []).map(batch => [batch.batch_id, batch]));
   if (!expected.size) {
     if (plan.summary?.scope !== 'reuse') throw new Error('Semantic plan contains no batches.');
@@ -33,7 +59,17 @@ export async function mergeSemanticBatches(planFile, directory) {
     const batchId = name.slice('batch-'.length, -'.json'.length);
     if (!expected.has(batchId)) throw new Error(`Unexpected semantic batch: ${batchId}`);
     if (results.has(batchId)) throw new Error(`Duplicate semantic batch: ${batchId}`);
-    results.set(batchId, await readJson(path.join(directory, name)));
+    const result = await readJson(path.join(directory, name));
+    const batch = expected.get(batchId);
+    const timing = result.taskTimings?.[0];
+    if (result.command !== 'validate-price-data' || !['passed', 'failed'].includes(result.status)
+      || !Number.isInteger(result.summary?.error) || !Array.isArray(result.issues)
+      || result.summary.error !== result.issues.filter(issue => issue.severity === 'error').length
+      || result.taskTimings?.length !== 1 || timing?.batchId !== batchId
+      || timing.serviceCode !== batch.service_code || timing.region !== batch.region
+      || timing.caseOffset !== batch.case_offset || timing.caseLimit !== batch.case_limit
+      || result.branches !== batch.planned_cases || timing.branches !== batch.planned_cases) throw Error(`Invalid semantic batch result: ${batchId}`);
+    results.set(batchId, result);
   }
 
   const missing = [...expected.keys()].filter(batchId => !results.has(batchId));
@@ -70,6 +106,7 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
     const merged = await mergeSemanticBatches(planFile, directory);
     await writeJson(output, merged);
     process.stdout.write(`${JSON.stringify({ status: merged.status, summary: merged.summary, branches: merged.branches, batches: merged.batches, plannedCases: merged.plannedCases }, null, 2)}\n`);
+    if (merged.status !== 'passed') process.exitCode = 1;
   } catch (error) {
     process.stderr.write(`${error.stack ?? error.message}\n`);
     process.exitCode = 2;

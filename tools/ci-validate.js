@@ -1,14 +1,23 @@
 import { loadPackages, readJson } from './pricing-cli/package-loader.js';
 import { candidateDirectory, run } from './pricing-cli/cli.js';
 import { definitionFingerprint } from './pricing-cli/fingerprint.js';
+import { changedFiles, validationScope } from './ci-validation-scope.js';
+import { appendFile } from 'node:fs/promises';
+import { validateRepository } from './validate-repository.js';
 
 const build = await readJson(`${await candidateDirectory()}/build-manifest.json`);
 const packages = await loadPackages();
 const fingerprint = await definitionFingerprint(packages);
 
-if (build.definitionSha256 === fingerprint) {
-  // Application-only changes validate the pinned published data entirely offline.
-  await import('./validate-repository.js');
+const scope = validationScope({ fingerprintMatches: build.definitionSha256 === fingerprint, files: await changedFiles() });
+const planOnly = process.argv.includes('--plan');
+console.log(`CI validation scope: ${scope}; active_build=${build.buildId}`);
+if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `heavy=${scope === 'published'}\ndirectory=${await candidateDirectory()}\nscope=${scope}\n`);
+
+if (scope !== 'candidate') {
+  // Keep Golden and checksum/schema/index/catalog checks for presentation changes.
+  // Heavy CI validation runs independently across workflow runners.
+  await validateRepository({ semantic: scope === 'published' && !planOnly });
 } else {
   // A Definition/normalization change requires rebuilding the remote AWS Price DB.
   // Do not duplicate that large network/build workload in the ordinary application CI:

@@ -11,6 +11,11 @@ on:
       - 'tools/pricing-cli/**'
       - 'tools/price-update.js'
       - 'tools/price-update-matrix.js'
+      - 'tools/price-source-batches.js'
+      - 'tools/golden-evidence.js'
+      - 'tools/schema.js'
+      - 'schemas/**'
+      - '.github/workflows/price-validation.yml'
       - 'tools/semantic-batch-plan.js'
       - 'tools/merge-semantic-batches.js'
       - 'tools/drift-batch-plan.js'
@@ -26,18 +31,30 @@ on:
         description: 'Comma-separated internal service ids for onboarding-scoped heavy validation. Empty uses normal incremental validation.'
         required: false
         type: string
+      validation_only:
+        description: 'Validate and build a candidate without publication or deployment.'
+        type: boolean
+        default: false
+      refresh_requested_sources:
+        description: 'Validation-only: download pinned sources for the explicit service scope even if unchanged.'
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
   group: pricing-update
   cancel-in-progress: false
 jobs:
-  prepare:
+  check:
     runs-on: ubuntu-latest
     env:
       PRICE_UPDATE_SCOPE_SERVICE_IDS: ${{ inputs.validation_scope_service_ids || '' }}
+      PRICE_UPDATE_VALIDATION_ONLY: ${{ inputs.validation_only || false }}
+      PRICE_UPDATE_REFRESH_REQUESTED_SOURCES: ${{ inputs.refresh_requested_sources || false }}
     outputs:
-      needs_update: ${{ steps.prepare.outputs.needs_update }}
+      needs_update: ${{ steps.check.outputs.needs_update }}
+      source_matrix: ${{ steps.check.outputs.source_matrix }}
+      source_count: ${{ steps.check.outputs.source_count }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,11 +65,92 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - name: Prepare normalized immutable candidate
-        id: prepare
-        run: node tools/price-update-matrix.js prepare
+      - name: Pin AWS versions and determine refresh scope
+        id: check
+        run: node tools/price-update-matrix.js check
       - uses: actions/upload-artifact@v4
-        if: steps.prepare.outputs.needs_update == 'true'
+        if: steps.check.outputs.needs_update == 'true'
+        with:
+          name: price-source-plan
+          path: |
+            .work/update/source-metadata.json
+            .work/update/source-plan.json
+            .work/update/prepare-state.json
+            .work/update/reports
+          include-hidden-files: true
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: steps.check.outputs.needs_update != 'true'
+        with:
+          name: price-analysis
+          path: .work/update/reports
+          include-hidden-files: true
+
+  download-source:
+    needs: check
+    if: needs.check.outputs.needs_update == 'true' && needs.check.outputs.source_count != '0'
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJSON(needs.check.outputs.source_matrix) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SOURCE_BATCH_ID: ${{ matrix.source_id }}
+      PRICE_NORMALIZE_CONCURRENCY: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-source-plan
+          path: .work/update
+      - name: Download pinned source and normalize independently
+        run: node tools/price-source-batches.js .work/update "$SOURCE_BATCH_ID"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: price-source-${{ matrix.source_id }}
+          path: |
+            .work/update/candidate/sources
+            .work/update/candidate/indexes
+            .work/update/candidate/chunks
+            .work/update/raw
+            .work/update/source-results
+          include-hidden-files: true
+          compression-level: 1
+          if-no-files-found: error
+
+  prepare:
+    needs: [check, download-source]
+    if: always() && needs.check.outputs.needs_update == 'true' && (needs.download-source.result == 'success' || (needs.check.outputs.source_count == '0' && needs.download-source.result == 'skipped'))
+    runs-on: ubuntu-latest
+    outputs:
+      needs_update: ${{ steps.prepare.outputs.needs_update }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: price-source-plan
+          path: .work/update
+      - uses: actions/download-artifact@v4
+        if: needs.check.outputs.source_count != '0'
+        with:
+          pattern: price-source-0*
+          path: .work/update
+          merge-multiple: true
+      - name: Verify source completeness and assemble immutable candidate
+        id: prepare
+        run: node tools/price-update-matrix.js assemble
+      - uses: actions/upload-artifact@v4
         with:
           name: price-update-workspace
           path: |
@@ -63,120 +161,16 @@ jobs:
             .work/update/prepare-state.json
           include-hidden-files: true
           compression-level: 1
-      - uses: actions/upload-artifact@v4
-        if: steps.prepare.outputs.needs_update != 'true'
-        with:
-          name: price-analysis
-          path: .work/update/reports
-          include-hidden-files: true
-
-  semantic-plan:
-    needs: prepare
-    if: needs.prepare.outputs.needs_update == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    outputs:
-      matrix: ${{ steps.plan.outputs.matrix }}
-      batch_count: ${{ steps.plan.outputs.batch_count }}
-    env:
-      PRICE_VALIDATE_PLAN_CONCURRENCY: '2'
-      PRICE_VALIDATE_WORKFLOW_BATCH_CASES: '25000'
-      PRICE_VALIDATE_MAX_WORKFLOW_BATCHES: '240'
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci
-      - uses: actions/download-artifact@v4
-        with:
-          name: price-update-workspace
-          path: .work/update
-      - name: Plan semantic workflow batches
-        id: plan
-        shell: bash
-        run: |
-          node tools/semantic-batch-plan.js .work/update/candidate .work/update/semantic-plan.json
-          node --input-type=module - <<'NODE' >> "$GITHUB_OUTPUT"
-          import { readFile } from 'node:fs/promises';
-          const plan = JSON.parse(await readFile('.work/update/semantic-plan.json', 'utf8'));
-          console.log(`matrix=${JSON.stringify(plan.matrix)}`);
-          console.log(`batch_count=${plan.summary.batches}`);
-          NODE
-      - uses: actions/upload-artifact@v4
-        with:
-          name: semantic-plan
-          path: .work/update/semantic-plan.json
-          if-no-files-found: error
-
-  semantic:
-    needs: [prepare, semantic-plan]
-    if: needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success' && needs.semantic-plan.outputs.batch_count != '0'
-    strategy:
-      fail-fast: false
-      max-parallel: 8
-      matrix: ${{ fromJSON(needs.semantic-plan.outputs.matrix) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    env:
-      PRICE_VALIDATE_CONCURRENCY: '1'
-      PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
-      PRICE_VALIDATE_HEARTBEAT_MS: '30000'
-      PRICE_VALIDATE_BATCH_JSON: ${{ toJSON(matrix) }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci
-      - uses: actions/download-artifact@v4
-        with:
-          name: price-update-workspace
-          path: .work/update
-      - name: Validate semantic batch ${{ matrix.batch_id }}
-        shell: bash
-        run: |
-          set +e
-          node tools/pricing-cli/cli.js validate-price-data \
-            --input .work/update/candidate \
-            --output .work/update/batches/batch-${{ matrix.batch_id }}.json
-          rc=$?
-          if [[ $rc -eq 2 ]]; then
-            exit 2
-          fi
-          exit 0
-      - uses: actions/upload-artifact@v4
-        with:
-          name: semantic-batch-${{ matrix.batch_id }}
-          path: .work/update/batches/batch-${{ matrix.batch_id }}.json
-          if-no-files-found: error
 
   semantic-merge:
-    needs: [prepare, semantic-plan, semantic]
-    if: always() && needs.prepare.outputs.needs_update == 'true' && needs.semantic-plan.result == 'success' && (needs.semantic.result == 'success' || (needs.semantic-plan.outputs.batch_count == '0' && needs.semantic.result == 'skipped'))
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: semantic-plan
-          path: .work/update
-      - uses: actions/download-artifact@v4
-        if: needs.semantic-plan.outputs.batch_count != '0'
-        with:
-          pattern: semantic-batch-*
-          path: .work/update/batches
-          merge-multiple: true
-      - name: Merge semantic validation batches
-        run: node tools/merge-semantic-batches.js .work/update/semantic-plan.json .work/update/batches .work/update/validate-price-data.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: semantic-report
-          path: .work/update/validate-price-data.json
-          if-no-files-found: error
+    needs: prepare
+    if: needs.prepare.outputs.needs_update == 'true'
+    uses: ./.github/workflows/price-validation.yml
+    with:
+      directory: .work/update/candidate
+      workspace_artifact: price-update-workspace
+      artifact_prefix: semantic
+      prepared_update: true
 
   golden:
     needs: prepare
@@ -375,7 +369,7 @@ jobs:
 
   publish:
     needs: finalize
-    if: needs.finalize.outputs.publishable == 'true'
+    if: needs.finalize.outputs.publishable == 'true' && inputs.validation_only != true
     runs-on: ubuntu-latest
     permissions:
       contents: write

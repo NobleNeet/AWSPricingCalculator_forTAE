@@ -19,6 +19,7 @@ import { classifyChangeParallel } from './pricing-cli/drift-parallel.js';
 import { loadCandidateForPublish } from './pricing-cli/publication-candidate.js';
 import { refreshGoldenEvidence } from './price-update.js';
 import { refreshGoldenEvidenceTolerant } from './golden-evidence.js';
+import { sourceDownloadMatrix, assembleSourceCandidates } from './price-source-batches.js';
 import { resolveRequestedValidationScope } from './pricing-cli/update-scope.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
@@ -66,7 +67,7 @@ function priceSourceCodes(packages) {
   return [...new Set(packages.flatMap(packagePriceSourceCodes))].sort();
 }
 
-async function prepare(work) {
+export async function check(work) {
   await mkdir(work, { recursive: true });
   const previousDirectory = await candidateDirectory();
   const previousMetadata = await loadSourceDescriptors(previousDirectory);
@@ -77,6 +78,8 @@ async function prepare(work) {
     packages,
     process.env.PRICE_UPDATE_SCOPE_SERVICE_IDS ?? ''
   );
+  const refreshRequestedSources = process.env.PRICE_UPDATE_REFRESH_REQUESTED_SOURCES === 'true';
+  if (refreshRequestedSources && (process.env.PRICE_UPDATE_VALIDATION_ONLY !== 'true' || !requestedScope.serviceIds.length)) throw Error('Forced source refresh requires validation-only mode and an explicit service scope');
   if (requestedScope.serviceIds.length) {
     console.log(`price update validation scope: services=${requestedScope.serviceIds.join(',')} price_sources=${requestedScope.serviceCodes.join(',')}`);
   }
@@ -121,7 +124,7 @@ async function prepare(work) {
     for (const item of Object.values(metadata.sources)) {
       item.awsChanged = Boolean(item.changed);
       item.definitionChanged = definitionRefreshCodes.has(item.serviceCode);
-      if (item.definitionChanged) item.changed = true;
+      if (item.definitionChanged || (refreshRequestedSources && requestedScope.serviceCodes.includes(item.serviceCode))) item.changed = true;
     }
     await writeJson(metadataFile, metadata);
     const sourceReport = await readJson(path.join(work, 'reports', 'check-source.json'));
@@ -142,14 +145,6 @@ async function prepare(work) {
     await writeJson(path.join(work, 'reports', 'check-source.json'), sourceReport);
   }
 
-  const rawDirectory = path.join(work, 'raw');
-  const candidate = path.join(work, 'candidate');
-  await record(work, 'download', { input: metadataFile, output: rawDirectory });
-  await record(work, 'normalize', { input: metadataFile, raw: rawDirectory, output: candidate, previous: previousDirectory });
-  await record(work, 'inventory', { input: candidate, output: path.join(work, 'reports', 'inventory-data.json') });
-  const definition = await record(work, 'validate-definitions', {});
-  if (definition.summary.error) throw new Error(`Definition validation failed with ${definition.summary.error} errors`);
-  await refreshGoldenEvidenceTolerant(packages, rawDirectory, path.join(work, 'golden-raw'), candidate);
   await writeJson(path.join(work, 'prepare-state.json'), {
     schemaVersion: 2,
     previousBuildId: active.activeBuildId,
@@ -166,8 +161,38 @@ async function prepare(work) {
     requestedScopeServiceIds: requestedScope.serviceIds,
     requestedScopeServiceCodes: requestedScope.serviceCodes
   });
+  const metadata = await readJson(metadataFile);
+  const matrix = sourceDownloadMatrix(metadata);
+  await writeJson(path.join(work, 'source-plan.json'), matrix);
+  await writeOutput({ needs_update: 'true', source_matrix: JSON.stringify(matrix), source_count: matrix.include.length });
+  return { status: 'CHECKED', publishable: false };
+}
+
+export async function prepare(work, assembled = false) {
+  if (!assembled) {
+    const checked = await check(work);
+    if (checked.status === 'NO_CHANGE') return checked;
+  }
+  const state = await readJson(path.join(work, 'prepare-state.json'));
+  const previousDirectory = await candidateDirectory();
+  const previousBuild = await readJson(path.join(previousDirectory, 'build-manifest.json'));
+  if (previousBuild.buildId !== state.previousBuildId) throw Error('Active build changed during preparation');
+  const packages = await loadPackages();
+  const metadataFile = path.join(work, 'source-metadata.json');
+  const rawDirectory = path.join(work, 'raw');
+  const candidate = path.join(work, 'candidate');
+  if (assembled) {
+    await assembleSourceCandidates(work, previousDirectory);
+  } else {
+    await record(work, 'download', { input: metadataFile, output: rawDirectory });
+    await record(work, 'normalize', { input: metadataFile, raw: rawDirectory, output: candidate, previous: previousDirectory });
+  }
+  await record(work, 'inventory', { input: candidate, output: path.join(work, 'reports', 'inventory-data.json') });
+  const definition = await record(work, 'validate-definitions', {});
+  if (definition.summary.error) throw new Error(`Definition validation failed with ${definition.summary.error} errors`);
+  await refreshGoldenEvidenceTolerant(packages, rawDirectory, path.join(work, 'golden-raw'), candidate);
   await writeOutput({ needs_update: 'true', publishable: 'false', build_id: '' });
-  return { schemaVersion: 1, status: 'PREPARED', publishable: false, previousBuildId: active.activeBuildId };
+  return { schemaVersion: 1, status: 'PREPARED', publishable: false, previousBuildId: state.previousBuildId };
 }
 
 function restorePublishSkus(serialized = {}) {
@@ -270,14 +295,17 @@ async function finalize(work) {
   return summary;
 }
 
-const phase = process.argv[2];
-const work = process.argv[3] ?? '.work/update';
-try {
-  const result = phase === 'prepare' ? await prepare(work) : phase === 'finalize' ? await finalize(work) : null;
-  if (!result) throw new Error('Usage: node tools/price-update-matrix.js <prepare|finalize> [work]');
-  process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-  if (phase === 'finalize' && result.status === 'REJECTED') process.exitCode = 1;
-} catch (error) {
-  process.stderr.write(`${error.stack}\n`);
-  process.exitCode = 2;
+if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).href) {
+  const phase = process.argv[2];
+  const work = process.argv[3] ?? '.work/update';
+  try {
+    const result = phase === 'check' ? await check(work) : phase === 'assemble' ? await prepare(work, true) : phase === 'prepare' ? await prepare(work) : phase === 'finalize' ? await finalize(work) : null;
+    if (!result) throw new Error('Usage: node tools/price-update-matrix.js <check|assemble|prepare|finalize> [work]');
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+    if (phase === 'finalize' && result.status === 'REJECTED') process.exitCode = 1;
+  } catch (error) {
+    process.stderr.write(`${error.stack}\n`);
+    process.exitCode = 2;
+  }
+
 }

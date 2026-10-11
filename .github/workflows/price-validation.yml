@@ -1,0 +1,133 @@
+name: Parallel Price Validation
+on:
+  workflow_call:
+    inputs:
+      directory:
+        type: string
+        required: true
+      workspace_artifact:
+        type: string
+        default: ''
+      artifact_prefix:
+        type: string
+        required: true
+      prepared_update:
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      batch_count: ${{ steps.plan.outputs.batch_count }}
+    env:
+      PRICE_VALIDATE_PLAN_CONCURRENCY: '2'
+      PRICE_VALIDATE_WORKFLOW_BATCH_CASES: '25000'
+      PRICE_VALIDATE_MAX_WORKFLOW_BATCHES: '240'
+      CANDIDATE_DIRECTORY: ${{ inputs.directory }}
+      PREPARED_UPDATE: ${{ inputs.prepared_update }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        if: inputs.workspace_artifact != ''
+        with:
+          name: ${{ inputs.workspace_artifact }}
+          path: .work/update
+      - name: Plan bounded semantic batches
+        id: plan
+        shell: bash
+        run: |
+          if [[ "$PREPARED_UPDATE" == 'true' ]]; then
+            node tools/semantic-batch-plan.js "$CANDIDATE_DIRECTORY" .work/validation/plan.json
+          else
+            node tools/ci-semantic-plan.js "$CANDIDATE_DIRECTORY" .work/validation/plan.json
+          fi
+          node --input-type=module - <<'NODE' >> "$GITHUB_OUTPUT"
+          import { readFile } from 'node:fs/promises';
+          const plan = JSON.parse(await readFile('.work/validation/plan.json', 'utf8'));
+          console.log(`matrix=${JSON.stringify(plan.matrix)}`);
+          console.log(`batch_count=${plan.summary.batches}`);
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact_prefix }}-plan
+          path: .work/validation/plan.json
+          if-no-files-found: error
+  batches:
+    needs: plan
+    if: needs.plan.outputs.batch_count != '0'
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PRICE_VALIDATE_CONCURRENCY: '1'
+      PRICE_VALIDATE_TASK_TIMEOUT_MS: '600000'
+      PRICE_VALIDATE_HEARTBEAT_MS: '30000'
+      PRICE_VALIDATE_BATCH_JSON: ${{ toJSON(matrix) }}
+      CANDIDATE_DIRECTORY: ${{ inputs.directory }}
+      BATCH_ID: ${{ matrix.batch_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        if: inputs.workspace_artifact != ''
+        with:
+          name: ${{ inputs.workspace_artifact }}
+          path: .work/update
+      - name: Validate semantic batch
+        shell: bash
+        run: |
+          set +e
+          node tools/pricing-cli/cli.js validate-price-data --input "$CANDIDATE_DIRECTORY" --output ".work/validation/batches/batch-$BATCH_ID.json"
+          rc=$?
+          if [[ $rc -eq 2 ]]; then exit 2; fi
+          # Validation failures are represented in the report and rejected by merge.
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact_prefix }}-batch-${{ matrix.batch_id }}
+          path: .work/validation/batches/batch-${{ matrix.batch_id }}.json
+          if-no-files-found: error
+  merge:
+    needs: [plan, batches]
+    if: always() && needs.plan.result == 'success' && (needs.batches.result == 'success' || (needs.plan.outputs.batch_count == '0' && needs.batches.result == 'skipped'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact_prefix }}-plan
+          path: .work/validation
+      - uses: actions/download-artifact@v4
+        if: needs.plan.outputs.batch_count != '0'
+        with:
+          pattern: ${{ inputs.artifact_prefix }}-batch-*
+          path: .work/validation/batches
+          merge-multiple: true
+      - name: Check completeness and merge semantic reports
+        run: node tools/merge-semantic-batches.js .work/validation/plan.json .work/validation/batches .work/validation/validate-price-data.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ inputs.artifact_prefix }}-report
+          path: .work/validation/validate-price-data.json
+          if-no-files-found: error
