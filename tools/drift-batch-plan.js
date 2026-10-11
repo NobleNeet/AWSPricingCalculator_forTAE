@@ -9,6 +9,7 @@ import {
   filterPackagesBySourceCodes,
   validationScopeMode
 } from './pricing-cli/update-scope.js';
+import { assignBatchesToWorkers } from './pricing-cli/work-pool.js';
 
 function positiveInt(value, fallback) {
   const parsed = Number.parseInt(value ?? '', 10);
@@ -101,6 +102,7 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
       candidateDirectory,
       missingService: false,
       tasks: [],
+      batches: [],
       matrix: { include: [] },
       skippedTasks: [],
       summary: {
@@ -108,6 +110,7 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
         skippedTasks: 0,
         totalCases: 0,
         batches: 0,
+        workers: 0,
         casesPerBatch: 0,
         maxBatches: positiveInt(options.maxBatches ?? process.env.PRICE_DRIFT_MAX_WORKFLOW_BATCHES, 240),
         plannerConcurrency: 0,
@@ -176,20 +179,26 @@ export async function buildDriftPlan(work = '.work/update', options = {}) {
     240
   );
   const grouped = groupDriftTasks(countedTasks, requestedBatchCases, maxBatches);
+  const workers = assignBatchesToWorkers(
+    grouped.batches,
+    options.maxWorkers ?? process.env.PRICE_DRIFT_WORKFLOW_WORKERS ?? 8
+  );
 
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     previousDirectory,
     candidateDirectory,
     missingService,
     tasks: countedTasks,
-    matrix: { include: grouped.batches },
+    batches: grouped.batches,
+    matrix: { include: workers },
     skippedTasks,
     summary: {
       tasks: countedTasks.length,
       skippedTasks: skippedTasks.length,
       totalCases: grouped.totalCases,
       batches: grouped.batches.length,
+      workers: workers.length,
       casesPerBatch: grouped.batchCases,
       maxBatches,
       plannerConcurrency,
