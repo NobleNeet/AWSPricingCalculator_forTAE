@@ -60,7 +60,9 @@ export async function mergeSemanticBatches(planFile, directory) {
   let workerArtifacts = 0;
   for (const name of names) {
     const artifact = await readJson(path.join(directory, name));
-    const entries = Array.isArray(artifact.batchResults)
+    const pooled = Array.isArray(artifact.batchResults);
+    const fileBatchId = name.startsWith('batch-') ? name.slice('batch-'.length, -'.json'.length) : null;
+    const entries = pooled
       ? artifact.batchResults.map(entry => ({
         command: 'validate-price-data',
         status: entry.issues?.some(issue => issue.severity === 'error') ? 'failed' : 'passed',
@@ -85,10 +87,10 @@ export async function mergeSemanticBatches(planFile, directory) {
         }]
       }))
       : [artifact];
-    if (Array.isArray(artifact.batchResults)) workerArtifacts += 1;
+    if (pooled) workerArtifacts += 1;
     for (const result of entries) {
       const timing = result.taskTimings?.[0];
-      const batchId = timing?.batchId ?? result.batchId;
+      const batchId = pooled ? (timing?.batchId ?? result.batchId) : fileBatchId;
       if (!expected.has(batchId)) throw new Error(`Unexpected semantic batch: ${batchId}`);
       if (results.has(batchId)) throw new Error(`Duplicate semantic batch: ${batchId}`);
       const batch = expected.get(batchId);
