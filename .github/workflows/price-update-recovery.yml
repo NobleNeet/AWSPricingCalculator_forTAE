@@ -1,4 +1,4 @@
-name: Recover invalid estimate-quality publication
+name: Recover superseded estimate-quality publication
 on:
   push:
     branches: [main]
@@ -14,20 +14,23 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            // This run omitted resolved-component dependencies in drift checks.
-            // Stop that exact invalid candidate so corrected validation can run.
-            // Never cancel a different workflow, commit, or replacement run.
-            const run_id = 38129557639;
-            const { data: run } = await github.rest.actions.getWorkflowRun({
-              ...context.repo, run_id
-            });
-            if (run.head_sha !== '9764b6f08efb885e84e360f8bf5945e61d63ac01' ||
-                run.path !== '.github/workflows/price-update.yml') {
-              throw new Error('Recovery target does not match the recorded invalid candidate.');
+            // Only explicitly recorded superseded attempts may be cancelled.
+            // Replacement candidates still pass all existing publication gates.
+            const targets = [
+              { run_id: 38129557639, sha: '9764b6f08efb885e84e360f8bf5945e61d63ac01',
+                reason: 'Invalid drift checks omitted required parent components.' },
+              { run_id: 38134317362, sha: '358d307a953fa5db184d9dd9c0d09fba0e95eb89',
+                reason: 'Superseded by equivalent bounded-cache drift checks; avoid repeated large candidate scans.' }
+            ];
+            for (const target of targets) {
+              const { data: run } = await github.rest.actions.getWorkflowRun({ ...context.repo, run_id: target.run_id });
+              if (run.head_sha !== target.sha || run.path !== '.github/workflows/price-update.yml') {
+                throw new Error('Recovery target does not match the recorded workflow and commit.');
+              }
+              if (run.status === 'completed') {
+                core.info(`Target ${target.run_id} already completed: ${run.conclusion}`);
+                continue;
+              }
+              await github.rest.actions.cancelWorkflowRun({ ...context.repo, run_id: target.run_id });
+              core.info(`Cancelled superseded candidate ${target.run_id}: ${target.reason}`);
             }
-            if (run.status === 'completed') {
-              core.info(`Target already completed: ${run.conclusion}`);
-              return;
-            }
-            await github.rest.actions.cancelWorkflowRun({ ...context.repo, run_id });
-            core.info(`Cancelled invalid candidate ${run_id}; replacement must pass all publication gates.`);

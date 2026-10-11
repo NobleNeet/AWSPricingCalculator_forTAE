@@ -21,7 +21,7 @@ export function packageWithDependencies(pkg, profileId, targetId) {
 // Indexes only reduce scans. The original predicate checks every returned
 // product; Core still validates inputs, dimensions and singleSku resolution.
 export function productMatcher(products) {
-  const indexes = new Map();
+  const indexes = new Map(), cache = new Map();
   const index = field => {
     if (!indexes.has(field)) {
       const values = new Map();
@@ -37,14 +37,23 @@ export function productMatcher(products) {
   };
   return (filters, context) => {
     const known = filters.filter(filter => !filter.valueFrom || fieldValue(context, filter.valueFrom).exists);
+    // Sources are immutable for the lifetime of this matcher. Repeated selector
+    // provider checks have identical predicates across thousands of cases.
+    const key = JSON.stringify(known.map(filter => ({ field: filter.field, op: filter.op,
+      value: ['eq', 'neq'].includes(filter.op) ? resolveValue(filter, context).value : filter.value })));
+    if (cache.has(key)) return cache.get(key);
     let candidates = products;
     for (const filter of known) {
       if (!['eq', 'in'].includes(filter.op)) continue;
-      const values = filter.op === 'in' ? filter.value : [resolveValue(filter, context).value];
-      const subset = [...new Set(values.flatMap(value => index(filter.field).get(value) ?? []))];
+      const buckets = index(filter.field);
+      const subset = filter.op === 'eq' ? (buckets.get(resolveValue(filter, context).value) ?? [])
+        : [...new Set(filter.value.flatMap(value => buckets.get(value) ?? []))];
       if (subset.length < candidates.length) candidates = subset;
     }
-    return candidates.filter(product => matches(product, known, context));
+    const selected = candidates.filter(product => matches(product, known, context));
+    if (cache.size >= 10000) cache.delete(cache.keys().next().value);
+    cache.set(key, selected);
+    return selected;
   };
 }
 
