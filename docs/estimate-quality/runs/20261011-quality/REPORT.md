@@ -1,6 +1,6 @@
 # 見積品質改善・公開版再試験
 
-実行ID: 20261011-quality。報告生成: 2026-10-11T14:55:15.063Z。
+実行ID: 20261011-quality。報告生成: 2026-10-11T15:44:48.348Z。
 
 公開サイト: https://nobleneet.github.io/AWSPricingCalculator_forTAE/
 

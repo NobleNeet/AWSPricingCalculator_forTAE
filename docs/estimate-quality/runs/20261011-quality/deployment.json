@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-11T14:52:19.388Z",
+  "verifiedAt": "2026-10-11T15:44:48.146Z",
   "publicUrl": "https://nobleneet.github.io/AWSPricingCalculator_forTAE/",
   "publishedCommit": "b19784757feaf08601886ce95cb20c1df2dfa5ab",
   "applicationSourceCommit": "646c256e0bf2d5f64cca336e0e6ee77e7b6f0936",
@@ -111,5 +111,24 @@
     "sourceCommit": "1bdab9af91fa9909516a72c045d568fbfdf52780",
     "evidence": "public-e2e-results.json",
     "traceDirectory": "public-e2e-final"
+  },
+  "finalReportIntegration": {
+    "pullRequest": 69,
+    "commit": "59305bcf61970d2962a0603840b0394357a59a2d",
+    "pullRequestCiRunId": 38149145761,
+    "mainCiRunId": 38150848201,
+    "ciConclusion": "success",
+    "semanticSummary": {
+      "info": 0,
+      "warning": 0,
+      "error": 0
+    },
+    "semanticEvidence": "final-main-semantic-validation.json",
+    "pagesRunId": 38150848174,
+    "pagesDeploymentId": 6997564298,
+    "pagesConclusion": "success",
+    "runtimeApplicationBlobSha": "6c53067afc93206804d90324cd47a01aaea9d509",
+    "runtimeSameAsPublicE2e": true,
+    "priceBuildSameAsPublicMeasurements": true
   }
 }
