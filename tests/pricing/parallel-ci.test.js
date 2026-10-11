@@ -8,12 +8,13 @@ import { mergeSemanticBatches, validateSemanticPlan } from '../../tools/merge-se
 import { report } from '../../tools/pricing-cli/report.js';
 import { writeJson } from '../../tools/pricing-cli/cli.js';
 import { readJson, loadPackages } from '../../tools/pricing-cli/package-loader.js';
-import { sourceDownloadMatrix, downloadSourceCandidate, verifySourceCandidates, goldenSourceEvidence } from '../../tools/price-source-batches.js';
+import { sourceDownloadMatrix, downloadSourceCandidate, verifySourceCandidates, goldenSourceEvidence, assembleSourceCandidates } from '../../tools/price-source-batches.js';
 import { planSemanticBatches } from '../../tools/pricing-cli/semantic-plan.js';
 import { loadCandidate, goldenValidation } from '../../tools/pricing-cli/cli.js';
 import { refreshGoldenEvidenceTolerant } from '../../tools/golden-evidence.js';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { check } from '../../tools/price-update-matrix.js';
 
 function plan() {
   const task = { taskId: 0, globalTaskId: 0, serviceCode: 'Example', region: 'r1', caseCount: 3, includeCoverage: true };
@@ -91,6 +92,16 @@ test('download shards pin source versions, retain raw Golden evidence and reject
     const merged = await mergeSemanticBatches(path.join(work, 'semantic-plan.json'), path.join(work, 'batches'));
     assert.equal(merged.status, 'passed');
     assert.equal(merged.branches, semanticPlan.summary.totalCases);
+    const unchanged = { serviceCode: 'Other', region: 'r1', changed: false };
+    metadata.sources['Other/r1'] = unchanged;
+    await writeJson(path.join(work, 'source-metadata.json'), metadata);
+    const previous = path.join(work, 'previous');
+    await writeJson(path.join(previous, 'sources/Other/r1/products.json'), { products: [] });
+    await writeJson(path.join(previous, 'indexes/Other/r1/index.json'), { products: [] });
+    await assembleSourceCandidates(work, previous);
+    assert.deepEqual((await readJson(path.join(work, 'candidate/source-metadata.json'))).sources, metadata.sources);
+    assert.deepEqual(await readJson(path.join(work, 'candidate/sources/Other/r1/products.json')), { products: [] });
+    await assert.rejects(downloadSourceCandidate(work, '0000', { packages, fetcher: async () => ({ ok: true, json: async () => ({ ...raw, version: 'wrong' }) }) }), /source\/version mismatch/);
     const file = path.join(work, 'candidate/sources/awskms/ap-northeast-1/products.json');
     await writeFile(file, (await readFile(file, 'utf8')) + ' ');
     await assert.rejects(verifySourceCandidates(work, metadata, p), /checksum/);
@@ -98,4 +109,22 @@ test('download shards pin source versions, retain raw Golden evidence and reject
     await rm(path.join(work, 'source-results/0000.json'));
     await assert.rejects(verifySourceCandidates(work, metadata, p), /Incomplete/);
   } finally { await rm(work, { recursive: true, force: true }); }
+});
+
+test('forced source refresh is rejected before networking unless validation-only and explicitly scoped', async () => {
+  const work = await mkdtemp(path.join(os.tmpdir(), 'ci-refresh-guard-'));
+  const keys = ['PRICE_UPDATE_SCOPE_SERVICE_IDS', 'PRICE_UPDATE_VALIDATION_ONLY', 'PRICE_UPDATE_REFRESH_REQUESTED_SOURCES'];
+  const saved = Object.fromEntries(keys.map(key => [key, process.env[key]]));
+  try {
+    process.env.PRICE_UPDATE_REFRESH_REQUESTED_SOURCES = 'true';
+    process.env.PRICE_UPDATE_SCOPE_SERVICE_IDS = 'kms';
+    process.env.PRICE_UPDATE_VALIDATION_ONLY = 'false';
+    await assert.rejects(check(work), /Forced source refresh requires/);
+    process.env.PRICE_UPDATE_VALIDATION_ONLY = 'true';
+    process.env.PRICE_UPDATE_SCOPE_SERVICE_IDS = '';
+    await assert.rejects(check(work), /Forced source refresh requires/);
+  } finally {
+    for (const key of keys) { if (saved[key] === undefined) delete process.env[key]; else process.env[key] = saved[key]; }
+    await rm(work, { recursive: true, force: true });
+  }
 });

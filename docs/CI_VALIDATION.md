@@ -51,3 +51,7 @@ Golden evidence は該当 source / region の全サービスの verification 条
 - 既存 `source` / `semantic-chunking` / `update-scope` / `scoped-refresh` テスト: bounded concurrency と既存 scope 最適化を保持。
 
 参考計測: 変更前の run `38117145227` は validate に67分53秒（965,263 case、2 worker）を要した。高速化後の所要時間は変更範囲、runner待ち、artifact転送によって変わるため、実際の Actions で確認する。
+
+手動検証には `validation_only=true` を指定すると、候補を検証・buildしても publish / Pages を実行しない。`refresh_requested_sources=true` はこのモードと明示的な `validation_scope_service_ids` の組み合わせでのみ許可し、指定サービスの固定版を再取得して取得ジョブを検証する。通常の定期更新では未変更 source を再取得しない。
+
+実データ確認では、KMS の6リージョンを固定 URL / versionから別々に取得・正規化し、統合時の source identity / SHA-256、Golden、36 case / 6 batch の semantic 検証を確認した。active manifest は変更していない。
