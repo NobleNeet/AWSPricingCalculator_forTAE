@@ -57,6 +57,19 @@ export const DRAWER_LABELS_JA = {
       storage: ['ストレージ (gp3)', { gbMonths: 'ストレージ量 (GB/月)' }]
     }
   },
+  'rds-oracle': {
+    profiles: { standard: 'Amazon RDS for Oracle' },
+    fields: {
+      nodes: 'ノード', utilizationPct: '使用状況 (オンデマンドのみ) (%/月)',
+      deployment: 'デプロイオプション', licenseModel: 'ライセンス', databaseEdition: 'データベース版'
+    },
+    components: {
+      instance: ['RDS for Oracle インスタンスを選択', { instanceType: 'インスタンスタイプ' }],
+      'storage-gp3': ['ストレージ', { volumeType: '各 RDS インスタンスのストレージ', gbMonths: 'ストレージ量 (DB インスタンス 1 台あたりの GB)' }],
+      'database-insights': ['RDS プロビジョンドインスタンスの CloudWatch Database Insights の料金'],
+      'backup-storage': ['バックアップストレージ', { additionalGbMonths: '追加のバックアップストレージ (GB/月)' }]
+    }
+  },
   'aurora-postgresql': {
     profiles: {
       'provisioned-standard': 'プロビジョニング済み / Aurora Standard',

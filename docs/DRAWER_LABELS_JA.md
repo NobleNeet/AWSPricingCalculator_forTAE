@@ -21,6 +21,7 @@
 | S3 | https://calculator.aws/#/createCalculator/S3 | amazonSimpleStorageServiceGroup、amazonS3Standard |
 | Lambda | https://calculator.aws/#/createCalculator/Lambda | aWSLambda |
 | RDS PostgreSQL | https://calculator.aws/#/createCalculator/RDSPostgreSQL | amazonRDSPostgreSQLDB |
+| RDS Oracle | https://calculator.aws/#/createCalculator/amazonRDSOracle | amazonRdsForOracle |
 | Aurora PostgreSQL | https://calculator.aws/#/createCalculator/AuroraPostgreSQL | amazonRDSAuroraPostgreSQLCompatibleDB |
 | Fargate | https://calculator.aws/#/createCalculator/Fargate | awsFargate |
 | CodeBuild | https://calculator.aws/#/createCalculator/codebuild | awsCodeBuild |
@@ -46,6 +47,6 @@
 ## 検証
 
 - `tests/app/drawer-labels-ja.test.js`: 全 Profile/Component/入力の表記を棚卸しし、表示前後で label 以外の全 Definition 内容が同じこと、元のキャッシュを変更しないことを検証する。
-- `tests/e2e/drawer-labels-ja.spec.js`: 12 サービスの全 Profile、詳細・条件付き入力をブラウザーで確認する。
+- `tests/e2e/drawer-labels-ja.spec.js`: 13 サービスの全 Profile、詳細・条件付き入力をブラウザーで確認する。
 - `tests/e2e/app.spec.js`: KMS の公式名、Lambda の詳細設定と条件付き Component を日本語表記へ更新し、既存の編集・料金再計算・保存復元を検証する。
 - 料金契約に変更がないため Price DB の再生成・公開は不要。通常の Application CI と Pages デプロイを適用する。
