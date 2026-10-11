@@ -1,6 +1,6 @@
 # 見積品質改善・公開版再試験
 
-実行ID: 20261011-quality。報告生成: 2026-10-11T14:52:38.131Z。
+実行ID: 20261011-quality。報告生成: 2026-10-11T14:55:15.063Z。
 
 公開サイト: https://nobleneet.github.io/AWSPricingCalculator_forTAE/
 
@@ -10,12 +10,12 @@
 
 | 試験 | 判定内訳 |
 |---|---|
-| 公式GUIとの料金比較 | {"PASS":21,"NOT_COMPARABLE":31} |
-| GUI PASSの精度内訳 | {"EXACT_DISPLAY_AND_DELTA":14,"WITHIN_ONE_CENT":6,"UPPER_BOUND_ONLY":1} |
-| GUI比較できない構成の独立Price List検証 | {"ALTERNATIVE_VERIFIED":31} |
-| 公開GUIの入力制約 | {"FUNCTIONAL_PASS":15} |
+| 公式GUIとの料金比較 | PASS 21件 / 比較条件が異なる 31件 / FAIL 0件 / 操作不能 0件 / 未完了 0件 |
+| GUI PASSの精度内訳 | 表示額・変化量の完全一致 14件 / 0.01 USD以内 6件 / 1セント未満の表示範囲確認 1件 |
+| GUI比較できない構成の独立Price List検証 | 検証済み 31件 / FAIL 0件 / 操作不能 0件 |
+| 公開GUIの入力制約 | 成功 15件 / FAIL 0件 / 操作不能 0件 |
 
-公開版の追加E2E: {"passed":6,"failed":0,"skipped":0,"total":6,"sourceCommit":"1bdab9af91fa9909516a72c045d568fbfdf52780","evidence":"public-e2e-results.json","traceDirectory":"public-e2e-final"}。今回の67ケースとは別集計。
+公開版の追加E2E: 6/6件成功、失敗0件。今回の67ケースとは別集計。
 
 NOT_COMPARABLEはGUI比較条件が等価でないという判定。ALTERNATIVE_VERIFIEDは別の検証結果であり、GUI PASSへ読み替えない。微小な表示額はUPPER_BOUND_ONLYとし、1セント未満という範囲だけを確認する。
 
@@ -27,8 +27,8 @@ NOT_COMPARABLEはGUI比較条件が等価でないという判定。ALTERNATIVE_
 
 | 区分 | 今回の件数 | 意味 |
 |---|---:|---|
-| RESOLVED | 36 | 今回の対象修正が公開GUIで確認できた |
-| COMPARISON_LIMIT_DOCUMENTED | 31 | 公式GUIの制約または公開式との差を記録し、独立検証を実施。GUI一致のための機能削除や丸め変更は行わない |
+| 修正・動作確認済み | 36 | 今回の対象修正が公開GUIで確認できた |
+| 比較制約の根拠記録・独立検証済み | 31 | 公式GUIの制約または公開式との差を記録し、独立検証を実施。GUI一致のための機能削除や丸め変更は行わない |
 
 Archiveは公開式のKB/1024²換算を途中で丸めない。公式GUIの100百万件・1 KBは15.50 USD、1000百万件は155.00 USD。公式の表示された計算詳細が0.000001 GB/イベントを使うことを確認し、その値で合計を再現した。今回の自作側表示額と差は下表およびJSONに記録する。任意payloadでの丸め方式や公式内部コードを確認したという意味ではない。
 
