@@ -26,9 +26,9 @@ test('dependent selector remains invalid until explicit reselection; optional co
   await expect(page.locator('#workspace')).toContainText('要再選択'); await expect(page.locator('#input-component-instance-instanceType')).toHaveValue('');
   await page.locator('#input-component-instance-instanceType').selectOption('t3.micro'); await page.getByLabel('編集を閉じる').click();
   await add(page, 'rds'); await page.locator('#input-component-storage-gbMonths').fill('100'); await page.locator('#input-component-storage-gbMonths').press('Tab');
-  await page.getByLabel('Componentを有効にする').uncheck(); await expect(page.locator('#input-component-storage-gbMonths')).toBeDisabled();
+  await page.getByLabel('この項目を有効にする').uncheck(); await expect(page.locator('#input-component-storage-gbMonths')).toBeDisabled();
   await expect(page.locator('#input-component-storage-gbMonths')).toHaveValue('100');
-  await page.getByLabel('Componentを有効にする').check(); await expect(page.locator('#input-component-storage-gbMonths')).toBeEnabled(); await expect(page.locator('#input-component-storage-gbMonths')).toHaveValue('100');
+  await page.getByLabel('この項目を有効にする').check(); await expect(page.locator('#input-component-storage-gbMonths')).toBeEnabled(); await expect(page.locator('#input-component-storage-gbMonths')).toHaveValue('100');
 });
 test('stale check keeps pinned build and cached valid prices, products fetch deduplicates', async ({ page }) => {
   let requests = 0; await page.route('**/sources/AmazonEC2/**/products.json', route => { requests++; return route.continue(); });
