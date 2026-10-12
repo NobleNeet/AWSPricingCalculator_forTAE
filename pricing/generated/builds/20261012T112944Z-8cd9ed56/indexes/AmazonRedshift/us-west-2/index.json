@@ -1,0 +1,131 @@
+{
+  "attributes": {
+    "currentGeneration": [
+      "Yes"
+    ],
+    "description": [
+      "Data scanned per query for each successful or cancelled query",
+      "Redshift Serverless compute charges",
+      "Storage charges with Redshift managed storage"
+    ],
+    "ecu": [
+      "6.1875",
+      "7",
+      "12.375",
+      "37.125",
+      "99",
+      "148.5",
+      "2026.1",
+      "2026.2",
+      "2026.3",
+      "2026.4"
+    ],
+    "instanceType": [
+      "dc2.8xlarge",
+      "dc2.large",
+      "ra3.4xlarge",
+      "ra3.16xlarge",
+      "ra3.large",
+      "ra3.xlplus",
+      "rg.4xlarge",
+      "rg.12xlarge",
+      "rg.large",
+      "rg.xlarge"
+    ],
+    "io": [
+      "0.60 GB/s",
+      "0.65",
+      "0.65 GB/s",
+      "0.325 GB/s",
+      "2.00 GB/s",
+      "7.50 GB/s",
+      "8.00 GB/s"
+    ],
+    "location": [
+      "US West (Oregon)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "memory": [
+      "15 GiB",
+      "16 GiB",
+      "32 GiB",
+      "96 GiB",
+      "128 GiB",
+      "244 GiB",
+      "384 GiB"
+    ],
+    "operation": [
+      "",
+      "RunComputeNode:0001",
+      "RunServerlessCompute:001"
+    ],
+    "regionCode": [
+      "us-west-2"
+    ],
+    "servicecode": [
+      "AmazonRedshift"
+    ],
+    "servicename": [
+      "Amazon Redshift"
+    ],
+    "storage": [
+      "0.16TB SSD",
+      "1TB",
+      "2.56TB SSD",
+      "8TB RMS",
+      "32TB",
+      "32TB RMS",
+      "64TB RMS",
+      "128TB"
+    ],
+    "storageMedia": [
+      "Amazon S3"
+    ],
+    "usageFamily": [
+      "Dense Compute",
+      "RA3",
+      "RG",
+      "Serverless"
+    ],
+    "usagetype": [
+      "USW2-DataScanned",
+      "USW2-Node:dc2.8xlarge",
+      "USW2-Node:dc2.large",
+      "USW2-Node:ra3.4xlarge",
+      "USW2-Node:ra3.16xlarge",
+      "USW2-Node:ra3.large",
+      "USW2-Node:ra3.xlplus",
+      "USW2-Node:rg.4xlarge",
+      "USW2-Node:rg.12xlarge",
+      "USW2-Node:rg.large",
+      "USW2-Node:rg.xlarge",
+      "USW2-Redshift:PaidSnapshots",
+      "USW2-Redshift:PaidUniqueSnapshots:RG",
+      "USW2-Redshift:PaidUniqueSnapshots:Serverless",
+      "USW2-Redshift:ServerlessUsage",
+      "USW2-RMS:ra3.4xlarge",
+      "USW2-RMS:ra3.16xlarge",
+      "USW2-RMS:ra3.large",
+      "USW2-RMS:ra3.xlplus",
+      "USW2-RMS:rg.4xlarge",
+      "USW2-RMS:rg.12xlarge",
+      "USW2-RMS:rg.large",
+      "USW2-RMS:rg.xlarge",
+      "USW2-RMS:Serverless"
+    ],
+    "vcpu": [
+      "2",
+      "4",
+      "12",
+      "16",
+      "32",
+      "48"
+    ]
+  },
+  "buildId": "20261012T112944Z-8cd9ed56",
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonRedshift"
+}

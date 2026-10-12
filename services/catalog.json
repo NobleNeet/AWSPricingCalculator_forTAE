@@ -70,6 +70,16 @@
     },
     {
       "available": true,
+      "id": "redshift",
+      "label": "Amazon Redshift",
+      "profiles": [
+        "provisioned",
+        "serverless"
+      ],
+      "serviceCode": "AmazonRedshift"
+    },
+    {
+      "available": true,
       "id": "s3",
       "label": "Amazon S3",
       "profiles": [
@@ -139,16 +149,6 @@
         "standard"
       ],
       "serviceCode": "AWSSystemsManager"
-    },
-    {
-      "available": true,
-      "id": "redshift",
-      "label": "Amazon Redshift",
-      "profiles": [
-        "provisioned",
-        "serverless"
-      ],
-      "serviceCode": "AmazonRedshift"
     }
   ]
 }

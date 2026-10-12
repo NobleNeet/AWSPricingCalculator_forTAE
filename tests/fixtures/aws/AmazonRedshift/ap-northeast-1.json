@@ -1,0 +1,123 @@
+{
+  "offerCode": "AmazonRedshift",
+  "products": {
+    "MEN3SPBE4WVUJW4U": {
+      "attributes": {
+        "currentGeneration": "Yes",
+        "ecu": "99",
+        "instanceType": "dc2.8xlarge",
+        "io": "7.50 GB/s",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "memory": "244 GiB",
+        "operation": "RunComputeNode:0001",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRedshift",
+        "servicename": "Amazon Redshift",
+        "storage": "2.56TB SSD",
+        "usageFamily": "Dense Compute",
+        "usagetype": "APN1-Node:dc2.8xlarge",
+        "vcpu": "32"
+      },
+      "productFamily": "Compute Instance",
+      "sku": "MEN3SPBE4WVUJW4U"
+    },
+    "Q6AVYDQMKPTWW4WP": {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRedshift",
+        "servicename": "Amazon Redshift",
+        "storageMedia": "Amazon S3",
+        "usagetype": "APN1-RMS:Serverless"
+      },
+      "productFamily": "Redshift Managed Storage",
+      "sku": "Q6AVYDQMKPTWW4WP"
+    },
+    "XSC68BCQU9RDCZ9Y": {
+      "attributes": {
+        "description": "Redshift Serverless compute charges",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "RunServerlessCompute:001",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonRedshift",
+        "servicename": "Amazon Redshift",
+        "usagetype": "APN1-Redshift:ServerlessUsage"
+      },
+      "productFamily": "Serverless",
+      "sku": "XSC68BCQU9RDCZ9Y"
+    }
+  },
+  "publicationDate": "2026-09-11T12:45:05Z",
+  "terms": {
+    "OnDemand": {
+      "MEN3SPBE4WVUJW4U": {
+        "MEN3SPBE4WVUJW4U.JRTCKXETXF": {
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "MEN3SPBE4WVUJW4U.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$6.095 per Redshift Dense Compute dc2.8xlarge Compute Node-hour (or partial hour) ",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "6.0950000000"
+              },
+              "rateCode": "MEN3SPBE4WVUJW4U.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "MEN3SPBE4WVUJW4U",
+          "termAttributes": {}
+        }
+      },
+      "Q6AVYDQMKPTWW4WP": {
+        "Q6AVYDQMKPTWW4WP.JRTCKXETXF": {
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "Q6AVYDQMKPTWW4WP.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0261 per GB-Mo for Redshift Managed Storage in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0261000000"
+              },
+              "rateCode": "Q6AVYDQMKPTWW4WP.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB-Mo"
+            }
+          },
+          "sku": "Q6AVYDQMKPTWW4WP",
+          "termAttributes": {}
+        }
+      },
+      "XSC68BCQU9RDCZ9Y": {
+        "XSC68BCQU9RDCZ9Y.JRTCKXETXF": {
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "XSC68BCQU9RDCZ9Y.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.494 per RPU-Hr for Redshift Serverless compute charges in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.4940000000"
+              },
+              "rateCode": "XSC68BCQU9RDCZ9Y.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "RPU-Hr"
+            }
+          },
+          "sku": "XSC68BCQU9RDCZ9Y",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260911124505"
+}

@@ -1,0 +1,45 @@
+{
+  "attributes": {
+    "description": [
+      "Charged for total data scanned per query with a minimum 10MB for each successful or cancelled queries",
+      "Data Processing Units (DPU) in hours"
+    ],
+    "freeQueryTypes": [
+      "Data definition queries (DDL), Failed Queries and statements used to create or load partitions"
+    ],
+    "location": [
+      "Asia Pacific (Tokyo)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "nodeSize": [
+      "1"
+    ],
+    "nodeType": [
+      "NA"
+    ],
+    "operation": [
+      "",
+      "Spark_Execution"
+    ],
+    "regionCode": [
+      "ap-northeast-1"
+    ],
+    "servicecode": [
+      "AmazonAthena"
+    ],
+    "servicename": [
+      "Amazon Athena"
+    ],
+    "usagetype": [
+      "APN1-CodeExecutionInDPUHours",
+      "APN1-DataScannedInTB",
+      "APN1-ReservedCapacityInDPUHours"
+    ]
+  },
+  "buildId": "20261012T112944Z-8cd9ed56",
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonAthena"
+}
