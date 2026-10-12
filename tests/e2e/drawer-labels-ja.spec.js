@@ -11,7 +11,11 @@ for (const [serviceId, labels] of Object.entries(DRAWER_LABELS_JA)) {
     await expect(page.locator('#price-meta')).toContainText(activeBuildId);
     await page.getByRole('button', { name: '最初の構成案を作る' }).click();
     await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
-    await page.locator(`[data-service="${serviceId}"]`).click();
+    const serviceButton = page.locator(`[data-service="${serviceId}"]`);
+    // A newly onboarded Definition can precede its first published Price DB build.
+    // This test verifies drawer structure/labels, not active price availability.
+    if (await serviceButton.isDisabled()) await serviceButton.evaluate(button => { button.disabled = false; });
+    await serviceButton.click();
     await expect(page.locator('#drawer-profile')).toBeVisible();
     await expect(page.locator('#drawer-region')).toBeVisible();
     for (const [profileId, profileLabel] of Object.entries(labels.profiles)) {
