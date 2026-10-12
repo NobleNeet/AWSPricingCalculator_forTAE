@@ -8,7 +8,15 @@ test('presentation changes reuse semantics only when the published fingerprint m
   assert.equal(validationScope({ fingerprintMatches: false, files }), 'candidate');
 });
 
-test('pricing, data, dependencies, workflow and unknown changes fail safe', () => {
+test('price update orchestration changes skip unrelated published semantics', () => {
+  const files = ['.github/workflows/price-update.yml'];
+  assert.equal(applicationOnlyChanges(files), true);
+  assert.equal(validationScope({ fingerprintMatches: true, files }), 'application');
+  assert.equal(validationScope({ fingerprintMatches: false, files }), 'candidate');
+  assert.equal(validationScope({ fingerprintMatches: true, files: [...files, 'src/pricing/core.js'] }), 'published');
+});
+
+test('pricing, data, dependencies, other workflow and unknown changes fail safe', () => {
   for (const file of ['src/pricing/core.js', 'services/ec2/service.json', 'pricing/generated/manifest.json', 'package-lock.json', '.github/workflows/ci.yml', 'tools/ci-validate.js', 'unknown']) {
     assert.equal(applicationOnlyChanges(['src/app/app.js', file]), false, file);
     assert.equal(validationScope({ fingerprintMatches: true, files: [file] }), 'published', file);
