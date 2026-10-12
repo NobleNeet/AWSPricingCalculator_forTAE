@@ -126,7 +126,13 @@ async function renderDrawer() {
     const result = results.get(id);
     const renderProfileFields = advanced => profile.selectors.filter(input => !input.ui?.sectionId && instance.serviceId !== 'athena' && Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
     const renderSupplementaryFields = (sectionId, afterField = null) => profile.selectors.filter(input => input.ui?.sectionId === sectionId && (input.ui?.sectionAfterField ?? null) === afterField).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
-    const supplementarySections = [...new Map(profile.selectors.filter(input => input.ui?.sectionId && !profile.components.includes(input.ui.sectionId)).map(input => [input.ui.sectionId, input.ui.sectionTitle ?? input.ui.sectionId])).entries()].map(([sectionId, title]) => `<fieldset data-component-id="${escape(sectionId)}" data-ui-only="true"><legend>${escape(title)}</legend>${renderSupplementaryFields(sectionId)}</fieldset>`).join('');
+    const supplementarySections = [...new Map(profile.selectors.filter(input => input.ui?.sectionId && !profile.components.includes(input.ui.sectionId)).map(input => [input.ui.sectionId, input.ui.sectionTitle ?? input.ui.sectionId])).entries()].map(([sectionId, title]) => {
+      const redshiftIngress = instance.serviceId === 'redshift' && sectionId === 'transfer';
+      const charge = redshiftIngress
+        ? '<div class="component-price" data-redshift-transfer-price>$0.00 / 月（通常のインターネットからの受信のみ）</div><p class="input-help">入力値は保持されますが、この項目はインターネットからAWSへの通常のIN転送を前提に0 USDです。AZ間、リージョン間、Redshiftデータ共有、PrivateLinkなどの別途課金される通信は含みません。</p>'
+        : '';
+      return `<fieldset data-component-id="${escape(sectionId)}" data-ui-only="true"><legend>${escape(title)}</legend>${renderSupplementaryFields(sectionId)}${charge}</fieldset>`;
+    }).join('');
     $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>利用方式<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>リージョン<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なリージョン設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>プロジェクトのリージョンを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>アジアパシフィック (東京) に変更</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" ${instance.region?.mode === 'override' ? 'selected' : ''}>${escape(region)} に変更</option>` : ''}</select></label>${renderProfileFields(false)}${profile.selectors.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderProfileFields(true)}</details>` : ''}${profile.components.map(componentId => {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
       // Athena uses three exclusive billing-period calculation variants for SQL and Spark.
@@ -149,7 +155,10 @@ async function renderDrawer() {
         : '';
 
       const renderFields = advanced => (advanced ? '' : renderSupplementaryFields(componentId)) + inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map((input, index) => {
-        const control = field(input, 'component', componentId, context, componentProducts, filters, inactive);
+        // DC2 has no separately billed RMS, but allow the user to enter and retain a value
+        // across node-family changes. The disabled pricing component still contributes $0.
+        const editableInactiveRms = instance.serviceId === 'redshift' && componentId === 'rms-provisioned' && inactive;
+        const control = field(input, 'component', componentId, context, componentProducts, filters, editableInactiveRms ? false : inactive);
         if (!athena || advanced || index !== 0) return control + (advanced ? '' : renderSupplementaryFields(componentId, input.id));
         const periodId = componentId.startsWith('sql-scanned') ? 'sqlPeriod' : componentId.startsWith('spark') ? 'sparkPeriod' : null;
         const period = profile.selectors.find(selector => selector.id === periodId);
