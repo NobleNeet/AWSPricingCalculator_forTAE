@@ -407,6 +407,10 @@ jobs:
             git reset --hard origin/main
             git clean -fd -- pricing/generated tests/fixtures/aws
             node tools/publish-price-build.js
+            # GITHUB_ENV becomes effective only in the next Actions step.
+            # This combined step must explicitly enable the prevalidated proof.
+            export PRICE_VALIDATE_PREVALIDATED=true
+            export PRICE_VALIDATE_EXPECTED_BUILD_ID="$(node -p "require('./pricing/generated/manifest.json').activeBuildId")"
             npm run validate
             git add pricing/generated services/catalog.json tests/fixtures/aws
             if git diff --cached --quiet; then
