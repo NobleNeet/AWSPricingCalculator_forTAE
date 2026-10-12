@@ -84,9 +84,23 @@
     "outputUnit": "M-DPU-Hour"
   },
   "enabledWhen": {
-    "field": "profile.etlJobs",
-    "op": "eq",
-    "value": true
+    "all": [
+      {
+        "field": "profile.etlJobs",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "field": "project.region",
+        "op": "in",
+        "value": [
+          "ap-northeast-1",
+          "us-east-1",
+          "us-east-2",
+          "us-west-2"
+        ]
+      }
+    ]
   },
   "limitations": [
     "account-specific-discount"

@@ -15,3 +15,7 @@
 - Golden evidence independently verifies SKU `3GW7GD22UECNTZC9` (`ETL Job Run Glue 6.0+`) from the probed official Price List.
 - Related S3, CloudWatch, Redshift, Athena, EMR, and network charges remain separate service estimates.
 - The temporary probe workflow is removed before promotion.
+
+## Regional meter availability (verified 2026-10-12)
+
+The scoped semantic validation of AWSGlue across the six configured regions found that the Osaka offer lacks the memory-optimized ETL, Ray ETL and Ray interactive, DataBrew sessions/jobs, and zero-ETL ingestion/compute meters. The Northern California offer also lacks memory-optimized ETL, Ray ETL and Ray interactive, and zero-ETL ingestion/compute. The affected components are disabled only in those unsupported regions; all other meters remain available. Do not substitute prices from another region. Evidence: GitHub Actions run 38207304716, semantic-report (14 MAPPING_PRODUCT_CARDINALITY errors).
