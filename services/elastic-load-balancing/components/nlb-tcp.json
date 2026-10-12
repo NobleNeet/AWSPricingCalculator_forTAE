@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "id": "nlb-tcp",
+  "label": "Network Load Balancer TCP NLCU",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Load Balancer-Network"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "LoadBalancing:Network"
+      },
+      {
+        "field": "attributes.groupDescription",
+        "op": "eq",
+        "value": "Used Network Load Balancer capacity units-hr"
+      },
+      {
+        "field": "attributes.locationType",
+        "op": "eq",
+        "value": "AWS Region"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "LCU-Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.nlbCount"
+        },
+        {
+          "valueFrom": "project.hoursPerMonth"
+        },
+        {
+          "value": {
+            "type": "maximum",
+            "sources": [
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "valueFrom": "profile.nlbtcpNew"
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "800"
+                    }
+                  ]
+                }
+              },
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "value": {
+                      "type": "product",
+                      "sources": [
+                        {
+                          "valueFrom": "profile.nlbtcpNew"
+                        },
+                        {
+                          "valueFrom": "profile.nlbtcpSeconds"
+                        }
+                      ]
+                    }
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "100000"
+                    }
+                  ]
+                }
+              },
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "value": {
+                      "type": "product",
+                      "sources": [
+                        {
+                          "valueFrom": "profile.nlbtcpNew"
+                        },
+                        {
+                          "valueFrom": "profile.nlbtcpBytes"
+                        },
+                        {
+                          "value": "3600"
+                        }
+                      ]
+                    }
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "1000000000"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "LCU-Hrs"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.nlbEnabled",
+    "op": "eq",
+    "value": true
+  }
+}

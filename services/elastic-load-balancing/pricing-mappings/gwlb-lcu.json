@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "gwlb-lcu",
+  "componentId": "gwlb-lcu",
+  "priceSource": {
+    "serviceCode": "AWSELB"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Load Balancer-Gateway"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "LoadBalancing:Gateway"
+    },
+    {
+      "field": "attributes.groupDescription",
+      "op": "eq",
+      "value": "Used Gateway Load Balancer capacity units-hr"
+    },
+    {
+      "field": "attributes.locationType",
+      "op": "eq",
+      "value": "AWS Region"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "LCU-Hrs"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  }
+}

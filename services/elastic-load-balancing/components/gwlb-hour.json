@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "gwlb-hour",
+  "label": "Gateway Load Balancer 稼働時間",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Load Balancer-Gateway"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "LoadBalancing:Gateway"
+      },
+      {
+        "field": "attributes.groupDescription",
+        "op": "eq",
+        "value": "LoadBalancer hourly usage by Gateway Load Balancer"
+      },
+      {
+        "field": "attributes.locationType",
+        "op": "eq",
+        "value": "AWS Region"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.gwlbCount"
+        },
+        {
+          "valueFrom": "project.hoursPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Hrs"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.gwlbEnabled",
+    "op": "eq",
+    "value": true
+  }
+}

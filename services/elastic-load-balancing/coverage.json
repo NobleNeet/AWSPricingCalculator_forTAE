@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Application"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing:Application"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "LoadBalancer hourly usage by Application Load Balancer"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "alb-hour"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Application"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing:Application"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "Used Application Load Balancer capacity units-hr"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "alb-lcu"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Network"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing:Network"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "LoadBalancer hourly usage by Network Load Balancer"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "nlb-hour"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Network"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing:Network"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "Used Network Load Balancer capacity units-hr"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "nlb-tcp"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Gateway"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing:Gateway"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "LoadBalancer hourly usage by Gateway Load Balancer"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "gwlb-hour"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Gateway"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing:Gateway"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "Used Gateway Load Balancer capacity units-hr"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "gwlb-lcu"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "VpcEndpoint"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "VpcEndpoint"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "Hourly charge for AWS Gateway Load Balancer VPC Endpoint"
+        },
+        {
+          "field": "attributes.endpointType",
+          "op": "eq",
+          "value": "Gateway Load Balancer Endpoint"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "gwlbe-hour"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "VpcEndpoint"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "VpcEndpoint"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint"
+        },
+        {
+          "field": "attributes.endpointType",
+          "op": "eq",
+          "value": "Gateway Load Balancer Endpoint"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "gwlbe-bytes"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "LoadBalancer hourly usage by Classic Load Balancer"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "clb-hour"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing"
+        },
+        {
+          "field": "attributes.groupDescription",
+          "op": "eq",
+          "value": "Data processed by Classic Load Balancer"
+        },
+        {
+          "field": "attributes.locationType",
+          "op": "eq",
+          "value": "AWS Region"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "clb-bytes"
+    }
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Elastic Load Balancing",
+  "selectors": [
+    {
+      "id": "albEnabled",
+      "label": "Application Load Balancer を見積もりに含める",
+      "type": "boolean",
+      "default": true,
+      "ui": {
+        "sectionId": "alb",
+        "sectionTitle": "Application Load Balancer"
+      }
+    },
+    {
+      "id": "albCount",
+      "label": "Application Load Balancer の数",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "alb",
+        "sectionTitle": "Application Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.albEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbEnabled",
+      "label": "Network Load Balancer を見積もりに含める",
+      "type": "boolean",
+      "default": true,
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      }
+    },
+    {
+      "id": "nlbCount",
+      "label": "Network Load Balancer の数",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "gwlbEnabled",
+      "label": "Gateway Load Balancer を見積もりに含める",
+      "type": "boolean",
+      "default": true,
+      "ui": {
+        "sectionId": "gwlb",
+        "sectionTitle": "Gateway Load Balancer"
+      }
+    },
+    {
+      "id": "gwlbCount",
+      "label": "Gateway Load Balancer の数",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "gwlb",
+        "sectionTitle": "Gateway Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.gwlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "clbEnabled",
+      "label": "Classic Load Balancer を見積もりに含める",
+      "type": "boolean",
+      "default": true,
+      "ui": {
+        "sectionId": "clb",
+        "sectionTitle": "Classic Load Balancer"
+      }
+    },
+    {
+      "id": "clbCount",
+      "label": "Classic Load Balancer の数",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "clb",
+        "sectionTitle": "Classic Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.clbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "albTarget",
+      "label": "ALB のターゲットタイプ",
+      "type": "select",
+      "default": "ec2",
+      "options": {
+        "values": [
+          "ec2",
+          "lambda"
+        ]
+      },
+      "ui": {
+        "sectionId": "alb"
+      },
+      "enabledWhen": {
+        "field": "profile.albEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "albNewConnections",
+      "label": "ALB 毎秒の新しい接続数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "alb",
+        "sectionTitle": "Application Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.albEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "albConnectionSeconds",
+      "label": "ALB 平均接続時間 (秒)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "alb",
+        "sectionTitle": "Application Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.albEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "albGbHour",
+      "label": "ALB 1時間あたりの処理データ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "alb",
+        "sectionTitle": "Application Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.albEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "albRequests",
+      "label": "ALB 1秒あたりのリクエスト数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "alb",
+        "sectionTitle": "Application Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.albEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "albRules",
+      "label": "ALB リクエストあたりのルール評価数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "alb",
+        "sectionTitle": "Application Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.albEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbtcpNew",
+      "label": "TCP 1秒あたりの新しい接続/フロー",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbtcpSeconds",
+      "label": "TCP 接続/フローの平均継続時間 (秒)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbtcpBytes",
+      "label": "TCP 接続/フローごとの処理バイト数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbudpNew",
+      "label": "UDP 1秒あたりの新しい接続/フロー",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbudpSeconds",
+      "label": "UDP 接続/フローの平均継続時間 (秒)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbudpBytes",
+      "label": "UDP 接続/フローごとの処理バイト数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbtlsNew",
+      "label": "TLS 1秒あたりの新しい接続/フロー",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbtlsSeconds",
+      "label": "TLS 接続/フローの平均継続時間 (秒)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "nlbtlsBytes",
+      "label": "TLS 接続/フローごとの処理バイト数",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "nlb",
+        "sectionTitle": "Network Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.nlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "gwlbNew",
+      "label": "GWLB 毎秒の新しい接続/フロー",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "gwlb",
+        "sectionTitle": "Gateway Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.gwlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "gwlbSeconds",
+      "label": "GWLB 接続/フローの平均継続時間 (秒)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "gwlb",
+        "sectionTitle": "Gateway Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.gwlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "gwlbGbHour",
+      "label": "GWLB 1時間あたりの処理データ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "gwlb",
+        "sectionTitle": "Gateway Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.gwlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "gwlbeCount",
+      "label": "Gateway Load Balancer Endpoint の数",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "gwlb",
+        "sectionTitle": "Gateway Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.gwlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "gwlbeGbMonth",
+      "label": "Gateway Load Balancer Endpoint 月間処理データ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "gwlb",
+        "sectionTitle": "Gateway Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.gwlbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    },
+    {
+      "id": "clbGbMonth",
+      "label": "Classic Load Balancer 月間処理データ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "clb",
+        "sectionTitle": "Classic Load Balancer"
+      },
+      "enabledWhen": {
+        "field": "profile.clbEnabled",
+        "op": "eq",
+        "value": true
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "alb-hour",
+    "alb-lcu",
+    "nlb-hour",
+    "nlb-tcp",
+    "nlb-udp",
+    "nlb-tls",
+    "gwlb-hour",
+    "gwlb-lcu",
+    "gwlbe-hour",
+    "gwlbe-bytes",
+    "clb-hour",
+    "clb-bytes"
+  ]
+}

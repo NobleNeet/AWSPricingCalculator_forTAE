@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "gwlb-lcu",
+  "label": "Gateway Load Balancer GLCU",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Load Balancer-Gateway"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "LoadBalancing:Gateway"
+      },
+      {
+        "field": "attributes.groupDescription",
+        "op": "eq",
+        "value": "Used Gateway Load Balancer capacity units-hr"
+      },
+      {
+        "field": "attributes.locationType",
+        "op": "eq",
+        "value": "AWS Region"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "LCU-Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.gwlbCount"
+        },
+        {
+          "valueFrom": "project.hoursPerMonth"
+        },
+        {
+          "value": {
+            "type": "maximum",
+            "sources": [
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "valueFrom": "profile.gwlbNew"
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "600"
+                    }
+                  ]
+                }
+              },
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "value": {
+                      "type": "product",
+                      "sources": [
+                        {
+                          "valueFrom": "profile.gwlbNew"
+                        },
+                        {
+                          "valueFrom": "profile.gwlbSeconds"
+                        }
+                      ]
+                    }
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "60000"
+                    }
+                  ]
+                }
+              },
+              {
+                "valueFrom": "profile.gwlbGbHour"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "LCU-Hrs"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.gwlbEnabled",
+    "op": "eq",
+    "value": true
+  }
+}
