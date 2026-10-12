@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned",
+  "label": "Redshift",
+  "selectors": [
+    {
+      "id": "instanceType",
+      "label": "インスタンスタイプ",
+      "type": "select",
+      "default": "dc2.8xlarge",
+      "options": {
+        "values": [
+          "dc2.large",
+          "dc2.8xlarge",
+          "ra3.large",
+          "ra3.xlplus",
+          "ra3.4xlarge",
+          "ra3.16xlarge",
+          "rg.large",
+          "rg.xlarge",
+          "rg.4xlarge",
+          "rg.12xlarge"
+        ]
+      }
+    },
+    {
+      "id": "transferInGb",
+      "label": "特定の宛先へのデータ転送 (IN) (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "node-compute",
+    "spectrum",
+    "rms-provisioned"
+  ]
+}
