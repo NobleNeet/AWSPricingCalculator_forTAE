@@ -128,13 +128,15 @@ async function renderDrawer() {
     const renderSupplementaryFields = (sectionId, afterField = null) => profile.selectors.filter(input => input.ui?.sectionId === sectionId && (input.ui?.sectionAfterField ?? null) === afterField).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
     const supplementarySections = [...new Map(profile.selectors.filter(input => input.ui?.sectionId && !profile.components.includes(input.ui.sectionId)).map(input => [input.ui.sectionId, input.ui.sectionTitle ?? input.ui.sectionId])).entries()].map(([sectionId, title]) => {
       const redshiftIngress = instance.serviceId === 'redshift' && sectionId === 'transfer';
+      const transferResult = result?.components?.['transfer-in'];
       const charge = redshiftIngress
-        ? '<div class="component-price" data-redshift-transfer-price>$0.00 / 月（通常のインターネットからの受信のみ）</div><p class="input-help">入力値は保持されますが、この項目はインターネットからAWSへの通常のIN転送を前提に0 USDです。AZ間、リージョン間、Redshiftデータ共有、PrivateLinkなどの別途課金される通信は含みません。</p>'
+        ? `<div class="component-price" data-redshift-transfer-price>${transferResult?.amountUsd !== undefined ? escape(money(transferResult.amountUsd)) : '未計算'}</div><p class="input-help">Redshiftのリージョン間データ共有の受信転送料金。通常のインターネット流入とは異なります。</p>`
         : '';
       return `<fieldset data-component-id="${escape(sectionId)}" data-ui-only="true"><legend>${escape(title)}</legend>${renderSupplementaryFields(sectionId)}${charge}</fieldset>`;
     }).join('');
     $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>利用方式<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>リージョン<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なリージョン設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>プロジェクトのリージョンを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>アジアパシフィック (東京) に変更</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" ${instance.region?.mode === 'override' ? 'selected' : ''}>${escape(region)} に変更</option>` : ''}</select></label>${renderProfileFields(false)}${profile.selectors.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderProfileFields(true)}</details>` : ''}${profile.components.map(componentId => {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
+      if (instance.serviceId === 'redshift' && componentId === 'transfer-in') return ''; // priced in supplementary section
       // Athena uses three exclusive billing-period calculation variants for SQL and Spark.
       // Only the selected variant belongs in the drawer; retain all variants in the model.
       const athena = instance.serviceId === 'athena';

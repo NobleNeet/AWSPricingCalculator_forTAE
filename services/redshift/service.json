@@ -18,6 +18,7 @@
     "rms-provisioned",
     "rms-serverless",
     "serverless-compute",
-    "backup-serverless"
+    "backup-serverless",
+    "transfer-in"
   ]
 }

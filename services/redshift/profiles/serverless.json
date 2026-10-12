@@ -12,7 +12,7 @@
       "ui": {
         "sectionId": "transfer",
         "sectionTitle": "Redshift Data Transfer",
-        "help": "IN転送量です。インターネットからの通常の流入は追加料金なし。AZ間/リージョン間等の転送費用は別途見積もりが必要です。"
+        "help": "AWS公式Calculatorの特定宛先へのIN転送。Redshiftのリージョン間データ共有（受信側）に対応する有料転送として計上。通常のインターネットからAWSへの流入料金とは異なります。"
       }
     }
   ],
@@ -20,6 +20,7 @@
   "components": [
     "serverless-compute",
     "backup-serverless",
-    "rms-serverless"
+    "rms-serverless",
+    "transfer-in"
   ]
 }
