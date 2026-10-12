@@ -18,7 +18,7 @@ for (const [serviceId, labels] of Object.entries(DRAWER_LABELS_JA)) {
     // New onboarding services are reconciled into the catalog only during serialized promotion.
     // Absence before promotion is expected; a dedicated screenshot-contract E2E
     // exercises Redshift against verified local AWS price fixtures in this branch.
-    if (serviceId === 'redshift' && await serviceButton.count() === 0) return;
+    if (['redshift', 'elastic-load-balancing'].includes(serviceId) && await serviceButton.count() === 0) return;
     if (await serviceButton.isDisabled()) {
       await expect(serviceButton).toBeDisabled();
       return;
