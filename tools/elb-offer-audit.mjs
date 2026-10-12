@@ -16,6 +16,10 @@ for(const code of [...new Set([...codes.filter(k=>/ELB|Vpc|VPC|Private/i.test(k)
     const url='https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/'+code+'/current/ap-northeast-1/index.json';
     const data=JSON.parse(await get(url));
     console.log('OFFER',code,'version',data.version,'date',data.publicationDate,'total',Object.keys(data.products||{}).length);
+    const selectedProducts=Object.fromEntries(Object.entries(data.products||{}).filter(([sku,p])=>code==='AWSELB'||(p.attributes?.endpointType==='Gateway Load Balancer Endpoint')));
+    const selectedTerms=Object.fromEntries(Object.entries(data.terms?.OnDemand||{}).filter(([sku])=>Object.hasOwn(selectedProducts,sku)));
+    console.log('FIXTURE_JSON='+JSON.stringify({formatVersion:data.formatVersion,offerCode:code,version:data.version,publicationDate:data.publicationDate,products:selectedProducts,terms:{OnDemand:selectedTerms},attributesList:{}}));
+
     const grouped=new Map();
     for(const [sku,p] of Object.entries(data.products||{})){
       const a=p.attributes||{};
