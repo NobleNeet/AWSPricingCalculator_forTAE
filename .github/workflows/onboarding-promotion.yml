@@ -173,6 +173,8 @@ jobs:
       - name: Validate merged candidate
         if: steps.merge_candidate.outputs.mergeable == 'true'
         id: validate
+        env:
+          CI_VALIDATION_WORKTREE: 'true'
         shell: bash
         run: |
           set -euo pipefail
