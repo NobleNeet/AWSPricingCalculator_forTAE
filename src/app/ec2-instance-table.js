@@ -1,6 +1,7 @@
 import { prices } from './app.js';
 import { EC2_INSTANCE_COLUMNS, instanceRows, filterRows } from './ec2-instance-model.js';
 import { RDS_INSTANCE_COLUMNS, rdsInstanceRows, filterRdsRows } from './rds-instance-model.js';
+import { REDSHIFT_INSTANCE_COLUMNS, redshiftInstanceRows, filterRedshiftRows } from './redshift-instance-model.js';
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const drawer = document.getElementById('service-drawer');
@@ -11,6 +12,7 @@ function drawerKind() {
   if (title === 'Amazon EC2') return 'ec2';
   if (title === 'Amazon RDS for PostgreSQL') return 'rds';
   if (title === 'Amazon RDS for Oracle') return 'rds-oracle';
+  if (title === 'Amazon Redshift' && document.getElementById('drawer-profile')?.value === 'provisioned') return 'redshift';
   return null;
 }
 
@@ -73,7 +75,7 @@ function ensureResizableDrawer(kind) {
   if (!drawer.querySelector('.ec2-drawer-width-controls')) {
     const controls = document.createElement('div');
     controls.className = 'ec2-drawer-width-controls';
-    controls.innerHTML = `<label>パネル幅 <input type="range" data-instance-drawer-width aria-label="${kind.startsWith('rds') ? 'RDS' : 'EC2'}編集パネルの幅"><span class="ec2-drawer-width-value"></span></label><button type="button" data-instance-drawer-default>標準</button><button type="button" data-instance-drawer-max>最大</button>`;
+    controls.innerHTML = `<label>パネル幅 <input type="range" data-instance-drawer-width aria-label="${kind.startsWith('rds') ? 'RDS' : kind === 'redshift' ? 'Redshift' : 'EC2'}編集パネルの幅"><span class="ec2-drawer-width-value"></span></label><button type="button" data-instance-drawer-default>標準</button><button type="button" data-instance-drawer-max>最大</button>`;
     const heading = drawer.querySelector('.dialog-heading');
     heading?.after(controls);
     const slider = controls.querySelector('[data-instance-drawer-width]');
@@ -108,6 +110,19 @@ function tableHtml({ rows, selected, filters, sortKey, sortDirection, columns, f
 }
 
 function tableConfig(kind) {
+  if (kind === 'redshift') {
+    return {
+      columns: REDSHIFT_INSTANCE_COLUMNS,
+      filterRowsFn: filterRedshiftRows,
+      serviceCode: 'AmazonRedshift',
+      loadingLabel: 'Redshiftインスタンス一覧',
+      prefix: 'Redshift',
+      makeRows: data => redshiftInstanceRows(
+        data.products,
+        [...document.querySelectorAll('#input-profile--instanceType option')].map(option => option.value)
+      )
+    };
+  }
   if (kind === 'rds' || kind === 'rds-oracle') {
     return {
       columns: RDS_INSTANCE_COLUMNS,
@@ -192,7 +207,7 @@ function scan() {
     resetDrawerWidth();
     return;
   }
-  const select = document.querySelector('#input-component-instance-instanceType');
+  const select = kind === 'redshift' ? document.querySelector('#input-profile--instanceType') : document.querySelector('#input-component-instance-instanceType');
   if (select) enhance(select, kind);
   else resetDrawerWidth();
 }
