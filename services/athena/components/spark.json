@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "spark",
+  "label": "スパーク",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "sessionsPerMonth",
+      "label": "スパークセッションの合計数 (件/月)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "integer": true
+    },
+    {
+      "id": "dpuHoursPerSession",
+      "label": "セッションあたりのコード実行 (DPU 時間)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Athena Spark"
+      },
+      {
+        "field": "attributes.usagetype",
+        "op": "eq",
+        "value": "APN1-CodeExecutionInDPUHours"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "DPU-Hour"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.sessionsPerMonth"
+        },
+        {
+          "valueFrom": "component.dpuHoursPerSession"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "DPU-Hour"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
