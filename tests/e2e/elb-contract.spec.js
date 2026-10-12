@@ -58,6 +58,29 @@ test('ELB four-family screenshot contract: single quantities and conditional inp
     await expect(page.locator(`#input-profile--${count}`)).toHaveCount(1);
     await expect(page.locator(`#input-profile--${count}`)).toHaveValue('1');
   }
+  const group = page.locator('[data-elb-type-choices]');
+  await expect(group).toBeVisible();
+  await expect(group.locator('input[type=checkbox]')).toHaveCount(4);
+  for (const { id } of contract.families) {
+    await expect(group.locator(`#input-profile--${id}Enabled`)).toBeChecked();
+    const familySection = page.locator(`#drawer-content fieldset[data-component-id="${id}"]`);
+    await expect(familySection).toBeVisible();
+    await expect(familySection.locator('[data-elb-section-prices]')).toBeVisible();
+    const ordering = await familySection.evaluate(node => {
+      const field = node.querySelector('input[data-scope="profile"]');
+      const charges = node.querySelector('[data-elb-section-prices]');
+      return Boolean(field && charges && (field.compareDocumentPosition(charges) & Node.DOCUMENT_POSITION_FOLLOWING));
+    });
+    expect(ordering).toBeTruthy();
+  }
+  await expect(page.locator('[data-elb-price]')).toHaveCount(12);
+  await expect(page.locator('#drawer-content fieldset[data-component-id="alb-hour"]')).toHaveCount(0);
+  await group.locator('#input-profile--albEnabled').uncheck();
+  await expect(page.locator('#drawer-content fieldset[data-component-id="alb"]')).toHaveCount(0);
+  await expect(page.locator('[data-elb-price="alb-hour"]')).toHaveCount(0);
+  await group.locator('#input-profile--albEnabled').check();
+  await expect(page.locator('#drawer-content fieldset[data-component-id="alb"]')).toBeVisible();
+  await expect(page.locator('[data-elb-price="alb-hour"]')).toHaveCount(1);
   await expect(page.locator('#input-profile--albTarget')).toHaveValue('ec2');
   await expect(page.locator('#input-profile--nlbtcpNew')).toHaveCount(1);
   await expect(page.locator('#input-profile--nlbudpNew')).toHaveCount(1);
