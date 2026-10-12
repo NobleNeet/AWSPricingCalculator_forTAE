@@ -15,13 +15,22 @@ export function assignBatchesToWorkers(batches, requestedWorkers = 8) {
     (b.planned_cases ?? 0) - (a.planned_cases ?? 0)
       || String(a.batch_id).localeCompare(String(b.batch_id))
   );
-  for (const batch of ordered) {
-    const worker = workers.reduce((best, candidate) =>
-      candidate.planned_cases < best.planned_cases
-        || (candidate.planned_cases === best.planned_cases && candidate.worker_id < best.worker_id)
-        ? candidate
-        : best
-    );
+  // Seed each worker with one batch before balancing by planned cases.
+  // Zero-case structural drift batches still require a worker: comparing only
+  // planned_cases used to assign them all to worker 00 and leave empty jobs.
+  for (const [index, batch] of ordered.entries()) {
+    const worker = index < workerCount
+      ? workers[index]
+      : workers.reduce((best, candidate) =>
+        candidate.planned_cases < best.planned_cases
+          || (candidate.planned_cases === best.planned_cases
+            && candidate.batches.length < best.batches.length)
+          || (candidate.planned_cases === best.planned_cases
+            && candidate.batches.length === best.batches.length
+            && candidate.worker_id < best.worker_id)
+          ? candidate
+          : best
+      );
     worker.batches.push(batch);
     worker.planned_cases += batch.planned_cases ?? 0;
   }

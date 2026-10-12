@@ -39,3 +39,15 @@ test('worker assignment validation rejects duplicate logical batches', () => {
     summary: { workers: 2 }
   }), /count|more than once/);
 });
+
+test('zero-case structural drift batches never generate empty workers', () => {
+  const batches = Array.from({ length: 6 }, (_, index) => ({
+    batch_id: String(index).padStart(4, '0'),
+    planned_cases: 0,
+    include_structural: true
+  }));
+  const workers = assignBatchesToWorkers(batches, 8);
+  assert.equal(workers.length, 6);
+  assert.ok(workers.every(worker => worker.batches.length === 1 && worker.planned_cases === 0));
+  validateWorkerAssignments({ batches, matrix: { include: workers }, summary: { workers: 6 } });
+});
