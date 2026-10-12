@@ -12,9 +12,9 @@
       "value": "Athena Queries"
     },
     {
-      "field": "attributes.usagetype",
-      "op": "regex",
-      "value": "ReservedCapacityInDPUHours$"
+      "field": "attributes.description",
+      "op": "eq",
+      "value": "Data Processing Units (DPU) in hours"
     }
   ],
   "dimensionMatchers": [
