@@ -198,6 +198,13 @@ $('catalog-list').addEventListener('click', async event => {
 });
 $('catalog-modal').addEventListener('close', () => { target = null; });
 $('service-drawer').addEventListener('close', () => { editing = null; });
+// Keep Athena's edited quantity current before focus moves to a billing-period
+// selector. Native number change fires on blur and can race with select change.
+$('drawer-content').addEventListener('input', event => {
+  const input = event.target, instance = state.serviceInstances[editing];
+  if (instance?.serviceId !== 'athena' || input.dataset.scope !== 'component' || !input.dataset.field) return;
+  (instance.components[input.dataset.component] ??= { enabled: true, inputs: {} }).inputs[input.dataset.field] = input.value;
+});
 $('drawer-content').addEventListener('change', async event => {
   const input = event.target, instance = state.serviceInstances[editing]; if (!instance) return;
   if (input.dataset.field) {
