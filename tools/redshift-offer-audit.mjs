@@ -33,3 +33,5 @@ for(const [key,count] of counts){
 const result={source:url,publicationDate:data.publicationDate,version:data.version,formatVersion:data.formatVersion,productCount:Object.keys(products).length,groups:grouped.sort((a,b)=>a.key.localeCompare(b.key))};
 fs.writeFileSync(output,JSON.stringify(result,null,2)+'\n');
 console.log('AWS offer:',url,'products:',result.productCount,'groups:',grouped.length,'saved:',output);
+
+console.log('REDSHIFT_AUDIT_JSON='+JSON.stringify(result));
