@@ -36,6 +36,59 @@ function branches(inputs, namespace, context, products, filters) {
   }
   return contexts;
 }
+// Enumerate a range without materializing preceding component-branch leaves.
+// Counting a subtree walks its conditional choices but avoids allocating the
+// complete Cartesian product of branch contexts. Branch ordering matches branches().
+function* rangedBranches(inputs, namespace, context, products, filters, range) {
+  const ordered = inputOrder(inputs, namespace);
+  const countFrom = (index, current) => {
+    if (index === ordered.length) return 1;
+    const input = ordered[index];
+    if (!enabled(input.enabledWhen, current) || input.type !== 'select') {
+      return countFrom(index + 1, current);
+    }
+    let count = 0;
+    for (const value of selectorCandidates(input, products, current, filters)) {
+      const next = { ...current, [namespace]: { ...current[namespace], [input.id]: value } };
+      count += countFrom(index + 1, next);
+    }
+    return count;
+  };
+  function* visit(index, current) {
+    if (range.remaining <= 0) return;
+    if (index === ordered.length) {
+      if (range.skip > 0) {
+        range.skip -= 1;
+        range.skipped += 1;
+      } else {
+        range.yielded += 1;
+        range.remaining -= 1;
+        yield current;
+      }
+      return;
+    }
+    const input = ordered[index];
+    if (!enabled(input.enabledWhen, current) || input.type !== 'select') {
+      yield* visit(index + 1, current);
+      return;
+    }
+    for (const value of selectorCandidates(input, products, current, filters)) {
+      if (range.remaining <= 0) return;
+      const next = { ...current, [namespace]: { ...current[namespace], [input.id]: value } };
+      if (range.skip > 0) {
+        const size = countFrom(index + 1, next);
+        if (range.skip >= size) {
+          range.skip -= size;
+          range.skipped += size;
+          range.prunedBranches += size;
+          continue;
+        }
+      }
+      yield* visit(index + 1, next);
+    }
+  }
+  yield* visit(0, context);
+}
 function conditionValues(condition, field, values = []) {
   if (!condition) return values;
   if (Array.isArray(condition.all)) for (const child of condition.all) conditionValues(child, field, values);
@@ -156,6 +209,7 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
     stats.skipped = 0;
     stats.yielded = 0;
     stats.branchBlocks = 0;
+    stats.prunedBranches = 0;
   }
   for (const profileId of pkg.service.profiles) {
     const profile = pkg.profiles[profileId];
@@ -170,19 +224,9 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
           const start = { ...componentContext, component: instance.components[componentId].inputs };
           const filters = componentResolutionFilters(pkg, profile, componentId, componentCode).filter(f => !f.valueFrom?.startsWith('component.'));
           const scopedProducts = componentProducts.filter(product => matches(product, filters, componentContext));
-          const componentBranches = branches(component.selectors, 'component', start, scopedProducts, filters);
+          const range = { skip, remaining, skipped: 0, yielded: 0, prunedBranches: 0 };
           if (stats) stats.branchBlocks += 1;
-          let startIndex = 0;
-          if (skip > 0) {
-            const skipped = Math.min(skip, componentBranches.length);
-            skip -= skipped;
-            startIndex = skipped;
-            if (stats) stats.skipped += skipped;
-            if (startIndex >= componentBranches.length) continue;
-          }
-          for (let branchIndex = startIndex; branchIndex < componentBranches.length; branchIndex++) {
-            if (remaining <= 0) return;
-            const branch = componentBranches[branchIndex];
+          for (const branch of rangedBranches(component.selectors, 'component', start, scopedProducts, filters, range)) {
             const sample = structuredClone(instance);
             sample.selectors = branch.profile;
             sample.components[componentId].inputs = branch.component;
@@ -198,8 +242,13 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
               profileProducts,
               productsByServiceCode: scopedByCode
             };
-            remaining -= 1;
-            if (stats) stats.yielded += 1;
+          }
+          skip = range.skip;
+          remaining = range.remaining;
+          if (stats) {
+            stats.skipped += range.skipped;
+            stats.yielded += range.yielded;
+            stats.prunedBranches += range.prunedBranches;
           }
         }
       }
