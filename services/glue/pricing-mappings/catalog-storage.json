@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "catalog-storage",
+  "componentId": "catalog-storage",
+  "priceSource": {
+    "serviceCode": "AWSGlue"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "Data catalog storage"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Obj-Month"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS Glue Data catalog storage meter."
+}

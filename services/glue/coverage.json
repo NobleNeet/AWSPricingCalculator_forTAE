@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data Catalog Requests global"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Global Data Catalog request Free Tier dimension.",
+      "limitationId": "free-tier"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data Catalog storage global"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Global Data Catalog storage Free Tier dimension.",
+      "limitationId": "free-tier"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data Brew free interactive sessions"
+        }
+      ],
+      "status": "ignored",
+      "reason": "DataBrew free-trial interactive session dimension.",
+      "limitationId": "free-tier"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data Brew interactive sessions"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "databrew-sessions"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data Brew Job run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "databrew-jobs"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data catalog crawler run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "crawlers"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data catalog requests"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-requests"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data Catalog Statistics"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-statistics"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data catalog storage"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-storage"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Data lake optimization job run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-optimization"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Development endpoint"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "development-endpoints"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Flex Job Run Glue 6.0+"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Flex Job Run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Interactive Session Glue 6.0+"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "interactive-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Interactive Session"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "interactive-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Job Run Glue 6.0+"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Job run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Memory-Optimized Job Run Glue 6.0+"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-memory-gen2"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Memory-Optimized Job Run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-memory-legacy"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Ray Interactive Session"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "interactive-ray"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ETL Ray Job run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-ray"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "Materialized view refresh job run"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "materialized-view-refresh"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ZETL Compute"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "zero-etl-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "attributes.group",
+          "op": "eq",
+          "value": "ZETL Ingestion"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "zero-etl-ingestion"
+    }
+  ]
+}

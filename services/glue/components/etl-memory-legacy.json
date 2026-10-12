@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "etl-memory-legacy",
+  "label": "AWS Glue memory-optimized ETL jobs",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "runsPerMonth",
+      "label": "Runs per month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "integer": true
+    },
+    {
+      "id": "dpusPerRun",
+      "label": "DPUs per run",
+      "type": "number",
+      "default": "2",
+      "minimum": "0"
+    },
+    {
+      "id": "averageDurationMinutes",
+      "label": "Average duration",
+      "type": "number",
+      "default": "1",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    }
+  ],
+  "priceQuery": {
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "ETL Memory-Optimized Job Run"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "M-DPU-Hour"
+      }
+    ],
+    "expect": "singleSku"
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.runsPerMonth"
+        },
+        {
+          "valueFrom": "component.dpusPerRun"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.averageDurationMinutes",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "1"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "unitConversion",
+        "factor": "0.0166666666666666666666666666666667",
+        "from": "minute",
+        "to": "hour"
+      }
+    ],
+    "outputUnit": "M-DPU-Hour"
+  },
+  "enabledWhen": {
+    "field": "profile.etlJobs",
+    "op": "eq",
+    "value": true
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

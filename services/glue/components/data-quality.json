@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "data-quality",
+  "label": "AWS Glue Data Quality",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "runsPerMonth",
+      "label": "Runs per month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "integer": true
+    },
+    {
+      "id": "dpusPerRun",
+      "label": "DPUs per run",
+      "type": "number",
+      "default": "2",
+      "minimum": "0"
+    },
+    {
+      "id": "averageDurationMinutes",
+      "label": "Average duration",
+      "type": "number",
+      "default": "1",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    }
+  ],
+  "priceQuery": {
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "ETL Job run"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "DPU-Hour"
+      }
+    ],
+    "expect": "singleSku"
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.runsPerMonth"
+        },
+        {
+          "valueFrom": "component.dpusPerRun"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.averageDurationMinutes",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "1"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "unitConversion",
+        "factor": "0.0166666666666666666666666666666667",
+        "from": "minute",
+        "to": "hour"
+      }
+    ],
+    "outputUnit": "DPU-Hour"
+  },
+  "enabledWhen": {
+    "field": "profile.dataQuality",
+    "op": "eq",
+    "value": true
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

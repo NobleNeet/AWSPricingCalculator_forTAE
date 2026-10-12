@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "glue",
+  "label": "AWS Glue",
+  "priceSource": {
+    "serviceCode": "AWSGlue"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "etl-standard",
+    "etl-memory-gen2",
+    "etl-memory-legacy",
+    "etl-ray",
+    "interactive-standard",
+    "interactive-ray",
+    "development-endpoints",
+    "catalog-requests",
+    "catalog-storage",
+    "catalog-statistics",
+    "catalog-optimization",
+    "materialized-view-refresh",
+    "crawlers",
+    "databrew-sessions",
+    "databrew-jobs",
+    "data-quality",
+    "zero-etl-ingestion",
+    "zero-etl-compute"
+  ]
+}

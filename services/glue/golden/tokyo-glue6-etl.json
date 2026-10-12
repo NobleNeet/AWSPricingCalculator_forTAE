@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo-glue6-etl",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "etlJobs": true,
+    "interactiveSessions": true,
+    "developmentEndpoints": true,
+    "dataCatalog": true,
+    "crawlers": true,
+    "dataBrewInteractiveSessions": true,
+    "dataBrewJobs": true,
+    "dataQuality": true,
+    "zeroEtl": true
+  },
+  "components": {
+    "etl-standard": {
+      "enabled": true,
+      "selectors": {
+        "pricingGroup": "ETL Job Run Glue 6.0+"
+      },
+      "inputs": {
+        "runsPerMonth": "1",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "30"
+      }
+    },
+    "etl-memory-gen2": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "etl-memory-legacy": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "etl-ray": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "interactive-standard": {
+      "enabled": true,
+      "selectors": {
+        "pricingGroup": "ETL Interactive Session Glue 6.0+"
+      },
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "5",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "interactive-ray": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "development-endpoints": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "10"
+      }
+    },
+    "catalog-requests": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "requestsPerMonth": "0"
+      }
+    },
+    "catalog-storage": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "objectsPerMonth": "0"
+      }
+    },
+    "catalog-statistics": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "1",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "catalog-optimization": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "materialized-view-refresh": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "1",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "crawlers": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "10"
+      }
+    },
+    "databrew-sessions": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "sessionsPerMonth": "0"
+      }
+    },
+    "databrew-jobs": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "nodesPerRun": "1",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "data-quality": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "2",
+        "averageDurationMinutes": "1"
+      }
+    },
+    "zero-etl-ingestion": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "ingestedGbPerMonth": "0"
+      }
+    },
+    "zero-etl-compute": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "runsPerMonth": "0",
+        "dpusPerRun": "1",
+        "averageDurationMinutes": "1"
+      }
+    }
+  },
+  "expected": {
+    "etl-standard": {
+      "attributes": {
+        "group": "ETL Job Run Glue 6.0+"
+      },
+      "unit": "DPU-Hour",
+      "quantity": "1",
+      "limitations": [
+        "account-specific-discount"
+      ]
+    }
+  },
+  "verification": {
+    "etl-standard": {
+      "attributes": {
+        "group": "ETL Job Run Glue 6.0+"
+      },
+      "productFamily": "AWS Glue",
+      "operation": "Jobrun",
+      "unit": "DPU-Hour",
+      "quantity": "1"
+    }
+  }
+}

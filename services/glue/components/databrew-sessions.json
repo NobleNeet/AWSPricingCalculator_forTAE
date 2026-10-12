@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "databrew-sessions",
+  "label": "AWS Glue DataBrew interactive sessions",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "sessionsPerMonth",
+      "label": "Sessions per month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    }
+  ],
+  "priceQuery": {
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "Data Brew interactive sessions"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Sessions"
+      }
+    ],
+    "expect": "singleSku"
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.sessionsPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Sessions"
+  },
+  "enabledWhen": {
+    "field": "profile.dataBrewInteractiveSessions",
+    "op": "eq",
+    "value": true
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount"
+  ]
+}

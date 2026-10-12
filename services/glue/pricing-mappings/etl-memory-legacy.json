@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "etl-memory-legacy",
+  "componentId": "etl-memory-legacy",
+  "priceSource": {
+    "serviceCode": "AWSGlue"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "ETL Memory-Optimized Job Run"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "M-DPU-Hour"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS Glue ETL Memory-Optimized Job Run meter."
+}

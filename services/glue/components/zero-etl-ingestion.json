@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "zero-etl-ingestion",
+  "label": "AWS Glue zero-ETL ingestion",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "ingestedGbPerMonth",
+      "label": "Data ingested per month (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    }
+  ],
+  "priceQuery": {
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "ZETL Ingestion"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB"
+      }
+    ],
+    "expect": "singleSku"
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.ingestedGbPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB"
+  },
+  "enabledWhen": {
+    "field": "profile.zeroEtl",
+    "op": "eq",
+    "value": true
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "etl-standard",
+  "componentId": "etl-standard",
+  "priceSource": {
+    "serviceCode": "AWSGlue"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "valueFrom": "component.pricingGroup"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "DPU-Hour"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS Glue ETL Job Run Glue 6.0+ / ETL Job run / ETL Flex Job Run Glue 6.0+ / ETL Flex Job Run meter."
+}

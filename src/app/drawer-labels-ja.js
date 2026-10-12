@@ -172,6 +172,40 @@ export const DRAWER_LABELS_JA = {
   'systems-manager': {
     profiles: { standard: 'AWS Systems Manager' }, fields: {},
     components: { 'incident-response-plans': ['Incident Manager の対応プラン'], 'jit-node-hours': ['ジャストインタイムノードアクセス'] }
+  },
+  glue: {
+    profiles: { standard: 'AWS Glue' },
+    fields: {
+      etlJobs: 'AWS Glue ETL ジョブ',
+      interactiveSessions: 'AWS Glue インタラクティブセッション',
+      developmentEndpoints: 'AWS Glue 開発エンドポイント',
+      dataCatalog: 'AWS Glue Data Catalog',
+      crawlers: 'AWS Glue クローラー',
+      dataBrewInteractiveSessions: 'AWS Glue DataBrew インタラクティブセッション',
+      dataBrewJobs: 'AWS Glue DataBrew ジョブ',
+      dataQuality: 'AWS Glue Data Quality',
+      zeroEtl: 'AWS Glue ゼロ ETL'
+    },
+    components: {
+      'etl-standard': ['ETL ジョブ', { pricingGroup: 'AWS Glue バージョン / 実行クラス', runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'etl-memory-gen2': ['メモリ最適化 ETL ジョブ (Glue 6.0+)', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'etl-memory-legacy': ['メモリ最適化 ETL ジョブ', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの M-DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'etl-ray': ['AWS Glue for Ray ジョブ', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの M-DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'interactive-standard': ['インタラクティブセッション', { pricingGroup: 'AWS Glue バージョン', runsPerMonth: '1 か月あたりのセッション数', dpusPerRun: 'セッションあたりの DPU 数', averageDurationMinutes: '平均セッション時間 (分)' }],
+      'interactive-ray': ['AWS Glue for Ray インタラクティブセッション', { runsPerMonth: '1 か月あたりのセッション数', dpusPerRun: 'セッションあたりの M-DPU 数', averageDurationMinutes: '平均セッション時間 (分)' }],
+      'development-endpoints': ['開発エンドポイント', { runsPerMonth: '1 か月あたりの起動回数', dpusPerRun: 'エンドポイントあたりの DPU 数', averageDurationMinutes: '平均稼働時間 (分)' }],
+      'catalog-requests': ['Data Catalog リクエスト', { requestsPerMonth: '1 か月あたりのリクエスト数' }],
+      'catalog-storage': ['Data Catalog ストレージ', { objectsPerMonth: '保存するオブジェクト数 (オブジェクト/月)' }],
+      'catalog-statistics': ['Data Catalog 列統計', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'catalog-optimization': ['Data Catalog テーブル最適化', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'materialized-view-refresh': ['マテリアライズドビューの更新', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      crawlers: ['クローラー', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'databrew-sessions': ['DataBrew インタラクティブセッション', { sessionsPerMonth: '1 か月あたりのセッション数' }],
+      'databrew-jobs': ['DataBrew ジョブ', { runsPerMonth: '1 か月あたりの実行回数', nodesPerRun: '実行あたりのノード数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'data-quality': ['AWS Glue Data Quality', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }],
+      'zero-etl-ingestion': ['ゼロ ETL データ取り込み', { ingestedGbPerMonth: '1 か月あたりの取り込みデータ量 (GB)' }],
+      'zero-etl-compute': ['ゼロ ETL コンピューティング', { runsPerMonth: '1 か月あたりの実行回数', dpusPerRun: '実行あたりの DPU 数', averageDurationMinutes: '平均実行時間 (分)' }]
+    }
   }
 };
 
