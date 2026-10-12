@@ -53,8 +53,16 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   await expect(page.locator('#input-component-node-compute-nodes')).toHaveValue('1');
   await expect(page.locator('#input-profile--instanceType')).toHaveValue('dc2.8xlarge');
   await expect(page.locator('#input-component-node-compute-utilization')).toHaveValue('100');
+  // DC2 does not bill RMS separately, but the user can enter and keep the value.
+  const provisionedRms = page.locator('#input-component-rms-provisioned-managedGb');
+  await expect(provisionedRms).toBeEnabled();
+  await provisionedRms.fill('120');
+  await provisionedRms.dispatchEvent('change');
+  await expect(provisionedRms).toHaveValue('120');
+  await expect(page.locator('[data-component-id="rms-provisioned"]')).toContainText('無効中');
   await expect(page.locator('[data-component-id="node-compute"] #input-profile--instanceType')).toBeVisible();
   await expect(page.locator('[data-component-id="transfer"] #input-profile--transferInGb')).toBeVisible();
+  await expect(page.locator('[data-redshift-transfer-price]')).toContainText('$0.00');
   await expect(page.locator('#input-profile--instanceType')).toHaveCount(1);
   // Redshift uses the shared EC2/RDS comparison picker (visible table, hidden native select).
   const picker = page.locator('[data-instance-picker="redshift"]');
@@ -72,12 +80,18 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   await picker.locator('[data-instance-filter="instanceType"]').fill('');
 
   await expect(page.locator('#input-profile--transferInGb')).toHaveCount(1);
+  await expect(page.locator('[data-redshift-transfer-price]')).toContainText('$0.00');
+  await page.locator('#input-profile--transferInGb').fill('250');
+  await page.locator('#input-profile--transferInGb').dispatchEvent('change');
+  await expect(page.locator('[data-redshift-transfer-price]')).toContainText('$0.00');
   await expect(page.locator('[data-component-id="serverless-compute"]')).toHaveCount(0);
   await expect(page.locator('#input-component-spectrUm-scannedTb')).toHaveCount(0);
 
   // Changing an instance family must exchange the backup charge, not duplicate its input.
   await page.locator('#input-profile--instanceType').selectOption('rg.large');
   await expect(page.locator('[data-component-id="backup-rg"]')).toBeVisible();
+  await expect(page.locator('#input-component-rms-provisioned-managedGb')).toBeEnabled();
+  await expect(page.locator('#input-component-rms-provisioned-managedGb')).toHaveValue('120');
   await expect(page.locator('[data-component-id="spectrum"]')).toHaveCount(0); // RG has no separate Spectrum charge.
   await expect(page.locator('[data-component-id="backup-tiered"]')).toHaveCount(0);
   await expect(page.locator('input[data-field="backupGb"]:visible')).toHaveCount(1);
@@ -89,6 +103,7 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   await expect(page.locator('#input-component-serverless-compute-workloadSize')).toHaveValue('Medium');
   await expect(page.locator('#input-component-serverless-compute-baseRpu')).toHaveValue('128');
   await expect(page.locator('#input-component-serverless-compute-runtimeDailyHours')).toHaveValue('1');
+  await expect(page.locator('#input-component-rms-serverless-managedGb')).toBeEnabled();
   await expect(page.locator('[data-component-id="transfer"] #input-profile--transferInGb')).toBeVisible();
   await expect(page.locator('input[data-field="backupGb"]:visible')).toHaveCount(1);
   await expect(page.locator('[data-component-id="spectrum"]')).toHaveCount(0);
