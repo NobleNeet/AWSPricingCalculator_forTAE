@@ -1,0 +1,84 @@
+{
+  "buildId": "20261012T151525Z-1b3319db",
+  "products": [
+    {
+      "attributes": {
+        "endpointType": "Gateway Load Balancer Endpoint",
+        "group": "VPCE:VpcEndpoint",
+        "groupDescription": "Hourly charge for AWS Gateway Load Balancer VPC Endpoint",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "VpcEndpoint",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonVPC",
+        "servicename": "Amazon Virtual Private Cloud",
+        "usagetype": "APN1-VpcEndpoint-GWLBE-Hours"
+      },
+      "operation": "VpcEndpoint",
+      "productFamily": "VpcEndpoint",
+      "sku": "5NRZJN2G5UQKPUY7",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.014 per Hrs for VpcEndpoint-GWLBE-Hours:VpcEndpoint in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0140000000"
+                },
+                "rateCode": "5NRZJN2G5UQKPUY7.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-VpcEndpoint-GWLBE-Hours"
+    },
+    {
+      "attributes": {
+        "endpointType": "Gateway Load Balancer Endpoint",
+        "group": "VPCE:VpcEndpoint",
+        "groupDescription": "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "VpcEndpoint",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonVPC",
+        "servicename": "Amazon Virtual Private Cloud",
+        "usagetype": "APN1-VpcEndpoint-GWLBE-Bytes"
+      },
+      "operation": "VpcEndpoint",
+      "productFamily": "VpcEndpoint",
+      "sku": "F4GJN5CGPH2YYX7K",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0035 per GB for VpcEndpoint-GWLBE-Bytes:VpcEndpoint in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0035000000"
+                },
+                "rateCode": "F4GJN5CGPH2YYX7K.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-VpcEndpoint-GWLBE-Bytes"
+    }
+  ],
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonVPC"
+}

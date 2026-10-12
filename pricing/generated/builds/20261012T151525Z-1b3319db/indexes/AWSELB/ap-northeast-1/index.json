@@ -1,0 +1,47 @@
+{
+  "attributes": {
+    "group": [
+      "ELB:Balancing"
+    ],
+    "groupDescription": [
+      "Data processed by Classic Load Balancer",
+      "LoadBalancer hourly usage by Application Load Balancer",
+      "LoadBalancer hourly usage by Classic Load Balancer",
+      "LoadBalancer hourly usage by Gateway Load Balancer",
+      "LoadBalancer hourly usage by Network Load Balancer",
+      "Used Application Load Balancer capacity units-hr",
+      "Used Gateway Load Balancer capacity units-hr",
+      "Used Network Load Balancer capacity units-hr"
+    ],
+    "location": [
+      "Asia Pacific (Tokyo)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "LoadBalancing",
+      "LoadBalancing:Application",
+      "LoadBalancing:Gateway",
+      "LoadBalancing:Network"
+    ],
+    "regionCode": [
+      "ap-northeast-1"
+    ],
+    "servicecode": [
+      "AWSELB"
+    ],
+    "servicename": [
+      "Elastic Load Balancing"
+    ],
+    "usagetype": [
+      "APN1-DataProcessing-Bytes",
+      "APN1-LCUUsage",
+      "APN1-LoadBalancerUsage"
+    ]
+  },
+  "buildId": "20261012T151525Z-1b3319db",
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSELB"
+}

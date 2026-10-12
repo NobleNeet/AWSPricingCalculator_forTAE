@@ -1,0 +1,476 @@
+{
+  "buildId": "20261012T151525Z-1b3319db",
+  "products": [
+    {
+      "attributes": {
+        "group": "Data catalog requests",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "Request",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-Catalog-Request"
+      },
+      "operation": "Request",
+      "productFamily": "AWS Glue",
+      "sku": "2JE3WCEUSPXQY8TK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1 per 1,000,000 requests for AWS Glue Data Catalog request",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000010000"
+                },
+                "rateCode": "2JE3WCEUSPXQY8TK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Request"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Catalog-Request"
+    },
+    {
+      "attributes": {
+        "group": "Data catalog storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "Storage",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-Catalog-Storage"
+      },
+      "operation": "Storage",
+      "productFamily": "AWS Glue",
+      "sku": "35VYWS5ZRDED6XC8",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$1 per 100,000 objects per month for AWS Glue Data Catalog storage",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0000100000"
+                },
+                "rateCode": "35VYWS5ZRDED6XC8.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Obj-Month"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Catalog-Storage"
+    },
+    {
+      "attributes": {
+        "group": "ETL Interactive Session",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "GlueInteractiveSession",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-GlueInteractiveSession-DPU-Hour"
+      },
+      "operation": "GlueInteractiveSession",
+      "productFamily": "AWS Glue",
+      "sku": "36AU2N4NYD3GRWE7",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.44 per Data Processing Unit-Hour for AWS Glue interactive sessions and job notebooks",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4400000000"
+                },
+                "rateCode": "36AU2N4NYD3GRWE7.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-GlueInteractiveSession-DPU-Hour"
+    },
+    {
+      "attributes": {
+        "group": "Data Catalog Statistics",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "ColumnStatistics",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-Column-Statistics-DPU-Hour"
+      },
+      "operation": "ColumnStatistics",
+      "productFamily": "AWS Glue",
+      "sku": "6VX89GN2J9FREQU3",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.44 per Data Processing Unit-Hour for AWS Glue Catalog Statistics",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4400000000"
+                },
+                "rateCode": "6VX89GN2J9FREQU3.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Column-Statistics-DPU-Hour"
+    },
+    {
+      "attributes": {
+        "group": "ETL Development endpoint",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "StartDevEndpoint",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-DEVED-DPU-Hour"
+      },
+      "operation": "StartDevEndpoint",
+      "productFamily": "AWS Glue",
+      "sku": "7NTGXQ24F332DWD2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.44 per Data Processing Unit-Hour for AWS Glue development endpoints",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4400000000"
+                },
+                "rateCode": "7NTGXQ24F332DWD2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-DEVED-DPU-Hour"
+    },
+    {
+      "attributes": {
+        "group": "Data catalog crawler run",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "CrawlerRun",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-Crawler-DPU-Hour"
+      },
+      "operation": "CrawlerRun",
+      "productFamily": "AWS Glue",
+      "sku": "9S2V8UV222B6QPSR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.44 per Data Processing Unit-Hour for AWS Glue crawler",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4400000000"
+                },
+                "rateCode": "9S2V8UV222B6QPSR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Crawler-DPU-Hour"
+    },
+    {
+      "attributes": {
+        "group": "ETL Job run",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "Jobrun",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-ETL-DPU-Hour"
+      },
+      "operation": "Jobrun",
+      "productFamily": "AWS Glue",
+      "sku": "DHTHQVU36P6B8GMU",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.44 per Data Processing Unit-Hour for AWS Glue ETL job",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4400000000"
+                },
+                "rateCode": "DHTHQVU36P6B8GMU.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-ETL-DPU-Hour"
+    },
+    {
+      "attributes": {
+        "group": "Materialized view refresh job run",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "MaterializedViewRefresh",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-Materialized-View-Refresh-DPU-Hour"
+      },
+      "operation": "MaterializedViewRefresh",
+      "productFamily": "AWS Glue",
+      "sku": "EGVD4ECATA8JHDKV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.44 per DPU-Hour for Materialized-View-Refresh-DPU-Hour in Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4400000000"
+                },
+                "rateCode": "EGVD4ECATA8JHDKV.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Materialized-View-Refresh-DPU-Hour"
+    },
+    {
+      "attributes": {
+        "group": "ETL Job Run Glue 6.0+",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "Jobrun",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-ETL-DPU-Hour-Gen2"
+      },
+      "operation": "Jobrun",
+      "productFamily": "AWS Glue",
+      "sku": "FJPS9B5EH85GSDEV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.308 per Data Processing Unit-Hour for AWS Glue ETL Job Run Glue 6.0+",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3080000000"
+                },
+                "rateCode": "FJPS9B5EH85GSDEV.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-ETL-DPU-Hour-Gen2"
+    },
+    {
+      "attributes": {
+        "group": "ETL Interactive Session Glue 6.0+",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "GlueInteractiveSession",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-GlueInteractiveSession-DPU-Hour-Gen2"
+      },
+      "operation": "GlueInteractiveSession",
+      "productFamily": "AWS Glue",
+      "sku": "HYUG3M2GPU9S6QWB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.308 per Data Processing Unit-Hour for AWS Glue ETL Interactive Session Glue 6.0+",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3080000000"
+                },
+                "rateCode": "HYUG3M2GPU9S6QWB.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-GlueInteractiveSession-DPU-Hour-Gen2"
+    },
+    {
+      "attributes": {
+        "group": "ETL Flex Job Run Glue 6.0+",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "FlexJobrun",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-ETL-Flex-DPU-Hour-Gen2"
+      },
+      "operation": "FlexJobrun",
+      "productFamily": "AWS Glue",
+      "sku": "KDJMCFFF2F8S2C78",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.203 per Data Processing Unit-Hour for AWS Glue ETL Flex Job Run Glue 6.0+",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.2030000000"
+                },
+                "rateCode": "KDJMCFFF2F8S2C78.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-ETL-Flex-DPU-Hour-Gen2"
+    },
+    {
+      "attributes": {
+        "group": "Data lake optimization job run",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "OptimizationJobRun",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-Optimization-DPU-Hour"
+      },
+      "operation": "OptimizationJobRun",
+      "productFamily": "AWS Glue",
+      "sku": "MRC2UARZY3QDPAW9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.44 per Data Processing Unit-Hour for optimizing Iceberg tables with compaction.",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4400000000"
+                },
+                "rateCode": "MRC2UARZY3QDPAW9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-Optimization-DPU-Hour"
+    },
+    {
+      "attributes": {
+        "group": "ETL Flex Job Run",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "operation": "FlexJobrun",
+        "regionCode": "ap-northeast-3",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN3-ETL-Flex-DPU-Hour"
+      },
+      "operation": "FlexJobrun",
+      "productFamily": "AWS Glue",
+      "sku": "PNAKN534WJKCSHMM",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.29 per Data Processing Unit-Hour for AWS Glue Flex ETL job",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.2900000000"
+                },
+                "rateCode": "PNAKN534WJKCSHMM.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN3-ETL-Flex-DPU-Hour"
+    }
+  ],
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSGlue"
+}

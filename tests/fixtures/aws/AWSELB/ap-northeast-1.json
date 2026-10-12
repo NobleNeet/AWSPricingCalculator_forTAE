@@ -1,0 +1,299 @@
+{
+  "offerCode": "AWSELB",
+  "products": {
+    "98ZU8QNDMR4AS8FJ": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Application Load Balancer",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Application",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-LoadBalancerUsage"
+      },
+      "productFamily": "Load Balancer-Application",
+      "sku": "98ZU8QNDMR4AS8FJ"
+    },
+    "CJZKHZV4ACSZKK3F": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Used Network Load Balancer capacity units-hr",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Network",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-LCUUsage"
+      },
+      "productFamily": "Load Balancer-Network",
+      "sku": "CJZKHZV4ACSZKK3F"
+    },
+    "F2UQT6CZGM7BTWS8": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Used Application Load Balancer capacity units-hr",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Application",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-LCUUsage"
+      },
+      "productFamily": "Load Balancer-Application",
+      "sku": "F2UQT6CZGM7BTWS8"
+    },
+    "F3FRDKGR8M9SKAQS": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Network Load Balancer",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Network",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-LoadBalancerUsage"
+      },
+      "productFamily": "Load Balancer-Network",
+      "sku": "F3FRDKGR8M9SKAQS"
+    },
+    "JFUCYJPDC27SYVKC": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Gateway Load Balancer",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Gateway",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-LoadBalancerUsage"
+      },
+      "productFamily": "Load Balancer-Gateway",
+      "sku": "JFUCYJPDC27SYVKC"
+    },
+    "NPVAPU3NDBG3ZV37": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Classic Load Balancer",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-LoadBalancerUsage"
+      },
+      "productFamily": "Load Balancer",
+      "sku": "NPVAPU3NDBG3ZV37"
+    },
+    "R6JDN3VPSSEKRWCZ": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Data processed by Classic Load Balancer",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-DataProcessing-Bytes"
+      },
+      "productFamily": "Load Balancer",
+      "sku": "R6JDN3VPSSEKRWCZ"
+    },
+    "VZX6NSRCR9F8MW75": {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Used Gateway Load Balancer capacity units-hr",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Gateway",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "APN1-LCUUsage"
+      },
+      "productFamily": "Load Balancer-Gateway",
+      "sku": "VZX6NSRCR9F8MW75"
+    }
+  },
+  "publicationDate": "2026-09-11T12:45:44Z",
+  "terms": {
+    "OnDemand": {
+      "98ZU8QNDMR4AS8FJ": {
+        "98ZU8QNDMR4AS8FJ.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "98ZU8QNDMR4AS8FJ.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0243 per Application LoadBalancer-hour (or partial hour)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0243000000"
+              },
+              "rateCode": "98ZU8QNDMR4AS8FJ.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "98ZU8QNDMR4AS8FJ",
+          "termAttributes": {}
+        }
+      },
+      "CJZKHZV4ACSZKK3F": {
+        "CJZKHZV4ACSZKK3F.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "CJZKHZV4ACSZKK3F.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.006 per used Network load balancer capacity unit-hour (or partial hour)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0060000000"
+              },
+              "rateCode": "CJZKHZV4ACSZKK3F.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "LCU-Hrs"
+            }
+          },
+          "sku": "CJZKHZV4ACSZKK3F",
+          "termAttributes": {}
+        }
+      },
+      "F2UQT6CZGM7BTWS8": {
+        "F2UQT6CZGM7BTWS8.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "F2UQT6CZGM7BTWS8.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.008 per used Application load balancer capacity unit-hour (or partial hour)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0080000000"
+              },
+              "rateCode": "F2UQT6CZGM7BTWS8.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "LCU-Hrs"
+            }
+          },
+          "sku": "F2UQT6CZGM7BTWS8",
+          "termAttributes": {}
+        }
+      },
+      "F3FRDKGR8M9SKAQS": {
+        "F3FRDKGR8M9SKAQS.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "F3FRDKGR8M9SKAQS.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0243 per Network LoadBalancer-hour (or partial hour)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0243000000"
+              },
+              "rateCode": "F3FRDKGR8M9SKAQS.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "F3FRDKGR8M9SKAQS",
+          "termAttributes": {}
+        }
+      },
+      "JFUCYJPDC27SYVKC": {
+        "JFUCYJPDC27SYVKC.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "JFUCYJPDC27SYVKC.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0135 per Gateway LoadBalancer-hour (or partial hour) in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0135000000"
+              },
+              "rateCode": "JFUCYJPDC27SYVKC.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "JFUCYJPDC27SYVKC",
+          "termAttributes": {}
+        }
+      },
+      "NPVAPU3NDBG3ZV37": {
+        "NPVAPU3NDBG3ZV37.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "NPVAPU3NDBG3ZV37.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.027 per LoadBalancer-hour (or partial hour)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0270000000"
+              },
+              "rateCode": "NPVAPU3NDBG3ZV37.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Hrs"
+            }
+          },
+          "sku": "NPVAPU3NDBG3ZV37",
+          "termAttributes": {}
+        }
+      },
+      "R6JDN3VPSSEKRWCZ": {
+        "R6JDN3VPSSEKRWCZ.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "R6JDN3VPSSEKRWCZ.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.008 per GB Data Processed by the LoadBalancer",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0080000000"
+              },
+              "rateCode": "R6JDN3VPSSEKRWCZ.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB"
+            }
+          },
+          "sku": "R6JDN3VPSSEKRWCZ",
+          "termAttributes": {}
+        }
+      },
+      "VZX6NSRCR9F8MW75": {
+        "VZX6NSRCR9F8MW75.JRTCKXETXF": {
+          "effectiveDate": "2026-08-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "VZX6NSRCR9F8MW75.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.0040 per used Gateway load balancer capacity unit-hour (or partial hour) in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0040000000"
+              },
+              "rateCode": "VZX6NSRCR9F8MW75.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "LCU-Hrs"
+            }
+          },
+          "sku": "VZX6NSRCR9F8MW75",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260911124544"
+}
