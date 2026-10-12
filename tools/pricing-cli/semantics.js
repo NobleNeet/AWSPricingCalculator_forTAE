@@ -297,6 +297,8 @@ export function validatePriceData(packages, data, common, normalizers, options =
   let evaluatedCases = 0;
   let exhausted = false;
   let remainingOffset = Math.max(0, caseOffset);
+  let prunedBranches = 0;
+  let branchBlocks = 0;
 
   packageLoop:
   for (const pkg of packages) {
@@ -366,6 +368,8 @@ export function validatePriceData(packages, data, common, normalizers, options =
           batchCases = 0;
         }
       }
+      prunedBranches += rangeStats.prunedBranches ?? 0;
+      branchBlocks += rangeStats.branchBlocks ?? 0;
       remainingOffset = Math.max(0, remainingOffset - (rangeStats.skipped ?? 0));
       seenCases = caseOffset - remainingOffset + evaluatedCases;
       if (batchCases > 0) onCaseBatch?.({ serviceId: pkg.service.id, region: source.region, processedCases, batchCases });
@@ -393,5 +397,5 @@ export function validatePriceData(packages, data, common, normalizers, options =
       if (exhausted) break packageLoop;
     }
   }
-  return { issues, coverage, resolutions, processedCases, seenCases, iteratorSkippedCases: caseOffset - remainingOffset };
+  return { issues, coverage, resolutions, processedCases, seenCases, iteratorSkippedCases: caseOffset - remainingOffset, prunedBranches, branchBlocks };
 }
