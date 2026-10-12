@@ -10,16 +10,20 @@ jobs:
   redshift-price-audit:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        region: [ap-northeast-1, ap-northeast-3, us-east-1, us-east-2, us-west-1, us-west-2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Download actual AWS regional offer and group rate evidence
-        run: node tools/redshift-offer-audit.mjs ap-northeast-1 redshift-offer-audit.json
+        run: node tools/redshift-offer-audit.mjs ${{ matrix.region }} redshift-offer-audit-${{ matrix.region }}.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: redshift-tokyo-pricing-evidence
-          path: redshift-offer-audit.json
+          name: redshift-pricing-evidence-${{ matrix.region }}
+          path: redshift-offer-audit-${{ matrix.region }}.json
           if-no-files-found: warn
