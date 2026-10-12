@@ -22,6 +22,15 @@ const auroraComponents = {
 };
 
 export const DRAWER_LABELS_JA = {
+  athena: {
+    profiles: { standard: 'Amazon Athena' },
+    fields: {},
+    components: {
+      'sql-scanned': ['クエリごとの料金が設定された SQL クエリ', { queriesPerMonth: 'クエリの合計数 (件/月)', scannedGbPerQuery: 'クエリごとにスキャンされるデータ量 (GB)' }],
+      capacity: ['キャパシティベースの料金が設定された SQL クエリ', { dpus: 'DPU の数', activeHours: 'キャパシティがアクティブである期間 (時間/月)' }],
+      spark: ['スパーク', { sessionsPerMonth: 'スパークセッションの合計数 (件/月)', dpuHoursPerSession: 'セッションあたりのコード実行 (DPU 時間)' }]
+    }
+  },
   ec2: {
     profiles: { standard: '標準' },
     fields: { tenancy: 'テナンシー', os: 'オペレーティングシステム', software: 'プリインストールされたソフトウェア', ebsVolumeType: '各 EC2 インスタンスのストレージ' },
