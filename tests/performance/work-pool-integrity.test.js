@@ -9,7 +9,7 @@ function makePlan() {
     case_offset: index * 100,
     case_limit: 100
   }));
-  const workers = assignBatchesToWorkers(batches, 8);
+  const workers = assignBatchesToWorkers(structuredClone(batches), 8);
   return { batches, matrix: { include: workers }, summary: { workers: workers.length } };
 }
 
