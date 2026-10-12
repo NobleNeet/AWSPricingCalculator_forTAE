@@ -12,9 +12,9 @@
       "value": "Athena Spark"
     },
     {
-      "field": "attributes.usagetype",
-      "op": "regex",
-      "value": "CodeExecutionInDPUHours$"
+      "field": "operation",
+      "op": "eq",
+      "value": "Spark_Execution"
     }
   ],
   "dimensionMatchers": [
