@@ -32,3 +32,25 @@ The capacity dimension is computed from the **maximum** of the applicable traffi
 - Run targeted tests and repository CI; create PR marked `onboarding-ready` only after all relevant checks pass. Await serialized promotion, Price DB publish and Pages deploy before declaring complete.
 
 This document is **not evidence of finished onboarding**. Do not queue for promotion on its own.
+
+
+## Development log — 2026-10-12 continuation
+
+A generic `maximum` usage expression is now implemented in `src/pricing/calculation.js`, with regression coverage in `tests/pricing/elb-capacity-maximum.test.js`. Its expression form is:
+
+```json
+{"value":{"type":"maximum","sources":[{"valueFrom":"component.newConnections"},{"valueFrom":"component.activeConnections"},{"valueFrom":"component.processedBytes"}]}}
+```
+
+Each source must first be normalized to the same capacity-unit scale (LCU, NLCU, or GLCU). The value returned is the greatest nonnegative normalized dimension, with decimal-safe comparison. Empty expression lists and missing inputs fail closed. This utility does not itself establish that ELB billing formulas are correctly implemented.
+
+Official pricing semantics confirmed from https://aws.amazon.com/jp/elasticloadbalancing/pricing/ :
+
+- ALB: load-balancer hours and capacity-unit hours; observed consumption depends on the largest applicable capacity metric. Target type affects bytes allowance.
+- NLB: load-balancer hours and NLCU, with traffic-protocol-specific metrics.
+- GWLB: load-balancer hours and GLCU, plus separately billed Gateway Load Balancer endpoints / processed data. Endpoint price provenance must be independently verified.
+- CLB: load-balancer hours and processed GB.
+- AWS data transfer is **additional** to ELB metered charges; never count it as included.
+- LCU reservation pricing is outside the application's On-Demand-only policy.
+
+**Execution constraint:** The GitHub connector supports branch edits, but this environment currently cannot clone the repository from github.com; therefore no repository test execution or AWS raw-offer inspection has yet occurred. Both are required before READY/promotion. The branch MUST remain unqueued until verification completes.
