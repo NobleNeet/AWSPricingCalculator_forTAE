@@ -30,9 +30,9 @@
         "value": "Athena Spark"
       },
       {
-        "field": "attributes.usagetype",
+        "field": "operation",
         "op": "eq",
-        "value": "APN1-CodeExecutionInDPUHours"
+        "value": "Spark_Execution"
       }
     ],
     "dimensionFilters": [
