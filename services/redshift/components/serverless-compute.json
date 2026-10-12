@@ -88,16 +88,7 @@
           "valueFrom": "component.runtimeDailyHours"
         },
         {
-          "value": {
-            "type": "transformed",
-            "valueFrom": "project.hoursPerMonth",
-            "transforms": [
-              {
-                "type": "scale",
-                "factor": "0.04166666666666666666666666666666666666666666666666667"
-              }
-            ]
-          }
+          "value": "30.5"
         }
       ],
       "combine": "multiply"
@@ -107,5 +98,8 @@
   },
   "limitations": [
     "account-specific-discount"
-  ]
+  ],
+  "ui": {
+    "help": "AWS Pricing Calculatorの表示例に合わせて1か月を30.5日として日次ランタイムを月間RPU時間へ換算します。実請求は秒単位かつ最低60秒です。"
+  }
 }
