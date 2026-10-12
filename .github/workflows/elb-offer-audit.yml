@@ -1,0 +1,21 @@
+name: ELB Onboarding Price Evidence
+on:
+  push:
+    branches:
+      - onboard/elastic-load-balancing
+    paths:
+      - tools/elb-offer-audit.mjs
+      - .github/workflows/elb-offer-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/elb-offer-audit.mjs
