@@ -83,6 +83,8 @@ export async function mergeSemanticBatches(planFile, directory) {
           selectedProducts: entry.selectedProducts,
           chunks: entry.chunks,
           iteratorSkippedCases: entry.iteratorSkippedCases ?? 0,
+          prunedBranches: entry.prunedBranches ?? 0,
+          branchBlocks: entry.branchBlocks ?? 0,
           elapsedMs: entry.elapsedMs
         }]
       }))
