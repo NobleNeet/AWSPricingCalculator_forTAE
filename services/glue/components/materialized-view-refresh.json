@@ -80,8 +80,8 @@
       {
         "type": "unitConversion",
         "factor": "0.0166666666666666666666666666666667",
-        "from": "minute",
-        "to": "hour"
+        "from": "DPU-Minute",
+        "to": "DPU-Hour"
       }
     ],
     "outputUnit": "DPU-Hour"
