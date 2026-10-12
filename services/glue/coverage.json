@@ -4,9 +4,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data Catalog Requests global"
+          "value": "Global-Catalog-Request"
         }
       ],
       "status": "ignored",
@@ -16,9 +16,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data Catalog storage global"
+          "value": "Global-Catalog-Storage"
         }
       ],
       "status": "ignored",
@@ -28,9 +28,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data Brew free interactive sessions"
+          "value": "DBrew-FreeSessions"
         }
       ],
       "status": "ignored",
@@ -40,9 +40,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data Brew interactive sessions"
+          "value": "DBrew-Sessions"
         }
       ],
       "status": "mapped",
@@ -51,9 +51,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data Brew Job run"
+          "value": "DBrew-Node-Hour"
         }
       ],
       "status": "mapped",
@@ -62,9 +62,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data catalog crawler run"
+          "value": "Crawler-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -73,9 +73,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data catalog requests"
+          "value": "Catalog-Request"
         }
       ],
       "status": "mapped",
@@ -84,9 +84,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data Catalog Statistics"
+          "value": "Column-Statistics-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -95,9 +95,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data catalog storage"
+          "value": "Catalog-Storage"
         }
       ],
       "status": "mapped",
@@ -106,9 +106,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data lake optimization job run"
+          "value": "Optimization-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -117,9 +117,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Development endpoint"
+          "value": "DEVED-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -128,9 +128,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Flex Job Run Glue 6.0+"
+          "value": "ETL-Flex-DPU-Hour-Gen2"
         }
       ],
       "status": "mapped",
@@ -139,9 +139,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Flex Job Run"
+          "value": "ETL-Flex-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -150,9 +150,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Interactive Session Glue 6.0+"
+          "value": "GlueInteractiveSession-DPU-Hour-Gen2"
         }
       ],
       "status": "mapped",
@@ -161,9 +161,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Interactive Session"
+          "value": "GlueInteractiveSession-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -172,9 +172,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Job Run Glue 6.0+"
+          "value": "ETL-DPU-Hour-Gen2"
         }
       ],
       "status": "mapped",
@@ -183,9 +183,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Job run"
+          "value": "ETL-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -194,9 +194,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Memory-Optimized Job Run Glue 6.0+"
+          "value": "ETL-M-DPU-Hour-Gen2"
         }
       ],
       "status": "mapped",
@@ -205,9 +205,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Memory-Optimized Job Run"
+          "value": "ETL-M-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -216,9 +216,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Ray Interactive Session"
+          "value": "GlueInteractiveSession-MemOptimized-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -227,9 +227,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ETL Ray Job run"
+          "value": "ETL-MemOptimized-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -238,9 +238,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Materialized view refresh job run"
+          "value": "Materialized-View-Refresh-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -249,9 +249,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ZETL Compute"
+          "value": "zeroETL-Lakehouse-Compute-DPU-Hour"
         }
       ],
       "status": "mapped",
@@ -260,9 +260,9 @@
     {
       "filters": [
         {
-          "field": "attributes.group",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "ZETL Ingestion"
+          "value": "zeroETL-App-IngestionVolume-GB"
         }
       ],
       "status": "mapped",
