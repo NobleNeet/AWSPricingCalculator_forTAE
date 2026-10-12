@@ -63,8 +63,22 @@
     "account-specific-discount"
   ],
   "enabledWhen": {
-    "field": "profile.sparkPeriod",
-    "op": "eq",
-    "value": "month"
+    "all": [
+      {
+        "field": "profile.sparkPeriod",
+        "op": "eq",
+        "value": "month"
+      },
+      {
+        "field": "project.region",
+        "op": "in",
+        "value": [
+          "ap-northeast-1",
+          "us-east-1",
+          "us-east-2",
+          "us-west-2"
+        ]
+      }
+    ]
   }
 }
