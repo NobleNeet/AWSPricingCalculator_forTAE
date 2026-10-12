@@ -12,9 +12,9 @@
       "value": "Athena Queries"
     },
     {
-      "field": "attributes.usagetype",
-      "op": "regex",
-      "value": "DataScannedInTB$"
+      "field": "attributes.description",
+      "op": "eq",
+      "value": "Charged for total data scanned per query with a minimum 10MB for each successful or cancelled queries"
     }
   ],
   "dimensionMatchers": [
