@@ -149,6 +149,15 @@
         "standard"
       ],
       "serviceCode": "AWSSystemsManager"
+    },
+    {
+      "available": true,
+      "id": "elastic-load-balancing",
+      "label": "Elastic Load Balancing",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSELB"
     }
   ]
 }

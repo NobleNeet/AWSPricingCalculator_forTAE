@@ -22,6 +22,80 @@ const auroraComponents = {
 };
 
 export const DRAWER_LABELS_JA = {
+  'elastic-load-balancing': {
+    "profiles": {
+      "standard": "Elastic Load Balancing"
+    },
+    "fields": {
+      "albEnabled": "Application Load Balancer を見積もりに含める",
+      "albCount": "Application Load Balancer の数",
+      "nlbEnabled": "Network Load Balancer を見積もりに含める",
+      "nlbCount": "Network Load Balancer の数",
+      "gwlbEnabled": "Gateway Load Balancer を見積もりに含める",
+      "gwlbCount": "Gateway Load Balancer の数",
+      "clbEnabled": "Classic Load Balancer を見積もりに含める",
+      "clbCount": "Classic Load Balancer の数",
+      "albTarget": "ALB のターゲットタイプ",
+      "albNewConnections": "ALB 毎秒の新しい接続数",
+      "albConnectionSeconds": "ALB 平均接続時間 (秒)",
+      "albGbHour": "ALB 1時間あたりの処理データ (GB)",
+      "albRequests": "ALB 1秒あたりのリクエスト数",
+      "albRules": "ALB リクエストあたりのルール評価数",
+      "nlbtcpNew": "TCP 1秒あたりの新しい接続/フロー",
+      "nlbtcpSeconds": "TCP 接続/フローの平均継続時間 (秒)",
+      "nlbtcpBytes": "TCP 接続/フローごとの処理バイト数",
+      "nlbudpNew": "UDP 1秒あたりの新しい接続/フロー",
+      "nlbudpSeconds": "UDP 接続/フローの平均継続時間 (秒)",
+      "nlbudpBytes": "UDP 接続/フローごとの処理バイト数",
+      "nlbtlsNew": "TLS 1秒あたりの新しい接続/フロー",
+      "nlbtlsSeconds": "TLS 接続/フローの平均継続時間 (秒)",
+      "nlbtlsBytes": "TLS 接続/フローごとの処理バイト数",
+      "gwlbNew": "GWLB 毎秒の新しい接続/フロー",
+      "gwlbSeconds": "GWLB 接続/フローの平均継続時間 (秒)",
+      "gwlbGbHour": "GWLB 1時間あたりの処理データ (GB)",
+      "gwlbeCount": "Gateway Load Balancer Endpoint の数",
+      "gwlbeGbMonth": "Gateway Load Balancer Endpoint 月間処理データ (GB)",
+      "clbGbMonth": "Classic Load Balancer 月間処理データ (GB)"
+    },
+    "components": {
+      "alb-hour": [
+        "Application Load Balancer 稼働時間"
+      ],
+      "alb-lcu": [
+        "Application Load Balancer LCU"
+      ],
+      "nlb-hour": [
+        "Network Load Balancer 稼働時間"
+      ],
+      "nlb-tcp": [
+        "Network Load Balancer TCP NLCU"
+      ],
+      "nlb-udp": [
+        "Network Load Balancer UDP NLCU"
+      ],
+      "nlb-tls": [
+        "Network Load Balancer TLS NLCU"
+      ],
+      "gwlb-hour": [
+        "Gateway Load Balancer 稼働時間"
+      ],
+      "gwlb-lcu": [
+        "Gateway Load Balancer GLCU"
+      ],
+      "gwlbe-hour": [
+        "Gateway Load Balancer Endpoint 稼働時間"
+      ],
+      "gwlbe-bytes": [
+        "Gateway Load Balancer Endpoint 処理データ"
+      ],
+      "clb-hour": [
+        "Classic Load Balancer 稼働時間"
+      ],
+      "clb-bytes": [
+        "Classic Load Balancer 処理データ"
+      ]
+    }
+  },
   redshift: {
     profiles: { provisioned: 'Redshift', serverless: 'Redshift Serverless' },
     fields: {

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "id": "alb-lcu",
+  "label": "Application Load Balancer LCU",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Load Balancer-Application"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "LoadBalancing:Application"
+      },
+      {
+        "field": "attributes.groupDescription",
+        "op": "eq",
+        "value": "Used Application Load Balancer capacity units-hr"
+      },
+      {
+        "field": "attributes.locationType",
+        "op": "eq",
+        "value": "AWS Region"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "LCU-Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.albCount"
+        },
+        {
+          "valueFrom": "project.hoursPerMonth"
+        },
+        {
+          "value": {
+            "type": "maximum",
+            "sources": [
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "valueFrom": "profile.albNewConnections"
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "25"
+                    }
+                  ]
+                }
+              },
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "value": {
+                      "type": "product",
+                      "sources": [
+                        {
+                          "valueFrom": "profile.albNewConnections"
+                        },
+                        {
+                          "valueFrom": "profile.albConnectionSeconds"
+                        }
+                      ]
+                    }
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "3000"
+                    }
+                  ]
+                }
+              },
+              {
+                "value": {
+                  "type": "choice",
+                  "field": "profile.albTarget",
+                  "cases": {
+                    "ec2": {
+                      "valueFrom": "profile.albGbHour"
+                    },
+                    "lambda": {
+                      "value": {
+                        "type": "transformed",
+                        "source": {
+                          "valueFrom": "profile.albGbHour"
+                        },
+                        "transforms": [
+                          {
+                            "type": "divide",
+                            "divisor": "0.4"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "value": {
+                  "type": "transformed",
+                  "source": {
+                    "value": {
+                      "type": "product",
+                      "sources": [
+                        {
+                          "value": {
+                            "type": "transformed",
+                            "valueFrom": "profile.albRules",
+                            "transforms": [
+                              {
+                                "type": "subtract",
+                                "value": "10"
+                              },
+                              {
+                                "type": "minimum",
+                                "value": "0"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "valueFrom": "profile.albRequests"
+                        }
+                      ]
+                    }
+                  },
+                  "transforms": [
+                    {
+                      "type": "divide",
+                      "divisor": "1000"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "LCU-Hrs"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "network-transfer"
+  ],
+  "enabledWhen": {
+    "field": "profile.albEnabled",
+    "op": "eq",
+    "value": true
+  }
+}

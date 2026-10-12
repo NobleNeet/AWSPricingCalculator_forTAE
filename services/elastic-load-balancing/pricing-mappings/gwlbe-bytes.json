@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "gwlbe-bytes",
+  "componentId": "gwlbe-bytes",
+  "priceSource": {
+    "serviceCode": "AmazonVPC"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "VpcEndpoint"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "VpcEndpoint"
+    },
+    {
+      "field": "attributes.groupDescription",
+      "op": "eq",
+      "value": "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint"
+    },
+    {
+      "field": "attributes.endpointType",
+      "op": "eq",
+      "value": "Gateway Load Balancer Endpoint"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  }
+}

@@ -17,6 +17,15 @@ export function resolveUsageSource(source, context, depth = 0) {
       if (!Array.isArray(expression.sources) || !expression.sources.length) fail('INVALID_CALCULATION', 'Invalid usage product.');
       return expression.sources.reduce((value, factor) => value.times(resolveUsageSource(factor, context, depth + 1)), decimal('1'));
     }
+    if (expression.type === 'maximum') {
+      if (!Array.isArray(expression.sources) || expression.sources.length === 0) {
+        fail('INVALID_CALCULATION', 'Maximum usage expression requires nonempty sources.');
+      }
+      return expression.sources.reduce((max, source) => {
+        const current = resolveUsageSource(source, context, depth + 1);
+        return max === null || current.gt(max) ? current : max;
+      }, null);
+    }
     if (expression.type === 'choice') {
       const selection = resolveValue({ valueFrom: expression.field }, context);
       if (!selection.exists || !Object.prototype.hasOwnProperty.call(expression.cases ?? {}, selection.value)) fail('MISSING_USAGE', `Missing usage choice ${expression.field}.`);

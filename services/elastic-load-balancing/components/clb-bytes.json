@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "clb-bytes",
+  "label": "Classic Load Balancer 処理データ",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Load Balancer"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "LoadBalancing"
+      },
+      {
+        "field": "attributes.groupDescription",
+        "op": "eq",
+        "value": "Data processed by Classic Load Balancer"
+      },
+      {
+        "field": "attributes.locationType",
+        "op": "eq",
+        "value": "AWS Region"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.clbGbMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "network-transfer"
+  ],
+  "enabledWhen": {
+    "field": "profile.clbEnabled",
+    "op": "eq",
+    "value": true
+  }
+}

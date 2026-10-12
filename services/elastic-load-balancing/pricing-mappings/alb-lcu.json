@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "alb-lcu",
+  "componentId": "alb-lcu",
+  "priceSource": {
+    "serviceCode": "AWSELB"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Load Balancer-Application"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "LoadBalancing:Application"
+    },
+    {
+      "field": "attributes.groupDescription",
+      "op": "eq",
+      "value": "Used Application Load Balancer capacity units-hr"
+    },
+    {
+      "field": "attributes.locationType",
+      "op": "eq",
+      "value": "AWS Region"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "LCU-Hrs"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  }
+}

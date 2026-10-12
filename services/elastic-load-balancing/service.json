@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "elastic-load-balancing",
+  "label": "Elastic Load Balancing",
+  "priceSource": {
+    "serviceCode": "AWSELB"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "alb-hour",
+    "alb-lcu",
+    "nlb-hour",
+    "nlb-tcp",
+    "nlb-udp",
+    "nlb-tls",
+    "gwlb-hour",
+    "gwlb-lcu",
+    "gwlbe-hour",
+    "gwlbe-bytes",
+    "clb-hour",
+    "clb-bytes"
+  ]
+}

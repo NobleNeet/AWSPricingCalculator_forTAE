@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "nlb-tcp",
+  "componentId": "nlb-tcp",
+  "priceSource": {
+    "serviceCode": "AWSELB"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Load Balancer-Network"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "LoadBalancing:Network"
+    },
+    {
+      "field": "attributes.groupDescription",
+      "op": "eq",
+      "value": "Used Network Load Balancer capacity units-hr"
+    },
+    {
+      "field": "attributes.locationType",
+      "op": "eq",
+      "value": "AWS Region"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "LCU-Hrs"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  }
+}

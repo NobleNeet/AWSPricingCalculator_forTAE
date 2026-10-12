@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "gwlbe-bytes",
+  "label": "Gateway Load Balancer Endpoint 処理データ",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "VpcEndpoint"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "VpcEndpoint"
+      },
+      {
+        "field": "attributes.groupDescription",
+        "op": "eq",
+        "value": "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint"
+      },
+      {
+        "field": "attributes.endpointType",
+        "op": "eq",
+        "value": "Gateway Load Balancer Endpoint"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.gwlbeGbMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "network-transfer"
+  ],
+  "enabledWhen": {
+    "field": "profile.gwlbEnabled",
+    "op": "eq",
+    "value": true
+  }
+}

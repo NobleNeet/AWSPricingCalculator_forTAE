@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "gwlbe-hour",
+  "label": "Gateway Load Balancer Endpoint 稼働時間",
+  "selectors": [],
+  "usageInputs": [],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "VpcEndpoint"
+      },
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "VpcEndpoint"
+      },
+      {
+        "field": "attributes.groupDescription",
+        "op": "eq",
+        "value": "Hourly charge for AWS Gateway Load Balancer VPC Endpoint"
+      },
+      {
+        "field": "attributes.endpointType",
+        "op": "eq",
+        "value": "Gateway Load Balancer Endpoint"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "profile.gwlbeCount"
+        },
+        {
+          "valueFrom": "project.hoursPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Hrs"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "network-transfer"
+  ],
+  "enabledWhen": {
+    "field": "profile.gwlbEnabled",
+    "op": "eq",
+    "value": true
+  }
+}
