@@ -39,3 +39,13 @@ Prices listed here document the AWS offer probe; **runtime prices must always co
 The screenshot establishes four simultaneously enabled families, quantities defaulting to 1, ALB target type choice, three protocol groups within NLB, Gateway endpoint meters, Classic LB bytes, and visible unit selectors. The implementation normalizes quantities to per-second connections, seconds of duration, GB/hour or GB/month, and uses a single field for each semantic input. Exact official dropdown option sets, alternate unit conversion choices, and full rendered visual parity have **not yet been independently verified in a live browser**. These must not be called screenshot-identical based solely on the E2E check against the local drawer.
 
 Local mocked browser E2E uses real Tokyo AWS offer fixture and verifies all four family quantity defaults and no duplicate semantic input. Branch CI is distinct from promotion/Price DB/Pages verification.
+
+
+## Drawer layout revision (2026-10-13)
+
+- The first ELB-specific control block is a four-checkbox type selection group: Application, Network, Gateway, and Classic Load Balancer; each family may be enabled independently.
+- Each enabled family appears exactly once as its own parameter fieldset, preserving existing profile selector IDs, defaults, saved values, and pricing calculations.
+- Detailed billing Components are not separate empty fieldsets: their Japanese display labels and calculated amount appear as rows at the **end of that family's parameter fieldset**.
+- Disabled families' fieldsets and price lines are hidden, rather than displayed as inaccessible configuration fields; data remain saved and reappear when re-enabled.
+- The 12 internal Pricing Components, their mappings and Price DB identities are unchanged; this is a UI-only re-onboarding.
+- Automated browser acceptance: `tests/e2e/elb-contract.spec.js` verifies all four checkboxes, zero duplicate inputs, all 12 price rows, the ordering after inputs, and the family toggle behavior.
