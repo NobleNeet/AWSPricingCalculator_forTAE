@@ -22,6 +22,21 @@ const auroraComponents = {
 };
 
 export const DRAWER_LABELS_JA = {
+  redshift: {
+    profiles: { provisioned: 'Redshift', serverless: 'Redshift Serverless' },
+    fields: {
+      instanceType: 'インスタンスタイプ',
+      transferInGb: '特定の宛先へのデータ転送 (IN) (GB)'
+    },
+    components: {
+      'node-compute': ['Redshift インスタンスの選択', { nodes: 'ノード', utilization: '使用状況 (オンデマンドのみ) (%utilized/Month)' }],
+      spectrum: ['Redshift Spectrum', { scannedTb: 'スキャンしたデータ (TB)' }],
+      'rms-provisioned': ['Redshift マネージドストレージ', { managedGb: 'マネージドストレージサイズ (GB)' }],
+      'rms-serverless': ['Redshift マネージドストレージ', { managedGb: 'マネージドストレージサイズ (GB)' }],
+      'serverless-compute': ['Redshift Serverless', { workloadSize: 'ワークロードのサイズ', baseRpu: 'ベース RPU', runtimeDailyHours: '想定される1日あたりのランタイム (時間)' }],
+      'backup-serverless': ['追加のバックアップストレージ', { backupGb: '追加のバックアップストレージ (GB)' }]
+    }
+  },
   athena: {
     profiles: { standard: 'Amazon Athena' },
     fields: { sqlPeriod: 'クエリの合計数のユニット', sparkPeriod: 'スパークセッションの合計数のユニット' },
