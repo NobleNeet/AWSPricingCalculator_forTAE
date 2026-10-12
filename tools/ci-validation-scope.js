@@ -3,16 +3,28 @@ import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
 
-// Only explicitly known changes that cannot modify published price semantics may
-// reuse the published baseline. Price-update orchestration changes are checked by
-// unit/CI tests; they do not change existing price data. Unknown paths and
-// unavailable history still fail safe.
+// Classify known CI orchestration separately from pricing semantics. These files
+// are covered by CI tests but do not change the published pricing data or
+// calculator behavior. Unrecognized files and unavailable history fail closed.
+const CI_CONTROL_FILES = new Set([
+  '.github/workflows/ci.yml',
+  '.github/workflows/onboarding-promotion.yml',
+  '.github/workflows/price-update.yml',
+  '.github/workflows/price-validation.yml',
+  'tools/ci-validate.js',
+  'tools/ci-validation-scope.js',
+  'tools/ci-semantic-plan.js',
+]);
+
+export function changeCategory(file) {
+  if (CI_CONTROL_FILES.has(file)) return 'ci-control';
+  if (/^(src\/app\/|tests\/|docs\/|mock\/)/.test(file)
+    || /^(index\.html|README\.md|AGENTS\.md|\.gitignore)$/.test(file)) return 'application';
+  return 'pricing-or-unknown';
+}
 export function applicationOnlyChanges(files) {
-  return Array.isArray(files) && files.length > 0 && files.every(file =>
-    /^(src\/app\/|tests\/|docs\/|mock\/)/.test(file)
-    || file === '.github/workflows/price-update.yml'
-    || /^(index\.html|README\.md|AGENTS\.md|\.gitignore)$/.test(file)
-  );
+  return Array.isArray(files) && files.length > 0
+    && files.every(file => changeCategory(file) !== 'pricing-or-unknown');
 }
 
 export async function changedFiles(base = process.env.CI_BASE_SHA) {
