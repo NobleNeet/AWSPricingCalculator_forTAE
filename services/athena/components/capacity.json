@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "capacity",
+  "label": "キャパシティベースの料金が設定された SQL クエリ",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "dpus",
+      "label": "DPU の数",
+      "type": "number",
+      "default": "4",
+      "minimum": "4",
+      "integer": true
+    },
+    {
+      "id": "activeHours",
+      "label": "キャパシティがアクティブである期間 (時間/月)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Athena Queries"
+      },
+      {
+        "field": "attributes.usagetype",
+        "op": "eq",
+        "value": "APN1-ReservedCapacityInDPUHours"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "DPU-Hour"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.dpus"
+        },
+        {
+          "valueFrom": "component.activeHours"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "DPU-Hour"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
