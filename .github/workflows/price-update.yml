@@ -15,6 +15,8 @@ on:
       - 'tools/golden-evidence.js'
       - 'tools/schema.js'
       - 'schemas/**'
+      # Publication regression-test changes must also exercise the price pipeline.
+      - 'tests/pricing/publish.test.js'
       - '.github/workflows/price-validation.yml'
       - 'tools/semantic-batch-plan.js'
       - 'tools/merge-semantic-batches.js'
