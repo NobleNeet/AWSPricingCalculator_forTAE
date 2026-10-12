@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "transfer-in",
+  "componentId": "transfer-in",
+  "priceSource": {
+    "serviceCode": "AmazonRedshift"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Redshift Inter Region Data Transfer"
+    },
+    {
+      "field": "attributes.usagetype",
+      "op": "in",
+      "value": [
+        "APN1-Redshift:InterRegionDataSharing",
+        "APN3-Redshift:InterRegionDataSharing",
+        "USE1-Redshift:InterRegionDataSharing",
+        "USE2-Redshift:InterRegionDataSharing",
+        "USW1-Redshift:InterRegionDataSharing",
+        "USW2-Redshift:InterRegionDataSharing"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Cross-region Redshift data sharing ingress as metered in official Calculator screenshot (100 GB x $0.02 = $2 Tokyo); verify region-specific rate against live price offer."
+}
