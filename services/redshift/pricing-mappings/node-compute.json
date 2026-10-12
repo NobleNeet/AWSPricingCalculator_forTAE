@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "node-compute",
+  "componentId": "node-compute",
+  "priceSource": {
+    "serviceCode": "AmazonRedshift"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Compute Instance"
+    },
+    {
+      "field": "attributes.operation",
+      "op": "eq",
+      "value": "RunComputeNode:0001"
+    },
+    {
+      "field": "attributes.instanceType",
+      "op": "eq",
+      "valueFrom": "profile.instanceType"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Hrs"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Based on actual Tokyo AmazonRedshift offer 2026-09-11, audit run 38237092675. Region-specific matchers require regional coverage validation."
+}
