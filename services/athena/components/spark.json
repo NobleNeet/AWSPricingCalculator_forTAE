@@ -61,5 +61,10 @@
   },
   "limitations": [
     "account-specific-discount"
-  ]
+  ],
+  "enabledWhen": {
+    "field": "profile.sparkPeriod",
+    "op": "eq",
+    "value": "month"
+  }
 }
