@@ -45,5 +45,21 @@
   },
   "limitations": [
     "account-specific-discount"
-  ]
+  ],
+  "enabledWhen": {
+    "field": "profile.instanceType",
+    "op": "in",
+    "value": [
+      "dc2.large",
+      "dc2.8xlarge",
+      "ra3.large",
+      "ra3.xlplus",
+      "ra3.4xlarge",
+      "ra3.16xlarge"
+    ]
+  },
+  "ui": {
+    "hideWhenDisabled": true,
+    "help": "RA3/DC2 のみ Spectrum を別途課金します。RG/Serverless はノード/RPU 料金に含まれます。"
+  }
 }

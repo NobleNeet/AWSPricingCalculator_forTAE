@@ -63,6 +63,7 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   // Changing an instance family must exchange the backup charge, not duplicate its input.
   await page.locator('#input-profile--instanceType').selectOption('rg.large');
   await expect(page.locator('[data-component-id="backup-rg"]')).toBeVisible();
+  await expect(page.locator('[data-component-id="spectrum"]')).toHaveCount(0); // RG has no separate Spectrum charge.
   await expect(page.locator('[data-component-id="backup-tiered"]')).toHaveCount(0);
   await expect(page.locator('input[data-field="backupGb"]:visible')).toHaveCount(1);
 
