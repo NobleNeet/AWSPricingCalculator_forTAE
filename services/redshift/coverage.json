@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "attributes.operation",
+          "op": "eq",
+          "value": "RunComputeNode:0001"
+        },
+        {
+          "field": "attributes.instanceType",
+          "op": "eq",
+          "valueFrom": "profile.instanceType"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Data Scan"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "spectrum"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "attributes.instanceType",
+          "op": "eq",
+          "valueFrom": "profile.instanceType"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "attributes.usagetype",
+          "op": "eq",
+          "value": "APN1-RMS:Serverless"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-serverless"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Serverless"
+        },
+        {
+          "field": "attributes.usagetype",
+          "op": "eq",
+          "value": "APN1-Redshift:ServerlessUsage"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "serverless-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage Snapshot"
+        },
+        {
+          "field": "attributes.usagetype",
+          "op": "eq",
+          "value": "APN1-Redshift:PaidUniqueSnapshots:Serverless"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "backup-serverless"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        }
+      ],
+      "status": "ignored",
+      "reason": "No separate concurrency scaling input in supplied Calculator screenshots.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Inter Region Data Transfer"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Calculator input is inbound transfer; cross-region snapshot/data sharing is not the same input.",
+      "limitationId": "unsupported-pricing-category"
+    }
+  ]
+}
