@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "sql-scanned-week",
+  "componentId": "sql-scanned-week",
+  "priceSource": {
+    "serviceCode": "AmazonAthena"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Athena Queries"
+    },
+    {
+      "field": "attributes.description",
+      "op": "eq",
+      "value": "Charged for total data scanned per query with a minimum 10MB for each successful or cancelled queries"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Terabytes"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Equivalent week period variant: usage scaled to month using 4.333333333333333333333333333333 before pricing. Per-query rounding to MB and 10 MB minimum; GB shown in calculator, billing uses 1024 GiB per TiB. Exact AWS UI unit conversions remain to be tested."
+}

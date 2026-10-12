@@ -29,11 +29,13 @@ export function applicationOnlyChanges(files) {
 
 export async function changedFiles(base = process.env.CI_BASE_SHA) {
   if (process.env.CI_VALIDATION_WORKTREE === 'true') {
+    // An explicit base must never bypass the invalid-history fail-closed contract.
+    if (arguments.length > 0) return null;
     try {
       // Promotion validates an uncommitted merge; compare its full index/worktree
       // against HEAD rather than the CI event's pre-merge SHA.
       const { stdout } = await execFileAsync('git', ['diff', '--name-only', '-z', 'HEAD'], { maxBuffer: 8 * 1024 * 1024 });
-      return stdout.split('\\0').filter(Boolean);
+      return stdout.split('\0').filter(Boolean);
     } catch { return null; }
   }
   if (!base || !/^[a-f0-9]{40}$/i.test(base) || /^0+$/.test(base)) return null;

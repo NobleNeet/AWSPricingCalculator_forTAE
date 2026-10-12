@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "sql-scanned-day",
+  "label": "クエリごとの料金が設定された SQL クエリ (1日)",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "queriesPerMonth",
+      "label": "クエリの合計数 (件/日)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "integer": true
+    },
+    {
+      "id": "scannedGbPerQuery",
+      "label": "クエリごとにスキャンされるデータ量 (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Athena Queries"
+      },
+      {
+        "field": "attributes.description",
+        "op": "eq",
+        "value": "Charged for total data scanned per query with a minimum 10MB for each successful or cancelled queries"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Terabytes"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.queriesPerMonth"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.scannedGbPerQuery",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "1024"
+              },
+              {
+                "type": "minimum",
+                "value": "10"
+              },
+              {
+                "type": "rounding",
+                "mode": "ceil"
+              },
+              {
+                "type": "scale",
+                "factor": "0.00000095367431640625"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [
+      {
+        "type": "scale",
+        "factor": "30"
+      }
+    ],
+    "outputUnit": "Terabytes"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.sqlPeriod",
+    "op": "eq",
+    "value": "day"
+  }
+}

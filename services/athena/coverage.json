@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DataScannedInTB"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "sql-scanned"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ReservedCapacityInDPUHours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "capacity"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CodeExecutionInDPUHours"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "spark"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "attributesList": {},
+  "disclaimer": "Fixture sourced from AWS official Tokyo AmazonAthena Public Price List probed in GitHub Actions 2026-10-12.",
+  "formatVersion": "v1.0",
+  "offerCode": "AmazonAthena",
+  "products": {
+    "6R553MKD6KWECHEK": {
+      "attributes": {
+        "description": "Charged for total data scanned per query with a minimum 10MB for each successful or cancelled queries",
+        "freeQueryTypes": "Data definition queries (DDL), Failed Queries and statements used to create or load partitions",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "APN1-DataScannedInTB"
+      },
+      "productFamily": "Athena Queries",
+      "sku": "6R553MKD6KWECHEK"
+    },
+    "KRCG7FCJWPMHSB6T": {
+      "attributes": {
+        "description": "Data Processing Units (DPU) in hours",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "APN1-ReservedCapacityInDPUHours"
+      },
+      "productFamily": "Athena Queries",
+      "sku": "KRCG7FCJWPMHSB6T"
+    },
+    "QTA8S2PW7FAED2GX": {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "nodeSize": "1",
+        "nodeType": "NA",
+        "operation": "Spark_Execution",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "APN1-CodeExecutionInDPUHours"
+      },
+      "productFamily": "Athena Spark",
+      "sku": "QTA8S2PW7FAED2GX"
+    }
+  },
+  "publicationDate": "2026-09-11T12:44:08Z",
+  "terms": {
+    "OnDemand": {
+      "6R553MKD6KWECHEK": {
+        "6R553MKD6KWECHEK.JRTCKXETXF": {
+          "effectiveDate": "2026-03-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "6R553MKD6KWECHEK.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "5.00 USD per Terabytes for DataScannedInTB in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "5.0000000000"
+              },
+              "rateCode": "6R553MKD6KWECHEK.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "Terabytes"
+            }
+          },
+          "sku": "6R553MKD6KWECHEK",
+          "termAttributes": {}
+        }
+      },
+      "KRCG7FCJWPMHSB6T": {
+        "KRCG7FCJWPMHSB6T.JRTCKXETXF": {
+          "effectiveDate": "2026-03-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "KRCG7FCJWPMHSB6T.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "0.43 USD per DPU-Hour for ReservedCapacityInDPUHours in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.4300000000"
+              },
+              "rateCode": "KRCG7FCJWPMHSB6T.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "DPU-Hour"
+            }
+          },
+          "sku": "KRCG7FCJWPMHSB6T",
+          "termAttributes": {}
+        }
+      },
+      "QTA8S2PW7FAED2GX": {
+        "QTA8S2PW7FAED2GX.JRTCKXETXF": {
+          "effectiveDate": "2026-03-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "QTA8S2PW7FAED2GX.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "0.50 USD per DPU-Hour for CodeExecutionInDPUHours:Spark_Execution in Asia Pacific (Tokyo)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.5000000000"
+              },
+              "rateCode": "QTA8S2PW7FAED2GX.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "DPU-Hour"
+            }
+          },
+          "sku": "QTA8S2PW7FAED2GX",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260911124408"
+}

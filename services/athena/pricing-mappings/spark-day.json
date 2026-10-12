@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "spark-day",
+  "componentId": "spark-day",
+  "priceSource": {
+    "serviceCode": "AmazonAthena"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Athena Spark"
+    },
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "Spark_Execution"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "DPU-Hour"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Equivalent day period variant: usage scaled to month using 30 before pricing. Spark execution DPU-hours; source screen accepts DPU hours per session."
+}
