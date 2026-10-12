@@ -35,7 +35,7 @@ Section **Redshift Spectrum**:
 
 Section **Redshift マネージドストレージ**:
 - マネージドストレージサイズ: one numeric input (empty), adjacent unit **GB**.
-- Helper text indicates use for instances using managed storage; availability/charging must be conditional on actual node family.
+- Helper text indicates use for instances using managed storage; availability/charging must be conditional on actual node family. Spectrum scanning is separately billed for RA3/DC2 but included in RG and Serverless compute (AWS management guide); inspect official dynamic visibility when selecting RG.
 
 Section **Redshift Data Transfer**:
 - 特定の宛先へのデータ転送 (IN): one numeric input (empty), adjacent unit **GB**.
@@ -59,7 +59,7 @@ Section **Redshift マネージドストレージ**:
 Section **Redshift Data Transfer**:
 - 特定の宛先へのデータ転送 (IN): one numeric input (empty), unit **GB**.
 
-**Redshift Spectrum section must not be visible in Serverless mode.** AWS states Serverless data-lake queries are included in RPU compute; do not charge a second Spectrum meter. https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-billing.html
+**Redshift Spectrum section must not be visible in Serverless mode.** For provisioned RG nodes, do not apply a second Spectrum charge (and confirm official UI conditional visibility). AWS states Serverless data-lake queries are included in RPU compute; do not charge a second Spectrum meter. https://docs.aws.amazon.com/redshift/latest/mgmt/serverless-billing.html
 
 ## Independent visibility assertions
 
