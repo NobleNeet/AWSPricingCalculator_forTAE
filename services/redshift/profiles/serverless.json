@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "serverless",
+  "label": "Redshift Serverless",
+  "selectors": [
+    {
+      "id": "transferInGb",
+      "label": "特定の宛先へのデータ転送 (IN) (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "serverless-compute",
+    "rms-serverless",
+    "backup-serverless"
+  ]
+}
