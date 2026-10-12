@@ -227,7 +227,10 @@ export async function validatePublishedPriceDataParallel(packages, directory, ma
     scannedProducts: result.scannedProducts,
     selectedProducts: result.selectedProducts,
     chunks: result.chunks,
-    elapsedMs: result.elapsedMs
+    elapsedMs: result.elapsedMs,
+    iteratorSkippedCases: result.iteratorSkippedCases ?? 0,
+    prunedBranches: result.prunedBranches ?? 0,
+    branchBlocks: result.branchBlocks ?? 0
   }));
   const publishSkus = {};
   for (const result of results) for (const [key, skus] of Object.entries(result.publishSkus ?? {})) {
