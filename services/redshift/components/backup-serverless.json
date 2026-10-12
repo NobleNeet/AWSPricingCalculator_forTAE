@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "backup-serverless",
+  "label": "追加のバックアップストレージ",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "backupGb",
+      "label": "追加のバックアップストレージ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Storage Snapshot"
+      },
+      {
+        "field": "attributes.usagetype",
+        "op": "eq",
+        "value": "APN1-Redshift:PaidUniqueSnapshots:Serverless"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.backupGb"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
