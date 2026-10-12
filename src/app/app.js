@@ -124,16 +124,26 @@ async function renderDrawer() {
     if (editing !== id) return;
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
-    const renderProfileFields = advanced => profile.selectors.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
+    const renderProfileFields = advanced => profile.selectors.filter(input => instance.serviceId !== 'athena' && Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
     $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>利用方式<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>リージョン<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なリージョン設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>プロジェクトのリージョンを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>アジアパシフィック (東京) に変更</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" ${instance.region?.mode === 'override' ? 'selected' : ''}>${escape(region)} に変更</option>` : ''}</select></label>${renderProfileFields(false)}${profile.selectors.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderProfileFields(true)}</details>` : ''}${profile.components.map(componentId => {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
+      // Athena uses three exclusive billing-period calculation variants for SQL and Spark.
+      // Only the selected variant belongs in the drawer; retain all variants in the model.
+      const athena = instance.serviceId === 'athena';
+      if (athena && !enabled(definition.enabledWhen, context)) return '';
       context.component = saved.inputs;
       const inactive = !enabled(definition.enabledWhen, context) || definition.optional && !saved.enabled;
       const filters = [...profile.fixedFilters, ...definition.fixedFilters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
       const inputs = [...definition.selectors, ...definition.usageInputs];
       const sourceCode = pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
       const componentProducts = data.byServiceCode[sourceCode] ?? data.defaultProducts;
-      const renderFields = advanced => inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'component', componentId, context, componentProducts, filters, inactive)).join('');
+      const renderFields = advanced => inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map((input, index) => {
+        const control = field(input, 'component', componentId, context, componentProducts, filters, inactive);
+        if (!athena || advanced || index !== 0) return control;
+        const periodId = componentId.startsWith('sql-scanned') ? 'sqlPeriod' : componentId.startsWith('spark') ? 'sparkPeriod' : null;
+        const period = profile.selectors.find(selector => selector.id === periodId);
+        return period ? control + field(period, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false) : control;
+      }).join('');
       const component = result?.components?.[componentId];
       return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
     }).join('')}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
@@ -188,11 +198,29 @@ $('catalog-list').addEventListener('click', async event => {
 });
 $('catalog-modal').addEventListener('close', () => { target = null; });
 $('service-drawer').addEventListener('close', () => { editing = null; });
+// Keep Athena's edited quantity current before focus moves to a billing-period
+// selector. Native number change fires on blur and can race with select change.
+$('drawer-content').addEventListener('input', event => {
+  const input = event.target, instance = state.serviceInstances[editing];
+  if (instance?.serviceId !== 'athena' || input.dataset.scope !== 'component' || !input.dataset.field) return;
+  (instance.components[input.dataset.component] ??= { enabled: true, inputs: {} }).inputs[input.dataset.field] = input.value;
+});
 $('drawer-content').addEventListener('change', async event => {
   const input = event.target, instance = state.serviceInstances[editing]; if (!instance) return;
   if (input.dataset.field) {
     const value = input.type === 'checkbox' ? input.checked : input.value;
-    if (input.dataset.scope === 'profile') instance.selectors[input.dataset.field] = value;
+    if (input.dataset.scope === 'profile') {
+      if (instance.serviceId === 'athena' && ['sqlPeriod', 'sparkPeriod'].includes(input.dataset.field)) {
+        const prefix = input.dataset.field === 'sqlPeriod' ? 'sql-scanned' : 'spark';
+        const componentIdForPeriod = period => period === 'day' ? prefix + '-day' : period === 'week' ? prefix + '-week' : prefix;
+        const previous = componentIdForPeriod(instance.selectors[input.dataset.field]);
+        const next = componentIdForPeriod(value);
+        if (previous !== next && instance.components[previous] && instance.components[next]) {
+          instance.components[next].inputs = { ...instance.components[next].inputs, ...instance.components[previous].inputs };
+        }
+      }
+      instance.selectors[input.dataset.field] = value;
+    }
     else (instance.components[input.dataset.component] ??= { enabled: true, inputs: {} }).inputs[input.dataset.field] = value;
   } else if (input.dataset.toggle) instance.components[input.dataset.toggle].enabled = input.checked;
   else if (input.id === 'drawer-region') instance.region = input.value === 'inherit' ? { mode: 'inherit' } : { mode: 'override', value: input.value };
