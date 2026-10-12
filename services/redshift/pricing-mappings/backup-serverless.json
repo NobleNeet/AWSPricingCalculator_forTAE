@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "backup-serverless",
+  "componentId": "backup-serverless",
+  "priceSource": {
+    "serviceCode": "AmazonRedshift"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Storage Snapshot"
+    },
+    {
+      "field": "attributes.usagetype",
+      "op": "eq",
+      "value": "APN1-Redshift:PaidUniqueSnapshots:Serverless"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Based on actual Tokyo AmazonRedshift offer 2026-09-11, audit run 38237092675. Region-specific matchers require regional coverage validation."
+}
