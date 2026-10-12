@@ -62,6 +62,7 @@ For ordinary implementation choices, choose a reasonable solution and continue.
 For a new service or an expansion/re-onboarding of an existing service:
 
 - Use the AWS Pricing Calculator service screen as the primary reference for estimate inputs, defaults, dependencies, conditional fields, and primary/advanced grouping.
+- Before implementing a drawer, establish an independent official-UI contract from supplied screenshots and rendered Calculator evidence, and verify visible **and hidden** fields against it. Internal Pricing Components must never create duplicated visible inputs. Follow `docs/SERVICE_ONBOARDING.md` §3.1.2; Definition-derived field inventories alone do not establish visual parity.
 - Keep purchase-plan choices On-Demand-only; do not add Reserved, Savings Plans, Spot, commitment-term, or upfront-payment choices unless the source-of-truth specification is explicitly changed.
 - Do not omit operational or usage inputs merely because payment plans are fixed to On-Demand.
 - Use AWS Public Price List as the pricing truth; never copy calculator-displayed prices into Definitions.
