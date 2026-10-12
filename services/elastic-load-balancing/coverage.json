@@ -226,6 +226,86 @@
       ],
       "status": "ignored",
       "reason": "Reserved LCU purchase options are excluded by the On-Demand-only policy."
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Application"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TS-LoadBalancerUsage"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Application Load Balancer Trust Store metering is not exposed in the supplied estimate screen."
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Application"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Outposts-LoadBalancerUsage"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outposts load balancers are outside the source Calculator screenshot."
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Application"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Outposts-LCUUsage"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outposts load balancers are outside the source Calculator screenshot."
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Network"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ReservedLCUUsage"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Reserved LCU is outside On-Demand-only scope."
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Gateway"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ReservedLCUUsage"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Reserved LCU is outside On-Demand-only scope."
     }
   ]
 }

@@ -105,7 +105,8 @@
       "unit": "Hrs",
       "quantity": "730",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -114,7 +115,8 @@
       "unit": "LCU-Hrs",
       "quantity": "0",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -123,7 +125,8 @@
       "unit": "Hrs",
       "quantity": "730",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -132,7 +135,8 @@
       "unit": "LCU-Hrs",
       "quantity": "0",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -141,7 +145,8 @@
       "unit": "LCU-Hrs",
       "quantity": "0",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -150,7 +155,8 @@
       "unit": "LCU-Hrs",
       "quantity": "0",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -159,7 +165,8 @@
       "unit": "Hrs",
       "quantity": "730",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -168,7 +175,8 @@
       "unit": "LCU-Hrs",
       "quantity": "0",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -177,7 +185,8 @@
       "unit": "Hrs",
       "quantity": "730",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -186,7 +195,8 @@
       "unit": "GB",
       "quantity": "0",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -195,7 +205,8 @@
       "unit": "Hrs",
       "quantity": "730",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     },
@@ -204,7 +215,8 @@
       "unit": "GB",
       "quantity": "0",
       "limitations": [
-        "account-specific-discount"
+        "account-specific-discount",
+        "network-transfer"
       ],
       "attributes": {}
     }

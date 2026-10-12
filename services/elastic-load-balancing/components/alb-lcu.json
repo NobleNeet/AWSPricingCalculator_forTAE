@@ -161,7 +161,8 @@
     "outputUnit": "LCU-Hrs"
   },
   "limitations": [
-    "account-specific-discount"
+    "account-specific-discount",
+    "network-transfer"
   ],
   "enabledWhen": {
     "field": "profile.albEnabled",

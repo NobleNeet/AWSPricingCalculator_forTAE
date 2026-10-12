@@ -51,7 +51,8 @@
     "outputUnit": "GB"
   },
   "limitations": [
-    "account-specific-discount"
+    "account-specific-discount",
+    "network-transfer"
   ],
   "enabledWhen": {
     "field": "profile.clbEnabled",
