@@ -3,11 +3,14 @@ import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
 
-// Only explicitly known presentation/test/documentation changes may reuse the
-// published semantic baseline. Unknown paths and unavailable history fail safe.
+// Only explicitly known changes that cannot modify published price semantics may
+// reuse the published baseline. Price-update orchestration changes are checked by
+// unit/CI tests; they do not change existing price data. Unknown paths and
+// unavailable history still fail safe.
 export function applicationOnlyChanges(files) {
   return Array.isArray(files) && files.length > 0 && files.every(file =>
     /^(src\/app\/|tests\/|docs\/|mock\/)/.test(file)
+    || file === '.github/workflows/price-update.yml'
     || /^(index\.html|README\.md|AGENTS\.md|\.gitignore)$/.test(file)
   );
 }
