@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "Amazon Athena",
+  "selectors": [],
+  "fixedFilters": [],
+  "components": [
+    "sql-scanned",
+    "capacity",
+    "spark"
+  ]
+}
