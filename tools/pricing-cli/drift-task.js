@@ -127,6 +127,8 @@ export async function runDriftTask(packages, task, { previousDirectory, candidat
     seenCases: checked.seenCases,
     progressCases: checked.progressCases,
     reusedCases: checked.reusedCases ?? 0,
+    prunedBranches: checked.prunedBranches ?? 0,
+    branchBlocks: checked.branchBlocks ?? 0,
     exhausted: checked.exhausted,
     elapsedMs: Math.round(performance.now() - started)
   };
