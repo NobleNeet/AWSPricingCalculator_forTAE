@@ -52,6 +52,8 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
   let batchCases = 0;
   let exhausted = false;
   let reusedCases = 0;
+  let prunedBranches = 0;
+  let branchBlocks = 0;
 
   const emitProgress = force => {
     if (!onCaseBatch || (!force && batchCases < caseBatchSize) || batchCases === 0) return;
@@ -148,6 +150,8 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
         processedCases += 1;
         emitProgress(false);
       }
+      prunedBranches += rangeStats.prunedBranches ?? 0;
+      branchBlocks += rangeStats.branchBlocks ?? 0;
       remainingOffset = Math.max(0, remainingOffset - (rangeStats.skipped ?? 0));
       seenCases = caseOffset - remainingOffset + processedCases;
       if (processedCases >= caseLimit) {
@@ -168,6 +172,8 @@ export function classifyChange(packages, previous, candidate, candidateIssues = 
     seenCases,
     progressCases,
     reusedCases,
+    prunedBranches,
+    branchBlocks,
     exhausted
   };
 }
