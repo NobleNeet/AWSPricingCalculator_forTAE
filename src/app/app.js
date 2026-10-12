@@ -202,7 +202,18 @@ $('drawer-content').addEventListener('change', async event => {
   const input = event.target, instance = state.serviceInstances[editing]; if (!instance) return;
   if (input.dataset.field) {
     const value = input.type === 'checkbox' ? input.checked : input.value;
-    if (input.dataset.scope === 'profile') instance.selectors[input.dataset.field] = value;
+    if (input.dataset.scope === 'profile') {
+      if (instance.serviceId === 'athena' && ['sqlPeriod', 'sparkPeriod'].includes(input.dataset.field)) {
+        const prefix = input.dataset.field === 'sqlPeriod' ? 'sql-scanned' : 'spark';
+        const componentIdForPeriod = period => period === 'day' ? prefix + '-day' : period === 'week' ? prefix + '-week' : prefix;
+        const previous = componentIdForPeriod(instance.selectors[input.dataset.field]);
+        const next = componentIdForPeriod(value);
+        if (previous !== next && instance.components[previous] && instance.components[next]) {
+          instance.components[next].inputs = { ...instance.components[next].inputs, ...instance.components[previous].inputs };
+        }
+      }
+      instance.selectors[input.dataset.field] = value;
+    }
     else (instance.components[input.dataset.component] ??= { enabled: true, inputs: {} }).inputs[input.dataset.field] = value;
   } else if (input.dataset.toggle) instance.components[input.dataset.toggle].enabled = input.checked;
   else if (input.id === 'drawer-region') instance.region = input.value === 'inherit' ? { mode: 'inherit' } : { mode: 'override', value: input.value };
