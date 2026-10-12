@@ -1,7 +1,7 @@
 name: RDS Oracle Pricing Source Audit
 on:
   push:
-    branches: [reonboard/rds-oracle]
+    branches: [main]
     paths:
       - tools/pricing-cli/oracle-price-audit.mjs
       - .github/workflows/rds-oracle-price-audit.yml
