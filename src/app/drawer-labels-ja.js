@@ -29,6 +29,7 @@ export const DRAWER_LABELS_JA = {
       transferInGb: '特定の宛先へのデータ転送 (IN) (GB)'
     },
     components: {
+      'transfer-in': ['Redshift Data Transfer'],
       'node-compute': ['Redshift インスタンスの選択', { nodes: 'ノード', utilization: '使用状況 (オンデマンドのみ) (%utilized/Month)' }],
       spectrum: ['Redshift Spectrum', { scannedTb: 'スキャンしたデータ (TB)' }],
       'rms-provisioned': ['Redshift マネージドストレージ', { managedGb: 'マネージドストレージサイズ (GB)' }],
