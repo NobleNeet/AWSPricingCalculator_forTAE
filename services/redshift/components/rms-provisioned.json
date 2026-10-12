@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "rms-provisioned",
+  "label": "Redshift マネージドストレージ",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "managedGb",
+      "label": "マネージドストレージサイズ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Redshift Managed Storage"
+      },
+      {
+        "field": "attributes.instanceType",
+        "op": "eq",
+        "valueFrom": "profile.instanceType"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.managedGb"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.instanceType",
+    "op": "in",
+    "value": [
+      "ra3.large",
+      "ra3.xlplus",
+      "ra3.4xlarge",
+      "ra3.16xlarge",
+      "rg.large",
+      "rg.xlarge",
+      "rg.4xlarge",
+      "rg.12xlarge"
+    ]
+  }
+}
