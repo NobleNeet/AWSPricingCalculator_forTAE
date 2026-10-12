@@ -63,6 +63,10 @@ async function stagedFixture(classification) {
   await writeJson(path.join(generated, 'manifest.json'), { schemaVersion: 1, activeBuildId: 'current', publicationDate: '2026-01-01' });
   const raw = rawFixture(), candidate = { data: { Example: normalize(raw, 'ap-northeast-1').data }, metadata: { sources: { Example: { serviceCode: 'Example', region: 'ap-northeast-1', sourceUrl: 'https://example.aws/price', version: raw.version, publicationDate: raw.publicationDate } } } };
   await buildPriceDb(candidate, path.join(stage, 'pricing'), 'candidate', { issues: [] });
+  const manifestPath = path.join(stage, 'pricing/builds/candidate/build-manifest.json');
+  const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  manifest.definitionSha256 = await definitionFingerprint([fixturePackage()]);
+  await writeJson(manifestPath, manifest);
   const proof = { schemaVersion: 1, status: 'VALIDATED', publishable: true, previousBuildId: 'current', buildId: 'candidate', classification, buildManifestSha256: checksum(await readFile(path.join(stage, 'pricing/builds/candidate/build-manifest.json'), 'utf8')) };
   await writeJson(path.join(reports, 'summary.json'), proof);
   for (const command of ['validate-definitions', 'validate-price-data', 'run-golden', 'classify-change', 'build']) await writeJson(path.join(reports, `${command}.json`), report(command, [], command === 'classify-change' ? { classification, publishable: classification !== 'STRUCTURE_BREAKING' } : {}));
@@ -93,7 +97,12 @@ test('Price DB publish job treats already-published build as successful no-op an
   const workflow = await readFile('.github/workflows/price-update.yml', 'utf8');
   const publish = workflow.slice(workflow.indexOf('\n  publish:'), workflow.indexOf('\n  deploy:'));
   assert.match(publish, /if git diff --cached --quiet; then/);
-  assert.match(publish, /else\s+git commit -m 'Publish validated AWS Price DB build'\s+git push origin HEAD:main\s+fi/);
+  assert.match(publish, /for attempt in 1 2 3; do/);
+  assert.match(publish, /git fetch origin main/);
+  assert.match(publish, /git reset --hard origin\/main/);
+  assert.match(publish, /node tools\/publish-price-build\.js/);
+  assert.match(publish, /npm run validate/);
+  assert.match(publish, /if git push origin HEAD:main; then/);
   assert.match(publish, /echo "commit=\$\(git rev-parse HEAD\)" >> "\$GITHUB_OUTPUT"/);
   assert.match(workflow, /ref: \$\{\{ needs\.publish\.outputs\.commit \}\}/);
 });
