@@ -452,6 +452,414 @@
       ],
       "status": "mapped",
       "componentId": "backup-serverless"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:dc2.8xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:dc2.large"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:ds2.8xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:ds2.xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:ra3.16xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:ra3.4xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:ra3.large"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:ra3.xlplus"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:rg.12xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:rg.4xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:rg.large"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CS:rg.xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling is outside the user-supplied Calculator input contract; do not invent a separate usage quantity or implicitly include it.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:dc2.8xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:dc2.large"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:ds2.8xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:ds2.xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:ra3.16xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:ra3.4xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:ra3.large"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:ra3.xlplus"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:rg.12xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:rg.4xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:rg.large"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Concurrency Scaling"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CSFreeUsage:rg.xlarge"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Concurrency Scaling free-use allowance is not an independently selected field in the supplied Redshift Calculator screens; no paid SKU or duplicate allowance is applied.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
