@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo-elb-default-zero-traffic",
+  "profileId": "standard",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "albEnabled": true,
+    "albCount": "1",
+    "nlbEnabled": true,
+    "nlbCount": "1",
+    "gwlbEnabled": true,
+    "gwlbCount": "1",
+    "clbEnabled": true,
+    "clbCount": "1",
+    "albTarget": "ec2",
+    "albNewConnections": "0",
+    "albConnectionSeconds": "0",
+    "albGbHour": "0",
+    "albRequests": "0",
+    "albRules": "0",
+    "nlbtcpNew": "0",
+    "nlbtcpSeconds": "0",
+    "nlbtcpBytes": "0",
+    "nlbudpNew": "0",
+    "nlbudpSeconds": "0",
+    "nlbudpBytes": "0",
+    "nlbtlsNew": "0",
+    "nlbtlsSeconds": "0",
+    "nlbtlsBytes": "0",
+    "gwlbNew": "0",
+    "gwlbSeconds": "0",
+    "gwlbGbHour": "0",
+    "gwlbeCount": "1",
+    "gwlbeGbMonth": "0",
+    "clbGbMonth": "0"
+  },
+  "components": {
+    "alb-hour": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "alb-lcu": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "nlb-hour": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "nlb-tcp": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "nlb-udp": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "nlb-tls": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "gwlb-hour": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "gwlb-lcu": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "gwlbe-hour": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "gwlbe-bytes": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "clb-hour": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    },
+    "clb-bytes": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {}
+    }
+  },
+  "expected": {
+    "alb-hour": {
+      "productFamily": "Load Balancer-Application",
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "alb-lcu": {
+      "productFamily": "Load Balancer-Application",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "nlb-hour": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "nlb-tcp": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "nlb-udp": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "nlb-tls": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "gwlb-hour": {
+      "productFamily": "Load Balancer-Gateway",
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "gwlb-lcu": {
+      "productFamily": "Load Balancer-Gateway",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "gwlbe-hour": {
+      "productFamily": "VpcEndpoint",
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "gwlbe-bytes": {
+      "productFamily": "VpcEndpoint",
+      "unit": "GB",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "clb-hour": {
+      "productFamily": "Load Balancer",
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "clb-bytes": {
+      "productFamily": "Load Balancer",
+      "unit": "GB",
+      "quantity": "0",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    }
+  },
+  "verification": {
+    "alb-hour": {
+      "productFamily": "Load Balancer-Application",
+      "unit": "Hrs",
+      "quantity": "730",
+      "attributes": {}
+    },
+    "alb-lcu": {
+      "productFamily": "Load Balancer-Application",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "attributes": {}
+    },
+    "nlb-hour": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "Hrs",
+      "quantity": "730",
+      "attributes": {}
+    },
+    "nlb-tcp": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "attributes": {}
+    },
+    "nlb-udp": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "attributes": {}
+    },
+    "nlb-tls": {
+      "productFamily": "Load Balancer-Network",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "attributes": {}
+    },
+    "gwlb-hour": {
+      "productFamily": "Load Balancer-Gateway",
+      "unit": "Hrs",
+      "quantity": "730",
+      "attributes": {}
+    },
+    "gwlb-lcu": {
+      "productFamily": "Load Balancer-Gateway",
+      "unit": "LCU-Hrs",
+      "quantity": "0",
+      "attributes": {}
+    },
+    "gwlbe-hour": {
+      "productFamily": "VpcEndpoint",
+      "unit": "Hrs",
+      "quantity": "730",
+      "attributes": {}
+    },
+    "gwlbe-bytes": {
+      "productFamily": "VpcEndpoint",
+      "unit": "GB",
+      "quantity": "0",
+      "attributes": {}
+    },
+    "clb-hour": {
+      "productFamily": "Load Balancer",
+      "unit": "Hrs",
+      "quantity": "730",
+      "attributes": {}
+    },
+    "clb-bytes": {
+      "productFamily": "Load Balancer",
+      "unit": "GB",
+      "quantity": "0",
+      "attributes": {}
+    }
+  }
+}
