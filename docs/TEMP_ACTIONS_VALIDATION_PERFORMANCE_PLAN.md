@@ -10,7 +10,8 @@
 - 現行mainにはSemantic/Driftとも最大8 workerの決定的割当て、worker単位artifact取得、Driftキャッシュ、およびworker結果のmergeが既に存在することを確認した。これらを今回新規実装したとは扱わない。
 - worker割当ての完全性検証を強化し、8 worker上限、worker ID重複、worker計画件数不整合、論理バッチ内容改変を検出するよう変更した。
 - `tests/performance/work-pool-integrity.test.js` を追加した。
-- **未完了**: 後方offsetの不要な枝展開・ケース生成削減、旧新の同等入力での数値比較、重いCIおよびPrice Update Actionsの実行確認、Finalize Replay互換性の検証。新規テストの実行結果も未確認。したがって計画は完了しておらず削除は禁止。
+- 2026-10-12追加: 共通 `reachableCaseIterator` のcomponent selector部分を範囲対応の深さ優先列挙へ変更。offsetより前の完全なCartesian productを配列生成せず、部分木の件数を数えてスキップする方式を導入。SemanticとDriftの共通経路に適用。計測用に `prunedBranches` / `branchBlocks` を追加し、workerレポートへ伝播させた。範囲の順序・分割等価性用のテスト `tests/performance/semantic-range-pruning.test.js` を追加。
+- **未完了**: GitHub Actions実測による新旧の同等入力での性能比較、重いCIおよびPrice Update Actionsの実行確認、Finalize Replay互換性の検証。今回の追加テストを含むActions実行結果も未確認。部分木の件数計算自体のCPU負荷の実測・調整が必要。完了条件未達のため本書は削除禁止。
 
 ## 1. 背景・目的
 
