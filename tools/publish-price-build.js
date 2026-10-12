@@ -7,6 +7,7 @@ import { checksum } from './pricing-cli/build.js';
 import { encode } from './pricing-cli/normalize.js';
 import { schemaValidator } from './schema.js';
 import { generateCatalog } from './pricing-cli/catalog.js';
+import { definitionFingerprint } from './pricing-cli/fingerprint.js';
 
 function normalizeBuildIdentity(value) {
   if (Array.isArray(value)) return value.map(normalizeBuildIdentity);
@@ -69,6 +70,14 @@ export async function promoteBuild({ stage, reports, generated = 'pricing/genera
   const manifest = JSON.parse(text);
   const validateManifest = await schemaValidator('pricing/build-manifest');
   if (!validateManifest(manifest) || manifest.buildId !== summary.buildId) throw Error('Invalid build manifest');
+  // Publication can be retried on a newer main only if the exact definition
+  // and pricing semantic contract validated with the candidate is unchanged.
+  // Never treat a successful semantic report from an older contract as proof
+  // for newly modified services or evaluation code.
+  const currentFingerprint = await definitionFingerprint(packages ?? await loadPackages());
+  if (!manifest.definitionSha256 || manifest.definitionSha256 !== currentFingerprint) {
+    throw Error('Validated candidate definition fingerprint differs from current main; rerun price validation before publication');
+  }
   for (const [code, regions] of Object.entries(manifest.sources)) for (const [region, source] of Object.entries(regions)) {
     for (const [kind, name] of [['products', 'sources'], ['index', 'indexes']]) {
       const relative = source[`${kind}Path`];
