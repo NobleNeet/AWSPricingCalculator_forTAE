@@ -63,7 +63,6 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   await expect(page.locator('[data-component-id="node-compute"] #input-profile--instanceType')).toBeVisible();
   await expect(page.locator('[data-component-id="transfer"] #input-profile--transferInGb')).toBeVisible();
   await expect(page.locator('[data-redshift-transfer-price]')).toContainText('$0.00');
-  await expect(page.locator('#input-component-rms-serverless-managedGb')).toBeEnabled();
   await expect(page.locator('#input-profile--instanceType')).toHaveCount(1);
   // Redshift uses the shared EC2/RDS comparison picker (visible table, hidden native select).
   const picker = page.locator('[data-instance-picker="redshift"]');
@@ -104,6 +103,7 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   await expect(page.locator('#input-component-serverless-compute-workloadSize')).toHaveValue('Medium');
   await expect(page.locator('#input-component-serverless-compute-baseRpu')).toHaveValue('128');
   await expect(page.locator('#input-component-serverless-compute-runtimeDailyHours')).toHaveValue('1');
+  await expect(page.locator('#input-component-rms-serverless-managedGb')).toBeEnabled();
   await expect(page.locator('[data-component-id="transfer"] #input-profile--transferInGb')).toBeVisible();
   await expect(page.locator('input[data-field="backupGb"]:visible')).toHaveCount(1);
   await expect(page.locator('[data-component-id="spectrum"]')).toHaveCount(0);
