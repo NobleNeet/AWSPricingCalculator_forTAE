@@ -30,9 +30,9 @@
         "value": "Athena Queries"
       },
       {
-        "field": "attributes.usagetype",
+        "field": "attributes.description",
         "op": "eq",
-        "value": "APN1-ReservedCapacityInDPUHours"
+        "value": "Data Processing Units (DPU) in hours"
       }
     ],
     "dimensionFilters": [
