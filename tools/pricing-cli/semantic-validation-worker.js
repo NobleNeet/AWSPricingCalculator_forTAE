@@ -190,6 +190,8 @@ async function runTask(task) {
     selectedProducts,
     chunks,
     iteratorSkippedCases: checked.iteratorSkippedCases ?? 0,
+    prunedBranches: checked.prunedBranches ?? 0,
+    branchBlocks: checked.branchBlocks ?? 0,
     elapsedMs: Math.round(performance.now() - started)
   };
 }
