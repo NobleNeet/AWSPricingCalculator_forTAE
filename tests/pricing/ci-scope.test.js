@@ -29,3 +29,19 @@ test('missing or invalid comparison history never authorizes semantic reuse', as
   assert.equal(await changedFiles('untrusted-ref'), null);
   assert.equal(await changedFiles('f'.repeat(40)), null);
 });
+
+test('onboarding merge worktree scope does not fall back to published baseline', async () => {
+  const previous = process.env.CI_VALIDATION_WORKTREE;
+  process.env.CI_VALIDATION_WORKTREE = 'true';
+  try {
+    // No staged changes in a clean checkout; unlike a missing base SHA,
+    // the worktree mode returns a concrete (possibly empty) changed-file list.
+    const files = await changedFiles();
+    assert.ok(Array.isArray(files));
+    assert.equal(validationScope({ fingerprintMatches: true, files: ['src/app/labels.js'] }), 'application');
+    assert.equal(validationScope({ fingerprintMatches: true, files: ['src/pricing/core.js'] }), 'published');
+  } finally {
+    if (previous === undefined) delete process.env.CI_VALIDATION_WORKTREE;
+    else process.env.CI_VALIDATION_WORKTREE = previous;
+  }
+});
