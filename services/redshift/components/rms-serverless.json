@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "rms-serverless",
+  "label": "Redshift マネージドストレージ",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "managedGb",
+      "label": "マネージドストレージサイズ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Redshift Managed Storage"
+      },
+      {
+        "field": "attributes.usagetype",
+        "op": "in",
+        "value": [
+          "APN1-RMS:Serverless",
+          "APN3-RMS:Serverless",
+          "USE1-RMS:Serverless",
+          "USE2-RMS:Serverless",
+          "USW1-RMS:Serverless",
+          "USW2-RMS:Serverless"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.managedGb"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo-redshift-serverless",
+  "profileId": "serverless",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "720"
+  },
+  "selectors": {
+    "transferInGb": "0"
+  },
+  "components": {
+    "serverless-compute": {
+      "enabled": true,
+      "selectors": {
+        "workloadSize": "Medium",
+        "baseRpu": "128"
+      },
+      "inputs": {
+        "runtimeDailyHours": "1"
+      }
+    },
+    "rms-serverless": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "managedGb": "10"
+      }
+    },
+    "backup-serverless": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "backupGb": "0"
+      }
+    }
+  },
+  "expected": {
+    "serverless-compute": {
+      "productFamily": "Serverless",
+      "unit": "RPU-Hr",
+      "quantity": "3904",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    },
+    "rms-serverless": {
+      "productFamily": "Redshift Managed Storage",
+      "unit": "GB-Mo",
+      "quantity": "10",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {}
+    }
+  },
+  "verification": {
+    "serverless-compute": {
+      "productFamily": "Serverless",
+      "unit": "RPU-Hr",
+      "quantity": "3904",
+      "attributes": {
+        "usagetype": "APN1-Redshift:ServerlessUsage"
+      }
+    },
+    "rms-serverless": {
+      "productFamily": "Redshift Managed Storage",
+      "unit": "GB-Mo",
+      "quantity": "10",
+      "attributes": {
+        "usagetype": "APN1-RMS:Serverless"
+      }
+    }
+  }
+}

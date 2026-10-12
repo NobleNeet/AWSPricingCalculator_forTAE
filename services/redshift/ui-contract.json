@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "referenceUrl": "https://calculator.aws/#/createCalculator/Redshift",
+  "evidenceDate": "2026-10-12",
+  "status": "screenshot-initial-state-only",
+  "shared": [
+    "description",
+    "locationType",
+    "region",
+    "deploymentMode"
+  ],
+  "modes": {
+    "provisioned": {
+      "sections": [
+        {
+          "id": "instance",
+          "title": "Redshift インスタンスの選択",
+          "fields": [
+            {
+              "id": "nodes",
+              "label": "ノード",
+              "default": "1"
+            },
+            {
+              "id": "instanceType",
+              "label": "インスタンスタイプ",
+              "default": "dc2.8xlarge"
+            },
+            {
+              "id": "utilization",
+              "label": "使用状況 (オンデマンドのみ)",
+              "default": "100",
+              "unit": "%utilized/Month"
+            }
+          ]
+        },
+        {
+          "id": "backup",
+          "title": "追加のバックアップストレージ",
+          "fields": [
+            {
+              "id": "backupGb",
+              "label": "追加のバックアップストレージ",
+              "unit": "GB"
+            }
+          ]
+        },
+        {
+          "id": "spectrum",
+          "title": "Redshift Spectrum",
+          "fields": [
+            {
+              "id": "spectrumTb",
+              "label": "スキャンしたデータ",
+              "unit": "TB"
+            }
+          ]
+        },
+        {
+          "id": "managedStorage",
+          "title": "Redshift マネージドストレージ",
+          "fields": [
+            {
+              "id": "managedGb",
+              "label": "マネージドストレージサイズ",
+              "unit": "GB"
+            }
+          ]
+        },
+        {
+          "id": "dataTransfer",
+          "title": "Redshift Data Transfer",
+          "fields": [
+            {
+              "id": "transferInGb",
+              "label": "特定の宛先へのデータ転送 (IN)",
+              "unit": "GB"
+            }
+          ]
+        }
+      ]
+    },
+    "serverless": {
+      "sections": [
+        {
+          "id": "serverless",
+          "title": "Redshift Serverless",
+          "fields": [
+            {
+              "id": "workloadSize",
+              "label": "ワークロードのサイズ",
+              "default": "Medium"
+            },
+            {
+              "id": "baseRpu",
+              "label": "ベース RPU",
+              "default": "128"
+            },
+            {
+              "id": "dailyRuntimeHours",
+              "label": "想定される1日あたりのランタイム (時間)",
+              "default": "1"
+            }
+          ]
+        },
+        {
+          "id": "backup",
+          "title": "追加のバックアップストレージ",
+          "fields": [
+            {
+              "id": "backupGb",
+              "label": "追加のバックアップストレージ",
+              "unit": "GB"
+            }
+          ]
+        },
+        {
+          "id": "managedStorage",
+          "title": "Redshift マネージドストレージ",
+          "fields": [
+            {
+              "id": "managedGb",
+              "label": "マネージドストレージサイズ",
+              "unit": "GB"
+            }
+          ]
+        },
+        {
+          "id": "dataTransfer",
+          "title": "Redshift Data Transfer",
+          "fields": [
+            {
+              "id": "transferInGb",
+              "label": "特定の宛先へのデータ転送 (IN)",
+              "unit": "GB"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "spectrum",
+  "label": "Redshift Spectrum",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "scannedTb",
+      "label": "スキャンしたデータ (TB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Redshift Data Scan"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Terabytes"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.scannedTb"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Terabytes"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

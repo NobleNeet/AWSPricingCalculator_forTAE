@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "id": "backup-rg",
+  "label": "追加のバックアップストレージ",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "backupGb",
+      "label": "追加のバックアップストレージ (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "月平均の追加課金対象スナップショット容量 (GB/月)。標準バックアップ容量の無料枠を除く値を入力。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Storage Snapshot"
+      },
+      {
+        "field": "attributes.usagetype",
+        "op": "in",
+        "value": [
+          "APN1-Redshift:PaidUniqueSnapshots:RG",
+          "APN3-Redshift:PaidUniqueSnapshots:RG",
+          "USE1-Redshift:PaidUniqueSnapshots:RG",
+          "USE2-Redshift:PaidUniqueSnapshots:RG",
+          "USW1-Redshift:PaidUniqueSnapshots:RG",
+          "USW2-Redshift:PaidUniqueSnapshots:RG"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB-Mo"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "combine": "multiply",
+      "sources": [
+        {
+          "valueFrom": "component.backupGb"
+        }
+      ]
+    },
+    "transforms": [],
+    "outputUnit": "GB-Mo"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ],
+  "enabledWhen": {
+    "field": "profile.instanceType",
+    "op": "in",
+    "value": [
+      "rg.large",
+      "rg.xlarge",
+      "rg.4xlarge",
+      "rg.12xlarge"
+    ]
+  },
+  "ui": {
+    "hideWhenDisabled": true
+  }
+}

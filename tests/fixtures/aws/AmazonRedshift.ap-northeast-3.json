@@ -1,0 +1,959 @@
+{
+  "formatVersion": "v1.0",
+  "disclaimer": "Fixture derived from AWS offer audit run 38238229870. Product SKUs, attributes, rates, dimension ranges are observed; fixture term and rate codes are synthetic.",
+  "offerCode": "AmazonRedshift",
+  "version": "20260911124505",
+  "publicationDate": "2026-09-11T12:45:05Z",
+  "products": {
+    "SFM57R88FQ38MXQJ": {
+      "sku": "SFM57R88FQ38MXQJ",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "dc2.8xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "32",
+        "memory": "244 GiB",
+        "storage": "2.56TB SSD",
+        "io": "7.50 GB/s",
+        "usagetype": "APN3-Node:dc2.8xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "99",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "Dense Compute"
+      }
+    },
+    "5XSUD4D8T49SZFCQ": {
+      "sku": "5XSUD4D8T49SZFCQ",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "dc2.large",
+        "currentGeneration": "Yes",
+        "vcpu": "2",
+        "memory": "15 GiB",
+        "storage": "0.16TB SSD",
+        "io": "0.60 GB/s",
+        "usagetype": "APN3-Node:dc2.large",
+        "operation": "RunComputeNode:0001",
+        "ecu": "7",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "Dense Compute"
+      }
+    },
+    "ZS33W5EBFBS4EHRT": {
+      "sku": "ZS33W5EBFBS4EHRT",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.16xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "48",
+        "memory": "384 GiB",
+        "storage": "64TB RMS",
+        "io": "8.00 GB/s",
+        "usagetype": "APN3-Node:ra3.16xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "148.5",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "TAVN4JQ8UP4TFPX9": {
+      "sku": "TAVN4JQ8UP4TFPX9",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.4xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "12",
+        "memory": "96 GiB",
+        "storage": "64TB RMS",
+        "io": "2.00 GB/s",
+        "usagetype": "APN3-Node:ra3.4xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "37.125",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "9WDQMHVAG2R3ZGNV": {
+      "sku": "9WDQMHVAG2R3ZGNV",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.large",
+        "currentGeneration": "Yes",
+        "vcpu": "2",
+        "memory": "16 GiB",
+        "storage": "8TB RMS",
+        "io": "0.325 GB/s",
+        "usagetype": "APN3-Node:ra3.large",
+        "operation": "RunComputeNode:0001",
+        "ecu": "6.1875",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "RNKJUEGAUY4AZFQW": {
+      "sku": "RNKJUEGAUY4AZFQW",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.xlplus",
+        "currentGeneration": "Yes",
+        "vcpu": "4",
+        "memory": "32 GiB",
+        "storage": "32TB RMS",
+        "io": "0.65 GB/s",
+        "usagetype": "APN3-Node:ra3.xlplus",
+        "operation": "RunComputeNode:0001",
+        "ecu": "12.375",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "QRST6ETB3NH7MUAJ": {
+      "sku": "QRST6ETB3NH7MUAJ",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.12xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "48",
+        "memory": "384 GiB",
+        "storage": "128TB",
+        "io": "0.65",
+        "usagetype": "APN3-Node:rg.12xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.4",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "2Q9Y2JKCUYWWVY4P": {
+      "sku": "2Q9Y2JKCUYWWVY4P",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.4xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "16",
+        "memory": "128 GiB",
+        "storage": "128TB",
+        "io": "0.65",
+        "usagetype": "APN3-Node:rg.4xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.3",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "4QS9R3JP5CQQQMFC": {
+      "sku": "4QS9R3JP5CQQQMFC",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.large",
+        "currentGeneration": "Yes",
+        "vcpu": "2",
+        "memory": "16 GiB",
+        "storage": "1TB",
+        "io": "0.65",
+        "usagetype": "APN3-Node:rg.large",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.1",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "3JNNWYB8GYJVFDDA": {
+      "sku": "3JNNWYB8GYJVFDDA",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "4",
+        "memory": "32 GiB",
+        "storage": "32TB",
+        "io": "0.65",
+        "usagetype": "APN3-Node:rg.xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.2",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "NY3R3DQSWZZ8HV45": {
+      "sku": "NY3R3DQSWZZ8HV45",
+      "productFamily": "Redshift Data Scan",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Data scanned per query for each successful or cancelled query",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "usagetype": "APN3-DataScanned",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "WZGTPPDVE4QDHKAJ": {
+      "sku": "WZGTPPDVE4QDHKAJ",
+      "productFamily": "Redshift Inter Region Data Transfer",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Redshift Cross-Region Data Sharing Charges",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "usagetype": "APN3-Redshift:InterRegionDataSharing",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "J92UNY6KZN7YJWBD": {
+      "sku": "J92UNY6KZN7YJWBD",
+      "productFamily": "Redshift Inter Region Data Transfer",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Redshift Cross-Region Snapshot Copy Charges",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "usagetype": "APN3-Redshift:InterRegionSnapshotCopy",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "3BNKB75TYX6SDSEN": {
+      "sku": "3BNKB75TYX6SDSEN",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.16xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:ra3.16xlarge",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "MFCKRTX4ECV3RGVW": {
+      "sku": "MFCKRTX4ECV3RGVW",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.4xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:ra3.4xlarge",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "A35X6Y38QDGQEV4R": {
+      "sku": "A35X6Y38QDGQEV4R",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.large",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:ra3.large",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "EKAFMQTW5MQD7E9V": {
+      "sku": "EKAFMQTW5MQD7E9V",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.xlplus",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:ra3.xlplus",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "CFQU74N3AKWDNQ2C": {
+      "sku": "CFQU74N3AKWDNQ2C",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.12xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:rg.12xlarge",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "HFVHEPVA6DS9E4UA": {
+      "sku": "HFVHEPVA6DS9E4UA",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.4xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:rg.4xlarge",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "92BPDCRD5SD77PTX": {
+      "sku": "92BPDCRD5SD77PTX",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.large",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:rg.large",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "UWRJU4VFESYZHQ5Z": {
+      "sku": "UWRJU4VFESYZHQ5Z",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "APN3-RMS:rg.xlarge",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "U9F49AHPBM5E3WPM": {
+      "sku": "U9F49AHPBM5E3WPM",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "storageMedia": "Amazon S3",
+        "usagetype": "APN3-RMS:Serverless",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "5DFCMQ2J525CJHA7": {
+      "sku": "5DFCMQ2J525CJHA7",
+      "productFamily": "Serverless",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Redshift Serverless compute charges",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "usagetype": "APN3-Redshift:ServerlessUsage",
+        "operation": "RunServerlessCompute:001",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "MD23DS6V8T7HKVRU": {
+      "sku": "MD23DS6V8T7HKVRU",
+      "productFamily": "Storage Snapshot",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "storageMedia": "Amazon S3",
+        "usagetype": "APN3-Redshift:PaidSnapshots",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "99YKVJVJ9VHA5RCN": {
+      "sku": "99YKVJVJ9VHA5RCN",
+      "productFamily": "Storage Snapshot",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "usagetype": "APN3-Redshift:PaidUniqueSnapshots:RG",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "5GD62PTPFEQPMYJU": {
+      "sku": "5GD62PTPFEQPMYJU",
+      "productFamily": "Storage Snapshot",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "Asia Pacific (Osaka)",
+        "locationType": "AWS Region",
+        "usagetype": "APN3-Redshift:PaidUniqueSnapshots:Serverless",
+        "operation": "",
+        "regionCode": "ap-northeast-3",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "Serverless"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "SFM57R88FQ38MXQJ": {
+        "SFM57R88FQ38MXQJ.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "SFM57R88FQ38MXQJ.fixture.0": {
+              "rateCode": "SFM57R88FQ38MXQJ.fixture.0",
+              "description": "$6.095 per Redshift Dense Compute dc2.8xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "6.0950000000"
+              }
+            }
+          }
+        }
+      },
+      "5XSUD4D8T49SZFCQ": {
+        "5XSUD4D8T49SZFCQ.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "5XSUD4D8T49SZFCQ.fixture.0": {
+              "rateCode": "5XSUD4D8T49SZFCQ.fixture.0",
+              "description": "$0.314 per Redshift Dense Compute dc2.large Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.3140000000"
+              }
+            }
+          }
+        }
+      },
+      "ZS33W5EBFBS4EHRT": {
+        "ZS33W5EBFBS4EHRT.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "ZS33W5EBFBS4EHRT.fixture.0": {
+              "rateCode": "ZS33W5EBFBS4EHRT.fixture.0",
+              "description": "$15.35 per Redshift RA3 ra3.16xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "15.3500000000"
+              }
+            }
+          }
+        }
+      },
+      "TAVN4JQ8UP4TFPX9": {
+        "TAVN4JQ8UP4TFPX9.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "TAVN4JQ8UP4TFPX9.fixture.0": {
+              "rateCode": "TAVN4JQ8UP4TFPX9.fixture.0",
+              "description": "$3.84 per Redshift RA3 ra3.4xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "3.8400000000"
+              }
+            }
+          }
+        }
+      },
+      "9WDQMHVAG2R3ZGNV": {
+        "9WDQMHVAG2R3ZGNV.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "9WDQMHVAG2R3ZGNV.fixture.0": {
+              "rateCode": "9WDQMHVAG2R3ZGNV.fixture.0",
+              "description": "$0.64 per Redshift RA3 ra3.large Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.6400000000"
+              }
+            }
+          }
+        }
+      },
+      "RNKJUEGAUY4AZFQW": {
+        "RNKJUEGAUY4AZFQW.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "RNKJUEGAUY4AZFQW.fixture.0": {
+              "rateCode": "RNKJUEGAUY4AZFQW.fixture.0",
+              "description": "$1.28 per Redshift RA3 ra3.xlplus Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "1.2800000000"
+              }
+            }
+          }
+        }
+      },
+      "QRST6ETB3NH7MUAJ": {
+        "QRST6ETB3NH7MUAJ.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "QRST6ETB3NH7MUAJ.fixture.0": {
+              "rateCode": "QRST6ETB3NH7MUAJ.fixture.0",
+              "description": "$10.745 per Redshift RG rg.12xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "10.7450000000"
+              }
+            }
+          }
+        }
+      },
+      "2Q9Y2JKCUYWWVY4P": {
+        "2Q9Y2JKCUYWWVY4P.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "2Q9Y2JKCUYWWVY4P.fixture.0": {
+              "rateCode": "2Q9Y2JKCUYWWVY4P.fixture.0",
+              "description": "$3.584 per Redshift RG rg.4xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "3.5840000000"
+              }
+            }
+          }
+        }
+      },
+      "4QS9R3JP5CQQQMFC": {
+        "4QS9R3JP5CQQQMFC.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "4QS9R3JP5CQQQMFC.fixture.0": {
+              "rateCode": "4QS9R3JP5CQQQMFC.fixture.0",
+              "description": "$0.448 per Redshift RG rg.large Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.4480000000"
+              }
+            }
+          }
+        }
+      },
+      "3JNNWYB8GYJVFDDA": {
+        "3JNNWYB8GYJVFDDA.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "3JNNWYB8GYJVFDDA.fixture.0": {
+              "rateCode": "3JNNWYB8GYJVFDDA.fixture.0",
+              "description": "$0.896 per Redshift RG rg.xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.8960000000"
+              }
+            }
+          }
+        }
+      },
+      "NY3R3DQSWZZ8HV45": {
+        "NY3R3DQSWZZ8HV45.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "NY3R3DQSWZZ8HV45.fixture.0": {
+              "rateCode": "NY3R3DQSWZZ8HV45.fixture.0",
+              "description": "$5.50 per Terabyte for Redshift Data Scan",
+              "unit": "Terabytes",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "5.5000000000"
+              }
+            }
+          }
+        }
+      },
+      "WZGTPPDVE4QDHKAJ": {
+        "WZGTPPDVE4QDHKAJ.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "WZGTPPDVE4QDHKAJ.fixture.0": {
+              "rateCode": "WZGTPPDVE4QDHKAJ.fixture.0",
+              "description": "$0.02 per GB for Redshift Cross Region Data Sharing transfer",
+              "unit": "GB",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0200000000"
+              }
+            }
+          }
+        }
+      },
+      "J92UNY6KZN7YJWBD": {
+        "J92UNY6KZN7YJWBD.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "J92UNY6KZN7YJWBD.fixture.0": {
+              "rateCode": "J92UNY6KZN7YJWBD.fixture.0",
+              "description": "$0.02 per GB for Redshift Cross Region Data Sharing transfer",
+              "unit": "GB",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0200000000"
+              }
+            }
+          }
+        }
+      },
+      "3BNKB75TYX6SDSEN": {
+        "3BNKB75TYX6SDSEN.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "3BNKB75TYX6SDSEN.fixture.0": {
+              "rateCode": "3BNKB75TYX6SDSEN.fixture.0",
+              "description": "$0.026 per GB-Mo for ra3.16xlarge Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "MFCKRTX4ECV3RGVW": {
+        "MFCKRTX4ECV3RGVW.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "MFCKRTX4ECV3RGVW.fixture.0": {
+              "rateCode": "MFCKRTX4ECV3RGVW.fixture.0",
+              "description": "$0.026 per GB-Mo for ra3.4xlarge Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "A35X6Y38QDGQEV4R": {
+        "A35X6Y38QDGQEV4R.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "A35X6Y38QDGQEV4R.fixture.0": {
+              "rateCode": "A35X6Y38QDGQEV4R.fixture.0",
+              "description": "$0.026 per GB-Mo for ra3.large Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "EKAFMQTW5MQD7E9V": {
+        "EKAFMQTW5MQD7E9V.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "EKAFMQTW5MQD7E9V.fixture.0": {
+              "rateCode": "EKAFMQTW5MQD7E9V.fixture.0",
+              "description": "$0.026 per GB-Mo for ra3.xlplus Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "CFQU74N3AKWDNQ2C": {
+        "CFQU74N3AKWDNQ2C.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "CFQU74N3AKWDNQ2C.fixture.0": {
+              "rateCode": "CFQU74N3AKWDNQ2C.fixture.0",
+              "description": "$0.026 per GB-Mo for rg.12xlarge Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "HFVHEPVA6DS9E4UA": {
+        "HFVHEPVA6DS9E4UA.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "HFVHEPVA6DS9E4UA.fixture.0": {
+              "rateCode": "HFVHEPVA6DS9E4UA.fixture.0",
+              "description": "$0.026 per GB-Mo for rg.4xlarge Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "92BPDCRD5SD77PTX": {
+        "92BPDCRD5SD77PTX.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "92BPDCRD5SD77PTX.fixture.0": {
+              "rateCode": "92BPDCRD5SD77PTX.fixture.0",
+              "description": "$0.026 per GB-Mo for rg.large Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "UWRJU4VFESYZHQ5Z": {
+        "UWRJU4VFESYZHQ5Z.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "UWRJU4VFESYZHQ5Z.fixture.0": {
+              "rateCode": "UWRJU4VFESYZHQ5Z.fixture.0",
+              "description": "$0.026 per GB-Mo for rg.xlarge Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "U9F49AHPBM5E3WPM": {
+        "U9F49AHPBM5E3WPM.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "U9F49AHPBM5E3WPM.fixture.0": {
+              "rateCode": "U9F49AHPBM5E3WPM.fixture.0",
+              "description": "$0.026 per GB-Mo for Redshift Managed Storage in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0260000000"
+              }
+            }
+          }
+        }
+      },
+      "5DFCMQ2J525CJHA7": {
+        "5DFCMQ2J525CJHA7.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "5DFCMQ2J525CJHA7.fixture.0": {
+              "rateCode": "5DFCMQ2J525CJHA7.fixture.0",
+              "description": "$0.45 per RPU-Hr for Redshift Serverless compute charges in Asia Pacific (Osaka)",
+              "unit": "RPU-Hr",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.4500000000"
+              }
+            }
+          }
+        }
+      },
+      "MD23DS6V8T7HKVRU": {
+        "MD23DS6V8T7HKVRU.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "MD23DS6V8T7HKVRU.fixture.0": {
+              "rateCode": "MD23DS6V8T7HKVRU.fixture.0",
+              "description": "$0.025 per GB-month of snapshot storage exceeding free allocation - first 50 TB/month of storage used ",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "51200",
+              "pricePerUnit": {
+                "USD": "0.0250000000"
+              }
+            },
+            "MD23DS6V8T7HKVRU.fixture.1": {
+              "rateCode": "MD23DS6V8T7HKVRU.fixture.1",
+              "description": "$0.024 per GB-month of snapshot storage exceeding free allocation - next 450 TB/month of storage used ",
+              "unit": "GB-Mo",
+              "beginRange": "51200",
+              "endRange": "512000",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            },
+            "MD23DS6V8T7HKVRU.fixture.2": {
+              "rateCode": "MD23DS6V8T7HKVRU.fixture.2",
+              "description": "$0.023 per GB-month of snapshot storage exceeding free allocation - storage used over 500 TB/month",
+              "unit": "GB-Mo",
+              "beginRange": "512000",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0230000000"
+              }
+            }
+          }
+        }
+      },
+      "99YKVJVJ9VHA5RCN": {
+        "99YKVJVJ9VHA5RCN.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "99YKVJVJ9VHA5RCN.fixture.0": {
+              "rateCode": "99YKVJVJ9VHA5RCN.fixture.0",
+              "description": "$0.025 per GB-Mo for Redshift:PaidUniqueSnapshots:RG in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0250000000"
+              }
+            }
+          }
+        }
+      },
+      "5GD62PTPFEQPMYJU": {
+        "5GD62PTPFEQPMYJU.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "5GD62PTPFEQPMYJU.fixture.0": {
+              "rateCode": "5GD62PTPFEQPMYJU.fixture.0",
+              "description": "$0.025 per GB-Mo for Redshift:PaidUniqueSnapshots:Serverless in Asia Pacific (Osaka)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0250000000"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

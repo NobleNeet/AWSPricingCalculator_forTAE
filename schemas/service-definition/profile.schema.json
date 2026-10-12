@@ -207,6 +207,18 @@
               "help": {
                 "type": "string",
                 "minLength": 1
+              },
+              "sectionId": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "sectionTitle": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sectionAfterField": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9-]*$"
               }
             },
             "required": [],

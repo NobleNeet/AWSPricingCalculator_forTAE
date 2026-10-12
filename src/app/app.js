@@ -124,29 +124,40 @@ async function renderDrawer() {
     if (editing !== id) return;
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
-    const renderProfileFields = advanced => profile.selectors.filter(input => instance.serviceId !== 'athena' && Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
+    const renderProfileFields = advanced => profile.selectors.filter(input => !input.ui?.sectionId && instance.serviceId !== 'athena' && Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
+    const renderSupplementaryFields = (sectionId, afterField = null) => profile.selectors.filter(input => input.ui?.sectionId === sectionId && (input.ui?.sectionAfterField ?? null) === afterField).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
+    const supplementarySections = [...new Map(profile.selectors.filter(input => input.ui?.sectionId && !profile.components.includes(input.ui.sectionId)).map(input => [input.ui.sectionId, input.ui.sectionTitle ?? input.ui.sectionId])).entries()].map(([sectionId, title]) => `<fieldset data-component-id="${escape(sectionId)}" data-ui-only="true"><legend>${escape(title)}</legend>${renderSupplementaryFields(sectionId)}</fieldset>`).join('');
     $('drawer-content').innerHTML = `<p class="state ${escape(result?.state)}">${escape(stateText(result))}</p><label>利用方式<select id="drawer-profile">${pkg.service.profiles.map(profileId => `<option value="${profileId}" ${profileId === instance.profileId ? 'selected' : ''}>${escape(pkg.profiles[profileId].label)}</option>`).join('')}</select></label><label>リージョン<select id="drawer-region">${regionValid ? '' : '<option value="" selected>要再選択（不正なリージョン設定）</option>'}<option value="inherit" ${instance.region?.mode === 'inherit' ? 'selected' : ''}>プロジェクトのリージョンを継承</option><option value="ap-northeast-1" ${instance.region?.mode === 'override' && region === 'ap-northeast-1' ? 'selected' : ''}>アジアパシフィック (東京) に変更</option>${region !== 'ap-northeast-1' ? `<option value="${escape(region)}" ${instance.region?.mode === 'override' ? 'selected' : ''}>${escape(region)} に変更</option>` : ''}</select></label>${renderProfileFields(false)}${profile.selectors.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderProfileFields(true)}</details>` : ''}${profile.components.map(componentId => {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
       // Athena uses three exclusive billing-period calculation variants for SQL and Spark.
       // Only the selected variant belongs in the drawer; retain all variants in the model.
       const athena = instance.serviceId === 'athena';
-      if (athena && !enabled(definition.enabledWhen, context)) return '';
+      if ((athena || definition.ui?.hideWhenDisabled) && !enabled(definition.enabledWhen, context)) return '';
       context.component = saved.inputs;
       const inactive = !enabled(definition.enabledWhen, context) || definition.optional && !saved.enabled;
       const filters = [...profile.fixedFilters, ...definition.fixedFilters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
       const inputs = [...definition.selectors, ...definition.usageInputs];
       const sourceCode = pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
       const componentProducts = data.byServiceCode[sourceCode] ?? data.defaultProducts;
-      const renderFields = advanced => inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map((input, index) => {
+      const redshiftNode = instance.serviceId === 'redshift' && componentId === 'node-compute'
+        ? componentProducts.find(product => product.productFamily === 'Compute Instance' && product.attributes?.instanceType === instance.selectors.instanceType)
+        : null;
+      const redshiftInformation = instance.serviceId === 'redshift' && componentId === 'node-compute' && redshiftNode
+        ? `<div class="input-help" data-redshift-instance-details>選択したインスタンス: ${escape(redshiftNode.attributes.instanceType)} · vCPU: ${escape(redshiftNode.attributes.vcpu)} · メモリ: ${escape(redshiftNode.attributes.memory)}</div>`
+        : instance.serviceId === 'redshift' && componentId === 'serverless-compute'
+        ? '<div class="input-help" data-redshift-rpu-guide>ワークロードのサイズとベース RPU の目安: Small 4–64 RPU / Medium 64–128 RPU / Large 128–256 RPU / Extra Large 256–1024 RPU</div>'
+        : '';
+
+      const renderFields = advanced => (advanced ? '' : renderSupplementaryFields(componentId)) + inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map((input, index) => {
         const control = field(input, 'component', componentId, context, componentProducts, filters, inactive);
-        if (!athena || advanced || index !== 0) return control;
+        if (!athena || advanced || index !== 0) return control + (advanced ? '' : renderSupplementaryFields(componentId, input.id));
         const periodId = componentId.startsWith('sql-scanned') ? 'sqlPeriod' : componentId.startsWith('spark') ? 'sparkPeriod' : null;
         const period = profile.selectors.find(selector => selector.id === periodId);
         return period ? control + field(period, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false) : control;
       }).join('');
       const component = result?.components?.[componentId];
-      return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
-    }).join('')}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
+      return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${redshiftInformation}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
+    }).join('')}${supplementarySections}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
       const limitation = limitations.get(id); return `<p class="${limitation?.severity === 'warning' ? 'warning-text' : 'notice-text'}">${escape(limitation?.message ?? id)}</p>`;
     }).join('')}`;
     if (focus?.startsWith('input-')) $(focus)?.focus();

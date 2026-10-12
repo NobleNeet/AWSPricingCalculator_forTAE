@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "id": "tokyo-redshift-provisioned",
+  "profileId": "provisioned",
+  "project": {
+    "region": "ap-northeast-1",
+    "hoursPerMonth": "730"
+  },
+  "selectors": {
+    "instanceType": "dc2.8xlarge",
+    "transferInGb": "0"
+  },
+  "components": {
+    "node-compute": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "nodes": "1",
+        "utilization": "100"
+      }
+    },
+    "spectrum": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "scannedTb": "0"
+      }
+    },
+    "rms-provisioned": {
+      "enabled": false,
+      "selectors": {},
+      "inputs": {
+        "managedGb": "0"
+      }
+    },
+    "backup-tiered": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "backupGb": "0"
+      }
+    },
+    "backup-rg": {
+      "enabled": false,
+      "selectors": {},
+      "inputs": {
+        "backupGb": "0"
+      }
+    }
+  },
+  "expected": {
+    "node-compute": {
+      "productFamily": "Compute Instance",
+      "unit": "Hrs",
+      "quantity": "730",
+      "limitations": [
+        "account-specific-discount"
+      ],
+      "attributes": {
+        "instanceType": "dc2.8xlarge"
+      }
+    }
+  },
+  "verification": {
+    "node-compute": {
+      "productFamily": "Compute Instance",
+      "unit": "Hrs",
+      "quantity": "730",
+      "attributes": {
+        "instanceType": "dc2.8xlarge",
+        "usagetype": "APN1-Node:dc2.8xlarge"
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "backup-rg",
+  "componentId": "backup-rg",
+  "priceSource": {
+    "serviceCode": "AmazonRedshift"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Storage Snapshot"
+    },
+    {
+      "field": "attributes.usagetype",
+      "op": "in",
+      "value": [
+        "APN1-Redshift:PaidUniqueSnapshots:RG",
+        "APN3-Redshift:PaidUniqueSnapshots:RG",
+        "USE1-Redshift:PaidUniqueSnapshots:RG",
+        "USE2-Redshift:PaidUniqueSnapshots:RG",
+        "USW1-Redshift:PaidUniqueSnapshots:RG",
+        "USW2-Redshift:PaidUniqueSnapshots:RG"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Verified raw AWS offers from all six supported regions; tiered paid snapshot metering for legacy/RA3 or unique blocks for RG."
+}

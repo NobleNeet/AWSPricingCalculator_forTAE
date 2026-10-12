@@ -139,6 +139,16 @@
         "standard"
       ],
       "serviceCode": "AWSSystemsManager"
+    },
+    {
+      "available": true,
+      "id": "redshift",
+      "label": "Amazon Redshift",
+      "profiles": [
+        "provisioned",
+        "serverless"
+      ],
+      "serviceCode": "AmazonRedshift"
     }
   ]
 }

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "id": "node-compute",
+  "label": "Redshift インスタンスの選択",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "nodes",
+      "label": "ノード",
+      "type": "number",
+      "default": "1",
+      "minimum": "1",
+      "integer": true
+    },
+    {
+      "id": "utilization",
+      "label": "使用状況 (オンデマンドのみ) (%utilized/Month)",
+      "type": "number",
+      "default": "100",
+      "minimum": "0",
+      "maximum": "100"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Compute Instance"
+      },
+      {
+        "field": "attributes.operation",
+        "op": "eq",
+        "value": "RunComputeNode:0001"
+      },
+      {
+        "field": "attributes.instanceType",
+        "op": "eq",
+        "valueFrom": "profile.instanceType"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Hrs"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.nodes"
+        },
+        {
+          "valueFrom": "project.hoursPerMonth"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.utilization",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "0.01"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Hrs"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

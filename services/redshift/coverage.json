@@ -1,0 +1,457 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:dc2.8xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:dc2.large"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:ra3.16xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:ra3.4xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:ra3.large"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:ra3.xlplus"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:rg.12xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:rg.4xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:rg.large"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Compute Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Node:rg.xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "node-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Data Scan"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DataScanned"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "spectrum"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Inter Region Data Transfer"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:InterRegionDataSharing"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside currently implemented on-demand modes or an additional charge whose UI/mapping is pending verification.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Inter Region Data Transfer"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:InterRegionSnapshotCopy"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside currently implemented on-demand modes or an additional charge whose UI/mapping is pending verification.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:ra3.16xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:ra3.4xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:ra3.large"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:ra3.xlplus"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:rg.12xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:rg.4xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:rg.large"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:rg.xlarge"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-provisioned"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Redshift Managed Storage"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "RMS:Serverless"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "rms-serverless"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Serverless"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:ServerlessUsage-CR-1YR-AU"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside currently implemented on-demand modes or an additional charge whose UI/mapping is pending verification.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Serverless"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:ServerlessUsage-CR-1YR-NU"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Outside currently implemented on-demand modes or an additional charge whose UI/mapping is pending verification.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Serverless"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:ServerlessUsage"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "serverless-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage Snapshot"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:PaidSnapshots"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "backup-tiered"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage Snapshot"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:PaidUniqueSnapshots:RG"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "backup-rg"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Storage Snapshot"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Redshift:PaidUniqueSnapshots:Serverless"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "backup-serverless"
+    }
+  ]
+}

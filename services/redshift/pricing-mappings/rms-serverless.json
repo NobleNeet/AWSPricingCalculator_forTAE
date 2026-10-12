@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "rms-serverless",
+  "componentId": "rms-serverless",
+  "priceSource": {
+    "serviceCode": "AmazonRedshift"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Redshift Managed Storage"
+    },
+    {
+      "field": "attributes.usagetype",
+      "op": "in",
+      "value": [
+        "APN1-RMS:Serverless",
+        "APN3-RMS:Serverless",
+        "USE1-RMS:Serverless",
+        "USE2-RMS:Serverless",
+        "USW1-RMS:Serverless",
+        "USW2-RMS:Serverless"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB-Mo"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Based on actual Tokyo AmazonRedshift offer 2026-09-11, audit run 38237092675. Region-specific matchers require regional coverage validation."
+}

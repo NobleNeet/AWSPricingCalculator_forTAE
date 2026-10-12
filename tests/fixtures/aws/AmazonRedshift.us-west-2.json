@@ -1,0 +1,1025 @@
+{
+  "formatVersion": "v1.0",
+  "disclaimer": "Fixture derived from AWS offer audit run 38238229870. Product SKUs, attributes, rates, dimension ranges are observed; fixture term and rate codes are synthetic.",
+  "offerCode": "AmazonRedshift",
+  "version": "20260911124505",
+  "publicationDate": "2026-09-11T12:45:05Z",
+  "products": {
+    "TBTXKVA4NVX833AT": {
+      "sku": "TBTXKVA4NVX833AT",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "dc2.8xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "32",
+        "memory": "244 GiB",
+        "storage": "2.56TB SSD",
+        "io": "7.50 GB/s",
+        "usagetype": "USW2-Node:dc2.8xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "99",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "Dense Compute"
+      }
+    },
+    "VTJXU34EMQ2UBBUF": {
+      "sku": "VTJXU34EMQ2UBBUF",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "dc2.large",
+        "currentGeneration": "Yes",
+        "vcpu": "2",
+        "memory": "15 GiB",
+        "storage": "0.16TB SSD",
+        "io": "0.60 GB/s",
+        "usagetype": "USW2-Node:dc2.large",
+        "operation": "RunComputeNode:0001",
+        "ecu": "7",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "Dense Compute"
+      }
+    },
+    "83Z8QEEGB2JT3HA9": {
+      "sku": "83Z8QEEGB2JT3HA9",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.16xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "48",
+        "memory": "384 GiB",
+        "storage": "64TB RMS",
+        "io": "8.00 GB/s",
+        "usagetype": "USW2-Node:ra3.16xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "148.5",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "ECZKQUCYKY6FT6PS": {
+      "sku": "ECZKQUCYKY6FT6PS",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.4xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "12",
+        "memory": "96 GiB",
+        "storage": "64TB RMS",
+        "io": "2.00 GB/s",
+        "usagetype": "USW2-Node:ra3.4xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "37.125",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "2VAZHFPDESJT3PQP": {
+      "sku": "2VAZHFPDESJT3PQP",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.large",
+        "currentGeneration": "Yes",
+        "vcpu": "2",
+        "memory": "16 GiB",
+        "storage": "8TB RMS",
+        "io": "0.325 GB/s",
+        "usagetype": "USW2-Node:ra3.large",
+        "operation": "RunComputeNode:0001",
+        "ecu": "6.1875",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "BAJK4QDG84RWTWB7": {
+      "sku": "BAJK4QDG84RWTWB7",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.xlplus",
+        "currentGeneration": "Yes",
+        "vcpu": "4",
+        "memory": "32 GiB",
+        "storage": "32TB RMS",
+        "io": "0.65 GB/s",
+        "usagetype": "USW2-Node:ra3.xlplus",
+        "operation": "RunComputeNode:0001",
+        "ecu": "12.375",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "VDF4JWW45VKZD8EY": {
+      "sku": "VDF4JWW45VKZD8EY",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.12xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "48",
+        "memory": "384 GiB",
+        "storage": "128TB",
+        "io": "0.65",
+        "usagetype": "USW2-Node:rg.12xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.4",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "SP637JTCDK3VH8KV": {
+      "sku": "SP637JTCDK3VH8KV",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.4xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "16",
+        "memory": "128 GiB",
+        "storage": "128TB",
+        "io": "0.65",
+        "usagetype": "USW2-Node:rg.4xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.3",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "KKX5SNHTB93CN8SG": {
+      "sku": "KKX5SNHTB93CN8SG",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.large",
+        "currentGeneration": "Yes",
+        "vcpu": "2",
+        "memory": "16 GiB",
+        "storage": "1TB",
+        "io": "0.65",
+        "usagetype": "USW2-Node:rg.large",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.1",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "BHHANJNPKVZUBJC8": {
+      "sku": "BHHANJNPKVZUBJC8",
+      "productFamily": "Compute Instance",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.xlarge",
+        "currentGeneration": "Yes",
+        "vcpu": "4",
+        "memory": "32 GiB",
+        "storage": "32TB",
+        "io": "0.65",
+        "usagetype": "USW2-Node:rg.xlarge",
+        "operation": "RunComputeNode:0001",
+        "ecu": "2026.2",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "82TFBXVR5P7KSDK6": {
+      "sku": "82TFBXVR5P7KSDK6",
+      "productFamily": "Redshift Data Scan",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Data scanned per query for each successful or cancelled query",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-DataScanned",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "RKVRSTMJ85HJPFYJ": {
+      "sku": "RKVRSTMJ85HJPFYJ",
+      "productFamily": "Redshift Inter Region Data Transfer",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Redshift Cross-Region Data Sharing Charges",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-Redshift:InterRegionDataSharing",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "9VHDM33EZ9QVMXYX": {
+      "sku": "9VHDM33EZ9QVMXYX",
+      "productFamily": "Redshift Inter Region Data Transfer",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Redshift Cross-Region Snapshot Copy Charges",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-Redshift:InterRegionSnapshotCopy",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "A3CKF84XCNWKUQX9": {
+      "sku": "A3CKF84XCNWKUQX9",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.16xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:ra3.16xlarge",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "UV3VTBJDRMSKMX77": {
+      "sku": "UV3VTBJDRMSKMX77",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.4xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:ra3.4xlarge",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "52B5QQ5ZVG9JK6W7": {
+      "sku": "52B5QQ5ZVG9JK6W7",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.large",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:ra3.large",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "Q597AVKT9FJJTJ8B": {
+      "sku": "Q597AVKT9FJJTJ8B",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "ra3.xlplus",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:ra3.xlplus",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "7HVUYCQQ7VA2B3JR": {
+      "sku": "7HVUYCQQ7VA2B3JR",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.12xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:rg.12xlarge",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "VNQJCA4736257EG7": {
+      "sku": "VNQJCA4736257EG7",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.4xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:rg.4xlarge",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "EDPN3NSK7V3S8YWJ": {
+      "sku": "EDPN3NSK7V3S8YWJ",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.large",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:rg.large",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "TSEJUDBQ3BQCTBME": {
+      "sku": "TSEJUDBQ3BQCTBME",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Storage charges with Redshift managed storage",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "instanceType": "rg.xlarge",
+        "currentGeneration": "Yes",
+        "usagetype": "USW2-RMS:rg.xlarge",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RA3"
+      }
+    },
+    "G3GDRVBBE8F27ZDK": {
+      "sku": "G3GDRVBBE8F27ZDK",
+      "productFamily": "Redshift Managed Storage",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "storageMedia": "Amazon S3",
+        "usagetype": "USW2-RMS:Serverless",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "STPNJQDMT4RSHA4Z": {
+      "sku": "STPNJQDMT4RSHA4Z",
+      "productFamily": "Serverless",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-Redshift:ServerlessUsage-CR-1YR-AU",
+        "operation": "RunServerlessCompute:001",
+        "paymentOption": "All Upfront",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "term": "1 Year"
+      }
+    },
+    "9VRMADZVRMTG9Q84": {
+      "sku": "9VRMADZVRMTG9Q84",
+      "productFamily": "Serverless",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-Redshift:ServerlessUsage-CR-1YR-NU",
+        "operation": "RunServerlessCompute:001",
+        "paymentOption": "No Upfront",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "term": "1 Year"
+      }
+    },
+    "KQ3J5VYQJZ5QMG9Z": {
+      "sku": "KQ3J5VYQJZ5QMG9Z",
+      "productFamily": "Serverless",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "description": "Redshift Serverless compute charges",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-Redshift:ServerlessUsage",
+        "operation": "RunServerlessCompute:001",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "R6HANNEMBDCJX6TH": {
+      "sku": "R6HANNEMBDCJX6TH",
+      "productFamily": "Storage Snapshot",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "storageMedia": "Amazon S3",
+        "usagetype": "USW2-Redshift:PaidSnapshots",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift"
+      }
+    },
+    "4QA5A2BNZU49F8ME": {
+      "sku": "4QA5A2BNZU49F8ME",
+      "productFamily": "Storage Snapshot",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-Redshift:PaidUniqueSnapshots:RG",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "RG"
+      }
+    },
+    "3DYRRMFBSHGABFB8": {
+      "sku": "3DYRRMFBSHGABFB8",
+      "productFamily": "Storage Snapshot",
+      "attributes": {
+        "servicecode": "AmazonRedshift",
+        "location": "US West (Oregon)",
+        "locationType": "AWS Region",
+        "usagetype": "USW2-Redshift:PaidUniqueSnapshots:Serverless",
+        "operation": "",
+        "regionCode": "us-west-2",
+        "servicename": "Amazon Redshift",
+        "usageFamily": "Serverless"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "TBTXKVA4NVX833AT": {
+        "TBTXKVA4NVX833AT.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "TBTXKVA4NVX833AT.fixture.0": {
+              "rateCode": "TBTXKVA4NVX833AT.fixture.0",
+              "description": "$4.80 per Redshift Dense Compute dc2.8xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "4.8000000000"
+              }
+            }
+          }
+        }
+      },
+      "VTJXU34EMQ2UBBUF": {
+        "VTJXU34EMQ2UBBUF.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "VTJXU34EMQ2UBBUF.fixture.0": {
+              "rateCode": "VTJXU34EMQ2UBBUF.fixture.0",
+              "description": "$0.25 per Redshift Dense Compute dc2.large Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2500000000"
+              }
+            }
+          }
+        }
+      },
+      "83Z8QEEGB2JT3HA9": {
+        "83Z8QEEGB2JT3HA9.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "83Z8QEEGB2JT3HA9.fixture.0": {
+              "rateCode": "83Z8QEEGB2JT3HA9.fixture.0",
+              "description": "$13.04 per Redshift RA3 ra3.16xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "13.0400000000"
+              }
+            }
+          }
+        }
+      },
+      "ECZKQUCYKY6FT6PS": {
+        "ECZKQUCYKY6FT6PS.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "ECZKQUCYKY6FT6PS.fixture.0": {
+              "rateCode": "ECZKQUCYKY6FT6PS.fixture.0",
+              "description": "$3.26 per Redshift RA3 ra3.4xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "3.2600000000"
+              }
+            }
+          }
+        }
+      },
+      "2VAZHFPDESJT3PQP": {
+        "2VAZHFPDESJT3PQP.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "2VAZHFPDESJT3PQP.fixture.0": {
+              "rateCode": "2VAZHFPDESJT3PQP.fixture.0",
+              "description": "$0.543 per Redshift RA3 ra3.large Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.5430000000"
+              }
+            }
+          }
+        }
+      },
+      "BAJK4QDG84RWTWB7": {
+        "BAJK4QDG84RWTWB7.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "BAJK4QDG84RWTWB7.fixture.0": {
+              "rateCode": "BAJK4QDG84RWTWB7.fixture.0",
+              "description": "$1.086 per Redshift RA3 ra3.xlplus Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "1.0860000000"
+              }
+            }
+          }
+        }
+      },
+      "VDF4JWW45VKZD8EY": {
+        "VDF4JWW45VKZD8EY.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "VDF4JWW45VKZD8EY.fixture.0": {
+              "rateCode": "VDF4JWW45VKZD8EY.fixture.0",
+              "description": "$9.128 per Redshift RG rg.12xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "9.1280000000"
+              }
+            }
+          }
+        }
+      },
+      "SP637JTCDK3VH8KV": {
+        "SP637JTCDK3VH8KV.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "SP637JTCDK3VH8KV.fixture.0": {
+              "rateCode": "SP637JTCDK3VH8KV.fixture.0",
+              "description": "$3.04267 per Redshift RG rg.4xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "3.0426700000"
+              }
+            }
+          }
+        }
+      },
+      "KKX5SNHTB93CN8SG": {
+        "KKX5SNHTB93CN8SG.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "KKX5SNHTB93CN8SG.fixture.0": {
+              "rateCode": "KKX5SNHTB93CN8SG.fixture.0",
+              "description": "$0.3801 per Redshift RG rg.large Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.3801000000"
+              }
+            }
+          }
+        }
+      },
+      "BHHANJNPKVZUBJC8": {
+        "BHHANJNPKVZUBJC8.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "BHHANJNPKVZUBJC8.fixture.0": {
+              "rateCode": "BHHANJNPKVZUBJC8.fixture.0",
+              "description": "$0.7602 per Redshift RG rg.xlarge Compute Node-hour (or partial hour) ",
+              "unit": "Hrs",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.7602000000"
+              }
+            }
+          }
+        }
+      },
+      "82TFBXVR5P7KSDK6": {
+        "82TFBXVR5P7KSDK6.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "82TFBXVR5P7KSDK6.fixture.0": {
+              "rateCode": "82TFBXVR5P7KSDK6.fixture.0",
+              "description": "$5.00 per Terabyte for Redshift Data Scan",
+              "unit": "Terabytes",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "5.0000000000"
+              }
+            }
+          }
+        }
+      },
+      "RKVRSTMJ85HJPFYJ": {
+        "RKVRSTMJ85HJPFYJ.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "RKVRSTMJ85HJPFYJ.fixture.0": {
+              "rateCode": "RKVRSTMJ85HJPFYJ.fixture.0",
+              "description": "$0.02 per GB for Redshift Cross Region Data Sharing transfer",
+              "unit": "GB",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0200000000"
+              }
+            }
+          }
+        }
+      },
+      "9VHDM33EZ9QVMXYX": {
+        "9VHDM33EZ9QVMXYX.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "9VHDM33EZ9QVMXYX.fixture.0": {
+              "rateCode": "9VHDM33EZ9QVMXYX.fixture.0",
+              "description": "$0.02 per GB for Redshift Cross Region Data Sharing transfer",
+              "unit": "GB",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0200000000"
+              }
+            }
+          }
+        }
+      },
+      "A3CKF84XCNWKUQX9": {
+        "A3CKF84XCNWKUQX9.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "A3CKF84XCNWKUQX9.fixture.0": {
+              "rateCode": "A3CKF84XCNWKUQX9.fixture.0",
+              "description": "$0.024 per GB-Mo for ra3.16xlarge Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "UV3VTBJDRMSKMX77": {
+        "UV3VTBJDRMSKMX77.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "UV3VTBJDRMSKMX77.fixture.0": {
+              "rateCode": "UV3VTBJDRMSKMX77.fixture.0",
+              "description": "$0.024 per GB-Mo for ra3.4xlarge Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "52B5QQ5ZVG9JK6W7": {
+        "52B5QQ5ZVG9JK6W7.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "52B5QQ5ZVG9JK6W7.fixture.0": {
+              "rateCode": "52B5QQ5ZVG9JK6W7.fixture.0",
+              "description": "$0.024 per GB-Mo for ra3.large Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "Q597AVKT9FJJTJ8B": {
+        "Q597AVKT9FJJTJ8B.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "Q597AVKT9FJJTJ8B.fixture.0": {
+              "rateCode": "Q597AVKT9FJJTJ8B.fixture.0",
+              "description": "$0.024 per GB-Mo for ra3.xlplus Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "7HVUYCQQ7VA2B3JR": {
+        "7HVUYCQQ7VA2B3JR.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "7HVUYCQQ7VA2B3JR.fixture.0": {
+              "rateCode": "7HVUYCQQ7VA2B3JR.fixture.0",
+              "description": "$0.024 per GB-Mo for rg.12xlarge Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "VNQJCA4736257EG7": {
+        "VNQJCA4736257EG7.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "VNQJCA4736257EG7.fixture.0": {
+              "rateCode": "VNQJCA4736257EG7.fixture.0",
+              "description": "$0.024 per GB-Mo for rg.4xlarge Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "EDPN3NSK7V3S8YWJ": {
+        "EDPN3NSK7V3S8YWJ.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "EDPN3NSK7V3S8YWJ.fixture.0": {
+              "rateCode": "EDPN3NSK7V3S8YWJ.fixture.0",
+              "description": "$0.024 per GB-Mo for rg.large Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "TSEJUDBQ3BQCTBME": {
+        "TSEJUDBQ3BQCTBME.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "TSEJUDBQ3BQCTBME.fixture.0": {
+              "rateCode": "TSEJUDBQ3BQCTBME.fixture.0",
+              "description": "$0.024 per GB-Mo for rg.xlarge Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "G3GDRVBBE8F27ZDK": {
+        "G3GDRVBBE8F27ZDK.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "G3GDRVBBE8F27ZDK.fixture.0": {
+              "rateCode": "G3GDRVBBE8F27ZDK.fixture.0",
+              "description": "$0.024 per GB-Mo for Redshift Managed Storage in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0240000000"
+              }
+            }
+          }
+        }
+      },
+      "STPNJQDMT4RSHA4Z": {
+        "STPNJQDMT4RSHA4Z.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "STPNJQDMT4RSHA4Z.fixture.0": {
+              "rateCode": "STPNJQDMT4RSHA4Z.fixture.0",
+              "description": "$2,333.00 per RPU-Hr for Redshift serverless capacity reservations all-upfront usage in US West (Oregon)",
+              "unit": "RPU-Hr",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "2333.0000000000"
+              }
+            }
+          }
+        }
+      },
+      "9VRMADZVRMTG9Q84": {
+        "9VRMADZVRMTG9Q84.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "9VRMADZVRMTG9Q84.fixture.0": {
+              "rateCode": "9VRMADZVRMTG9Q84.fixture.0",
+              "description": "$0.281 per RPU-Hr for Redshift serverless capacity reservations usage in US West (Oregon)",
+              "unit": "RPU-Hr",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.2810000000"
+              }
+            }
+          }
+        }
+      },
+      "KQ3J5VYQJZ5QMG9Z": {
+        "KQ3J5VYQJZ5QMG9Z.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "KQ3J5VYQJZ5QMG9Z.fixture.0": {
+              "rateCode": "KQ3J5VYQJZ5QMG9Z.fixture.0",
+              "description": "$0.36 per RPU-Hr for Redshift Serverless compute charges in US West (Oregon)",
+              "unit": "RPU-Hr",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.3600000000"
+              }
+            }
+          }
+        }
+      },
+      "R6HANNEMBDCJX6TH": {
+        "R6HANNEMBDCJX6TH.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "R6HANNEMBDCJX6TH.fixture.0": {
+              "rateCode": "R6HANNEMBDCJX6TH.fixture.0",
+              "description": "$0.023 per GB-month of snapshot storage exceeding free allocation - first 50 TB/month of storage used ",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "51200",
+              "pricePerUnit": {
+                "USD": "0.0230000000"
+              }
+            },
+            "R6HANNEMBDCJX6TH.fixture.1": {
+              "rateCode": "R6HANNEMBDCJX6TH.fixture.1",
+              "description": "$0.022 per GB-month of snapshot storage exceeding free allocation - next 450 TB/month of storage used ",
+              "unit": "GB-Mo",
+              "beginRange": "51200",
+              "endRange": "512000",
+              "pricePerUnit": {
+                "USD": "0.0220000000"
+              }
+            },
+            "R6HANNEMBDCJX6TH.fixture.2": {
+              "rateCode": "R6HANNEMBDCJX6TH.fixture.2",
+              "description": "$0.021 per GB-month of snapshot storage exceeding free allocation - storage used over 500 TB/month",
+              "unit": "GB-Mo",
+              "beginRange": "512000",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0210000000"
+              }
+            }
+          }
+        }
+      },
+      "4QA5A2BNZU49F8ME": {
+        "4QA5A2BNZU49F8ME.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "4QA5A2BNZU49F8ME.fixture.0": {
+              "rateCode": "4QA5A2BNZU49F8ME.fixture.0",
+              "description": "$0.023 per GB-Mo for Redshift:PaidUniqueSnapshots:RG in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0230000000"
+              }
+            }
+          }
+        }
+      },
+      "3DYRRMFBSHGABFB8": {
+        "3DYRRMFBSHGABFB8.fixtureTerm": {
+          "offerTermCode": "fixture",
+          "effectiveDate": "2026-09-11T12:45:05Z",
+          "priceDimensions": {
+            "3DYRRMFBSHGABFB8.fixture.0": {
+              "rateCode": "3DYRRMFBSHGABFB8.fixture.0",
+              "description": "$0.023 per GB-Mo for Redshift:PaidUniqueSnapshots:Serverless in US West (Oregon)",
+              "unit": "GB-Mo",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0230000000"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

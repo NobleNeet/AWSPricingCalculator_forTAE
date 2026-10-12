@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "serverless-compute",
+  "componentId": "serverless-compute",
+  "priceSource": {
+    "serviceCode": "AmazonRedshift"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Serverless"
+    },
+    {
+      "field": "attributes.usagetype",
+      "op": "in",
+      "value": [
+        "APN1-Redshift:ServerlessUsage",
+        "APN3-Redshift:ServerlessUsage",
+        "USE1-Redshift:ServerlessUsage",
+        "USE2-Redshift:ServerlessUsage",
+        "USW1-Redshift:ServerlessUsage",
+        "USW2-Redshift:ServerlessUsage"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "RPU-Hr"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Based on actual Tokyo AmazonRedshift offer 2026-09-11, audit run 38237092675. Region-specific matchers require regional coverage validation."
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "provisioned",
+  "label": "Redshift",
+  "selectors": [
+    {
+      "id": "instanceType",
+      "label": "インスタンスタイプ",
+      "type": "select",
+      "default": "dc2.8xlarge",
+      "options": {
+        "values": [
+          "dc2.large",
+          "dc2.8xlarge",
+          "ra3.large",
+          "ra3.xlplus",
+          "ra3.4xlarge",
+          "ra3.16xlarge",
+          "rg.large",
+          "rg.xlarge",
+          "rg.4xlarge",
+          "rg.12xlarge"
+        ]
+      },
+      "ui": {
+        "sectionId": "node-compute",
+        "sectionAfterField": "nodes"
+      }
+    },
+    {
+      "id": "transferInGb",
+      "label": "特定の宛先へのデータ転送 (IN) (GB)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "transfer",
+        "sectionTitle": "Redshift Data Transfer",
+        "help": "IN転送量です。インターネットからの通常の流入は追加料金なし。AZ間/リージョン間等の転送費用は別途見積もりが必要です。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "node-compute",
+    "backup-tiered",
+    "backup-rg",
+    "spectrum",
+    "rms-provisioned"
+  ]
+}
