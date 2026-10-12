@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "redshift",
+  "label": "Amazon Redshift",
+  "priceSource": {
+    "serviceCode": "AmazonRedshift"
+  },
+  "profiles": [
+    "provisioned",
+    "serverless"
+  ],
+  "defaultProfile": "provisioned",
+  "pricingMappings": [
+    "node-compute",
+    "spectrum",
+    "rms-provisioned",
+    "rms-serverless",
+    "serverless-compute",
+    "backup-serverless"
+  ]
+}
