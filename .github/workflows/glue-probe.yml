@@ -1,0 +1,44 @@
+name: Glue onboarding probe
+on:
+  push:
+    branches:
+      - onboard/glue
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch Tokyo AWS Glue Public Price List
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AWSGlue/current/ap-northeast-1/index.json" -o /tmp/glue.json
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('/tmp/glue.json','utf8'));
+          const rows=[];
+          for (const [sku,p] of Object.entries(d.products ?? {})) {
+            const terms=Object.values(d.terms?.OnDemand?.[sku] ?? {});
+            const dims=terms.flatMap(t=>Object.values(t.priceDimensions ?? {}));
+            rows.push({
+              sku,
+              productFamily:p.productFamily ?? null,
+              attributes:p.attributes ?? {},
+              dimensions:dims.map(x=>({
+                rateCode:x.rateCode,
+                unit:x.unit,
+                beginRange:x.beginRange,
+                endRange:x.endRange,
+                description:x.description,
+                USD:x.pricePerUnit?.USD
+              }))
+            });
+          }
+          rows.sort((a,b)=>JSON.stringify(a.attributes).localeCompare(JSON.stringify(b.attributes)));
+          console.log("GLUE_PRICE_LIST_BEGIN");
+          console.log(JSON.stringify({publicationDate:d.publicationDate,version:d.version,productCount:rows.length,products:rows},null,2));
+          console.log("GLUE_PRICE_LIST_END");
+          NODE
