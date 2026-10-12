@@ -13,8 +13,15 @@
     },
     {
       "field": "attributes.usagetype",
-      "op": "eq",
-      "value": "APN1-Redshift:ServerlessUsage"
+      "op": "in",
+      "value": [
+        "APN1-Redshift:ServerlessUsage",
+        "APN3-Redshift:ServerlessUsage",
+        "USE1-Redshift:ServerlessUsage",
+        "USE2-Redshift:ServerlessUsage",
+        "USW1-Redshift:ServerlessUsage",
+        "USW2-Redshift:ServerlessUsage"
+      ]
     }
   ],
   "dimensionMatchers": [
