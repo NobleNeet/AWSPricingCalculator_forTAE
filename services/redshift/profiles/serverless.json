@@ -8,13 +8,18 @@
       "label": "特定の宛先へのデータ転送 (IN) (GB)",
       "type": "number",
       "default": "0",
-      "minimum": "0"
+      "minimum": "0",
+      "ui": {
+        "sectionId": "transfer",
+        "sectionTitle": "Redshift Data Transfer",
+        "help": "IN転送量です。インターネットからの通常の流入は追加料金なし。AZ間/リージョン間等の転送費用は別途見積もりが必要です。"
+      }
     }
   ],
   "fixedFilters": [],
   "components": [
     "serverless-compute",
-    "rms-serverless",
-    "backup-serverless"
+    "backup-serverless",
+    "rms-serverless"
   ]
 }

@@ -34,6 +34,8 @@ export const DRAWER_LABELS_JA = {
       'rms-provisioned': ['Redshift マネージドストレージ', { managedGb: 'マネージドストレージサイズ (GB)' }],
       'rms-serverless': ['Redshift マネージドストレージ', { managedGb: 'マネージドストレージサイズ (GB)' }],
       'serverless-compute': ['Redshift Serverless', { workloadSize: 'ワークロードのサイズ', baseRpu: 'ベース RPU', runtimeDailyHours: '想定される1日あたりのランタイム (時間)' }],
+      'backup-tiered': ['追加のバックアップストレージ', { backupGb: '追加のバックアップストレージ (GB)' }],
+      'backup-rg': ['追加のバックアップストレージ', { backupGb: '追加のバックアップストレージ (GB)' }],
       'backup-serverless': ['追加のバックアップストレージ', { backupGb: '追加のバックアップストレージ (GB)' }]
     }
   },

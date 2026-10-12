@@ -32,6 +32,20 @@
       "inputs": {
         "managedGb": "0"
       }
+    },
+    "backup-tiered": {
+      "enabled": true,
+      "selectors": {},
+      "inputs": {
+        "backupGb": "0"
+      }
+    },
+    "backup-rg": {
+      "enabled": false,
+      "selectors": {},
+      "inputs": {
+        "backupGb": "0"
+      }
     }
   },
   "expected": {

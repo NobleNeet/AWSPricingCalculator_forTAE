@@ -1078,6 +1078,9 @@
         "help": {
           "type": "string",
           "minLength": 1
+        },
+        "hideWhenDisabled": {
+          "type": "boolean"
         }
       },
       "required": [],

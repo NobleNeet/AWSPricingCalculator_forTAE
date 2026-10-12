@@ -64,5 +64,9 @@
       "rg.4xlarge",
       "rg.12xlarge"
     ]
+  },
+  "ui": {
+    "hideWhenDisabled": false,
+    "help": "DC2ではマネージドストレージ料金を課さず、RA3/RGでのみ別途請求します。"
   }
 }

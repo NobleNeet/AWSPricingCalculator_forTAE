@@ -418,9 +418,8 @@
           "value": "Redshift:PaidSnapshots"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside currently implemented on-demand modes or an additional charge whose UI/mapping is pending verification.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "backup-tiered"
     },
     {
       "filters": [
@@ -435,9 +434,8 @@
           "value": "Redshift:PaidUniqueSnapshots:RG"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside currently implemented on-demand modes or an additional charge whose UI/mapping is pending verification.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "backup-rg"
     },
     {
       "filters": [

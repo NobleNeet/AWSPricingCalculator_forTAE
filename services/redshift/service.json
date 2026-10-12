@@ -13,6 +13,8 @@
   "pricingMappings": [
     "node-compute",
     "spectrum",
+    "backup-tiered",
+    "backup-rg",
     "rms-provisioned",
     "rms-serverless",
     "serverless-compute",
