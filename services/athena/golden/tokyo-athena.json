@@ -75,7 +75,8 @@
       "quantity": "0.0009765625",
       "limitations": [
         "account-specific-discount"
-      ]
+      ],
+      "attributes": {}
     },
     "capacity": {
       "productFamily": "Athena Queries",
@@ -83,7 +84,8 @@
       "quantity": "8",
       "limitations": [
         "account-specific-discount"
-      ]
+      ],
+      "attributes": {}
     },
     "spark": {
       "productFamily": "Athena Spark",
@@ -91,25 +93,35 @@
       "quantity": "6",
       "limitations": [
         "account-specific-discount"
-      ]
+      ],
+      "attributes": {}
     }
   },
   "verification": {
     "sql-scanned": {
       "productFamily": "Athena Queries",
       "unit": "Terabytes",
-      "quantity": "0.0009765625"
+      "quantity": "0.0009765625",
+      "attributes": {
+        "usagetype": "APN1-DataScannedInTB"
+      }
     },
     "capacity": {
       "productFamily": "Athena Queries",
       "unit": "DPU-Hour",
-      "quantity": "8"
+      "quantity": "8",
+      "attributes": {
+        "usagetype": "APN1-ReservedCapacityInDPUHours"
+      }
     },
     "spark": {
       "productFamily": "Athena Spark",
       "operation": "Spark_Execution",
       "unit": "DPU-Hour",
-      "quantity": "6"
+      "quantity": "6",
+      "attributes": {
+        "usagetype": "APN1-CodeExecutionInDPUHours"
+      }
     }
   }
 }
