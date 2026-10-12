@@ -56,6 +56,21 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   await expect(page.locator('[data-component-id="node-compute"] #input-profile--instanceType')).toBeVisible();
   await expect(page.locator('[data-component-id="transfer"] #input-profile--transferInGb')).toBeVisible();
   await expect(page.locator('#input-profile--instanceType')).toHaveCount(1);
+  // Redshift uses the shared EC2/RDS comparison picker (visible table, hidden native select).
+  const picker = page.locator('[data-instance-picker="redshift"]');
+  await expect(picker).toBeVisible();
+  await expect(page.locator('[data-instance-drawer-width]')).toBeVisible();
+  await expect(picker.locator('tbody tr')).toHaveCount(10);
+  await picker.locator('[data-instance-filter="vcpu"]').fill('>=32');
+  await expect(picker.locator('.ec2-instance-summary')).toContainText('3 / 10');
+  await picker.locator('[data-instance-filter="vcpu"]').fill('');
+  await picker.locator('[data-instance-filter="instanceType"]').fill('ra3.large');
+  await expect(picker.locator('[data-instance-choice="ra3.large"]')).toBeVisible();
+  await picker.locator('[data-instance-choice="ra3.large"]').click();
+  await expect(page.locator('#input-profile--instanceType')).toHaveValue('ra3.large');
+  await expect(page.locator('[data-redshift-instance-details]')).toContainText('ra3.large');
+  await picker.locator('[data-instance-filter="instanceType"]').fill('');
+
   await expect(page.locator('#input-profile--transferInGb')).toHaveCount(1);
   await expect(page.locator('[data-component-id="serverless-compute"]')).toHaveCount(0);
   await expect(page.locator('#input-component-spectrUm-scannedTb')).toHaveCount(0);
