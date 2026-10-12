@@ -214,73 +214,109 @@
       "productFamily": "Load Balancer-Application",
       "unit": "Hrs",
       "quantity": "730",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LoadBalancerUsage",
+        "operation": "LoadBalancing:Application"
+      }
     },
     "alb-lcu": {
       "productFamily": "Load Balancer-Application",
       "unit": "LCU-Hrs",
       "quantity": "0",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LCUUsage",
+        "operation": "LoadBalancing:Application"
+      }
     },
     "nlb-hour": {
       "productFamily": "Load Balancer-Network",
       "unit": "Hrs",
       "quantity": "730",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LoadBalancerUsage",
+        "operation": "LoadBalancing:Network"
+      }
     },
     "nlb-tcp": {
       "productFamily": "Load Balancer-Network",
       "unit": "LCU-Hrs",
       "quantity": "0",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LCUUsage",
+        "operation": "LoadBalancing:Network"
+      }
     },
     "nlb-udp": {
       "productFamily": "Load Balancer-Network",
       "unit": "LCU-Hrs",
       "quantity": "0",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LCUUsage",
+        "operation": "LoadBalancing:Network"
+      }
     },
     "nlb-tls": {
       "productFamily": "Load Balancer-Network",
       "unit": "LCU-Hrs",
       "quantity": "0",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LCUUsage",
+        "operation": "LoadBalancing:Network"
+      }
     },
     "gwlb-hour": {
       "productFamily": "Load Balancer-Gateway",
       "unit": "Hrs",
       "quantity": "730",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LoadBalancerUsage",
+        "operation": "LoadBalancing:Gateway"
+      }
     },
     "gwlb-lcu": {
       "productFamily": "Load Balancer-Gateway",
       "unit": "LCU-Hrs",
       "quantity": "0",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LCUUsage",
+        "operation": "LoadBalancing:Gateway"
+      }
     },
     "gwlbe-hour": {
       "productFamily": "VpcEndpoint",
       "unit": "Hrs",
       "quantity": "730",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-VpcEndpoint-GWLBE-Hours",
+        "operation": "VpcEndpoint"
+      }
     },
     "gwlbe-bytes": {
       "productFamily": "VpcEndpoint",
       "unit": "GB",
       "quantity": "0",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-VpcEndpoint-GWLBE-Bytes",
+        "operation": "VpcEndpoint"
+      }
     },
     "clb-hour": {
       "productFamily": "Load Balancer",
       "unit": "Hrs",
       "quantity": "730",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-LoadBalancerUsage",
+        "operation": "LoadBalancing"
+      }
     },
     "clb-bytes": {
       "productFamily": "Load Balancer",
       "unit": "GB",
       "quantity": "0",
-      "attributes": {}
+      "attributes": {
+        "usagetype": "APN1-DataProcessing-Bytes",
+        "operation": "LoadBalancing"
+      }
     }
   }
 }
