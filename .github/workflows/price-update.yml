@@ -377,12 +377,11 @@ jobs:
     outputs:
       commit: ${{ steps.commit.outputs.commit }}
     steps:
-      # Use the same source revision as the candidate validation. A concurrent
-      # main update must cause the final push to fail closed rather than
-      # validating an earlier candidate against a different semantic contract.
+      # Start at main, then refresh it on every publication attempt. The
+      # candidate proof is checked against the refreshed definition fingerprint.
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -393,22 +392,37 @@ jobs:
         with:
           name: validated-price-candidate
           path: .work/update
-      - name: Verify proof, retain current + previous, promote manifest
-        run: node tools/publish-price-build.js
-      - run: npm run validate
-      - name: Commit and push validated publication
+      - name: Revalidate and publish against current main
         id: commit
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add pricing/generated services/catalog.json tests/fixtures/aws
-          if git diff --cached --quiet; then
-            echo 'Price DB already published: no changes to commit'
-          else
+          # Bounded retries handle a main push racing the final git push.
+          # Never force-push; semantic/definition changes fail the proof check.
+          for attempt in 1 2 3; do
+            echo "Publication attempt ${attempt}/3"
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd -- pricing/generated tests/fixtures/aws
+            node tools/publish-price-build.js
+            npm run validate
+            git add pricing/generated services/catalog.json tests/fixtures/aws
+            if git diff --cached --quiet; then
+              echo 'Price DB already published: no changes to commit'
+              echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             git commit -m 'Publish validated AWS Price DB build'
-            git push origin HEAD:main
-          fi
-          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            if git push origin HEAD:main; then
+              echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo 'Main advanced during publication; checking current main again'
+          done
+          echo 'Publication failed after 3 concurrent-update retries' >&2
+          exit 1
 
   deploy:
     needs: publish
