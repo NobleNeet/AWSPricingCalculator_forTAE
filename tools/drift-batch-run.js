@@ -82,6 +82,8 @@ export async function runDriftBatch(plan, batch, packages, executionOptions = {}
       reusedCases: result.reusedCases ?? 0,
       reuseMode: result.reuseMode,
       candidateProductsLoaded: result.candidateProductsLoaded,
+      prunedBranches: result.prunedBranches ?? 0,
+      branchBlocks: result.branchBlocks ?? 0,
       elapsedMs: result.elapsedMs
     }]
   });
