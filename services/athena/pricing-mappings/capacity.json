@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "capacity",
+  "componentId": "capacity",
+  "priceSource": {
+    "serviceCode": "AmazonAthena"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Athena Queries"
+    },
+    {
+      "field": "attributes.usagetype",
+      "op": "regex",
+      "value": "ReservedCapacityInDPUHours$"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "DPU-Hour"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "DPU reservation billed in DPU-hours. UI should validate increments of four."
+}
