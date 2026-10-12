@@ -39,7 +39,7 @@
     "serverless-compute": {
       "productFamily": "Serverless",
       "unit": "RPU-Hr",
-      "quantity": "3840",
+      "quantity": "3904",
       "limitations": [
         "account-specific-discount"
       ],
@@ -59,7 +59,7 @@
     "serverless-compute": {
       "productFamily": "Serverless",
       "unit": "RPU-Hr",
-      "quantity": "3840",
+      "quantity": "3904",
       "attributes": {
         "usagetype": "APN1-Redshift:ServerlessUsage"
       }
