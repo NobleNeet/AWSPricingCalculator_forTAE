@@ -377,9 +377,13 @@ jobs:
     outputs:
       commit: ${{ steps.commit.outputs.commit }}
     steps:
+      # Use the same source revision as the candidate validation. A concurrent
+      # main update must cause the final push to fail closed rather than
+      # validating an earlier candidate against a different semantic contract.
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
