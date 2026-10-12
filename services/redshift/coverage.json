@@ -190,9 +190,8 @@
           "value": "Redshift:InterRegionDataSharing"
         }
       ],
-      "status": "ignored",
-      "reason": "Outside currently implemented on-demand modes or an additional charge whose UI/mapping is pending verification.",
-      "limitationId": "unsupported-pricing-category"
+      "status": "mapped",
+      "componentId": "transfer-in"
     },
     {
       "filters": [
