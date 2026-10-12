@@ -20,6 +20,7 @@ jobs:
               offer=json.load(response)
           print('publicationDate:',offer.get('publicationDate'),'version:',offer.get('version'))
           print('products:',len(offer.get('products',{})))
+          print('RAW_OFFER_JSON:',json.dumps(offer,sort_keys=True))
           for sku, product in sorted(offer.get('products',{}).items()):
               terms=offer.get('terms',{}).get('OnDemand',{}).get(sku,{})
               ds=[]
