@@ -2,11 +2,42 @@
   "schemaVersion": 1,
   "id": "standard",
   "label": "Amazon Athena",
-  "selectors": [],
+  "selectors": [
+    {
+      "id": "sqlPeriod",
+      "label": "クエリの合計数のユニット",
+      "type": "select",
+      "default": "day",
+      "options": {
+        "values": [
+          "day",
+          "week",
+          "month"
+        ]
+      }
+    },
+    {
+      "id": "sparkPeriod",
+      "label": "スパークセッションの合計数のユニット",
+      "type": "select",
+      "default": "day",
+      "options": {
+        "values": [
+          "day",
+          "week",
+          "month"
+        ]
+      }
+    }
+  ],
   "fixedFilters": [],
   "components": [
+    "sql-scanned-day",
+    "sql-scanned-week",
     "sql-scanned",
     "capacity",
+    "spark-day",
+    "spark-week",
     "spark"
   ]
 }
