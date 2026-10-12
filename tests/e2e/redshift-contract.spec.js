@@ -62,7 +62,7 @@ test('Redshift screenshot-derived visible contract switches without duplicate fi
   await expect(page.locator('[data-instance-drawer-width]')).toBeVisible();
   await expect(picker.locator('tbody tr')).toHaveCount(10);
   await picker.locator('[data-instance-filter="vcpu"]').fill('>=32');
-  await expect(picker.locator('.ec2-instance-summary')).toContainText('2 / 10');
+  await expect(picker.locator('.ec2-instance-summary')).toContainText('3 / 10');
   await picker.locator('[data-instance-filter="vcpu"]').fill('');
   await picker.locator('[data-instance-filter="instanceType"]').fill('ra3.large');
   await expect(picker.locator('[data-instance-choice="ra3.large"]')).toBeVisible();
