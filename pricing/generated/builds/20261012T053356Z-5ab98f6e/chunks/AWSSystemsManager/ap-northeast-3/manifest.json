@@ -1,0 +1,17 @@
+{
+  "buildId": "20261012T053356Z-5ab98f6e",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 36,
+      "firstSku": "3QZAEB8NTXPRV52S",
+      "lastSku": "Y6JXRHJGVJ9QRUDC",
+      "path": "chunks/AWSSystemsManager/ap-northeast-3/00000.json",
+      "sha256": "856e399482d0e8254c66e53938f0316fb593c5df3f3a09516789f499ad85dea7"
+    }
+  ],
+  "productCount": 36,
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}

@@ -1,0 +1,46 @@
+{
+  "offerCode": "AWSGlue",
+  "products": {
+    "3GW7GD22UECNTZC9": {
+      "attributes": {
+        "group": "ETL Job Run Glue 6.0+",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "Jobrun",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AWSGlue",
+        "servicename": "AWS Glue",
+        "usagetype": "APN1-ETL-DPU-Hour-Gen2"
+      },
+      "productFamily": "AWS Glue",
+      "sku": "3GW7GD22UECNTZC9"
+    }
+  },
+  "publicationDate": "2026-10-06T19:23:38Z",
+  "terms": {
+    "OnDemand": {
+      "3GW7GD22UECNTZC9": {
+        "3GW7GD22UECNTZC9.JRTCKXETXF": {
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "3GW7GD22UECNTZC9.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.308 per Data Processing Unit-Hour for AWS Glue ETL Job Run Glue 6.0+",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.3080000000"
+              },
+              "rateCode": "3GW7GD22UECNTZC9.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "DPU-Hour"
+            }
+          },
+          "sku": "3GW7GD22UECNTZC9",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20261006192338"
+}
