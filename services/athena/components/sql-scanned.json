@@ -82,5 +82,10 @@
   },
   "limitations": [
     "account-specific-discount"
-  ]
+  ],
+  "enabledWhen": {
+    "field": "profile.sqlPeriod",
+    "op": "eq",
+    "value": "month"
+  }
 }
