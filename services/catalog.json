@@ -3,15 +3,6 @@
   "services": [
     {
       "available": true,
-      "id": "amplify",
-      "label": "AWS Amplify",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AWSAmplify"
-    },
-    {
-      "available": true,
       "id": "athena",
       "label": "Amazon Athena",
       "profiles": [
@@ -31,15 +22,6 @@
         "limitless-io-optimized"
       ],
       "serviceCode": "AmazonRDS"
-    },
-    {
-      "available": true,
-      "id": "codebuild",
-      "label": "AWS CodeBuild",
-      "profiles": [
-        "on-demand-ec2"
-      ],
-      "serviceCode": "CodeBuild"
     },
     {
       "available": true,
@@ -67,6 +49,51 @@
         "standard"
       ],
       "serviceCode": "AWSEvents"
+    },
+    {
+      "available": true,
+      "id": "rds-oracle",
+      "label": "Amazon RDS for Oracle",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AmazonRDS"
+    },
+    {
+      "available": true,
+      "id": "rds",
+      "label": "Amazon RDS for PostgreSQL",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AmazonRDS"
+    },
+    {
+      "available": true,
+      "id": "s3",
+      "label": "Amazon S3",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AmazonS3"
+    },
+    {
+      "available": true,
+      "id": "amplify",
+      "label": "AWS Amplify",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSAmplify"
+    },
+    {
+      "available": true,
+      "id": "codebuild",
+      "label": "AWS CodeBuild",
+      "profiles": [
+        "on-demand-ec2"
+      ],
+      "serviceCode": "CodeBuild"
     },
     {
       "available": true,
@@ -103,33 +130,6 @@
         "standard"
       ],
       "serviceCode": "AWSLambda"
-    },
-    {
-      "available": true,
-      "id": "rds",
-      "label": "Amazon RDS for PostgreSQL",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonRDS"
-    },
-    {
-      "available": true,
-      "id": "rds-oracle",
-      "label": "Amazon RDS for Oracle",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonRDS"
-    },
-    {
-      "available": true,
-      "id": "s3",
-      "label": "Amazon S3",
-      "profiles": [
-        "standard"
-      ],
-      "serviceCode": "AmazonS3"
     },
     {
       "available": true,

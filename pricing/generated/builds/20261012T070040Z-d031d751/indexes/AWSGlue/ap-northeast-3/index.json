@@ -1,0 +1,65 @@
+{
+  "attributes": {
+    "group": [
+      "Data catalog crawler run",
+      "Data catalog requests",
+      "Data Catalog Statistics",
+      "Data catalog storage",
+      "Data lake optimization job run",
+      "ETL Development endpoint",
+      "ETL Flex Job Run",
+      "ETL Flex Job Run Glue 6.0+",
+      "ETL Interactive Session",
+      "ETL Interactive Session Glue 6.0+",
+      "ETL Job run",
+      "ETL Job Run Glue 6.0+",
+      "Materialized view refresh job run"
+    ],
+    "location": [
+      "Asia Pacific (Osaka)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "ColumnStatistics",
+      "CrawlerRun",
+      "FlexJobrun",
+      "GlueInteractiveSession",
+      "Jobrun",
+      "MaterializedViewRefresh",
+      "OptimizationJobRun",
+      "Request",
+      "StartDevEndpoint",
+      "Storage"
+    ],
+    "regionCode": [
+      "ap-northeast-3"
+    ],
+    "servicecode": [
+      "AWSGlue"
+    ],
+    "servicename": [
+      "AWS Glue"
+    ],
+    "usagetype": [
+      "APN3-Catalog-Request",
+      "APN3-Catalog-Storage",
+      "APN3-Column-Statistics-DPU-Hour",
+      "APN3-Crawler-DPU-Hour",
+      "APN3-DEVED-DPU-Hour",
+      "APN3-ETL-DPU-Hour",
+      "APN3-ETL-DPU-Hour-Gen2",
+      "APN3-ETL-Flex-DPU-Hour",
+      "APN3-ETL-Flex-DPU-Hour-Gen2",
+      "APN3-GlueInteractiveSession-DPU-Hour",
+      "APN3-GlueInteractiveSession-DPU-Hour-Gen2",
+      "APN3-Materialized-View-Refresh-DPU-Hour",
+      "APN3-Optimization-DPU-Hour"
+    ]
+  },
+  "buildId": "20261012T070040Z-d031d751",
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSGlue"
+}
