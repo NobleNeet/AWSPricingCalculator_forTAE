@@ -139,6 +139,15 @@ async function renderDrawer() {
       const inputs = [...definition.selectors, ...definition.usageInputs];
       const sourceCode = pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
       const componentProducts = data.byServiceCode[sourceCode] ?? data.defaultProducts;
+      const redshiftNode = instance.serviceId === 'redshift' && componentId === 'node-compute'
+        ? componentProducts.find(product => product.productFamily === 'Compute Instance' && product.attributes?.instanceType === instance.selectors.instanceType)
+        : null;
+      const redshiftInformation = instance.serviceId === 'redshift' && componentId === 'node-compute' && redshiftNode
+        ? `<div class="input-help" data-redshift-instance-details>選択したインスタンス: ${escape(redshiftNode.attributes.instanceType)} · vCPU: ${escape(redshiftNode.attributes.vcpu)} · メモリ: ${escape(redshiftNode.attributes.memory)}</div>`
+        : instance.serviceId === 'redshift' && componentId === 'serverless-compute'
+        ? '<div class="input-help" data-redshift-rpu-guide>ワークロードのサイズとベース RPU の目安: Small 4–64 RPU / Medium 64–128 RPU / Large 128–256 RPU / Extra Large 256–1024 RPU</div>'
+        : '';
+
       const renderFields = advanced => (advanced ? '' : renderSupplementaryFields(componentId)) + inputs.filter(input => Boolean(input.ui?.advanced) === advanced).map((input, index) => {
         const control = field(input, 'component', componentId, context, componentProducts, filters, inactive);
         if (!athena || advanced || index !== 0) return control + (advanced ? '' : renderSupplementaryFields(componentId, input.id));
@@ -147,7 +156,7 @@ async function renderDrawer() {
         return period ? control + field(period, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false) : control;
       }).join('');
       const component = result?.components?.[componentId];
-      return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
+      return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${redshiftInformation}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
     }).join('')}${supplementarySections}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
       const limitation = limitations.get(id); return `<p class="${limitation?.severity === 'warning' ? 'warning-text' : 'notice-text'}">${escape(limitation?.message ?? id)}</p>`;
     }).join('')}`;
