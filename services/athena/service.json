@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "athena",
+  "label": "Amazon Athena",
+  "priceSource": {
+    "serviceCode": "AmazonAthena"
+  },
+  "profiles": [
+    "standard"
+  ],
+  "defaultProfile": "standard",
+  "pricingMappings": [
+    "sql-scanned",
+    "capacity",
+    "spark"
+  ]
+}
