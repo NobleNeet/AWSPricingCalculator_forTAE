@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "serverless-compute",
+  "label": "Redshift Serverless",
+  "selectors": [
+    {
+      "id": "workloadSize",
+      "label": "ワークロードのサイズ",
+      "type": "select",
+      "default": "Medium",
+      "options": {
+        "values": [
+          "Small",
+          "Medium",
+          "Large",
+          "Extra Large"
+        ]
+      }
+    },
+    {
+      "id": "baseRpu",
+      "label": "ベース RPU",
+      "type": "select",
+      "default": "128",
+      "options": {
+        "values": [
+          "4",
+          "8",
+          "16",
+          "32",
+          "64",
+          "128",
+          "256",
+          "512",
+          "1024"
+        ]
+      }
+    }
+  ],
+  "usageInputs": [
+    {
+      "id": "runtimeDailyHours",
+      "label": "想定される1日あたりのランタイム (時間)",
+      "type": "number",
+      "default": "1",
+      "minimum": "0",
+      "maximum": "24"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Serverless"
+      },
+      {
+        "field": "attributes.usagetype",
+        "op": "eq",
+        "value": "APN1-Redshift:ServerlessUsage"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "RPU-Hr"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.baseRpu"
+        },
+        {
+          "valueFrom": "component.runtimeDailyHours"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "project.hoursPerMonth",
+            "transforms": [
+              {
+                "type": "scale",
+                "factor": "0.04166666666666666666666666666666666666666666666666667"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "RPU-Hr"
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
