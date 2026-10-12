@@ -69,6 +69,10 @@
               {
                 "type": "minimum",
                 "value": "1"
+              },
+              {
+                "type": "divide",
+                "divisor": "60"
               }
             ]
           }
@@ -76,14 +80,7 @@
       ],
       "combine": "multiply"
     },
-    "transforms": [
-      {
-        "type": "unitConversion",
-        "factor": "0.0166666666666666666666666666666667",
-        "from": "DPU-Minute",
-        "to": "DPU-Hour"
-      }
-    ],
+    "transforms": [],
     "outputUnit": "DPU-Hour"
   },
   "enabledWhen": {
