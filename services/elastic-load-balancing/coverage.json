@@ -14,14 +14,9 @@
           "value": "LoadBalancing:Application"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "LoadBalancer hourly usage by Application Load Balancer"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "LoadBalancerUsage"
         }
       ],
       "status": "mapped",
@@ -40,14 +35,9 @@
           "value": "LoadBalancing:Application"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Used Application Load Balancer capacity units-hr"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "LCUUsage"
         }
       ],
       "status": "mapped",
@@ -66,14 +56,9 @@
           "value": "LoadBalancing:Network"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "LoadBalancer hourly usage by Network Load Balancer"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "LoadBalancerUsage"
         }
       ],
       "status": "mapped",
@@ -92,14 +77,9 @@
           "value": "LoadBalancing:Network"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Used Network Load Balancer capacity units-hr"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "LCUUsage"
         }
       ],
       "status": "mapped",
@@ -118,14 +98,9 @@
           "value": "LoadBalancing:Gateway"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "LoadBalancer hourly usage by Gateway Load Balancer"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "LoadBalancerUsage"
         }
       ],
       "status": "mapped",
@@ -144,14 +119,9 @@
           "value": "LoadBalancing:Gateway"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Used Gateway Load Balancer capacity units-hr"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "LCUUsage"
         }
       ],
       "status": "mapped",
@@ -170,14 +140,9 @@
           "value": "VpcEndpoint"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Hourly charge for AWS Gateway Load Balancer VPC Endpoint"
-        },
-        {
-          "field": "attributes.endpointType",
-          "op": "eq",
-          "value": "Gateway Load Balancer Endpoint"
+          "value": "VpcEndpoint-GWLBE-Hours"
         }
       ],
       "status": "mapped",
@@ -196,14 +161,9 @@
           "value": "VpcEndpoint"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint"
-        },
-        {
-          "field": "attributes.endpointType",
-          "op": "eq",
-          "value": "Gateway Load Balancer Endpoint"
+          "value": "VpcEndpoint-GWLBE-Bytes"
         }
       ],
       "status": "mapped",
@@ -222,14 +182,9 @@
           "value": "LoadBalancing"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "LoadBalancer hourly usage by Classic Load Balancer"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "LoadBalancerUsage"
         }
       ],
       "status": "mapped",
@@ -248,18 +203,29 @@
           "value": "LoadBalancing"
         },
         {
-          "field": "attributes.groupDescription",
+          "field": "usageTypeClass",
           "op": "eq",
-          "value": "Data processed by Classic Load Balancer"
-        },
-        {
-          "field": "attributes.locationType",
-          "op": "eq",
-          "value": "AWS Region"
+          "value": "DataProcessing-Bytes"
         }
       ],
       "status": "mapped",
       "componentId": "clb-bytes"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Application"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ReservedLCUUsage"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Reserved LCU purchase options are excluded by the On-Demand-only policy."
     }
   ]
 }
