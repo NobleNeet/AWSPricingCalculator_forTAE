@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "catalog-statistics",
+  "componentId": "catalog-statistics",
+  "priceSource": {
+    "serviceCode": "AWSGlue"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "Data Catalog Statistics"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "DPU-Hour"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS Glue Data Catalog Statistics meter."
+}

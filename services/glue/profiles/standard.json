@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "standard",
+  "label": "AWS Glue",
+  "selectors": [
+    {
+      "id": "etlJobs",
+      "label": "AWS Glue ETL jobs",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "interactiveSessions",
+      "label": "AWS Glue interactive sessions",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "developmentEndpoints",
+      "label": "AWS Glue development endpoints",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "dataCatalog",
+      "label": "AWS Glue Data Catalog",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "crawlers",
+      "label": "AWS Glue crawlers",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "dataBrewInteractiveSessions",
+      "label": "AWS Glue DataBrew interactive sessions",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "dataBrewJobs",
+      "label": "AWS Glue DataBrew jobs",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "dataQuality",
+      "label": "AWS Glue Data Quality",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "zeroEtl",
+      "label": "AWS Glue zero-ETL",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "fixedFilters": [],
+  "components": [
+    "etl-standard",
+    "etl-memory-gen2",
+    "etl-memory-legacy",
+    "etl-ray",
+    "interactive-standard",
+    "interactive-ray",
+    "development-endpoints",
+    "catalog-requests",
+    "catalog-storage",
+    "catalog-statistics",
+    "catalog-optimization",
+    "materialized-view-refresh",
+    "crawlers",
+    "databrew-sessions",
+    "databrew-jobs",
+    "data-quality",
+    "zero-etl-ingestion",
+    "zero-etl-compute"
+  ]
+}

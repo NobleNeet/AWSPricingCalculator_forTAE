@@ -97,6 +97,15 @@
     },
     {
       "available": true,
+      "id": "glue",
+      "label": "AWS Glue",
+      "profiles": [
+        "standard"
+      ],
+      "serviceCode": "AWSGlue"
+    },
+    {
+      "available": true,
       "id": "kms",
       "label": "AWS Key Management Service (KMS)",
       "profiles": [

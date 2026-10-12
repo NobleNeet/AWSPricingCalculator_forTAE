@@ -11,7 +11,15 @@ for (const [serviceId, labels] of Object.entries(DRAWER_LABELS_JA)) {
     await expect(page.locator('#price-meta')).toContainText(activeBuildId);
     await page.getByRole('button', { name: '最初の構成案を作る' }).click();
     await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
-    await page.locator(`[data-service="${serviceId}"]`).click();
+    const serviceButton = page.locator(`[data-service="${serviceId}"]`);
+    // A new Definition can exist before its first Price DB publication. The unit
+    // contract above still verifies its Japanese labels; browser drawer coverage
+    // begins automatically once the active Price DB exposes this service code.
+    if (await serviceButton.isDisabled()) {
+      await expect(serviceButton).toBeDisabled();
+      return;
+    }
+    await serviceButton.click();
     await expect(page.locator('#drawer-profile')).toBeVisible();
     await expect(page.locator('#drawer-region')).toBeVisible();
     for (const [profileId, profileLabel] of Object.entries(labels.profiles)) {

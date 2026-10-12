@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "databrew-jobs",
+  "componentId": "databrew-jobs",
+  "priceSource": {
+    "serviceCode": "AWSGlue"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "Data Brew Job run"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Node-hour"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS Glue Data Brew Job run meter."
+}

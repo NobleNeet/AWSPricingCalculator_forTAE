@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Global-Catalog-Request"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Global Data Catalog request Free Tier dimension.",
+      "limitationId": "free-tier"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Global-Catalog-Storage"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Global Data Catalog storage Free Tier dimension.",
+      "limitationId": "free-tier"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DBrew-FreeSessions"
+        }
+      ],
+      "status": "ignored",
+      "reason": "DataBrew free-trial interactive session dimension.",
+      "limitationId": "free-tier"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DBrew-Sessions"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "databrew-sessions"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DBrew-Node-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "databrew-jobs"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Crawler-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "crawlers"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Catalog-Request"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-requests"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Column-Statistics-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-statistics"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Catalog-Storage"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-storage"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Optimization-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "catalog-optimization"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "DEVED-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "development-endpoints"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ETL-Flex-DPU-Hour-Gen2"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ETL-Flex-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "GlueInteractiveSession-DPU-Hour-Gen2"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "interactive-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "GlueInteractiveSession-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "interactive-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ETL-DPU-Hour-Gen2"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ETL-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-standard"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ETL-M-DPU-Hour-Gen2"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-memory-gen2"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ETL-M-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-memory-legacy"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "GlueInteractiveSession-MemOptimized-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "interactive-ray"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "ETL-MemOptimized-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "etl-ray"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Materialized-View-Refresh-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "materialized-view-refresh"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "zeroETL-Lakehouse-Compute-DPU-Hour"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "zero-etl-compute"
+    },
+    {
+      "filters": [
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "zeroETL-App-IngestionVolume-GB"
+        }
+      ],
+      "status": "mapped",
+      "componentId": "zero-etl-ingestion"
+    }
+  ]
+}

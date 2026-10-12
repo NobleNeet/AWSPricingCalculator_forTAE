@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "databrew-sessions",
+  "componentId": "databrew-sessions",
+  "priceSource": {
+    "serviceCode": "AWSGlue"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    },
+    {
+      "field": "attributes.group",
+      "op": "eq",
+      "value": "Data Brew interactive sessions"
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "Sessions"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "AWS Glue Data Brew interactive sessions meter."
+}

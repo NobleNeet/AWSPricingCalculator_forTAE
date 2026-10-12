@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "id": "databrew-jobs",
+  "label": "AWS Glue DataBrew jobs",
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "runsPerMonth",
+      "label": "Runs per month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "integer": true
+    },
+    {
+      "id": "nodesPerRun",
+      "label": "Nodes per run",
+      "type": "number",
+      "default": "1",
+      "minimum": "0"
+    },
+    {
+      "id": "averageDurationMinutes",
+      "label": "Average duration",
+      "type": "number",
+      "default": "1",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    }
+  ],
+  "priceQuery": {
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "value": "Data Brew Job run"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Node-hour"
+      }
+    ],
+    "expect": "singleSku"
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.runsPerMonth"
+        },
+        {
+          "valueFrom": "component.nodesPerRun"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.averageDurationMinutes",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "1"
+              },
+              {
+                "type": "divide",
+                "divisor": "60"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Node-hour"
+  },
+  "enabledWhen": {
+    "field": "profile.dataBrewJobs",
+    "op": "eq",
+    "value": true
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}

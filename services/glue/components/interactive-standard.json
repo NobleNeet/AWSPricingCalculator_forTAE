@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "id": "interactive-standard",
+  "label": "AWS Glue interactive sessions",
+  "selectors": [
+    {
+      "id": "pricingGroup",
+      "label": "Pricing mode",
+      "type": "select",
+      "default": "ETL Interactive Session Glue 6.0+",
+      "options": {
+        "values": [
+          "ETL Interactive Session Glue 6.0+",
+          "ETL Interactive Session"
+        ]
+      },
+      "ui": {
+        "help": "AWS Public Price List の課金カテゴリを Glue のバージョン/実行クラスに対応させます。"
+      }
+    }
+  ],
+  "usageInputs": [
+    {
+      "id": "runsPerMonth",
+      "label": "Runs per month",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "integer": true
+    },
+    {
+      "id": "dpusPerRun",
+      "label": "DPUs per run",
+      "type": "number",
+      "default": "5",
+      "minimum": "0"
+    },
+    {
+      "id": "averageDurationMinutes",
+      "label": "Average duration",
+      "type": "number",
+      "default": "1",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "AWS Glue"
+    }
+  ],
+  "priceQuery": {
+    "productFilters": [
+      {
+        "field": "attributes.group",
+        "op": "eq",
+        "valueFrom": "component.pricingGroup"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "DPU-Hour"
+      }
+    ],
+    "expect": "singleSku"
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.runsPerMonth"
+        },
+        {
+          "valueFrom": "component.dpusPerRun"
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "valueFrom": "component.averageDurationMinutes",
+            "transforms": [
+              {
+                "type": "minimum",
+                "value": "1"
+              },
+              {
+                "type": "divide",
+                "divisor": "60"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "DPU-Hour"
+  },
+  "enabledWhen": {
+    "field": "profile.interactiveSessions",
+    "op": "eq",
+    "value": true
+  },
+  "limitations": [
+    "account-specific-discount"
+  ]
+}
