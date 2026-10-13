@@ -26,3 +26,16 @@ test('EC2 outbound transfer quantity is priced through tiered dimensions, not a 
   assert.equal(result.billingQuantity, '15');
   assert.equal(result.amountUsd, '1.25');
 });
+
+test('interregion transfer selects an exact route SKU and computes outbound GB only', () => {
+  const definition = read('transfer-interregion');
+  const tokyoOhio = 'APN1-USE2-AWS-Out-Bytes';
+  assert.ok(definition.selectors[0].options.filters[1].value.includes(tokyoOhio));
+  assert.equal(definition.selectors[0].options.label[tokyoOhio], '東京 → 米国東部（オハイオ）');
+  assert.equal(definition.priceQuery.productFilters.at(-1).valueFrom, 'component.route');
+  const result = calculate(definition.calculation, { component: { gbPerMonth: '75' } }, {
+    unit: 'GB', pricePerUnit: { USD: '0.09' }
+  });
+  assert.equal(result.billingQuantity, '75');
+  assert.equal(result.amountUsd, '6.75');
+});
