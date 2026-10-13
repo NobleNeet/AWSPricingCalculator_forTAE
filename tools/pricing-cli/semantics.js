@@ -234,7 +234,7 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
             // require the referenced component to be evaluated first. Isolating only
             // the metered component produces false MISSING_USAGE semantic errors.
             const referenced = new Set(
-              [...JSON.stringify(component.calculation).matchAll(/"componentId":"([^"]+)"/g)]
+              [...JSON.stringify(component.calculation ?? {}).matchAll(/"componentId":"([^"]+)"/g)]
                 .map(match => match[1])
             );
             const activeComponents = profile.components.filter(id => id === componentId || referenced.has(id));
