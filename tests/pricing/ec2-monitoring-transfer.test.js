@@ -10,8 +10,13 @@ const read = name => JSON.parse(readFileSync(new URL(name + '.json', root), 'utf
 test('EC2 monitoring usage is metric-months scaled by instance count and usage hours', () => {
   const definition = read('detailed-monitoring');
   const context = { component: { metricsPerInstance: '7' }, resolvedInputs: { instance: { quantity: '2', hours: '365' } } };
-  const dimension = { unit: 'Metrics', pricePerUnit: { USD: '0.30' } };
-  const result = calculate(definition.calculation, context, dimension);
+  const dimensions = [
+    { unit: 'Metrics', beginRange: '0', endRange: '10000', pricePerUnit: { USD: '0.30' } },
+    { unit: 'Metrics', beginRange: '10000', endRange: '250000', pricePerUnit: { USD: '0.10' } },
+    { unit: 'Metrics', beginRange: '250000', endRange: '1000000', pricePerUnit: { USD: '0.05' } },
+    { unit: 'Metrics', beginRange: '1000000', endRange: 'Inf', pricePerUnit: { USD: '0.02' } }
+  ];
+  const result = calculate(definition.calculation, context, dimensions[0], dimensions);
   assert.equal(result.billingQuantity, '7');
   assert.equal(result.amountUsd, '2.1');
 });
