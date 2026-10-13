@@ -68,7 +68,10 @@ test('EC2 inbound transfer is free and outbound transfer meters are opt-in', asy
   const initial = await price.innerText();
   await expect(page.locator('[data-toggle="transfer-internet-out"]')).not.toBeChecked();
   await expect(page.locator('[data-toggle="transfer-regional"]')).not.toBeChecked();
-  const inbound = page.locator('#input-profile--transferInboundGb');
+  const transfer = page.locator('[data-ec2-transfer-section]');
+  await expect(transfer).toHaveCount(1);
+  await expect(transfer.locator('[data-component-id="transfer-interregion"]')).toHaveCount(1);
+  const inbound = transfer.locator('#input-profile--transferInboundGb');
   await expect(inbound).toBeVisible();
   await inbound.fill('250');
   await inbound.press('Tab');
