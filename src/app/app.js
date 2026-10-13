@@ -158,6 +158,7 @@ async function renderDrawer() {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
       if (elb) return ''; // ELB pricing is shown at the end of each type's parameter section.
       if (instance.serviceId === 'redshift' && componentId === 'transfer-in') return ''; // priced in supplementary section
+      if (instance.serviceId === 'ec2' && ['ebs-io2-iops-tier2', 'ebs-io2-iops-tier3'].includes(componentId)) return ''; // Internal io2 pricing tiers: show only the editable first-tier component; all tiers remain included in the total.
       // Athena uses three exclusive billing-period calculation variants for SQL and Spark.
       // Only the selected variant belongs in the drawer; retain all variants in the model.
       const athena = instance.serviceId === 'athena';
@@ -189,7 +190,7 @@ async function renderDrawer() {
       }).join('');
       const component = result?.components?.[componentId];
       return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${redshiftInformation}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
-    }).join('')}${supplementarySections}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
+    }).join('')}${instance.serviceId === 'ec2' ? '<p class="input-help" data-ec2-ebs-tier-note>io2 の IOPS 段階料金は、入力欄を重複させず合計金額に含めます。</p>' : ''}${supplementarySections}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
       const limitation = limitations.get(id); return `<p class="${limitation?.severity === 'warning' ? 'warning-text' : 'notice-text'}">${escape(limitation?.message ?? id)}</p>`;
     }).join('')}`;
     if (focus?.startsWith('input-')) $(focus)?.focus();
