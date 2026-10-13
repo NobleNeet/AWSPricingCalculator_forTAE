@@ -20,10 +20,12 @@ for (const code of codes) {
   const rawValues = Object.values(offer.products ?? {});
   console.log(code + ' raw products=' + rawValues.length + ' first=' + JSON.stringify(rawValues.slice(0, 2).map(p => p.attributes)));
   const usageMatches = rawValues.filter(p => patterns.test(p.attributes?.usagetype ?? ''));
-  console.log(code + ' usage matches ignoring region=' + usageMatches.length + ' examples=' + JSON.stringify(usageMatches.slice(0, 8).map(p => ({family:p.productFamily,attr:p.attributes}))));
+  console.log(code + ' usage matches ignoring region=' + usageMatches.length);
+  console.log(code + ' transfer type distribution=' + JSON.stringify(Object.fromEntries([...new Set(rawValues.map(p => p.attributes?.transferType ?? '(missing)'))].map(type => [type, rawValues.filter(p => (p.attributes?.transferType ?? '(missing)') === type).length]))));
   for (const [sku, product] of Object.entries(offer.products ?? {})) {
     const attributes = product.attributes ?? {};
-    if (attributes.regionCode !== region || !patterns.test(attributes.usagetype ?? '')) continue;
+    if (!patterns.test(attributes.usagetype ?? '')) continue;
+    if (code === 'AWSDataTransfer' ? attributes.fromRegionCode !== region : attributes.regionCode !== region) continue;
     const terms = Object.values(offer.terms?.OnDemand?.[sku] ?? {});
     selected.push({
       sku, productFamily: product.productFamily, usageType: attributes.usagetype, operation: attributes.operation,
