@@ -3,7 +3,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 const region = process.argv[2] ?? 'ap-northeast-1';
 const out = process.argv[3] ?? 'ec2-meter-evidence.json';
 const origin = 'https://pricing.us-east-1.amazonaws.com';
-const codes = ['AmazonCloudWatch', 'AmazonEC2', 'AWSDataTransfer'];
+const codes = ['AWSDataTransfer'];
 const patterns = /(?:MetricMonitorUsage|DataTransfer-Out-Bytes|DataTransfer-Regional-Bytes|AWS-Out-Bytes)/;
 const fetchAws = async url => {
   const response = await fetch(url, { signal: AbortSignal.timeout(1200000) });
@@ -17,6 +17,10 @@ for (const code of codes) {
   if (!relative?.startsWith('/offers/v1.0/aws/')) throw Error(`No AWS region price index for ${code}/${region}`);
   const offer = await fetchAws(origin + relative);
   const selected = [];
+  const rawValues = Object.values(offer.products ?? {});
+  console.log(code + ' raw products=' + rawValues.length + ' first=' + JSON.stringify(rawValues.slice(0, 2).map(p => p.attributes)));
+  const usageMatches = rawValues.filter(p => patterns.test(p.attributes?.usagetype ?? ''));
+  console.log(code + ' usage matches ignoring region=' + usageMatches.length + ' examples=' + JSON.stringify(usageMatches.slice(0, 8).map(p => ({family:p.productFamily,attr:p.attributes}))));
   for (const [sku, product] of Object.entries(offer.products ?? {})) {
     const attributes = product.attributes ?? {};
     if (attributes.regionCode !== region || !patterns.test(attributes.usagetype ?? '')) continue;
