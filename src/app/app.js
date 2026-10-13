@@ -72,10 +72,17 @@ function render() {
     return `<td data-total="${escape(id)}"><div>${summary.complete ? '月額合計' : '計算済み小計'}</div><div class="amount">${escape(money(summary.amountUsd))}</div>${summary.uncalculated ? `<div class="invalid">未計算サービス: ${summary.uncalculated}</div>` : ''}<div class="delta">${delta !== null ? `Baselineとの差額: ${escape(money(delta))}` : '差額: 未計算項目があるため比較不可'}</div></td>`;
   }).join('')}</tr></tbody></table></div>`;
 }
-async function loadProfilePriceProducts(pkg, profile, region) {
+async function loadProfilePriceProducts(pkg, profile, region, instance) {
   const defaultCode = pkg.service.priceSource.serviceCode;
   const overrides = pkg.service.priceSource.componentOverrides ?? {};
-  const codes = [...new Set([defaultCode, ...profile.components.map(id => overrides[id]).filter(Boolean)])];
+  // Missing optional EC2 meter sources must not break unmodified EC2 estimates
+  // while a new Price DB publication is pending. Opting into the meter
+  // explicitly requires fetching its source and fails closed if unavailable.
+  const codes = [...new Set([defaultCode, ...profile.components
+    .filter(id => pkg.service.id !== 'ec2' ||
+      !pkg.components[id]?.optional ||
+      (instance?.components?.[id]?.enabled ?? pkg.components[id]?.defaultEnabled ?? true))
+    .map(id => overrides[id]).filter(Boolean)])];
   const byServiceCode = Object.fromEntries(await Promise.all(codes.map(async code => [code, (await prices.products(code, region)).products])));
   return { defaultProducts: byServiceCode[defaultCode], byServiceCode };
 }
@@ -91,7 +98,7 @@ async function evaluate(id) {
     const pkg = await definitions.package(instance.serviceId), profile = pkg.profiles[instance.profileId];
     if (!profile) throw Object.assign(Error('未知Profile: 要再選択'), { code: 'INVALID_DATA' });
     if (fillDefinitionDefaults(pkg, instance)) save();
-    const data = await loadProfilePriceProducts(pkg, profile, region);
+    const data = await loadProfilePriceProducts(pkg, profile, region, instance);
     result = evaluateService(pkg, instance, { ...state.project.usageAssumptions, defaultRegion: state.project.defaultRegion, region }, data.defaultProducts, data.defaultProducts, data.byServiceCode);
   } catch (error) { result = { state: error.code === 'INVALID_DATA' ? 'invalid' : 'unavailable', amountUsd: null, issues: [{ code: error.code ?? 'FETCH_FAILED', severity: 'error', message: error.message }] }; }
   if (!state.serviceInstances[id] || revisions.get(id) !== revision) return;
@@ -120,7 +127,7 @@ async function renderDrawer() {
     if (!profile) throw Error('未知Profile: 要再選択');
     const regionValid = ['inherit', 'override'].includes(instance.region?.mode);
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
-    const data = await loadProfilePriceProducts(pkg, profile, region);
+    const data = await loadProfilePriceProducts(pkg, profile, region, instance);
     if (editing !== id) return;
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
