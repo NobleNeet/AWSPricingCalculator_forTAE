@@ -43,3 +43,17 @@ test('EC2 custom monthly costs survive save/reload and are added once to the est
   await expect(page.locator('#ec2-additional-cost')).toHaveValue('3.25');
   await expect.poll(async () => Number((await page.locator('td[data-instance] .amount').innerText()).replace(/[$,]/g, ''))).toBeCloseTo(subtotal + 3.25, 2);
 });
+
+test('EC2 detailed monitoring is opt-in, and missing pricing must not masquerade as zero', async ({ page }) => {
+  await page.goto('./');
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
+  await page.locator('[data-service="ec2"]').click();
+  const monitoring = page.locator('[data-component-id="detailed-monitoring"]');
+  await expect(monitoring).toBeVisible();
+  await expect(monitoring.locator('[data-toggle="detailed-monitoring"]')).not.toBeChecked();
+  await expect(monitoring.locator('#input-component-detailed-monitoring-metricsPerInstance')).toBeDisabled();
+  await monitoring.locator('[data-toggle="detailed-monitoring"]').check();
+  await expect(monitoring.locator('#input-component-detailed-monitoring-metricsPerInstance')).toBeEnabled();
+  await expect(page.locator('#service-drawer')).not.toContainText('Savings Plans');
+});
