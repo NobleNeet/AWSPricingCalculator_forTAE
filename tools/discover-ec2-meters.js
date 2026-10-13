@@ -38,7 +38,7 @@ for (const code of codes) {
   }
   results[code] = { region, publicationDate: offer.publicationDate, sourceUrl: origin + relative, matchingProducts: selected };
   console.log(`${code}/${region}: matches=${selected.length}`);
-  for (const p of selected.slice(0, 80)) {
+  for (const p of selected.slice(0, 150)) {
     console.log(JSON.stringify({ sku: p.sku, family: p.productFamily, type: p.usageType, operation: p.operation, unit: p.terms?.[0]?.dimensions?.map(d => d.unit), prices: p.terms?.[0]?.dimensions?.map(d => [d.beginRange, d.endRange, d.pricePerUnit?.USD]) }));
   }
 }
