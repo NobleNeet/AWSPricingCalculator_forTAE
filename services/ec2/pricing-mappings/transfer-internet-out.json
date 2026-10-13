@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "transfer-internet-out",
+  "componentId": "transfer-internet-out",
+  "priceSource": {
+    "serviceCode": "AmazonEC2"
+  },
+  "productMatchers": [
+    {
+      "field": "productFamily",
+      "op": "eq",
+      "value": "Data Transfer"
+    },
+    {
+      "field": "usageType",
+      "op": "in",
+      "value": [
+        "APN1-DataTransfer-Out-Bytes",
+        "APN3-DataTransfer-Out-Bytes",
+        "DataTransfer-Out-Bytes",
+        "USE2-DataTransfer-Out-Bytes",
+        "USW1-DataTransfer-Out-Bytes",
+        "USW2-DataTransfer-Out-Bytes"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "eq",
+      "value": "GB"
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Official AWS CUR data transfer usage type documented at https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html. Validate actual AWS Public Price List regional SKU and tier coverage before promotion; do not assume a price."
+}
