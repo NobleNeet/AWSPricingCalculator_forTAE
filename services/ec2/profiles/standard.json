@@ -130,6 +130,18 @@
       "ui": {
         "help": "EC2組み込みEBSのボリューム種別です。noneでEBS料金を除外します。gp3では追加IOPS/throughput、io1/io2ではProvisioned IOPSも別課金メーターとして計算します。"
       }
+    },
+    {
+      "id": "transferInboundGb",
+      "label": "インターネットからのデータ転送 (IN) (GB/月)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "sectionId": "transfer",
+        "sectionTitle": "データ転送 - オプション",
+        "help": "インターネットからAWSへの受信データ転送は無料です。入力値は記録しますが、料金には加算しません。"
+      }
     }
   ],
   "fixedFilters": [],
@@ -143,6 +155,8 @@
     "ebs-io2-iops",
     "ebs-io2-iops-tier2",
     "ebs-io2-iops-tier3",
-    "detailed-monitoring"
+    "detailed-monitoring",
+    "transfer-internet-out",
+    "transfer-regional"
   ]
 }
