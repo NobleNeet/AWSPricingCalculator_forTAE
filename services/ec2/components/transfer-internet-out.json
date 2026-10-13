@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "transfer-internet-out",
+  "label": "インターネットへのデータ転送 (OUT)",
+  "optional": true,
+  "defaultEnabled": false,
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "gbPerMonth",
+      "label": "データ転送量 (GB/月)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "インターネットへの送信量を入力します。アカウント横断の無料枠は差し引きません。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Data Transfer"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-DataTransfer-Out-Bytes",
+          "APN3-DataTransfer-Out-Bytes",
+          "DataTransfer-Out-Bytes",
+          "USE2-DataTransfer-Out-Bytes",
+          "USW1-DataTransfer-Out-Bytes",
+          "USW2-DataTransfer-Out-Bytes"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "tiered",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "aggregate-billing"
+  ],
+  "ui": {
+    "help": "AWS Public Price Listから該当する地域の転送料金を特定できない場合は未計算とします。"
+  }
+}

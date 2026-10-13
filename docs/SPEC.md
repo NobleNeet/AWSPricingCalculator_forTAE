@@ -235,6 +235,22 @@ EC2 DrawerのAmazon EBS欄では、EBS volume type、Storage amount、および�
 
 ---
 
+### 6.2.1 EC2の追加コスト（手入力）
+
+EC2の公式Calculatorにある「追加コスト - オプション」に対応し、USD建ての任意の月額費用を入力できる。未指定は0 USDとし、AWS Public Price ListのSKUや料金ディメンションは生成しない。ユーザー入力であることを表示し、EC2の従量課金とは独立してPlan合計へ1回だけ加算する。入力は0以上の有限の十進数のみ許可し、不正値の場合は当該サービスの見積もりをinvalidとする。入力値はService Instanceの `additionalMonthlyCostUsd` に保持するため、Project JSONで保存・復元・複製する。
+
+---
+
+### 6.2.2 EC2詳細モニタリングおよびデータ転送
+
+EC2 Drawerの詳細モニタリングは既定OFFとし、明示的に有効化した場合のみCloudWatchのメトリクス料金を計算する。CloudWatchの詳細モニタリングの使用量にはインスタンスあたりのメトリクス数、インスタンス数、稼働時間による月額按分を使用する。価格データは `AmazonCloudWatch` の `MetricMonitorUsage` / `MetricStorage:AWS/EC2` を識別する。対応するSKUが存在しない場合に推測料金やゼロ料金にフォールバックしてはならない。AWS資料: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_billing.html
+
+データ転送は既定OFFの別課金コンポーネントを方向別に提供する。インターネットからの受信は無料扱いで入力を保持する。インターネットへの送信は段階課金、リージョン内・AZ間転送は必要な送受信方向を含めたGB数で計算する。リージョン間転送では転送元→転送先の経路と送信GB数を指定し、送信元でのみ課金する。データ転送量の0 GBは0 USDだが、非ゼロの使用量で対応SKUが存在しない場合は金額を推測しない。AWS資料: https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html
+
+データ転送の無料枠はアカウント・複数AWSサービス・複数リージョンを横断して集計されるため、本アプリの既存方針では控除しない。見積もり対象外のアカウント使用量は取得しない。複数行の転送入力やすべてのAWSリージョン間経路については、利用可能なAWS価格SKUに基づき対応するものに限る。内部課金コンポーネントを別の重複入力として表示してはならない。
+
+---
+
 ### 6.3 Fargateの月間使用量
 
 FargateのTasks or podsは1日あたりの実行件数とする。月間件数はProjectの共通月間時間を24時間で割った日数へ換算して求める。既定730時間では730/24日となり、AWS Pricing Calculatorのper day入力と同じ前提を使う。30日で見積もる場合は共通月間時間を720時間に設定する。

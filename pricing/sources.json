@@ -15,6 +15,7 @@
     "AmazonRDS",
     "AmazonCloudWatch",
     "awskms",
-    "AWSEvents"
+    "AWSEvents",
+    "AWSDataTransfer"
   ]
 }

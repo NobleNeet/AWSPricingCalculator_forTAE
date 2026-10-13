@@ -1,0 +1,3996 @@
+{
+  "offerCode": "AWSDataTransfer",
+  "version": "20260916132208",
+  "publicationDate": "2026-09-16T13:22:08Z",
+  "products": {
+    "W9HQFVVCE9AUG78C": {
+      "sku": "W9HQFVVCE9AUG78C",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Atlanta)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-ATL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-atl-1"
+      }
+    },
+    "2742H3DY6FB6C9FJ": {
+      "sku": "2742H3DY6FB6C9FJ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Seattle)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-SEA1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-sea-1"
+      }
+    },
+    "86CCDW7VCMREWJXY": {
+      "sku": "86CCDW7VCMREWJXY",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Nashville",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1BNA1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-bna1"
+      }
+    },
+    "AYP46MVPB4SCB4A9": {
+      "sku": "AYP46MVPB4SCB4A9",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "AWS GovCloud (US-East)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-UGE1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-gov-east-1"
+      }
+    },
+    "45BRWHDUKDC55Q95": {
+      "sku": "45BRWHDUKDC55Q95",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Boston",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1"
+      }
+    },
+    "AS4PTK8TQT795EQE": {
+      "sku": "AS4PTK8TQT795EQE",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "New Zealand (Auckland)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-AKL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-2-akl-1"
+      }
+    },
+    "5KJKFCD9NT3R826H": {
+      "sku": "5KJKFCD9NT3R826H",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (New Zealand)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS8-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-6"
+      }
+    },
+    "3KNEKK2SYDUNC5XT": {
+      "sku": "3KNEKK2SYDUNC5XT",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "AWS European Sovereign Cloud (Germany)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-ESC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eusc-de-east-1"
+      }
+    },
+    "CCCP43GFS8EQWJKM": {
+      "sku": "CCCP43GFS8EQWJKM",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (Vodafone) - Berlin",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUC1WL1BER1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-central-1-wl1-ber1"
+      }
+    },
+    "ZUVMW54CG3PM9GCN": {
+      "sku": "ZUVMW54CG3PM9GCN",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Minneapolis",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1MSP1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-msp1"
+      }
+    },
+    "M2BM34HMVKQ5BP7D": {
+      "sku": "M2BM34HMVKQ5BP7D",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (Zurich)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EUC2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-central-2"
+      }
+    },
+    "Q75SKZPXPV87DJNM": {
+      "sku": "Q75SKZPXPV87DJNM",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Nigeria (Lagos)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-LOS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "af-south-1-los-1"
+      }
+    },
+    "7EQFT8UVNNKTV2AA": {
+      "sku": "7EQFT8UVNNKTV2AA",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (N. Virginia)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-USE1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1"
+      }
+    },
+    "3P2UWSHAWGKYADKU": {
+      "sku": "3P2UWSHAWGKYADKU",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Israel (Tel Aviv)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-ILC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "il-central-1"
+      }
+    },
+    "5UNXX3S9YKY8QYMJ": {
+      "sku": "5UNXX3S9YKY8QYMJ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "EU (Milan)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EUS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-south-1"
+      }
+    },
+    "YNP8XFEJYQBA5U7B": {
+      "sku": "YNP8XFEJYQBA5U7B",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Mexico (Central)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-MXC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "mx-central-1"
+      }
+    },
+    "J2R8PX6MAVQSVPTA": {
+      "sku": "J2R8PX6MAVQSVPTA",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Phoenix)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-PHX1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-phx-1"
+      }
+    },
+    "JPMPXTZF8J92EM7M": {
+      "sku": "JPMPXTZF8J92EM7M",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Tampa",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1TPA1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-tpa1"
+      }
+    },
+    "8YNQP2JX4XR4MDP7": {
+      "sku": "8YNQP2JX4XR4MDP7",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (SKT) - Daejeon",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-APNE2WL1CJJ1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-northeast-2-wl1-cjj1"
+      }
+    },
+    "ABK2X62TAPM5BT68": {
+      "sku": "ABK2X62TAPM5BT68",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Sydney)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-2"
+      }
+    },
+    "JJXNR4WCGHUWDPC3": {
+      "sku": "JJXNR4WCGHUWDPC3",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Minneapolis)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-MSP1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-msp-1"
+      }
+    },
+    "QK7GTE8N2H7V3CZK": {
+      "sku": "QK7GTE8N2H7V3CZK",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Senegal (Dakar)",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUW3WL1DSS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-3-wl1-dss1"
+      }
+    },
+    "S3YP5Y5SMQQZU55E": {
+      "sku": "S3YP5Y5SMQQZU55E",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Taiwan (Taipei)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-TPE1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-northeast-1-tpe-1"
+      }
+    },
+    "2EV2XNW6KQF4WZ95": {
+      "sku": "2EV2XNW6KQF4WZ95",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Chile (Santiago)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-SCL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-scl-1"
+      }
+    },
+    "47SY7DU93ZQE9PCR": {
+      "sku": "47SY7DU93ZQE9PCR",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Portland)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-PDX1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-pdx-1"
+      }
+    },
+    "88PCB8KWDDUE6KDA": {
+      "sku": "88PCB8KWDDUE6KDA",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Taipei)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APE2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-east-2"
+      }
+    },
+    "B42N386ASQDR2BFU": {
+      "sku": "B42N386ASQDR2BFU",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (British Telecom) - Manchester",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUW2WL2MAN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-2-wl2-man1"
+      }
+    },
+    "RAZEZ59KYWMED5D6": {
+      "sku": "RAZEZ59KYWMED5D6",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "AWS GovCloud (US-West)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-UGW1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-gov-west-1"
+      }
+    },
+    "UPXCN52CJ7DD3Z63": {
+      "sku": "UPXCN52CJ7DD3Z63",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (Vodafone) - London",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUW2WL1LON1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-2-wl1-lon1"
+      }
+    },
+    "T36MAKCV6S9ZAFV5": {
+      "sku": "T36MAKCV6S9ZAFV5",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Chicago",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1CHI1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-chi1"
+      }
+    },
+    "ZSU9WJUK4U2EY4CG": {
+      "sku": "ZSU9WJUK4U2EY4CG",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Houston)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-IAH1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-iah-1"
+      }
+    },
+    "7VS58UC29BYWN6C4": {
+      "sku": "7VS58UC29BYWN6C4",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Malaysia)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS7-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-5"
+      }
+    },
+    "74WX8XCGA2P4JHQM": {
+      "sku": "74WX8XCGA2P4JHQM",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Melbourne)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS6-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-4"
+      }
+    },
+    "99RYU3BE4BDDQ7G4": {
+      "sku": "99RYU3BE4BDDQ7G4",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Atlanta",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1ATL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-atl1"
+      }
+    },
+    "CSSPBAFN2WGQ4X9Y": {
+      "sku": "CSSPBAFN2WGQ4X9Y",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Honolulu)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-HNL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-hnl-1"
+      }
+    },
+    "XADQ8STSUH95KEXJ": {
+      "sku": "XADQ8STSUH95KEXJ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "EU (Paris)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EUW3-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-3"
+      }
+    },
+    "X6KW4W4WZ43NVRVV": {
+      "sku": "X6KW4W4WZ43NVRVV",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (Spain)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EUS2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-south-2"
+      }
+    },
+    "NEY5GWA5NHGTE8E9": {
+      "sku": "NEY5GWA5NHGTE8E9",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Finland (Helsinki)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-HEL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-north-1-hel-1"
+      }
+    },
+    "38N5SG3H9GXEYYU5": {
+      "sku": "38N5SG3H9GXEYYU5",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Morocco (Casablanca)",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUW3WL1CMN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-3-wl1-cmn1"
+      }
+    },
+    "VX62EJFKHHRQ7MRZ": {
+      "sku": "VX62EJFKHHRQ7MRZ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (SKT) - Seoul",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-APNE2WL1SEL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-northeast-2-wl1-sel1"
+      }
+    },
+    "ZG68UHFCKB4Y8W68": {
+      "sku": "ZG68UHFCKB4Y8W68",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Canada (Central)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-CAN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ca-central-1"
+      }
+    },
+    "MY5TXMUEDYZARPVE": {
+      "sku": "MY5TXMUEDYZARPVE",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Boston)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-BOS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-bos-1"
+      }
+    },
+    "E4QGTN6SQ5FG2UJN": {
+      "sku": "E4QGTN6SQ5FG2UJN",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "EU (Frankfurt)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EUC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-central-1"
+      }
+    },
+    "ZCX64VGHTGN5HQNQ": {
+      "sku": "ZCX64VGHTGN5HQNQ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (Vodafone) - Manchester",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUW2WL1MAN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-2-wl1-man1"
+      }
+    },
+    "756JBM9NU7DF4ACZ": {
+      "sku": "756JBM9NU7DF4ACZ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Philippines (Manila)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-MNL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-1-mnl-1"
+      }
+    },
+    "NKHMVHMG8UAQZA2X": {
+      "sku": "NKHMVHMG8UAQZA2X",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Oman (Muscat)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-MCT1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "me-south-1-mct-1"
+      }
+    },
+    "Z4FGXUKRRZ3MAS2E": {
+      "sku": "Z4FGXUKRRZ3MAS2E",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Miami)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-MIA1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-mia-1"
+      }
+    },
+    "VF88J8263CEJ8UVX": {
+      "sku": "VF88J8263CEJ8UVX",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Thailand (Bangkok)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-BKK1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-1-bkk-1"
+      }
+    },
+    "VZH3K2VKXZKQGK9U": {
+      "sku": "VZH3K2VKXZKQGK9U",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Chicago)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-CHI1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-chi-1"
+      }
+    },
+    "2SS7G2ST97KFH535": {
+      "sku": "2SS7G2ST97KFH535",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Germany (Hamburg)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-HAM1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-central-1-ham-1"
+      }
+    },
+    "CEY7CZ3T7DYPBFMF": {
+      "sku": "CEY7CZ3T7DYPBFMF",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Verizon) - Phoenix",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USW2WL1PHX1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-wl1-phx1"
+      }
+    },
+    "KJZ2T9SJ93J8RPE8": {
+      "sku": "KJZ2T9SJ93J8RPE8",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Poland (Warsaw)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-WAW1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-central-1-waw-1"
+      }
+    },
+    "343P7KDP69FMSDVT": {
+      "sku": "343P7KDP69FMSDVT",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (Vodafone) - Dortmund",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUC1WL1DTM1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-central-1-wl1-dtm1"
+      }
+    },
+    "MKY2MWAJ6JS7WUZZ": {
+      "sku": "MKY2MWAJ6JS7WUZZ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Australia (Perth)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-PER1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-2-per-1"
+      }
+    },
+    "5WJ57TH4PWEBYKWW": {
+      "sku": "5WJ57TH4PWEBYKWW",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "Inter Region Peering Data Transfer Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "External",
+        "toLocationType": "Other",
+        "usagetype": "APN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": ""
+      }
+    },
+    "T8W8KA2YHEVTRH3A": {
+      "sku": "T8W8KA2YHEVTRH3A",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (N. California)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-USW1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-1"
+      }
+    },
+    "TJNCTDUAM4QXD2VB": {
+      "sku": "TJNCTDUAM4QXD2VB",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Canada West (Calgary)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-CAN2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ca-west-1"
+      }
+    },
+    "PKC9TNBVZA4G6BZ5": {
+      "sku": "PKC9TNBVZA4G6BZ5",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "EU (London)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EUW2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-2"
+      }
+    },
+    "WK6BKBWZ52XXQW46": {
+      "sku": "WK6BKBWZ52XXQW46",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Middle East (Bahrain)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-MES1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "me-south-1"
+      }
+    },
+    "9EDP4CBEA38DSQJ8": {
+      "sku": "9EDP4CBEA38DSQJ8",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Argentina (Buenos Aires)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-BUE1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-bue-1"
+      }
+    },
+    "9ESU2G5WSY6FMZR3": {
+      "sku": "9ESU2G5WSY6FMZR3",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "AWS Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "External",
+        "toLocationType": "Other",
+        "usagetype": "APN1-DataTransfer-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": ""
+      }
+    },
+    "VQYJ4SZB9749EKHH": {
+      "sku": "VQYJ4SZB9749EKHH",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Africa (Cape Town)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-AFS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "af-south-1"
+      }
+    },
+    "QVC67YT7FVZ7PTC4": {
+      "sku": "QVC67YT7FVZ7PTC4",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Verizon) - Los Angeles",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USW2WL1LAX1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-wl1-lax1"
+      }
+    },
+    "ZBBNPV2ZG5YKTFVS": {
+      "sku": "ZBBNPV2ZG5YKTFVS",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Verizon) - Seattle",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USW2WL1SEA1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-wl1-sea1"
+      }
+    },
+    "7SSE9FRWVYAZ548Q": {
+      "sku": "7SSE9FRWVYAZ548Q",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Las Vegas)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-LAS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-las-1"
+      }
+    },
+    "4364QHA6R42PYPXS": {
+      "sku": "4364QHA6R42PYPXS",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Osaka)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APN3-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-northeast-3"
+      }
+    },
+    "XAKZFZ5Z497KA4GA": {
+      "sku": "XAKZFZ5Z497KA4GA",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Los Angeles)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-LAX1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-lax-1"
+      }
+    },
+    "YJYBEKXU54FGWX9M": {
+      "sku": "YJYBEKXU54FGWX9M",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Ohio)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-USE2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-2"
+      }
+    },
+    "4HPAKTHU5HZW5QW5": {
+      "sku": "4HPAKTHU5HZW5QW5",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Middle East (UAE)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-MEC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "me-central-1"
+      }
+    },
+    "4D6CDQX7PG7ZXKQ4": {
+      "sku": "4D6CDQX7PG7ZXKQ4",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Denmark (Copenhagen)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-CPH1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-north-1-cph-1"
+      }
+    },
+    "WAY4K9ZJ8C8754RU": {
+      "sku": "WAY4K9ZJ8C8754RU",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Oregon)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-USW2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2"
+      }
+    },
+    "U4MEEB6RYZJW2UTF": {
+      "sku": "U4MEEB6RYZJW2UTF",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Washington DC",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1BWAS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-was1"
+      }
+    },
+    "YBWSVEZTAAV2HE9N": {
+      "sku": "YBWSVEZTAAV2HE9N",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (New York City)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-NYC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-nyc-1"
+      }
+    },
+    "8VCW27XR9E6QFATQ": {
+      "sku": "8VCW27XR9E6QFATQ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Europe (Vodafone) - Munich",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-EUC1WL1MUC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-central-1-wl1-muc1"
+      }
+    },
+    "F49U9BGATCD8QSNE": {
+      "sku": "F49U9BGATCD8QSNE",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Singapore)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-1"
+      }
+    },
+    "STANFP5BZ9YCG63G": {
+      "sku": "STANFP5BZ9YCG63G",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "EU (Ireland)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EU-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-west-1"
+      }
+    },
+    "7M3VWHDJ74ACT9SV": {
+      "sku": "7M3VWHDJ74ACT9SV",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Miami",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1MIA1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-mia1"
+      }
+    },
+    "VR9U862KBYM6NBUE": {
+      "sku": "VR9U862KBYM6NBUE",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "South America (Sao Paulo)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-SAE1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "sa-east-1"
+      }
+    },
+    "3G6NJNB4ANTA8JN6": {
+      "sku": "3G6NJNB4ANTA8JN6",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Verizon) - San Francisco Bay Area",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USW2WL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-wl1"
+      }
+    },
+    "Q2MP8J3DYTZ3QPQB": {
+      "sku": "Q2MP8J3DYTZ3QPQB",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Seoul)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APN2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-northeast-2"
+      }
+    },
+    "6F82UWVJTZN7KZB2": {
+      "sku": "6F82UWVJTZN7KZB2",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Verizon) - Las Vegas",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USW2WL1LAS1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-wl1-las1"
+      }
+    },
+    "4TWM6C2N3Y7PYDDG": {
+      "sku": "4TWM6C2N3Y7PYDDG",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Detroit",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1DTW1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-dtw1"
+      }
+    },
+    "YHZN2RP3PUQHF3FZ": {
+      "sku": "YHZN2RP3PUQHF3FZ",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Thailand)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS9-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-7"
+      }
+    },
+    "WSRBT2SCNSJDFWJ8": {
+      "sku": "WSRBT2SCNSJDFWJ8",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Peru (Lima)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-LIM1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-lim-1"
+      }
+    },
+    "F8D7GW3PKKZBP24V": {
+      "sku": "F8D7GW3PKKZBP24V",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Lenexa)",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1FOE1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-foe1"
+      }
+    },
+    "7762DBNSCW7EDX6U": {
+      "sku": "7762DBNSCW7EDX6U",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Mexico (Queretaro)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-QRO1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-qro-1"
+      }
+    },
+    "TW8CNGB3K3Q7KB7P": {
+      "sku": "TW8CNGB3K3Q7KB7P",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Verizon) - Denver",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USW2WL1DEN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-wl1-den1"
+      }
+    },
+    "FRXFWPKUZG3D9Y58": {
+      "sku": "FRXFWPKUZG3D9Y58",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Houston",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1IAH1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-iah1"
+      }
+    },
+    "B5PGPSM4DUARSZ57": {
+      "sku": "B5PGPSM4DUARSZ57",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Hong Kong)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APE1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-east-1"
+      }
+    },
+    "2U6YMVMTQN7N5UFY": {
+      "sku": "2U6YMVMTQN7N5UFY",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Canada (BELL) - Toronto",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-CAC1WL1YTO1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ca-central-1-wl1-yto1"
+      }
+    },
+    "D3GJNNEJX6NAEDMA": {
+      "sku": "D3GJNNEJX6NAEDMA",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Philadelphia)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-PHL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-phl-1"
+      }
+    },
+    "PY97CP4G62S3Y4JY": {
+      "sku": "PY97CP4G62S3Y4JY",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Hyderabad)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS5-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-south-2"
+      }
+    },
+    "JKMHB4E2Y3HQ3T6V": {
+      "sku": "JKMHB4E2Y3HQ3T6V",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - New York",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1NYC1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-nyc1"
+      }
+    },
+    "VZ2YENHNYJWQTTAK": {
+      "sku": "VZ2YENHNYJWQTTAK",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Jakarta)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS4-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-southeast-3"
+      }
+    },
+    "CHMCHK8XUFQ7D6K2": {
+      "sku": "CHMCHK8XUFQ7D6K2",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Mumbai)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-APS3-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-south-1"
+      }
+    },
+    "RVH645383RKU285J": {
+      "sku": "RVH645383RKU285J",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "IntraRegion",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "Asia Pacific (Tokyo)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-DataTransfer-Regional-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-northeast-1"
+      }
+    },
+    "T7RK59AAY634MT4B": {
+      "sku": "T7RK59AAY634MT4B",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Charlotte",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1CLT1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-clt1"
+      }
+    },
+    "V5PHTZXSFPU88CRU": {
+      "sku": "V5PHTZXSFPU88CRU",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "EU (Stockholm)",
+        "toLocationType": "AWS Region",
+        "usagetype": "APN1-EUN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "eu-north-1"
+      }
+    },
+    "BMY2FBM3T6AE466B": {
+      "sku": "BMY2FBM3T6AE466B",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "India (Delhi)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-DEL1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-south-1-del-1"
+      }
+    },
+    "ZU5KUMDV3SK3EDXK": {
+      "sku": "ZU5KUMDV3SK3EDXK",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US West (Denver)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-DEN1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-west-2-den-1"
+      }
+    },
+    "GAG6YC5DAKTKAUB8": {
+      "sku": "GAG6YC5DAKTKAUB8",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Verizon) - Dallas",
+        "toLocationType": "AWS Wavelength Zone",
+        "usagetype": "APN1-USE1WL1DFW1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-wl1-dfw1"
+      }
+    },
+    "FS2R8HE4CMKC7QWV": {
+      "sku": "FS2R8HE4CMKC7QWV",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Kansas City 2)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-MCI2-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-mci-1"
+      }
+    },
+    "2A56SB62S2UPRHZH": {
+      "sku": "2A56SB62S2UPRHZH",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "US East (Dallas)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-DFW1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "us-east-1-dfw-1"
+      }
+    },
+    "GFBQ6KE4PH484A2F": {
+      "sku": "GFBQ6KE4PH484A2F",
+      "productFamily": "Data Transfer",
+      "attributes": {
+        "servicecode": "AWSDataTransfer",
+        "transferType": "InterRegion Outbound",
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "toLocation": "India (Kolkata)",
+        "toLocationType": "AWS Local Zone",
+        "usagetype": "APN1-CCU1-AWS-Out-Bytes",
+        "operation": "",
+        "fromRegionCode": "ap-northeast-1",
+        "servicename": "AWS Data Transfer",
+        "toRegionCode": "ap-south-1-ccu-1"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "W9HQFVVCE9AUG78C": {
+        "W9HQFVVCE9AUG78C.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "W9HQFVVCE9AUG78C",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "W9HQFVVCE9AUG78C.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "W9HQFVVCE9AUG78C.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) Data Transfer from US East (Atlanta)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "2742H3DY6FB6C9FJ": {
+        "2742H3DY6FB6C9FJ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "2742H3DY6FB6C9FJ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "2742H3DY6FB6C9FJ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "2742H3DY6FB6C9FJ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) Data Transfer from US West (Seattle)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "86CCDW7VCMREWJXY": {
+        "86CCDW7VCMREWJXY.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "86CCDW7VCMREWJXY",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "86CCDW7VCMREWJXY.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "86CCDW7VCMREWJXY.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Nashville",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "AYP46MVPB4SCB4A9": {
+        "AYP46MVPB4SCB4A9.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "AYP46MVPB4SCB4A9",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "AYP46MVPB4SCB4A9.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "AYP46MVPB4SCB4A9.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to AWS GovCloud (US)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "45BRWHDUKDC55Q95": {
+        "45BRWHDUKDC55Q95.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "45BRWHDUKDC55Q95",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "45BRWHDUKDC55Q95.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "45BRWHDUKDC55Q95.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "AS4PTK8TQT795EQE": {
+        "AS4PTK8TQT795EQE.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "AS4PTK8TQT795EQE",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "AS4PTK8TQT795EQE.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "AS4PTK8TQT795EQE.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to New Zealand (Auckland)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "5KJKFCD9NT3R826H": {
+        "5KJKFCD9NT3R826H.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "5KJKFCD9NT3R826H",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "5KJKFCD9NT3R826H.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "5KJKFCD9NT3R826H.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (New Zealand)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "3KNEKK2SYDUNC5XT": {
+        "3KNEKK2SYDUNC5XT.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "3KNEKK2SYDUNC5XT",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "3KNEKK2SYDUNC5XT.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "3KNEKK2SYDUNC5XT.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to AWS European Sovereign Cloud (Germany)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "CCCP43GFS8EQWJKM": {
+        "CCCP43GFS8EQWJKM.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "CCCP43GFS8EQWJKM",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "CCCP43GFS8EQWJKM.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "CCCP43GFS8EQWJKM.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (Vodafone) - Berlin",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ZUVMW54CG3PM9GCN": {
+        "ZUVMW54CG3PM9GCN.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ZUVMW54CG3PM9GCN",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "ZUVMW54CG3PM9GCN.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ZUVMW54CG3PM9GCN.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - data transfer Asia Pacific (Tokyo) to US East (Verizon) - Minneapolis",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "M2BM34HMVKQ5BP7D": {
+        "M2BM34HMVKQ5BP7D.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "M2BM34HMVKQ5BP7D",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "M2BM34HMVKQ5BP7D.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "M2BM34HMVKQ5BP7D.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (Zurich)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "Q75SKZPXPV87DJNM": {
+        "Q75SKZPXPV87DJNM.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "Q75SKZPXPV87DJNM",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "Q75SKZPXPV87DJNM.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "Q75SKZPXPV87DJNM.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Nigeria (Lagos)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "7EQFT8UVNNKTV2AA": {
+        "7EQFT8UVNNKTV2AA.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "7EQFT8UVNNKTV2AA",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "7EQFT8UVNNKTV2AA.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "7EQFT8UVNNKTV2AA.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Northern Virginia)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "3P2UWSHAWGKYADKU": {
+        "3P2UWSHAWGKYADKU.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "3P2UWSHAWGKYADKU",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "3P2UWSHAWGKYADKU.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "3P2UWSHAWGKYADKU.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Israel (Tel Aviv)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "5UNXX3S9YKY8QYMJ": {
+        "5UNXX3S9YKY8QYMJ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "5UNXX3S9YKY8QYMJ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "5UNXX3S9YKY8QYMJ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "5UNXX3S9YKY8QYMJ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.09 per GB for APN1-EUS1-AWS-Out-Bytes in EU (Milan)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "YNP8XFEJYQBA5U7B": {
+        "YNP8XFEJYQBA5U7B.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "YNP8XFEJYQBA5U7B",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "YNP8XFEJYQBA5U7B.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "YNP8XFEJYQBA5U7B.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Mexico (Central)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "J2R8PX6MAVQSVPTA": {
+        "J2R8PX6MAVQSVPTA.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "J2R8PX6MAVQSVPTA",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "J2R8PX6MAVQSVPTA.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "J2R8PX6MAVQSVPTA.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) Data Transfer from US West (Phoenix)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "JPMPXTZF8J92EM7M": {
+        "JPMPXTZF8J92EM7M.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "JPMPXTZF8J92EM7M",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "JPMPXTZF8J92EM7M.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "JPMPXTZF8J92EM7M.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Tampa",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "8YNQP2JX4XR4MDP7": {
+        "8YNQP2JX4XR4MDP7.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "8YNQP2JX4XR4MDP7",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "8YNQP2JX4XR4MDP7.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "8YNQP2JX4XR4MDP7.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (SKT) - Daejeon",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ABK2X62TAPM5BT68": {
+        "ABK2X62TAPM5BT68.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ABK2X62TAPM5BT68",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "ABK2X62TAPM5BT68.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ABK2X62TAPM5BT68.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Sydney)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "JJXNR4WCGHUWDPC3": {
+        "JJXNR4WCGHUWDPC3.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "JJXNR4WCGHUWDPC3",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "JJXNR4WCGHUWDPC3.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "JJXNR4WCGHUWDPC3.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "QK7GTE8N2H7V3CZK": {
+        "QK7GTE8N2H7V3CZK.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "QK7GTE8N2H7V3CZK",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "QK7GTE8N2H7V3CZK.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "QK7GTE8N2H7V3CZK.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.14 per GB - Asia Pacific (Tokyo) data transfer to Senegal (Dakar)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.1400000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "S3YP5Y5SMQQZU55E": {
+        "S3YP5Y5SMQQZU55E.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "S3YP5Y5SMQQZU55E",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "S3YP5Y5SMQQZU55E.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "S3YP5Y5SMQQZU55E.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.00 per GB - Asia Pacific (Tokyo) data transfer To Taiwan (Taipei)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0000000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "2EV2XNW6KQF4WZ95": {
+        "2EV2XNW6KQF4WZ95.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "2EV2XNW6KQF4WZ95",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "2EV2XNW6KQF4WZ95.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "2EV2XNW6KQF4WZ95.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Chile (Santiago)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "47SY7DU93ZQE9PCR": {
+        "47SY7DU93ZQE9PCR.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "47SY7DU93ZQE9PCR",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "47SY7DU93ZQE9PCR.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "47SY7DU93ZQE9PCR.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Portland)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "88PCB8KWDDUE6KDA": {
+        "88PCB8KWDDUE6KDA.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "88PCB8KWDDUE6KDA",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "88PCB8KWDDUE6KDA.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "88PCB8KWDDUE6KDA.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Taipei)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "B42N386ASQDR2BFU": {
+        "B42N386ASQDR2BFU.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "B42N386ASQDR2BFU",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "B42N386ASQDR2BFU.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "B42N386ASQDR2BFU.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (BT) - London",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "RAZEZ59KYWMED5D6": {
+        "RAZEZ59KYWMED5D6.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "RAZEZ59KYWMED5D6",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "RAZEZ59KYWMED5D6.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "RAZEZ59KYWMED5D6.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to AWS GovCloud (US)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "UPXCN52CJ7DD3Z63": {
+        "UPXCN52CJ7DD3Z63.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "UPXCN52CJ7DD3Z63",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "UPXCN52CJ7DD3Z63.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "UPXCN52CJ7DD3Z63.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (Vodafone) - London",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "T36MAKCV6S9ZAFV5": {
+        "T36MAKCV6S9ZAFV5.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "T36MAKCV6S9ZAFV5",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "T36MAKCV6S9ZAFV5.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "T36MAKCV6S9ZAFV5.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Chicago",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ZSU9WJUK4U2EY4CG": {
+        "ZSU9WJUK4U2EY4CG.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ZSU9WJUK4U2EY4CG",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "ZSU9WJUK4U2EY4CG.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ZSU9WJUK4U2EY4CG.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Houston)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "7VS58UC29BYWN6C4": {
+        "7VS58UC29BYWN6C4.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "7VS58UC29BYWN6C4",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "7VS58UC29BYWN6C4.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "7VS58UC29BYWN6C4.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Malaysia)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "74WX8XCGA2P4JHQM": {
+        "74WX8XCGA2P4JHQM.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "74WX8XCGA2P4JHQM",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "74WX8XCGA2P4JHQM.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "74WX8XCGA2P4JHQM.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Melbourne)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "99RYU3BE4BDDQ7G4": {
+        "99RYU3BE4BDDQ7G4.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "99RYU3BE4BDDQ7G4",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "99RYU3BE4BDDQ7G4.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "99RYU3BE4BDDQ7G4.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Atlanta",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "CSSPBAFN2WGQ4X9Y": {
+        "CSSPBAFN2WGQ4X9Y.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "CSSPBAFN2WGQ4X9Y",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "CSSPBAFN2WGQ4X9Y.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "CSSPBAFN2WGQ4X9Y.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Honolulu)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "XADQ8STSUH95KEXJ": {
+        "XADQ8STSUH95KEXJ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "XADQ8STSUH95KEXJ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "XADQ8STSUH95KEXJ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "XADQ8STSUH95KEXJ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to EU (Paris)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "X6KW4W4WZ43NVRVV": {
+        "X6KW4W4WZ43NVRVV.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "X6KW4W4WZ43NVRVV",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "X6KW4W4WZ43NVRVV.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "X6KW4W4WZ43NVRVV.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (Spain)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "NEY5GWA5NHGTE8E9": {
+        "NEY5GWA5NHGTE8E9.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "NEY5GWA5NHGTE8E9",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "NEY5GWA5NHGTE8E9.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "NEY5GWA5NHGTE8E9.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) datatransfer to Finland (Helsinki)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "38N5SG3H9GXEYYU5": {
+        "38N5SG3H9GXEYYU5.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "38N5SG3H9GXEYYU5",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "38N5SG3H9GXEYYU5.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "38N5SG3H9GXEYYU5.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.14 per GB - Asia Pacific (Tokyo) data transfer to Morocco (Casablanca)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.1400000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "VX62EJFKHHRQ7MRZ": {
+        "VX62EJFKHHRQ7MRZ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "VX62EJFKHHRQ7MRZ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "VX62EJFKHHRQ7MRZ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "VX62EJFKHHRQ7MRZ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (SKT) - Seoul",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ZG68UHFCKB4Y8W68": {
+        "ZG68UHFCKB4Y8W68.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ZG68UHFCKB4Y8W68",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "ZG68UHFCKB4Y8W68.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ZG68UHFCKB4Y8W68.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Canada (Central)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "MY5TXMUEDYZARPVE": {
+        "MY5TXMUEDYZARPVE.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "MY5TXMUEDYZARPVE",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "MY5TXMUEDYZARPVE.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "MY5TXMUEDYZARPVE.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Boston)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "E4QGTN6SQ5FG2UJN": {
+        "E4QGTN6SQ5FG2UJN.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "E4QGTN6SQ5FG2UJN",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "E4QGTN6SQ5FG2UJN.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "E4QGTN6SQ5FG2UJN.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to EU (Germany)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ZCX64VGHTGN5HQNQ": {
+        "ZCX64VGHTGN5HQNQ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ZCX64VGHTGN5HQNQ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "ZCX64VGHTGN5HQNQ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ZCX64VGHTGN5HQNQ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (Vodafone) - London",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "756JBM9NU7DF4ACZ": {
+        "756JBM9NU7DF4ACZ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "756JBM9NU7DF4ACZ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "756JBM9NU7DF4ACZ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "756JBM9NU7DF4ACZ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Philippines (Manila)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "NKHMVHMG8UAQZA2X": {
+        "NKHMVHMG8UAQZA2X.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "NKHMVHMG8UAQZA2X",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "NKHMVHMG8UAQZA2X.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "NKHMVHMG8UAQZA2X.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) datatransfer to Oman (Muscat)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "Z4FGXUKRRZ3MAS2E": {
+        "Z4FGXUKRRZ3MAS2E.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "Z4FGXUKRRZ3MAS2E",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "Z4FGXUKRRZ3MAS2E.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "Z4FGXUKRRZ3MAS2E.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East(Miami)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "VF88J8263CEJ8UVX": {
+        "VF88J8263CEJ8UVX.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "VF88J8263CEJ8UVX",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "VF88J8263CEJ8UVX.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "VF88J8263CEJ8UVX.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Thailand (Bangkok)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "VZH3K2VKXZKQGK9U": {
+        "VZH3K2VKXZKQGK9U.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "VZH3K2VKXZKQGK9U",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "VZH3K2VKXZKQGK9U.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "VZH3K2VKXZKQGK9U.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "2SS7G2ST97KFH535": {
+        "2SS7G2ST97KFH535.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "2SS7G2ST97KFH535",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "2SS7G2ST97KFH535.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "2SS7G2ST97KFH535.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Germany (Hamburg)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "CEY7CZ3T7DYPBFMF": {
+        "CEY7CZ3T7DYPBFMF.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "CEY7CZ3T7DYPBFMF",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "CEY7CZ3T7DYPBFMF.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "CEY7CZ3T7DYPBFMF.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to  US West (Verizon) - Phoenix",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "KJZ2T9SJ93J8RPE8": {
+        "KJZ2T9SJ93J8RPE8.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "KJZ2T9SJ93J8RPE8",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "KJZ2T9SJ93J8RPE8.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "KJZ2T9SJ93J8RPE8.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Poland (Warsaw)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "343P7KDP69FMSDVT": {
+        "343P7KDP69FMSDVT.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "343P7KDP69FMSDVT",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "343P7KDP69FMSDVT.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "343P7KDP69FMSDVT.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (Vodafone) - Dortmund",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "MKY2MWAJ6JS7WUZZ": {
+        "MKY2MWAJ6JS7WUZZ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "MKY2MWAJ6JS7WUZZ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "MKY2MWAJ6JS7WUZZ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "MKY2MWAJ6JS7WUZZ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Australia (Perth)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "5WJ57TH4PWEBYKWW": {
+        "5WJ57TH4PWEBYKWW.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "5WJ57TH4PWEBYKWW",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "5WJ57TH4PWEBYKWW.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "5WJ57TH4PWEBYKWW.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Data transfer from Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "T8W8KA2YHEVTRH3A": {
+        "T8W8KA2YHEVTRH3A.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "T8W8KA2YHEVTRH3A",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "T8W8KA2YHEVTRH3A.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "T8W8KA2YHEVTRH3A.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Northern California)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "TJNCTDUAM4QXD2VB": {
+        "TJNCTDUAM4QXD2VB.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "TJNCTDUAM4QXD2VB",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "TJNCTDUAM4QXD2VB.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "TJNCTDUAM4QXD2VB.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Canada West (Calgary)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "PKC9TNBVZA4G6BZ5": {
+        "PKC9TNBVZA4G6BZ5.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "PKC9TNBVZA4G6BZ5",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "PKC9TNBVZA4G6BZ5.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "PKC9TNBVZA4G6BZ5.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to EU (London)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "WK6BKBWZ52XXQW46": {
+        "WK6BKBWZ52XXQW46.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "WK6BKBWZ52XXQW46",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "WK6BKBWZ52XXQW46.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "WK6BKBWZ52XXQW46.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD0.09 per GB for  in Middle East (Bahrain)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "9EDP4CBEA38DSQJ8": {
+        "9EDP4CBEA38DSQJ8.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "9EDP4CBEA38DSQJ8",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "9EDP4CBEA38DSQJ8.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "9EDP4CBEA38DSQJ8.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) datatransfer to Argentina (Buenos Aires)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "9ESU2G5WSY6FMZR3": {
+        "9ESU2G5WSY6FMZR3.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "9ESU2G5WSY6FMZR3",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.Q3Z75P77EN": {
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.Q3Z75P77EN",
+              "description": "$0.114 per GB - first 10 TB / month data transfer out beyond the global free tier",
+              "beginRange": "0",
+              "endRange": "10240",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.1140000000"
+              },
+              "appliesTo": []
+            },
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.VF6T3GAUKQ": {
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.VF6T3GAUKQ",
+              "description": "$0.089 per GB - next 40 TB / month data transfer out",
+              "beginRange": "10240",
+              "endRange": "51200",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0890000000"
+              },
+              "appliesTo": []
+            },
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.N9EW5UVVPA": {
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.N9EW5UVVPA",
+              "description": "$0.086 per GB - next 100 TB / month data transfer out",
+              "beginRange": "51200",
+              "endRange": "153600",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0860000000"
+              },
+              "appliesTo": []
+            },
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.GPHXDESFBB": {
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.GPHXDESFBB",
+              "description": "$0.084 per GB - greater than 150 TB / month data transfer out",
+              "beginRange": "153600",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0840000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "VQYJ4SZB9749EKHH": {
+        "VQYJ4SZB9749EKHH.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "VQYJ4SZB9749EKHH",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "VQYJ4SZB9749EKHH.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "VQYJ4SZB9749EKHH.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.09 per GB for EUN1-AWS-Out-Bytes in Africa (Cape Town)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "QVC67YT7FVZ7PTC4": {
+        "QVC67YT7FVZ7PTC4.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "QVC67YT7FVZ7PTC4",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "QVC67YT7FVZ7PTC4.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "QVC67YT7FVZ7PTC4.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Verizon) - Los Angeles",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ZBBNPV2ZG5YKTFVS": {
+        "ZBBNPV2ZG5YKTFVS.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ZBBNPV2ZG5YKTFVS",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "ZBBNPV2ZG5YKTFVS.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ZBBNPV2ZG5YKTFVS.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Verizon) - Seattle",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "7SSE9FRWVYAZ548Q": {
+        "7SSE9FRWVYAZ548Q.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "7SSE9FRWVYAZ548Q",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "7SSE9FRWVYAZ548Q.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "7SSE9FRWVYAZ548Q.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.000 per GB - data transfer out under the monthly global free tier",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0000000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "4364QHA6R42PYPXS": {
+        "4364QHA6R42PYPXS.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "4364QHA6R42PYPXS",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "4364QHA6R42PYPXS.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "4364QHA6R42PYPXS.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Osaka)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "XAKZFZ5Z497KA4GA": {
+        "XAKZFZ5Z497KA4GA.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "XAKZFZ5Z497KA4GA",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "XAKZFZ5Z497KA4GA.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "XAKZFZ5Z497KA4GA.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Los Angeles)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "YJYBEKXU54FGWX9M": {
+        "YJYBEKXU54FGWX9M.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "YJYBEKXU54FGWX9M",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "YJYBEKXU54FGWX9M.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "YJYBEKXU54FGWX9M.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Ohio)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "4HPAKTHU5HZW5QW5": {
+        "4HPAKTHU5HZW5QW5.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "4HPAKTHU5HZW5QW5",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "4HPAKTHU5HZW5QW5.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "4HPAKTHU5HZW5QW5.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD0.09 per GB for  in Middle East (UAE)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "4D6CDQX7PG7ZXKQ4": {
+        "4D6CDQX7PG7ZXKQ4.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "4D6CDQX7PG7ZXKQ4",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "4D6CDQX7PG7ZXKQ4.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "4D6CDQX7PG7ZXKQ4.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) datatransfer to Denmark (Copenhagen)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "WAY4K9ZJ8C8754RU": {
+        "WAY4K9ZJ8C8754RU.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "WAY4K9ZJ8C8754RU",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "WAY4K9ZJ8C8754RU.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "WAY4K9ZJ8C8754RU.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Oregon)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "U4MEEB6RYZJW2UTF": {
+        "U4MEEB6RYZJW2UTF.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "U4MEEB6RYZJW2UTF",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "U4MEEB6RYZJW2UTF.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "U4MEEB6RYZJW2UTF.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Washington DC",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "YBWSVEZTAAV2HE9N": {
+        "YBWSVEZTAAV2HE9N.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "YBWSVEZTAAV2HE9N",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "YBWSVEZTAAV2HE9N.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "YBWSVEZTAAV2HE9N.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "8VCW27XR9E6QFATQ": {
+        "8VCW27XR9E6QFATQ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "8VCW27XR9E6QFATQ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "8VCW27XR9E6QFATQ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "8VCW27XR9E6QFATQ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Europe (Vodafone) - Munich",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "F49U9BGATCD8QSNE": {
+        "F49U9BGATCD8QSNE.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "F49U9BGATCD8QSNE",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "F49U9BGATCD8QSNE.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "F49U9BGATCD8QSNE.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Singapore)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "STANFP5BZ9YCG63G": {
+        "STANFP5BZ9YCG63G.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "STANFP5BZ9YCG63G",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "STANFP5BZ9YCG63G.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "STANFP5BZ9YCG63G.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to EU (Ireland)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "7M3VWHDJ74ACT9SV": {
+        "7M3VWHDJ74ACT9SV.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "7M3VWHDJ74ACT9SV",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "7M3VWHDJ74ACT9SV.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "7M3VWHDJ74ACT9SV.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Miami",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "VR9U862KBYM6NBUE": {
+        "VR9U862KBYM6NBUE.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "VR9U862KBYM6NBUE",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "VR9U862KBYM6NBUE.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "VR9U862KBYM6NBUE.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to South America (Sao Paulo)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "3G6NJNB4ANTA8JN6": {
+        "3G6NJNB4ANTA8JN6.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "3G6NJNB4ANTA8JN6",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "3G6NJNB4ANTA8JN6.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "3G6NJNB4ANTA8JN6.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Verizon)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "Q2MP8J3DYTZ3QPQB": {
+        "Q2MP8J3DYTZ3QPQB.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "Q2MP8J3DYTZ3QPQB",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "Q2MP8J3DYTZ3QPQB.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "Q2MP8J3DYTZ3QPQB.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Seoul)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "6F82UWVJTZN7KZB2": {
+        "6F82UWVJTZN7KZB2.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "6F82UWVJTZN7KZB2",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "6F82UWVJTZN7KZB2.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "6F82UWVJTZN7KZB2.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Verizon) - Las Vegas",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "4TWM6C2N3Y7PYDDG": {
+        "4TWM6C2N3Y7PYDDG.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "4TWM6C2N3Y7PYDDG",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "4TWM6C2N3Y7PYDDG.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "4TWM6C2N3Y7PYDDG.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - data transfer Asia Pacific (Tokyo) to US East (Verizon) - Detroit",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "YHZN2RP3PUQHF3FZ": {
+        "YHZN2RP3PUQHF3FZ.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "YHZN2RP3PUQHF3FZ",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "YHZN2RP3PUQHF3FZ.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "YHZN2RP3PUQHF3FZ.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Thailand)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "WSRBT2SCNSJDFWJ8": {
+        "WSRBT2SCNSJDFWJ8.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "WSRBT2SCNSJDFWJ8",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "WSRBT2SCNSJDFWJ8.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "WSRBT2SCNSJDFWJ8.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Peru (Lima)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "F8D7GW3PKKZBP24V": {
+        "F8D7GW3PKKZBP24V.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "F8D7GW3PKKZBP24V",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "F8D7GW3PKKZBP24V.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "F8D7GW3PKKZBP24V.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Lenexa)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "7762DBNSCW7EDX6U": {
+        "7762DBNSCW7EDX6U.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "7762DBNSCW7EDX6U",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "7762DBNSCW7EDX6U.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "7762DBNSCW7EDX6U.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Mexico (Queretaro)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "TW8CNGB3K3Q7KB7P": {
+        "TW8CNGB3K3Q7KB7P.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "TW8CNGB3K3Q7KB7P",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "TW8CNGB3K3Q7KB7P.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "TW8CNGB3K3Q7KB7P.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to  US West (Verizon) - Denver",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "FRXFWPKUZG3D9Y58": {
+        "FRXFWPKUZG3D9Y58.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "FRXFWPKUZG3D9Y58",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "FRXFWPKUZG3D9Y58.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "FRXFWPKUZG3D9Y58.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Houston",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "B5PGPSM4DUARSZ57": {
+        "B5PGPSM4DUARSZ57.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "B5PGPSM4DUARSZ57",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "B5PGPSM4DUARSZ57.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "B5PGPSM4DUARSZ57.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD0.09 per GB for  in Asia Pacific (Hong Kong)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "2U6YMVMTQN7N5UFY": {
+        "2U6YMVMTQN7N5UFY.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "2U6YMVMTQN7N5UFY",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "2U6YMVMTQN7N5UFY.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "2U6YMVMTQN7N5UFY.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - data transfer Asia Pacific (Tokyo) to Canada (BELL) - Toronto",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "D3GJNNEJX6NAEDMA": {
+        "D3GJNNEJX6NAEDMA.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "D3GJNNEJX6NAEDMA",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "D3GJNNEJX6NAEDMA.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "D3GJNNEJX6NAEDMA.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Philadelphia)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "PY97CP4G62S3Y4JY": {
+        "PY97CP4G62S3Y4JY.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "PY97CP4G62S3Y4JY",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "PY97CP4G62S3Y4JY.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "PY97CP4G62S3Y4JY.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Hyderabad)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "JKMHB4E2Y3HQ3T6V": {
+        "JKMHB4E2Y3HQ3T6V.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "JKMHB4E2Y3HQ3T6V",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "JKMHB4E2Y3HQ3T6V.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "JKMHB4E2Y3HQ3T6V.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - New York",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "VZ2YENHNYJWQTTAK": {
+        "VZ2YENHNYJWQTTAK.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "VZ2YENHNYJWQTTAK",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "VZ2YENHNYJWQTTAK.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "VZ2YENHNYJWQTTAK.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Jakarta)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "CHMCHK8XUFQ7D6K2": {
+        "CHMCHK8XUFQ7D6K2.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "CHMCHK8XUFQ7D6K2",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "CHMCHK8XUFQ7D6K2.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "CHMCHK8XUFQ7D6K2.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Mumbai)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "RVH645383RKU285J": {
+        "RVH645383RKU285J.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "RVH645383RKU285J",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "RVH645383RKU285J.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "RVH645383RKU285J.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.01 per GB - regional data transfer - in/out/between EC2 AZs or using elastic IPs or ELB",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0100000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "T7RK59AAY634MT4B": {
+        "T7RK59AAY634MT4B.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "T7RK59AAY634MT4B",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "T7RK59AAY634MT4B.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "T7RK59AAY634MT4B.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - datatransfer Asia Pacific (Tokyo) to US East (Verizon) - Charlotte",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "V5PHTZXSFPU88CRU": {
+        "V5PHTZXSFPU88CRU.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "V5PHTZXSFPU88CRU",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "V5PHTZXSFPU88CRU.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "V5PHTZXSFPU88CRU.JRTCKXETXF.6YS6EN2CT7",
+              "description": "USD 0.09 per GB for EUN1-AWS-Out-Bytes in EU (Stockholm)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "BMY2FBM3T6AE466B": {
+        "BMY2FBM3T6AE466B.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "BMY2FBM3T6AE466B",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "BMY2FBM3T6AE466B.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "BMY2FBM3T6AE466B.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to India (Delhi)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "ZU5KUMDV3SK3EDXK": {
+        "ZU5KUMDV3SK3EDXK.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "ZU5KUMDV3SK3EDXK",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "ZU5KUMDV3SK3EDXK.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "ZU5KUMDV3SK3EDXK.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US West (Denver)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "GAG6YC5DAKTKAUB8": {
+        "GAG6YC5DAKTKAUB8.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "GAG6YC5DAKTKAUB8",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "GAG6YC5DAKTKAUB8.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "GAG6YC5DAKTKAUB8.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Verizon) - Dallas",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "FS2R8HE4CMKC7QWV": {
+        "FS2R8HE4CMKC7QWV.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "FS2R8HE4CMKC7QWV",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "FS2R8HE4CMKC7QWV.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "FS2R8HE4CMKC7QWV.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "2A56SB62S2UPRHZH": {
+        "2A56SB62S2UPRHZH.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "2A56SB62S2UPRHZH",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "2A56SB62S2UPRHZH.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "2A56SB62S2UPRHZH.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Dallas)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      },
+      "GFBQ6KE4PH484A2F": {
+        "GFBQ6KE4PH484A2F.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "GFBQ6KE4PH484A2F",
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "priceDimensions": {
+            "GFBQ6KE4PH484A2F.JRTCKXETXF.6YS6EN2CT7": {
+              "rateCode": "GFBQ6KE4PH484A2F.JRTCKXETXF.6YS6EN2CT7",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) datatransfer to India (Kolkata)",
+              "beginRange": "0",
+              "endRange": "Inf",
+              "unit": "GB",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}

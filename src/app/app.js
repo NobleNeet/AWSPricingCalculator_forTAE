@@ -72,10 +72,17 @@ function render() {
     return `<td data-total="${escape(id)}"><div>${summary.complete ? '月額合計' : '計算済み小計'}</div><div class="amount">${escape(money(summary.amountUsd))}</div>${summary.uncalculated ? `<div class="invalid">未計算サービス: ${summary.uncalculated}</div>` : ''}<div class="delta">${delta !== null ? `Baselineとの差額: ${escape(money(delta))}` : '差額: 未計算項目があるため比較不可'}</div></td>`;
   }).join('')}</tr></tbody></table></div>`;
 }
-async function loadProfilePriceProducts(pkg, profile, region) {
+async function loadProfilePriceProducts(pkg, profile, region, instance) {
   const defaultCode = pkg.service.priceSource.serviceCode;
   const overrides = pkg.service.priceSource.componentOverrides ?? {};
-  const codes = [...new Set([defaultCode, ...profile.components.map(id => overrides[id]).filter(Boolean)])];
+  // Missing optional EC2 meter sources must not break unmodified EC2 estimates
+  // while a new Price DB publication is pending. Opting into the meter
+  // explicitly requires fetching its source and fails closed if unavailable.
+  const codes = [...new Set([defaultCode, ...profile.components
+    .filter(id => pkg.service.id !== 'ec2' ||
+      !pkg.components[id]?.optional ||
+      (instance?.components?.[id]?.enabled ?? pkg.components[id]?.defaultEnabled ?? true))
+    .map(id => overrides[id]).filter(Boolean)])];
   const byServiceCode = Object.fromEntries(await Promise.all(codes.map(async code => [code, (await prices.products(code, region)).products])));
   return { defaultProducts: byServiceCode[defaultCode], byServiceCode };
 }
@@ -91,7 +98,7 @@ async function evaluate(id) {
     const pkg = await definitions.package(instance.serviceId), profile = pkg.profiles[instance.profileId];
     if (!profile) throw Object.assign(Error('未知Profile: 要再選択'), { code: 'INVALID_DATA' });
     if (fillDefinitionDefaults(pkg, instance)) save();
-    const data = await loadProfilePriceProducts(pkg, profile, region);
+    const data = await loadProfilePriceProducts(pkg, profile, region, instance);
     result = evaluateService(pkg, instance, { ...state.project.usageAssumptions, defaultRegion: state.project.defaultRegion, region }, data.defaultProducts, data.defaultProducts, data.byServiceCode);
   } catch (error) { result = { state: error.code === 'INVALID_DATA' ? 'invalid' : 'unavailable', amountUsd: null, issues: [{ code: error.code ?? 'FETCH_FAILED', severity: 'error', message: error.message }] }; }
   if (!state.serviceInstances[id] || revisions.get(id) !== revision) return;
@@ -120,7 +127,7 @@ async function renderDrawer() {
     if (!profile) throw Error('未知Profile: 要再選択');
     const regionValid = ['inherit', 'override'].includes(instance.region?.mode);
     const region = instance.region?.mode === 'override' ? instance.region.value : state.project.defaultRegion;
-    const data = await loadProfilePriceProducts(pkg, profile, region);
+    const data = await loadProfilePriceProducts(pkg, profile, region, instance);
     if (editing !== id) return;
     const context = { project: { ...state.project.usageAssumptions, region, defaultRegion: state.project.defaultRegion }, profile: instance.selectors, component: {} };
     const result = results.get(id);
@@ -134,9 +141,10 @@ async function renderDrawer() {
     const elbTypes = elb ? '<fieldset class="elb-type-choices" data-elb-type-choices><legend>ロードバランサーのタイプを選択</legend>' +
       profile.selectors.filter(input => input.type === 'boolean' && /^(alb|nlb|gwlb|clb)Enabled$/.test(input.id))
         .map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('') + '</fieldset>' : '';
-    const renderProfileFields = advanced => profile.selectors.filter(input => !input.ui?.sectionId && instance.serviceId !== 'athena' && Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
+    const renderProfileFields = advanced => profile.selectors.filter(input => !input.ui?.sectionId && instance.serviceId !== 'athena' && !(instance.serviceId === 'ec2' && input.id === 'ebsVolumeType') && Boolean(input.ui?.advanced) === advanced).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
     const renderSupplementaryFields = (sectionId, afterField = null) => profile.selectors.filter(input => input.ui?.sectionId === sectionId && (!elb || !input.id.endsWith('Enabled')) && (input.ui?.sectionAfterField ?? null) === afterField).map(input => field(input, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false)).join('');
     const supplementarySections = [...new Map(profile.selectors.filter(input => input.ui?.sectionId && !profile.components.includes(input.ui.sectionId)).map(input => [input.ui.sectionId, input.ui.sectionTitle ?? input.ui.sectionId])).entries()].map(([sectionId, title]) => {
+      if (instance.serviceId === 'ec2' && sectionId === 'transfer') return ''; // Render inbound with priced outbound directions in one section.
       const redshiftIngress = instance.serviceId === 'redshift' && sectionId === 'transfer';
       const transferResult = result?.components?.['transfer-in'];
       if (elb && !instance.selectors[sectionId + 'Enabled']) return '';
@@ -158,12 +166,16 @@ async function renderDrawer() {
       const definition = pkg.components[componentId], saved = instance.components[componentId] ?? { inputs: {} };
       if (elb) return ''; // ELB pricing is shown at the end of each type's parameter section.
       if (instance.serviceId === 'redshift' && componentId === 'transfer-in') return ''; // priced in supplementary section
+      if (instance.serviceId === 'ec2' && ['ebs-io2-iops-tier2', 'ebs-io2-iops-tier3'].includes(componentId)) return ''; // Internal io2 pricing tiers: show only the editable first-tier component; all tiers remain included in the total.
       // Athena uses three exclusive billing-period calculation variants for SQL and Spark.
       // Only the selected variant belongs in the drawer; retain all variants in the model.
       const athena = instance.serviceId === 'athena';
       if ((athena || definition.ui?.hideWhenDisabled) && !enabled(definition.enabledWhen, context)) return '';
       context.component = saved.inputs;
       const inactive = !enabled(definition.enabledWhen, context) || definition.optional && !saved.enabled;
+      // EC2: do not display irrelevant EBS performance inputs for the selected volume type.
+      // The io2 component is the end of the EBS section even when inactive.
+      if (instance.serviceId === 'ec2' && componentId.startsWith('ebs-') && inactive) return componentId === 'ebs-io2-iops' ? '</section>' : '';
       const filters = [...profile.fixedFilters, ...definition.fixedFilters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
       const inputs = [...definition.selectors, ...definition.usageInputs];
       const sourceCode = pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
@@ -188,8 +200,14 @@ async function renderDrawer() {
         return period ? control + field(period, 'profile', null, context, data.defaultProducts, profile.fixedFilters, false) : control;
       }).join('');
       const component = result?.components?.[componentId];
-      return `<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${redshiftInformation}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>`;
-    }).join('')}${supplementarySections}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
+      const ec2EbsStart = instance.serviceId === 'ec2' && componentId === 'ebs'
+        ? '<section class="ec2-ebs-section" data-ec2-ebs-section><h3>Amazon Elastic Block Store (EBS) - オプション</h3>' + field(profile.selectors.find(input => input.id === 'ebsVolumeType'), 'profile', null, context, data.defaultProducts, profile.fixedFilters, false) + '<p class="input-help">IOPS・スループットは選択したボリューム種別に応じて計算します。</p>'
+        : '';
+      const ec2EbsEnd = instance.serviceId === 'ec2' && componentId === 'ebs-io2-iops' ? '</section>' : '';
+      const ec2TransferStart = instance.serviceId === 'ec2' && componentId === 'transfer-internet-out' ? '<section class="ec2-transfer-section" data-ec2-transfer-section><h3>データ転送 - オプション</h3>' + renderSupplementaryFields('transfer') + '<p class="input-help">インターネットからの受信は無料です。その他の転送方向は有効化した料金コンポーネントから計算します。</p>' : '';
+      const ec2TransferEnd = instance.serviceId === 'ec2' && componentId === 'transfer-interregion' ? '</section>' : '';
+      return `${ec2EbsStart}${ec2TransferStart}<fieldset data-component-id="${escape(componentId)}"><legend>${escape(definition.label)}</legend>${definition.optional ? `<label class="toggle-label"><input type="checkbox" data-toggle="${componentId}" ${saved.enabled ? 'checked' : ''}>この項目を有効にする</label>` : ''}${inactive ? '<p class="notice-text">無効中（値は保持され、計算から除外されます）</p>' : ''}${redshiftInformation}${renderFields(false)}${inputs.some(input => input.ui?.advanced) ? `<details><summary>詳細設定</summary>${renderFields(true)}</details>` : ''}<div class="component-price">${component?.amountUsd !== undefined ? escape(money(component.amountUsd)) : inactive ? '—' : '未計算'}</div>${component?.grossAmountUsd !== undefined ? `<div class="input-help">無料枠控除前: ${escape(money(component.grossAmountUsd))} / 適用無料回数: ${escape(component.allowanceApplied)}</div>` : ''}${definition.ui?.help ? `<div class="input-help">${escape(definition.ui.help)}</div>` : ''}${component?.issues?.map(i => `<p class="invalid">${escape(i.message)}</p>`).join('') ?? ''}</fieldset>${ec2EbsEnd}${ec2TransferEnd}`;
+    }).join('')}${instance.serviceId === 'ec2' && instance.selectors.ebsVolumeType === 'io2' ? '<p class="input-help" data-ec2-ebs-tier-note>io2 の IOPS 段階料金は、入力欄を重複させず合計金額に含めます。</p>' : ''}${instance.serviceId === 'ec2' ? `<fieldset data-component-id="additional-costs"><legend>追加コスト - オプション</legend><label>その他の月額コスト (USD)<input id="ec2-additional-cost" type="number" min="0" step="any" value="${escape(instance.additionalMonthlyCostUsd ?? '0')}"></label><p class="input-help">任意の月額費用です。AWS Public Price List の料金ではなく、入力した金額を見積もり合計に加算します。</p><div class="component-price">${result?.components?.['additional-costs']?.amountUsd !== undefined ? escape(money(result.components['additional-costs'].amountUsd)) : instance.additionalMonthlyCostUsd === undefined ? '$0.00' : '未計算'}</div></fieldset>` : ''}${supplementarySections}<h3>料金見積もりの制約</h3>${[...new Set(Object.values(result?.components ?? {}).flatMap(c => c.limitations ?? []))].map(id => {
       const limitation = limitations.get(id); return `<p class="${limitation?.severity === 'warning' ? 'warning-text' : 'notice-text'}">${escape(limitation?.message ?? id)}</p>`;
     }).join('')}`;
     if (focus?.startsWith('input-')) $(focus)?.focus();
@@ -266,6 +284,7 @@ $('drawer-content').addEventListener('change', async event => {
     }
     else (instance.components[input.dataset.component] ??= { enabled: true, inputs: {} }).inputs[input.dataset.field] = value;
   } else if (input.dataset.toggle) instance.components[input.dataset.toggle].enabled = input.checked;
+  else if (input.id === 'ec2-additional-cost' && instance.serviceId === 'ec2') instance.additionalMonthlyCostUsd = input.value;
   else if (input.id === 'drawer-region') instance.region = input.value === 'inherit' ? { mode: 'inherit' } : { mode: 'override', value: input.value };
   else if (input.id === 'drawer-profile') { const pkg = await definitions.package(instance.serviceId); const fresh = createInstance(pkg, input.value); instance.profileId = input.value; instance.selectors = { ...fresh.selectors, ...instance.selectors }; instance.components = { ...fresh.components, ...instance.components }; }
   else return;

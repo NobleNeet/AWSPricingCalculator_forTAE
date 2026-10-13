@@ -193,6 +193,10 @@
               "values": {
                 "type": "array",
                 "items": {}
+              },
+              "label": {
+                "type": "object",
+                "additionalProperties": { "type": "string", "minLength": 1 }
               }
             },
             "required": [],

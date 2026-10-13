@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "detailed-monitoring",
+  "label": "詳細モニタリング",
+  "optional": true,
+  "defaultEnabled": false,
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "metricsPerInstance",
+      "label": "インスタンスあたりの課金対象メトリクス数",
+      "type": "number",
+      "default": "7",
+      "minimum": "1",
+      "integer": true,
+      "ui": {
+        "help": "EC2の詳細モニタリングで実際に送信される課金対象メトリクス数を指定します。インスタンスの状態や使用するメトリクスに応じて確認してください。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Metric"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-CW:MetricMonitorUsage",
+          "APN3-CW:MetricMonitorUsage",
+          "CW:MetricMonitorUsage",
+          "USE2-CW:MetricMonitorUsage",
+          "USW1-CW:MetricMonitorUsage",
+          "USW2-CW:MetricMonitorUsage"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "Metrics"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "tiered",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.metricsPerInstance"
+        },
+        {
+          "value": {
+            "type": "resolvedComponentInput",
+            "componentId": "instance",
+            "inputId": "quantity"
+          }
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "source": {
+              "value": {
+                "type": "resolvedComponentInput",
+                "componentId": "instance",
+                "inputId": "hours"
+              }
+            },
+            "transforms": [
+              {
+                "type": "divide",
+                "divisor": "730"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Metrics"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "free-tier"
+  ],
+  "ui": {
+    "help": "AWSのCloudWatchメトリクス料金表にある段階価格を適用します。使用量はインスタンス数と稼働時間で按分します。"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "id": "transfer-interregion",
+  "label": "リージョン間のデータ転送 (OUT)",
+  "optional": true,
+  "defaultEnabled": false,
+  "selectors": [
+    {
+      "id": "route",
+      "label": "転送元・転送先のリージョン",
+      "type": "select",
+      "options": {
+        "attribute": "usagetype",
+        "filters": [
+          {
+            "field": "productFamily",
+            "op": "eq",
+            "value": "Data Transfer"
+          },
+          {
+            "field": "usageType",
+            "op": "in",
+            "value": [
+              "APN1-APN3-AWS-Out-Bytes",
+              "APN1-USE1-AWS-Out-Bytes",
+              "APN1-USE2-AWS-Out-Bytes",
+              "APN1-USW1-AWS-Out-Bytes",
+              "APN1-USW2-AWS-Out-Bytes",
+              "APN3-APN1-AWS-Out-Bytes",
+              "APN3-USE1-AWS-Out-Bytes",
+              "APN3-USE2-AWS-Out-Bytes",
+              "APN3-USW1-AWS-Out-Bytes",
+              "APN3-USW2-AWS-Out-Bytes",
+              "USE1-APN1-AWS-Out-Bytes",
+              "USE1-APN3-AWS-Out-Bytes",
+              "USE1-USE2-AWS-Out-Bytes",
+              "USE1-USW1-AWS-Out-Bytes",
+              "USE1-USW2-AWS-Out-Bytes",
+              "USE2-APN1-AWS-Out-Bytes",
+              "USE2-APN3-AWS-Out-Bytes",
+              "USE2-USE1-AWS-Out-Bytes",
+              "USE2-USW1-AWS-Out-Bytes",
+              "USE2-USW2-AWS-Out-Bytes",
+              "USW1-APN1-AWS-Out-Bytes",
+              "USW1-APN3-AWS-Out-Bytes",
+              "USW1-USE1-AWS-Out-Bytes",
+              "USW1-USE2-AWS-Out-Bytes",
+              "USW1-USW2-AWS-Out-Bytes",
+              "USW2-APN1-AWS-Out-Bytes",
+              "USW2-APN3-AWS-Out-Bytes",
+              "USW2-USE1-AWS-Out-Bytes",
+              "USW2-USE2-AWS-Out-Bytes",
+              "USW2-USW1-AWS-Out-Bytes"
+            ]
+          }
+        ],
+        "label": {
+          "APN1-APN3-AWS-Out-Bytes": "東京 → 大阪",
+          "APN1-USE1-AWS-Out-Bytes": "東京 → 米国東部（バージニア北部）",
+          "APN1-USE2-AWS-Out-Bytes": "東京 → 米国東部（オハイオ）",
+          "APN1-USW1-AWS-Out-Bytes": "東京 → 米国西部（北カリフォルニア）",
+          "APN1-USW2-AWS-Out-Bytes": "東京 → 米国西部（オレゴン）",
+          "APN3-APN1-AWS-Out-Bytes": "大阪 → 東京",
+          "APN3-USE1-AWS-Out-Bytes": "大阪 → 米国東部（バージニア北部）",
+          "APN3-USE2-AWS-Out-Bytes": "大阪 → 米国東部（オハイオ）",
+          "APN3-USW1-AWS-Out-Bytes": "大阪 → 米国西部（北カリフォルニア）",
+          "APN3-USW2-AWS-Out-Bytes": "大阪 → 米国西部（オレゴン）",
+          "USE1-APN1-AWS-Out-Bytes": "米国東部（バージニア北部） → 東京",
+          "USE1-APN3-AWS-Out-Bytes": "米国東部（バージニア北部） → 大阪",
+          "USE1-USE2-AWS-Out-Bytes": "米国東部（バージニア北部） → 米国東部（オハイオ）",
+          "USE1-USW1-AWS-Out-Bytes": "米国東部（バージニア北部） → 米国西部（北カリフォルニア）",
+          "USE1-USW2-AWS-Out-Bytes": "米国東部（バージニア北部） → 米国西部（オレゴン）",
+          "USE2-APN1-AWS-Out-Bytes": "米国東部（オハイオ） → 東京",
+          "USE2-APN3-AWS-Out-Bytes": "米国東部（オハイオ） → 大阪",
+          "USE2-USE1-AWS-Out-Bytes": "米国東部（オハイオ） → 米国東部（バージニア北部）",
+          "USE2-USW1-AWS-Out-Bytes": "米国東部（オハイオ） → 米国西部（北カリフォルニア）",
+          "USE2-USW2-AWS-Out-Bytes": "米国東部（オハイオ） → 米国西部（オレゴン）",
+          "USW1-APN1-AWS-Out-Bytes": "米国西部（北カリフォルニア） → 東京",
+          "USW1-APN3-AWS-Out-Bytes": "米国西部（北カリフォルニア） → 大阪",
+          "USW1-USE1-AWS-Out-Bytes": "米国西部（北カリフォルニア） → 米国東部（バージニア北部）",
+          "USW1-USE2-AWS-Out-Bytes": "米国西部（北カリフォルニア） → 米国東部（オハイオ）",
+          "USW1-USW2-AWS-Out-Bytes": "米国西部（北カリフォルニア） → 米国西部（オレゴン）",
+          "USW2-APN1-AWS-Out-Bytes": "米国西部（オレゴン） → 東京",
+          "USW2-APN3-AWS-Out-Bytes": "米国西部（オレゴン） → 大阪",
+          "USW2-USE1-AWS-Out-Bytes": "米国西部（オレゴン） → 米国東部（バージニア北部）",
+          "USW2-USE2-AWS-Out-Bytes": "米国西部（オレゴン） → 米国東部（オハイオ）",
+          "USW2-USW1-AWS-Out-Bytes": "米国西部（オレゴン） → 米国西部（北カリフォルニア）"
+        }
+      },
+      "ui": {
+        "help": "AWS料金データに収録されたリージョン間の送信経路を選択します。転送元リージョンはEC2見積もりのリージョンと一致させてください。受信側には料金を二重計上しません。"
+      }
+    }
+  ],
+  "usageInputs": [
+    {
+      "id": "gbPerMonth",
+      "label": "送信するデータ量 (GB/月)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0"
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Data Transfer"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-APN3-AWS-Out-Bytes",
+          "APN1-USE1-AWS-Out-Bytes",
+          "APN1-USE2-AWS-Out-Bytes",
+          "APN1-USW1-AWS-Out-Bytes",
+          "APN1-USW2-AWS-Out-Bytes",
+          "APN3-APN1-AWS-Out-Bytes",
+          "APN3-USE1-AWS-Out-Bytes",
+          "APN3-USE2-AWS-Out-Bytes",
+          "APN3-USW1-AWS-Out-Bytes",
+          "APN3-USW2-AWS-Out-Bytes",
+          "USE1-APN1-AWS-Out-Bytes",
+          "USE1-APN3-AWS-Out-Bytes",
+          "USE1-USE2-AWS-Out-Bytes",
+          "USE1-USW1-AWS-Out-Bytes",
+          "USE1-USW2-AWS-Out-Bytes",
+          "USE2-APN1-AWS-Out-Bytes",
+          "USE2-APN3-AWS-Out-Bytes",
+          "USE2-USE1-AWS-Out-Bytes",
+          "USE2-USW1-AWS-Out-Bytes",
+          "USE2-USW2-AWS-Out-Bytes",
+          "USW1-APN1-AWS-Out-Bytes",
+          "USW1-APN3-AWS-Out-Bytes",
+          "USW1-USE1-AWS-Out-Bytes",
+          "USW1-USE2-AWS-Out-Bytes",
+          "USW1-USW2-AWS-Out-Bytes",
+          "USW2-APN1-AWS-Out-Bytes",
+          "USW2-APN3-AWS-Out-Bytes",
+          "USW2-USE1-AWS-Out-Bytes",
+          "USW2-USE2-AWS-Out-Bytes",
+          "USW2-USW1-AWS-Out-Bytes"
+        ]
+      },
+      {
+        "field": "usageType",
+        "op": "eq",
+        "valueFrom": "component.route"
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "aggregate-billing"
+  ],
+  "ui": {
+    "help": "リージョン間通信は送信元の料金を計算します。送信元以外の経路や価格データにない経路は選択できません。"
+  }
+}
