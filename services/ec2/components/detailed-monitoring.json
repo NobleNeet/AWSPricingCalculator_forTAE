@@ -23,9 +23,9 @@
     "expect": "singleSku",
     "productFilters": [
       {
-        "field": "operation",
+        "field": "productFamily",
         "op": "eq",
-        "value": "MetricStorage:AWS/EC2"
+        "value": "Metric"
       },
       {
         "field": "usageType",
@@ -43,16 +43,13 @@
     "dimensionFilters": [
       {
         "field": "unit",
-        "op": "in",
-        "value": [
-          "Metrics",
-          "Metric"
-        ]
+        "op": "eq",
+        "value": "Metrics"
       }
     ]
   },
   "calculation": {
-    "model": "unit",
+    "model": "tiered",
     "usage": {
       "sources": [
         {
@@ -94,6 +91,6 @@
     "free-tier"
   ],
   "ui": {
-    "help": "EC2詳細モニタリングを有効にした場合のみCloudWatchの料金を加算します。実際のメトリクス課金の単位・該当SKUを検証できない場合は未計算とします。"
+    "help": "AWSのCloudWatchメトリクス料金表にある段階価格を適用します。使用量はインスタンス数と稼働時間で按分します。"
   }
 }
