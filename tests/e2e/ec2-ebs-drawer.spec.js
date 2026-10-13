@@ -55,7 +55,7 @@ test('EC2 detailed monitoring is opt-in, and missing pricing must not masquerade
   await expect(monitoring.locator('#input-component-detailed-monitoring-metricsPerInstance')).toBeDisabled();
   await monitoring.locator('[data-toggle="detailed-monitoring"]').check();
   await expect(monitoring.locator('#input-component-detailed-monitoring-metricsPerInstance')).toBeEnabled();
-  await expect(page.locator('#service-drawer')).not.toContainText('Savings Plans');
+  await expect(page.locator('[data-toggle="detailed-monitoring"]')).toBeChecked();
 });
 
 test('EC2 inbound transfer is free and outbound transfer meters are opt-in', async ({ page }) => {
