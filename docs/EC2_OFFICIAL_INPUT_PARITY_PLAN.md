@@ -40,3 +40,9 @@ Not complete until all gates pass. Delete this temporary plan at completion.
 - Not yet covered: arbitrary inter-region origin/destination combinations, the official Calculator's additional transfer rows, accounting-wide free transfer allowance, any destination-specific pricing discrepancies. These are completion blockers.
 - Current registered `transfer-internet-out` mapping requires one billable dimension, which likely conflicts with tiered internet egress pricing. Determine actual dimension cardinality per region; update mapping strategy and tests before marking this component complete.
 - Do not merge PR #87, publish any Price DB build, or mark onboarding-ready until the above has been addressed and branch CI passes.
+
+## Price DB evidence, 2026-10-13
+
+The currently active published build is `20261012T151525Z-1b3319db` (`pricing/generated/manifest.json`). The actual Tokyo index of `AmazonCloudWatch` contains just `CW-DatabaseInsights` (`APN1-CW:DatabaseInsights-ACU-Hours`, `APN1-CW:DatabaseInsights-vCPU-Hours`); it does not contain `MetricMonitorUsage`. The actual Tokyo `AmazonEC2` index contains no `DataTransfer` and no `AWS-Out-Bytes` usage types. Consequently, newly defined EC2 CloudWatch detailed monitoring and transfer components cannot be priced from that published build. The UI must show invalid/unavailable rather than guessed zero whenever they are enabled. Green app CI is **not** proof of pricing parity.
+
+**Blocker:** Extend targeted AWS offer retrieval/curation to include CloudWatch metrics and the relevant EC2 Data Transfer meter families, validate actual regional product families, operations, billing units, rates, and tier ranges, and republish a validated Price DB build before promotion. Do not launch a full EC2 semantic regeneration merely to discover the new meter categories: scope this work to relevant new SKU families and preserve the existing large EC2 compute collection.
