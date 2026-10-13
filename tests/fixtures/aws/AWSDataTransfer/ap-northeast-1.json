@@ -1,0 +1,158 @@
+{
+  "offerCode": "AWSDataTransfer",
+  "products": {
+    "9ESU2G5WSY6FMZR3": {
+      "attributes": {
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "ap-northeast-1",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "External",
+        "toLocationType": "Other",
+        "toRegionCode": "",
+        "transferType": "AWS Outbound",
+        "usagetype": "APN1-DataTransfer-Out-Bytes"
+      },
+      "productFamily": "Data Transfer",
+      "sku": "9ESU2G5WSY6FMZR3"
+    },
+    "RVH645383RKU285J": {
+      "attributes": {
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "ap-northeast-1",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "Asia Pacific (Tokyo)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "ap-northeast-1",
+        "transferType": "IntraRegion",
+        "usagetype": "APN1-DataTransfer-Regional-Bytes"
+      },
+      "productFamily": "Data Transfer",
+      "sku": "RVH645383RKU285J"
+    },
+    "YJYBEKXU54FGWX9M": {
+      "attributes": {
+        "fromLocation": "Asia Pacific (Tokyo)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "ap-northeast-1",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "US East (Ohio)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "us-east-2",
+        "transferType": "InterRegion Outbound",
+        "usagetype": "APN1-USE2-AWS-Out-Bytes"
+      },
+      "productFamily": "Data Transfer",
+      "sku": "YJYBEKXU54FGWX9M"
+    }
+  },
+  "publicationDate": "2026-09-16T13:22:08Z",
+  "terms": {
+    "OnDemand": {
+      "9ESU2G5WSY6FMZR3": {
+        "9ESU2G5WSY6FMZR3.JRTCKXETXF": {
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.GPHXDESFBB": {
+              "appliesTo": [],
+              "beginRange": "153600",
+              "description": "$0.084 per GB - greater than 150 TB / month data transfer out",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0840000000"
+              },
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.GPHXDESFBB",
+              "unit": "GB"
+            },
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.N9EW5UVVPA": {
+              "appliesTo": [],
+              "beginRange": "51200",
+              "description": "$0.086 per GB - next 100 TB / month data transfer out",
+              "endRange": "153600",
+              "pricePerUnit": {
+                "USD": "0.0860000000"
+              },
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.N9EW5UVVPA",
+              "unit": "GB"
+            },
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.Q3Z75P77EN": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.114 per GB - first 10 TB / month data transfer out beyond the global free tier",
+              "endRange": "10240",
+              "pricePerUnit": {
+                "USD": "0.1140000000"
+              },
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.Q3Z75P77EN",
+              "unit": "GB"
+            },
+            "9ESU2G5WSY6FMZR3.JRTCKXETXF.VF6T3GAUKQ": {
+              "appliesTo": [],
+              "beginRange": "10240",
+              "description": "$0.089 per GB - next 40 TB / month data transfer out",
+              "endRange": "51200",
+              "pricePerUnit": {
+                "USD": "0.0890000000"
+              },
+              "rateCode": "9ESU2G5WSY6FMZR3.JRTCKXETXF.VF6T3GAUKQ",
+              "unit": "GB"
+            }
+          },
+          "sku": "9ESU2G5WSY6FMZR3",
+          "termAttributes": {}
+        }
+      },
+      "RVH645383RKU285J": {
+        "RVH645383RKU285J.JRTCKXETXF": {
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "RVH645383RKU285J.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.01 per GB - regional data transfer - in/out/between EC2 AZs or using elastic IPs or ELB",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0100000000"
+              },
+              "rateCode": "RVH645383RKU285J.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB"
+            }
+          },
+          "sku": "RVH645383RKU285J",
+          "termAttributes": {}
+        }
+      },
+      "YJYBEKXU54FGWX9M": {
+        "YJYBEKXU54FGWX9M.JRTCKXETXF": {
+          "effectiveDate": "2026-06-01T00:00:00Z",
+          "offerTermCode": "JRTCKXETXF",
+          "priceDimensions": {
+            "YJYBEKXU54FGWX9M.JRTCKXETXF.6YS6EN2CT7": {
+              "appliesTo": [],
+              "beginRange": "0",
+              "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Ohio)",
+              "endRange": "Inf",
+              "pricePerUnit": {
+                "USD": "0.0900000000"
+              },
+              "rateCode": "YJYBEKXU54FGWX9M.JRTCKXETXF.6YS6EN2CT7",
+              "unit": "GB"
+            }
+          },
+          "sku": "YJYBEKXU54FGWX9M",
+          "termAttributes": {}
+        }
+      }
+    }
+  },
+  "version": "20260916132208"
+}

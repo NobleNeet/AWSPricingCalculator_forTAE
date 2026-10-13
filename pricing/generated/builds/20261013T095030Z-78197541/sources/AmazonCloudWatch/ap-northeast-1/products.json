@@ -1,0 +1,153 @@
+{
+  "buildId": "20261013T095030Z-78197541",
+  "products": [
+    {
+      "attributes": {
+        "databaseEngineType": "Aurora-PostgreSQL",
+        "group": "CW-DatabaseInsights",
+        "groupDescription": "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases",
+        "instanceConfigurationType": "Limitless",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "Aurora-PostgreSQL:Limitless",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonCloudWatch",
+        "servicename": "AmazonCloudWatch",
+        "usagetype": "APN1-CW:DatabaseInsights-ACU-Hours"
+      },
+      "operation": "Aurora-PostgreSQL:Limitless",
+      "productFamily": "CloudWatch Database Insights",
+      "sku": "5EWPS7NJ7C547C6J",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.003125 per ACU-Hour monitored by Database Insights for Aurora-PostgreSQL limitless databases in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0031250000"
+                },
+                "rateCode": "5EWPS7NJ7C547C6J.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "ACU-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-CW:DatabaseInsights-ACU-Hours"
+    },
+    {
+      "attributes": {
+        "group": "Metric",
+        "groupDescription": "CloudWatch Custom Metrics",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonCloudWatch",
+        "servicename": "AmazonCloudWatch",
+        "usagetype": "APN1-CW:MetricMonitorUsage"
+      },
+      "operation": "",
+      "productFamily": "Metric",
+      "sku": "F96ZRPX8AM4T93NV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "250000",
+                "description": "$0.05 per metric-month for the next 750,000 metrics - Asia Pacific (Tokyo)",
+                "endRange": "1000000",
+                "pricePerUnit": {
+                  "USD": "0.0500000000"
+                },
+                "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.95SDKRWVHH",
+                "unit": "Metrics"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0.30 per metric-month for the first 10,000 metrics - Asia Pacific (Tokyo)",
+                "endRange": "10000",
+                "pricePerUnit": {
+                  "USD": "0.3000000000"
+                },
+                "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.A6VD9GXV7W",
+                "unit": "Metrics"
+              },
+              {
+                "beginRange": "10000",
+                "description": "$0.10 per metric-month for the next 240,000 metrics - Asia Pacific (Tokyo)",
+                "endRange": "250000",
+                "pricePerUnit": {
+                  "USD": "0.1000000000"
+                },
+                "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.FG3KHZ79QN",
+                "unit": "Metrics"
+              },
+              {
+                "beginRange": "1000000",
+                "description": "$0.02 per metric-month for over 1,000,000 metrics - Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.VNJQCFJPS4",
+                "unit": "Metrics"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-CW:MetricMonitorUsage"
+    },
+    {
+      "attributes": {
+        "databaseEngineType": "RDS Oracle",
+        "group": "CW-DatabaseInsights",
+        "groupDescription": "Granular database and SQL query metrics in a curated observability experience for Amazon Aurora and RDS databases",
+        "instanceConfigurationType": "Provisioned",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "RDS-Oracle:Provisioned",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonCloudWatch",
+        "servicename": "AmazonCloudWatch",
+        "usagetype": "APN1-CW:DatabaseInsights-vCPU-Hours"
+      },
+      "operation": "RDS-Oracle:Provisioned",
+      "productFamily": "CloudWatch Database Insights",
+      "sku": "Z4WEW63942JWGQ63",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-10-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0125 per vCPU-Hour monitored by Database Insights for RDS Oracle provisioned databases in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0125000000"
+                },
+                "rateCode": "Z4WEW63942JWGQ63.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "vCPU-Hours"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-CW:DatabaseInsights-vCPU-Hours"
+    }
+  ],
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}

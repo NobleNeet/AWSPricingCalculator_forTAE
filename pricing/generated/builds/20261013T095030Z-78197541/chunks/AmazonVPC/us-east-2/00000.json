@@ -1,0 +1,84 @@
+{
+  "buildId": "20261013T095030Z-78197541",
+  "products": [
+    {
+      "attributes": {
+        "endpointType": "Gateway Load Balancer Endpoint",
+        "group": "VPCE:VpcEndpoint",
+        "groupDescription": "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "VpcEndpoint",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonVPC",
+        "servicename": "Amazon Virtual Private Cloud",
+        "usagetype": "USE2-VpcEndpoint-GWLBE-Bytes"
+      },
+      "operation": "VpcEndpoint",
+      "productFamily": "VpcEndpoint",
+      "sku": "22XA54HFRKHB9QW5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0035 per GB for VpcEndpoint-GWLBE-Bytes:VpcEndpoint in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0035000000"
+                },
+                "rateCode": "22XA54HFRKHB9QW5.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-VpcEndpoint-GWLBE-Bytes"
+    },
+    {
+      "attributes": {
+        "endpointType": "Gateway Load Balancer Endpoint",
+        "group": "VPCE:VpcEndpoint",
+        "groupDescription": "Hourly charge for AWS Gateway Load Balancer VPC Endpoint",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "VpcEndpoint",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonVPC",
+        "servicename": "Amazon Virtual Private Cloud",
+        "usagetype": "USE2-VpcEndpoint-GWLBE-Hours"
+      },
+      "operation": "VpcEndpoint",
+      "productFamily": "VpcEndpoint",
+      "sku": "E6TYHG44YQWRBNSS",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-09-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.01 per Hrs for VpcEndpoint-GWLBE-Hours:VpcEndpoint in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "E6TYHG44YQWRBNSS.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-VpcEndpoint-GWLBE-Hours"
+    }
+  ],
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonVPC"
+}
