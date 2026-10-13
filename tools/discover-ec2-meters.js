@@ -3,7 +3,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 const region = process.argv[2] ?? 'ap-northeast-1';
 const out = process.argv[3] ?? 'ec2-meter-evidence.json';
 const origin = 'https://pricing.us-east-1.amazonaws.com';
-const codes = ['AmazonCloudWatch', 'AmazonEC2'];
+const codes = ['AmazonCloudWatch', 'AmazonEC2', 'AWSDataTransfer'];
 const patterns = /(?:MetricMonitorUsage|DataTransfer-Out-Bytes|DataTransfer-Regional-Bytes|AWS-Out-Bytes)/;
 const fetchAws = async url => {
   const response = await fetch(url, { signal: AbortSignal.timeout(1200000) });
