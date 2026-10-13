@@ -19,4 +19,9 @@ test('EC2 groups its EBS controls and does not expose internal io2 billing tiers
   await expect(ebs.locator('#input-component-ebs-io2-iops-provisionedIops')).toHaveCount(1);
   await ebs.locator('#input-profile--ebsVolumeType').selectOption('gp3');
   await expect(drawer.locator('[data-ec2-ebs-tier-note]')).toHaveCount(0);
+  await expect(ebs.locator('[data-component-id="ebs-io2-iops"]')).toHaveCount(0);
+  await expect(ebs.locator('[data-component-id="ebs-gp3-iops"]')).toHaveCount(1);
+  await ebs.locator('#input-profile--ebsVolumeType').selectOption('gp2');
+  await expect(ebs.locator('[data-component-id="ebs-gp3-iops"]')).toHaveCount(0);
+  await expect(ebs.locator('[data-component-id="ebs-io2-iops"]')).toHaveCount(0);
 });
