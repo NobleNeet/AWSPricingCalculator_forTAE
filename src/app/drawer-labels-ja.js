@@ -142,7 +142,8 @@ export const DRAWER_LABELS_JA = {
       'ebs-io2-iops-tier3': ['プロビジョニング IOPS io2 (第3段階)'],
       'detailed-monitoring': ['詳細モニタリング', { metricsPerInstance: 'インスタンスあたりの課金対象メトリクス数' }],
       'transfer-internet-out': ['インターネットへのデータ転送 (OUT)', { gbPerMonth: 'データ転送量 (GB/月)' }],
-      'transfer-regional': ['リージョン内・AZ間データ転送', { gbPerMonth: 'データ転送量 (GB/月)' }]
+      'transfer-regional': ['リージョン内・AZ間データ転送', { gbPerMonth: 'データ転送量 (GB/月)' }],
+      'transfer-interregion': ['リージョン間のデータ転送 (OUT)', { route: '転送元・転送先のリージョン', gbPerMonth: '送信するデータ量 (GB/月)' }]
     }
   },
   ebs: {
