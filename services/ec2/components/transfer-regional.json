@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "transfer-regional",
+  "label": "リージョン内・AZ間データ転送",
+  "optional": true,
+  "defaultEnabled": false,
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "gbPerMonth",
+      "label": "データ転送量 (GB/月)",
+      "type": "number",
+      "default": "0",
+      "minimum": "0",
+      "ui": {
+        "help": "リージョン内の課金対象の転送量を指定します。AWSの請求明細で送受信の二重課金対象となる場合は、その分を含めてください。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "productFamily",
+        "op": "eq",
+        "value": "Data Transfer"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-DataTransfer-Regional-Bytes",
+          "APN3-DataTransfer-Regional-Bytes",
+          "DataTransfer-Regional-Bytes",
+          "USE2-DataTransfer-Regional-Bytes",
+          "USW1-DataTransfer-Regional-Bytes",
+          "USW2-DataTransfer-Regional-Bytes"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "eq",
+        "value": "GB"
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.gbPerMonth"
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "GB"
+  },
+  "limitations": [
+    "free-tier",
+    "account-specific-discount",
+    "aggregate-billing"
+  ],
+  "ui": {
+    "help": "AWS Public Price Listから該当する地域の転送料金を特定できない場合は未計算とします。"
+  }
+}
