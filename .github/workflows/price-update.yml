@@ -1,7 +1,7 @@
 name: Scheduled Price Update
 on:
   push:
-    branches: [main, reonboard/ec2-official-input-parity]
+    branches: [main]
     paths:
       - 'services/**'
       - 'pricing/normalization/**'
@@ -50,9 +50,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      PRICE_UPDATE_SCOPE_SERVICE_IDS: ${{ github.ref == 'refs/heads/reonboard/ec2-official-input-parity' && 'ec2' || (inputs.validation_scope_service_ids || '') }}
-      PRICE_UPDATE_VALIDATION_ONLY: ${{ github.ref == 'refs/heads/reonboard/ec2-official-input-parity' || (inputs.validation_only || false) }}
-      PRICE_UPDATE_REFRESH_REQUESTED_SOURCES: ${{ github.ref == 'refs/heads/reonboard/ec2-official-input-parity' || (inputs.refresh_requested_sources || false) }}
+      PRICE_UPDATE_SCOPE_SERVICE_IDS: ${{ inputs.validation_scope_service_ids || '' }}
+      PRICE_UPDATE_VALIDATION_ONLY: ${{ inputs.validation_only || false }}
+      PRICE_UPDATE_REFRESH_REQUESTED_SOURCES: ${{ inputs.refresh_requested_sources || false }}
     outputs:
       needs_update: ${{ steps.check.outputs.needs_update }}
       source_matrix: ${{ steps.check.outputs.source_matrix }}
@@ -372,7 +372,7 @@ jobs:
 
   publish:
     needs: finalize
-    if: needs.finalize.outputs.publishable == 'true' && inputs.validation_only != true && github.ref == 'refs/heads/main'
+    if: needs.finalize.outputs.publishable == 'true' && inputs.validation_only != true
     runs-on: ubuntu-latest
     permissions:
       contents: write
