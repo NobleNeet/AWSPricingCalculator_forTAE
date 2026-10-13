@@ -23,3 +23,12 @@ Reference: https://calculator.aws/#/createCalculator/ec2-enhancement and user sc
 5. PR and onboarding-ready queue only after tests; then main, pricing publication, Pages verification.
 
 Not complete until all gates pass. Delete this temporary plan at completion.
+## Findings and implementation progress (2026-10-13)
+
+- Implemented in WIP branch: EBS input grouping, moving EBS type selector into section, conditional performance-control visibility, hiding internal io2 tier2/tier3 fieldsets while preserving pricing components, regression E2E.
+- Implemented: separate user-entered monthly cost, validation with decimal-safe math, total accumulation, project JSON persistence and E2E/unit tests. This is not sourced from AWS Price List.
+- Still not implemented: CloudWatch detailed monitoring billing, transfer meters and direction/region combinations; neither should be represented as a guessed flat-price input.
+- AWS official CloudWatch billing documentation identifies Detailed Monitoring by UsageType `MetricMonitorUsage` and Operation `MetricStorage:AWS/EC2`; charged by reported metric count and prorated usage (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_billing.html). Existing AmazonCloudWatch generated DB only contains Database Insights SKUs, not metrics storage SKU, so source data expansion is needed.
+- AWS official transfer billing identifies `<Region>-DataTransfer-Regional-Bytes`, `<Region>-DataTransfer-Out-Bytes`, and source-region `<Source>-<Destination>-AWS-Out-Bytes` (https://docs.aws.amazon.com/cur/latest/userguide/cur-data-transfers-charges.html). Internet inbound is free; outbound includes tiers and account-wide aggregated allowances (https://aws.amazon.com/ec2/pricing/on-demand/). Existing EC2 curated price DB lacks these meters.
+- The project currently excludes general Free Tier deductions and aggregate shared transfer thresholds; do not silently claim parity for AWS Calculator cases that depend on global aggregate allowances. Resolve applicable estimate convention in code/tests.
+- PR must remain draft and must not receive `onboarding-ready` until all four major sections work and validation finishes.
