@@ -129,7 +129,7 @@ export const DRAWER_LABELS_JA = {
   },
   ec2: {
     profiles: { standard: '標準' },
-    fields: { tenancy: 'テナンシー', os: 'オペレーティングシステム', software: 'プリインストールされたソフトウェア', ebsVolumeType: '各 EC2 インスタンスのストレージ' },
+    fields: { tenancy: 'テナンシー', os: 'オペレーティングシステム', software: 'プリインストールされたソフトウェア', ebsVolumeType: '各 EC2 インスタンスのストレージ', transferInboundGb: 'インターネットからのデータ転送 (IN) (GB/月)' },
     components: {
       instance: ['EC2 の仕様', { instanceType: 'EC2 インスタンスタイプ', hours: '想定使用量 (時間/月)', quantity: 'インスタンス数' }],
       'dedicated-region-fee': ['専有インスタンスのリージョン料金 (リージョンごとに 1 回)', { hours: '専有インスタンスのリージョン使用時間 (時間/月)' }],
@@ -140,7 +140,9 @@ export const DRAWER_LABELS_JA = {
       'ebs-io2-iops': ['プロビジョニング IOPS io2 (第1段階)', { provisionedIops: 'プロビジョニング IOPS io2 (ボリュームあたり)', volumeCount: 'io2 ボリュームの数', volumeHours: 'io2 ボリュームの平均時間 (時間/月)' }],
       'ebs-io2-iops-tier2': ['プロビジョニング IOPS io2 (第2段階)'],
       'ebs-io2-iops-tier3': ['プロビジョニング IOPS io2 (第3段階)'],
-      'detailed-monitoring': ['詳細モニタリング', { metricsPerInstance: 'インスタンスあたりの課金対象メトリクス数' }]
+      'detailed-monitoring': ['詳細モニタリング', { metricsPerInstance: 'インスタンスあたりの課金対象メトリクス数' }],
+      'transfer-internet-out': ['インターネットへのデータ転送 (OUT)', { gbPerMonth: 'データ転送量 (GB/月)' }],
+      'transfer-regional': ['リージョン内・AZ間データ転送', { gbPerMonth: 'データ転送量 (GB/月)' }]
     }
   },
   ebs: {
