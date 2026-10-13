@@ -17,6 +17,8 @@
     "ebs-io2-iops",
     "ebs-io2-iops-tier2",
     "ebs-io2-iops-tier3",
-    "detailed-monitoring"
+    "detailed-monitoring",
+    "transfer-internet-out",
+    "transfer-regional"
   ]
 }
