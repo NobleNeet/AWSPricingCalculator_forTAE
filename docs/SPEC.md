@@ -235,6 +235,12 @@ EC2 DrawerのAmazon EBS欄では、EBS volume type、Storage amount、および�
 
 ---
 
+### 6.2.1 EC2の追加コスト（手入力）
+
+EC2の公式Calculatorにある「追加コスト - オプション」に対応し、USD建ての任意の月額費用を入力できる。未指定は0 USDとし、AWS Public Price ListのSKUや料金ディメンションは生成しない。ユーザー入力であることを表示し、EC2の従量課金とは独立してPlan合計へ1回だけ加算する。入力は0以上の有限の十進数のみ許可し、不正値の場合は当該サービスの見積もりをinvalidとする。入力値はService Instanceの `additionalMonthlyCostUsd` に保持するため、Project JSONで保存・復元・複製する。
+
+---
+
 ### 6.3 Fargateの月間使用量
 
 FargateのTasks or podsは1日あたりの実行件数とする。月間件数はProjectの共通月間時間を24時間で割った日数へ換算して求める。既定730時間では730/24日となり、AWS Pricing Calculatorのper day入力と同じ前提を使う。30日で見積もる場合は共通月間時間を720時間に設定する。
