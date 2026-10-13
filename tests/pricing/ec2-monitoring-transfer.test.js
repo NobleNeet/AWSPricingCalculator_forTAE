@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { calculate } from '../../src/pricing/calculation.js';
 import { evaluateService } from '../../src/pricing/core.js';
+import { reachableCaseIterator } from '../../tools/pricing-cli/semantics.js';
 
 const root = new URL('../../services/ec2/components/', import.meta.url);
 const read = name => JSON.parse(readFileSync(new URL(name + '.json', root), 'utf8'));
@@ -63,4 +64,27 @@ test('enabled EC2 monitoring with missing CloudWatch SKU fails closed rather tha
   const disabled = evaluateService(pkg, instance, project, [], [], { AmazonCloudWatch: [] });
   assert.equal(disabled.state, 'ready');
   assert.equal(disabled.amountUsd, '0');
+});
+
+test('semantic case retains prerequisite instance inputs for detailed monitoring', () => {
+  const monitoring = read('detailed-monitoring');
+  const instanceDefinition = {
+    id: 'instance', selectors: [], usageInputs: [
+      { id: 'quantity', type: 'number', default: '2', minimum: '1' },
+      { id: 'hours', type: 'number', default: '730', minimum: '0' }
+    ],
+    fixedFilters: [], priceQuery: { productFilters: [] }, calculation: { model: 'unit', usage: { sources: [{ valueFrom: 'component.hours' }], combine: 'multiply' } }, limitations: []
+  };
+  const pkg = {
+    service: { id: 'ec2', profiles: ['standard'], defaultProfile: 'standard', priceSource: { serviceCode: 'AmazonEC2', componentOverrides: { 'detailed-monitoring': 'AmazonCloudWatch' } } },
+    profiles: { standard: { selectors: [], fixedFilters: [], components: ['instance', 'detailed-monitoring'] } },
+    components: { instance: instanceDefinition, 'detailed-monitoring': monitoring },
+    pricingMappings: {}
+  };
+  const cases = [...reachableCaseIterator(pkg, { AmazonEC2: [], AmazonCloudWatch: [] })];
+  const metered = cases.find(entry => entry.componentId === 'detailed-monitoring');
+  assert.ok(metered);
+  assert.deepEqual(metered.pkg.profiles.standard.components, ['instance', 'detailed-monitoring']);
+  assert.equal(metered.instance.components.instance.inputs.quantity, '2');
+  assert.equal(metered.instance.components.instance.inputs.hours, '730');
 });
