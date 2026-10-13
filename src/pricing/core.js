@@ -92,7 +92,7 @@ export function evaluateService(pkg, instance, project, products, profileProduct
   // through a fabricated price dimension. The value is persisted on the service instance.
   if (instance.additionalMonthlyCostUsd !== undefined) {
     const raw = instance.additionalMonthlyCostUsd;
-    if (!/^(?:0|[0-9]+)(?:\\.[0-9]+)?$/.test(String(raw))) {
+    if (!/^(?:0|[0-9]+)(?:\.[0-9]+)?$/.test(String(raw))) {
       issues.push(issue('INVALID_INPUT', 'Additional monthly cost must be a nonnegative USD amount.'));
     } else {
       try {
