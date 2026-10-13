@@ -88,3 +88,31 @@ test('semantic case retains prerequisite instance inputs for detailed monitoring
   assert.equal(metered.instance.components.instance.inputs.quantity, '2');
   assert.equal(metered.instance.components.instance.inputs.hours, '730');
 });
+
+test('semantic monitoring prerequisite chooses an instance type available in each profile branch', () => {
+  const monitoring = read('detailed-monitoring');
+  const instanceDefinition = {
+    id: 'instance', selectors: [{
+      id: 'instanceType', type: 'select', default: 't3.micro',
+      options: { attribute: 'instanceType', filters: [{ field: 'attributes.operatingSystem', op: 'eq', valueFrom: 'profile.os' }] }
+    }], usageInputs: [
+      { id: 'quantity', type: 'number', default: '1', minimum: '1' },
+      { id: 'hours', type: 'number', default: '730', minimum: '0' }
+    ], fixedFilters: [{ field: 'productFamily', op: 'eq', value: 'Compute Instance' }],
+    priceQuery: { productFilters: [] }, calculation: { model: 'unit', usage: { sources: [{ valueFrom: 'component.hours' }], combine: 'multiply' } }, limitations: []
+  };
+  const pkg = {
+    service: { id: 'ec2', profiles: ['standard'], defaultProfile: 'standard', priceSource: { serviceCode: 'AmazonEC2', componentOverrides: { 'detailed-monitoring': 'AmazonCloudWatch' } } },
+    profiles: { standard: { selectors: [{ id: 'os', type: 'select', default: 'Linux', options: { values: ['Linux', 'Windows'] } }], fixedFilters: [], components: ['instance', 'detailed-monitoring'] } },
+    components: { instance: instanceDefinition, 'detailed-monitoring': monitoring }, pricingMappings: {}
+  };
+  const products = [
+    { sku: 'linux', productFamily: 'Compute Instance', attributes: { instanceType: 't3.micro', operatingSystem: 'Linux' } },
+    { sku: 'windows', productFamily: 'Compute Instance', attributes: { instanceType: 'm5.large', operatingSystem: 'Windows' } }
+  ];
+  const cases = [...reachableCaseIterator(pkg, { AmazonEC2: products, AmazonCloudWatch: [] })].filter(entry => entry.componentId === 'detailed-monitoring');
+  assert.equal(cases.length, 2);
+  assert.deepEqual(cases.map(entry => [entry.instance.selectors.os, entry.instance.components.instance.inputs.instanceType]), [
+    ['Linux', 't3.micro'], ['Windows', 'm5.large']
+  ]);
+});
