@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Discover Tokyo EC2 and CloudWatch price meters
+      - name: Discover Tokyo network and CloudWatch price meters
         run: node --max-old-space-size=8192 tools/discover-ec2-meters.js ap-northeast-1 ec2-meter-evidence.json
       - uses: actions/upload-artifact@v4
         if: always()
