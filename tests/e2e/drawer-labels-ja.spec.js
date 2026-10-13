@@ -63,6 +63,18 @@ for (const [serviceId, labels] of Object.entries(DRAWER_LABELS_JA)) {
             .toContainText(labels.components[componentId][1][input.id]);
         }
       }
+      if (serviceId === 'ec2') {
+        const ebsType = page.locator('#input-profile--ebsVolumeType');
+        for (const [volume, component] of [['gp3', 'ebs-gp3-iops'], ['io1', 'ebs-io1-iops'], ['io2', 'ebs-io2-iops']]) {
+          await ebsType.selectOption(volume);
+          await expect(page.locator(`[data-component-id="${component}"]`)).toBeVisible();
+          const expectedInputs = JSON.parse(await readFile(`services/ec2/components/${component}.json`, 'utf8'));
+          for (const input of [...expectedInputs.selectors, ...expectedInputs.usageInputs]) {
+            await expect(page.locator(`#input-component-${component}-${input.id}`).locator('..'))
+              .toContainText(labels.components[component][1][input.id]);
+          }
+        }
+      }
       await expect(page.locator('#drawer-content')).not.toContainText('Advanced');
       await expect(page.locator('#drawer-content')).not.toContainText('Componentを有効にする');
     }
