@@ -3,7 +3,7 @@
   "id": "transfer-regional",
   "componentId": "transfer-regional",
   "priceSource": {
-    "serviceCode": "AmazonEC2"
+    "serviceCode": "AWSDataTransfer"
   },
   "productMatchers": [
     {
