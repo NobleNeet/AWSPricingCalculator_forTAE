@@ -1,0 +1,26 @@
+name: EC2 Pricing Meter Discovery
+on:
+  workflow_dispatch:
+  push:
+    branches: [reonboard/ec2-official-input-parity]
+    paths:
+      - .github/workflows/ec2-meter-discovery.yml
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Discover Tokyo EC2 and CloudWatch price meters
+        run: node --max-old-space-size=8192 tools/discover-ec2-meters.js ap-northeast-1 ec2-meter-evidence.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ec2-meter-evidence
+          path: ec2-meter-evidence.json
+          if-no-files-found: warn
