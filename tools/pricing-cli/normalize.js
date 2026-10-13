@@ -10,7 +10,12 @@ export function normalize(raw, region, buildId = 'candidate') {
   if (!raw.offerCode || !raw.publicationDate) fail('INVALID_SOURCE', 'AWS source metadata missing.');
   const products = [];
   for (const [sku, source] of Object.entries(raw.products).sort(([a], [b]) => a.localeCompare(b))) {
-    if (source.attributes.regionCode !== region) continue;
+    // AWSDataTransfer regional offers use fromRegionCode/toRegionCode instead of regionCode.
+    // Charge outbound routes to their originating region, never the inbound destination.
+    const regionalCode = raw.offerCode === 'AWSDataTransfer'
+      ? source.attributes.fromRegionCode
+      : source.attributes.regionCode;
+    if (regionalCode !== region) continue;
     const allTerms = Object.values(raw.terms?.OnDemand?.[sku] ?? {}).filter(term => term.effectiveDate <= raw.publicationDate);
     if (!allTerms.length) continue;
     const latest = allTerms.map(term => term.effectiveDate).sort().at(-1);
