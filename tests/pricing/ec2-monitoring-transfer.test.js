@@ -39,3 +39,23 @@ test('interregion transfer selects an exact route SKU and computes outbound GB o
   assert.equal(result.billingQuantity, '75');
   assert.equal(result.amountUsd, '6.75');
 });
+
+test('enabled EC2 monitoring with missing CloudWatch SKU fails closed rather than pricing zero', () => {
+  const definition = read('detailed-monitoring');
+  const pkg = {
+    service: { id: 'ec2', priceSource: { serviceCode: 'AmazonEC2', componentOverrides: { 'detailed-monitoring': 'AmazonCloudWatch' } } },
+    profiles: { standard: { selectors: [], fixedFilters: [], components: ['detailed-monitoring'] } },
+    components: { 'detailed-monitoring': definition },
+    pricingMappings: {}
+  };
+  const project = {};
+  const instance = { serviceId: 'ec2', profileId: 'standard', selectors: {}, components: { 'detailed-monitoring': { enabled: true, inputs: { metricsPerInstance: '7' } } } };
+  const evaluated = evaluateService(pkg, instance, project, [], [], { AmazonCloudWatch: [] });
+  assert.equal(evaluated.state, 'invalid');
+  assert.equal(evaluated.amountUsd, null);
+  assert.ok(evaluated.issues.some(i => i.componentId === 'detailed-monitoring'));
+  instance.components['detailed-monitoring'].enabled = false;
+  const disabled = evaluateService(pkg, instance, project, [], [], { AmazonCloudWatch: [] });
+  assert.equal(disabled.state, 'ready');
+  assert.equal(disabled.amountUsd, '0');
+});
