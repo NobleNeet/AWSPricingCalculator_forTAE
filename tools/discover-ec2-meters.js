@@ -52,7 +52,7 @@ for (const code of codes) {
       ? 'tests/fixtures/aws/AmazonCloudWatch.supplement.json'
       : 'tests/fixtures/aws/AWSDataTransfer.json';
     await mkdir('tests/fixtures/aws', { recursive: true });
-    await writeFile(file, JSON.stringify(rawFixture, null, 2) + '\\n');
+    await writeFile(file, JSON.stringify(rawFixture, null, 2) + '\n');
     console.log('Generated official-price test fixture ' + file + ' skus=' + selected.length);
   }
   results[code] = { region, publicationDate: offer.publicationDate, sourceUrl: origin + relative, matchingProducts: selected };
