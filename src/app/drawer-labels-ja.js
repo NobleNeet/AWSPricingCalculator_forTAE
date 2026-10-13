@@ -139,7 +139,8 @@ export const DRAWER_LABELS_JA = {
       'ebs-io1-iops': ['プロビジョニング IOPS io1', { provisionedIops: 'プロビジョニング IOPS io1' }],
       'ebs-io2-iops': ['プロビジョニング IOPS io2 (第1段階)', { provisionedIops: 'プロビジョニング IOPS io2 (ボリュームあたり)', volumeCount: 'io2 ボリュームの数', volumeHours: 'io2 ボリュームの平均時間 (時間/月)' }],
       'ebs-io2-iops-tier2': ['プロビジョニング IOPS io2 (第2段階)'],
-      'ebs-io2-iops-tier3': ['プロビジョニング IOPS io2 (第3段階)']
+      'ebs-io2-iops-tier3': ['プロビジョニング IOPS io2 (第3段階)'],
+      'detailed-monitoring': ['詳細モニタリング', { metricsPerInstance: 'インスタンスあたりの課金対象メトリクス数' }]
     }
   },
   ebs: {
