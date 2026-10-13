@@ -23,12 +23,12 @@ const has = (index, fragment) => {
 };
 let gaps = 0;
 for (const region of regions) {
-  const [ec2, cw] = await Promise.all([source('AmazonEC2', region), source('AmazonCloudWatch', region)]);
+  const [transfer, cw] = await Promise.all([source('AWSDataTransfer', region), source('AmazonCloudWatch', region)]);
   const rows = [
     { meter: 'EC2 detailed monitoring', code: 'AmazonCloudWatch', present: has(cw, 'MetricMonitorUsage') },
-    { meter: 'EC2 internet outbound', code: 'AmazonEC2', present: has(ec2, 'DataTransfer-Out-Bytes') },
-    { meter: 'EC2 regional transfer', code: 'AmazonEC2', present: has(ec2, 'DataTransfer-Regional-Bytes') },
-    { meter: 'EC2 interregion outbound', code: 'AmazonEC2', present: has(ec2, 'AWS-Out-Bytes') }
+    { meter: 'EC2 internet outbound', code: 'AWSDataTransfer', present: has(transfer, 'DataTransfer-Out-Bytes') },
+    { meter: 'EC2 regional transfer', code: 'AWSDataTransfer', present: has(transfer, 'DataTransfer-Regional-Bytes') },
+    { meter: 'EC2 interregion outbound', code: 'AWSDataTransfer', present: has(transfer, 'AWS-Out-Bytes') }
   ];
   for (const row of rows) {
     if (!row.present) gaps++;
