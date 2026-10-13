@@ -5,7 +5,10 @@
   "priceSource": {
     "serviceCode": "AmazonEC2",
     "componentOverrides": {
-      "detailed-monitoring": "AmazonCloudWatch"
+      "detailed-monitoring": "AmazonCloudWatch",
+      "transfer-internet-out": "AWSDataTransfer",
+      "transfer-regional": "AWSDataTransfer",
+      "transfer-interregion": "AWSDataTransfer"
     }
   },
   "profiles": [
@@ -17,7 +20,6 @@
     "ebs-io2-iops",
     "ebs-io2-iops-tier2",
     "ebs-io2-iops-tier3",
-    "detailed-monitoring",
     "transfer-regional"
   ]
 }
