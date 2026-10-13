@@ -25,3 +25,21 @@ test('EC2 groups its EBS controls and does not expose internal io2 billing tiers
   await expect(ebs.locator('[data-component-id="ebs-gp3-iops"]')).toHaveCount(0);
   await expect(ebs.locator('[data-component-id="ebs-io2-iops"]')).toHaveCount(0);
 });
+
+test('EC2 custom monthly costs survive save/reload and are added once to the estimate', async ({ page }) => {
+  await page.goto('./');
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
+  await page.locator('[data-service="ec2"]').click();
+  const cost = page.locator('#ec2-additional-cost');
+  await expect(cost).toHaveValue('0');
+  const subtotal = Number((await page.locator('td[data-instance] .amount').innerText()).replace(/[$,]/g, ''));
+  await cost.fill('3.25');
+  await cost.press('Tab');
+  await expect.poll(async () => Number((await page.locator('td[data-instance] .amount').innerText()).replace(/[$,]/g, ''))).toBeCloseTo(subtotal + 3.25, 2);
+  await page.getByLabel('編集を閉じる').click();
+  await page.reload();
+  await page.locator('td[data-instance] button[data-action="edit"]').click();
+  await expect(page.locator('#ec2-additional-cost')).toHaveValue('3.25');
+  await expect.poll(async () => Number((await page.locator('td[data-instance] .amount').innerText()).replace(/[$,]/g, ''))).toBeCloseTo(subtotal + 3.25, 2);
+});
