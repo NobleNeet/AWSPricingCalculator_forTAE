@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "detailed-monitoring",
+  "componentId": "detailed-monitoring",
+  "priceSource": {
+    "serviceCode": "AmazonCloudWatch"
+  },
+  "productMatchers": [
+    {
+      "field": "operation",
+      "op": "eq",
+      "value": "MetricStorage:AWS/EC2"
+    },
+    {
+      "field": "usageType",
+      "op": "in",
+      "value": [
+        "APN1-CW:MetricMonitorUsage",
+        "APN3-CW:MetricMonitorUsage",
+        "CW:MetricMonitorUsage",
+        "USE2-CW:MetricMonitorUsage",
+        "USW1-CW:MetricMonitorUsage",
+        "USW2-CW:MetricMonitorUsage"
+      ]
+    }
+  ],
+  "dimensionMatchers": [
+    {
+      "field": "unit",
+      "op": "in",
+      "value": [
+        "Metric",
+        "Metrics"
+      ]
+    }
+  ],
+  "expect": {
+    "products": 1,
+    "billableDimensions": 1
+  },
+  "notes": "Source: AWS CloudWatch billing documentation identifies detailed monitoring Operation=MetricStorage:AWS/EC2 and UsageType=MetricMonitorUsage. This mapping must be validated against actual regional AWS Public Price List before promotion; reject missing/ambiguous SKUs."
+}
