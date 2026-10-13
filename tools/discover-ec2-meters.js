@@ -3,7 +3,7 @@ import { writeFile, mkdir } from 'node:fs/promises';
 const region = process.argv[2] ?? 'ap-northeast-1';
 const out = process.argv[3] ?? 'ec2-meter-evidence.json';
 const origin = 'https://pricing.us-east-1.amazonaws.com';
-const codes = ['AWSDataTransfer'];
+const codes = ['AWSDataTransfer', 'AmazonCloudWatch'];
 const patterns = /(?:MetricMonitorUsage|DataTransfer-Out-Bytes|DataTransfer-Regional-Bytes|AWS-Out-Bytes)/;
 const fetchAws = async url => {
   const response = await fetch(url, { signal: AbortSignal.timeout(1200000) });
@@ -35,6 +35,25 @@ for (const code of codes) {
         description: d.description
       })) }))
     });
+  }
+  if (process.env.AWS_PRICING_WRITE_FIXTURES === 'true' && region === 'ap-northeast-1') {
+    const rawFixture = {
+      offerCode: code,
+      version: offer.version,
+      publicationDate: offer.publicationDate,
+      products: {},
+      terms: { OnDemand: {} }
+    };
+    for (const row of selected) {
+      rawFixture.products[row.sku] = offer.products[row.sku];
+      rawFixture.terms.OnDemand[row.sku] = offer.terms?.OnDemand?.[row.sku] ?? {};
+    }
+    const file = code === 'AmazonCloudWatch'
+      ? 'tests/fixtures/aws/AmazonCloudWatch.supplement.json'
+      : 'tests/fixtures/aws/AWSDataTransfer.json';
+    await mkdir('tests/fixtures/aws', { recursive: true });
+    await writeFile(file, JSON.stringify(rawFixture, null, 2) + '\\n');
+    console.log('Generated official-price test fixture ' + file + ' skus=' + selected.length);
   }
   results[code] = { region, publicationDate: offer.publicationDate, sourceUrl: origin + relative, matchingProducts: selected };
   console.log(`${code}/${region}: matches=${selected.length}`);
