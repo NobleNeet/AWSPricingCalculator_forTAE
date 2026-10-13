@@ -1,0 +1,80 @@
+{
+  "offerCode": "AmazonCloudWatch",
+  "version": "20261007115540",
+  "publicationDate": "2026-10-07T11:55:40Z",
+  "products": {
+    "F96ZRPX8AM4T93NV": {
+      "sku": "F96ZRPX8AM4T93NV",
+      "productFamily": "Metric",
+      "attributes": {
+        "servicecode": "AmazonCloudWatch",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "group": "Metric",
+        "groupDescription": "CloudWatch Custom Metrics",
+        "usagetype": "APN1-CW:MetricMonitorUsage",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicename": "AmazonCloudWatch"
+      }
+    }
+  },
+  "terms": {
+    "OnDemand": {
+      "F96ZRPX8AM4T93NV": {
+        "F96ZRPX8AM4T93NV.JRTCKXETXF": {
+          "offerTermCode": "JRTCKXETXF",
+          "sku": "F96ZRPX8AM4T93NV",
+          "effectiveDate": "2026-10-01T00:00:00Z",
+          "priceDimensions": {
+            "F96ZRPX8AM4T93NV.JRTCKXETXF.A6VD9GXV7W": {
+              "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.A6VD9GXV7W",
+              "description": "$0.30 per metric-month for the first 10,000 metrics - Asia Pacific (Tokyo)",
+              "beginRange": "0",
+              "endRange": "10000",
+              "unit": "Metrics",
+              "pricePerUnit": {
+                "USD": "0.3000000000"
+              },
+              "appliesTo": []
+            },
+            "F96ZRPX8AM4T93NV.JRTCKXETXF.FG3KHZ79QN": {
+              "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.FG3KHZ79QN",
+              "description": "$0.10 per metric-month for the next 240,000 metrics - Asia Pacific (Tokyo)",
+              "beginRange": "10000",
+              "endRange": "250000",
+              "unit": "Metrics",
+              "pricePerUnit": {
+                "USD": "0.1000000000"
+              },
+              "appliesTo": []
+            },
+            "F96ZRPX8AM4T93NV.JRTCKXETXF.95SDKRWVHH": {
+              "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.95SDKRWVHH",
+              "description": "$0.05 per metric-month for the next 750,000 metrics - Asia Pacific (Tokyo)",
+              "beginRange": "250000",
+              "endRange": "1000000",
+              "unit": "Metrics",
+              "pricePerUnit": {
+                "USD": "0.0500000000"
+              },
+              "appliesTo": []
+            },
+            "F96ZRPX8AM4T93NV.JRTCKXETXF.VNJQCFJPS4": {
+              "rateCode": "F96ZRPX8AM4T93NV.JRTCKXETXF.VNJQCFJPS4",
+              "description": "$0.02 per metric-month for over 1,000,000 metrics - Asia Pacific (Tokyo)",
+              "beginRange": "1000000",
+              "endRange": "Inf",
+              "unit": "Metrics",
+              "pricePerUnit": {
+                "USD": "0.0200000000"
+              },
+              "appliesTo": []
+            }
+          },
+          "termAttributes": {}
+        }
+      }
+    }
+  }
+}\n
