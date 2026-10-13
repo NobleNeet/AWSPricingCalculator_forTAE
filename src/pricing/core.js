@@ -1,6 +1,6 @@
 import { numberInputError } from './input-validation.js';
 import { enabled } from './conditions.js';
-import { sum } from './decimal.js';
+import { sum, decimal } from './decimal.js';
 import { matches, fieldValue } from './filter.js';
 import { resolvePrice } from './price-query.js';
 import { mappingForComponent, priceSourceForComponent, resolvePricingMapping } from './mapping.js';
@@ -88,6 +88,25 @@ export function evaluateService(pkg, instance, project, products, profileProduct
       }
     }
   } catch (error) { issues.push(error.issue ?? issue('INVALID_DATA', error.message)); }
+  // User-supplied monthly costs have no AWS Price List SKU and must never be resolved
+  // through a fabricated price dimension. The value is persisted on the service instance.
+  if (instance.additionalMonthlyCostUsd !== undefined) {
+    const raw = instance.additionalMonthlyCostUsd;
+    if (!/^(?:0|[0-9]+)(?:\\.[0-9]+)?$/.test(String(raw))) {
+      issues.push(issue('INVALID_INPUT', 'Additional monthly cost must be a nonnegative USD amount.'));
+    } else {
+      try {
+        const amount = decimal(String(raw));
+        components['additional-costs'] = {
+          state: 'ready', issues: [], amountUsd: amount.toString(),
+          billingUnit: 'USD/month', billingQuantity: '1',
+          unitPriceUsd: amount.toString(), source: 'user-supplied'
+        };
+      } catch {
+        issues.push(issue('INVALID_INPUT', 'Invalid additional monthly cost.'));
+      }
+    }
+  }
   const incomplete = issues.some(i => i.severity === 'error');
   return { state: incomplete ? 'invalid' : Object.values(components).some(c => c.state === 'warning') ? 'warning' : 'ready', amountUsd: incomplete ? null : sum(Object.values(components).filter(c => c.amountUsd !== undefined).map(c => c.amountUsd)).toString(), components, issues };
 }
