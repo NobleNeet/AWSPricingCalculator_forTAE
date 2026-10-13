@@ -142,6 +142,7 @@
     "ebs-io1-iops",
     "ebs-io2-iops",
     "ebs-io2-iops-tier2",
-    "ebs-io2-iops-tier3"
+    "ebs-io2-iops-tier3",
+    "detailed-monitoring"
   ]
 }
