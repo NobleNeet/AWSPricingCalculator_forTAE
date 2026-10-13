@@ -3,7 +3,10 @@
   "id": "ec2",
   "label": "Amazon EC2",
   "priceSource": {
-    "serviceCode": "AmazonEC2"
+    "serviceCode": "AmazonEC2",
+    "componentOverrides": {
+      "detailed-monitoring": "AmazonCloudWatch"
+    }
   },
   "profiles": [
     "standard"
@@ -13,6 +16,7 @@
     "dedicated-region-fee",
     "ebs-io2-iops",
     "ebs-io2-iops-tier2",
-    "ebs-io2-iops-tier3"
+    "ebs-io2-iops-tier3",
+    "detailed-monitoring"
   ]
 }
