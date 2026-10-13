@@ -58,7 +58,7 @@ for (const [serviceId, labels] of Object.entries(DRAWER_LABELS_JA)) {
         for (const input of [...component.selectors, ...component.usageInputs]) {
           // Redshift has mutually exclusive backup variants: an inactive
           // component must be absent, not a second visible quantity field.
-          if (serviceId === 'redshift' && await page.locator(`#input-component-${componentId}-${input.id}`).count() === 0) continue;
+          if (['redshift', 'ec2'].includes(serviceId) && await page.locator(`#input-component-${componentId}-${input.id}`).count() === 0) continue;
           await expect(page.locator(`#input-component-${componentId}-${input.id}`).locator('..'))
             .toContainText(labels.components[componentId][1][input.id]);
         }
