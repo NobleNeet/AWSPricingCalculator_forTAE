@@ -5,6 +5,7 @@ on:
     branches: [reonboard/ec2-official-input-parity]
     paths:
       - .github/workflows/ec2-meter-discovery.yml
+      - tools/discover-ec2-meters.js
 permissions:
   contents: read
 jobs:
