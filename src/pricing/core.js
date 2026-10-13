@@ -90,7 +90,7 @@ export function evaluateService(pkg, instance, project, products, profileProduct
   } catch (error) { issues.push(error.issue ?? issue('INVALID_DATA', error.message)); }
   // User-supplied monthly costs have no AWS Price List SKU and must never be resolved
   // through a fabricated price dimension. The value is persisted on the service instance.
-  if (instance.additionalMonthlyCostUsd !== undefined) {
+  if (pkg.service?.id === 'ec2' && instance.additionalMonthlyCostUsd !== undefined) {
     const raw = instance.additionalMonthlyCostUsd;
     if (!/^(?:0|[0-9]+)(?:\.[0-9]+)?$/.test(String(raw))) {
       issues.push(issue('INVALID_INPUT', 'Additional monthly cost must be a nonnegative USD amount.'));
