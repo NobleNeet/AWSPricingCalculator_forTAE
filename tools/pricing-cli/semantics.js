@@ -230,7 +230,15 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
             const sample = structuredClone(instance);
             sample.selectors = branch.profile;
             sample.components[componentId].inputs = branch.component;
-            const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: [componentId] } } };
+            // Cross-component usage sources (e.g. EC2 monitoring uses instance hours and count)
+            // require the referenced component to be evaluated first. Isolating only
+            // the metered component produces false MISSING_USAGE semantic errors.
+            const referenced = new Set(
+              [...JSON.stringify(component.calculation).matchAll(/"componentId":"([^"]+)"/g)]
+                .map(match => match[1])
+            );
+            const activeComponents = profile.components.filter(id => id === componentId || referenced.has(id));
+            const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: activeComponents } } };
             sample.components[componentId].enabled = true;
             const scopedByCode = { ...productsByServiceCode, [componentCode]: scopedProducts };
             yield {
