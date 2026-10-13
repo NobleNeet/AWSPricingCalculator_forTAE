@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "detailed-monitoring",
+  "label": "詳細モニタリング",
+  "optional": true,
+  "defaultEnabled": false,
+  "selectors": [],
+  "usageInputs": [
+    {
+      "id": "metricsPerInstance",
+      "label": "インスタンスあたりの課金対象メトリクス数",
+      "type": "number",
+      "default": "7",
+      "minimum": "1",
+      "integer": true,
+      "ui": {
+        "help": "EC2の詳細モニタリングで実際に送信される課金対象メトリクス数を指定します。インスタンスの状態や使用するメトリクスに応じて確認してください。"
+      }
+    }
+  ],
+  "fixedFilters": [],
+  "priceQuery": {
+    "expect": "singleSku",
+    "productFilters": [
+      {
+        "field": "operation",
+        "op": "eq",
+        "value": "MetricStorage:AWS/EC2"
+      },
+      {
+        "field": "usageType",
+        "op": "in",
+        "value": [
+          "APN1-CW:MetricMonitorUsage",
+          "APN3-CW:MetricMonitorUsage",
+          "CW:MetricMonitorUsage",
+          "USE2-CW:MetricMonitorUsage",
+          "USW1-CW:MetricMonitorUsage",
+          "USW2-CW:MetricMonitorUsage"
+        ]
+      }
+    ],
+    "dimensionFilters": [
+      {
+        "field": "unit",
+        "op": "in",
+        "value": [
+          "Metrics",
+          "Metric"
+        ]
+      }
+    ]
+  },
+  "calculation": {
+    "model": "unit",
+    "usage": {
+      "sources": [
+        {
+          "valueFrom": "component.metricsPerInstance"
+        },
+        {
+          "value": {
+            "type": "resolvedComponentInput",
+            "componentId": "instance",
+            "inputId": "quantity"
+          }
+        },
+        {
+          "value": {
+            "type": "transformed",
+            "source": {
+              "value": {
+                "type": "resolvedComponentInput",
+                "componentId": "instance",
+                "inputId": "hours"
+              }
+            },
+            "transforms": [
+              {
+                "type": "divide",
+                "divisor": "730"
+              }
+            ]
+          }
+        }
+      ],
+      "combine": "multiply"
+    },
+    "transforms": [],
+    "outputUnit": "Metrics"
+  },
+  "limitations": [
+    "account-specific-discount",
+    "free-tier"
+  ],
+  "ui": {
+    "help": "EC2詳細モニタリングを有効にした場合のみCloudWatchの料金を加算します。実際のメトリクス課金の単位・該当SKUを検証できない場合は未計算とします。"
+  }
+}
