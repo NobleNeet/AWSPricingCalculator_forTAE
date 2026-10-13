@@ -57,3 +57,21 @@ test('EC2 detailed monitoring is opt-in, and missing pricing must not masquerade
   await expect(monitoring.locator('#input-component-detailed-monitoring-metricsPerInstance')).toBeEnabled();
   await expect(page.locator('#service-drawer')).not.toContainText('Savings Plans');
 });
+
+test('EC2 inbound transfer is free and outbound transfer meters are opt-in', async ({ page }) => {
+  await page.goto('./');
+  await page.getByRole('button', { name: '最初の構成案を作る' }).click();
+  await page.getByRole('button', { name: 'サービスを追加', exact: true }).click();
+  await page.locator('[data-service="ec2"]').click();
+  const price = page.locator('td[data-instance] .amount');
+  const initial = await price.innerText();
+  await expect(page.locator('[data-toggle="transfer-internet-out"]')).not.toBeChecked();
+  await expect(page.locator('[data-toggle="transfer-regional"]')).not.toBeChecked();
+  const inbound = page.locator('#input-profile--transferInboundGb');
+  await expect(inbound).toBeVisible();
+  await inbound.fill('250');
+  await inbound.press('Tab');
+  await expect(price).toHaveText(initial);
+  await expect(page.locator('#input-profile--transferInboundGb')).toHaveValue('250');
+  await expect(page.locator('[data-component-id="transfer-internet-out"] .component-price')).toContainText('—');
+});
