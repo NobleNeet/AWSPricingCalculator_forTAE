@@ -165,6 +165,9 @@ async function renderDrawer() {
       if ((athena || definition.ui?.hideWhenDisabled) && !enabled(definition.enabledWhen, context)) return '';
       context.component = saved.inputs;
       const inactive = !enabled(definition.enabledWhen, context) || definition.optional && !saved.enabled;
+      // EC2: do not display irrelevant EBS performance inputs for the selected volume type.
+      // The io2 component is the end of the EBS section even when inactive.
+      if (instance.serviceId === 'ec2' && componentId.startsWith('ebs-') && inactive) return componentId === 'ebs-io2-iops' ? '</section>' : '';
       const filters = [...profile.fixedFilters, ...definition.fixedFilters, ...definition.priceQuery.productFilters.filter(f => !f.valueFrom?.startsWith('component.'))];
       const inputs = [...definition.selectors, ...definition.usageInputs];
       const sourceCode = pkg.service.priceSource.componentOverrides?.[componentId] ?? pkg.service.priceSource.serviceCode;
