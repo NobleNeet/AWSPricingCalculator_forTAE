@@ -237,6 +237,27 @@ export function* reachableCaseIterator(pkg, productsByServiceCode, region = 'ap-
               [...JSON.stringify(component.calculation ?? {}).matchAll(/"componentId":"([^"]+)"/g)]
                 .map(match => match[1])
             );
+            // A prerequisite component's default select value may not exist in the
+            // current profile branch (e.g. t3.micro for a Windows SQL/tenancy choice).
+            // Select a genuinely reachable SKU, rather than evaluating that unrelated
+            // default and reporting RESELECT_REQUIRED / cascading MISSING_USAGE.
+            for (const dependencyId of referenced) {
+              if (dependencyId === componentId || !profile.components.includes(dependencyId)) continue;
+              const dependency = pkg.components[dependencyId];
+              const dependencyCode = priceSourceForComponent(pkg, dependencyId);
+              const dependencyProducts = productsByServiceCode[dependencyCode] ?? [];
+              const dependencyContext = { ...branch, component: sample.components[dependencyId]?.inputs ?? {} };
+              const dependencyFilters = componentResolutionFilters(pkg, profile, dependencyId, dependencyCode)
+                .filter(filter => !filter.valueFrom?.startsWith('component.'));
+              for (const input of dependency.selectors) {
+                if (input.type !== 'select' || !enabled(input.enabledWhen, dependencyContext)) continue;
+                const candidates = selectorCandidates(input, dependencyProducts, dependencyContext, dependencyFilters);
+                if (!candidates.includes(dependencyContext.component[input.id]) && candidates.length) {
+                  dependencyContext.component[input.id] = candidates[0];
+                }
+              }
+              sample.components[dependencyId].inputs = dependencyContext.component;
+            }
             const activeComponents = profile.components.filter(id => id === componentId || referenced.has(id));
             const narrow = { ...pkg, profiles: { ...pkg.profiles, [profileId]: { ...profile, components: activeComponents } } };
             sample.components[componentId].enabled = true;
