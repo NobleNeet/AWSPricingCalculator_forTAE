@@ -96,6 +96,8 @@
 
 元PCで同じrunを再開する場合、先に `runners/parity-resume-detach.py` を実行して停止snapshotと共有する可変ファイルを分離する。これは元PCのhardlink snapshot保護用であり、別環境ではclone/コピー方法に応じて判断する。十分な永続容量を確保してから実行する。
 
+凍結ソースのSHAと元CSVのCRLFを維持するため、このパッケージ内だけの `.gitattributes` で保存済みPythonソースのwhitespace検査とCSVのCR-at-EOLを扱っている。アプリや通常CIのルールは変更していない。
+
 元環境の集計順は `parity-components.py` → `parity-otherinputs.py` → `parity-collect-case-observations.py` → `parity-consolidate.py` → `parity-validator.py`。全writer停止後に行う。新環境で欠けた画像を捏造してvalidatorを通さない。
 
 候補キュー `parity-complete-known.sh`、`parity-next-full-20261014.sh`、numeric runner、`parity-deep-v4.mjs` は保存済み。ただしnumeric大値/minimum候補は未実行・未検証のものを含む。すべてが有効入力を保証する完成済み試験計画とは扱わず、短いGUI smokeから確認する。Redshiftのdefault-profile menuを補うv4棚卸しは停止前に完了している。

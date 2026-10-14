@@ -1,0 +1,4 @@
+# Frozen runner bytes retain their recorded SHA, including original whitespace.
+runners/helper-versions/*.py -whitespace
+# Original csv.DictWriter output uses CRLF.
+summary.csv whitespace=cr-at-eol
