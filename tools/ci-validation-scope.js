@@ -6,6 +6,8 @@ const execFileAsync = promisify(execFile);
 // Classify known CI orchestration separately from pricing semantics. These files
 // are covered by CI tests but do not change the published pricing data or
 // calculator behavior. Unrecognized files and unavailable history fail closed.
+const APPLICATION_ROOT_FILES = new Set(['index.html', 'styles.css', 'ec2-instance-table.css', 'README.md', 'AGENTS.md', '.gitignore']);
+
 const CI_CONTROL_FILES = new Set([
   '.github/workflows/ci.yml',
   '.github/workflows/onboarding-promotion.yml',
@@ -19,7 +21,7 @@ const CI_CONTROL_FILES = new Set([
 export function changeCategory(file) {
   if (CI_CONTROL_FILES.has(file)) return 'ci-control';
   if (/^(src\/app\/|tests\/|docs\/|mock\/)/.test(file)
-    || /^(index\.html|README\.md|AGENTS\.md|\.gitignore)$/.test(file)) return 'application';
+    || APPLICATION_ROOT_FILES.has(file)) return 'application';
   return 'pricing-or-unknown';
 }
 export function applicationOnlyChanges(files) {
