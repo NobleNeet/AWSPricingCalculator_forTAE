@@ -1,0 +1,6 @@
+{
+  "method": "Lossless JSON whitespace compaction; every compacted document reparsed and compared equal before atomic replacement. Rendered GUI body/input data and screenshots are unchanged. Full original checkpoint archive remains available.",
+  "files": 16595,
+  "savedBytes": 231171589,
+  "excluded": "measured-cases.json and individual current pricing cases while runner active; recent files excluded."
+}

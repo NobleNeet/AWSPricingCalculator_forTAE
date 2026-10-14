@@ -1,0 +1,32 @@
+{
+  "runId": "20261013T120455-parity",
+  "exportedAtUtc": "2026-10-14T06:05:25.759739+00:00",
+  "executionStatus": "PAUSED_BY_USER",
+  "fullScopeCompleted": false,
+  "caseCount": 1427,
+  "measuredCaseCount": 742,
+  "activeFailureCount": 212,
+  "included": [
+    "1427 full current individual case JSON records",
+    "212 active fix-instructions.md and comparison.json",
+    "Available active FAIL screenshot copies",
+    "Summary, case plan, union correspondence, coverage and reviewed correspondence decisions",
+    "Independent raw public/official field inventories (lossless gzip)",
+    "Every original DOM/menu observation (observations.jsonl.gz)",
+    "Archived execution helpers and runner source versions",
+    "Exact executed parity-spec edition"
+  ],
+  "notIncluded": [
+    "All original screenshots at screenshots/ paths",
+    "Historical attempts, superseded instructions and full shard directories",
+    "Full 1.6 GB PC pause snapshot"
+  ],
+  "originalSourceRoot": "/home/ubnadmin/AWSPricingCalculator_forTAE/tests/aws-calculator-parity/results/20261013T120455-parity",
+  "durablePcPauseSnapshot": "/home/ubnadmin/parity-reports/20261013T120455-parity.paused-20261014T055335Z",
+  "historicalAuthorityNote": "Original-run manifest restriction No push applied to the measurement phase. User later explicitly authorized publishing this handoff. That authorizes documentation/data push only, not GUI resumption or application/Price DB changes/deployment.",
+  "fullEvidenceAccessRequired": "A new environment must obtain the PC snapshot or perform fresh current-run GUI measurements; it cannot assume local absolute paths are available from GitHub.",
+  "originalMetadataCaveats": [
+    "Original-run manifest status=RUNNING is a stale legacy field; executionStatus=PAUSED_BY_USER and pause-state are authoritative.",
+    "Original pause-state pausedAtJst stores shifted wall clock with +00:00 offset; use pausedAtUtc=2026-10-14T05:53:35.060847Z and actual JST=2026-10-14T14:53:35.060847+09:00. These frozen original fields are preserved; HANDOFF uses the corrected timezone description."
+  ]
+}

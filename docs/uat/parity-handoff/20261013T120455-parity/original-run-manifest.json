@@ -1,0 +1,85 @@
+{
+  "runId": "20261013T120455-parity",
+  "status": "RUNNING",
+  "startedAtUtc": "2026-10-13T12:04:55Z",
+  "startedAtJst": "2026-10-13T21:04:55+09:00",
+  "publicUrl": "https://nobleneet.github.io/AWSPricingCalculator_forTAE/",
+  "officialUrl": "https://calculator.aws/",
+  "publicBuildId": "20261013T095030Z-78197541",
+  "pricePublicationDate": "2026-10-12T23:11:02Z",
+  "pagesCommitSha": "b51df2118aee65f2631db653e3bd01df56da091a",
+  "browser": {
+    "tool": "Playwright",
+    "mode": "headed Chromium; real DOM GUI controls",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "version": "Chromium 153.0.8010.12"
+  },
+  "serviceListEvidence": "service-list.json",
+  "serviceListScreenshot": "service-list.png",
+  "absoluteToleranceUsd": "0.01",
+  "scope": "All 17 services, pricing-related inputs, profiles, officially supported 6 Regions. No historical measurements reused.",
+  "restrictions": [
+    "No application source changes",
+    "No Price DB changes",
+    "No push, PR, merge, deployment or price update",
+    "No API/internal state mutation used as GUI evidence"
+  ],
+  "inventoryLimitations": [
+    "Local selector >12 candidates initially first/middle/last; family coverage unconfirmed",
+    "Official initial feature/radio inventories require deeper selector and Region investigation",
+    "Generated IDs from DOM are ephemeral; stable correspondence IDs will be generated during consolidation"
+  ],
+  "storage": {
+    "durableArchive": "/home/ubnadmin/parity-reports/20261013T120455-parity.checkpoint-20261014T0510.tar.gz",
+    "sha256": "b3d8384a90a07892754bb284d21d366ca2d10ceee2aeea3add14be87d4b1d5ac",
+    "checkpointAt": "2026-10-14T05:02:25.974476+00:00",
+    "archiveContentRoot": "20261013T120455-parity",
+    "integrity": "tar -d compared every archived member against quiescent live source; exit 0",
+    "status": "INCOMPLETE intermediate checkpoint; further GUI cases pending",
+    "durablePauseSnapshot": "/home/ubnadmin/parity-reports/20261013T120455-parity.paused-20261014T055335Z",
+    "pauseSnapshotMethod": "Same-filesystem hardlinks preserve all current evidence bytes outside checkout without another full-size copy. Every file must be hash verified. Before any future mutation, run saved parity-resume-detach.py after storage expansion; PNG capture paths are immutable and future failure copies replace aliases atomically."
+  },
+  "auxiliaryLatestMainSha": "c4ccd00561eccedad8de44e61edc99565f1d8503",
+  "retryPolicy": {
+    "configurationExplorationMaxAttempts": 10,
+    "reason": "Initial locator discovery required bounded corrections for region option names, usage-dependent field IDs, menu text and live locator lists. These are harness exploration failures, not application FAILs.",
+    "normalOperationMaxAttempts": 3
+  },
+  "pagesCommitShaConfidence": "Latest successful GitHub Pages deployment metadata; no GUI-embedded commit identifier available",
+  "pagesDeploymentRecord": {
+    "id": 7036243205,
+    "sha": "b51df2118aee65f2631db653e3bd01df56da091a",
+    "successAt": "2026-10-13T10:38:25Z",
+    "logUrl": "https://github.com/NobleNeet/AWSPricingCalculator_forTAE/actions/runs/38376964600/job/115253220357",
+    "readOnlyVerifiedAt": "2026-10-13T14:08:21.079063+00:00"
+  },
+  "lastCheckpointAt": "2026-10-13T14:14:20.238295+00:00",
+  "durableCheckpoint": {
+    "archive": "/home/ubnadmin/parity-reports/20261013T120455-parity.checkpoint-20261014T000620.tar.gz",
+    "sha256": "462946c47ec82795f0f3b836f368d8247fe0c09462b9b9b6f20705a7932a3dad",
+    "archiveContentRoot": "20261013T120455-parity.checkpoint-20261014T000620",
+    "integrity": "tar content compared byte-for-byte against source checkpoint; comparison succeeded",
+    "status": "INCOMPLETE intermediate checkpoint; live run continues",
+    "retrieve": "tar -xzf <archive> -C <destination>"
+  },
+  "lastProgressAt": "2026-10-14T01:23:22.496765+00:00",
+  "sourceAndDeploymentChanges": "None. Only audit artifacts and temporary GUI runners changed.",
+  "checkpointStorageNote": "Older checkpoint temporarily relocated unchanged to /dev/shm for disk space; fresh durable checkpoint is being created. Live reports are newer than this older checkpoint.",
+  "temporaryStorageRelocations": {
+    "pipCache": "/tmp/parity-preserved-pip-cache-20261014",
+    "unusedHeadlessShell": "/dev/shm/parity-preserved-headless-shell-1243",
+    "note": "Original cache paths remain symlinks; browser tests use headed Chromium from unchanged installation. Failed partial headless cache move was restored before complete relocation. Prior compressed checkpoint removed only after all 6389 regular files verified byte-identical to retained expanded /tmp checkpoint. Latest durable archive is independent.",
+    "status": "Both pip cache and headless Chromium cache restored to original persistent paths before user pause; no dangling cache symlinks remain."
+  },
+  "intermediateCheckpoint": {
+    "archive": "/dev/shm/20261013T120455-parity.checkpoint-20261014T000620.tar.gz",
+    "sha256": "462946c47ec82795f0f3b836f368d8247fe0c09462b9b9b6f20705a7932a3dad",
+    "integrity": "Regenerated archive SHA matches prior verified archive exactly; tar -d against expanded copy exited 0. Redundant expanded copy removed to release temporary browser space. Latest durable archive remains outside checkout."
+  },
+  "executionStatus": "PAUSED_BY_USER",
+  "pausedAt": "2026-10-14T05:53:35.060847+00:00",
+  "fullScopeCompleted": false
+}

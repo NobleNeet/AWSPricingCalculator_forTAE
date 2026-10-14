@@ -1,0 +1,8 @@
+{
+  "verifiedAt": "2026-10-14T05:55:07.147524+00:00",
+  "status": "PASS",
+  "snapshot": "/home/ubnadmin/parity-reports/20261013T120455-parity.paused-20261014T055335Z",
+  "files": 30086,
+  "logicalBytes": 1615324460,
+  "method": "All current files copied through same-device hardlinks; each destination verified to refer to exactly the same inode and bytes; SHA-256 recorded for every file. Detach mutable files before resuming writes."
+}

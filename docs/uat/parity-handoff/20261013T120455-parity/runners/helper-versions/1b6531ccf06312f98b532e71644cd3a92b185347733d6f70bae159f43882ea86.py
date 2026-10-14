@@ -1,0 +1,10 @@
+from pathlib import Path
+p=Path('/tmp/parity-price.mjs');s=p.read_text();anchor='async function configure(service,plan,region)'
+extra="""
+if(variant==='hours'){for(const service of ['kms','s3','codebuild','systems-manager','lambda']){plans[service].fields.push(['project-hours','SKIP',730,365]);plans[service].testFields=plans[service].fields.slice(-1);}plans.fargate.fields.push(['project-hours','SKIP',730,365]);plans.fargate.testFields=plans.fargate.fields.slice(-1);plans.fargate.setup=async()=>{await choose('CURRENT:minutes','hours');await choose('CURRENT:per day','per month');};plans.fargate.sync=async()=>{const hours=await local.locator('#project-hours').inputValue(),tasks=await local.locator('#input-profile--tasksPerDay').inputValue();await inputAws('Number of tasks or pods Value',new Decimal(tasks).times(hours).div(24).toString());};}
+if(variant==='aurora-iopeak'){
+ const base=new Decimal(1000000).times(729).plus(2000000).div(730).toString(),changed=new Decimal(1000000).times(706).plus(new Decimal(2000000).times(24)).div(730).toString();
+ plans['aurora-postgresql']={url:'AuroraPostgreSQL',profile:'provisioned-standard',fields:[['input-component-instance-quantity','Quantity',1,2],['input-component-instance-hours','PCT:Utilization Value',730,365],['input-component-storage-gbMonths','Storage amount Value',20,40],['input-component-io-requests-requests','Duration of peak IO activity Value',base,changed,0,null,{[base]:1,[changed]:24}]],setup:async()=>{await choose('Would you be creating an RDS Proxy','No');await choose('Would you be enabling Database Insights','No');await choose('Do you plan on running an Extended Support','No');const combo=aws.locator('input[role="combobox"]:visible').first();await combo.fill('db.t4g.medium');await aws.getByRole('option').filter({hasText:'db.t4g.medium'}).first().click();await choose('CURRENT:per second','per month');await choose('CURRENT:per second','per month');await inputAws('Baseline IO rate Value',1000000);await inputAws('Peak IO rate Value',2000000);}};plans['aurora-postgresql'].testFields=plans['aurora-postgresql'].fields.slice(-1);
+}
+"""
+s=s.replace(anchor,extra+'\n'+anchor);p.write_text(s)

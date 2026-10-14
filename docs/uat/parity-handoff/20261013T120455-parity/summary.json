@@ -1,0 +1,1946 @@
+{
+  "runId": "20261013T120455-parity",
+  "status": "INCOMPLETE",
+  "allServicesVisited": true,
+  "fullScopeCompleted": false,
+  "counts": {
+    "PASS": 595,
+    "BLOCKED": 20,
+    "NOT_COMPARABLE": 284,
+    "FAIL": 19,
+    "INCOMPLETE": 509
+  },
+  "inputFailureCases": 196,
+  "failures": 212,
+  "services": [
+    {
+      "serviceId": "athena",
+      "name": "Amazon Athena",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 14,
+        "FAIL": 2
+      },
+      "pricingVerdicts": {
+        "PASS": 9,
+        "BLOCKED": 13,
+        "FAIL": 3,
+        "INCOMPLETE": 9,
+        "NOT_COMPARABLE": 2
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 14,
+        "MISMATCHED": 2
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "athena:input-component-sql-scanned-day-queriesPerMonth",
+          "athena:input-component-sql-scanned-day-scannedGbPerQuery",
+          "athena:input-component-capacity-dpus",
+          "athena:input-component-capacity-activeHours",
+          "athena:input-component-spark-day-sessionsPerMonth",
+          "athena:input-component-spark-day-dpuHoursPerSession",
+          "athena:aws:Choose-a-Region-button-0-713f3465eb",
+          "athena:aws:Amount-of-data-scanned-per-query-Value-Unit-button-0-71c5305f6a",
+          "athena:aws:Length-of-time-capacity-is-active-Value-Unit-button-0-63fe16ae51",
+          "athena:aws:Code-execution-per-session-Value-Unit-button-0-36243d4c35",
+          "athena:drawer-profile",
+          "athena:drawer-region",
+          "athena:project-region",
+          "athena:project-hours"
+        ],
+        "MISMATCHED": [
+          "athena:input-profile--sqlPeriod",
+          "athena:input-profile--sparkPeriod"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1"
+      ],
+      "caseCount": 36,
+      "officialObservedFieldCount": 12,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 20,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 2,
+        "observedDenominator": 12,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 8,
+        "observedTargetLocalFields": 20,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 2.0
+    },
+    {
+      "serviceId": "aurora-postgresql",
+      "name": "Amazon Aurora for PostgreSQL",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 60,
+        "FAIL": 4
+      },
+      "pricingVerdicts": {
+        "PASS": 41,
+        "INCOMPLETE": 73,
+        "NOT_COMPARABLE": 4
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 60,
+        "MISSING_LOCAL": 4
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "aurora-postgresql:input-component-instance-quantity",
+          "aurora-postgresql:input-component-instance-hours",
+          "aurora-postgresql:input-component-storage-gbMonths",
+          "aurora-postgresql:input-component-io-requests-requests",
+          "aurora-postgresql:input-component-instance-io-optimized-quantity",
+          "aurora-postgresql:input-component-instance-io-optimized-hours",
+          "aurora-postgresql:input-component-storage-io-optimized-gbMonths",
+          "aurora-postgresql:input-component-backup-storage-gbMonths",
+          "aurora-postgresql:input-component-snapshot-export-processedGb",
+          "aurora-postgresql:input-component-limitless-compute-averageAcus",
+          "aurora-postgresql:input-component-limitless-compute-computeHours",
+          "aurora-postgresql:input-component-database-insights-limitless-monitoredAcus",
+          "aurora-postgresql:input-component-database-insights-limitless-hours",
+          "aurora-postgresql:input-component-serverless-io-optimized-averageAcus",
+          "aurora-postgresql:input-component-serverless-io-optimized-computeHours",
+          "aurora-postgresql:input-component-serverless-standard-averageAcus",
+          "aurora-postgresql:input-component-serverless-standard-computeHours",
+          "aurora-postgresql:aws:Choose-a-Region-button-0-713f3465eb",
+          "aurora-postgresql:aws:Aurora-PostgreSQL-Compatible-Edition-radio-0-1f21516aab",
+          "aurora-postgresql:aws:Aurora-Serverless-PostgreSQL-Compatible-Edition-radio-0-d562d66715",
+          "aurora-postgresql:aws:Amazon-Aurora-PostgreSQL-Limitless-Database-radio-0-8defbbdf7c",
+          "aurora-postgresql:aws:Aurora-PostgreSQL-Cluster-Configuration-Option-button-0-17feda938b",
+          "aurora-postgresql:aws:Instance-selection-combobox-text-0-aed1c48eae",
+          "aurora-postgresql:aws:Utilization-Value-Unit-button-0-4d5ea01777",
+          "aurora-postgresql:aws:Pricing-model-button-0-346721985d",
+          "aurora-postgresql:aws:Storage-amount-Value-Unit-button-0-4aaed6e992",
+          "aurora-postgresql:aws:Baseline-IO-rate-Value-Unit-button-0-888091497c",
+          "aurora-postgresql:aws:Peak-IO-rate-Value-Unit-button-0-875f32235b",
+          "aurora-postgresql:aws:Duration-of-peak-IO-activity-Value-number-0-05a6e3bc7e",
+          "aurora-postgresql:aws:Duration-of-peak-IO-activity-Value-Unit-button-0-c12e91c4b1",
+          "aurora-postgresql:aws:Would-you-be-enabling-Database-Insights-with-the-database-button--dda4753240",
+          "aurora-postgresql:aws:Number-of-hours-running-on-Amazon-RDS-Extended-Support-Value-Unit-2f779c63ec",
+          "aurora-postgresql:aws:Aurora-PostgreSQL-Cluster-Configuration-Options-button-0-b447a193a5",
+          "aurora-postgresql:aws:Additional-backup-storage-Value-Unit-button-0-231e12dbf0",
+          "aurora-postgresql:aws:Aurora-PostgreSQL-Serverless-Version-button-0-1f315efc44",
+          "aurora-postgresql:aws:Database-Engine-button-0-559f6107a1",
+          "aurora-postgresql:aws:Number-of-Aurora-Capacity-Units-ACUs-for-the-DB-shard-group-Value-9f8f56e558",
+          "aurora-postgresql:aws:Number-of-Aurora-Capacity-Units-ACUs-monitored-by-Database-Insigh-cc26a46f77",
+          "aurora-postgresql:aws:Total-Size-of-Backup-Processed-for-Export-GB-Value-Unit-button-0-5e4e8ad2ef",
+          "aurora-postgresql:aws:Pricing-Model-button-0-b545032dc9",
+          "aurora-postgresql:aws:Term-button-0-e6f8f95e76",
+          "aurora-postgresql:aws:Purchase-option-button-0-3db77aa1b6",
+          "aurora-postgresql:aws:Additional-backup-storage-Value-number-1-110b249b4d",
+          "aurora-postgresql:aws:Additional-backup-storage-Value-Unit-button-1-ed009c03a8",
+          "aurora-postgresql:aws:Storage-Type-button-0-86208fe1da",
+          "aurora-postgresql:drawer-profile",
+          "aurora-postgresql:drawer-region",
+          "aurora-postgresql:input-component-instance-instanceType",
+          "aurora-postgresql:toggle.backup-storage",
+          "aurora-postgresql:toggle.snapshot-export",
+          "aurora-postgresql:input-component-instance-io-optimized-instanceType",
+          "aurora-postgresql:input-component-serverless-standard-usageMode",
+          "aurora-postgresql:input-component-serverless-standard-acuHours",
+          "aurora-postgresql:input-component-serverless-io-optimized-usageMode",
+          "aurora-postgresql:input-component-serverless-io-optimized-acuHours",
+          "aurora-postgresql:input-component-limitless-compute-usageMode",
+          "aurora-postgresql:input-component-limitless-compute-acuHours",
+          "aurora-postgresql:toggle.database-insights-limitless",
+          "aurora-postgresql:project-region",
+          "aurora-postgresql:project-hours"
+        ],
+        "MISSING_LOCAL": [
+          "aurora-postgresql:aws:Would-you-be-creating-an-RDS-Proxy-with-the-database-button-0-5444517103",
+          "aurora-postgresql:aws:Do-you-plan-on-running-an-Extended-Support-major-version-PostgreS-31deeaf52b",
+          "aurora-postgresql:aws:Please-choose-the-pricing-year-for-RDS-Extended-Support-Pricing-i-bcb2a9ef34",
+          "aurora-postgresql:aws:Number-of-hours-running-on-Amazon-RDS-Extended-Support-Value-numb-c2a6031323"
+        ]
+      },
+      "profiles": [
+        "limitless-io-optimized",
+        "provisioned-io-optimized",
+        "provisioned-standard",
+        "serverless-io-optimized",
+        "serverless-standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 118,
+      "officialObservedFieldCount": 43,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 32,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 4,
+        "observedDenominator": 43,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 14,
+        "observedTargetLocalFields": 32,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.01
+    },
+    {
+      "serviceId": "ebs",
+      "name": "Amazon EBS",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 19,
+        "FAIL": 7
+      },
+      "pricingVerdicts": {
+        "PASS": 15,
+        "INCOMPLETE": 22,
+        "NOT_COMPARABLE": 7
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 19,
+        "MISMATCHED": 1,
+        "MISSING_LOCAL": 6
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "ebs:input-component-storage-gbMonths",
+          "ebs:input-component-iops-iopsMonths",
+          "ebs:input-component-throughput-mibpsMonths",
+          "ebs:aws:Choose-a-Region-button-0-713f3465eb",
+          "ebs:aws:Number-of-volumes-Enter-amount-text-0-64128c5279",
+          "ebs:aws:Average-duration-of-volume-Value-number-0-31350434b4",
+          "ebs:aws:Average-duration-of-volume-Value-Unit-button-0-1c3af1a0d0",
+          "ebs:aws:Storage-amount-per-volume-Value-Unit-button-0-2795f27554",
+          "ebs:aws:Amount-changed-per-snapshot-Value-Unit-button-0-c822e552eb",
+          "ebs:aws:Number-of-GetSnapshotBlock-API-requests-Value-Unit-button-0-546769d344",
+          "ebs:aws:Number-of-LIST-API-requests-Value-Unit-button-0-7fa827f3e7",
+          "ebs:aws:Number-of-PutSnapshotBlock-API-requests-Value-Unit-button-0-9df2e6101f",
+          "ebs:aws:General-Purpose-SSD-gp3-Throughput-Value-Unit-button-0-0d1263c4a3",
+          "ebs:aws:Provisioning-IOPS-per-volume-io1-Enter-amount-text-0-058d7a14c8",
+          "ebs:aws:Provisioning-IOPS-per-volume-io2-Enter-amount-of-IOPS-per-volume--4b4c2b4608",
+          "ebs:drawer-profile",
+          "ebs:drawer-region",
+          "ebs:project-region",
+          "ebs:project-hours"
+        ],
+        "MISMATCHED": [
+          "ebs:input-profile--volume"
+        ],
+        "MISSING_LOCAL": [
+          "ebs:aws:Snapshot-Frequency-button-0-e7ddc6ea60",
+          "ebs:aws:Amount-changed-per-snapshot-Value-number-0-468f1eca8d",
+          "ebs:aws:Number-of-snapshots-to-restore-Enter-amount-text-0-a96c43c831",
+          "ebs:aws:Number-of-GetSnapshotBlock-API-requests-Value-number-0-35c5c3f452",
+          "ebs:aws:Number-of-LIST-API-requests-Value-number-0-cfb75b5431",
+          "ebs:aws:Number-of-PutSnapshotBlock-API-requests-Value-number-0-7db100e477"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 44,
+      "officialObservedFieldCount": 22,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 8,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 7,
+        "observedDenominator": 22,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 3,
+        "observedTargetLocalFields": 8,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.0
+    },
+    {
+      "serviceId": "ec2",
+      "name": "Amazon EC2",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 61,
+        "FAIL": 4,
+        "EXCLUDED": 37
+      },
+      "pricingVerdicts": {
+        "NOT_COMPARABLE": 53,
+        "PASS": 46,
+        "INCOMPLETE": 53
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 61,
+        "MISMATCHED": 1,
+        "SPEC_EXCLUDED": 37,
+        "MISSING_LOCAL": 3
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "ec2:input-component-instance-quantity",
+          "ec2:input-component-instance-hours",
+          "ec2:input-component-ebs-storageGb",
+          "ec2:input-component-ebs-gp3-iops-provisionedIops",
+          "ec2:input-component-ebs-gp3-throughput-throughputMibps",
+          "ec2:input-profile--os",
+          "ec2:input-profile--software",
+          "ec2:toggle.detailed-monitoring",
+          "ec2:ec2-additional-cost",
+          "ec2:input-profile--transferInboundGb",
+          "ec2:input-component-transfer-regional-gbPerMonth",
+          "ec2:input-component-transfer-internet-out-gbPerMonth",
+          "ec2:input-profile--ebsVolumeType",
+          "ec2:input-component-ebs-io1-iops-provisionedIops",
+          "ec2:input-component-ebs-io2-iops-provisionedIops",
+          "ec2:aws:Choose-a-Region-button-0-713f3465eb",
+          "ec2:aws:Search-instance-types-Search-by-instance-name-or-filter-by-keywor-8b90f58e36",
+          "ec2:aws:Instance-family-Info-button-0-b7dca18bf7",
+          "ec2:aws:vCPUs-button-0-3cd1f96f3c",
+          "ec2:aws:Memory-GiB-button-0-db0b653342",
+          "ec2:aws:Network-performance-button-0-6e8e0582cd",
+          "ec2:aws:Show-only-current-generation-instances-checkbox-0-8ec17e0bce",
+          "ec2:aws:On-Demand-radio-0-82446d588c",
+          "ec2:aws:Usage-type-button-0-e34bd12c34",
+          "ec2:aws:General-Purpose-SSD-gp3-Throughput-Value-Unit-button-0-0d1263c4a3",
+          "ec2:aws:Storage-amount-Value-Unit-button-0-4aaed6e992",
+          "ec2:aws:Data-transfer-from-button-0-3eac9f7054",
+          "ec2:aws:Enter-Amount-Enter-amount-Data-amount-button-0-fba6ef6c25",
+          "ec2:aws:Enter-Amount-Enter-amount-Data-amount-button-1-40e296cdba",
+          "ec2:aws:Data-transfer-to-button-0-d2e8749434",
+          "ec2:aws:Enter-Amount-Enter-amount-Data-amount-button-2-59ede6f2fb",
+          "ec2:aws:Physical-Cores-button-0-edde5b4c23",
+          "ec2:aws:Instance-Category-button-0-8fa44f3d78",
+          "ec2:aws:Storage-amount-per-io2-volume-Value-number-0-491d940fd4",
+          "ec2:aws:Storage-amount-per-io2-volume-Value-Unit-button-0-35ae3d1e04",
+          "ec2:aws:Amount-changed-per-snapshot-Value-Unit-button-0-c822e552eb",
+          "ec2:drawer-profile",
+          "ec2:drawer-region",
+          "ec2:input-component-instance-instanceType",
+          "ec2:gui.text-5a10c5022f",
+          "ec2:gui.text-bab26e46d5",
+          "ec2:gui.text-2f60c9b1c4",
+          "ec2:gui.vCPU-text-1014a06756",
+          "ec2:gui.text-9da4121faa",
+          "ec2:gui.text-4448cd9ec8",
+          "ec2:gui.text-865afc8f31",
+          "ec2:gui.text-4db7193491",
+          "ec2:gui.1-text-7f8d64b8bb",
+          "ec2:gui.CurrentGeneration-text-4c4691a8bc",
+          "ec2:toggle.dedicated-region-fee",
+          "ec2:input-component-dedicated-region-fee-hours",
+          "ec2:input-component-detailed-monitoring-metricsPerInstance",
+          "ec2:toggle.transfer-internet-out",
+          "ec2:toggle.transfer-regional",
+          "ec2:toggle.transfer-interregion",
+          "ec2:input-component-transfer-interregion-route",
+          "ec2:input-component-transfer-interregion-gbPerMonth",
+          "ec2:input-component-ebs-io2-iops-volumeCount",
+          "ec2:input-component-ebs-io2-iops-volumeHours",
+          "ec2:project-region",
+          "ec2:project-hours"
+        ],
+        "MISMATCHED": [
+          "ec2:input-profile--tenancy"
+        ],
+        "SPEC_EXCLUDED": [
+          "ec2:aws:Constant-usage-radio-0-17817a0c5c",
+          "ec2:aws:Daily-spike-traffic-radio-0-4512c06a80",
+          "ec2:aws:Weekly-spike-traffic-radio-0-f298368299",
+          "ec2:aws:Monthly-spike-traffic-radio-0-ed3a0af95d",
+          "ec2:aws:Compute-Savings-Plans-radio-0-1c3995a489",
+          "ec2:aws:1-year-radio-0-58067d1fa1",
+          "ec2:aws:3-year-radio-0-4922ddfc5c",
+          "ec2:aws:No-upfront-radio-0-57acac3c4c",
+          "ec2:aws:Partial-upfront-radio-0-2165108a83",
+          "ec2:aws:All-upfront-radio-0-b405972328",
+          "ec2:aws:EC2-Instance-Savings-Plans-radio-0-9a1b23e064",
+          "ec2:aws:1-year-radio-1-0d152b6727",
+          "ec2:aws:3-year-radio-1-244719c75d",
+          "ec2:aws:No-upfront-radio-1-d5670d09e9",
+          "ec2:aws:Partial-upfront-radio-1-4884ceed7d",
+          "ec2:aws:All-upfront-radio-1-379cd3537a",
+          "ec2:aws:Spot-Instances-radio-0-9d42fa3f7d",
+          "ec2:aws:Assume-percentage-discount-for-my-estimate-number-0-9efec02658",
+          "ec2:aws:Sunday-Workload-days-checkbox-0-bc2d9657a6",
+          "ec2:aws:Monday-Workload-days-checkbox-0-e441f4a3c9",
+          "ec2:aws:Tuesday-Workload-days-checkbox-0-b069794e3e",
+          "ec2:aws:Wednesday-Workload-days-checkbox-0-7fd4c006c7",
+          "ec2:aws:Thursday-Workload-days-checkbox-0-e32cbd1099",
+          "ec2:aws:Friday-Workload-days-checkbox-0-8bd6286f2d",
+          "ec2:aws:Saturday-Workload-days-checkbox-0-84bf5541d8",
+          "ec2:aws:Enter-the-minimum-number-of-instances-for-your-workload-number-0-7e20f14409",
+          "ec2:aws:Enter-the-maximum-number-of-instances-for-your-workload-number-0-4ad63b10b9",
+          "ec2:aws:Enter-the-amount-of-hours-your-instances-are-running-at-peak-numb-a75ab81ea0",
+          "ec2:aws:Enter-the-amount-of-minutes-your-instances-are-running-at-peak-nu-2c9f2e504d",
+          "ec2:aws:Enter-the-amount-of-days-your-instances-are-running-at-peak-numbe-552fe71006",
+          "ec2:aws:Standard-Reserved-Instances-radio-0-b221802f9a",
+          "ec2:aws:Convertible-Reserved-Instances-radio-0-33a6f8c323",
+          "ec2:aws:1-year-radio-2-fbdf38fc9a",
+          "ec2:aws:3-year-radio-2-7e743452c7",
+          "ec2:aws:No-upfront-radio-2-6842d02087",
+          "ec2:aws:Partial-upfront-radio-2-27ce16f2b6",
+          "ec2:aws:All-upfront-radio-2-1ec07b902e"
+        ],
+        "MISSING_LOCAL": [
+          "ec2:aws:Snapshot-Frequency-button-0-e7ddc6ea60",
+          "ec2:aws:Number-of-dedicated-hosts-Enter-amount-number-0-397a5d6d28",
+          "ec2:aws:Amount-changed-per-snapshot-Value-number-0-468f1eca8d"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 152,
+      "officialObservedFieldCount": 76,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 41,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 41,
+        "observedDenominator": 76,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 13,
+        "observedTargetLocalFields": 41,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 2.88
+    },
+    {
+      "serviceId": "eventbridge",
+      "name": "Amazon EventBridge",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 37
+      },
+      "pricingVerdicts": {
+        "PASS": 73,
+        "FAIL": 7,
+        "NOT_COMPARABLE": 2,
+        "INCOMPLETE": 21
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 37
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "eventbridge:input-profile--payloadSizeKb",
+          "eventbridge:input-profile--awsManagementEventsMillions",
+          "eventbridge:input-profile--awsOptInDataEventsMillions",
+          "eventbridge:input-profile--customEventsMillions",
+          "eventbridge:input-profile--partnerEventsMillions",
+          "eventbridge:input-profile--crossAccountManagementEventsMillions",
+          "eventbridge:input-profile--crossAccountCustomEventsMillions",
+          "eventbridge:input-profile--crossAccountPartnerEventsMillions",
+          "eventbridge:input-profile--apiDestinationInvocationsMillions",
+          "eventbridge:input-profile--replayedEventsMillions",
+          "eventbridge:input-profile--pipesRequestsMillions",
+          "eventbridge:input-profile--schemaDiscoveryEventsMillions",
+          "eventbridge:input-profile--schedulerInvocationsMillions",
+          "eventbridge:scheduler-free-remaining",
+          "eventbridge:input-profile--archiveEventsMillions",
+          "eventbridge:input-profile--archiveStorageGbMonth",
+          "eventbridge:aws:Choose-a-Region-button-0-713f3465eb",
+          "eventbridge:aws:Size-of-the-payload-Value-Unit-button-0-492e01737f",
+          "eventbridge:aws:Number-of-AWS-management-events-Value-Unit-button-0-d0ab2ff2e4",
+          "eventbridge:aws:Number-of-AWS-opt-in-data-events-Value-Unit-button-0-03bd728106",
+          "eventbridge:aws:Number-of-custom-events-Value-Unit-button-0-124d38f245",
+          "eventbridge:aws:Number-of-partner-events-Value-Unit-button-0-68023256f3",
+          "eventbridge:aws:What-type-of-events-were-ingested-button-0-a199acc4b1",
+          "eventbridge:aws:Number-of-events-delivered-to-another-event-bus-Value-Unit-button-42b62151f1",
+          "eventbridge:aws:Number-of-events-delivered-to-a-service-in-the-same-account-Value-54b57083e5",
+          "eventbridge:aws:Number-of-events-delivered-to-a-service-in-the-same-account-Value-575eaa2615",
+          "eventbridge:aws:Number-of-events-delivered-to-a-service-in-a-different-account-Va-16b5a3414d",
+          "eventbridge:aws:Number-of-invocations-Value-Unit-button-0-a35aae98fc",
+          "eventbridge:aws:Number-of-events-Value-Unit-button-0-5e0d422b72",
+          "eventbridge:aws:Number-of-replayed-events-Value-Unit-button-0-b461271e68",
+          "eventbridge:aws:Number-of-requests-Value-Unit-button-0-69f278caaa",
+          "eventbridge:aws:Number-of-events-Value-Unit-button-1-c4700a993f",
+          "eventbridge:aws:Number-of-invocations-Value-Unit-button-1-74bbf07809",
+          "eventbridge:drawer-profile",
+          "eventbridge:drawer-region",
+          "eventbridge:project-region",
+          "eventbridge:project-hours"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 103,
+      "officialObservedFieldCount": 30,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 20,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 0,
+        "observedDenominator": 30,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 14,
+        "observedTargetLocalFields": 20,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.95
+    },
+    {
+      "serviceId": "rds-oracle",
+      "name": "Amazon RDS for Oracle",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 34,
+        "FAIL": 1
+      },
+      "pricingVerdicts": {
+        "PASS": 21,
+        "NOT_COMPARABLE": 7,
+        "INCOMPLETE": 28
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 34,
+        "MISMATCHED": 1
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "rds-oracle:input-profile--nodes",
+          "rds-oracle:input-profile--utilizationPct",
+          "rds-oracle:input-component-storage-gp3-gbMonths",
+          "rds-oracle:input-component-backup-storage-additionalGbMonths",
+          "rds-oracle:input-profile--deployment",
+          "rds-oracle:input-profile--licenseModel",
+          "rds-oracle:aws:Choose-a-Region-button-0-713f3465eb",
+          "rds-oracle:aws:Instance-selection-combobox-text-0-aed1c48eae",
+          "rds-oracle:aws:Utilization-On-Demand-only-Value-Unit-button-0-6fd260fa87",
+          "rds-oracle:aws:Pricing-model-button-0-346721985d",
+          "rds-oracle:aws:Database-edition-button-0-8238ecde94",
+          "rds-oracle:aws:Storage-amount-Value-Unit-button-0-4aaed6e992",
+          "rds-oracle:aws:Would-you-be-enabling-Database-Insights-with-the-database-button--dda4753240",
+          "rds-oracle:aws:Additional-backup-storage-Value-Unit-button-0-231e12dbf0",
+          "rds-oracle:aws:Provisioning-IOPS-Enter-amount-text-0-030a00a41e",
+          "rds-oracle:aws:Provisioned-IOPS-IO2-Enter-amount-text-0-c67b2d444d",
+          "rds-oracle:drawer-profile",
+          "rds-oracle:drawer-region",
+          "rds-oracle:input-profile--databaseEdition",
+          "rds-oracle:input-component-instance-instanceType",
+          "rds-oracle:gui.DB-text-50e8b09ad0",
+          "rds-oracle:gui.text-4732cd3706",
+          "rds-oracle:gui.text-2f60c9b1c4",
+          "rds-oracle:gui.vCPU-text-1014a06756",
+          "rds-oracle:gui.GiB-text-58e9611eb0",
+          "rds-oracle:gui.text-865afc8f31",
+          "rds-oracle:gui.EBS-text-f8037a0a1f",
+          "rds-oracle:gui.CurrentGeneration-text-4c4691a8bc",
+          "rds-oracle:gui.1-text-7f8d64b8bb",
+          "rds-oracle:toggle.storage-gp3",
+          "rds-oracle:toggle.database-insights",
+          "rds-oracle:toggle.backup-storage",
+          "rds-oracle:project-region",
+          "rds-oracle:project-hours"
+        ],
+        "MISMATCHED": [
+          "rds-oracle:input-component-storage-gp3-volumeType"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 56,
+      "officialObservedFieldCount": 17,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 25,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 1,
+        "observedDenominator": 17,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 6,
+        "observedTargetLocalFields": 25,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 36.5
+    },
+    {
+      "serviceId": "rds",
+      "name": "Amazon RDS for PostgreSQL",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 36,
+        "FAIL": 5
+      },
+      "pricingVerdicts": {
+        "PASS": 20,
+        "INCOMPLETE": 31,
+        "NOT_COMPARABLE": 5
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 36,
+        "MISSING_LOCAL": 5
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "rds:input-component-instance-quantity",
+          "rds:input-component-instance-hours",
+          "rds:input-component-storage-capacityGb",
+          "rds:input-component-storage-storageHours",
+          "rds:input-profile--deployment",
+          "rds:aws:Choose-a-Region-button-0-713f3465eb",
+          "rds:aws:Instance-selection-combobox-text-0-aed1c48eae",
+          "rds:aws:Utilization-On-Demand-only-Value-Unit-button-0-6fd260fa87",
+          "rds:aws:Pricing-Model-button-0-b545032dc9",
+          "rds:aws:Storage-volume-button-0-35ed76b72e",
+          "rds:aws:Storage-amount-Value-Unit-button-0-4aaed6e992",
+          "rds:aws:Number-of-hours-running-on-Amazon-RDS-Extended-Support-Value-Unit-2f779c63ec",
+          "rds:aws:Additional-backup-storage-Value-number-0-7a022a9d08",
+          "rds:aws:Additional-backup-storage-Value-Unit-button-0-231e12dbf0",
+          "rds:aws:Total-Size-of-Backup-Processed-for-Export-GB-Value-number-0-35c403ec56",
+          "rds:aws:Total-Size-of-Backup-Processed-for-Export-GB-Value-Unit-button-0-5e4e8ad2ef",
+          "rds:aws:Provisioning-IOPS-Enter-amount-text-0-030a00a41e",
+          "rds:aws:Dedicated-Log-Volume-button-0-3ec7db8c1f",
+          "rds:aws:Provisioned-IOPS-IO2-Enter-amount-text-0-c67b2d444d",
+          "rds:drawer-profile",
+          "rds:drawer-region",
+          "rds:input-component-instance-instanceType",
+          "rds:gui.DB-text-50e8b09ad0",
+          "rds:gui.text-4732cd3706",
+          "rds:gui.text-2f60c9b1c4",
+          "rds:gui.vCPU-text-1014a06756",
+          "rds:gui.GiB-text-58e9611eb0",
+          "rds:gui.text-865afc8f31",
+          "rds:gui.EBS-text-f8037a0a1f",
+          "rds:gui.CurrentGeneration-text-4c4691a8bc",
+          "rds:gui.1-text-7f8d64b8bb",
+          "rds:toggle.storage",
+          "rds:input-component-storage-usageMode",
+          "rds:input-component-storage-gbMonths",
+          "rds:project-region",
+          "rds:project-hours"
+        ],
+        "MISSING_LOCAL": [
+          "rds:aws:Would-you-be-creating-an-RDS-Proxy-with-the-database-button-0-5444517103",
+          "rds:aws:Would-you-be-enabling-Database-Insights-with-the-database-button--dda4753240",
+          "rds:aws:Do-you-plan-on-running-an-Extended-Support-major-version-PostgreS-31deeaf52b",
+          "rds:aws:Please-choose-the-pricing-year-for-RDS-Extended-Support-Pricing-i-bcb2a9ef34",
+          "rds:aws:Number-of-hours-running-on-Amazon-RDS-Extended-Support-Value-numb-c2a6031323"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 56,
+      "officialObservedFieldCount": 23,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 22,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 5,
+        "observedDenominator": 23,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 5,
+        "observedTargetLocalFields": 22,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.01
+    },
+    {
+      "serviceId": "redshift",
+      "name": "Amazon Redshift",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 35,
+        "FAIL": 1
+      },
+      "pricingVerdicts": {
+        "NOT_COMPARABLE": 37,
+        "PASS": 4,
+        "INCOMPLETE": 26
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 35,
+        "MISMATCHED": 1
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "redshift:input-component-node-compute-nodes",
+          "redshift:input-component-node-compute-utilization",
+          "redshift:input-component-backup-tiered-backupGb",
+          "redshift:input-component-spectrum-scannedTb",
+          "redshift:input-component-rms-provisioned-managedGb",
+          "redshift:input-profile--transferInGb",
+          "redshift:input-component-serverless-compute-runtimeDailyHours",
+          "redshift:input-component-backup-serverless-backupGb",
+          "redshift:input-component-rms-serverless-managedGb",
+          "redshift:aws:Choose-a-Region-button-0-713f3465eb",
+          "redshift:aws:Redshift-radio-0-4af3d56d61",
+          "redshift:aws:Redshift-Serverless-radio-0-9b7d0b65c7",
+          "redshift:aws:Instance-selection-combobox-text-0-aed1c48eae",
+          "redshift:aws:Utilization-On-Demand-only-Value-Unit-button-0-6fd260fa87",
+          "redshift:aws:Pricing-model-button-0-346721985d",
+          "redshift:aws:Workload-size-button-0-e25394ed1c",
+          "redshift:aws:Additional-backup-storage-Value-Unit-button-0-231e12dbf0",
+          "redshift:aws:Data-scanned-Value-Unit-button-0-cbd0abb2b3",
+          "redshift:aws:Managed-storage-size-Value-Unit-button-0-0564097528",
+          "redshift:aws:Data-Transfer-In-To-Value-Unit-button-0-65fd5726e3",
+          "redshift:drawer-profile",
+          "redshift:drawer-region",
+          "redshift:input-profile--instanceType",
+          "redshift:gui.text-9199e5cf16",
+          "redshift:gui.text-bab26e46d5",
+          "redshift:gui.vCPU-text-1014a06756",
+          "redshift:gui.GiB-text-58e9611eb0",
+          "redshift:gui.text-4db7193491",
+          "redshift:gui.I-O-text-3a74a8a73e",
+          "redshift:gui.CurrentGeneration-text-4c4691a8bc",
+          "redshift:gui.1-text-7f8d64b8bb",
+          "redshift:input-component-serverless-compute-workloadSize",
+          "redshift:input-component-backup-rg-backupGb",
+          "redshift:project-region",
+          "redshift:project-hours"
+        ],
+        "MISMATCHED": [
+          "redshift:input-component-serverless-compute-baseRpu"
+        ]
+      },
+      "profiles": [
+        "provisioned",
+        "serverless"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1"
+      ],
+      "caseCount": 67,
+      "officialObservedFieldCount": 19,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 25,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 1,
+        "observedDenominator": 19,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 4,
+        "observedTargetLocalFields": 25,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 2.71
+    },
+    {
+      "serviceId": "s3",
+      "name": "Amazon S3",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 68,
+        "FAIL": 111
+      },
+      "pricingVerdicts": {
+        "PASS": 26,
+        "INCOMPLETE": 67,
+        "NOT_COMPARABLE": 111
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 68,
+        "MISSING_LOCAL": 111
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "s3:input-component-storage-gbMonths",
+          "s3:input-component-write-requests-requests",
+          "s3:input-component-read-requests-requests",
+          "s3:project-hours",
+          "s3:aws:Choose-a-Region-button-0-713f3465eb",
+          "s3:aws:S3-Standard-checkbox-0-dfebd2644c",
+          "s3:aws:S3-Standard-storage-Value-Unit-button-0-c72a354753",
+          "s3:aws:How-will-data-be-moved-into-S3-Standard-button-0-adf8e91b80",
+          "s3:aws:Data-returned-by-S3-Select-Value-Unit-button-0-83d13de86a",
+          "s3:aws:Data-scanned-by-S3-Select-Value-Unit-button-0-469bef9868",
+          "s3:aws:Enter-Amount-Enter-amount-Data-amount-button-0-fba6ef6c25",
+          "s3:aws:Enter-Amount-Enter-amount-Data-amount-button-1-40e296cdba",
+          "s3:aws:S3-INT-storage-Value-Unit-button-0-ef87198f3f",
+          "s3:aws:S3-INT-Average-Object-Size-Value-Unit-button-0-613a5dbb25",
+          "s3:aws:How-will-data-be-moved-into-S3-INT-button-0-0c98e3a035",
+          "s3:aws:Data-returned-by-S3-Select-Value-Unit-button-1-4bbe036755",
+          "s3:aws:Data-scanned-by-S3-Select-Value-Unit-button-1-01b2f42121",
+          "s3:aws:S3-Standard-IA-storage-Value-Unit-button-0-8b7cb1fc94",
+          "s3:aws:How-will-data-be-moved-into-S3-Standard-IA-button-0-bf6b6a9881",
+          "s3:aws:Data-retrievals-Value-Unit-button-0-bc88b5eed7",
+          "s3:aws:S3-Glacier-Flexible-Retrieval-storage-Value-Unit-button-0-ae61a18889",
+          "s3:aws:S3-Glacier-Flexible-Retrieval-Average-Object-Size-Value-Unit-butt-4c655a864a",
+          "s3:aws:How-will-data-be-moved-into-S3-Glacier-Flexible-Retrieval-button--b064d7c91c",
+          "s3:aws:Data-retrievals-Standard-Value-Unit-button-0-49f8741c07",
+          "s3:aws:Data-retrievals-Expedited-Value-Unit-button-0-3c2712a08b",
+          "s3:aws:Data-retrievals-Bulk-Value-Unit-button-0-b8b450a605",
+          "s3:aws:Provisioned-Capacity-Units-button-0-954e55863f",
+          "s3:aws:S3-Glacier-Deep-Archive-storage-Value-Unit-button-0-abfe76af5e",
+          "s3:aws:S3-Glacier-Deep-Archive-Average-Object-Size-Value-Unit-button-0-b49332f158",
+          "s3:aws:How-will-data-be-moved-into-S3-Glacier-Deep-Archive-button-0-4abdf74326",
+          "s3:aws:S3-Storage-Lens-Objects-Value-Unit-button-0-97f1459899",
+          "s3:aws:S3-Batch-Operations-Jobs-Value-Unit-button-0-a76df734d3",
+          "s3:aws:S3-Batch-Operations-Objects-Value-Unit-button-0-34967462f1",
+          "s3:aws:Size-of-encrypted-data-Value-Unit-button-0-0391636adb",
+          "s3:aws:S3-General-Purpose-Buckets-Value-Unit-button-0-87ce8e05c0",
+          "s3:aws:S3-Inventory-Value-Unit-button-0-37bd426eef",
+          "s3:aws:S3-Storage-Class-Analysis-Value-Unit-button-0-afafcc5e1c",
+          "s3:aws:S3-Object-Tagging-Value-Unit-button-0-15f0cf24e4",
+          "s3:aws:Average-annotation-size-Value-Unit-button-0-c279c62f42",
+          "s3:aws:Enable-Annotations-Table-button-0-35c67fee8a",
+          "s3:aws:S3-One-Zone-IA-storage-Value-Unit-button-0-16e7290780",
+          "s3:aws:How-will-data-be-moved-into-S3-One-Zone-IA-button-0-e08354e6a0",
+          "s3:aws:Data-Retrievals-Value-Unit-button-0-adc12274cc",
+          "s3:aws:Filterable-metadata-KB-per-vector-Value-Unit-button-0-f775ac7b6f",
+          "s3:aws:Non-filterable-metadata-KB-per-vector-Value-Unit-button-0-b28433928e",
+          "s3:aws:Key-size-KB-per-vector-Value-Unit-button-0-78df4d8783",
+          "s3:aws:Total-number-of-queries-per-month-across-all-indexes-Value-Unit-b-328ae0ae38",
+          "s3:aws:Amount-of-memory-allocated-to-the-Lambda-function-Value-Unit-butt-2b33d67824",
+          "s3:aws:Size-of-data-returned-by-S3-Object-Lambda-Value-Unit-button-0-73512fc8ea",
+          "s3:aws:S3-Glacier-Instant-Retrieval-storage-Value-Unit-button-0-9f7db4514f",
+          "s3:aws:How-will-data-be-moved-into-S3-Glacier-Instant-Retrieval-button-0-e955cf01df",
+          "s3:aws:S3-Express-One-Zone-storage-Value-Unit-button-0-bb0f1ab02a",
+          "s3:aws:PUT-COPY-request-size-Value-Unit-button-0-3c6da715bb",
+          "s3:aws:GET-request-size-Value-Unit-button-0-b81478fad8",
+          "s3:aws:Your-S3-bucket-or-prefix-size-Value-Unit-button-0-5421e092d5",
+          "s3:aws:Total-Write-Throughput-in-month-Value-Unit-button-0-12ac086a61",
+          "s3:aws:S3-Tables-standard-storage-Value-Unit-button-0-ad30f6abb1",
+          "s3:aws:S3-Standard-Average-Object-Size-Value-Unit-button-0-8b25f12694",
+          "s3:aws:S3-Standard-IA-Average-Object-Size-Value-Unit-button-0-22f804c9d1",
+          "s3:aws:Live-Inventory-button-0-f1197effcd",
+          "s3:aws:S3-One-Zone-IA-Average-Object-Size-Value-Unit-button-0-0ade1ab158",
+          "s3:aws:S3-Glacier-Instant-Retrieval-Average-Object-Size-Value-Unit-butto-417e4b2fe3",
+          "s3:aws:S3-Tables-INT-total-storage-Value-Unit-button-0-ffe80a159a",
+          "s3:aws:Standard-compaction-data-processed-Value-Unit-button-0-fffd232573",
+          "s3:aws:Sort-Z-order-compaction-data-processed-Value-Unit-button-0-db965fd3f0",
+          "s3:drawer-profile",
+          "s3:drawer-region",
+          "s3:project-region"
+        ],
+        "MISSING_LOCAL": [
+          "s3:aws:S3-Intelligent-Tiering-checkbox-0-49e38815d8",
+          "s3:aws:S3-Standard-Infrequent-Access-checkbox-0-083269d0f9",
+          "s3:aws:S3-Glacier-Flexible-Retrieval-checkbox-0-9eb2ac2c7a",
+          "s3:aws:S3-Glacier-Deep-Archive-checkbox-0-bf9a651aa1",
+          "s3:aws:S3-Management-and-Insights-checkbox-0-ecc00026e2",
+          "s3:aws:S3-Annotations-checkbox-0-57d262926d",
+          "s3:aws:S3-One-Zone-Infrequent-Access-checkbox-0-dc277b8fb5",
+          "s3:aws:S3-Vectors-checkbox-0-d26f853d3d",
+          "s3:aws:S3-Object-Lambda-checkbox-0-67da21b9ed",
+          "s3:aws:S3-Glacier-Instant-Retrieval-checkbox-0-b4ffff1842",
+          "s3:aws:Data-Transfer-checkbox-0-190bab47f4",
+          "s3:aws:S3-Express-One-Zone-checkbox-0-d63e524deb",
+          "s3:aws:S3-Access-Grants-checkbox-0-5960d99ef5",
+          "s3:aws:S3-Files-checkbox-0-7cb1101a4b",
+          "s3:aws:S3-Tables-checkbox-0-b83cca700e",
+          "s3:aws:Data-returned-by-S3-Select-Value-number-0-28225b0ea6",
+          "s3:aws:Data-scanned-by-S3-Select-Value-number-0-3e06481985",
+          "s3:aws:Data-transfer-from-button-0-3eac9f7054",
+          "s3:aws:Enter-Amount-Enter-amount-number-0-5280b541a1",
+          "s3:aws:Data-transfer-to-button-0-d2e8749434",
+          "s3:aws:Enter-Amount-Enter-amount-number-1-2e870678ba",
+          "s3:aws:S3-INT-storage-Value-number-0-8687b40e30",
+          "s3:aws:S3-INT-Average-Object-Size-Value-number-0-224bb6d878",
+          "s3:aws:Percentage-of-Storage-in-INT-Frequent-Access-Tier-number-0-62d3cf5e25",
+          "s3:aws:Percentage-of-Storage-in-INT-Infrequent-Access-Tier-of-storage-th-876eb79b7e",
+          "s3:aws:Percentage-of-Storage-in-INT-Archive-Instant-Access-Tier-of-stora-78f2a762a7",
+          "s3:aws:Percentage-of-Storage-in-INT-Archive-Access-Tier-of-storage-that--a887e4fa90",
+          "s3:aws:Percentage-of-Storage-in-INT-Deep-Archive-Access-Tier-of-storage--8da2343266",
+          "s3:aws:PUT-COPY-POST-LIST-requests-to-S3-INT-Enter-amount-of-requests-te-f2fc7bcf87",
+          "s3:aws:GET-SELECT-and-all-other-requests-from-S3-INT-Enter-amount-of-req-5f0f23e591",
+          "s3:aws:Lifecycle-Transition-requests-Enter-amount-of-requests-text-0-af62da2717",
+          "s3:aws:Data-returned-by-S3-Select-Value-number-1-330e142f93",
+          "s3:aws:Data-scanned-by-S3-Select-Value-number-1-b64398d875",
+          "s3:aws:S3-Standard-IA-storage-Value-number-0-351d6e8cc9",
+          "s3:aws:PUT-COPY-POST-LIST-requests-to-S3-Standard-IA-Enter-amount-of-req-1ddfd208d8",
+          "s3:aws:GET-SELECT-and-all-other-requests-from-S3-Standard-IA-Enter-amoun-a187cfec3d",
+          "s3:aws:Data-retrievals-Value-number-0-ca7e5ffa0a",
+          "s3:aws:S3-Glacier-Flexible-Retrieval-storage-Value-number-0-e13e88c8cf",
+          "s3:aws:S3-Glacier-Flexible-Retrieval-Average-Object-Size-Value-number-0-baa21894b5",
+          "s3:aws:PUT-COPY-POST-LIST-requests-to-S3-Glacier-Flexible-Retrieval-Ente-d643c08dc4",
+          "s3:aws:Lifecycle-Transitions-into-S3-Glacier-Flexible-Retrieval-Enter-am-afd9d5759f",
+          "s3:aws:Restore-requests-Standard-Enter-amount-of-requests-text-0-0e4d7ee4dd",
+          "s3:aws:Restore-requests-Expedited-Enter-amount-of-requests-text-0-2eb926df0a",
+          "s3:aws:Restore-requests-Bulk-Enter-amount-of-requests-text-0-edb9ecfb66",
+          "s3:aws:Data-retrievals-Standard-Value-number-0-ed2df433a9",
+          "s3:aws:Data-retrievals-Expedited-Value-number-0-4995f2eec5",
+          "s3:aws:Data-retrievals-Bulk-Value-number-0-ec5f682a7c",
+          "s3:aws:S3-Glacier-Deep-Archive-storage-Value-number-0-d28e02e0cc",
+          "s3:aws:S3-Glacier-Deep-Archive-Average-Object-Size-Value-number-0-611a4b5600",
+          "s3:aws:PUT-COPY-POST-LIST-requests-to-S3-Glacier-Deep-Archive-Enter-amou-df6199fd37",
+          "s3:aws:Lifecycle-Transitions-into-S3-Glacier-Deep-Archive-Enter-amount-o-71c3f3c87b",
+          "s3:aws:S3-Storage-Lens-Objects-Value-number-0-cf6963ebd1",
+          "s3:aws:S3-Batch-Operations-Jobs-Value-number-0-4094a56b97",
+          "s3:aws:S3-Batch-Operations-Objects-Value-number-0-8c77c98598",
+          "s3:aws:Size-of-encrypted-data-Value-number-0-39fc8fdf51",
+          "s3:aws:S3-General-Purpose-Buckets-Value-number-0-99218bc602",
+          "s3:aws:S3-Inventory-Value-number-0-786762995d",
+          "s3:aws:S3-Storage-Class-Analysis-Value-number-0-5261f7c94e",
+          "s3:aws:S3-Object-Tagging-Value-number-0-5b244cb8b1",
+          "s3:aws:Number-of-annotations-stored-per-month-Enter-number-of-annotation-489db637e0",
+          "s3:aws:Average-annotation-size-Value-number-0-4019b04a68",
+          "s3:aws:S3-One-Zone-IA-storage-Value-number-0-d5aac0825f",
+          "s3:aws:PUT-COPY-POST-LIST-requests-to-S3-One-Zone-IA-Enter-amount-of-req-dfc0d63b32",
+          "s3:aws:GET-SELECT-and-all-other-requests-from-S3-One-Zone-IA-Enter-amoun-671961ce45",
+          "s3:aws:Data-Retrievals-Value-number-0-9e76cc6239",
+          "s3:aws:Number-of-indexes-Enter-number-of-indexes-text-0-03a511b272",
+          "s3:aws:Number-of-vectors-per-index-Enter-Number-of-vectors-per-index-tex-fbd9c3947e",
+          "s3:aws:Vector-Dimensions-Enter-number-text-0-106396153e",
+          "s3:aws:Filterable-metadata-KB-per-vector-Value-number-0-c0699407f6",
+          "s3:aws:Non-filterable-metadata-KB-per-vector-Value-number-0-541aa44bad",
+          "s3:aws:Key-size-KB-per-vector-Value-number-0-a36e727792",
+          "s3:aws:Percentage-of-vectors-overwritten-per-month-Field-value-number-0-b3a1b131b7",
+          "s3:aws:Total-number-of-queries-per-month-across-all-indexes-Value-number-15206fa698",
+          "s3:aws:GET-requests-from-S3-Enter-number-of-requests-text-0-fb800c3ad4",
+          "s3:aws:Duration-that-the-Lambda-function-is-set-to-execute-per-request-i-1519776943",
+          "s3:aws:Amount-of-memory-allocated-to-the-Lambda-function-Value-number-0-7f01d48d90",
+          "s3:aws:Size-of-data-returned-by-S3-Object-Lambda-Value-number-0-323a5b3751",
+          "s3:aws:S3-Glacier-Instant-Retrieval-storage-Value-number-0-b4e4609e76",
+          "s3:aws:PUT-COPY-POST-LIST-requests-to-S3-Glacier-Instant-Retrieval-Enter-9054e7c65f",
+          "s3:aws:GET-SELECT-and-all-other-requests-from-S3-Glacier-Instant-Retriev-6a3e3bcdf0",
+          "s3:aws:S3-Express-One-Zone-storage-Value-number-0-912c0a2a74",
+          "s3:aws:PUT-COPY-POST-LIST-RENAME-requests-to-S3-Express-One-Zone-Enter-a-baccb5ceb3",
+          "s3:aws:GET-and-all-other-requests-from-S3-Express-One-Zone-Enter-amount--b0df5462f3",
+          "s3:aws:PUT-COPY-request-size-Value-number-0-aeb28d2e78",
+          "s3:aws:GET-request-size-Value-number-0-1c0a658808",
+          "s3:aws:Number-of-AccessGrants-Requests-Enter-number-of-requests-text-0-91a1d2ada3",
+          "s3:aws:Your-S3-bucket-or-prefix-size-Value-number-0-241900976a",
+          "s3:aws:of-bucket-read-total-read-throughput-e-g-5-number-0-34d6aabdac",
+          "s3:aws:objects-read-smaller-than-128-KiB-e-g-10-number-0-1ab9345b83",
+          "s3:aws:Total-Write-Throughput-in-month-Value-number-0-ea1f4eef86",
+          "s3:aws:S3-Tables-standard-storage-Value-number-0-918eea85c5",
+          "s3:aws:S3-Standard-Average-Object-Size-Value-number-0-e7078a15ee",
+          "s3:aws:S3-Standard-IA-Average-Object-Size-Value-number-0-4b3b8f4d53",
+          "s3:aws:Existing-Objects-in-Bucket-Enter-number-of-objects-text-0-5d95cee912",
+          "s3:aws:Journal-Updates-of-the-objects-Enter-percentage-text-0-515b0ba37c",
+          "s3:aws:S3-One-Zone-IA-Average-Object-Size-Value-number-0-abbf06380c",
+          "s3:aws:S3-Glacier-Instant-Retrieval-Average-Object-Size-Value-number-0-22276fa899",
+          "s3:aws:S3-Tables-INT-total-storage-Value-number-0-e6f87dbf80",
+          "s3:aws:Percentage-in-Frequent-Access-tier-number-0-0d811cc281",
+          "s3:aws:Percentage-in-Infrequent-Access-tier-not-accessed-in-30-days-numb-0d0d3640cd",
+          "s3:aws:Percentage-in-Archive-Instant-Access-tier-not-accessed-in-90-days-a871d6cc71",
+          "s3:aws:PUT-COPY-POST-LIST-requests-Tier-1-Enter-number-of-requests-text--aa2fcab1f8",
+          "s3:aws:GET-SELECT-and-all-other-requests-Tier-2-Enter-number-of-requests-7eec4ef070",
+          "s3:aws:PUT-COPY-POST-LIST-requests-Tier-1-Enter-number-of-requests-text--fbfdfcc80d",
+          "s3:aws:GET-SELECT-and-all-other-requests-Tier-2-Enter-number-of-requests-285159b68d",
+          "s3:aws:Number-of-objects-monitored-per-month-Enter-number-of-objects-tex-f2d4528cc1",
+          "s3:aws:Standard-compacted-objects-per-month-Enter-number-of-objects-text-3ffd76a1ad",
+          "s3:aws:Standard-compaction-data-processed-Value-number-0-a0471cb443",
+          "s3:aws:Sort-Z-order-compacted-objects-per-month-Enter-number-of-objects--87c221c349",
+          "s3:aws:Sort-Z-order-compaction-data-processed-Value-number-0-10603a5834",
+          "s3:aws:Table-updates-replicated-per-month-Enter-number-of-updates-text-0-e3515c6701"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 204,
+      "officialObservedFieldCount": 175,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 7,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 111,
+        "observedDenominator": 175,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 4,
+        "observedTargetLocalFields": 7,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.0
+    },
+    {
+      "serviceId": "amplify",
+      "name": "AWS Amplify",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 14,
+        "PASS": 1,
+        "FAIL": 1
+      },
+      "pricingVerdicts": {
+        "PASS": 42,
+        "INCOMPLETE": 9,
+        "NOT_COMPARABLE": 1
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 14,
+        "MATCHED": 1,
+        "MISSING_LOCAL": 1
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "amplify:input-profile--buildMinutesPerMonth",
+          "amplify:input-profile--storedDataGbPerMonth",
+          "amplify:input-profile--servedDataGbPerMonth",
+          "amplify:input-profile--ssrRequestsPerHour",
+          "amplify:input-profile--ssrDurationMs",
+          "amplify:aws:Choose-a-Region-button-0-713f3465eb",
+          "amplify:aws:Number-of-build-minutes-Value-Unit-button-0-658b70f4d4",
+          "amplify:aws:Data-stored-per-month-Value-Unit-button-0-aa6d13006c",
+          "amplify:aws:Data-served-per-month-Value-Unit-button-0-1c01f5b637",
+          "amplify:aws:Number-of-SSR-requests-Value-Unit-button-0-86b7287a59",
+          "amplify:drawer-profile",
+          "amplify:drawer-region",
+          "amplify:project-region",
+          "amplify:project-hours"
+        ],
+        "MATCHED": [
+          "amplify:input-profile--buildInstanceSize"
+        ],
+        "MISSING_LOCAL": [
+          "amplify:aws:Do-you-want-to-enable-Web-Application-Firewall-button-0-13f2819307"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 52,
+      "officialObservedFieldCount": 12,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 10,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 2,
+        "observedDenominator": 12,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 6,
+        "observedTargetLocalFields": 10,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.01
+    },
+    {
+      "serviceId": "codebuild",
+      "name": "AWS CodeBuild",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 11,
+        "FAIL": 16
+      },
+      "pricingVerdicts": {
+        "PASS": 25,
+        "NOT_COMPARABLE": 16,
+        "INCOMPLETE": 7
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 11,
+        "MISMATCHED": 1,
+        "MISSING_LOCAL": 15
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "codebuild:input-component-build-minutes-buildsPerMonth",
+          "codebuild:input-component-build-minutes-averageBuildMinutes",
+          "codebuild:input-component-build-minutes-computeType",
+          "codebuild:project-hours",
+          "codebuild:aws:Choose-a-Region-button-0-713f3465eb",
+          "codebuild:aws:Average-build-duration-minutes-Value-Unit-button-0-ecd7a21c5b",
+          "codebuild:aws:Operating-system-button-0-f03f630e5b",
+          "codebuild:drawer-region",
+          "codebuild:input-profile--operatingSystem",
+          "codebuild:input-component-build-minutes-durationUnit",
+          "codebuild:project-region"
+        ],
+        "MISMATCHED": [
+          "codebuild:aws:AWS-CodeBuild-Compute-Type-button-0-f115540757"
+        ],
+        "MISSING_LOCAL": [
+          "codebuild:aws:Number-of-builds-in-a-month-text-0-compute-model-On-Demand-Lambda-ae2d92af9c",
+          "codebuild:aws:Average-build-duration-seconds-Value-number-0-compute-model-On-De-22f61ec96e",
+          "codebuild:aws:Average-build-duration-seconds-Value-Unit-button-0-compute-model--f7d38f3573",
+          "codebuild:aws:Number-of-sandboxes-text-0-compute-model-Sandbox-f452430311",
+          "codebuild:aws:Sandbox-run-time-Value-number-0-compute-model-Sandbox-f20818f069",
+          "codebuild:aws:Sandbox-run-time-Value-Unit-button-0-compute-model-Sandbox-26380e9186",
+          "codebuild:aws:Number-of-instances-text-0-compute-model-Docker-Image-Server-06f729913e",
+          "codebuild:aws:Docker-run-time-Value-number-0-compute-model-Docker-Image-Server-c0951854f1",
+          "codebuild:aws:Docker-run-time-Value-Unit-button-0-compute-model-Docker-Image-Se-ccadb1cd52",
+          "codebuild:aws:Instance-selection-combobox-text-0-compute-model-On-Demand-Lambda-4d16a87be8",
+          "codebuild:aws:Operating-system-button-0-compute-model-On-Demand-Lambda-41ddb9ea57",
+          "codebuild:aws:Instance-selection-combobox-text-0-compute-model-Sandbox-7c5691aa98",
+          "codebuild:aws:Operating-system-button-0-compute-model-Sandbox-ce0cc9c09c",
+          "codebuild:aws:Instance-selection-combobox-text-0-compute-model-Docker-Image-Ser-c49054caae",
+          "codebuild:aws:Operating-system-button-0-compute-model-Docker-Image-Server-9dd439439e"
+        ]
+      },
+      "profiles": [
+        "on-demand-ec2"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 48,
+      "officialObservedFieldCount": 22,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 9,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 16,
+        "observedDenominator": 22,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 4,
+        "observedTargetLocalFields": 9,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.0
+    },
+    {
+      "serviceId": "fargate",
+      "name": "AWS Fargate",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 20
+      },
+      "pricingVerdicts": {
+        "PASS": 43,
+        "BLOCKED": 1,
+        "FAIL": 4,
+        "INCOMPLETE": 11
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 20
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "fargate:input-profile--tasksPerDay",
+          "fargate:input-profile--averageDurationHours",
+          "fargate:input-profile--linuxVcpuPerTask",
+          "fargate:input-profile--linuxMemoryGbPerTask",
+          "fargate:input-profile--ephemeralStorageGb",
+          "fargate:input-profile--windowsVcpuPerTask",
+          "fargate:input-profile--windowsMemoryGbPerTask",
+          "fargate:input-profile--cpuArchitecture",
+          "fargate:project-hours",
+          "fargate:aws:Choose-a-Region-button-0-713f3465eb",
+          "fargate:aws:Operating-system-button-0-f03f630e5b",
+          "fargate:aws:Number-of-tasks-or-pods-Value-Unit-button-0-3a7b64b81b",
+          "fargate:aws:Average-duration-Value-Unit-button-0-777a472ca2",
+          "fargate:aws:Amount-of-memory-allocated-Value-Unit-button-0-2ecebdb254",
+          "fargate:aws:Amount-of-ephemeral-storage-allocated-for-Amazon-ECS-Value-Unit-b-cbe10bc51e",
+          "fargate:aws:Amount-of-memory-allocated-button-0-13aa2a050d",
+          "fargate:drawer-profile",
+          "fargate:drawer-region",
+          "fargate:input-profile--operatingSystem",
+          "fargate:project-region"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 59,
+      "officialObservedFieldCount": 13,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 13,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 0,
+        "observedDenominator": 13,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 9,
+        "observedTargetLocalFields": 13,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 26.29
+    },
+    {
+      "serviceId": "glue",
+      "name": "AWS Glue",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 91,
+        "FAIL": 4
+      },
+      "pricingVerdicts": {
+        "PASS": 46,
+        "NOT_COMPARABLE": 5,
+        "INCOMPLETE": 76
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 91,
+        "MISSING_LOCAL": 4
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "glue:input-component-etl-standard-runsPerMonth",
+          "glue:input-component-etl-standard-dpusPerRun",
+          "glue:input-component-etl-standard-averageDurationMinutes",
+          "glue:input-component-interactive-standard-runsPerMonth",
+          "glue:input-component-interactive-standard-dpusPerRun",
+          "glue:input-component-interactive-standard-averageDurationMinutes",
+          "glue:input-component-catalog-statistics-runsPerMonth",
+          "glue:input-component-catalog-statistics-dpusPerRun",
+          "glue:input-component-catalog-statistics-averageDurationMinutes",
+          "glue:input-component-databrew-sessions-sessionsPerMonth",
+          "glue:input-component-databrew-jobs-runsPerMonth",
+          "glue:input-component-databrew-jobs-nodesPerRun",
+          "glue:input-component-databrew-jobs-averageDurationMinutes",
+          "glue:input-component-crawlers-runsPerMonth",
+          "glue:input-component-crawlers-dpusPerRun",
+          "glue:input-component-crawlers-averageDurationMinutes",
+          "glue:input-component-etl-ray-runsPerMonth",
+          "glue:input-component-etl-ray-dpusPerRun",
+          "glue:input-component-etl-ray-averageDurationMinutes",
+          "glue:input-component-etl-memory-gen2-runsPerMonth",
+          "glue:input-component-etl-memory-gen2-dpusPerRun",
+          "glue:input-component-etl-memory-gen2-averageDurationMinutes",
+          "glue:input-component-etl-memory-legacy-runsPerMonth",
+          "glue:input-component-etl-memory-legacy-dpusPerRun",
+          "glue:input-component-etl-memory-legacy-averageDurationMinutes",
+          "glue:input-component-interactive-ray-runsPerMonth",
+          "glue:input-component-interactive-ray-dpusPerRun",
+          "glue:input-component-interactive-ray-averageDurationMinutes",
+          "glue:input-component-catalog-optimization-runsPerMonth",
+          "glue:input-component-catalog-optimization-dpusPerRun",
+          "glue:input-component-catalog-optimization-averageDurationMinutes",
+          "glue:input-component-development-endpoints-runsPerMonth",
+          "glue:input-component-development-endpoints-dpusPerRun",
+          "glue:input-component-development-endpoints-averageDurationMinutes",
+          "glue:input-component-catalog-storage-objectsPerMonth",
+          "glue:input-component-catalog-requests-requestsPerMonth",
+          "glue:input-component-etl-standard-pricingGroup",
+          "glue:input-component-interactive-standard-pricingGroup",
+          "glue:aws:Choose-a-Region-button-0-713f3465eb",
+          "glue:aws:AWS-Glue-ETL-jobs-and-interactive-sessions-checkbox-0-3340739291",
+          "glue:aws:AWS-Glue-ETL-jobs-with-Flex-execution-option-checkbox-0-c173bcdfb2",
+          "glue:aws:AWS-Glue-ETL-jobs-and-interactive-sessions-on-memory-optimized-wo-0c97ae475c",
+          "glue:aws:AWS-Glue-ETL-for-Ray-jobs-and-interactive-sessions-checkbox-0-6e2f5bc555",
+          "glue:aws:AWS-Glue-Data-Catalog-storage-requests-checkbox-0-ff5e3e4b45",
+          "glue:aws:AWS-Glue-DataBrew-interactive-sessions-checkbox-0-0e5039c8f4",
+          "glue:aws:AWS-Glue-Crawlers-checkbox-0-2b6da5d302",
+          "glue:aws:AWS-Glue-Data-Catalog-Optimization-checkbox-0-48b317fb15",
+          "glue:aws:AWS-Glue-Data-Catalog-Statistics-checkbox-0-d1f6a87888",
+          "glue:aws:Duration-for-which-Apache-Spark-ETL-job-runs-Value-Unit-button-0-0b9074546f",
+          "glue:aws:Duration-for-which-Python-Shell-job-ETL-runs-Value-Unit-button-0-5f25fdf873",
+          "glue:aws:Duration-for-provisioned-interactive-sessions-Value-Unit-button-0-989cc069f7",
+          "glue:aws:Glue-version-button-2-2f2b8d0bbd",
+          "glue:aws:Number-of-DPUs-for-Apache-Spark-job-with-Flex-execution-Enter-amo-0215aa32b2",
+          "glue:aws:Duration-for-which-Apache-Spark-ETL-job-with-flexible-execution-r-c7f6c32499",
+          "glue:aws:Duration-for-which-Apache-Spark-ETL-job-with-flexible-execution-r-7ec2958d3f",
+          "glue:aws:Duration-for-which-Apache-Spark-job-on-memory-optimized-workers-r-641ddb2ff6",
+          "glue:aws:Glue-version-button-3-878759e441",
+          "glue:aws:Duration-for-provisioned-interactive-sessions-on-memory-optimized-4edfb10061",
+          "glue:aws:Duration-for-which-Ray-ETL-job-runs-Value-Unit-button-0-72ac41eeca",
+          "glue:aws:Duration-for-provisioned-Ray-interactive-sessions-Value-Unit-butt-82b80d23d5",
+          "glue:aws:Number-of-Objects-stored-Value-Unit-button-0-28f4939bd6",
+          "glue:aws:Number-of-access-requests-Value-Unit-button-0-a660a50374",
+          "glue:aws:Duration-of-DataBrew-job-Value-Unit-button-0-a96d91aea8",
+          "glue:aws:Number-of-crawlers-text-0-2f6a2ce9ba",
+          "glue:aws:Duration-for-each-crawler-Value-Unit-button-0-0c73fdc6bc",
+          "glue:aws:Duration-for-optimization-Compaction-Retention-Orphan-File-Deleti-b053526845",
+          "glue:aws:Duration-for-statistics-collection-Value-Unit-button-0-f6c4ff36d0",
+          "glue:aws:Duration-for-provisioned-development-endpoint-Value-Unit-button-0-80425bec72",
+          "glue:drawer-profile",
+          "glue:drawer-region",
+          "glue:input-profile--etlJobs",
+          "glue:input-profile--interactiveSessions",
+          "glue:input-profile--developmentEndpoints",
+          "glue:input-profile--dataCatalog",
+          "glue:input-profile--crawlers",
+          "glue:input-profile--dataBrewInteractiveSessions",
+          "glue:input-profile--dataBrewJobs",
+          "glue:input-profile--dataQuality",
+          "glue:input-profile--zeroEtl",
+          "glue:input-component-materialized-view-refresh-runsPerMonth",
+          "glue:input-component-materialized-view-refresh-dpusPerRun",
+          "glue:input-component-materialized-view-refresh-averageDurationMinutes",
+          "glue:input-component-data-quality-runsPerMonth",
+          "glue:input-component-data-quality-dpusPerRun",
+          "glue:input-component-data-quality-averageDurationMinutes",
+          "glue:input-component-zero-etl-ingestion-ingestedGbPerMonth",
+          "glue:input-component-zero-etl-compute-runsPerMonth",
+          "glue:input-component-zero-etl-compute-dpusPerRun",
+          "glue:input-component-zero-etl-compute-averageDurationMinutes",
+          "glue:project-region",
+          "glue:project-hours"
+        ],
+        "MISSING_LOCAL": [
+          "glue:aws:Number-of-DPUs-for-Python-Shell-job-Enter-amount-text-0-3d7584b1ac",
+          "glue:aws:Duration-for-which-Python-Shell-job-ETL-runs-Value-number-0-ad18f2450f",
+          "glue:aws:Number-of-M-DPUs-for-each-provisioned-interactive-session-on-memo-7680f74829",
+          "glue:aws:Duration-for-provisioned-interactive-sessions-on-memory-optimized-3321d6166e"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 127,
+      "officialObservedFieldCount": 57,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 61,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 4,
+        "observedDenominator": 57,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 16,
+        "observedTargetLocalFields": 61,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 8.8
+    },
+    {
+      "serviceId": "kms",
+      "name": "AWS Key Management Service (KMS)",
+      "overallVerdict": "INCOMPLETE",
+      "inputVerdicts": {
+        "INCOMPLETE": 11
+      },
+      "pricingVerdicts": {
+        "PASS": 43,
+        "INCOMPLETE": 4
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 11
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "kms:input-component-key-versions-billableKeyVersions",
+          "kms:input-component-requests-standard-requests",
+          "kms:input-component-requests-asymmetric-requests",
+          "kms:input-component-requests-asymmetric-rsa2048-requests",
+          "kms:input-component-requests-generate-data-key-pair-ecc-requests",
+          "kms:input-component-requests-generate-data-key-pair-rsa-requests",
+          "kms:project-hours",
+          "kms:aws:Choose-a-Region-button-0-713f3465eb",
+          "kms:drawer-profile",
+          "kms:drawer-region",
+          "kms:project-region"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 47,
+      "officialObservedFieldCount": 7,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 10,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 0,
+        "observedDenominator": 7,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 7,
+        "observedTargetLocalFields": 10,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.0
+    },
+    {
+      "serviceId": "lambda",
+      "name": "AWS Lambda",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 32,
+        "FAIL": 6
+      },
+      "pricingVerdicts": {
+        "PASS": 77,
+        "FAIL": 1,
+        "NOT_COMPARABLE": 8,
+        "INCOMPLETE": 18
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 32,
+        "MISSING_LOCAL": 6
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "lambda:input-profile--requestsPerMonth",
+          "lambda:input-profile--averageDurationMs",
+          "lambda:input-profile--memoryMb",
+          "lambda:input-profile--ephemeralStorageMb",
+          "lambda:input-profile--provisionedConcurrency",
+          "lambda:input-profile--provisionedHoursPerMonth",
+          "lambda:input-profile--provisionedRequestsPerMonth",
+          "lambda:input-profile--provisionedAverageDurationMs",
+          "lambda:input-profile--provisionedMemoryMb",
+          "lambda:input-profile--architecture",
+          "lambda:input-profile--provisionedArchitecture",
+          "lambda:input-profile--averageStreamedResponseMb",
+          "lambda:input-profile--invokeMode",
+          "lambda:project-hours",
+          "lambda:aws:Choose-a-Region-button-0-713f3465eb",
+          "lambda:aws:Lambda-Function-Include-Free-Tier-radio-0-89c6b5bf5c",
+          "lambda:aws:Lambda-Function-Without-Free-Tier-radio-0-8130a4f796",
+          "lambda:aws:Number-of-requests-Value-Unit-button-0-69f278caaa",
+          "lambda:aws:Amount-of-memory-allocated-Value-Unit-button-0-2ecebdb254",
+          "lambda:aws:Amount-of-ephemeral-storage-allocated-Value-Unit-button-0-3ef1cac416",
+          "lambda:aws:Time-for-which-Provisioned-Concurrency-is-enabled-Value-Unit-butt-ebeb363e83",
+          "lambda:aws:Number-of-requests-for-Provisioned-Concurrency-Value-Unit-button--c192cd0e68",
+          "lambda:aws:Amount-of-memory-allocated-Value-Unit-button-1-87c6874ec5",
+          "lambda:aws:Time-for-which-SnapStart-is-enabled-Value-Unit-button-0-947b482097",
+          "lambda:aws:Amount-of-memory-allocated-Value-Unit-button-2-6ba272f4fa",
+          "lambda:aws:Number-of-requests-Value-Unit-button-1-a4ec0416fd",
+          "lambda:aws:Amount-of-memory-allocated-Value-Unit-button-3-7ebe520d3f",
+          "lambda:aws:Number-of-Invokes-Value-Unit-button-0-fee00da766",
+          "lambda:aws:Average-response-payload-size-Value-Unit-button-0-b1d3555244",
+          "lambda:drawer-profile",
+          "lambda:drawer-region",
+          "lambda:project-region"
+        ],
+        "MISSING_LOCAL": [
+          "lambda:aws:Time-for-which-SnapStart-is-enabled-Value-number-0-8e2ff0455a",
+          "lambda:aws:Number-of-cold-starts-i-e-SnapStart-restores-Enter-amount-text-0-25eb9c4635",
+          "lambda:aws:Amount-of-memory-allocated-Value-number-2-a072ae5e22",
+          "lambda:aws:Number-of-requests-Value-number-1-f6ee84148a",
+          "lambda:aws:Duration-of-each-request-in-ms-Enter-duration-in-ms-text-1-1ea6b7cdc6",
+          "lambda:aws:Amount-of-memory-allocated-Value-number-3-2aa69229c2"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "caseCount": 104,
+      "officialObservedFieldCount": 35,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 17,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 6,
+        "observedDenominator": 35,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 14,
+        "observedTargetLocalFields": 17,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.01
+    },
+    {
+      "serviceId": "systems-manager",
+      "name": "AWS Systems Manager",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 30,
+        "FAIL": 24
+      },
+      "pricingVerdicts": {
+        "PASS": 13,
+        "BLOCKED": 6,
+        "INCOMPLETE": 26,
+        "NOT_COMPARABLE": 24
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 30,
+        "MISSING_LOCAL": 24
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "systems-manager:input-profile--managedNodeHours",
+          "systems-manager:input-profile--responsePlanCount",
+          "systems-manager:input-profile--responsePlanHoursPerPlan",
+          "systems-manager:project-hours",
+          "systems-manager:aws:Choose-a-Region-button-0-713f3465eb",
+          "systems-manager:aws:Just-in-time-node-access-checkbox-0-453c65be54",
+          "systems-manager:aws:Incident-Manager-checkbox-0-0c3c46d0d5",
+          "systems-manager:aws:Standard-Throughput-API-Interactions-Enabled-radio-0-5c5cd56dfa",
+          "systems-manager:aws:High-Throughput-API-Interactions-Enabled-radio-0-d89806cfa0",
+          "systems-manager:aws:Frequency-of-API-interactions-per-parameter-Value-Unit-button-0-06ea5fc734",
+          "systems-manager:aws:Standard-Instance-Tier-radio-0-bc68c91ef7",
+          "systems-manager:aws:Advanced-Instance-Tier-radio-0-7dd06e680a",
+          "systems-manager:aws:Frequency-of-OpsItems-operational-work-items-Value-Unit-button-0-427e72ae7e",
+          "systems-manager:aws:Frequency-of-Get-Describe-Update-and-GetOpsSummary-API-requests-V-2562c457cd",
+          "systems-manager:aws:AWS-AppConfig-radio-0-0c2bfd30aa",
+          "systems-manager:aws:AWS-AppConfig-Experimentation-radio-0-488d29087d",
+          "systems-manager:aws:Frequency-of-configuration-requests-Value-Unit-button-0-31fc208a60",
+          "systems-manager:aws:Frequency-of-configurations-received-Value-Unit-button-0-d192b935a4",
+          "systems-manager:aws:Average-size-of-non-AWS-third-party-software-packages-Value-Unit--70776e5d07",
+          "systems-manager:aws:Frequency-of-Get-Describe-API-requests-for-non-AWS-third-party-so-d329123617",
+          "systems-manager:aws:Frequency-of-out-of-region-or-on-premises-installs-Value-Unit-but-a786f35233",
+          "systems-manager:aws:Frequency-of-steps-Value-Unit-button-0-8479ded37a",
+          "systems-manager:aws:Average-aws-executeScript-step-duration-Value-Unit-button-0-a620f1c592",
+          "systems-manager:aws:Average-size-of-playbook-attachments-Value-Unit-button-0-19d8d3134c",
+          "systems-manager:aws:Hours-per-response-plan-Value-Unit-button-0-477a5e9278",
+          "systems-manager:aws:Number-of-on-premises-instances-Enter-number-of-on-premises-insta-c175ec2920",
+          "systems-manager:aws:Percentage-of-the-month-when-instances-are-registered-and-running-a991bf2c18",
+          "systems-manager:drawer-profile",
+          "systems-manager:drawer-region",
+          "systems-manager:project-region"
+        ],
+        "MISSING_LOCAL": [
+          "systems-manager:aws:OpsCenter-checkbox-0-37f5cb6e25",
+          "systems-manager:aws:AWS-AppConfig-checkbox-0-e0e14a0ba3",
+          "systems-manager:aws:Parameter-Store-checkbox-0-1990360104",
+          "systems-manager:aws:On-Premises-Instance-Management-checkbox-0-b375d416f0",
+          "systems-manager:aws:Distributor-checkbox-0-7018f26f01",
+          "systems-manager:aws:Automation-checkbox-0-9eaf91a63c",
+          "systems-manager:aws:Standard-parameters-Enter-number-of-standard-parameters-text-0-44ba515bc1",
+          "systems-manager:aws:Advanced-parameters-Enter-number-of-advanced-parameters-text-0-7730bfd51a",
+          "systems-manager:aws:Frequency-of-API-interactions-per-parameter-Value-number-0-aad0206564",
+          "systems-manager:aws:Frequency-of-OpsItems-operational-work-items-Value-number-0-b3be2094f9",
+          "systems-manager:aws:Frequency-of-Get-Describe-Update-and-GetOpsSummary-API-requests-V-1cad1b8c7d",
+          "systems-manager:aws:Targets-Enter-number-of-targets-text-0-f154577c8f",
+          "systems-manager:aws:Application-configurations-Enter-number-of-application-configurat-03adaf1b51",
+          "systems-manager:aws:Frequency-of-configuration-requests-Value-number-0-1b7872bb7e",
+          "systems-manager:aws:Frequency-of-configurations-received-Value-number-0-2d9cfbc962",
+          "systems-manager:aws:Non-AWS-third-party-software-packages-stored-Enter-number-of-non--d189c40c26",
+          "systems-manager:aws:Average-size-of-non-AWS-third-party-software-packages-Value-numbe-e19910e2bb",
+          "systems-manager:aws:Frequency-of-Get-Describe-API-requests-for-non-AWS-third-party-so-62ce3b4cbe",
+          "systems-manager:aws:Frequency-of-out-of-region-or-on-premises-installs-Value-number-0-8423c8655b",
+          "systems-manager:aws:Frequency-of-steps-Value-number-0-92a80fb33b",
+          "systems-manager:aws:aws-executeScript-steps-Enter-number-of-aws-executeScript-steps-p-c395a8317f",
+          "systems-manager:aws:Average-aws-executeScript-step-duration-Value-number-0-ae73910712",
+          "systems-manager:aws:Playbook-attachments-stored-Enter-number-of-playbook-attachments--32a05aecdf",
+          "systems-manager:aws:Average-size-of-playbook-attachments-Value-number-0-f5fe6779bb"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "caseCount": 69,
+      "officialObservedFieldCount": 50,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 7,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 24,
+        "observedDenominator": 50,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 4,
+        "observedTargetLocalFields": 7,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.0
+    },
+    {
+      "serviceId": "elastic-load-balancing",
+      "name": "Elastic Load Balancing",
+      "overallVerdict": "FAIL",
+      "inputVerdicts": {
+        "INCOMPLETE": 54,
+        "FAIL": 2
+      },
+      "pricingVerdicts": {
+        "PASS": 51,
+        "FAIL": 4,
+        "NOT_COMPARABLE": 2,
+        "INCOMPLETE": 28
+      },
+      "classificationCounts": {
+        "UNCONFIRMED": 54,
+        "MISMATCHED": 1,
+        "MISSING_LOCAL": 1
+      },
+      "classifications": {
+        "UNCONFIRMED": [
+          "elastic-load-balancing:input-profile--albCount",
+          "elastic-load-balancing:input-profile--albNewConnections",
+          "elastic-load-balancing:input-profile--albConnectionSeconds",
+          "elastic-load-balancing:input-profile--albGbHour",
+          "elastic-load-balancing:input-profile--albRequests",
+          "elastic-load-balancing:input-profile--albRules",
+          "elastic-load-balancing:input-profile--nlbCount",
+          "elastic-load-balancing:input-profile--nlbtcpNew",
+          "elastic-load-balancing:input-profile--nlbtcpSeconds",
+          "elastic-load-balancing:input-profile--nlbtcpBytes",
+          "elastic-load-balancing:input-profile--nlbudpNew",
+          "elastic-load-balancing:input-profile--nlbudpSeconds",
+          "elastic-load-balancing:input-profile--nlbudpBytes",
+          "elastic-load-balancing:input-profile--nlbtlsNew",
+          "elastic-load-balancing:input-profile--nlbtlsSeconds",
+          "elastic-load-balancing:input-profile--nlbtlsBytes",
+          "elastic-load-balancing:input-profile--clbCount",
+          "elastic-load-balancing:input-profile--clbGbMonth",
+          "elastic-load-balancing:input-profile--albEnabled",
+          "elastic-load-balancing:input-profile--nlbEnabled",
+          "elastic-load-balancing:input-profile--clbEnabled",
+          "elastic-load-balancing:input-profile--gwlbNew",
+          "elastic-load-balancing:input-profile--gwlbSeconds",
+          "elastic-load-balancing:input-profile--gwlbGbHour",
+          "elastic-load-balancing:input-profile--gwlbeCount",
+          "elastic-load-balancing:input-profile--albTarget",
+          "elastic-load-balancing:aws:Choose-a-Region-button-0-713f3465eb",
+          "elastic-load-balancing:aws:Gateway-Load-Balancer-checkbox-0-9148679f52",
+          "elastic-load-balancing:aws:Load-Balancer-in-AWS-Region-radio-0-081e595e24",
+          "elastic-load-balancing:aws:Load-Balancer-on-Outposts-radio-0-81a5b36296",
+          "elastic-load-balancing:aws:Processed-bytes-Lambda-functions-as-targets-Value-number-0-15473cf574",
+          "elastic-load-balancing:aws:Processed-bytes-Lambda-functions-as-targets-Value-Unit-button-0-d70c7b8562",
+          "elastic-load-balancing:aws:Processed-bytes-EC2-Instances-and-IP-addresses-as-targets-Value-U-aac9f2e4eb",
+          "elastic-load-balancing:aws:Average-number-of-new-connections-per-ALB-Value-Unit-button-0-78d671a7e5",
+          "elastic-load-balancing:aws:Average-connection-duration-Value-Unit-button-0-4e02cdf99a",
+          "elastic-load-balancing:aws:Processed-bytes-per-NLB-for-TCP-Value-Unit-button-0-3ed6f231f4",
+          "elastic-load-balancing:aws:Average-number-of-new-TCP-connections-Value-Unit-button-0-ec8dc25682",
+          "elastic-load-balancing:aws:Average-TCP-connection-duration-Value-Unit-button-0-f451955397",
+          "elastic-load-balancing:aws:Processed-bytes-per-NLB-for-UDP-Value-Unit-button-0-b8cd51e685",
+          "elastic-load-balancing:aws:Average-number-of-new-UDP-Flows-Value-Unit-button-0-9e2e169c23",
+          "elastic-load-balancing:aws:Average-UDP-Flow-duration-Value-Unit-button-0-f60a166d5d",
+          "elastic-load-balancing:aws:Processed-bytes-per-NLB-for-TLS-Value-Unit-button-0-1ab46e36f6",
+          "elastic-load-balancing:aws:Average-number-of-new-TLS-connections-Value-Unit-button-0-ca22057266",
+          "elastic-load-balancing:aws:Average-TLS-connection-duration-Value-Unit-button-0-b20dfcb422",
+          "elastic-load-balancing:aws:Total-processed-bytes-Value-Unit-button-0-d8fc95839b",
+          "elastic-load-balancing:aws:Average-number-of-new-connections-flows-Value-Unit-button-0-fb3ab97fc4",
+          "elastic-load-balancing:aws:Average-connection-flow-duration-Value-Unit-button-0-c9921e81bc",
+          "elastic-load-balancing:aws:Processed-bytes-per-CLB-Value-Unit-button-0-84736c7b70",
+          "elastic-load-balancing:drawer-profile",
+          "elastic-load-balancing:drawer-region",
+          "elastic-load-balancing:input-profile--gwlbEnabled",
+          "elastic-load-balancing:input-profile--gwlbeGbMonth",
+          "elastic-load-balancing:project-region",
+          "elastic-load-balancing:project-hours"
+        ],
+        "MISMATCHED": [
+          "elastic-load-balancing:input-profile--gwlbCount"
+        ],
+        "MISSING_LOCAL": [
+          "elastic-load-balancing:aws:Number-of-Application-Load-Balancers-on-Outposts-text-0-ce099d4296"
+        ]
+      },
+      "profiles": [
+        "standard"
+      ],
+      "targetRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
+      "measuredRegions": [
+        "ap-northeast-1",
+        "ap-northeast-3",
+        "us-east-1"
+      ],
+      "caseCount": 85,
+      "officialObservedFieldCount": 49,
+      "officialFullFieldCount": null,
+      "localObservedFieldCount": 33,
+      "localFullFieldCount": null,
+      "officialConfirmationRate": {
+        "confirmedObservedFields": 2,
+        "observedDenominator": 49,
+        "fullDenominator": null,
+        "reason": "Inventory not complete; observed denominator is a lower bound, not total official fields."
+      },
+      "pricingInspectionRate": {
+        "measuredLocalFields": 26,
+        "observedTargetLocalFields": 33,
+        "fullBidirectionalTargetFields": null,
+        "reason": "Union and conditional field inventory incomplete; no full inspection rate can be claimed."
+      },
+      "maximumObservedAbsoluteDifferenceUsd": 0.01
+    }
+  ],
+  "storage": {
+    "durableArchive": "/home/ubnadmin/parity-reports/20261013T120455-parity.checkpoint-20261014T0510.tar.gz",
+    "sha256": "b3d8384a90a07892754bb284d21d366ca2d10ceee2aeea3add14be87d4b1d5ac",
+    "checkpointAt": "2026-10-14T05:02:25.974476+00:00",
+    "archiveContentRoot": "20261013T120455-parity",
+    "integrity": "tar -d compared every archived member against quiescent live source; exit 0",
+    "status": "INCOMPLETE intermediate checkpoint; further GUI cases pending",
+    "durablePauseSnapshot": "/home/ubnadmin/parity-reports/20261013T120455-parity.paused-20261014T055335Z",
+    "pauseSnapshotMethod": "Same-filesystem hardlinks preserve all current evidence bytes outside checkout without another full-size copy. Every file must be hash verified. Before any future mutation, run saved parity-resume-detach.py after storage expansion; PNG capture paths are immutable and future failure copies replace aliases atomically."
+  },
+  "limitations": {
+    "official": {
+      "complete": false,
+      "conditions": [
+        "Selectors inside every enabled optional feature need recursive investigation",
+        "Full instance/SKU family candidate lists and semantic representative choices are not yet confirmed",
+        "All Profile × Region parent/conditional combinations need inspection"
+      ],
+      "observedFieldCount": 662,
+      "totalFieldCount": null
+    },
+    "local": {
+      "complete": false,
+      "conditions": [
+        "Profile feature checkboxes without data-toggle need on/off investigation",
+        "Large selector omissions need semantic-family justification",
+        "Mutually dependent selectors and every valid boundary need GUI measurement"
+      ],
+      "observedFieldCount": 360,
+      "totalFieldCount": null
+    }
+  },
+  "unmeasuredAmountsAreNull": true,
+  "executionStatus": "PAUSED_BY_USER",
+  "pausedAt": "2026-10-14T05:53:35.060847+00:00"
+}

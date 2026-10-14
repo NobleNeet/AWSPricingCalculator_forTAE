@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-14T05:55:08.867630+00:00",
+  "cases": 1427,
+  "correspondenceRows": 853,
+  "checks": [
+    "Stable unique IDs",
+    "Plan/individual/aggregate consistency",
+    "Every row and case linked",
+    "FAIL records and individual instructions consistent",
+    "Referenced screenshots/observations present",
+    "Every PASS has four measured GUI amounts and confirmed component comparisons",
+    "Summary counts derived from case records"
+  ],
+  "errors": [],
+  "status": "PASS",
+  "note": "Artifact integrity PASS does not certify full parity scope completion."
+}

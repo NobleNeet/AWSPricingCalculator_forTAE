@@ -1,0 +1,19 @@
+from pathlib import Path
+p=Path('/tmp/parity-price.mjs');s=p.read_text();anchor='async function configure(service,plan,region)'
+extra="""
+if(process.argv[5]?.startsWith('aurora-')){
+ const mode=process.argv[5],io=mode.includes('-io'),limitless=mode==='aurora-limitless',serverless=mode.includes('serverless');const profile=limitless?'limitless-io-optimized':serverless?(io?'serverless-io-optimized':'serverless-standard'):'provisioned-io-optimized';
+ const fields=serverless||limitless?[]:plans['aurora-postgresql'].fields.filter(f=>!f[0].includes('io-requests')).map(f=>[f[0].replace('component-instance-','component-instance-io-optimized-').replace('component-storage-','component-storage-io-optimized-'),...f.slice(1)]);
+ const component=limitless?'limitless-compute':(io?'serverless-io-optimized':'serverless-standard');
+ if(serverless||limitless)fields.push(['input-component-'+component+'-averageAcus',limitless?'Number of Aurora Capacity Units (ACUs) for the DB shard group Value':'Number of Aurora Capacity Units (ACUs)',limitless?16:2,limitless?32:4],['input-component-'+component+'-computeHours','SKIP',730,365],['input-component-storage'+(io||limitless?'-io-optimized':'')+'-gbMonths','Storage amount Value',20,40]);
+ if(serverless&&!io)fields.push(['input-component-io-requests-requests','MULTI:Baseline IO rate Value|Peak IO rate Value',1000000,2000000]);
+ fields.push(['input-component-backup-storage-gbMonths','Additional backup storage Value',10,20]);if(!serverless&&!limitless)fields.push(['input-component-snapshot-export-processedGb','Total Size of Backup Processed for Export (GB) Value',10,20]);
+ if(limitless)fields.push(['input-component-database-insights-limitless-monitoredAcus','Number of Aurora Capacity Units (ACUs) monitored by Database Insights Value',16,32],['input-component-database-insights-limitless-hours','SKIP',730,365]);
+ plans['aurora-postgresql']={url:'AuroraPostgreSQL',profile,fields,setup:async()=>{
+ if(limitless){await aws.getByRole('radio',{name:/^Amazon Aurora PostgreSQL Limitless Database/}).check();await choose('CURRENT:per hour','per month',0);}
+ else if(serverless){await aws.getByRole('radio',{name:/^Aurora Serverless PostgreSQL-Compatible Edition/}).check();await choose('Aurora PostgreSQL Serverless Version','Serverless v2');await choose('Would you be enabling Database Insights','No');if(io)await choose('Aurora PostgreSQL Cluster Configuration Options','Aurora I/O-Optimized');else{await choose('CURRENT:per second','per month');await choose('CURRENT:per second','per month');}}
+ else {await choose('Aurora PostgreSQL Cluster Configuration Option','Aurora I/O-Optimized');await choose('Would you be creating an RDS Proxy','No');await choose('Would you be enabling Database Insights','No');await choose('Do you plan on running an Extended Support','No');const combo=aws.locator('input[role="combobox"]:visible').first();await combo.fill('db.t4g.medium');await aws.getByRole('option').filter({hasText:'db.t4g.medium'}).first().click();}
+ },sync:serverless||limitless?async()=>{const capacity=await local.locator('#input-component-'+component+'-averageAcus').inputValue(),hours=await local.locator('#input-component-'+component+'-computeHours').inputValue();await inputAws(limitless?'Number of Aurora Capacity Units (ACUs) for the DB shard group Value':'Number of Aurora Capacity Units (ACUs)',new Decimal(capacity).times(hours).div(limitless?1:730).toString());if(limitless){const monitored=await local.locator('#input-component-database-insights-limitless-monitoredAcus').inputValue(),mh=await local.locator('#input-component-database-insights-limitless-hours').inputValue();await inputAws('Number of Aurora Capacity Units (ACUs) monitored by Database Insights Value',new Decimal(monitored).times(mh).div(730).toString());}}:undefined};
+}
+"""
+s=s.replace(anchor,extra+'\n'+anchor);p.write_text(s)

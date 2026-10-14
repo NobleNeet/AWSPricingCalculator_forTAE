@@ -1,0 +1,356 @@
+[
+  {
+    "serviceId": "ebs",
+    "officialLabel": "Storage for each EC2 instance",
+    "localLogicalId": "input-profile--volume",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "Official GUI exposes seven volume choices, while the independently inventoried public selector exposes only gp2/gp3. The missing On-Demand volume choices cannot be configured. This is a candidate-range mismatch; supported gp2/gp3 monetary comparisons remain separate.",
+    "missingLocalCandidates": [
+      "Provisioned IOPS SSD (io1)",
+      "Provisioned IOPS SSD (io2)",
+      "Throughput Optimized HDD (st 1)",
+      "Cold HDD (sc1)",
+      "Magnetic (previous generation)"
+    ],
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1",
+      "docs/SERVICE_ONBOARDING.md §3.1.1/5–6"
+    ],
+    "limitation": "No application defect in unit prices is asserted. A future fix owner must check current specifications and actual Price List availability before expanding these choices. EC2's separate explicit volume list in SPEC §6.2 does not define standalone EBS coverage."
+  },
+  {
+    "serviceId": "codebuild",
+    "officialLabel": "AWS CodeBuild Compute Type",
+    "localLogicalId": "drawer-profile",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "Official GUI offers On-Demand EC2, On-Demand Lambda, Sandbox and Docker Image Server configurations. The independent public GUI profile inventory contains only on-demand-ec2 and its finite EC2 instance choices. The other non-commitment compute configurations cannot be selected; fixing the purchase plan to On-Demand does not exclude them.",
+    "missingLocalCandidates": [
+      "On-Demand Lambda",
+      "Sandbox",
+      "Docker Image Server"
+    ],
+    "excludedCandidates": [
+      "Reserved Capacity EC2",
+      "Reserved EC2 Attributes"
+    ],
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1",
+      "docs/SERVICE_ONBOARDING.md §5–6",
+      "docs/SPEC.md §2.2"
+    ],
+    "limitation": "No prices were generated from Definitions. Optional inputs inside these missing configurations need their own current GUI evidence and mapping research before implementation."
+  },
+  {
+    "serviceId": "ec2",
+    "officialLabel": "Tenancy",
+    "localLogicalId": "input-profile--tenancy",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "Independent official GUI selector offers Shared Instances, Dedicated Instances and Dedicated Hosts; the public GUI selector offers Shared and Dedicated only. The observed Dedicated Hosts state exposes host count and an enabled On-Demand pricing radio. A purchase-plan exclusion does not exclude On-Demand Dedicated Hosts. Current SPEC §6.1/6.1.1 does not explicitly exclude this tenancy candidate.",
+    "missingLocalCandidates": [
+      "Dedicated Hosts"
+    ],
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1",
+      "docs/SERVICE_ONBOARDING.md §3.1.1/5–6",
+      "docs/SPEC.md §6.1/6.1.1"
+    ],
+    "explicitGuiEvidence": [
+      "observations/aws-ec2-options-formField3500-1791904404914-8937-1791904441434.json",
+      "observations/aws-ec2-293.json"
+    ],
+    "limitation": "The early Dedicated Hosts snapshot includes transient loading text. Candidate gap and visible host input/On-Demand radio are observed; final host prices and the remaining host selector conditions require fresh GUI investigation. No host unit-price defect is asserted."
+  },
+  {
+    "serviceId": "elastic-load-balancing",
+    "officialLabel": "Number of Availability Zones that Gateway Load Balancer is deployed to",
+    "localLogicalId": "input-profile--gwlbCount",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "Official GUI explicitly estimates one GWLB and asks for the number of Availability Zones; public GUI asks for the number of Gateway Load Balancers and has no separate AZ quantity. These quantities do not have the same meaning. The independently displayed official calculation multiplies fixed hourly charges by AZ count while its LCU formula is for one GWLB. A default scalar of one cannot certify candidate/input-meaning parity.",
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1/7",
+      "docs/SERVICE_ONBOARDING.md §3.1.1/5–6"
+    ],
+    "limitation": "Resolve the service billing meaning against current source-of-truth specifications and mapping contract. Do not silently reinterpret saved public GWLB counts or assert a monthly price difference from physically unequal quantities. Public missing AmazonVPC price-source errors are recorded in separate runtime failures."
+  },
+  {
+    "serviceId": "amplify",
+    "officialLabel": "Select build instance size",
+    "localLogicalId": "input-profile--buildInstanceSize",
+    "classification": "MATCHED",
+    "inputVerdict": "PASS",
+    "reason": "Both independent GUI inventories expose exactly the three build-size choices Standard (8 GB, 4 vCPUs), Large (16 GB, 8 vCPUs) and X-Large (72 GB, 36 vCPUs). Their Standard defaults agree. The public XLarge spelling maps explicitly to native X-Large; capacities and minute-based build meaning agree. Each finite candidate has a valid current-run Tokyo GUI price case, and no pricing inputs disappear when the build-size choice changes. This selector metadata PASS does not certify other inputs or full service parity.",
+    "optionMap": {
+      "Standard (8 GB メモリ、vCPU 4 個)": "Standard (8 GB Memory, 4 vCPUs)",
+      "Large (16 GB メモリ、vCPU 8 個)": "Large (16 GB Memory, 8 vCPUs)",
+      "XLarge (72 GB メモリ、vCPU 36 個)": "X-Large (72 GB Memory, 36 vCPUs)"
+    },
+    "scope": "Build-size candidate/default/input-meaning metadata in the observed supported-region GUI states; finite candidate monetary comparisons executed in Tokyo. Regional numeric build-minute comparisons are separate current-run cases.",
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1/5.2",
+      "docs/SERVICE_ONBOARDING.md §3.1.1"
+    ],
+    "limitation": "This selector has no numerical bounds. Conditional WAF availability and other Amplify input ranges are separate rows. No regional build-size cross-product is claimed from the Tokyo finite-candidate comparisons."
+  },
+  {
+    "serviceId": "redshift",
+    "officialLabel": "Base RPU",
+    "localLogicalId": "input-profile--baseRpu",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "The independent official GUI menu contains 80 rendered candidates in this observation; public exposes nine powers of two. Native candidates such as 24, 40 and 48 cannot be selected publicly. Candidate-range mismatch is proven for the listed missing values; this count does not certify completeness of any virtualized or conditional candidate list.",
+    "officialCandidates": [
+      "4",
+      "8",
+      "16",
+      "24",
+      "32",
+      "40",
+      "48",
+      "56",
+      "64",
+      "72",
+      "80",
+      "88",
+      "96",
+      "104",
+      "112",
+      "120",
+      "128",
+      "136",
+      "144",
+      "152",
+      "160",
+      "168",
+      "176",
+      "184",
+      "192",
+      "200",
+      "208",
+      "216",
+      "224",
+      "232",
+      "240",
+      "248",
+      "256",
+      "264",
+      "272",
+      "280",
+      "288",
+      "296",
+      "304",
+      "312",
+      "320",
+      "328",
+      "336",
+      "344",
+      "352",
+      "360",
+      "368",
+      "376",
+      "384",
+      "392",
+      "400",
+      "408",
+      "416",
+      "424",
+      "432",
+      "440",
+      "448",
+      "456",
+      "464",
+      "472",
+      "480",
+      "488",
+      "496",
+      "504",
+      "512",
+      "544",
+      "576",
+      "608",
+      "640",
+      "672",
+      "704",
+      "736",
+      "768",
+      "800",
+      "832",
+      "864",
+      "928",
+      "960",
+      "992",
+      "1024"
+    ],
+    "localCandidates": [
+      "4",
+      "8",
+      "16",
+      "32",
+      "64",
+      "128",
+      "256",
+      "512",
+      "1024"
+    ],
+    "missingLocalCandidates": [
+      "24",
+      "40",
+      "48",
+      "56",
+      "72",
+      "80",
+      "88",
+      "96",
+      "104",
+      "112",
+      "120",
+      "136",
+      "144",
+      "152",
+      "160",
+      "168",
+      "176",
+      "184",
+      "192",
+      "200",
+      "208",
+      "216",
+      "224",
+      "232",
+      "240",
+      "248",
+      "264",
+      "272",
+      "280",
+      "288",
+      "296",
+      "304",
+      "312",
+      "320",
+      "328",
+      "336",
+      "344",
+      "352",
+      "360",
+      "368",
+      "376",
+      "384",
+      "392",
+      "400",
+      "408",
+      "416",
+      "424",
+      "432",
+      "440",
+      "448",
+      "456",
+      "464",
+      "472",
+      "480",
+      "488",
+      "496",
+      "504",
+      "544",
+      "576",
+      "608",
+      "640",
+      "672",
+      "704",
+      "736",
+      "768",
+      "800",
+      "832",
+      "864",
+      "928",
+      "960",
+      "992"
+    ],
+    "explicitGuiEvidence": [
+      "observations/aws-redshift-options-formField108019-1791945415503-7984-1791945469936.json",
+      "observations/local-redshift-102.json",
+      "observations/local-redshift-113.json",
+      "observations/local-redshift-115.json",
+      "observations/local-redshift-116.json"
+    ],
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1/5.2",
+      "docs/SERVICE_ONBOARDING.md §3.1.1/5–6",
+      "docs/SPEC.md §2.2"
+    ],
+    "limitation": "Candidate-range FAIL is separate from prices of supported configurations. No unit-price root cause asserted; future owner must check current mappings, approved scope and data compatibility before implementing."
+  },
+  {
+    "serviceId": "rds-oracle",
+    "officialLabel": "Storage for each RDS instance",
+    "localLogicalId": "input-profile--volumeType",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "Official Oracle storage selector offers gp2, gp3, io1, io2 and Magnetic; public offers only General Purpose and General Purpose-GP3. On-Demand exclusion does not exclude these storage choices.",
+    "officialCandidates": [
+      "General Purpose SSD (gp2)",
+      "General Purpose SSD (gp3)",
+      "Provisioned IOPS SSD (io1)",
+      "Provisioned IOPS SSD (io2)",
+      "Magnetic (previous generation)"
+    ],
+    "localCandidates": [
+      "General Purpose",
+      "General Purpose-GP3"
+    ],
+    "missingLocalCandidates": [
+      "Provisioned IOPS SSD (io1)",
+      "Provisioned IOPS SSD (io2)",
+      "Magnetic (previous generation)"
+    ],
+    "explicitGuiEvidence": [
+      "observations/aws-rds-oracle-options-formField104921-1791945293074-5899-1791945311456.json",
+      "observations/local-rds-oracle-224.json",
+      "observations/local-rds-oracle-225.json",
+      "observations/local-rds-oracle-226.json",
+      "observations/local-rds-oracle-227.json"
+    ],
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1/5.2",
+      "docs/SERVICE_ONBOARDING.md §3.1.1/5–6",
+      "docs/SPEC.md §2.2"
+    ],
+    "limitation": "Candidate-range FAIL is separate from prices of supported configurations. No unit-price root cause asserted; future owner must check current mappings, approved scope and data compatibility before implementing."
+  },
+  {
+    "serviceId": "athena",
+    "officialLabel": "Total number of queries Value / Unit",
+    "localLogicalId": "input-profile--sqlPeriod",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "Both selectors offer day/week/month, but current-run GUI period deltas differ. For Spark day, public monthly component is 150.00 USD while native shows 10/day × (730/24) = 304.17 sessions/month, then 304 × 1 DPU-hour × 0.50 = 152.00 USD. Read-only deployed-source investigation confirms public day conversion 30 and week conversion 52/12, and onboarding records parity check as outstanding. These differing calendar transforms are not approved by the top-level parity specification. Supported month-mode pricing remains a separate comparison.",
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1/7",
+      "docs/SERVICE_ONBOARDING.md §3.1.1",
+      "services/athena/ONBOARDING.md UI/calculations and Limitations (supplemental deployed commit)"
+    ],
+    "explicitGuiEvidence": [
+      "observations/athena-period-supplemental-deployed-source.json"
+    ],
+    "limitation": "Source investigation is supplemental, not expected-price generation. Use each SQL/Spark period case own raw totals and official lines; Spark amounts above do not represent SQL prices. Investigate usage transforms and native whole-count truncation rather than assume a unit-price defect or introduce intermediate monetary rounding."
+  },
+  {
+    "serviceId": "athena",
+    "officialLabel": "Total number of spark sessions Value / Unit",
+    "localLogicalId": "input-profile--sparkPeriod",
+    "classification": "MISMATCHED",
+    "inputVerdict": "FAIL",
+    "reason": "Both selectors offer day/week/month, but current-run GUI period deltas differ. For Spark day, public monthly component is 150.00 USD while native shows 10/day × (730/24) = 304.17 sessions/month, then 304 × 1 DPU-hour × 0.50 = 152.00 USD. Read-only deployed-source investigation confirms public day conversion 30 and week conversion 52/12, and onboarding records parity check as outstanding. These differing calendar transforms are not approved by the top-level parity specification. Supported month-mode pricing remains a separate comparison.",
+    "specificationEvidence": [
+      "docs/uat/AWS_CALCULATOR_PARITY.md §5.1/7",
+      "docs/SERVICE_ONBOARDING.md §3.1.1",
+      "services/athena/ONBOARDING.md UI/calculations and Limitations (supplemental deployed commit)"
+    ],
+    "explicitGuiEvidence": [
+      "observations/athena-period-supplemental-deployed-source.json"
+    ],
+    "limitation": "Source investigation is supplemental, not expected-price generation. Use each SQL/Spark period case own raw totals and official lines; Spark amounts above do not represent SQL prices. Investigate usage transforms and native whole-count truncation rather than assume a unit-price defect or introduce intermediate monetary rounding."
+  }
+]

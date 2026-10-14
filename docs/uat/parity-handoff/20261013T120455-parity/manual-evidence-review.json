@@ -1,0 +1,26 @@
+[
+  {
+    "reviewedAt": "2026-10-14T02:58:10.661931+00:00",
+    "method": "Visual inspection of the original PNG with view_image; no image editing",
+    "checks": [
+      {
+        "case": "lambda-standard-ap-northeast-1-input-profile--averageStreamedResponseMb-delta-lambda-streaming-signal",
+        "finding": "Public closed-drawer screenshot visibly shows $109.79 with the recorded build ID. Native screenshot visibly shows 1,000,000 invokes, 20 MB payload, 6 MB per-response exclusion, $109.38 streaming subtotal and $109.79 monthly total."
+      },
+      {
+        "case": "elastic-load-balancing-standard-ap-northeast-1-input-profile--gwlbNew-delta-elb-gwlb-signal",
+        "finding": "Public original screenshot shows valid GWLB count=1, Endpoint count=1, 1 GB/hour and 730 GB/month, both AmazonVPC missing-source errors, an em dash for the service total, and uncomputed-service count=1. Visible calculated plan subtotal $0.00 is not substituted for the unavailable service monthly cost."
+      }
+    ]
+  },
+  {
+    "checkedAt": "2026-10-14T05:35:33.653293+00:00",
+    "caseId": "athena-standard-ap-northeast-1-input-profile--sparkPeriod-delta-athena-period-day-signal",
+    "images": [
+      "screenshots/athena-standard-ap-northeast-1-input-profile--sparkPeriod-delta-athena-period-day-signal-after-1791955201502-visible-total-local.png",
+      "screenshots/athena-standard-ap-northeast-1-input-profile--sparkPeriod-delta-athena-period-day-signal-after-1791955201502-aws.png"
+    ],
+    "facts": "Visual inspection confirms public Project monthly hours 730 and total 151.77 USD. Official screenshot displays 10 sessions per day, 1 DPU-hour, 730/24 monthly conversion, rounding 304.17 to 304 sessions, Spark monthly 152.00 USD, and total monthly 153.77 USD. No screenshot edited.",
+    "limitation": "Official page has a nested scroll container; this screenshot directly proves target Spark controls, calculation lines and footer. Region/full other inputs are separately retained in raw DOM snapshots and inventory evidence."
+  }
+]

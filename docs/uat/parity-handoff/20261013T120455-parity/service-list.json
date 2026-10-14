@@ -1,0 +1,70 @@
+[
+  {
+    "id": "athena",
+    "name": "Amazon Athena\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "aurora-postgresql",
+    "name": "Amazon Aurora for PostgreSQL\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "ebs",
+    "name": "Amazon EBS\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "ec2",
+    "name": "Amazon EC2\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "eventbridge",
+    "name": "Amazon EventBridge\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "rds-oracle",
+    "name": "Amazon RDS for Oracle\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "rds",
+    "name": "Amazon RDS for PostgreSQL\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "redshift",
+    "name": "Amazon Redshift\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "s3",
+    "name": "Amazon S3\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "amplify",
+    "name": "AWS Amplify\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "codebuild",
+    "name": "AWS CodeBuild\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "fargate",
+    "name": "AWS Fargate\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "glue",
+    "name": "AWS Glue\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "kms",
+    "name": "AWS Key Management Service (KMS)\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "lambda",
+    "name": "AWS Lambda\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "systems-manager",
+    "name": "AWS Systems Manager\nap-northeast-1 · AWS Public Price List"
+  },
+  {
+    "id": "elastic-load-balancing",
+    "name": "Elastic Load Balancing\nap-northeast-1 · AWS Public Price List"
+  }
+]

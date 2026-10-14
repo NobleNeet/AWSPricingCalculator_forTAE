@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-14T05:51:17.576464+00:00",
+  "method": "Lossless gzip verified byte-for-byte before removing redundant expanded derived index. Raw GUI inventories, individual cases, summary, coverage, correspondence and all screenshots remain directly available. Regenerate indexes with the saved consolidator or decompress these files after storage expansion.",
+  "files": [
+    {
+      "source": "official-field-index.json",
+      "compressedFile": "official-field-index.json.gz",
+      "uncompressedSha256": "4d31882ff1df6450563789ec43021e5c59584dfb343fd200a372a595ef5c1657",
+      "bytes": 75387072,
+      "compressedBytes": 3173733
+    },
+    {
+      "source": "official-field-inventory.json",
+      "compressedFile": "official-field-inventory.json.gz",
+      "uncompressedSha256": "9c3edad8ccc9d7c4b34b407130aba5a657a3609d90f649d3e800f94d9b8c8311",
+      "bytes": 75387265,
+      "compressedBytes": 3173849
+    },
+    {
+      "source": "local-field-index.json",
+      "compressedFile": "local-field-index.json.gz",
+      "uncompressedSha256": "11be38551e1b0bb54f200d4aa4918cf13ddcf99ea3f5d557a240946d5cf5ae33",
+      "bytes": 41142768,
+      "compressedBytes": 2700539
+    }
+  ]
+}

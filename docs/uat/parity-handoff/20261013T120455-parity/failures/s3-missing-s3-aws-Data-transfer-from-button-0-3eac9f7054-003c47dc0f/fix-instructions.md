@@ -1,0 +1,870 @@
+# s3-missing-s3-aws-Data-transfer-from-button-0-3eac9f7054-003c47dc0f 個別修正指示書
+
+本書を修正依頼として扱い、最新版リポジトリとAGENTSを読み、原因調査→安全な修正→検証→必要なPR/公開確認まで進めよ。
+このUATセッションでは修正を実行していない。別途本書を修正依頼として渡されたセッションで作業せよ。
+
+サービス: s3。Profile: {"local": "standard", "official": {"variant": "default", "requestedRegion": null, "region": "us-east-2", "regionDisplay": "US East (Ohio)"}}。Region: {"local": "us-east-2", "official": "us-east-2"}。
+重大度: HIGH。影響範囲は当該入力・条件について確認し、他Profile/Regionへ未確認のまま一般化するな。
+公開URL: https://nobleneet.github.io/AWSPricingCalculator_forTAE/。公式URL: https://calculator.aws/#/createCalculator/S3。
+実行ID: 20261013T120455-parity。計測/記録日時: 2026-10-14T05:47:06.612753+00:00。公開build: 20261013T095030Z-78197541。
+不具合観測: Corresponding pricing input absent from all independently observed public GUI profiles and optional states; an unitemized additional-cost field is not equivalent.
+入力判定: FAIL。料金判定: NOT_COMPARABLE。許容差: 0.01 USD/月。
+
+## 再現せよ
+
+1. 公開URLを実ブラウザで開き、新規Projectと構成案を作成して当該サービスを追加せよ。上記Profile/Regionと原記録の全入力・単位・デフォルトを設定せよ。
+2. 公式URLを開き、原記録のRegionと機能/親selector条件を設定し、主要・詳細・任意セクションを展開せよ。原記録にある全入力を画面で照合せよ。
+3. 入力欠落では原記録の公式入力を表示させ、公開版の全Profile/任意セクションに同等入力が存在するか再確認せよ。金額未測定を差額0と解釈するな。
+4. 料金差異では原記録のbaseline全値を設定し、表示月額・内訳を保存せよ。change値だけ変更し、他入力を確認した上で月額・差分を再測定せよ。
+
+全入力・単位・条件・変更前後値は本書末尾の機械可読原記録を参照せよ。記録済み表示値のみ用い、内部計算値をGUI実測の代用にするな。
+[元ケースJSON](../../cases/s3/s3-missing-s3-aws-Data-transfer-from-button-0-3eac9f7054-003c47dc0f.json)、[comparison.json](comparison.json)、[対応表](../../field-correspondence.json)、[公式棚卸し](../../aws-field-inventory.json.gz)、[公開棚卸し](../../local-field-inventory.json.gz)を確認せよ。
+スクリーンショットは原記録の相対パス（結果ルート基準）および同ディレクトリに複製した local-before.png / local-after.png / aws-before.png / aws-after.png が存在する範囲を参照せよ。取得済みの場合は local-before-total.png / local-after-total.png にDrawerを閉じた可視の月額合計画面を保存している。未取得の画面を取得済みと扱うな。
+
+## 原因を確定して修正せよ
+
+観測済み事実は下記JSONとGUI証跡に限定せよ。EC2の台数・稼働時間によるEBS差、Oracleの稼働率によるInsights差では、集計量/台数当たり容量/モニタリング時間の同等性と現行正本の指定を先に確認せよ。公式GUIと一致させるためだけに現行の入力意味や保存データ互換性を変えるな。価格正本・仕様差が確認できれば料金NOT_COMPARABLEまたは仕様問題として根拠を報告せよ。
+原因仮説: Definition/UI未取り込み、Mapping/数量変換/条件分岐、公開Price DBの対応範囲・単価更新差などの可能性がある。いずれも未検証であり、差額だけで実装バグと断定するな。
+最新版のService Definition、Pricing Mapping、生成Price DB、Billing Transform、UIを必要な範囲で調査し、根本原因を確定せよ。未確認のファイル名・関数名を原因と決め打ちするな。
+入力欠落では docs/SERVICE_ONBOARDING.md §5–6 と現行契約を照合して必要なOn-Demand入力と依存条件を実装せよ。許容された明示的仕様除外が新たに確認できた場合は、根拠節と比較不能範囲を報告し、推測で仕様を増やすな。
+期待動作: 同等の料金入力を設定でき、同等条件の合計・対応内訳・変更差分が0.01 USD以内で整合すること。計算対象外条件があれば現行正本に従い明示すること。
+金額をハードコードするな。生成Price DBを手編集するな。service-specific意味はMappingへ置き、generic coreへサービス名分岐を入れるな。他サービスへの影響とvalidation scopeを保全せよ。原因不明なら先に調査せよ。
+
+## 正本と回帰・公開確認
+
+最新版リポジトリの AGENTS.md、docs/SPEC.md、docs/PRICING_ARCHITECTURE.md、docs/PRICING_MAPPING_ARCHITECTURE.md、docs/SERVICE_ONBOARDING.md、docs/ONBOARDING_PROMOTION_QUEUE.md、docs/AUTONOMOUS_IMPLEMENTATION.md、docs/IMPLEMENTATION_PLAN.md をAGENTS指定順序で読め。
+変更前に影響する既存unit/Golden/E2Eを棚卸しし、当該サービスのnarrow test、Mapping validation、Golden、サービス別browser E2Eを更新・実行せよ。通過後に全体validation/test/E2Eの適用対象を実行せよ。
+サービス拡張はreonboard/<serviceId>で進め、必要なPRとonboarding-readyキュー、serialized promotion、Price DB publication、Pages deploymentを確認せよ。公開後は本ケースの公式/公開GUI再比較と、同じ課金Componentを使う他Profile/Region/サービスの回帰確認を実施せよ。
+完了条件: 根本原因と仕様根拠が説明でき、必要な入力・数量・料金の回帰チェックが通り、必要な公開反映とGUI再比較が完了していること。権限・公開障害等で残課題があれば、失敗した操作、外部条件、取得済み証跡、再開手順を報告せよ。
+
+## 機械可読原記録（自己完結した再現情報）
+
+```json
+{
+  "caseId": "s3-missing-s3-aws-Data-transfer-from-button-0-3eac9f7054-003c47dc0f",
+  "serviceId": "s3",
+  "profile": {
+    "local": "standard",
+    "official": {
+      "variant": "default",
+      "requestedRegion": null,
+      "region": "us-east-2",
+      "regionDisplay": "US East (Ohio)"
+    }
+  },
+  "region": {
+    "local": "us-east-2",
+    "official": "us-east-2"
+  },
+  "parameter": [
+    "Data transfer from"
+  ],
+  "officialFieldIds": [
+    "s3:aws:Data-transfer-from-button-0-3eac9f7054"
+  ],
+  "localFieldIds": [],
+  "correspondenceRowId": "s3:aws:Data-transfer-from-button-0-3eac9f7054",
+  "comparisonScope": "input availability and metadata; prices unmeasured",
+  "inputVerdict": "FAIL",
+  "pricingVerdict": "NOT_COMPARABLE",
+  "reason": "Corresponding pricing input absent from all independently observed public GUI profiles and optional states; an unitemized additional-cost field is not equivalent.",
+  "executionState": "INPUT_OBSERVATION_RECORDED",
+  "observedAt": "2026-10-14T05:47:06.612753+00:00",
+  "publicBuildId": "20261013T095030Z-78197541",
+  "urls": {
+    "local": "https://nobleneet.github.io/AWSPricingCalculator_forTAE/",
+    "aws": "https://calculator.aws/#/createCalculator/S3"
+  },
+  "allInputs": {
+    "localObservation": "observations/local-s3-251.json",
+    "officialObservation": "observations/aws-s3-43.json",
+    "units": "Read full rendered labels and options in the independent observation JSON; no units inferred."
+  },
+  "localBefore": null,
+  "localAfter": null,
+  "awsBefore": null,
+  "awsAfter": null,
+  "localDeltaUsd": null,
+  "awsDeltaUsd": null,
+  "amountDifferenceUsd": null,
+  "toleranceUsd": "0.01",
+  "unmeasuredAmountReason": "No valid equal-input numerical comparison executed for this input row. Missing input remains an input FAIL.",
+  "evidence": {
+    "local": {
+      "file": "observations/local-s3-251.json",
+      "screen": "screenshots/local-s3-251.png",
+      "condition": {
+        "profile": {
+          "value": "standard",
+          "label": "標準"
+        },
+        "region": "us-east-2",
+        "variant": "region",
+        "requestedProfile": {
+          "value": "standard",
+          "label": "標準"
+        },
+        "profileObservedFrom": "drawer-profile DOM value"
+      }
+    },
+    "aws": {
+      "file": "observations/aws-s3-43.json",
+      "screen": "screenshots/aws-s3-43.png",
+      "condition": {
+        "variant": "default",
+        "requestedRegion": null,
+        "region": "us-east-2",
+        "regionDisplay": "US East (Ohio)"
+      },
+      "value": "Data transfer from",
+      "domId": "formField3110-1791893687927-6518",
+      "section": null,
+      "context": "Data transfer from"
+    }
+  },
+  "specificationEvidence": [
+    "docs/uat/AWS_CALCULATOR_PARITY.md §5.1",
+    "docs/SERVICE_ONBOARDING.md §5–6"
+  ],
+  "resumeRequirements": [
+    "Verify same public build and current AWS price assumptions",
+    "Complete missing parent-condition inventory",
+    "Configure an independent equivalent estimate in both real GUIs",
+    "Measure baseline and changed monthly totals and components"
+  ],
+  "correspondenceClassification": "MISSING_LOCAL",
+  "candidateComparison": {},
+  "renderedInputs": {
+    "local": [
+      {
+        "domId": "drawer-profile",
+        "index": 0,
+        "tag": "SELECT",
+        "type": "select-one",
+        "label": "利用方式\n標準",
+        "value": "standard",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": [
+          {
+            "value": "standard",
+            "label": "標準"
+          }
+        ],
+        "context": "利用方式\n標準",
+        "section": "料金見積もりの制約"
+      },
+      {
+        "domId": "drawer-region",
+        "index": 1,
+        "tag": "SELECT",
+        "type": "select-one",
+        "label": "リージョン\nプロジェクトのリージョンを継承\nアジアパシフィック (東京) に変更\nus-east-2 に変更",
+        "value": "inherit",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": [
+          {
+            "value": "inherit",
+            "label": "プロジェクトのリージョンを継承"
+          },
+          {
+            "value": "ap-northeast-1",
+            "label": "アジアパシフィック (東京) に変更"
+          },
+          {
+            "value": "us-east-2",
+            "label": "us-east-2 に変更"
+          }
+        ],
+        "context": "リージョン\nプロジェクトのリージョンを継承\nアジアパシフィック (東京) に変更\nus-east-2 に変更",
+        "section": "料金見積もりの制約"
+      },
+      {
+        "domId": "input-component-storage-gbMonths",
+        "index": 2,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "S3 Standard ストレージ (GB/月)",
+        "value": "100",
+        "visible": true,
+        "disabled": false,
+        "min": "0",
+        "max": null,
+        "step": "any",
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "S3 Standard ストレージ (GB/月)",
+        "section": "料金見積もりの制約"
+      },
+      {
+        "domId": "input-component-write-requests-requests",
+        "index": 3,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "S3 Standard に対する PUT、COPY、POST、LIST リクエスト (件/月)",
+        "value": "1000",
+        "visible": true,
+        "disabled": false,
+        "min": "0",
+        "max": null,
+        "step": "any",
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "S3 Standard に対する PUT、COPY、POST、LIST リクエスト (件/月)",
+        "section": "料金見積もりの制約"
+      },
+      {
+        "domId": "input-component-read-requests-requests",
+        "index": 4,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "S3 Standard からの GET、SELECT、および他のすべてのリクエスト (件/月)",
+        "value": "10000",
+        "visible": true,
+        "disabled": false,
+        "min": "0",
+        "max": null,
+        "step": "any",
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "S3 Standard からの GET、SELECT、および他のすべてのリクエスト (件/月)",
+        "section": "料金見積もりの制約"
+      }
+    ],
+    "official": [
+      {
+        "domId": "formField2871-1791893687881-6895",
+        "index": 0,
+        "tag": "INPUT",
+        "type": "text",
+        "label": "Description - optional",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField2873-1791893687882-9718",
+        "index": 1,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Choose a location typeInfo",
+        "value": "Region",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "Region"
+      },
+      {
+        "domId": "formField2886-1791893687884-3577",
+        "index": 2,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Choose a Region",
+        "value": "US East (Ohio)",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "US East (Ohio)"
+      },
+      {
+        "domId": "2904-1791893687887-1388",
+        "index": 3,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Standard",
+        "value": true,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2905-1791893687887-8197",
+        "index": 4,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Intelligent - Tiering",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2906-1791893687887-33",
+        "index": 5,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Standard - Infrequent Access",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2907-1791893687887-3324",
+        "index": 6,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Glacier Flexible Retrieval",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2908-1791893687887-6471",
+        "index": 7,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Glacier Deep Archive",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2909-1791893687888-9252",
+        "index": 8,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Management and Insights",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2910-1791893687888-5987",
+        "index": 9,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Annotations",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2911-1791893687888-5538",
+        "index": 10,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 One Zone - Infrequent Access",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2912-1791893687888-6109",
+        "index": 11,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Vectors",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2913-1791893687888-2080",
+        "index": 12,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Object Lambda",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2914-1791893687888-3030",
+        "index": 13,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Glacier Instant Retrieval",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2915-1791893687888-8700",
+        "index": 14,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "Data Transfer",
+        "value": true,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2916-1791893687889-5346",
+        "index": 15,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Express One Zone",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2917-1791893687889-4542",
+        "index": 16,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Access Grants",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2918-1791893687889-2589",
+        "index": 17,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Files",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "2919-1791893687889-5277",
+        "index": 18,
+        "tag": "INPUT",
+        "type": "checkbox",
+        "label": "S3 Tables",
+        "value": false,
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3867-1791893694373-8118",
+        "index": 19,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "S3 Standard storage Value",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3869-1791893694373-6747",
+        "index": 20,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Unit",
+        "value": "GB per month",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "GB per month"
+      },
+      {
+        "domId": "formField3909-1791893694440-2810",
+        "index": 21,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "How will data be moved into S3 Standard?",
+        "value": "The specified amount of data is already stored in S3 Standard",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "The specified amount of data is already stored in S3 Standard"
+      },
+      {
+        "domId": "formField3879-1791893694374-8208",
+        "index": 22,
+        "tag": "INPUT",
+        "type": "text",
+        "label": "PUT, COPY, POST, LIST requests to S3 Standard Enter amount of requests",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3881-1791893694374-5368",
+        "index": 23,
+        "tag": "INPUT",
+        "type": "text",
+        "label": "GET, SELECT, and all other requests from S3 Standard Enter amount of requests",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3884-1791893694375-1717",
+        "index": 24,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "Data returned by S3 Select Value",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3886-1791893694375-3564",
+        "index": 25,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Unit",
+        "value": "GB per month",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "GB per month"
+      },
+      {
+        "domId": "formField3897-1791893694376-3354",
+        "index": 26,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "Data scanned by S3 Select Value",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3899-1791893694376-9176",
+        "index": 27,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Unit",
+        "value": "GB per month",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "GB per month"
+      },
+      {
+        "domId": "formField3110-1791893687927-6518",
+        "index": 28,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Data transfer from",
+        "value": "Data transfer from",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "Data transfer from"
+      },
+      {
+        "domId": "formField3120-1791893687928-132",
+        "index": 29,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "Enter Amount Enter amount",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3122-1791893687928-7418",
+        "index": 30,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Data amount",
+        "value": "TB per month",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "TB per month"
+      },
+      {
+        "domId": "formField3137-1791893687929-7437",
+        "index": 31,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Data transfer to",
+        "value": "Data transfer to",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "Data transfer to"
+      },
+      {
+        "domId": "formField3147-1791893687930-7404",
+        "index": 32,
+        "tag": "INPUT",
+        "type": "number",
+        "label": "Enter Amount Enter amount",
+        "value": "",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": ""
+      },
+      {
+        "domId": "formField3149-1791893687930-4846",
+        "index": 33,
+        "tag": "BUTTON",
+        "type": "button",
+        "label": "Data amount",
+        "value": "TB per month",
+        "visible": true,
+        "disabled": false,
+        "min": null,
+        "max": null,
+        "step": null,
+        "name": "",
+        "radioValue": null,
+        "toggle": null,
+        "options": null,
+        "context": "TB per month"
+      }
+    ]
+  },
+  "severity": "HIGH"
+}
+```

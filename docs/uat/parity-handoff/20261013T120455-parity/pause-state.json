@@ -1,0 +1,24 @@
+{
+  "executionStatus": "PAUSED_BY_USER",
+  "pausedAtUtc": "2026-10-14T05:53:35.060847+00:00",
+  "pausedAtJst": "2026-10-14T14:53:35.060847+00:00",
+  "userInstruction": "現状ストレージが不足しているか。一旦このPCを増強するので作業を一時停止してほしい",
+  "guiProcessesRunning": false,
+  "canonicalMeasuredCases": 742,
+  "allCasesIncludingMetadata": 1427,
+  "individualFailureInstructions": 212,
+  "fullScopeCompleted": false,
+  "latestStorageFreeBytes": 169570304,
+  "durablePauseSnapshot": "/home/ubnadmin/parity-reports/20261013T120455-parity.paused-20261014T055335Z",
+  "snapshotMethod": "Same-filesystem hardlinks preserve all current evidence bytes outside checkout without another full-size copy. Every file must be hash verified. Before any future mutation, run saved parity-resume-detach.py after storage expansion; PNG capture paths are immutable and future failure copies replace aliases atomically.",
+  "resumeRequirements": [
+    "Explicit user resume instruction; do not automatically launch queued scripts after reboot.",
+    "Read docs/uat/AWS_CALCULATOR_PARITY.md and PAUSED.md.",
+    "Verify public build 20261013T095030Z-78197541; split a new snapshot if changed.",
+    "Restore helpers from runners/helper-versions/latest-index.json; /tmp is not durable.",
+    "Detach shared mutable files using runners/parity-resume-detach.py before regenerating any report or measurement.",
+    "Seed new shard directories and seed timestamps from canonical measured-cases.json; old shards are already merged and their seed plan must not be reused for another merge.",
+    "Derived indexes are losslessly compressed as .json.gz; regenerate or decompress after disk expansion.",
+    "Continue remaining profiles/regions/numeric boundaries/selectors/conditional inventory and independent component verification."
+  ]
+}

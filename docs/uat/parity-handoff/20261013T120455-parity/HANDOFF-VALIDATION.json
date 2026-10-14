@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "caseCount": 1427,
+  "pricingCounts": {
+    "PASS": 595,
+    "BLOCKED": 20,
+    "NOT_COMPARABLE": 284,
+    "FAIL": 19,
+    "INCOMPLETE": 509
+  },
+  "inputFailureCases": 196,
+  "activeFailureGuides": 212,
+  "originalObservationsVerified": 17026,
+  "checks": [
+    "All current case JSON equal frozen original",
+    "Summary and unique IDs",
+    "All active FAIL comparisons and links",
+    "Independent inventory gzip byte equality",
+    "All compressed DOM/menu observations equal original",
+    "Only active failure directories exported"
+  ],
+  "errors": []
+}

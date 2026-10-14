@@ -1,0 +1,220 @@
+{
+  "at": "2026-10-14T05:52:17.228739+00:00",
+  "helpers": [
+    {
+      "source": "/tmp/parity-merge-shards.py",
+      "sha256": "6839b4c8ec31d4e33e3f12ff1ab980c85ea06abba89c6045dc0ff75043ba997d",
+      "archive": "runners/helper-versions/6839b4c8ec31d4e33e3f12ff1ab980c85ea06abba89c6045dc0ff75043ba997d.py"
+    },
+    {
+      "source": "/tmp/parity-group-b.sh",
+      "sha256": "c8292587a1a7600d50df3f687cda298eb13e01bc87e95dfc33bd54d131c55944",
+      "archive": "runners/helper-versions/c8292587a1a7600d50df3f687cda298eb13e01bc87e95dfc33bd54d131c55944.sh"
+    },
+    {
+      "source": "/tmp/parity-group-a.sh",
+      "sha256": "a6a585054e0a62bbb1b2c424ba9bbcab6996266d128a22d9d888807c50b6b5eb",
+      "archive": "runners/helper-versions/a6a585054e0a62bbb1b2c424ba9bbcab6996266d128a22d9d888807c50b6b5eb.sh"
+    },
+    {
+      "source": "/tmp/parity-price-sharded.mjs",
+      "sha256": "914a29c72381dce39369e479981037b63717dc62f5c806ea74cdafc564805400",
+      "archive": "runners/helper-versions/914a29c72381dce39369e479981037b63717dc62f5c806ea74cdafc564805400.mjs"
+    },
+    {
+      "source": "/tmp/parity-deep-v4.mjs",
+      "sha256": "0704a4e026e6d92b87c3a24a108d3df4e4bc5127e1041536232f5a744e62937e",
+      "archive": "runners/helper-versions/0704a4e026e6d92b87c3a24a108d3df4e4bc5127e1041536232f5a744e62937e.mjs"
+    },
+    {
+      "source": "/tmp/parity-next-full-20261014.sh",
+      "sha256": "9dd080c8bd940314c7df7f15326262c63541963ef3cc2f87931949b057820fa3",
+      "archive": "runners/helper-versions/9dd080c8bd940314c7df7f15326262c63541963ef3cc2f87931949b057820fa3.sh"
+    },
+    {
+      "source": "/tmp/parity-compact-json.py",
+      "sha256": "f2186f8fd80f856a22518c315c66cd0586ba532d08528ddeddb27eff73f476ce",
+      "archive": "runners/helper-versions/f2186f8fd80f856a22518c315c66cd0586ba532d08528ddeddb27eff73f476ce.py"
+    },
+    {
+      "source": "/tmp/parity-price-numeric.mjs",
+      "sha256": "5306c4effacba30fc3d9edbfee762fd256d6422cb0eae7fed339f404e237bb8c",
+      "archive": "runners/helper-versions/5306c4effacba30fc3d9edbfee762fd256d6422cb0eae7fed339f404e237bb8c.mjs"
+    },
+    {
+      "source": "/tmp/parity-resume-20261014T0505.sh",
+      "sha256": "720a3f58639cee5700a32f7d6873fe46afc922fcec1d2f10e93693e2dadae35d",
+      "archive": "runners/helper-versions/720a3f58639cee5700a32f7d6873fe46afc922fcec1d2f10e93693e2dadae35d.sh"
+    },
+    {
+      "source": "/tmp/parity-next-after-inventory-20261014.sh",
+      "sha256": "b87e4c3ede8b3702b7a088782f2e1ab8831214460dc487f8952e96d58f914cb2",
+      "archive": "runners/helper-versions/b87e4c3ede8b3702b7a088782f2e1ab8831214460dc487f8952e96d58f914cb2.sh"
+    },
+    {
+      "source": "/tmp/parity-deep-local-v3.mjs",
+      "sha256": "ac24968e04213ef01bf052297f6fd31fff7dd7288bea480f43f834b986d8679c",
+      "archive": "runners/helper-versions/ac24968e04213ef01bf052297f6fd31fff7dd7288bea480f43f834b986d8679c.mjs"
+    },
+    {
+      "source": "/tmp/parity-ebs-tier-smoke-20261014.sh",
+      "sha256": "07bb1b03fb22043219c785a19304fee090c0c68726b0fd5fe516ddf5d4e27cab",
+      "archive": "runners/helper-versions/07bb1b03fb22043219c785a19304fee090c0c68726b0fd5fe516ddf5d4e27cab.sh"
+    },
+    {
+      "source": "/tmp/parity-boundary-smoke-20261014.sh",
+      "sha256": "edcdb81df6ea630b163a8018327d68ac84f44461d54819299b237525e49c846a",
+      "archive": "runners/helper-versions/edcdb81df6ea630b163a8018327d68ac84f44461d54819299b237525e49c846a.sh"
+    },
+    {
+      "source": "/tmp/parity-next-phase-20261014.sh",
+      "sha256": "15de1f9f8ac004e497144c660409f82031dc70edc5ea34a526681795d459ebee",
+      "archive": "runners/helper-versions/15de1f9f8ac004e497144c660409f82031dc70edc5ea34a526681795d459ebee.sh"
+    },
+    {
+      "source": "/tmp/parity-retry-advanced-20261014.sh",
+      "sha256": "a0e64a41566a0a419f0df0497740ded367569fd35e24fa07a688e8b214d9d05b",
+      "archive": "runners/helper-versions/a0e64a41566a0a419f0df0497740ded367569fd35e24fa07a688e8b214d9d05b.sh"
+    },
+    {
+      "source": "/tmp/parity-selector-smoke-20261014.sh",
+      "sha256": "502bf3ef9b9751aef485d2d955896a82f8e8fe2098ebd8029f9631b58c852e04",
+      "archive": "runners/helper-versions/502bf3ef9b9751aef485d2d955896a82f8e8fe2098ebd8029f9631b58c852e04.sh"
+    },
+    {
+      "source": "/tmp/parity-advanced-smoke-20261014.sh",
+      "sha256": "2a9ea2c9e86f10fc903d30f2336e547ce26ba126005542778387d81349b3c56c",
+      "archive": "runners/helper-versions/2a9ea2c9e86f10fc903d30f2336e547ce26ba126005542778387d81349b3c56c.sh"
+    },
+    {
+      "source": "/tmp/parity-following-smoke-20261014.sh",
+      "sha256": "26d139ceb3a9a2ea74daa97a078901b04f4b1bc3f10d1da1722389a023867e8c",
+      "archive": "runners/helper-versions/26d139ceb3a9a2ea74daa97a078901b04f4b1bc3f10d1da1722389a023867e8c.sh"
+    },
+    {
+      "source": "/tmp/parity-retry-smoke-20261014.sh",
+      "sha256": "ce882b82456464c68bcd7edee8094586c0d82d7c0f6bd26967f6a1d31b3a0246",
+      "archive": "runners/helper-versions/ce882b82456464c68bcd7edee8094586c0d82d7c0f6bd26967f6a1d31b3a0246.sh"
+    },
+    {
+      "source": "/tmp/parity-dedup-evidence.py",
+      "sha256": "848c006b78b9fac8d066e4269049a9974cf53d2af57bc2b71b6a2b62634e3147",
+      "archive": "runners/helper-versions/848c006b78b9fac8d066e4269049a9974cf53d2af57bc2b71b6a2b62634e3147.py"
+    },
+    {
+      "source": "/tmp/parity-additional-smoke.sh",
+      "sha256": "ab145481f5f312c012cbd9ca12595fd7d250592456abdf12c10fbdd4e072488d",
+      "archive": "runners/helper-versions/ab145481f5f312c012cbd9ca12595fd7d250592456abdf12c10fbdd4e072488d.sh"
+    },
+    {
+      "source": "/tmp/parity-complete-known.sh",
+      "sha256": "65fdb6429d7b0927deda8dbd3f3e2aeb25ffb57622ef3dd2f31fdfef24b77dfb",
+      "archive": "runners/helper-versions/65fdb6429d7b0927deda8dbd3f3e2aeb25ffb57622ef3dd2f31fdfef24b77dfb.sh"
+    },
+    {
+      "source": "/tmp/parity-collect-case-observations.py",
+      "sha256": "c686210a1645d8a1999c995946e4bd495a3d1d01df99e4b9182897aca72ded20",
+      "archive": "runners/helper-versions/c686210a1645d8a1999c995946e4bd495a3d1d01df99e4b9182897aca72ded20.py"
+    },
+    {
+      "source": "/tmp/parity-profile-expand.sh",
+      "sha256": "ec14272adfc666abd50c317bc97c006e8380ed9a1e1caec309445040f9d3676b",
+      "archive": "runners/helper-versions/ec14272adfc666abd50c317bc97c006e8380ed9a1e1caec309445040f9d3676b.sh"
+    },
+    {
+      "source": "/tmp/parity-check-build.mjs",
+      "sha256": "fedca69af72532cd120b32f74a0d0740953987621cedf415214073f730cd21b8",
+      "archive": "runners/helper-versions/fedca69af72532cd120b32f74a0d0740953987621cedf415214073f730cd21b8.mjs"
+    },
+    {
+      "source": "/tmp/parity-profile-smoke.sh",
+      "sha256": "00f49a02feda773eaffd5e60799b4f720cd2745f6c9394e965f7ea2d37eab74c",
+      "archive": "runners/helper-versions/00f49a02feda773eaffd5e60799b4f720cd2745f6c9394e965f7ea2d37eab74c.sh"
+    },
+    {
+      "source": "/tmp/parity-deep-v3.mjs",
+      "sha256": "8ed03c3ef60e05937eaf99fb7a361965eab6ae1fdb74c700bf73bc22e6e7615d",
+      "archive": "runners/helper-versions/8ed03c3ef60e05937eaf99fb7a361965eab6ae1fdb74c700bf73bc22e6e7615d.mjs"
+    },
+    {
+      "source": "/tmp/parity-validator.py",
+      "sha256": "2ba822cde190735c4b9b053de0ae893adf13edbd7d9a8001e0f43cb6ea09a5e9",
+      "archive": "runners/helper-versions/2ba822cde190735c4b9b053de0ae893adf13edbd7d9a8001e0f43cb6ea09a5e9.py"
+    },
+    {
+      "source": "/tmp/parity-deep-v2.mjs",
+      "sha256": "64aa2956cebe5a19f6b3a0054a974feddc577ddc39da6b4fa192348e05b0dde6",
+      "archive": "runners/helper-versions/64aa2956cebe5a19f6b3a0054a974feddc577ddc39da6b4fa192348e05b0dde6.mjs"
+    },
+    {
+      "source": "/tmp/parity-deep-update.py",
+      "sha256": "7ec890bcd9e72562cd1346c1dcc0f1411ed0978827ff53a58ff7054de74f8449",
+      "archive": "runners/helper-versions/7ec890bcd9e72562cd1346c1dcc0f1411ed0978827ff53a58ff7054de74f8449.py"
+    },
+    {
+      "source": "/tmp/parity-ec2-inspect.mjs",
+      "sha256": "7874fc5e40fe3dca56f01d33a6416237d6dcc7b2a97d550ee70159f12dc2a29f",
+      "archive": "runners/helper-versions/7874fc5e40fe3dca56f01d33a6416237d6dcc7b2a97d550ee70159f12dc2a29f.mjs"
+    },
+    {
+      "source": "/tmp/parity-otherinputs.py",
+      "sha256": "65a30e0eb27ce27cf5d8ca6e42a9dd609c6fe5af68f7d2bf36ebc0ea8190755f",
+      "archive": "runners/helper-versions/65a30e0eb27ce27cf5d8ca6e42a9dd609c6fe5af68f7d2bf36ebc0ea8190755f.py"
+    },
+    {
+      "source": "/tmp/parity-extra-extend.py",
+      "sha256": "1b6531ccf06312f98b532e71644cd3a92b185347733d6f70bae159f43882ea86",
+      "archive": "runners/helper-versions/1b6531ccf06312f98b532e71644cd3a92b185347733d6f70bae159f43882ea86.py"
+    },
+    {
+      "source": "/tmp/parity-glue-extend.py",
+      "sha256": "6818517cb1815a7b140f102e30a2c7ea49a4c2518618ce04ff8fcd07bee3c072",
+      "archive": "runners/helper-versions/6818517cb1815a7b140f102e30a2c7ea49a4c2518618ce04ff8fcd07bee3c072.py"
+    },
+    {
+      "source": "/tmp/parity-selector-extend.py",
+      "sha256": "674d8918f0161003c1ff113f681f2e77a45d487304f21462d6e5fd04c49b5901",
+      "archive": "runners/helper-versions/674d8918f0161003c1ff113f681f2e77a45d487304f21462d6e5fd04c49b5901.py"
+    },
+    {
+      "source": "/tmp/parity-profile-extend.py",
+      "sha256": "2b489af5ed1cf7636a85846507f5bbfeefc3e2816cb8178749d2eb3410a1a160",
+      "archive": "runners/helper-versions/2b489af5ed1cf7636a85846507f5bbfeefc3e2816cb8178749d2eb3410a1a160.py"
+    },
+    {
+      "source": "/tmp/parity-components.py",
+      "sha256": "b3ffa437f091e3c131e202fe5ce60bd7d8ba9110497ee32d4ee3b7ff4f9bdfd1",
+      "archive": "runners/helper-versions/b3ffa437f091e3c131e202fe5ce60bd7d8ba9110497ee32d4ee3b7ff4f9bdfd1.py"
+    },
+    {
+      "source": "/tmp/parity-extend.py",
+      "sha256": "3a4c5f178651637cc909c8eb80d5dd30c8f8db950f8d27f0b95b1c1eef12d9ab",
+      "archive": "runners/helper-versions/3a4c5f178651637cc909c8eb80d5dd30c8f8db950f8d27f0b95b1c1eef12d9ab.py"
+    },
+    {
+      "source": "/tmp/parity-consolidate.py",
+      "sha256": "c8100d3a0e5918b253ac1191a1c957c5c5d5211e96806791390bc1a20ea5cf09",
+      "archive": "runners/helper-versions/c8100d3a0e5918b253ac1191a1c957c5c5d5211e96806791390bc1a20ea5cf09.py"
+    },
+    {
+      "source": "/tmp/parity-local-regions.mjs",
+      "sha256": "f348db694f0ba27e1364bfa49d0fb87921a1a454bec6739eae9b29e339d3ff02",
+      "archive": "runners/helper-versions/f348db694f0ba27e1364bfa49d0fb87921a1a454bec6739eae9b29e339d3ff02.mjs"
+    },
+    {
+      "source": "/tmp/parity-deep.mjs",
+      "sha256": "3ec6d1e9d0857fd16b463f205f8d1625c2efe8bda6f6c8645a9a0574edb235fb",
+      "archive": "runners/helper-versions/3ec6d1e9d0857fd16b463f205f8d1625c2efe8bda6f6c8645a9a0574edb235fb.mjs"
+    },
+    {
+      "source": "/tmp/parity-price.mjs",
+      "sha256": "c4cfb471b3ef6ce6c64573553de389b8d9dbe3c050557fa1ed6743d0d76620d1",
+      "archive": "runners/helper-versions/c4cfb471b3ef6ce6c64573553de389b8d9dbe3c050557fa1ed6743d0d76620d1.mjs"
+    },
+    {
+      "source": "/tmp/parity-inventory.mjs",
+      "sha256": "ad7b517acf2ba12bf517a39f053821f05ff8974bf0a1db93921acc2e7570914a",
+      "archive": "runners/helper-versions/ad7b517acf2ba12bf517a39f053821f05ff8974bf0a1db93921acc2e7570914a.mjs"
+    }
+  ]
+}
