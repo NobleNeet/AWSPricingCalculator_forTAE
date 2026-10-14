@@ -102,11 +102,12 @@ function displayCell(row, key) {
 function tableHtml({ rows, selected, filters, sortKey, sortDirection, columns, filterRowsFn, prefix }) {
   const filtered = filterRowsFn(rows, filters);
   filtered.sort((a, b) => {
+    if (selected && (a.instanceType === selected) !== (b.instanceType === selected)) return a.instanceType === selected ? -1 : 1;
     const left = a[sortKey], right = b[sortKey];
     const result = typeof left === 'number' && typeof right === 'number' ? left - right : String(left ?? '').localeCompare(String(right ?? ''), 'ja', { numeric: true });
     return sortDirection === 'desc' ? -result : result;
   });
-  return `<div class="ec2-instance-summary">${filtered.length} / ${rows.length} 件</div><div class="ec2-instance-scroll"><table class="ec2-instance-table"><thead><tr>${columns.map(([key, label]) => `<th><button type="button" class="ec2-sort" data-instance-sort="${key}">${esc(label)}${sortKey === key ? (sortDirection === 'asc' ? ' ▲' : ' ▼') : ''}</button></th>`).join('')}</tr><tr class="ec2-filter-row">${columns.map(([key, label, kind]) => `<th><input data-instance-filter="${key}" value="${esc(filters[key] ?? '')}" placeholder="${kind === 'number' ? '例: >=4' : '絞り込み'}" aria-label="${esc(label)}を絞り込み"></th>`).join('')}</tr></thead><tbody>${filtered.map(row => `<tr class="${row.instanceType === selected ? 'selected' : ''}">${columns.map(([key], index) => `<td>${index === 0 ? `<button type="button" class="ec2-instance-select" data-instance-choice="${esc(row.instanceType)}">${esc(row.instanceType)}</button>` : displayCell(row, key)}</td>`).join('')}</tr>`).join('') || `<tr><td colspan="${columns.length}">条件に一致する${prefix}インスタンスはありません。</td></tr>`}</tbody></table></div>`;
+  return `<div class="ec2-instance-summary">選択中のインスタンスタイプ：<strong data-instance-current>${esc(selected || '未選択')}</strong> · ${filtered.length} / ${rows.length} 件</div><div class="ec2-instance-scroll"><table class="ec2-instance-table"><thead><tr>${columns.map(([key, label]) => `<th><button type="button" class="ec2-sort" data-instance-sort="${key}">${esc(label)}${sortKey === key ? (sortDirection === 'asc' ? ' ▲' : ' ▼') : ''}</button></th>`).join('')}</tr><tr class="ec2-filter-row">${columns.map(([key, label, kind]) => `<th><input data-instance-filter="${key}" value="${esc(filters[key] ?? '')}" placeholder="${kind === 'number' ? '例: >=4' : '絞り込み'}" aria-label="${esc(label)}を絞り込み"></th>`).join('')}</tr></thead><tbody>${filtered.map(row => `<tr class="${row.instanceType === selected ? 'selected' : ''}" ${row.instanceType === selected ? 'aria-selected="true"' : ''}>${columns.map(([key], index) => `<td>${index === 0 ? `<button type="button" class="ec2-instance-select" data-instance-choice="${esc(row.instanceType)}" aria-pressed="${row.instanceType === selected}" title="${row.instanceType === selected ? 'クリックして選択解除' : 'クリックして選択'}">${esc(row.instanceType)}</button>` : displayCell(row, key)}</td>`).join('')}</tr>`).join('') || `<tr><td colspan="${columns.length}">条件に一致する${prefix}インスタンスはありません。</td></tr>`}</tbody></table></div>`;
 }
 
 function tableConfig(kind) {
@@ -186,13 +187,16 @@ async function enhance(select, kind) {
       picker.innerHTML = tableHtml({ rows, selected: select.value, filters, sortKey, sortDirection, columns: config.columns, filterRowsFn: config.filterRowsFn, prefix: config.prefix });
       if (activeKey) { const input = picker.querySelector(`[data-instance-filter="${activeKey}"]`); input?.focus(); if (caret !== null) input?.setSelectionRange(caret, caret); }
     };
+    select.addEventListener('change', render);
     picker.addEventListener('input', event => { const key = event.target.dataset.instanceFilter; if (!key) return; filters[key] = event.target.value; render(); });
     picker.addEventListener('click', event => {
       const sort = event.target.closest('[data-instance-sort]');
       if (sort) { const key = sort.dataset.instanceSort; sortDirection = sortKey === key && sortDirection === 'asc' ? 'desc' : 'asc'; sortKey = key; render(); return; }
       const choice = event.target.closest('[data-instance-choice]'); if (!choice) return;
-      select.value = choice.dataset.instanceChoice;
+      const nextValue = select.value === choice.dataset.instanceChoice ? '' : choice.dataset.instanceChoice;
+      select.value = nextValue;
       select.dispatchEvent(new Event('change', { bubbles: true }));
+      render();
     });
     render();
   } catch (error) {
