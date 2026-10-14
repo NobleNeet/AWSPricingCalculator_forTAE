@@ -8,6 +8,19 @@ test('presentation changes reuse semantics only when the published fingerprint m
   assert.equal(validationScope({ fingerprintMatches: false, files }), 'candidate');
 });
 
+test('root UI stylesheets and instance picker edits do not launch pricing semantics', () => {
+  const files = [
+    'src/app/ec2-instance-table.js',
+    'ec2-instance-table.css',
+    'tests/e2e/instance-selection.spec.js'
+  ];
+  for (const file of files) assert.equal(changeCategory(file), 'application', file);
+  assert.equal(changeCategory('styles.css'), 'application');
+  assert.equal(applicationOnlyChanges(files), true);
+  assert.equal(validationScope({ fingerprintMatches: true, files }), 'application');
+  assert.equal(validationScope({ fingerprintMatches: false, files }), 'candidate');
+});
+
 test('price update orchestration changes skip unrelated published semantics', () => {
   const files = ['.github/workflows/price-update.yml'];
   assert.equal(applicationOnlyChanges(files), true);
@@ -28,7 +41,7 @@ test('known CI-control edits do not trigger published semantic validation', () =
 });
 
 test('pricing, data, dependencies, unknown workflow and unknown changes fail safe', () => {
-  for (const file of ['src/pricing/core.js', 'services/ec2/service.json', 'pricing/generated/manifest.json', 'package-lock.json', '.github/workflows/new-unclassified.yml', 'tools/pricing-cli/semantic-plan.js', 'unknown']) {
+  for (const file of ['src/pricing/core.js', 'services/ec2/service.json', 'pricing/generated/manifest.json', 'package-lock.json', '.github/workflows/new-unclassified.yml', 'tools/pricing-cli/semantic-plan.js', 'unknown.css', 'unknown']) {
     assert.equal(applicationOnlyChanges(['src/app/app.js', file]), false, file);
     assert.equal(validationScope({ fingerprintMatches: true, files: [file] }), 'published', file);
   }
