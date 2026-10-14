@@ -21,7 +21,7 @@ const CI_CONTROL_FILES = new Set([
 export function changeCategory(file) {
   if (CI_CONTROL_FILES.has(file)) return 'ci-control';
   if (/^(src\/app\/|tests\/|docs\/|mock\/)/.test(file)
-    || /^(index\.html|README\.md|AGENTS\.md|\.gitignore)$/.test(file)) return 'application';
+    || APPLICATION_ROOT_FILES.has(file)) return 'application';
   return 'pricing-or-unknown';
 }
 export function applicationOnlyChanges(files) {
