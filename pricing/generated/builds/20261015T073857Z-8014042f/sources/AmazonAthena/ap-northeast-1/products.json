@@ -1,0 +1,118 @@
+{
+  "buildId": "20261015T073857Z-8014042f",
+  "products": [
+    {
+      "attributes": {
+        "description": "Charged for total data scanned per query with a minimum 10MB for each successful or cancelled queries",
+        "freeQueryTypes": "Data definition queries (DDL), Failed Queries and statements used to create or load partitions",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "APN1-DataScannedInTB"
+      },
+      "operation": "",
+      "productFamily": "Athena Queries",
+      "sku": "6R553MKD6KWECHEK",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-03-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "5.00 USD per Terabytes for DataScannedInTB in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "5.0000000000"
+                },
+                "rateCode": "6R553MKD6KWECHEK.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Terabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-DataScannedInTB"
+    },
+    {
+      "attributes": {
+        "description": "Data Processing Units (DPU) in hours",
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "APN1-ReservedCapacityInDPUHours"
+      },
+      "operation": "",
+      "productFamily": "Athena Queries",
+      "sku": "KRCG7FCJWPMHSB6T",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-03-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "0.43 USD per DPU-Hour for ReservedCapacityInDPUHours in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.4300000000"
+                },
+                "rateCode": "KRCG7FCJWPMHSB6T.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-ReservedCapacityInDPUHours"
+    },
+    {
+      "attributes": {
+        "location": "Asia Pacific (Tokyo)",
+        "locationType": "AWS Region",
+        "nodeSize": "1",
+        "nodeType": "NA",
+        "operation": "Spark_Execution",
+        "regionCode": "ap-northeast-1",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "APN1-CodeExecutionInDPUHours"
+      },
+      "operation": "Spark_Execution",
+      "productFamily": "Athena Spark",
+      "sku": "QTA8S2PW7FAED2GX",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-03-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "0.50 USD per DPU-Hour for CodeExecutionInDPUHours:Spark_Execution in Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.5000000000"
+                },
+                "rateCode": "QTA8S2PW7FAED2GX.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "APN1-CodeExecutionInDPUHours"
+    }
+  ],
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonAthena"
+}

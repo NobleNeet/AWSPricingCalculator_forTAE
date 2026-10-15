@@ -1,0 +1,40 @@
+{
+  "attributes": {
+    "endpointType": [
+      "Gateway Load Balancer Endpoint"
+    ],
+    "group": [
+      "VPCE:VpcEndpoint"
+    ],
+    "groupDescription": [
+      "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint",
+      "Hourly charge for AWS Gateway Load Balancer VPC Endpoint"
+    ],
+    "location": [
+      "Asia Pacific (Osaka)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "VpcEndpoint"
+    ],
+    "regionCode": [
+      "ap-northeast-3"
+    ],
+    "servicecode": [
+      "AmazonVPC"
+    ],
+    "servicename": [
+      "Amazon Virtual Private Cloud"
+    ],
+    "usagetype": [
+      "APN3-VpcEndpoint-GWLBE-Bytes",
+      "APN3-VpcEndpoint-GWLBE-Hours"
+    ]
+  },
+  "buildId": "20261015T073857Z-8014042f",
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonVPC"
+}
