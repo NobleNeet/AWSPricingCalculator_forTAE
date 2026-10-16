@@ -1,0 +1,118 @@
+{
+  "buildId": "20261016T075720Z-f594f0d2",
+  "products": [
+    {
+      "attributes": {
+        "description": "Data Processing Units (DPU) in hours",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "USE2-ReservedCapacityInDPUHours"
+      },
+      "operation": "",
+      "productFamily": "Athena Queries",
+      "sku": "8QYKG22AHZQD34QV",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-03-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "0.30 USD per DPU-Hour for ReservedCapacityInDPUHours in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3000000000"
+                },
+                "rateCode": "8QYKG22AHZQD34QV.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-ReservedCapacityInDPUHours"
+    },
+    {
+      "attributes": {
+        "description": "Charged for total data scanned per query with a minimum 10MB for each successful or cancelled queries",
+        "freeQueryTypes": "Data definition queries (DDL), Failed Queries and statements used to create or load partitions",
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "operation": "",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "USE2-DataScannedInTB"
+      },
+      "operation": "",
+      "productFamily": "Athena Queries",
+      "sku": "E24RR3GXPVGYBMFP",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-03-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "5.00 USD per Terabytes for DataScannedInTB in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "5.0000000000"
+                },
+                "rateCode": "E24RR3GXPVGYBMFP.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Terabytes"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-DataScannedInTB"
+    },
+    {
+      "attributes": {
+        "location": "US East (Ohio)",
+        "locationType": "AWS Region",
+        "nodeSize": "1",
+        "nodeType": "NA",
+        "operation": "Spark_Execution",
+        "regionCode": "us-east-2",
+        "servicecode": "AmazonAthena",
+        "servicename": "Amazon Athena",
+        "usagetype": "USE2-CodeExecutionInDPUHours"
+      },
+      "operation": "Spark_Execution",
+      "productFamily": "Athena Spark",
+      "sku": "USZYFURNV7ZYBHBB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-03-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "0.35 USD per DPU-Hour for CodeExecutionInDPUHours:Spark_Execution in US East (Ohio)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.3500000000"
+                },
+                "rateCode": "USZYFURNV7ZYBHBB.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "DPU-Hour"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-CodeExecutionInDPUHours"
+    }
+  ],
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonAthena"
+}

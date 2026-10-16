@@ -1,0 +1,35 @@
+{
+  "attributes": {
+    "group": [
+      "Metric"
+    ],
+    "groupDescription": [
+      "CloudWatch Custom Metrics"
+    ],
+    "location": [
+      "US West (Oregon)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "us-west-2"
+    ],
+    "servicecode": [
+      "AmazonCloudWatch"
+    ],
+    "servicename": [
+      "AmazonCloudWatch"
+    ],
+    "usagetype": [
+      "USW2-CW:MetricMonitorUsage"
+    ]
+  },
+  "buildId": "20261016T075720Z-f594f0d2",
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}
