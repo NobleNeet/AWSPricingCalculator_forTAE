@@ -1,0 +1,85 @@
+{
+  "attributes": {
+    "group": [
+      "Data Brew interactive sessions",
+      "Data Brew Job run",
+      "Data catalog crawler run",
+      "Data catalog requests",
+      "Data Catalog Statistics",
+      "Data catalog storage",
+      "Data lake optimization job run",
+      "ETL Development endpoint",
+      "ETL Flex Job Run",
+      "ETL Flex Job Run Glue 6.0+",
+      "ETL Interactive Session",
+      "ETL Interactive Session Glue 6.0+",
+      "ETL Job run",
+      "ETL Job Run Glue 6.0+",
+      "ETL Memory-Optimized Job Run",
+      "ETL Memory-Optimized Job Run Glue 6.0+",
+      "ETL Ray Interactive Session",
+      "ETL Ray Job run",
+      "Materialized view refresh job run",
+      "ZETL Compute",
+      "ZETL Ingestion"
+    ],
+    "location": [
+      "Asia Pacific (Tokyo)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "ColumnStatistics",
+      "CrawlerRun",
+      "FlexJobrun",
+      "GlueInteractiveSession",
+      "Job",
+      "Jobrun",
+      "MaterializedViewRefresh",
+      "OptimizationJobRun",
+      "Request",
+      "Session",
+      "StartDevEndpoint",
+      "Storage",
+      "zeroETL-App-IngestionVolume",
+      "zeroETL-Lakehouse-Compute"
+    ],
+    "regionCode": [
+      "ap-northeast-1"
+    ],
+    "servicecode": [
+      "AWSGlue"
+    ],
+    "servicename": [
+      "AWS Glue"
+    ],
+    "usagetype": [
+      "APN1-Catalog-Request",
+      "APN1-Catalog-Storage",
+      "APN1-Column-Statistics-DPU-Hour",
+      "APN1-Crawler-DPU-Hour",
+      "APN1-DBrew-Node-Hour",
+      "APN1-DBrew-Sessions",
+      "APN1-DEVED-DPU-Hour",
+      "APN1-ETL-DPU-Hour",
+      "APN1-ETL-DPU-Hour-Gen2",
+      "APN1-ETL-Flex-DPU-Hour",
+      "APN1-ETL-Flex-DPU-Hour-Gen2",
+      "APN1-ETL-M-DPU-Hour",
+      "APN1-ETL-M-DPU-Hour-Gen2",
+      "APN1-ETL-MemOptimized-DPU-Hour",
+      "APN1-GlueInteractiveSession-DPU-Hour",
+      "APN1-GlueInteractiveSession-DPU-Hour-Gen2",
+      "APN1-GlueInteractiveSession-MemOptimized-DPU-Hour",
+      "APN1-Materialized-View-Refresh-DPU-Hour",
+      "APN1-Optimization-DPU-Hour",
+      "APN1-zeroETL-App-IngestionVolume-GB",
+      "APN1-zeroETL-Lakehouse-Compute-DPU-Hour"
+    ]
+  },
+  "buildId": "20261023T135755Z-2986d939",
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSGlue"
+}

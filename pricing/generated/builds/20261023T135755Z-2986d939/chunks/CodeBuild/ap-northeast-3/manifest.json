@@ -1,0 +1,17 @@
+{
+  "buildId": "20261023T135755Z-2986d939",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 10,
+      "firstSku": "37RNEJZYNFJBBKV6",
+      "lastSku": "RP9KBRTCPPAKE6B5",
+      "path": "chunks/CodeBuild/ap-northeast-3/00000.json",
+      "sha256": "12b2f7fb54ab20c4c2752db0efb68bc58a79cd441f50fd57cffbfa0854511a69"
+    }
+  ],
+  "productCount": 10,
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "CodeBuild"
+}

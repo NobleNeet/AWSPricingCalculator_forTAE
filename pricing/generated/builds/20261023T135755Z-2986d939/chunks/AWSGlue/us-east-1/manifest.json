@@ -1,0 +1,17 @@
+{
+  "buildId": "20261023T135755Z-2986d939",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 21,
+      "firstSku": "4N6K3A6GUPP28B3P",
+      "lastSku": "YWMCS8MFGKD2AGD9",
+      "path": "chunks/AWSGlue/us-east-1/00000.json",
+      "sha256": "349a3dc4ada1abdd99126e54ee934a634313c671bd49f4a5185cfbedf0cc1592"
+    }
+  ],
+  "productCount": 21,
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSGlue"
+}

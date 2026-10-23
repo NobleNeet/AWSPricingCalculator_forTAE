@@ -34,12 +34,12 @@
       "sku": "F4GJN5CGPH2YYX7K"
     }
   },
-  "publicationDate": "2026-09-17T19:05:28Z",
+  "publicationDate": "2026-10-16T22:43:21Z",
   "terms": {
     "OnDemand": {
       "5NRZJN2G5UQKPUY7": {
         "5NRZJN2G5UQKPUY7.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "5NRZJN2G5UQKPUY7.JRTCKXETXF.6YS6EN2CT7": {
@@ -60,7 +60,7 @@
       },
       "F4GJN5CGPH2YYX7K": {
         "F4GJN5CGPH2YYX7K.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-10-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "F4GJN5CGPH2YYX7K.JRTCKXETXF.6YS6EN2CT7": {
@@ -81,5 +81,5 @@
       }
     }
   },
-  "version": "20260917190528"
+  "version": "20261016224321"
 }
