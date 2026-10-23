@@ -14921,6 +14921,42 @@
       "status": "ignored",
       "reason": "T8i CPU credits are outside supported EC2/EBS meters, consistent with the existing CPU-credit exclusion. Observed in AWS Public Price List 2026-10-07.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "NAT Gateway"
+        },
+        {
+          "field": "operation",
+          "op": "in",
+          "value": [
+            "CloudWANConnect",
+            "CloudWANDirectConnect",
+            "CloudWANS2SVPN",
+            "CloudWANVPC",
+            "TransitGatewayConcentratorVPN",
+            "TransitGatewayConnect",
+            "TransitGatewayDirectConnect",
+            "TransitGatewayPeering",
+            "TransitGatewayVPC",
+            "TransitGatewayVPN"
+          ]
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "in",
+          "value": [
+            "RegionalNatGateway-Bytes",
+            "RegionalNatGateway-Hours"
+          ]
+        }
+      ],
+      "status": "ignored",
+      "reason": "Cloud WAN and Transit Gateway NAT network-attachment meters are outside this EC2/EBS estimate; they are not EC2 compute or EBS storage meter rates.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
