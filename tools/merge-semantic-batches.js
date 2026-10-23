@@ -149,9 +149,9 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
         const key = [issue.serviceId ?? 'unknown', issue.code ?? 'unknown'].join(' / ');
         counts.set(key, (counts.get(key) ?? 0) + 1);
       }
-      process.stdout.write('Semantic error breakdown (service / code):\\n');
+      process.stdout.write('Semantic error breakdown (service / code):\n');
       for (const [key, count] of [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) {
-        process.stdout.write(`  ${key}: ${count}\\n`);
+        process.stdout.write(`  ${key}: ${count}\n`);
       }
     }
     process.stdout.write(`${JSON.stringify({ status: merged.status, summary: merged.summary, branches: merged.branches, batches: merged.batches, plannedCases: merged.plannedCases }, null, 2)}\n`);
