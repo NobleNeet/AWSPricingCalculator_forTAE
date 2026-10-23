@@ -39,6 +39,10 @@
     {
       "field": "attributes.deploymentModel",
       "op": "notExists"
+    },
+    {
+      "field": "attributes.vcpu",
+      "op": "exists"
     }
   ],
   "dimensionMatchers": [
