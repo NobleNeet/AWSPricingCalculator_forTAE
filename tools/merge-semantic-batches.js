@@ -140,6 +140,20 @@ if (process.argv[1] && import.meta.url === new URL(`file://${process.argv[1]}`).
     const output = process.argv[4] ?? '.work/update/reports/validate-price-data.json';
     const merged = await mergeSemanticBatches(planFile, directory);
     await writeJson(output, merged);
+    // Keep the full fail-closed report as an artifact while exposing actionable
+    // error aggregates in the Actions log (without printing thousands of issues).
+    const errorIssues = merged.issues.filter(issue => issue.severity === 'error');
+    if (errorIssues.length) {
+      const counts = new Map();
+      for (const issue of errorIssues) {
+        const key = [issue.serviceId ?? 'unknown', issue.code ?? 'unknown'].join(' / ');
+        counts.set(key, (counts.get(key) ?? 0) + 1);
+      }
+      process.stdout.write('Semantic error breakdown (service / code):\\n');
+      for (const [key, count] of [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) {
+        process.stdout.write(`  ${key}: ${count}\\n`);
+      }
+    }
     process.stdout.write(`${JSON.stringify({ status: merged.status, summary: merged.summary, branches: merged.branches, batches: merged.batches, plannedCases: merged.plannedCases }, null, 2)}\n`);
     if (merged.status !== 'passed') process.exitCode = 1;
   } catch (error) {
