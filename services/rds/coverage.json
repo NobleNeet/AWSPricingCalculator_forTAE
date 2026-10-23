@@ -53430,6 +53430,23 @@
       "status": "ignored",
       "reason": "Outside Amazon RDS for PostgreSQL initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Database Instance"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "UnusedBox"
+        }
+      ],
+      "status": "ignored",
+      "reason": "UnusedBox denotes an unused/reserved capacity meter, not the running RDS instance-hour meter. It is deliberately excluded from this service's On-Demand instance estimate.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
