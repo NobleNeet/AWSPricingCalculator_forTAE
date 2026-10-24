@@ -1,0 +1,40 @@
+{
+  "attributes": {
+    "endpointType": [
+      "Gateway Load Balancer Endpoint"
+    ],
+    "group": [
+      "VPCE:VpcEndpoint"
+    ],
+    "groupDescription": [
+      "Charge for per GB data processed by AWS Gateway Load Balancer VPC Endpoint",
+      "Hourly charge for AWS Gateway Load Balancer VPC Endpoint"
+    ],
+    "location": [
+      "US West (N. California)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      "VpcEndpoint"
+    ],
+    "regionCode": [
+      "us-west-1"
+    ],
+    "servicecode": [
+      "AmazonVPC"
+    ],
+    "servicename": [
+      "Amazon Virtual Private Cloud"
+    ],
+    "usagetype": [
+      "USW1-VpcEndpoint-GWLBE-Bytes",
+      "USW1-VpcEndpoint-GWLBE-Hours"
+    ]
+  },
+  "buildId": "20261024T080051Z-9dfe14d7",
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonVPC"
+}

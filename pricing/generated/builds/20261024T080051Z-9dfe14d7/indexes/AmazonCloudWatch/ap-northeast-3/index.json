@@ -1,0 +1,38 @@
+{
+  "attributes": {
+    "group": [
+      "Metric"
+    ],
+    "groupDescription": [
+      "CloudWatch Custom Metrics"
+    ],
+    "location": [
+      "Asia Pacific (Osaka)"
+    ],
+    "locationType": [
+      "AWS Region"
+    ],
+    "operation": [
+      ""
+    ],
+    "regionCode": [
+      "ap-northeast-3"
+    ],
+    "servicecode": [
+      "AmazonCloudWatch"
+    ],
+    "servicename": [
+      "AmazonCloudWatch"
+    ],
+    "usagetype": [
+      "APN3-CW:MetricMonitorUsage"
+    ],
+    "version": [
+      "Current"
+    ]
+  },
+  "buildId": "20261024T080051Z-9dfe14d7",
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}

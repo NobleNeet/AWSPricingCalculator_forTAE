@@ -1,0 +1,304 @@
+{
+  "buildId": "20261024T080051Z-9dfe14d7",
+  "products": [
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Used Network Load Balancer capacity units-hr",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Network",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-LCUUsage"
+      },
+      "operation": "LoadBalancing:Network",
+      "productFamily": "Load Balancer-Network",
+      "sku": "5F3NFVPGNPUKBVPR",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.006 per used Network load balancer capacity unit-hour (or partial hour)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0060000000"
+                },
+                "rateCode": "5F3NFVPGNPUKBVPR.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "LCU-Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-LCUUsage"
+    },
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Data processed by Classic Load Balancer",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-DataProcessing-Bytes"
+      },
+      "operation": "LoadBalancing",
+      "productFamily": "Load Balancer",
+      "sku": "CKURB2X9DH6UA4D9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per GB Data Processed by the LoadBalancer",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "CKURB2X9DH6UA4D9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-DataProcessing-Bytes"
+    },
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Application Load Balancer",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Application",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-LoadBalancerUsage"
+      },
+      "operation": "LoadBalancing:Application",
+      "productFamily": "Load Balancer-Application",
+      "sku": "EKZPKYTNKJ2K9B44",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0252 per Application LoadBalancer-hour (or partial hour)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0252000000"
+                },
+                "rateCode": "EKZPKYTNKJ2K9B44.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-LoadBalancerUsage"
+    },
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Used Application Load Balancer capacity units-hr",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Application",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-LCUUsage"
+      },
+      "operation": "LoadBalancing:Application",
+      "productFamily": "Load Balancer-Application",
+      "sku": "MNW4237S8NYAF8Q9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.008 per used Application load balancer capacity unit-hour (or partial hour)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0080000000"
+                },
+                "rateCode": "MNW4237S8NYAF8Q9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "LCU-Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-LCUUsage"
+    },
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Network Load Balancer",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Network",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-LoadBalancerUsage"
+      },
+      "operation": "LoadBalancing:Network",
+      "productFamily": "Load Balancer-Network",
+      "sku": "Q6DPHSXB6ZE4WQ3H",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0252 per Network LoadBalancer-hour (or partial hour)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0252000000"
+                },
+                "rateCode": "Q6DPHSXB6ZE4WQ3H.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-LoadBalancerUsage"
+    },
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Classic Load Balancer",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-LoadBalancerUsage"
+      },
+      "operation": "LoadBalancing",
+      "productFamily": "Load Balancer",
+      "sku": "Y7HHGNZ8VD3TS8A2",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.028 per LoadBalancer-hour (or partial hour)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0280000000"
+                },
+                "rateCode": "Y7HHGNZ8VD3TS8A2.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-LoadBalancerUsage"
+    },
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "Used Gateway Load Balancer capacity units-hr",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Gateway",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-LCUUsage"
+      },
+      "operation": "LoadBalancing:Gateway",
+      "productFamily": "Load Balancer-Gateway",
+      "sku": "ZKJYTGAF3BX23EW3",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0040 per used Gateway load balancer capacity unit-hour (or partial hour) in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0040000000"
+                },
+                "rateCode": "ZKJYTGAF3BX23EW3.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "LCU-Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-LCUUsage"
+    },
+    {
+      "attributes": {
+        "group": "ELB:Balancing",
+        "groupDescription": "LoadBalancer hourly usage by Gateway Load Balancer",
+        "location": "US West (N. California)",
+        "locationType": "AWS Region",
+        "operation": "LoadBalancing:Gateway",
+        "regionCode": "us-west-1",
+        "servicecode": "AWSELB",
+        "servicename": "Elastic Load Balancing",
+        "usagetype": "USW1-LoadBalancerUsage"
+      },
+      "operation": "LoadBalancing:Gateway",
+      "productFamily": "Load Balancer-Gateway",
+      "sku": "ZPPU8GFTGWV5H9DB",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-08-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.0140 per Gateway LoadBalancer-hour (or partial hour) in US West (N. California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0140000000"
+                },
+                "rateCode": "ZPPU8GFTGWV5H9DB.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "Hrs"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USW1-LoadBalancerUsage"
+    }
+  ],
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSELB"
+}

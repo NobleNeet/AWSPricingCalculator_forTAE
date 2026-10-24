@@ -1,0 +1,52 @@
+{
+  "buildId": "20261024T080051Z-9dfe14d7",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 5000,
+      "firstSku": "2236XXT378X4JX3T",
+      "lastSku": "7UWG89BCNDT4JQVZ",
+      "path": "chunks/AmazonEC2/us-east-2/00000.json",
+      "sha256": "cdcdfe9e2e7385ef173899f3e7f178992edc88f28eb986e6b571cbd5c63f718b"
+    },
+    {
+      "count": 5000,
+      "firstSku": "7UWXCP82K6SB2JNM",
+      "lastSku": "DMMJ54AGXBFVYF3V",
+      "path": "chunks/AmazonEC2/us-east-2/00001.json",
+      "sha256": "235699c233af289028c784aa2602a1d7b0659369be981f537bd76a9b112e1942"
+    },
+    {
+      "count": 5000,
+      "firstSku": "DMMX3CVWTP8W7AMA",
+      "lastSku": "KEFMDB9SUC8YENY8",
+      "path": "chunks/AmazonEC2/us-east-2/00002.json",
+      "sha256": "17f45c69545857e4b468d9de9e623d9bab9fb3470cabc2fd946c47b6fc9f2a4b"
+    },
+    {
+      "count": 5000,
+      "firstSku": "KEJS5UBANESEVV9E",
+      "lastSku": "S6GC9TNC8X8HV3XB",
+      "path": "chunks/AmazonEC2/us-east-2/00003.json",
+      "sha256": "b19dbc5a4b7f5dc10499740122ad6f5b230c741f0177d8259a7ca20f5767c0b9"
+    },
+    {
+      "count": 5000,
+      "firstSku": "S6H86D8XHYGGT73B",
+      "lastSku": "XSRSQ9VQ2QFJXWJ2",
+      "path": "chunks/AmazonEC2/us-east-2/00004.json",
+      "sha256": "8bca48019fad686df5a3a7e46efbbdf33731670c725d38a1ec8dc29415be338f"
+    },
+    {
+      "count": 1855,
+      "firstSku": "XSRX5GCF3HWXNZKZ",
+      "lastSku": "ZZYPGMAWRUSVTQC7",
+      "path": "chunks/AmazonEC2/us-east-2/00005.json",
+      "sha256": "8167eb2699eb75bc462c60b569127c7866aa19ca88a3ecff372c2d7f095be04b"
+    }
+  ],
+  "productCount": 26855,
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonEC2"
+}
