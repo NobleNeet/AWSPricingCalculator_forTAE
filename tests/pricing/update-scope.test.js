@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   effectiveValidationSourceCodes,
+  refreshCompanionSources,
   filterPackagesBySourceCodes,
   parseRequestedServiceIds,
   resolveRequestedValidationScope,
@@ -124,4 +125,28 @@ test('scoped runs include requested, definition-refreshed, and concurrently AWS-
     filterPackagesBySourceCodes(packages, codes).map(pkg => pkg.service.id).sort(),
     ['kms', 'lambda']
   );
+});
+
+test('AWS RDS refresh rehydrates unchanged CloudWatch mapping source without reporting AWS change', () => {
+  const metadata = { sources: {
+    'AmazonRDS/ap-northeast-1': { serviceCode: 'AmazonRDS', changed: true, awsChanged: true },
+    'AmazonCloudWatch/ap-northeast-1': { serviceCode: 'AmazonCloudWatch', changed: false, awsChanged: false },
+    'AWSLambda/ap-northeast-1': { serviceCode: 'AWSLambda', changed: false, awsChanged: false }
+  } };
+  assert.deepEqual(refreshCompanionSources(packages, metadata), ['AmazonCloudWatch/ap-northeast-1']);
+  assert.equal(metadata.sources['AmazonCloudWatch/ap-northeast-1'].changed, true);
+  assert.equal(metadata.sources['AmazonCloudWatch/ap-northeast-1'].awsChanged, false);
+  assert.equal(metadata.sources['AWSLambda/ap-northeast-1'].changed, false);
+  assert.deepEqual([...effectiveValidationSourceCodes({
+    requestedScopeServiceCodes: [], definitionRefreshServiceCodes: []
+  }, metadata).values()], ['AmazonRDS']);
+});
+
+test('unrelated source refresh does not download CloudWatch companion', () => {
+  const metadata = { sources: {
+    'AWSLambda/ap-northeast-1': { serviceCode: 'AWSLambda', changed: true, awsChanged: true },
+    'AmazonCloudWatch/ap-northeast-1': { serviceCode: 'AmazonCloudWatch', changed: false, awsChanged: false }
+  } };
+  assert.deepEqual(refreshCompanionSources(packages, metadata), []);
+  assert.equal(metadata.sources['AmazonCloudWatch/ap-northeast-1'].changed, false);
 });

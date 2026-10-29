@@ -61,3 +61,36 @@ export function filterPackagesBySourceCodes(packages, sourceCodes) {
     packagePriceSourceCodes(pkg).some(code => sourceCodes.has(code))
   );
 }
+
+/**
+ * The active published Price DB contains only selected SKUs, not the full AWS
+ * source catalogue. If one source changes, semantic validation also executes
+ * other mappings of affected service packages. Rehydrate those companion
+ * sources from their pinned AWS versions instead of treating the pruned
+ * published subset as complete source evidence.
+ *
+ * This expands downloads only; awsChanged must remain the actual AWS result
+ * so unchanged companion sources do not broaden semantic validation to
+ * unrelated packages.
+ */
+export function refreshCompanionSources(packages, metadata) {
+  const changedCodes = new Set(Object.values(metadata.sources ?? {})
+    .filter(source => source.changed === true)
+    .map(source => source.serviceCode));
+  if (!changedCodes.size) return [];
+  const companionCodes = new Set();
+  for (const pkg of packages) {
+    const codes = packagePriceSourceCodes(pkg);
+    if (codes.some(code => changedCodes.has(code))) {
+      for (const code of codes) companionCodes.add(code);
+    }
+  }
+  const refreshed = [];
+  for (const [key, source] of Object.entries(metadata.sources ?? {})) {
+    if (companionCodes.has(source.serviceCode) && !source.changed) {
+      source.changed = true;
+      refreshed.push(key);
+    }
+  }
+  return refreshed.sort();
+}
