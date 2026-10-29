@@ -20,7 +20,7 @@ import { loadCandidateForPublish } from './pricing-cli/publication-candidate.js'
 import { refreshGoldenEvidence } from './price-update.js';
 import { refreshGoldenEvidenceTolerant } from './golden-evidence.js';
 import { sourceDownloadMatrix, assembleSourceCandidates } from './price-source-batches.js';
-import { resolveRequestedValidationScope } from './pricing-cli/update-scope.js';
+import { refreshCompanionSources, resolveRequestedValidationScope } from './pricing-cli/update-scope.js';
 
 const defaultExecute = (command, options) => command === 'normalize' ? normalizeIsolated(options) : run(command, options);
 
@@ -126,12 +126,17 @@ export async function check(work) {
       item.definitionChanged = definitionRefreshCodes.has(item.serviceCode);
       if (item.definitionChanged || (refreshRequestedSources && requestedScope.serviceCodes.includes(item.serviceCode))) item.changed = true;
     }
+    const companionRefreshSources = refreshCompanionSources(packages, metadata);
+    if (companionRefreshSources.length) {
+      console.log(`Refreshing pinned companion sources for cross-source semantic validation: ${companionRefreshSources.join(', ')}`);
+    }
     await writeJson(metadataFile, metadata);
     const sourceReport = await readJson(path.join(work, 'reports', 'check-source.json'));
     const reuseSemanticBaseline = source.sourceStatus === 'NO_CHANGE'
       && !definitionsChanged
       && !requestedScope.serviceIds.length
       && (publicationChanged || semanticContractMigration);
+    sourceReport.companionRefreshSources = companionRefreshSources;
     sourceReport.definitionsChanged = definitionsChanged;
     sourceReport.globalContractChanged = globalContractChanged;
     sourceReport.semanticContractMigration = semanticContractMigration;
