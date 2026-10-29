@@ -1,0 +1,311 @@
+{
+  "buildId": "20261029T113542Z-e3cd7874",
+  "products": [
+    {
+      "attributes": {
+        "fromLocation": "US East (Ohio)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "us-east-2",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "External",
+        "toLocationType": "Other",
+        "toRegionCode": "",
+        "transferType": "AWS Outbound",
+        "usagetype": "USE2-DataTransfer-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Data Transfer",
+      "sku": "36H7S3NU9B7S3UT5",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-06-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "153600",
+                "description": "$0.050 per GB - greater than 150 TB / month data transfer out",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0500000000"
+                },
+                "rateCode": "36H7S3NU9B7S3UT5.JRTCKXETXF.GPHXDESFBB",
+                "unit": "GB"
+              },
+              {
+                "beginRange": "51200",
+                "description": "$0.070 per GB - next 100 TB / month data transfer out",
+                "endRange": "153600",
+                "pricePerUnit": {
+                  "USD": "0.0700000000"
+                },
+                "rateCode": "36H7S3NU9B7S3UT5.JRTCKXETXF.N9EW5UVVPA",
+                "unit": "GB"
+              },
+              {
+                "beginRange": "0",
+                "description": "$0.090 per GB - first 10 TB / month data transfer out beyond the global free tier",
+                "endRange": "10240",
+                "pricePerUnit": {
+                  "USD": "0.0900000000"
+                },
+                "rateCode": "36H7S3NU9B7S3UT5.JRTCKXETXF.Q3Z75P77EN",
+                "unit": "GB"
+              },
+              {
+                "beginRange": "10240",
+                "description": "$0.085 per GB - next 40 TB / month data transfer out",
+                "endRange": "51200",
+                "pricePerUnit": {
+                  "USD": "0.0850000000"
+                },
+                "rateCode": "36H7S3NU9B7S3UT5.JRTCKXETXF.VF6T3GAUKQ",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-DataTransfer-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "fromLocation": "US East (Ohio)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "us-east-2",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "US East (N. Virginia)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "us-east-1",
+        "transferType": "InterRegion Outbound",
+        "usagetype": "USE2-USE1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Data Transfer",
+      "sku": "43SVRH2NZVAKYEXT",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-06-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.01 per GB - US East (Ohio) data transfer to US East (Northern Virginia)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "43SVRH2NZVAKYEXT.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-USE1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "fromLocation": "US East (Ohio)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "us-east-2",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "Asia Pacific (Tokyo)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "ap-northeast-1",
+        "transferType": "InterRegion Outbound",
+        "usagetype": "USE2-APN1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Data Transfer",
+      "sku": "GEMZ24XYUARTSBA9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-06-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.02 per GB - US East (Ohio) data transfer to Asia Pacific (Tokyo)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "GEMZ24XYUARTSBA9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-APN1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "fromLocation": "US East (Ohio)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "us-east-2",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "US West (Oregon)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "us-west-2",
+        "transferType": "InterRegion Outbound",
+        "usagetype": "USE2-USW2-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Data Transfer",
+      "sku": "H6CM7XJ9ZZ2JD2NZ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-06-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.02 per GB - US East (Ohio) data transfer to US West (Oregon)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "H6CM7XJ9ZZ2JD2NZ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-USW2-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "fromLocation": "US East (Ohio)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "us-east-2",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "US West (N. California)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "us-west-1",
+        "transferType": "InterRegion Outbound",
+        "usagetype": "USE2-USW1-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Data Transfer",
+      "sku": "JEYE9XXMEMXFZES6",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-06-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.02 per GB - US East (Ohio) data transfer to US West (Northern California)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "JEYE9XXMEMXFZES6.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-USW1-AWS-Out-Bytes"
+    },
+    {
+      "attributes": {
+        "fromLocation": "US East (Ohio)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "us-east-2",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "US East (Ohio)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "us-east-2",
+        "transferType": "IntraRegion",
+        "usagetype": "USE2-DataTransfer-Regional-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Data Transfer",
+      "sku": "KF338J7FCKZPUBD9",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-06-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.010 per GB - regional data transfer - in/out/between EC2 AZs or using elastic IPs or ELB",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0100000000"
+                },
+                "rateCode": "KF338J7FCKZPUBD9.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-DataTransfer-Regional-Bytes"
+    },
+    {
+      "attributes": {
+        "fromLocation": "US East (Ohio)",
+        "fromLocationType": "AWS Region",
+        "fromRegionCode": "us-east-2",
+        "operation": "",
+        "servicecode": "AWSDataTransfer",
+        "servicename": "AWS Data Transfer",
+        "toLocation": "Asia Pacific (Osaka)",
+        "toLocationType": "AWS Region",
+        "toRegionCode": "ap-northeast-3",
+        "transferType": "InterRegion Outbound",
+        "usagetype": "USE2-APN3-AWS-Out-Bytes"
+      },
+      "operation": "",
+      "productFamily": "Data Transfer",
+      "sku": "YN3VSU2KNBQ3MZQJ",
+      "terms": {
+        "onDemand": [
+          {
+            "effectiveDate": "2026-06-01T00:00:00Z",
+            "offerTermCode": "JRTCKXETXF",
+            "priceDimensions": [
+              {
+                "beginRange": "0",
+                "description": "$0.02 per GB - US East (Ohio) data transfer to Asia Pacific (Osaka)",
+                "endRange": "Inf",
+                "pricePerUnit": {
+                  "USD": "0.0200000000"
+                },
+                "rateCode": "YN3VSU2KNBQ3MZQJ.JRTCKXETXF.6YS6EN2CT7",
+                "unit": "GB"
+              }
+            ]
+          }
+        ]
+      },
+      "usageType": "USE2-APN3-AWS-Out-Bytes"
+    }
+  ],
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSDataTransfer"
+}

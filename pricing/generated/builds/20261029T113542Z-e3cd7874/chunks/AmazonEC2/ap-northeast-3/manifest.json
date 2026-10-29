@@ -1,0 +1,24 @@
+{
+  "buildId": "20261029T113542Z-e3cd7874",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 5000,
+      "firstSku": "2266FX72FU8KXC72",
+      "lastSku": "N5VQEM6YMG7TSA2N",
+      "path": "chunks/AmazonEC2/ap-northeast-3/00000.json",
+      "sha256": "b741877252860312ac659ef68966b85a82b0467f6a142a907b1fddb066caf8cb"
+    },
+    {
+      "count": 3111,
+      "firstSku": "N64PZF2TSZPEVFAV",
+      "lastSku": "ZZH2V27HXQT62BYZ",
+      "path": "chunks/AmazonEC2/ap-northeast-3/00001.json",
+      "sha256": "52e9ab32f3f685782e772eab5e5cf4c774a460f409e00c10e0324c33bf593b43"
+    }
+  ],
+  "productCount": 8111,
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonEC2"
+}
