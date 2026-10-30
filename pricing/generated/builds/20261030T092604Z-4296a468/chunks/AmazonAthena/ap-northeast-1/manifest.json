@@ -1,0 +1,17 @@
+{
+  "buildId": "20261030T092604Z-4296a468",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 3,
+      "firstSku": "6R553MKD6KWECHEK",
+      "lastSku": "QTA8S2PW7FAED2GX",
+      "path": "chunks/AmazonAthena/ap-northeast-1/00000.json",
+      "sha256": "9e3e888a6cc2670183677995a8843751a08ae11b4d7d5481b4b90b3cc88825e6"
+    }
+  ],
+  "productCount": 3,
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonAthena"
+}

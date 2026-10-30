@@ -1,0 +1,17 @@
+{
+  "buildId": "20261030T092604Z-4296a468",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 8,
+      "firstSku": "7KPDPTDSCT4J3Z64",
+      "lastSku": "XSZATS4VYMDC9CYN",
+      "path": "chunks/AmazonECS/us-east-1/00000.json",
+      "sha256": "0261b336ee6b7786b7973a3d7e712c896eff34cd0599280b73e1f74e2bd1ceb5"
+    }
+  ],
+  "productCount": 8,
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonECS"
+}

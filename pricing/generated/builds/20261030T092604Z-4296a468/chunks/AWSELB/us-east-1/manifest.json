@@ -1,0 +1,17 @@
+{
+  "buildId": "20261030T092604Z-4296a468",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 8,
+      "firstSku": "37CUWUT8GSNQEPUV",
+      "lastSku": "YKBGGP5EBGDU9T5W",
+      "path": "chunks/AWSELB/us-east-1/00000.json",
+      "sha256": "a74c1ac6344a601c73bf1e2522e658a9a7f905455114d5f1d0039315188bc6f6"
+    }
+  ],
+  "productCount": 8,
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSELB"
+}

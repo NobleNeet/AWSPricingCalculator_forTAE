@@ -1,0 +1,17 @@
+{
+  "buildId": "20261030T092604Z-4296a468",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 10,
+      "firstSku": "6VGG56JTZRUU2APE",
+      "lastSku": "WPG4HPG9CW669QC8",
+      "path": "chunks/CodeBuild/us-west-1/00000.json",
+      "sha256": "dee7c3b4db5800a3cec5ab73bd4ca84f43e96919b4f9eceba1b9e36b89e9f37d"
+    }
+  ],
+  "productCount": 10,
+  "region": "us-west-1",
+  "schemaVersion": 1,
+  "serviceCode": "CodeBuild"
+}

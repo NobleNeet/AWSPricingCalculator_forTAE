@@ -1,0 +1,17 @@
+{
+  "buildId": "20261030T092604Z-4296a468",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 6,
+      "firstSku": "4BRYVGW5AJRJTEX9",
+      "lastSku": "SAWFH88S39A5ARYY",
+      "path": "chunks/awskms/us-east-2/00000.json",
+      "sha256": "9bb97b0e2a49e996d0f56df6652fed62c8d2fd1553c6f657e94cbc71f26feb2b"
+    }
+  ],
+  "productCount": 6,
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "awskms"
+}

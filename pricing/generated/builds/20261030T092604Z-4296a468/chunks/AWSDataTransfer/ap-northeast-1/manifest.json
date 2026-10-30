@@ -1,0 +1,17 @@
+{
+  "buildId": "20261030T092604Z-4296a468",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 7,
+      "firstSku": "4364QHA6R42PYPXS",
+      "lastSku": "YJYBEKXU54FGWX9M",
+      "path": "chunks/AWSDataTransfer/ap-northeast-1/00000.json",
+      "sha256": "0949e6a8d917522782e3f35ea157bc891437e546f8b9d32a679d3110998d69e5"
+    }
+  ],
+  "productCount": 7,
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSDataTransfer"
+}
