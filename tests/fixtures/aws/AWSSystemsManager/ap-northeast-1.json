@@ -30,12 +30,12 @@
       "sku": "YF7EUXB8ARRTSWJX"
     }
   },
-  "publicationDate": "2026-10-08T07:10:21Z",
+  "publicationDate": "2026-11-03T18:35:38Z",
   "terms": {
     "OnDemand": {
       "V6JVHFNM9G6T5RMV": {
         "V6JVHFNM9G6T5RMV.JRTCKXETXF": {
-          "effectiveDate": "2026-10-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "V6JVHFNM9G6T5RMV.JRTCKXETXF.6YS6EN2CT7": {
@@ -56,7 +56,7 @@
       },
       "YF7EUXB8ARRTSWJX": {
         "YF7EUXB8ARRTSWJX.JRTCKXETXF": {
-          "effectiveDate": "2026-10-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "YF7EUXB8ARRTSWJX.JRTCKXETXF.4AXZNUSGXN": {
@@ -110,5 +110,5 @@
       }
     }
   },
-  "version": "20261008071021"
+  "version": "20261103183538"
 }

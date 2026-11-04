@@ -1,0 +1,17 @@
+{
+  "buildId": "20261104T101358Z-26a5a73c",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 2,
+      "firstSku": "22XA54HFRKHB9QW5",
+      "lastSku": "E6TYHG44YQWRBNSS",
+      "path": "chunks/AmazonVPC/us-east-2/00000.json",
+      "sha256": "e2e761e7bc722b3a5c39ffb4d2c3c64b1ef1983ea3e87538671b1bec45d47483"
+    }
+  ],
+  "productCount": 2,
+  "region": "us-east-2",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonVPC"
+}

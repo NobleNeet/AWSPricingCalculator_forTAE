@@ -1,0 +1,17 @@
+{
+  "buildId": "20261104T101358Z-26a5a73c",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 1,
+      "firstSku": "F96ZRPX8AM4T93NV",
+      "lastSku": "F96ZRPX8AM4T93NV",
+      "path": "chunks/AmazonCloudWatch/ap-northeast-1/00000.json",
+      "sha256": "7bb33bad3d35158239e3d31bf20dd8798b2e1efdb522e1fdd206f394ce3eebd6"
+    }
+  ],
+  "productCount": 1,
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonCloudWatch"
+}
