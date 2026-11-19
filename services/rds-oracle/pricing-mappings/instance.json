@@ -41,6 +41,10 @@
       "op": "notExists"
     },
     {
+      "field": "attributes.storage",
+      "op": "exists"
+    },
+    {
       "field": "attributes.vcpu",
       "op": "exists"
     }

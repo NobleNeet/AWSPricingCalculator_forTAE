@@ -53447,6 +53447,82 @@
       "status": "ignored",
       "reason": "UnusedBox denotes an unused/reserved capacity meter, not the running RDS instance-hour meter. It is deliberately excluded from this service's On-Demand instance estimate.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Database Instance"
+        },
+        {
+          "field": "operation",
+          "op": "in",
+          "value": [
+            "CreateDBInstance:0051",
+            "CreateDBInstance:0053",
+            "CreateDBInstance:0015",
+            "CreateDBInstance:0050",
+            "CreateDBInstance:0052",
+            "CreateDBInstance:0012",
+            "CreateDBInstance:0011"
+          ]
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "in",
+          "value": [
+            "MirrorUsage:db.m8id.large",
+            "MirrorUsage:db.m8id.xl",
+            "MirrorUsage:db.m8id.2xl",
+            "MirrorUsage:db.m8id.4xl",
+            "MirrorUsage:db.m8id.8xl",
+            "MirrorUsage:db.m8id.12xl",
+            "MirrorUsage:db.m8id.16xl",
+            "MirrorUsage:db.m8id.24xl",
+            "MirrorUsage:db.m8id.32xl",
+            "MirrorUsage:db.m8id.48xl",
+            "MirrorUsage:db.m8id.96xl",
+            "MirrorUsage:db.r8id.large",
+            "MirrorUsage:db.r8id.xl",
+            "MirrorUsage:db.r8id.2xl",
+            "MirrorUsage:db.r8id.4xl",
+            "MirrorUsage:db.r8id.8xl",
+            "MirrorUsage:db.r8id.12xl",
+            "MirrorUsage:db.r8id.16xl",
+            "MirrorUsage:db.r8id.24xl",
+            "MirrorUsage:db.r8id.32xl",
+            "MirrorUsage:db.r8id.48xl",
+            "MirrorUsage:db.r8id.96xl"
+          ]
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Hrs"
+        },
+        {
+          "field": "discriminators.databaseEngine",
+          "op": "eq",
+          "value": "SQL Server"
+        },
+        {
+          "field": "discriminators.deploymentOption",
+          "op": "eq",
+          "value": "Multi-AZ"
+        },
+        {
+          "field": "discriminators.licenseModel",
+          "op": "in",
+          "value": [
+            "Bring your own media",
+            "License included"
+          ]
+        }
+      ],
+      "status": "ignored",
+      "reason": "New SQL Server Multi-AZ MirrorUsage for db.m8id/db.r8id is outside the supported PostgreSQL pricing components; explicitly exclude these categories without mapping to its instance meter.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }

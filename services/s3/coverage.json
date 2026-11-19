@@ -4940,6 +4940,60 @@
       "status": "ignored",
       "reason": "Outside Amazon S3 initial supported meters/selectors; intentionally excluded, no estimate is supplied for this category.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TableMigration-Sync-Objects"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Objects"
+        }
+      ],
+      "status": "ignored",
+      "reason": "AWS S3 Table Migration / Vectors meter is outside this calculator's supported S3 pricing components; do not implicitly map it to existing storage or requests.",
+      "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "QueryVectors"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "Vectors-Query-ProcessedBytes-Text"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "GB"
+        }
+      ],
+      "status": "ignored",
+      "reason": "AWS S3 Table Migration / Vectors meter is outside this calculator's supported S3 pricing components; do not implicitly map it to existing storage or requests.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
