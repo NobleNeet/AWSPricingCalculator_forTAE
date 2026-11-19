@@ -21,7 +21,7 @@
     {
       "field": "unit",
       "op": "eq",
-      "value": "DPU-Hour"
+      "value": "M-DPU-Hour"
     }
   ],
   "expect": {
