@@ -8,17 +8,17 @@ const json = async file => JSON.parse(await readFile(new URL(file, import.meta.u
 test('SQL Server BYOM MirrorUsage added in November 2026 stays out of PostgreSQL estimates', async () => {
   for (const service of ['rds', 'aurora-postgresql']) {
     const coverage = await json(`../../services/${service}/coverage.json`);
-    for (const instanceType of ['m8id.large', 'm8id.12xl', 'r8id.96xl']) {
+    for (const instanceType of ['m8id.large', 'm8id.12xl', 'r8id.96xl']) for (const licenseModel of ['Bring your own media', 'License included']) {
       const categories = [{
         productFamily: 'Database Instance',
         operation: 'CreateDBInstance:0050',
         usageTypeClass: `MirrorUsage:db.${instanceType}`,
         unit: 'Hrs',
-        discriminators: { databaseEngine: 'SQL Server', deploymentOption: 'Multi-AZ', licenseModel: 'Bring your own media' },
+        discriminators: { databaseEngine: 'SQL Server', deploymentOption: 'Multi-AZ', licenseModel },
         shapeSignatures: ['[{"unit":"Hrs","allowance":false}]']
       }];
       const result = validateCoverage(categories, coverage);
-      assert.deepEqual(result.issues, [], `${service} / ${instanceType}`);
+      assert.deepEqual(result.issues, [], `${service} / ${instanceType} / ${licenseModel}`);
       assert.equal(result.summary.ignored, 1, `${service} / ${instanceType}`);
     }
   }
