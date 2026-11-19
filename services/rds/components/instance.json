@@ -59,6 +59,10 @@
         "valueFrom": "component.instanceType"
       },
       {
+        "field": "attributes.storage",
+        "op": "exists"
+      },
+      {
         "field": "attributes.vcpu",
         "op": "exists"
       }
