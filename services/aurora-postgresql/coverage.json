@@ -53513,12 +53513,15 @@
         },
         {
           "field": "discriminators.licenseModel",
-          "op": "eq",
-          "value": "Bring your own media"
+          "op": "in",
+          "value": [
+            "Bring your own media",
+            "License included"
+          ]
         }
       ],
       "status": "ignored",
-      "reason": "New SQL Server BYOM Multi-AZ MirrorUsage for db.m8id/db.r8id is outside the supported PostgreSQL pricing components; explicitly exclude from that service's coverage without mapping to its instance meter.",
+      "reason": "New SQL Server Multi-AZ MirrorUsage for db.m8id/db.r8id is outside the supported PostgreSQL pricing components; explicitly exclude these categories without mapping to its instance meter.",
       "limitationId": "unsupported-pricing-category"
     }
   ]
