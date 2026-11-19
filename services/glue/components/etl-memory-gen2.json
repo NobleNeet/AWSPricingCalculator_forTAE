@@ -46,7 +46,7 @@
       {
         "field": "unit",
         "op": "eq",
-        "value": "DPU-Hour"
+        "value": "M-DPU-Hour"
       }
     ],
     "expect": "singleSku"
@@ -81,7 +81,7 @@
       "combine": "multiply"
     },
     "transforms": [],
-    "outputUnit": "DPU-Hour"
+    "outputUnit": "M-DPU-Hour"
   },
   "enabledWhen": {
     "all": [
