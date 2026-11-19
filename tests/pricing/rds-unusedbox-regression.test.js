@@ -29,7 +29,8 @@ test('RDS instance filters exclude UnusedBox while accepting billable instances'
     };
     const context = { profile: { deployment: 'Single-AZ', licenseModel: 'Bring your own license', databaseEdition: 'Enterprise' }, component: { instanceType: 'db.r6i.2xlarge' } };
     assert.equal(matches(product, filters, context), false, service);
-    assert.equal(matches({ ...product, attributes: { ...product.attributes, vcpu: '8' } }, filters, context), true, service);
+    assert.equal(matches({ ...product, attributes: { ...product.attributes, vcpu: '8' } }, filters, context), false, `${service}: UnusedBox has vcpu but no storage`);
+    assert.equal(matches({ ...product, attributes: { ...product.attributes, vcpu: '8', storage: 'EBS Only' } }, filters, context), true, service);
   }
 });
 
@@ -48,4 +49,12 @@ test('RDS coverage explicitly classifies normalized UnusedBox categories', async
     assert.equal(result.issues.length, 0, service);
     assert.equal(result.summary.ignored, 1, service);
   }
+});
+
+test('RDS Oracle mapping also rejects UnusedBox and retains normal instance products', async () => {
+  const mapping = await json('../../services/rds-oracle/pricing-mappings/instance.json');
+  const context = { profile: { deployment: 'Single-AZ', licenseModel: 'Bring your own license', databaseEdition: 'Enterprise' }, component: { instanceType: 'db.r6i.2xlarge' } };
+  const product = { productFamily: 'Database Instance', attributes: { databaseEngine: 'Oracle', deploymentOption: 'Single-AZ', licenseModel: 'Bring your own license', databaseEdition: 'Enterprise', instanceType: 'db.r6i.2xlarge', vcpu: '8' } };
+  assert.equal(matches(product, mapping.productMatchers, context), false);
+  assert.equal(matches({ ...product, attributes: { ...product.attributes, storage: 'EBS Only' } }, mapping.productMatchers, context), true);
 });
