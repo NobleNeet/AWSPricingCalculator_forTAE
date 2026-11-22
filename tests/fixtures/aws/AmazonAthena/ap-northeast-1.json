@@ -46,12 +46,12 @@
       "sku": "QTA8S2PW7FAED2GX"
     }
   },
-  "publicationDate": "2026-09-11T12:44:08Z",
+  "publicationDate": "2026-11-20T16:46:52Z",
   "terms": {
     "OnDemand": {
       "6R553MKD6KWECHEK": {
         "6R553MKD6KWECHEK.JRTCKXETXF": {
-          "effectiveDate": "2026-03-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "6R553MKD6KWECHEK.JRTCKXETXF.6YS6EN2CT7": {
@@ -72,7 +72,7 @@
       },
       "KRCG7FCJWPMHSB6T": {
         "KRCG7FCJWPMHSB6T.JRTCKXETXF": {
-          "effectiveDate": "2026-03-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "KRCG7FCJWPMHSB6T.JRTCKXETXF.6YS6EN2CT7": {
@@ -93,7 +93,7 @@
       },
       "QTA8S2PW7FAED2GX": {
         "QTA8S2PW7FAED2GX.JRTCKXETXF": {
-          "effectiveDate": "2026-03-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "QTA8S2PW7FAED2GX.JRTCKXETXF.6YS6EN2CT7": {
@@ -114,5 +114,5 @@
       }
     }
   },
-  "version": "20260911124408"
+  "version": "20261120164652"
 }

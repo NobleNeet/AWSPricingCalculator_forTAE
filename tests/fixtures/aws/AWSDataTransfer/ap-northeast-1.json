@@ -53,12 +53,12 @@
       "sku": "YJYBEKXU54FGWX9M"
     }
   },
-  "publicationDate": "2026-11-03T13:31:47Z",
+  "publicationDate": "2026-11-19T10:58:41Z",
   "terms": {
     "OnDemand": {
       "9ESU2G5WSY6FMZR3": {
         "9ESU2G5WSY6FMZR3.JRTCKXETXF": {
-          "effectiveDate": "2026-06-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "9ESU2G5WSY6FMZR3.JRTCKXETXF.GPHXDESFBB": {
@@ -112,7 +112,7 @@
       },
       "RVH645383RKU285J": {
         "RVH645383RKU285J.JRTCKXETXF": {
-          "effectiveDate": "2026-06-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "RVH645383RKU285J.JRTCKXETXF.6YS6EN2CT7": {
@@ -133,7 +133,7 @@
       },
       "YJYBEKXU54FGWX9M": {
         "YJYBEKXU54FGWX9M.JRTCKXETXF": {
-          "effectiveDate": "2026-06-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "YJYBEKXU54FGWX9M.JRTCKXETXF.6YS6EN2CT7": {
@@ -154,5 +154,5 @@
       }
     }
   },
-  "version": "20261103133147"
+  "version": "20261119105841"
 }

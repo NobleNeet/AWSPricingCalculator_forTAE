@@ -45,12 +45,12 @@
       "sku": "SG5BXRDK8SBA9Y57"
     }
   },
-  "publicationDate": "2026-09-24T16:39:03Z",
+  "publicationDate": "2026-11-18T21:44:01Z",
   "terms": {
     "OnDemand": {
       "29C3758CBCYNXH8B": {
         "29C3758CBCYNXH8B.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "29C3758CBCYNXH8B.JRTCKXETXF.AGTZK4FFDN": {
@@ -82,7 +82,7 @@
       },
       "KCK8Z988QU294FPN": {
         "KCK8Z988QU294FPN.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "KCK8Z988QU294FPN.JRTCKXETXF.6YS6EN2CT7": {
@@ -103,7 +103,7 @@
       },
       "SG5BXRDK8SBA9Y57": {
         "SG5BXRDK8SBA9Y57.JRTCKXETXF": {
-          "effectiveDate": "2026-09-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "SG5BXRDK8SBA9Y57.JRTCKXETXF.6YS6EN2CT7": {
@@ -124,5 +124,5 @@
       }
     }
   },
-  "version": "20260924163903"
+  "version": "20261118214401"
 }

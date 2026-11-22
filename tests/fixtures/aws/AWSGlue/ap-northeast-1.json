@@ -16,12 +16,12 @@
       "sku": "3GW7GD22UECNTZC9"
     }
   },
-  "publicationDate": "2026-10-12T18:55:42Z",
+  "publicationDate": "2026-11-22T03:33:13Z",
   "terms": {
     "OnDemand": {
       "3GW7GD22UECNTZC9": {
         "3GW7GD22UECNTZC9.JRTCKXETXF": {
-          "effectiveDate": "2026-10-01T00:00:00Z",
+          "effectiveDate": "2026-11-01T00:00:00Z",
           "offerTermCode": "JRTCKXETXF",
           "priceDimensions": {
             "3GW7GD22UECNTZC9.JRTCKXETXF.6YS6EN2CT7": {
@@ -42,5 +42,5 @@
       }
     }
   },
-  "version": "20261012185542"
+  "version": "20261122033313"
 }

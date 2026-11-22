@@ -3,6 +3,8 @@
   "products": {
     "2KRSTFABXH77P2FQ": {
       "attributes": {
+        "ebsAzConfiguration": "single-az",
+        "group": "EBS Storage",
         "location": "Asia Pacific (Tokyo)",
         "locationType": "AWS Region",
         "maxIopsBurstPerformance": "3000 for volumes <= 1 TiB",
@@ -23,6 +25,7 @@
     },
     "7TFGMV47Q2PEQ9W7": {
       "attributes": {
+        "ebsAzConfiguration": "single-az",
         "group": "EBS IOPS",
         "groupDescription": "IOPS",
         "location": "Asia Pacific (Tokyo)",
@@ -83,6 +86,8 @@
     },
     "C8Y3GJZBQTH8T5JV": {
       "attributes": {
+        "ebsAzConfiguration": "single-az",
+        "group": "EBS Storage",
         "location": "Asia Pacific (Tokyo)",
         "locationType": "AWS Region",
         "maxIopsvolume": "80000",
@@ -160,6 +165,7 @@
     },
     "PCKHHBTPD7TEQ3K4": {
       "attributes": {
+        "ebsAzConfiguration": "single-az",
         "group": "EBS Throughput",
         "groupDescription": "Charge per Provisioned mbps",
         "location": "Asia Pacific (Tokyo)",
@@ -219,7 +225,7 @@
       "sku": "XPV6RFWY6M7R7MEF"
     }
   },
-  "publicationDate": "2026-11-03T23:57:16Z",
+  "publicationDate": "2026-11-21T00:48:16Z",
   "terms": {
     "OnDemand": {
       "2KRSTFABXH77P2FQ": {
@@ -392,5 +398,5 @@
       }
     }
   },
-  "version": "20261103235716"
+  "version": "20261121004816"
 }
