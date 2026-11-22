@@ -14956,6 +14956,38 @@
       "status": "ignored",
       "reason": "Cloud WAN and Transit Gateway NAT network-attachment meters are outside this EC2/EBS estimate; they are not EC2 compute or EBS storage meter rates.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "CPU Credits"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "T9GCPUCredits"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "CPUCredits"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "vCPU-Hours"
+        },
+        {
+          "field": "discriminators.operatingSystem",
+          "op": "eq",
+          "value": "Linux"
+        }
+      ],
+      "status": "ignored",
+      "reason": "T9g CPU-credit meter is outside the EC2 estimator's supported instance-only meters, consistent with T4g/T8i credit exclusions; detected in 2026-11-21 AWS Public Price List.",
+      "limitationId": "cpu-credits"
     }
   ]
 }
