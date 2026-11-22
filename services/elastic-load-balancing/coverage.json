@@ -306,6 +306,33 @@
       ],
       "status": "ignored",
       "reason": "Reserved LCU is outside On-Demand-only scope."
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "Load Balancer-Network"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": "LoadBalancing:Network"
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "TS-LoadBalancerUsage"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Hrs"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Network Load Balancer Trust Store metering is outside the supplied Calculator estimate fields, consistent with the already-excluded ALB Trust Store usage.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
