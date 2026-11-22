@@ -385,6 +385,33 @@
       "status": "ignored",
       "reason": "Enhanced Custom event bus (EventsV2) is outside the supplied classic AWS Pricing Calculator EventBridge UI evidence and is not estimated by this onboarding.",
       "limitationId": "unsupported-pricing-category"
+    },
+    {
+      "filters": [
+        {
+          "field": "productFamily",
+          "op": "eq",
+          "value": "EventBridge"
+        },
+        {
+          "field": "operation",
+          "op": "eq",
+          "value": ""
+        },
+        {
+          "field": "usageTypeClass",
+          "op": "eq",
+          "value": "EventsV2-MSKTargetCompression-64K-ChunkSize"
+        },
+        {
+          "field": "unit",
+          "op": "eq",
+          "value": "Operations"
+        }
+      ],
+      "status": "ignored",
+      "reason": "Enhanced Custom event bus (EventsV2) MSK target compression is outside the supplied classic AWS Pricing Calculator EventBridge UI and is not estimated by this onboarding.",
+      "limitationId": "unsupported-pricing-category"
     }
   ]
 }
