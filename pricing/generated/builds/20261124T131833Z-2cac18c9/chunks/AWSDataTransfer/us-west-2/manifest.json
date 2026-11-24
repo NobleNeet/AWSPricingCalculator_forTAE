@@ -1,0 +1,17 @@
+{
+  "buildId": "20261124T131833Z-2cac18c9",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 7,
+      "firstSku": "5M4327XEUKBBTWAT",
+      "lastSku": "KKYH8QKF8CSNVQCC",
+      "path": "chunks/AWSDataTransfer/us-west-2/00000.json",
+      "sha256": "c150edab9f14bb186222e5d6b6626ca2eb49b53f1551a6f5da4d20955d363d12"
+    }
+  ],
+  "productCount": 7,
+  "region": "us-west-2",
+  "schemaVersion": 1,
+  "serviceCode": "AWSDataTransfer"
+}

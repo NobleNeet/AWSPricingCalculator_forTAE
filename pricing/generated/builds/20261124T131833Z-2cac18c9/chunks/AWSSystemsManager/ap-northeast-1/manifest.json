@@ -1,0 +1,17 @@
+{
+  "buildId": "20261124T131833Z-2cac18c9",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 2,
+      "firstSku": "V6JVHFNM9G6T5RMV",
+      "lastSku": "YF7EUXB8ARRTSWJX",
+      "path": "chunks/AWSSystemsManager/ap-northeast-1/00000.json",
+      "sha256": "d32cc4130b3c45ce30ba8ed09ab95e0f605891ee15b1f120817b57ae8ec2c256"
+    }
+  ],
+  "productCount": 2,
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}

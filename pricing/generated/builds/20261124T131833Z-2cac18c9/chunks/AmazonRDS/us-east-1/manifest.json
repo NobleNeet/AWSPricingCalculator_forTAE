@@ -1,0 +1,17 @@
+{
+  "buildId": "20261124T131833Z-2cac18c9",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 1729,
+      "firstSku": "2276USMT8KU9SEAJ",
+      "lastSku": "ZZZ77HPGQC7NGEY3",
+      "path": "chunks/AmazonRDS/us-east-1/00000.json",
+      "sha256": "f1d118d3a250fa3ccba04f5c7e02a7285f6f774c4bee320dc3fa83c4d7afa6ad"
+    }
+  ],
+  "productCount": 1729,
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonRDS"
+}

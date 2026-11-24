@@ -1,0 +1,17 @@
+{
+  "buildId": "20261124T131833Z-2cac18c9",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 25,
+      "firstSku": "2Q9Y2JKCUYWWVY4P",
+      "lastSku": "ZS33W5EBFBS4EHRT",
+      "path": "chunks/AmazonRedshift/ap-northeast-3/00000.json",
+      "sha256": "eead7a252c87dfb7217eb4957bada223498e9e274df5e21fba3b63d4a196d5fe"
+    }
+  ],
+  "productCount": 25,
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AmazonRedshift"
+}

@@ -1,0 +1,17 @@
+{
+  "buildId": "20261124T131833Z-2cac18c9",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 11,
+      "firstSku": "3BE8DYKG4FYSZGDW",
+      "lastSku": "ZVA2Z6TTQNFCXFSU",
+      "path": "chunks/AWSLambda/ap-northeast-1/00000.json",
+      "sha256": "ebb4c67d0f1fab56931c301a0ce68ddf829ce40ba5e669016ca8fd718c80ba26"
+    }
+  ],
+  "productCount": 11,
+  "region": "ap-northeast-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSLambda"
+}

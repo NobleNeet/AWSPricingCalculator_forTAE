@@ -1,0 +1,17 @@
+{
+  "buildId": "20261124T131833Z-2cac18c9",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 2,
+      "firstSku": "69CBTNUPM5AC83AH",
+      "lastSku": "SNQ94B38KKCNXSW5",
+      "path": "chunks/AWSSystemsManager/us-east-1/00000.json",
+      "sha256": "0606d7cf351024e11402a255ac376e500baef45d139260f0bbcfc32c0ad8ff6a"
+    }
+  ],
+  "productCount": 2,
+  "region": "us-east-1",
+  "schemaVersion": 1,
+  "serviceCode": "AWSSystemsManager"
+}
