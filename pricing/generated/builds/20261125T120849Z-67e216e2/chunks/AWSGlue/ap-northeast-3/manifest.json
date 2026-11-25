@@ -1,0 +1,17 @@
+{
+  "buildId": "20261125T120849Z-67e216e2",
+  "chunkSize": 5000,
+  "chunks": [
+    {
+      "count": 13,
+      "firstSku": "2JE3WCEUSPXQY8TK",
+      "lastSku": "PNAKN534WJKCSHMM",
+      "path": "chunks/AWSGlue/ap-northeast-3/00000.json",
+      "sha256": "f2b636593a46842244880c2f01bff486f730c503eb26581d6cd859baae61ff3c"
+    }
+  ],
+  "productCount": 13,
+  "region": "ap-northeast-3",
+  "schemaVersion": 1,
+  "serviceCode": "AWSGlue"
+}
